@@ -1,0 +1,32 @@
+{
+  "name": "rebuske-v4-prod",
+  "version": "4.0.0",
+  "description": "Rebuske v4 Production — Plataforma de servicios locales con Ruta de Luz, Pago Protegido (Escrow) y sincronización en tiempo real con Supabase REST API.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "npx serve . -l 3000",
+    "dev": "npx vercel dev",
+    "deploy:preview": "npx vercel",
+    "deploy:prod": "npx vercel --prod",
+    "db:check": "node -e \"fetch('https://vqvwcbirzezihfzaeziq.supabase.co/rest/v1/categories?select=*', { headers: { apikey: 'sb_publishable_BK1NkxOB_5Ns0R64v-CW3g_g2TEy4Qi' } }).then(r => r.json()).then(d => console.log('Supabase OK:', d.length, 'categorías')).catch( console.error)\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rebuske/rebuske-v4-prod.git"
+  },
+  "keywords": [
+    "rebuske",
+    "marketplace",
+    "medellin",
+    "supabase",
+    "vercel",
+    "escrow",
+    "ruta-de-luz"
+  ],
+  "author": "Camilo (CEO) & Mateo (Arquitecto Full-Stack)",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
