@@ -1,0 +1,42 @@
+{
+  "metadata": {
+    "timestamp": "2026-11-02T14:53:58.650Z",
+    "entorno": "produccion_medellin",
+    "responsable": "Camilo Escobar",
+    "version": "4.0.0-prod",
+    "sha256": "50b4dacfec0f778af404b4699ff41b28812f0647e951025296a58f1c60b15998"
+  },
+  "tablas": {
+    "clientes_waitlist": {
+      "count": 1,
+      "clientes": [
+        {
+          "id": "cli_1793523672035",
+          "fecha": "2026-11-01T09:01:12.035Z",
+          "nombre": "Familia Valencia Restrepo",
+          "email": "holarebuske@gmail.com",
+          "whatsapp": "3043812882",
+          "comuna": "El Poblado - Patio Bonito",
+          "servicio": "Plomería y calentadores a gas",
+          "bonoCOP": 15000,
+          "estado": "LISTA_PLAYSTORE_ACTIVA"
+        }
+      ]
+    },
+    "clientes_csv": "﻿ID,Fecha,Nombre,Email,WhatsApp,Comuna,ServicioInteres,BonoCOP,Estado\n\"cli_1793523672035\",\"2026-11-01T09:01:12.035Z\",\"Familia Valencia Restrepo\",\"holarebuske@gmail.com\",\"3043812882\",\"El Poblado - Patio Bonito\",\"Plomería y calentadores a gas\",15000,\"LISTA_PLAYSTORE_ACTIVA\"\n",
+    "promo_config": {
+      "promo_id": "mes_1_al_1_pct_fundadores",
+      "promo_name": "Mes 1 con solo 1% de Comisión para los 100 Fundadores",
+      "is_activated": false,
+      "activated_at": null,
+      "expires_at": null,
+      "duration_days": 30,
+      "promo_fee_rate": 0.01,
+      "standard_founder_fee_rate": 0.07,
+      "regular_fee_rate": 0.09,
+      "activation_trigger": "Envío de correos y SMS masivos de activación de cuenta tras completar la recolección de los 100 inscritos.",
+      "status_label": "PENDIENTE RECOLECCIÓN COMPLETA DE CONTACTOS Y ENVÍO DE ACTIVACIÓN",
+      "notes": "Durante los 30 días posteriores al envío masivo de activación, los técnicos fundadores pagan solo el 1% de comisión (99% neto en su bolsillo). Tras los 30 días, el código conmuta automáticamente a la tarifa estándar acordada de los 100 Fundadores: 7% de comisión vitalicia (93% neto siempre)."
+    }
+  }
+}
