@@ -1,0 +1,16 @@
+{
+  "count": 1,
+  "clientes": [
+    {
+      "id": "cli_1793523672035",
+      "fecha": "2026-11-01T09:01:12.035Z",
+      "nombre": "Familia Valencia Restrepo",
+      "email": "holarebuske@gmail.com",
+      "whatsapp": "3043812882",
+      "comuna": "El Poblado - Patio Bonito",
+      "servicio": "Plomería y calentadores a gas",
+      "bonoCOP": 15000,
+      "estado": "LISTA_PLAYSTORE_ACTIVA"
+    }
+  ]
+}
