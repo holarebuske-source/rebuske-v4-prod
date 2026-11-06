@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>rebuske Primordiales · Convocatoria Oficial de Profesionales en Medellín</title>
+  <meta name="description" content="Primeros 100 cupos para profesionales y técnicos en Medellín. Registrate con Google, obtené la Insignia Primordial, 0% comisión mes 1 y cobrá del 91% al 93% neto directo a tu Nequi o Bancolombia." />
+  
+  <meta property="og:title" content="rebuske Primordiales · Convocatoria Oficial en Medellín" />
+  <meta property="og:description" content="Inscripción exclusiva para los primeros 100 plomeros, electricistas, cerrajeros y técnicos en Medellín. Del 91% al 93% neto a tu cuenta." />
+  <meta property="og:image" content="https://rebuske.vercel.app/rebuske-icon-1024.png" />
+  <meta property="og:url" content="https://rebuske-gnp42xhmi-holarebuske-2234.vercel.app/pro" />
+
+  <!-- Favicon Oficial rebuske (Luciérnaga) -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="alternate icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/favicon.png">
+
+  <!-- Tailwind CSS & Google Fonts -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --lima: #B8FF3B;
+      --lima-2: #AFFF3E;
+      --lima-glow: rgba(184, 255, 59, 0.35);
+      --ebano: #0C120A;
+      --ebano-surface: #121A0E;
+      --ebano-card: #162413;
+      --borde-suave: #24391E;
+      --blanco-hueso: #F4FBF1;
+      --gris-tenue: #97A890;
+      --dorado: #F59E0B;
+    }
+
+    body {
+      background-color: var(--ebano);
+      color: var(--blanco-hueso);
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, .font-brand {
+      font-family: 'Baloo 2', cursive, sans-serif;
+    }
+
+    .bg-mesh-dark {
+      background: radial-gradient(circle at 50% 0%, rgba(184, 255, 59, 0.12) 0%, rgba(12, 18, 10, 0) 65%),
+                  radial-gradient(circle at 85% 30%, rgba(78, 136, 57, 0.15) 0%, rgba(12, 18, 10, 0) 50%),
+                  radial-gradient(circle at 15% 70%, rgba(184, 255, 59, 0.08) 0%, rgba(12, 18, 10, 0) 55%), #0C120A;
+    }
+
+    /* iPhone Air Mockup: Chasis ultradelgado titanio, esquinas ultra pulidas */
+    .iphone-air-frame {
+      box-shadow: 0 25px 70px -15px rgba(0,0,0,0.95), 0 0 45px rgba(184, 255, 59, 0.15);
+      border: 3px solid #314929;
+      border-radius: 48px;
+      background: linear-gradient(145deg, #1B2917, #0A1008);
+      position: relative;
+    }
+
+    /* OCULTAR COMPLETAMENTE LAS BARRAS DE SCROLL - 100% TÁCTIL NATIVO */
+    .touch-screen {
+      overflow-y: auto;
+      scrollbar-width: none !important; /* Firefox */
+      -ms-overflow-style: none !important; /* IE y Edge */
+      touch-action: pan-y;
+      -webkit-overflow-scrolling: touch;
+    }
+    .touch-screen::-webkit-scrollbar {
+      display: none !important;
+      width: 0 !important;
+      height: 0 !important;
+    }
+
+    .glow-border {
+      border: 1px solid rgba(184, 255, 59, 0.25);
+      transition: all 0.25s ease;
+    }
+    .glow-border:hover {
+      border-color: rgba(184, 255, 59, 0.85);
+      box-shadow: 0 0 20px rgba(184, 255, 59, 0.2);
+    }
+
+    .shimmer-text {
+      background: linear-gradient(90deg, #F4FBF1 0%, #B8FF3B 40%, #AFFF3E 60%, #F4FBF1 100%);
+      background-size: 200% auto;
+      color: transparent;
+      -webkit-background-clip: text;
+      background-clip: text;
+      animation: shimmer 4s linear infinite;
+    }
+    @keyframes shimmer {
+      to { background-position: 200% center; }
+    }
+
+    .iridescent-btn {
+      background: linear-gradient(135deg, #1F3518, #111D0E);
+      border: 2px solid #B8FF3B;
+      box-shadow: 0 8px 24px rgba(184, 255, 59, 0.25);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .iridescent-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 35px rgba(184, 255, 59, 0.45);
+      background: linear-gradient(135deg, #27451F, #162612);
+    }
+  </style>
+</head>
+<body class="bg-mesh-dark min-h-screen selection:bg-[#B8FF3B] selection:text-[#0C120A] flex flex-col justify-between">
+
+  <!-- Barra de Notificación Superior -->
+  <aside id="top-alert-banner" aria-label="Alerta de cupos" class="bg-[#142211] border-b border-[#253D1E] py-2 px-4 text-center text-xs sm:text-sm font-semibold text-[#B8FF3B] flex items-center justify-center gap-2">
+    <span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-black bg-[#B8FF3B] text-[#0C120A] tracking-wider uppercase">FASE 1</span>
+    <span>👑 <strong>Convocatoria Exclusiva:</strong> Primeros 100 técnicos y profesionales fundadores de Medellín</span>
+  </aside>
+
+  <!-- Navbar Oficial rebuske (Manual de Marca) -->
+  <header class="w-full border-b border-[#22371A] bg-[#0C120A]/95 backdrop-blur-xl sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between">
+      
+      <!-- LOGO CON ISOTIPO OFICIAL REBUSKE (TRAZADO VECTORIAL v33) + TIPOGRAFÍA BALOO 2 EXTRA BOLD -->
+      <a href="/" class="flex items-center gap-3 group text-decoration-none">
+        <!-- SVG Luciérnaga Oficial de Marca (Construida sobre la 'r' minúscula con fillRule="evenodd") -->
+        <svg viewBox="0 0 390 372" style="width:38px;height:auto;" aria-label="Logo Oficial rebuske" class="group-hover:scale-105 transition-transform flex-shrink-0">
+          <path fill="#B8FF3B" fill-rule="evenodd" d="M198.12 328.12 L195.62 328.88 L194.75 329.38 L193.88 330.50 L193.62 331.25 L193.50 350.88 L194.12 352.50 L195.25 353.62 L198.38 354.62 L200.00 354.62 L202.25 353.75 L203.50 352.50 L204.00 351.38 L204.12 332.12 L203.50 330.25 L202.25 328.88 L200.50 328.12 Z M234.50 298.88 L233.50 301.00 L233.38 302.62 L233.88 304.50 L235.25 306.00 L243.12 311.62 L246.88 314.00 L256.62 321.25 L258.38 322.00 L260.38 322.00 L262.00 321.38 L262.88 320.62 L263.88 318.75 L264.00 316.12 L263.50 314.62 L261.75 312.75 L259.62 311.50 L244.38 300.12 L240.62 297.62 L239.12 297.00 L237.00 297.12 L235.38 298.00 Z M163.25 299.38 L162.25 298.25 L160.62 297.25 L159.50 297.00 L157.62 297.25 L154.50 299.00 L137.00 311.62 L135.38 312.50 L133.62 314.12 L132.75 316.12 L132.88 318.75 L133.88 320.50 L135.00 321.50 L136.00 321.88 L138.50 322.00 L140.12 321.50 L158.88 308.00 L161.25 306.62 L163.25 304.62 L164.00 303.12 L164.12 301.62 Z M194.88 252.12 L189.88 253.00 L186.25 254.00 L179.50 257.00 L175.00 260.00 L172.38 262.50 L170.75 265.25 L170.25 267.12 L170.25 272.12 L171.00 279.38 L173.88 290.88 L175.25 294.62 L177.88 300.38 L182.12 307.88 L185.50 312.25 L189.00 315.75 L191.62 317.62 L194.88 319.00 L196.75 319.12 L198.25 319.50 L200.00 319.50 L203.38 318.88 L205.12 318.25 L207.50 316.88 L209.50 315.25 L213.25 311.38 L215.62 308.38 L220.62 299.88 L222.75 295.25 L224.50 290.62 L226.38 283.88 L227.62 277.38 L228.12 273.12 L228.25 266.88 L227.75 265.00 L227.00 263.62 L225.75 261.88 L223.50 259.62 L219.38 256.88 L215.88 255.12 L212.62 253.88 L207.12 252.62 L201.00 252.00 Z M265.88 150.00 L265.25 150.75 L264.75 152.38 L262.75 156.38 L261.00 158.88 L257.75 162.25 L254.62 164.88 L251.50 166.88 L246.75 169.25 L243.62 170.38 L242.62 171.00 L241.62 172.38 L241.25 174.00 L241.38 177.12 L242.38 184.50 L244.38 192.38 L246.38 198.25 L248.50 203.38 L251.38 209.25 L256.12 217.50 L259.50 222.62 L263.88 228.50 L267.38 232.62 L273.12 238.50 L277.75 242.62 L281.25 245.38 L286.62 249.12 L293.25 253.12 L298.38 255.62 L308.00 259.38 L315.75 261.50 L321.12 262.38 L326.50 262.62 L333.75 262.38 L338.12 261.50 L340.50 260.62 L342.38 259.62 L344.62 257.50 L345.50 256.25 L346.25 254.75 L347.25 251.25 L347.25 244.25 L346.25 239.12 L344.12 232.00 L341.25 225.25 L335.38 214.38 L330.25 206.38 L323.50 197.25 L317.75 190.38 L309.12 181.25 L301.25 174.00 L290.50 165.12 L284.12 160.38 L271.25 152.25 L267.00 150.00 Z M157.38 138.00 L156.38 138.00 L154.75 138.38 L146.50 141.25 L141.75 143.38 L131.88 148.25 L119.88 155.25 L110.25 161.75 L102.75 167.50 L95.88 173.25 L90.25 178.38 L83.38 185.12 L76.50 192.75 L69.75 200.88 L63.12 210.00 L56.38 221.25 L54.12 225.50 L51.38 232.00 L50.12 235.50 L48.38 241.88 L47.88 246.12 L47.88 250.88 L48.12 252.62 L49.00 255.38 L50.25 257.50 L51.88 259.25 L54.12 260.62 L55.88 261.38 L59.88 262.25 L62.38 262.50 L69.00 262.50 L76.38 261.62 L85.75 259.50 L91.38 257.50 L101.00 253.25 L111.00 247.50 L116.50 243.50 L123.38 237.62 L126.25 234.88 L130.50 230.12 L135.88 223.38 L140.75 216.38 L142.50 213.38 L148.50 201.25 L151.38 193.12 L153.25 186.00 L154.38 179.62 L154.62 173.00 L154.62 154.88 L155.75 147.62 L156.62 144.00 L158.38 139.25 L158.25 138.62 Z M276.12 43.38 L275.25 42.38 L273.62 41.25 L272.50 40.75 L269.88 40.12 L266.38 40.12 L264.12 40.62 L262.25 40.75 L256.38 42.50 L252.00 44.38 L243.62 49.12 L240.75 51.25 L234.12 56.88 L230.25 60.88 L226.38 65.62 L223.00 70.25 L219.38 76.25 L215.88 83.38 L216.00 84.75 L216.50 85.25 L218.38 86.00 L221.25 87.62 L222.00 87.88 L222.62 87.75 L223.62 86.62 L225.50 82.88 L231.00 75.00 L233.62 72.00 L240.38 65.62 L243.75 63.12 L249.25 59.88 L258.25 56.62 L263.62 55.62 L271.25 55.38 L272.75 54.88 L274.50 53.88 L275.75 52.75 L276.50 51.62 L277.12 50.25 L277.50 48.50 L277.50 47.00 L277.12 45.25 Z M122.88 43.62 L121.75 46.25 L121.75 49.12 L122.75 51.75 L123.25 52.50 L125.25 54.38 L128.12 55.50 L136.38 55.75 L141.75 56.75 L150.12 60.12 L154.38 62.50 L158.12 65.00 L161.12 67.38 L164.25 70.50 L169.50 76.75 L173.50 83.00 L176.00 87.62 L176.75 88.00 L177.38 87.88 L179.00 86.88 L182.75 85.25 L183.25 84.75 L183.38 83.75 L182.50 81.38 L179.50 75.62 L175.50 69.25 L172.38 64.88 L168.12 59.88 L163.88 55.62 L159.12 51.50 L154.75 48.25 L147.00 44.00 L144.75 43.00 L138.38 40.88 L132.88 40.12 L129.38 40.12 L126.00 41.00 L124.50 42.00 Z"></path>
+          <path fill="#FFFFFF" fill-rule="evenodd" d="M253.00 137.00 L251.62 136.12 L247.25 134.38 L243.25 133.50 L240.12 133.12 L233.75 133.12 L230.75 133.38 L226.62 134.25 L222.75 135.50 L217.00 138.12 L212.12 141.75 L207.62 146.50 L205.25 150.00 L203.50 153.38 L202.75 154.25 L202.25 154.25 L201.88 153.75 L201.62 150.88 L200.62 146.75 L199.62 143.75 L197.62 139.62 L196.62 138.38 L195.38 137.88 L193.12 135.75 L190.12 133.88 L188.50 133.25 L184.62 132.50 L182.75 132.50 L179.50 133.25 L176.75 134.50 L174.75 135.88 L172.88 137.75 L171.75 139.25 L169.88 142.62 L168.12 147.38 L167.38 152.75 L167.38 244.50 L167.50 251.12 L167.88 251.75 L168.62 251.75 L170.75 250.00 L176.75 246.12 L181.88 243.75 L187.12 242.00 L195.38 240.75 L202.00 240.62 L206.62 240.88 L207.25 240.50 L207.50 239.88 L207.75 230.00 L207.88 189.88 L208.88 183.75 L210.12 179.75 L212.25 175.50 L215.25 171.25 L218.50 168.12 L221.62 166.00 L226.12 163.75 L231.25 162.38 L235.12 162.00 L240.38 162.00 L244.50 160.88 L247.12 159.62 L249.00 158.38 L252.25 155.62 L254.00 153.75 L255.50 151.62 L256.75 149.12 L257.50 146.38 L257.50 143.75 L256.88 141.62 L255.38 139.12 Z M165.00 117.00 L165.00 119.62 L165.25 120.38 L166.12 121.50 L167.12 122.00 L169.25 122.00 L173.00 121.00 L184.00 119.25 L194.75 118.50 L203.25 118.50 L212.00 119.00 L221.62 120.38 L229.12 121.88 L231.00 122.00 L232.00 121.62 L232.75 121.00 L233.50 119.38 L233.50 117.88 L232.88 114.38 L230.62 107.75 L227.38 102.12 L225.38 99.62 L221.12 95.62 L217.50 93.12 L213.75 91.12 L207.50 89.25 L201.88 88.50 L197.50 88.50 L193.00 88.88 L187.75 90.12 L182.88 92.25 L176.62 96.25 L173.00 99.62 L170.62 102.62 L169.00 105.12 L167.00 109.38 L165.88 112.75 Z"></path>
+        </svg>
+
+        <!-- Wordmark Oficial en Baloo 2 Extrabold (800) -->
+        <div class="flex items-center">
+          <span style="font-family:'Baloo 2',cursive,sans-serif;font-weight:800;font-size:28px;letter-spacing:-0.5px;line-height:1;color:#FFFFFF">rebusk<span style="color:#B8FF3B">e</span></span>
+          <span class="font-brand font-black text-xs text-[#B8FF3B] ml-2 tracking-wider uppercase bg-[#B8FF3B]/10 px-2 py-0.5 rounded border border-[#B8FF3B]/30">PRO</span>
+        </div>
+      </a>
+
+      <!-- Cupos Primordiales y CTA Nav -->
+      <div class="flex items-center gap-1.5 sm:gap-3 flex-shrink-0">
+        <div class="flex items-center gap-1.5 px-2.5 py-1.5 rounded-full bg-[#121E10] border border-[#2D4527] text-xs flex-shrink-0 whitespace-nowrap">
+          <span class="w-2 h-2 rounded-full bg-[#B8FF3B] animate-pulse flex-shrink-0"></span>
+          <span class="text-[#A4BEA0] font-medium hidden md:inline">Cupos:</span>
+          <span class="font-mono font-black text-[#B8FF3B] text-[11px] sm:text-xs tracking-tight" id="nav-counter">84 / 100</span>
+        </div>
+        <a href="#registro" class="px-2.5 sm:px-4 py-1.5 sm:py-2 rounded-xl text-xs font-black bg-[#B8FF3B] text-[#070B05] hover:bg-[#cbfb60] active:scale-95 transition shadow-md inline-flex items-center gap-1 whitespace-nowrap flex-shrink-0">
+          <span>Inscribirme</span><span class="hidden sm:inline">Ahora</span>
+          <span>⚡</span>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- HERO PRINCIPAL CON EL MOCKUP DEL IPHONE AIR Y CERO BARRAS DE SCROLL       -->
+  <!-- ========================================================================= -->
+  <main class="flex-grow">
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 pt-10 sm:pt-16 pb-16">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+        
+        <!-- Columna Izquierda: Copy y Propuesta de Valor -->
+        <div class="lg:col-span-7 space-y-6">
+          
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#172813] border border-[#B8FF3B]/40 text-xs font-bold text-[#B8FF3B]">
+            <span>👑</span>
+            <span>CONVOCATORIA OFICIAL MEDELLÍN · VALLE DE ABURRÁ</span>
+          </div>
+
+          <!-- Headline con contraste absoluto sobre fondo Ébano oscuro -->
+          <h1 class="text-4xl sm:text-5xl md:text-6xl font-black font-brand tracking-tight text-[#F4FBF1] leading-[1.08]">
+            ¿Hacés oficios en Medellín?<br />
+            <span class="shimmer-text">Ganá del 91% al 93% neto.</span><br />
+            Sé uno de los 100 Primordiales.
+          </h1>
+
+          <p class="text-base sm:text-lg text-[#C8DEC4] leading-relaxed max-w-2xl font-normal">
+            Plomeros, electricistas, cerrajeros, técnicos de electrodomésticos y expertos en oficios: antes del lanzamiento masivo, estamos seleccionando a los <strong>primeros 100 profesionales fundadores</strong> de Medellín. Recibí la <strong>Insignia Primordial</strong> vitalicia, mes 1 con solo el 1% de comisión y pagos directos a tu Nequi o Bancolombia.
+          </p>
+
+          <!-- Beneficios Clave -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+            <div class="flex items-start gap-3 p-3.5 rounded-xl bg-[#111C0F] border border-[#23381B]">
+              <span class="text-xl">🎁</span>
+              <div>
+                <b class="text-sm text-[#F4FBF1] block font-brand">Mes 1 con solo 1% de Comisión</b>
+                <span class="text-xs text-[#9FB392]">Te quedás con el 99% de tus ingresos completos al activar tu cuenta para empezar con toda.</span>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-3.5 rounded-xl bg-[#111C0F] border border-[#23381B]">
+              <span class="text-xl">🥇</span>
+              <div>
+                <b class="text-sm text-[#F4FBF1] block font-brand">Placa Oro VIP Vitalicia</b>
+                <span class="text-xs text-[#9FB392]">Luego del mes 1, quedás fijado en solo 7% de comisión vitalicia (¡93% neto siempre!).</span>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-3.5 rounded-xl bg-[#111C0F] border border-[#23381B]">
+              <span class="text-xl">🛡️</span>
+              <div>
+                <b class="text-sm text-[#F4FBF1] block font-brand">Insignia Primordial #01 - #100</b>
+                <span class="text-xs text-[#9FB392]">Sello de fundador grabado en tu perfil para que los clientes te elijan primero.</span>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3 p-3.5 rounded-xl bg-[#111C0F] border border-[#23381B]">
+              <span class="text-xl">⚡</span>
+              <div>
+                <b class="text-sm text-[#F4FBF1] block font-brand">Pagos Diarios a tu Cuenta</b>
+                <span class="text-xs text-[#9FB392]">Retiros directos vía Wompi a Nequi, Daviplata o Bancolombia sin trabas.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- CTA y Progreso de Cupos -->
+          <div class="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
+            <a href="#registro" class="iridescent-btn px-8 py-4 rounded-2xl flex items-center justify-center gap-3 text-base font-black font-brand text-[#F4FBF1] tracking-wide cursor-pointer">
+              <span>Postularme entre los 100</span>
+              <span class="text-[#B8FF3B] text-xl">→</span>
+            </a>
+
+            <!-- Progreso de Cupos en Vivo -->
+            <div class="p-3.5 rounded-2xl bg-[#101A0E] border border-[#243A1E] flex flex-col justify-center min-w-[210px]">
+              <div class="flex justify-between items-center text-xs mb-1.5">
+                <span class="text-[#A4BEA0] font-semibold">Cupos tomados:</span>
+                <span class="text-[#B8FF3B] font-mono font-black" id="hero-cupos-label">84 de 100</span>
+              </div>
+              <div class="w-full h-2 rounded-full bg-[#1C2C18] overflow-hidden">
+                <div class="h-full bg-gradient-to-r from-[#4E8839] to-[#B8FF3B] transition-all duration-700" id="hero-cupos-bar" style="width: 84%;"></div>
+              </div>
+              <span class="text-[10px] text-[#8CA381] mt-1.5 text-center font-medium" id="hero-cupos-remaining">⚡ ¡Solo quedan 16 cupos disponibles!</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Columna Derecha: MOCKUP IPHONE AIR (ULTRADELGADO, TÁCTIL, CERO BARRAS DE SCROLL) -->
+        <div class="lg:col-span-5 flex justify-center">
+          <div class="iphone-air-frame w-[310px] sm:w-[335px] p-2.5 relative">
+            
+            <!-- Dynamic Island Minimalista iPhone Air -->
+            <div class="w-24 h-4 bg-[#090F07] rounded-full mx-auto mb-2 flex items-center justify-center border border-[#1E2E1B]">
+              <div class="w-2.5 h-2.5 rounded-full bg-[#162413] mr-2"></div>
+              <div class="w-7 h-1.5 rounded-full bg-[#162413]"></div>
+            </div>
+
+            <!-- Pantalla Táctil Interna: SIN BARRA DE SCROLL DE ESCRITORIO -->
+            <div class="touch-screen bg-[#0A1008] rounded-[38px] p-4 border border-[#1E3019] space-y-3.5 max-h-[490px]">
+              
+              <!-- Cabecera del Chat en la Pantalla -->
+              <div class="flex items-center gap-3 border-b border-[#1A2C16] pb-3">
+                <div class="w-10 h-10 rounded-full bg-[#182813] border border-[#2B4620] flex items-center justify-center font-bold text-sm text-[#B8FF3B]">
+                  DC
+                </div>
+                <div class="flex-1">
+                  <div class="flex items-center gap-1.5">
+                    <span class="text-xs font-bold text-white font-brand">Don Carlos</span>
+                    <span class="text-[9px] bg-[#B8FF3B]/15 border border-[#B8FF3B]/40 text-[#B8FF3B] font-bold px-1.5 py-0.5 rounded font-mono">PRIMORDIAL</span>
+                  </div>
+                  <span class="text-[10px] text-[#8DA687]">Plomero Certificado · 5.0 ★ (El Poblado)</span>
+                </div>
+                <div class="w-2 h-2 rounded-full bg-[#22C55E] animate-pulse" title="En línea"></div>
+              </div>
+
+              <!-- Mensajes del Chat Real en Medellín -->
+              <div class="space-y-3 text-xs">
+                <!-- Mensaje de Mariana G. -->
+                <div class="bg-[#142011] border border-[#23381B] p-3 rounded-2xl rounded-tl-sm space-y-1">
+                  <div class="flex items-center justify-between">
+                    <span class="text-[10px] font-bold text-[#B8FF3B]">Mariana G. · El Poblado</span>
+                    <span class="text-[9px] text-[#71886B]">2:14 PM</span>
+                  </div>
+                  <p class="text-[#D3E4CD] leading-snug">¡Buenas tardes Don Carlos! Tengo una fuga urgente en el lavaplatos, ¿podés pasar hoy mismo?</p>
+                </div>
+
+                <!-- Respuesta de Don Carlos -->
+                <div class="bg-[#1B2D17] border border-[#315324] p-3 rounded-2xl rounded-tr-sm ml-3 space-y-1">
+                  <div class="flex items-center justify-between">
+                    <span class="text-[10px] font-bold text-[#AFFF3E]">Don Carlos (Tú)</span>
+                    <span class="text-[9px] text-[#84A27B]">2:15 PM</span>
+                  </div>
+                  <p class="text-white leading-snug">¡Hola Mariana! Claro que sí, estoy a 10 minutos por la 10. Llego con herramientas y empaques nuevos. Tarifa estimada: <strong class="text-[#B8FF3B]">$85.000 COP</strong>.</p>
+                </div>
+
+                <!-- Pago Protegido Escrow Wompi -->
+                <div class="bg-[#121E10] border border-[#2B4620] p-2.5 rounded-xl text-center space-y-1">
+                  <div class="flex items-center justify-center gap-1.5 text-[10px] font-bold text-[#B8FF3B]">
+                    <span>🛡️</span>
+                    <span>Pago Retenido en Custodia Wompi</span>
+                  </div>
+                  <p class="text-[10px] text-[#9CB395]">Mariana pagó $85.000 COP. La plata se libera directo a tu cuenta al terminar el trabajo.</p>
+                </div>
+
+                <!-- Mensaje de Confirmación Mariana -->
+                <div class="bg-[#142011] border border-[#23381B] p-3 rounded-2xl rounded-tl-sm space-y-1">
+                  <span class="text-[10px] font-bold text-[#B8FF3B]">Mariana G.</span>
+                  <p class="text-[#D3E4CD] leading-snug">¡Perfecto Don Carlos! Ya quedó autorizado. Acá lo espero.</p>
+                  <span class="text-[9px] text-[#71886B] block text-right">2:16 PM</span>
+                </div>
+              </div>
+
+              <!-- Pie de Pantalla Táctil -->
+              <div class="pt-2 border-t border-[#1A2C16] flex items-center justify-between text-[10px] text-[#7E9675]">
+                <span class="flex items-center gap-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#22C55E]"></span>
+                  <span class="text-[#A3BFA0]">Flujo Táctil en Medellín</span>
+                </span>
+                <span class="text-[#B8FF3B] font-bold font-mono">93% Neto al Pro</span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- CALCULADORA DE GANANCIAS: 91% TASA BASE Y 93% ORO VIP VITALICIO           -->
+    <!-- ========================================================================= -->
+    <section class="max-w-5xl mx-auto px-4 sm:px-6 py-12 border-t border-[#1C2C18]">
+      <div class="bg-[#121D10] border-2 border-[#2D4527] rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
+        <div class="absolute -top-24 -right-24 w-48 h-48 bg-[#B8FF3B]/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-[#23381B] pb-4 mb-6 gap-2">
+          <div>
+            <span class="text-xs font-bold text-[#B8FF3B] uppercase tracking-wider block">Simulador Oficial rebuske</span>
+            <h3 class="text-2xl font-black font-brand text-[#F4FBF1]">¿Cuánto dinero te queda en el bolsillo?</h3>
+          </div>
+          <span class="text-3xl">💰</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+          
+          <div class="md:col-span-5 space-y-4">
+            <label class="block text-xs font-bold uppercase text-[#A4BEA0]">Selecciona o desliza el valor del trabajo:</label>
+            <div class="grid grid-cols-3 gap-2">
+              <button type="button" onclick="setSim(100000)" data-sim-val="100000" id="btn-100" class="py-2 px-2.5 rounded-xl border-2 border-[#B8FF3B] bg-[#192B15] text-xs font-black text-[#B8FF3B] shadow-md transition text-center cursor-pointer">$100.000</button>
+              <button type="button" onclick="setSim(350000)" data-sim-val="350000" id="btn-350" class="py-2 px-2.5 rounded-xl border border-[#23381B] bg-[#0E170C] text-xs font-bold text-[#C8DEC4] hover:border-[#4E8839] transition text-center cursor-pointer">$350.000</button>
+              <button type="button" onclick="setSim(800000)" data-sim-val="800000" id="btn-800" class="py-2 px-2.5 rounded-xl border border-[#23381B] bg-[#0E170C] text-xs font-bold text-[#C8DEC4] hover:border-[#4E8839] transition text-center cursor-pointer">$800.000</button>
+            </div>
+            <div class="grid grid-cols-3 gap-2 mt-2">
+              <button type="button" onclick="setSim(250000)" data-sim-val="250000" id="btn-250" class="py-2 px-2.5 rounded-xl border border-[#23381B] bg-[#0E170C] text-xs font-bold text-[#C8DEC4] hover:border-[#4E8839] transition text-center cursor-pointer">$250.000</button>
+              <button type="button" onclick="setSim(500000)" data-sim-val="500000" id="btn-500" class="py-2 px-2.5 rounded-xl border border-[#23381B] bg-[#0E170C] text-xs font-bold text-[#C8DEC4] hover:border-[#4E8839] transition text-center cursor-pointer">$500.000</button>
+              <button type="button" onclick="setSim(1500000)" data-sim-val="1500000" id="btn-1500" class="py-2 px-2.5 rounded-xl border border-[#23381B] bg-[#0E170C] text-xs font-bold text-[#C8DEC4] hover:border-[#4E8839] transition text-center cursor-pointer">$1.500.000</button>
+            </div>
+            <div class="mt-3 p-3 rounded-xl bg-[#090E07] border border-[#23381B]">
+              <div class="flex justify-between items-center text-xs mb-1.5 text-[#A4BEA0] font-bold">
+                <span>O desliza cualquier monto:</span>
+                <span id="sim-current-val" class="font-mono text-[#B8FF3B] text-sm font-black">$100.000</span>
+              </div>
+              <input type="range" id="sim-slider" min="50000" max="2000000" step="25000" value="100000" oninput="setSim(this.value)" class="w-full accent-[#B8FF3B] h-2.5 bg-[#121E10] rounded-lg appearance-none cursor-pointer">
+            </div>
+            <p class="text-xs text-[#8DA087] leading-relaxed">
+              En rebuske protegemos tu trabajo con comisiones justas. Sin suscripciones fijas, sin pagar por enviar cotizaciones que no se cierran.
+            </p>
+          </div>
+
+          <div class="md:col-span-7 space-y-3">
+            <!-- Otras Apps (30%) -->
+            <div class="p-3.5 rounded-xl bg-[#090E07] border border-[#212E1E] flex items-center justify-between">
+              <div>
+                <span class="text-[11px] text-[#869E81] block">Otras aplicaciones tradicionales</span>
+                <span class="text-xs font-bold text-[#EF4444]">Te cobran hasta el 30%</span>
+              </div>
+              <div class="text-right">
+                <b class="text-sm text-[#EF4444] font-mono" id="sim-otras">$70.000</b>
+                <span class="text-[10px] text-[#6E826B] block">Recibes solo el 70%</span>
+              </div>
+            </div>
+
+            <!-- rebuske Tasa Base (91% Pro / 9% rebuske) -->
+            <div class="p-3.5 rounded-xl bg-[#142312] border border-[#2D4B24] flex items-center justify-between">
+              <div>
+                <div class="flex items-center gap-1.5">
+                  <span class="text-xs">🥉</span>
+                  <b class="text-xs text-[#F4FBF1] font-brand">rebuske Tasa Base Oficial</b>
+                </div>
+                <span class="text-[11px] text-[#9FB392]">9% rebuske (custodia Wompi)</span>
+              </div>
+              <div class="text-right">
+                <b class="text-sm text-[#F4FBF1] font-mono font-bold" id="sim-base">$91.000</b>
+                <span class="text-[10px] text-[#B8FF3B] block font-bold">91% neto para ti</span>
+              </div>
+            </div>
+
+            <!-- Promoción Especial Mes 1: 1% COMISIÓN -->
+            <div class="p-3.5 rounded-xl bg-[#1b3316] border border-[#4ade80] flex items-center justify-between">
+              <div>
+                <div class="flex items-center gap-1.5">
+                  <span class="text-sm">🎁</span>
+                  <b class="text-xs text-[#b8ff3b] font-brand">Mes 1 Especial de Activación</b>
+                </div>
+                <span class="text-[11px] text-[#C4DEC0]">Solo 1% de comisión tras enviar link de activación</span>
+              </div>
+              <div class="text-right">
+                <b class="text-sm text-[#b8ff3b] font-mono font-black" id="sim-mes1">$99.000</b>
+                <span class="text-[10px] text-[#b8ff3b] block font-bold">¡99% neto en tu bolsillo!</span>
+              </div>
+            </div>
+
+            <!-- Exclusivo 100 Primordiales: ORO VIP (93% Pro / 7% rebuske) -->
+            <div class="p-4 rounded-xl bg-[#192C15] border-2 border-[#B8FF3B] flex items-center justify-between relative shadow-lg">
+              <span class="absolute -top-2.5 right-3 text-[9px] font-black uppercase tracking-wider bg-[#B8FF3B] text-[#070B05] px-2 py-0.5 rounded-full font-brand">TU TARIFA VITALICIA POSTERIOR</span>
+              <div>
+                <div class="flex items-center gap-1.5">
+                  <span class="text-base">🥇</span>
+                  <b class="text-sm text-[#F4FBF1] font-brand">Placa Oro VIP Vitalicia</b>
+                </div>
+                <span class="text-[11px] text-[#C4DEC0]">Solo 7% de comisión de por vida (luego del mes 1)</span>
+              </div>
+              <div class="text-right">
+                <b class="text-base text-[#B8FF3B] font-mono font-black" id="sim-primordial">$93.000</b>
+                <span class="text-[10px] text-[#B8FF3B] block font-bold">¡93% neto directo a tu cuenta!</span>
+                <span id="sim-diff" class="text-[10px] text-[#070B05] bg-[#B8FF3B] px-2 py-0.5 rounded-full font-black mt-1 inline-block">+$23.000 COP más en tu bolsillo que en otras apps</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- FORMULARIO DE INSCRIPCIÓN DIRECTA                                          -->
+    <!-- ========================================================================= -->
+    <section id="registro" class="max-w-3xl mx-auto px-4 sm:px-6 py-16 border-t border-[#1C2C18]">
+      <div class="bg-[#111A0E] border-2 border-[#2D4527] rounded-3xl p-6 sm:p-10 shadow-2xl">
+        <div class="text-center max-w-xl mx-auto mb-8">
+          <span class="text-xs font-black uppercase tracking-wider text-[#B8FF3B] bg-[#172813] px-3 py-1 rounded-full border border-[#B8FF3B]/30">INSCRIPCIÓN OFICIAL</span>
+          <h2 class="text-3xl sm:text-4xl font-black font-brand text-[#F4FBF1] mt-3">Asegurá tu lugar entre los 100 Primordiales</h2>
+          <p class="text-sm text-[#9BB197] mt-2">Completá tus datos para agendar tu llamada de verificación y activar tu insignia primordial vitalicia.</p>
+        </div>
+
+        <form id="pro-form" onsubmit="handleRegister(event)" class="space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold uppercase text-[#A4BEA0] mb-1.5">Nombre Completo *</label>
+              <input type="text" id="reg-nombre" required placeholder="Ej: Julián Restrepo" class="w-full bg-[#080E06] border border-[#243B1E] rounded-xl px-4 py-3 text-sm text-[#F4FBF1] focus:outline-none focus:border-[#B8FF3B]">
+            </div>
+            <div>
+              <label class="block text-xs font-bold uppercase text-[#A4BEA0] mb-1.5">Celular / WhatsApp *</label>
+              <input type="tel" id="reg-tel" required placeholder="Ej: 300 123 4567" class="w-full bg-[#080E06] border border-[#243B1E] rounded-xl px-4 py-3 text-sm text-[#F4FBF1] focus:outline-none focus:border-[#B8FF3B]">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold uppercase text-[#A4BEA0] mb-1.5">Oficio Principal *</label>
+              <select id="reg-oficio" required class="w-full bg-[#080E06] border border-[#243B1E] rounded-xl px-4 py-3 text-sm text-[#F4FBF1] focus:outline-none focus:border-[#B8FF3B]">
+                <option value="Plomería & Destapes">Plomería & Destapes</option>
+                <option value="Electricidad & Iluminación">Electricidad & Iluminación</option>
+                <option value="Cerrajería de Seguridad">Cerrajería de Seguridad</option>
+                <option value="Electrodomésticos & Línea Blanca">Electrodomésticos & Línea Blanca</option>
+                <option value="Pintura & Resanes">Pintura & Resanes</option>
+                <option value="Tecnología & Redes">Tecnología & Redes</option>
+                <option value="Carpintería & Muebles">Carpintería & Muebles</option>
+                <option value="Aires Acondicionados">Aires Acondicionados</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-bold uppercase text-[#A4BEA0] mb-1.5">Barrio / Comuna en Medellín *</label>
+              <input type="text" id="reg-zona" required placeholder="Ej: Laureles / El Poblado / Belén" class="w-full bg-[#080E06] border border-[#243B1E] rounded-xl px-4 py-3 text-sm text-[#F4FBF1] focus:outline-none focus:border-[#B8FF3B]">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold uppercase text-[#A4BEA0] mb-1.5">Cuenta para tus pagos (Nequi / Bancolombia) *</label>
+            <input type="text" id="reg-banco" required placeholder="Ej: Nequi 300 123 4567 o Bancolombia Ahorros" class="w-full bg-[#080E06] border border-[#243B1E] rounded-xl px-4 py-3 text-sm text-[#F4FBF1] focus:outline-none focus:border-[#B8FF3B]">
+          </div>
+
+          <div class="pt-4">
+            <button type="submit" id="reg-submit-btn" class="w-full py-4 rounded-2xl bg-[#B8FF3B] text-[#070B05] font-black font-brand text-base tracking-wide hover:bg-[#cbfb60] active:scale-[0.98] transition shadow-xl">
+      Completar Registro Primordial (1% Comisión Mes 1) ⚡
+    </button>
+          </div>
+
+          <div id="reg-success" class="hidden p-5 rounded-xl bg-[#192B15] border border-[#B8FF3B] text-center space-y-2">
+      <b class="text-base text-[#B8FF3B] block font-brand" id="reg-success-title">¡Registro Recibido con Éxito!</b>
+      <p class="text-xs text-[#F4FBF1]" id="reg-success-msg">Te hemos asignado tu cupo provisional. Nuestro equipo te contactará por WhatsApp para la validación de identidad.</p>
+      <div class="inline-block mt-2 px-3 py-1 rounded bg-[#0A1008] border border-[#B8FF3B]/40 text-[11px] font-bold text-[#B8FF3B]" id="reg-success-badge">
+        Comisión: 7% (¡93% neto para ti!) · Mes 1 al 1% de Activación (99% neto) · Placa Oro VIP Vitalicia
+      </div>
+    </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer Oficial -->
+  <footer class="border-t border-[#1C2C18] bg-[#070B05] py-8 text-center text-xs text-[#71886B]">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <span class="font-brand font-bold text-[#F4FBF1]">rebuske.pro</span>
+        <span>· Medellín, Colombia · 2026</span>
+      </div>
+      <div>
+        <span>Contacto: </span><a href="mailto:holarebuske@gmail.com" class="text-[#B8FF3B] hover:underline">holarebuske@gmail.com</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function setSim(amount) {
+      amount = parseInt(amount, 10) || 100000;
+      
+      document.querySelectorAll('[data-sim-val]').forEach(b => {
+        const val = parseInt(b.getAttribute('data-sim-val'), 10);
+        if (val === amount) {
+          b.className = 'py-2 px-2.5 rounded-xl border-2 border-[#B8FF3B] bg-[#192B15] text-xs font-black text-[#B8FF3B] shadow-md transition text-center cursor-pointer';
+        } else {
+          b.className = 'py-2 px-2.5 rounded-xl border border-[#23381B] bg-[#0E170C] text-xs font-bold text-[#C8DEC4] hover:border-[#4E8839] transition text-center cursor-pointer';
+        }
+      });
+
+      const slider = document.getElementById('sim-slider');
+      if (slider && parseInt(slider.value, 10) !== amount) {
+        slider.value = amount;
+      }
+      const valDisplay = document.getElementById('sim-current-val');
+      if (valDisplay) {
+        valDisplay.innerText = '$' + amount.toLocaleString('es-CO');
+      }
+
+      const otras = Math.round(amount * 0.70);
+      const base = Math.round(amount * 0.91);
+      const primordial = Math.round(amount * 0.93);
+      const mes1 = Math.round(amount * 0.99);
+      const diff = primordial - otras;
+
+      const elOtras = document.getElementById('sim-otras');
+      const elBase = document.getElementById('sim-base');
+      const elPrimordial = document.getElementById('sim-primordial');
+      const elMes1 = document.getElementById('sim-mes1');
+      const elDiff = document.getElementById('sim-diff');
+
+      if (elOtras) elOtras.innerText = '$' + otras.toLocaleString('es-CO');
+      if (elBase) elBase.innerText = '$' + base.toLocaleString('es-CO');
+      if (elPrimordial) elPrimordial.innerText = '$' + primordial.toLocaleString('es-CO');
+      if (elMes1) elMes1.innerText = '$' + mes1.toLocaleString('es-CO');
+      if (elDiff) elDiff.innerText = '+$' + diff.toLocaleString('es-CO') + ' COP más en tu bolsillo que en otras apps';
+    }
+
+    async function loadPrimordialesStatus() {
+      try {
+        const res = await fetch('/api/primordiales-status');
+        if (res.ok) {
+          const data = await res.json();
+          updateCounterUI(data);
+        }
+      } catch (err) {}
+    }
+
+    function updateCounterUI(data) {
+      const count = data.currentCount || 84;
+      const total = data.totalPrimordiales || 100;
+      const remaining = data.remaining != null ? data.remaining : Math.max(0, total - count);
+      const isPrimordialOpen = data.isOpen !== false && count < total;
+
+      const navCounter = document.getElementById('nav-counter');
+      const heroLabel = document.getElementById('hero-cupos-label');
+      const heroBar = document.getElementById('hero-cupos-bar');
+      const heroRem = document.getElementById('hero-cupos-remaining');
+      const submitBtn = document.getElementById('reg-submit-btn');
+      const topAlert = document.getElementById('top-alert-banner');
+
+      if (navCounter) navCounter.innerText = count + ' / ' + total;
+      if (heroLabel) heroLabel.innerText = count + ' de ' + total;
+      if (heroBar) heroBar.style.width = Math.min(100, Math.round((count / total) * 100)) + '%';
+
+      if (heroRem) {
+        if (isPrimordialOpen) {
+          heroRem.innerText = '⚡ ¡Solo quedan ' + remaining + ' cupos Primordiales disponibles!';
+          heroRem.className = "text-[10px] text-[#B8FF3B] mt-1.5 text-center font-bold";
+        } else {
+          heroRem.innerText = '✅ ¡Los 100 Cupos Primordiales fueron completados! Registro regular abierto.';
+          heroRem.className = "text-[10px] text-[#A4BEA0] mt-1.5 text-center font-medium";
+        }
+      }
+
+      if (submitBtn) {
+        if (isPrimordialOpen) {
+          submitBtn.innerHTML = 'Completar Registro Primordial (1% Comisión Mes 1) ⚡';
+        } else {
+          submitBtn.innerHTML = 'Completar Registro Estándar (91% Neto para ti) 🛠️';
+        }
+      }
+
+      if (topAlert && !isPrimordialOpen) {
+        topAlert.innerHTML = '<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-black bg-[#4E8839] text-[#F4FBF1] tracking-wider uppercase">FASE 2</span><span>✅ <strong>Convocatoria Primordiales Completada:</strong> Los 100 cupos fundadores han sido asignados. Registro general abierto al 91% neto.</span>';
+      }
+    }
+
+    async function handleRegister(e) {
+      e.preventDefault();
+      const submitBtn = document.getElementById('reg-submit-btn');
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.innerText = 'Verificando y asignando cupo... ⏳';
+      }
+
+      const nombre = document.getElementById('reg-nombre').value;
+      const tel = document.getElementById('reg-tel').value;
+      const oficio = document.getElementById('reg-oficio').value;
+      const zona = document.getElementById('reg-zona').value;
+      const banco = document.getElementById('reg-banco').value;
+
+      try {
+        const res = await fetch('/api/register-pro', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ nombre, tel, oficio, zona, banco })
+        });
+        const data = await res.json();
+
+        const successBox = document.getElementById('reg-success');
+        const successTitle = document.getElementById('reg-success-title');
+        const successMsg = document.getElementById('reg-success-msg');
+        const successBadge = document.getElementById('reg-success-badge');
+
+        if (successBox) successBox.classList.remove('hidden');
+        if (successTitle) {
+          successTitle.innerText = data.tipo === 'PRIMORDIAL'
+            ? ('👑 ¡Cupo Primordial #' + (data.cupoNumero || data.currentCount) + ' Asignado!')
+            : '🛠️ ¡Registro Estándar Completado!';
+        }
+        if (successMsg) successMsg.innerText = data.message;
+        if (successBadge) {
+          successBadge.innerText = data.tipo === 'PRIMORDIAL'
+            ? 'Comisión: 7% (¡93% neto para ti!) · Mes 1 al 1% de Activación (99% neto) · Placa Oro VIP Vitalicia'
+            : 'Comisión Estándar: 9% (¡91% neto para ti!) · Pago Protegido Wompi';
+        }
+
+        if (data.currentCount) {
+          updateCounterUI({
+            currentCount: data.currentCount,
+            totalPrimordiales: 100,
+            remaining: data.remaining,
+            isOpen: data.tipo === 'PRIMORDIAL' && data.currentCount < 100
+          });
+        }
+
+        document.getElementById('pro-form').reset();
+      } catch (err) {
+        alert('Hubo un inconveniente al conectar con el servidor. Tu solicitud fue guardada.');
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerText = 'Registro Enviado ✔';
+        }
+      }
+    }
+
+    function setupPhoneFormatting() {
+      const telInput = document.getElementById('reg-tel');
+      if (!telInput) return;
+      telInput.addEventListener('input', (e) => {
+        let digits = e.target.value.replace(/\D/g, '');
+        if (digits.length > 10) digits = digits.slice(0, 10);
+        let formatted = '';
+        if (digits.length > 0) formatted = digits.slice(0, 3);
+        if (digits.length >= 4) formatted += ' ' + digits.slice(3, 6);
+        if (digits.length >= 7) formatted += ' ' + digits.slice(6, 10);
+        e.target.value = formatted;
+        
+        if (digits.length === 10) {
+          telInput.style.borderColor = '#B8FF3B';
+        } else {
+          telInput.style.borderColor = '#243B1E';
+        }
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      loadPrimordialesStatus();
+      setupPhoneFormatting();
+    });
+  </script>
+</body>
+</html>
