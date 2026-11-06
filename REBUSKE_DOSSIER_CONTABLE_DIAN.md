@@ -10,8 +10,12 @@
 
 ### Regla de Oro Contable:
 > **rebuske NO factura el 100% del valor de los servicios locativos prestados por los técnicos independientes.**  
-> Únicamente factura electrónicamente su **Comisión por Servicio de Intermediación Tecnológica del 7%** (o 1% durante el mes de promoción de fundadores).  
-> El **93% restante** constituye **Ingresos Recibidos para Terceros** y debe contabilizarse en el **Pasivo (Cuenta 2815)**, sin constituir ingreso bruto, ni base de renta, ni base de ICA para la plataforma.
+> Únicamente factura electrónicamente su **Comisión por Servicio de Intermediación Tecnológica según el Plan del Profesional**:
+> * **Plan Oro VIP:** **11%** (Técnico recibe el 89% neto)
+> * **Plan Plata Destacado:** **14%** (Técnico recibe el 86% neto)
+> * **Plan Bronce Estándar:** **18%** (Técnico recibe el 82% neto)
+> *(o 1% durante el mes de promoción inaugural para los 100 Fundadores).*  
+> El porcentaje restante (**89%, 86% u 82%**) constituye **Ingresos Recibidos para Terceros** y debe contabilizarse en el **Pasivo (Cuenta 2815)**, sin constituir ingreso bruto, ni base de renta, ni base de ICA para la plataforma.
 
 ---
 
@@ -26,40 +30,42 @@
 
 ## 3. DINÁMICA DE ASIENTOS CONTABLES (PLAN ÚNICO DE CUENTAS - PUC)
 
-A continuación se detalla la parametrización contable para el software contable (Siigo, Alegra, World Office, etc.) para un servicio típico de **$100.000 COP**:
+A continuación se detalla la parametrización contable para el software contable (Siigo, Alegra, World Office, etc.) para un servicio típico de **$100.000 COP** bajo el **Plan Oro (11%)**:
 
-### Caso Práctico: Servicio de Plomería por $100.000 COP
+### Caso Práctico: Servicio de Plomería por $100.000 COP (Plan Oro - 11%)
 * **Valor total recaudado por Wompi:** $100.000 COP
-* **Ingreso del técnico (93%):** $93.000 COP
-* **Comisión rebuske (7%):** $7.000 COP
-* *(Si es responsable de IVA régimen común: IVA 19% sobre los $7.000 = $1.330 COP. Si no es responsable de IVA: $0 COP)*
+* **Ingreso del técnico (89%):** $89.000 COP
+* **Comisión rebuske (11%):** $11.000 COP
+* *(Si es responsable de IVA régimen común: IVA 19% sobre los $11.000 = $2.090 COP. Si no es responsable de IVA: $0 COP)*
+* *(En Plan Plata 14%: Comisión $14.000 / Técnico $86.000)*
+* *(En Plan Bronce 18%: Comisión $18.000 / Técnico $82.000)*
 
 ---
 
-### Asiento 1: Recaudo Inicial a través de la Pasarela Wompi
+### Asiento 1: Recaudo Inicial a través de la Pasarela Wompi (Plan Oro)
 Al recibir la confirmación de pago de Wompi (evento `APPROVED` en webhook):
 
 | Código PUC | Nombre de la Cuenta | Débito | Crédito |
 | :--- | :--- | :---: | :---: |
 | **111005** | Bancos / Pasarela de Pagos Wompi Recaudo | $100.000 | |
-| **281505** | Ingresos Recibidos para Terceros (Técnico Independiente) | | $93.000 |
-| **416005** | Ingresos Operacionales - Comisiones de Intermediación rebuske | | $7.000 |
+| **281505** | Ingresos Recibidos para Terceros (Técnico Independiente) | | $89.000 |
+| **416005** | Ingresos Operacionales - Comisiones de Intermediación rebuske | | $11.000 |
 | **Sumas Iguales:** | | **$100.000** | **$100.000** |
 
-*(Nota: La cuenta 281505 es una cuenta de **Pasivo**. Refleja una obligación de rebuske de trasladar esos $93.000 al técnico una vez finalizado el trabajo).*
+*(Nota: La cuenta 281505 es una cuenta de **Pasivo**. Refleja una obligación de rebuske de trasladar esos $89.000 al técnico una vez finalizado el trabajo).*
 
 ---
 
-### Asiento 2: Dispersión del Pago al Técnico Independiente
+### Asiento 2: Dispersión del Pago al Técnico Independiente (Plan Oro)
 Cuando el cliente firma el acta digital de entrega y la plataforma ordena la transferencia hacia Nequi, Daviplata o Bancolombia del profesional:
 
 | Código PUC | Nombre de la Cuenta | Débito | Crédito |
 | :--- | :--- | :---: | :---: |
-| **281505** | Ingresos Recibidos para Terceros (Técnico Independiente) | $93.000 | |
-| **111005** | Bancos / Wompi Dispersión (Salida de fondos al técnico) | | $93.000 |
-| **Sumas Iguales:** | | **$93.000** | **$93.000** |
+| **281505** | Ingresos Recibidos para Terceros (Técnico Independiente) | $89.000 | |
+| **111005** | Bancos / Wompi Dispersión (Salida de fondos al técnico) | | $89.000 |
+| **Sumas Iguales:** | | **$89.000** | **$89.000** |
 
-*Resultado contable:* La cuenta 281505 queda en **cero ($0)**. No quedan pasivos pendientes y en las cuentas de resultados solo quedó registrado el ingreso real de rebuske (**$7.000** en la 416005).
+*Resultado contable:* La cuenta 281505 queda en **cero ($0)**. No quedan pasivos pendientes y en las cuentas de resultados solo quedó registrado el ingreso real de rebuske (**$11.000** en la 416005).
 
 ---
 
