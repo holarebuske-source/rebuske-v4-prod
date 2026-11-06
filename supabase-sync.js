@@ -45,6 +45,20 @@
     },
     currency: 'COP'
   };
+  const safeStorage = {
+    getItem: (key) => {
+      try {
+        if (typeof localStorage !== 'undefined') return localStorage.getItem(key);
+      } catch (_) {}
+      return null;
+    },
+    setItem: (key, val) => {
+      try {
+        if (typeof localStorage !== 'undefined') localStorage.setItem(key, val);
+      } catch (_) {}
+    }
+  };
+
   const WOMPI_TX_LOG_KEY = 'rebuske_v4_wompi_transactions';
 
   const SYNC_QUEUE_KEY = 'rebuske_v4_sync_queue';
@@ -119,14 +133,14 @@
   // --------------------------------------------------------------------------
   let uuidMap = {};
   try {
-    uuidMap = JSON.parse(localStorage.getItem(ID_MAP_KEY) || '{}');
+    uuidMap = JSON.parse(safeStorage.getItem(ID_MAP_KEY) || '{}');
   } catch (_) {
     uuidMap = {};
   }
 
   function saveUuidMap() {
     try {
-      localStorage.setItem(ID_MAP_KEY, JSON.stringify(uuidMap));
+      safeStorage.setItem(ID_MAP_KEY, JSON.stringify(uuidMap));
     } catch (_) {}
   }
 
@@ -242,7 +256,7 @@
   const SyncQueue = {
     getQueue() {
       try {
-        return JSON.parse(localStorage.getItem(SYNC_QUEUE_KEY) || '[]');
+        return JSON.parse(safeStorage.getItem(SYNC_QUEUE_KEY) || '[]');
       } catch (_) {
         return [];
       }
@@ -250,7 +264,7 @@
 
     saveQueue(list) {
       try {
-        localStorage.setItem(SYNC_QUEUE_KEY, JSON.stringify(list.slice(-100)));
+        safeStorage.setItem(SYNC_QUEUE_KEY, JSON.stringify(list.slice(-100)));
       } catch (_) {}
     },
 
@@ -554,7 +568,7 @@
 
     getTransactionsLog() {
       try {
-        return JSON.parse(localStorage.getItem(WOMPI_TX_LOG_KEY) || '[]');
+        return JSON.parse(safeStorage.getItem(WOMPI_TX_LOG_KEY) || '[]');
       } catch (_) {
         return [];
       }
@@ -564,7 +578,7 @@
       try {
         const list = this.getTransactionsLog();
         list.unshift(tx);
-        localStorage.setItem(WOMPI_TX_LOG_KEY, JSON.stringify(list.slice(0, 100)));
+        safeStorage.setItem(WOMPI_TX_LOG_KEY, JSON.stringify(list.slice(0, 100)));
       } catch (_) {}
     },
 
@@ -1025,16 +1039,16 @@
   // 5. CONECTOR DE AUTOMATIZACIÓN PARA REPORTES EJECUTIVOS Y MARKETING
   // --------------------------------------------------------------------------
   const RebuskeAutomation = {
-    webhookUrl: localStorage.getItem('rebuske_automation_webhook') || null,
+    webhookUrl: safeStorage.getItem('rebuske_automation_webhook') || null,
 
     configureWebhook(url) {
       this.webhookUrl = url;
-      if (url) localStorage.setItem('rebuske_automation_webhook', url);
+      if (url) safeStorage.setItem('rebuske_automation_webhook', url);
     },
 
     getEventsLog() {
       try {
-        return JSON.parse(localStorage.getItem(ANALYTICS_LOG_KEY) || '[]');
+        return JSON.parse(safeStorage.getItem(ANALYTICS_LOG_KEY) || '[]');
       } catch (_) {
         return [];
       }
@@ -1054,7 +1068,7 @@
       try {
         const log = this.getEventsLog();
         log.push(eventRecord);
-        localStorage.setItem(ANALYTICS_LOG_KEY, JSON.stringify(log.slice(-500)));
+        safeStorage.setItem(ANALYTICS_LOG_KEY, JSON.stringify(log.slice(-500)));
       } catch (_) {}
 
       // 2. Enviar a Google Analytics 4 / Meta Pixel dataLayer si está disponible
@@ -1567,3 +1581,8 @@
     global.addEventListener('online', () => SyncQueue.flush());
   }
 })(typeof window !== 'undefined' ? window : globalThis);
+
+const RebuskeSupabase = (typeof window !== 'undefined' ? window.RebuskeSupabase : globalThis.RebuskeSupabase);
+const RebuskeAutomation = (typeof window !== 'undefined' ? window.RebuskeAutomation : globalThis.RebuskeAutomation);
+export { RebuskeSupabase, RebuskeAutomation };
+export default RebuskeSupabase;
