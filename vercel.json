@@ -51,6 +51,18 @@
       "destination": "/reembolsos.html"
     },
     {
+      "source": "/tarifas",
+      "destination": "/tarifas.html"
+    },
+    {
+      "source": "/precios",
+      "destination": "/tarifas.html"
+    },
+    {
+      "source": "/tarifas.html",
+      "destination": "/tarifas.html"
+    },
+    {
       "source": "/reembolsos.html",
       "destination": "/reembolsos.html"
     },
@@ -167,7 +179,7 @@
       "destination": "/.well-known/assetlinks.json"
     },
     {
-      "source": "/((?!api/|chat|chat\\\\.html|sala|terminos|terminos\\\\.html|privacidad|privacidad\\\\.html|reembolsos|reembolsos\\\\.html|eliminar-cuenta|eliminar-cuenta\\\\.html|baja|registro|registro\\\\.html|unete|link|comunidad|clientes|clientes\\\\.html|cliente|hogares|espera|clientes-landing|clientes-landing\\\\.html|pro|pro/|pro\\\\.html|pro-landing|pro-landing\\\\.html|registro-pro|registro-pro\\\\.html|primordiales|supabase-sync\\\\.js|assets/|robots\\\\.txt|sitemap\\\\.xml|\\.well-known/|.*\\\\.(?:js|css|png|jpg|jpeg|gif|svg|webp|ico|json|woff2?|pdf|txt|xml)).*)",
+      "source": "/((?!api/|chat|chat\\\\.html|sala|terminos|terminos\\\\.html|privacidad|privacidad\\\\.html|reembolsos|reembolsos\\\\.html|tarifas|tarifas\\\\.html|precios|precios\\\\.html|eliminar-cuenta|eliminar-cuenta\\\\.html|baja|registro|registro\\\\.html|unete|link|comunidad|clientes|clientes\\\\.html|cliente|hogares|espera|clientes-landing|clientes-landing\\\\.html|pro|pro/|pro\\\\.html|pro-landing|pro-landing\\\\.html|registro-pro|registro-pro\\\\.html|primordiales|supabase-sync\\\\.js|assets/|robots\\\\.txt|sitemap\\\\.xml|\\.well-known/|.*\\\\.(?:js|css|png|jpg|jpeg|gif|svg|webp|ico|json|woff2?|pdf|txt|xml)).*)",
       "destination": "/index.html"
     }
   ],
