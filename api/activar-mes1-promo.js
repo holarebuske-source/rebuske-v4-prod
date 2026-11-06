@@ -35,7 +35,7 @@ function notifyEmailActivation(promo) {
             <p><b>Fecha de Activación:</b> ${promo.activated_at}</p>
             <p><b>Fecha de Vencimiento (30 días):</b> ${promo.expires_at}</p>
             <p><b>Tarifa Vigente en Wompi:</b> <span style="color:#b8ff3b;font-weight:bold;">1% Rebuske / 99% Neto para el Técnico</span></p>
-            <p><b>Tarifa Posterior al Vencimiento:</b> <span style="color:#facc15;font-weight:bold;">7% Rebuske / 93% Neto Vitalicio</span></p>
+            <p><b>Tarifa Posterior al Vencimiento:</b> <span style="color:#facc15;font-weight:bold;">11% rebuske / 89% Neto Vitalicio (Plan Oro VIP)</span></p>
           </div>
           <p style="margin-top:16px;font-size:12px;color:#8ca381;">El split en los webhooks de Wompi aplicará el 1% de forma automática e irrevocable durante esta ventana.</p>
         </div>
