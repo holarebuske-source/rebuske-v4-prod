@@ -32,13 +32,16 @@
 
 A continuación se detalla la parametrización contable para el software contable (Siigo, Alegra, World Office, etc.) para un servicio típico de **$100.000 COP** bajo el **Plan Oro (11%)**:
 
-### Caso Práctico: Servicio de Plomería por $100.000 COP (Plan Oro - 11%)
-* **Valor total recaudado por Wompi:** $100.000 COP
-* **Ingreso del técnico (89%):** $89.000 COP
-* **Comisión rebuske (11%):** $11.000 COP
-* *(Si es responsable de IVA régimen común: IVA 19% sobre los $11.000 = $2.090 COP. Si no es responsable de IVA: $0 COP)*
-* *(En Plan Plata 14%: Comisión $14.000 / Técnico $86.000)*
-* *(En Plan Bronce 18%: Comisión $18.000 / Técnico $82.000)*
+### Caso Práctico: Servicio de Plomería por $100.000 COP + Cuota de Protección $4.900 (Plan Oro - 11%)
+* **Valor mano de obra acordada:** $100.000 COP
+* **Cuota de Pago Protegido y Garantía 48h (Cliente):** +$4.900 COP
+* **Valor total recaudado por Wompi:** **$104.900 COP**
+* **Ingreso neto del técnico (89% sobre $100k):** **$89.000 COP** (Cero deducciones de pasarela)
+* **Ingreso operacional rebuske ($11.000 comisión + $4.900 protección):** **$15.900 COP**
+* **Costo financiero pasarela Wompi:** ~$4.141 COP
+* **Margen Neto Líquido rebuske:** **+$11.759 COP**
+* *(En Plan Plata 14%: Ingreso rebuske $18.900 / Neto Wompi: $14.759 / Técnico: $86.000)*
+* *(En Plan Bronce 18%: Ingreso rebuske $22.900 / Neto Wompi: $18.759 / Técnico: $82.000)*
 
 ---
 
@@ -47,10 +50,11 @@ Al recibir la confirmación de pago de Wompi (evento `APPROVED` en webhook):
 
 | Código PUC | Nombre de la Cuenta | Débito | Crédito |
 | :--- | :--- | :---: | :---: |
-| **111005** | Bancos / Pasarela de Pagos Wompi Recaudo | $100.000 | |
-| **281505** | Ingresos Recibidos para Terceros (Técnico Independiente) | | $89.000 |
-| **416005** | Ingresos Operacionales - Comisiones de Intermediación rebuske | | $11.000 |
-| **Sumas Iguales:** | | **$100.000** | **$100.000** |
+| **111005** | Bancos / Pasarela de Pagos Wompi Recaudo | $104.900 | |
+| **281505** | Ingresos Recibidos para Terceros (Técnico Independiente - 89%) | | $89.000 |
+| **416005** | Ingresos Operacionales - Comisiones de Intermediación rebuske (11%) | | $11.000 |
+| **416010** | Ingresos Operacionales - Cuota de Pago Protegido y Garantía 48h | | $4.900 |
+| **Sumas Iguales:** | | **$104.900** | **$104.900** |
 
 *(Nota: La cuenta 281505 es una cuenta de **Pasivo**. Refleja una obligación de rebuske de trasladar esos $89.000 al técnico una vez finalizado el trabajo).*
 
