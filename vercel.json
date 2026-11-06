@@ -83,6 +83,22 @@
       "destination": "/api/cancel-account.js"
     },
     {
+      "source": "/api/create-wompi-checkout",
+      "destination": "/api/wompi?action=CREATE_CHECKOUT"
+    },
+    {
+      "source": "/api/wompi-status",
+      "destination": "/api/wompi?action=STATUS"
+    },
+    {
+      "source": "/api/reconcile-pending",
+      "destination": "/api/wompi?action=RECONCILE"
+    },
+    {
+      "source": "/api/wompi-webhook",
+      "destination": "/api/wompi?action=WEBHOOK"
+    },
+    {
       "source": "/terminos",
       "destination": "/terminos.html"
     },
@@ -206,6 +222,12 @@
           "value": "*"
         }
       ]
+    }
+  ],
+  "crons": [
+    {
+      "path": "/api/reconcile-pending",
+      "schedule": "0 5 * * *"
     }
   ]
 }
