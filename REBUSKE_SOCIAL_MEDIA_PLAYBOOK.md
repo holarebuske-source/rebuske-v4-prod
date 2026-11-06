@@ -1,9 +1,11 @@
 # 🎨 REBUSKE — Playbook Maestro de Diseño de Marca, Lectura de PDFs & Automatización de Redes Sociales
 **Responsable:** Sofía — Diseñadora de Marca, Directora Creativa & Social Media Manager (Agente IA)  
 **Reporta a:** Camilo (CEO de Rebuske)  
-**Identidad Visual:** Crema Cálido (`#F6F2EA`) · Esmeralda Confianza (`#0D6E4F`) · Ámbar Energía (`#D97706`) · Carbón Profundo (`#1C1917`)  
-**Tipografías Oficiales:** `Fraunces` (Titulares editoriales con carácter cercano) + `Plus Jakarta Sans` (Cuerpo y UI) + `JetBrains Mono` (Badges, garantías y códigos)  
-**Promesa de Marca:** *"Arregla · Confía · Repite"* — 3 cotizaciones en minutos (Ruta de Luz), Pago Protegido en custodia y Garantía escrita de 2 días en Medellín y el Valle de Aburrá.
+**Identidad Visual Oficial:** Ébano Profundo (`--ebano: #191F15`) · Noche Oliva (`--noche: #3E4C35`) · Verde Lima Neón (`--lima: #B8FF3B`) · Amarillo Canario (`--canario: #FFFA70`) · Tinta Marfil (`--tinta: #F2F5EC`)  
+**Tipografía Oficial:** `Baloo 2` ExtraBold (800) en todos los titulares, copys y banners de marca + `JetBrains Mono` (Badges y FinTech)  
+**Promesa de Marca:** *"Arregla · Confía · Repite"* — 3 cotizaciones en minutos (Ruta de Luz), Pago Protegido en custodia Wompi y Garantía escrita de 2 días en Medellín y el Valle de Aburrá.  
+**Inspiración de Motion Design:** Jitter Video (`jitter.video`), Brik Space (`brik.space`), Vlipsy (`vlipsy.com`), Pinterest (`pinterest.com`).  
+**Regla de Cámara & Audio:** Cero zoom lento creep. Cámara nítida y fija. Transiciones dinámicas XFade (`hblur`, `circleopen`, `slideleft`, `slideup`). Música alegre, fresca y enérgica en tonalidad mayor (124 BPM) con SFX positivos (cero sirenas de terror).
 
 ---
 
