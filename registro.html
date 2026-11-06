@@ -190,7 +190,7 @@
       border-radius: 14px;
       min-height: 48px;
       padding: 12px 16px;
-      font-size: 15px;
+      font-size: 16px; /* WCAG AA & iOS auto-zoom prevention */
       width: 100%;
       transition: border-color 0.2s, box-shadow 0.2s;
     }
@@ -279,7 +279,7 @@
       </h1>
       
       <p class="text-xs sm:text-base text-[#F4FBF1]/80 max-w-2xl mx-auto leading-relaxed px-2">
-        La infraestructura de confianza en servicios del hogar en Medellín. Respaldada por <b>Bóveda Wompi</b> (pago protegido), <b>48h de garantía escrita</b> y el catálogo exclusivo <b>'Servicios por Ellas'</b>.
+        La infraestructura de confianza en servicios especializados en Medellín. Respaldada por <b>Bóveda Wompi</b> (pago protegido), <b>48h de garantía escrita</b> y el catálogo exclusivo <b>'Servicios por Ellas'</b>.
       </p>
 
       <!-- Trust Badges Bar -->
@@ -428,387 +428,445 @@
           </div>
         </div>
 
-        <form id="form-pro" onsubmit="handleProSubmit(event)" class="space-y-4">
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label class="block text-xs font-semibold text-[#A4BEA0] mb-1.5">Nombre Completo *</label>
-              <input type="text" id="pro-nombre" required placeholder="Ej: Carlos Mario Varela" class="mobile-field">
-            </div>
-            <div>
-              <label class="block text-xs font-semibold text-[#A4BEA0] mb-1.5 flex items-center justify-between">
-                <span>Cédula de Ciudadanía *</span>
-                <span id="pro-cedula-status" class="text-[10px] text-[#849F80] font-mono">6 a 10 dígitos</span>
-              </label>
-              <input type="text" id="pro-cedula" inputmode="numeric" maxlength="10" required placeholder="Ej: 1020304050" class="mobile-field" oninput="formatCedula(this, 'pro-cedula-status')">
-            </div>
+        
+        <!-- STEPPER VISUAL DE 2 ETAPAS (PUNTO 10 AUDITORÍA) -->
+        <div class="mb-6 pb-6 border-b border-[#24391E]">
+          <div class="grid grid-cols-2 gap-2 sm:gap-4 text-xs font-bold font-brand">
+            <button type="button" id="step-tab-1" onclick="goToProStep(1)" class="p-3 rounded-2xl bg-[#1A2E16] text-[#B8FF3B] border border-[#B8FF3B]/50 flex items-center justify-center gap-2 transition-all">
+              <span class="w-6 h-6 rounded-full bg-[#B8FF3B] text-[#0C120A] flex items-center justify-center text-xs font-black">1</span>
+              <span>Alta Rápida (60s)</span>
+            </button>
+            <button type="button" id="step-tab-2" onclick="validateAndGoToProStep2()" class="p-3 rounded-2xl bg-[#091107] text-[#97A890] border border-[#24391E] flex items-center justify-center gap-2 transition-all">
+              <span class="w-6 h-6 rounded-full bg-[#182614] text-[#97A890] flex items-center justify-center text-xs font-black">2</span>
+              <span>Verificación KYC & Cobro</span>
+            </button>
           </div>
+        </div>
+<form id="form-pro" onsubmit="handleProSubmit(event)" class="space-y-4">
+          <!-- ======================================================== -->
+          <!-- ETAPA 1: ALTA RÁPIDA DE ASPIRANTE EN 60 SEGUNDOS         -->
+          <!-- ======================================================== -->
+          <div id="pro-step-1" class="space-y-4">
+            <div class="p-3 rounded-xl bg-[#0E1A0C] border border-[#B8FF3B]/30 flex items-center justify-between text-xs">
+              <span class="text-[#E5F5E0]">⚡ <b>Paso 1 de 2:</b> Completa tus datos básicos para apartar tu cupo con tarifa del 1%.</span>
+              <span class="text-[10px] text-[#B8FF3B] font-mono font-bold uppercase px-2 py-0.5 rounded-full bg-[#B8FF3B]/10">60 Segundos</span>
+            </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <div class="flex items-center justify-between mb-1.5">
-                <label class="text-xs font-semibold text-[#A4BEA0]">Celular WhatsApp (Móvil Colombia) *</label>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-semibold text-[#A4BEA0] mb-1.5">Nombre Completo *</label>
+                <input type="text" id="pro-nombre" required placeholder="Ej: Carlos Mario Varela" class="mobile-field">
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-[#A4BEA0] mb-1.5 flex items-center justify-between">
+                  <span>Cédula de Ciudadanía *</span>
+                  <span id="pro-cedula-status" class="text-[10px] text-[#849F80] font-mono">6 a 10 dígitos</span>
+                </label>
+                <input type="text" id="pro-cedula" inputmode="numeric" maxlength="10" required placeholder="Ej: 1020304050" class="mobile-field" oninput="formatCedula(this, 'pro-cedula-status')">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <div class="flex items-center justify-between mb-1.5">
+                  <label class="text-xs font-semibold text-[#A4BEA0]">Celular WhatsApp (Móvil Colombia) *</label>
+                  <div class="flex items-center gap-2">
+                    <span id="pro-tel-status" class="text-[10px] text-[#849F80] font-mono">10 dígitos (3XX...)</span>
+                    <button type="button" onclick="triggerWhatsAppOtpVerification('pro')" class="px-2 py-0.5 rounded bg-[#25D366]/20 border border-[#25D366]/40 text-[#25D366] text-[10px] font-bold hover:bg-[#25D366]/30 flex items-center gap-1 transition-all">💬 Validar</button>
+                  </div>
+                </div>
+                <div class="flex items-center rounded-xl bg-[#091107] border border-[#243B1E] focus-within:border-[#B8FF3B] overflow-hidden">
+                  <span class="px-3 py-3 bg-[#13220F] text-[#B8FF3B] font-bold text-xs select-none border-r border-[#243B1E] flex items-center gap-1 shrink-0">
+                    🇨🇴 +57
+                  </span>
+                  <input type="tel" id="pro-tel" inputmode="numeric" maxlength="12" required placeholder="300 123 4567" class="w-full bg-transparent px-3 py-3 text-xs sm:text-sm text-[#F4FBF1] placeholder-[#5A7354] focus:outline-none" oninput="formatColombiaPhone(this, 'pro-tel-status')">
+                </div>
+                <!-- Cajón de Verificación OTP WhatsApp para Profesionales -->
+                <div id="pro-otp-box" class="hidden mt-2 p-3 rounded-xl bg-[#091107] border border-[#25D366]/50">
+                  <div class="flex items-center justify-between text-xs text-[#25D366] font-bold mb-1.5">
+                    <span>Código de Verificación WhatsApp</span>
+                    <a id="pro-otp-walink" href="#" target="_blank" class="underline text-[11px] text-[#B8FF3B] hover:text-white">Abrir chat con Laura</a>
+                  </div>
+                  <div class="flex gap-2">
+                    <input type="text" id="pro-otp-code" maxlength="6" inputmode="numeric" placeholder="6 dígitos" class="bg-[#121A0F] border border-[#243B1E] text-white text-center font-mono rounded-lg px-2 py-1.5 w-28 text-sm focus:outline-none focus:border-[#25D366]">
+                    <button type="button" onclick="confirmOtpCode('pro')" class="bg-[#25D366] text-[#0A1407] font-bold text-xs px-3 py-1.5 rounded-lg hover:bg-[#1EBE5D]">Verificar y Confirmar</button>
+                  </div>
+                  <p id="pro-otp-msg" class="text-[10px] text-[#A4BEA0] mt-1"></p>
+                </div>
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-[#A4BEA0] mb-1.5">Oficio / Especialidad Principal *</label>
+                <select id="pro-oficio" required class="mobile-field">
+                  <option value="">Selecciona tu especialidad...</option>
+                  <option value="Plomería y Destapes">Plomería y Destapes</option>
+                  <option value="Electricidad Residencial">Electricidad Residencial</option>
+                  <option value="Cerrajería y Aperturas">Cerrajería y Aperturas</option>
+                  <option value="Pintura y Resanes">Pintura y Resanes</option>
+                  <option value="Aire Acondicionado y Climatización">Aire Acondicionado y Climatización</option>
+                  <option value="Auxilio de Batería de Celular">Auxilio de Batería de Celular (Carga rápida máx 30 min)</option>
+                  <option value="Mecánica Rápida y Mantenimiento">Mecánica Rápida y Mantenimiento</option>
+                  <option value="Mudanzas y Acarreos">Mudanzas y Acarreos</option>
+                  <option value="Aseo Profundo y Desinfección">Aseo Profundo y Desinfección</option>
+                  <option value="Otro Servicio Técnico">Otro Servicio Técnico</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-semibold text-[#A4BEA0] mb-1.5">Comuna o Corregimiento en Medellín *</label>
+                <select id="pro-comuna" required class="mobile-field" onchange="handleComunaChange(this, 'pro-barrio')">
+                  <option value="">Selecciona comuna / zona...</option>
+                  <optgroup label="Comunas Urbanas de Medellín">
+                    <option value="Laureles - Estadio (Comuna 11)">Laureles - Estadio (Comuna 11)</option>
+                    <option value="El Poblado (Comuna 14)">El Poblado (Comuna 14)</option>
+                    <option value="Belén (Comuna 16)">Belén (Comuna 16)</option>
+                    <option value="La América (Comuna 12)">La América (Comuna 12)</option>
+                    <option value="San Javier (Comuna 13)">San Javier (Comuna 13)</option>
+                    <option value="Guayabal (Comuna 15)">Guayabal (Comuna 15)</option>
+                    <option value="La Candelaria / Centro (Comuna 10)">La Candelaria / Centro (Comuna 10)</option>
+                    <option value="Buenos Aires (Comuna 9)">Buenos Aires (Comuna 9)</option>
+                    <option value="Villa Hermosa (Comuna 8)">Villa Hermosa (Comuna 8)</option>
+                    <option value="Robledo (Comuna 7)">Robledo (Comuna 7)</option>
+                    <option value="Doce de Octubre (Comuna 6)">Doce de Octubre (Comuna 6)</option>
+                    <option value="Castilla (Comuna 5)">Castilla (Comuna 5)</option>
+                    <option value="Aranjuez (Comuna 4)">Aranjuez (Comuna 4)</option>
+                    <option value="Manrique (Comuna 3)">Manrique (Comuna 3)</option>
+                    <option value="Santa Cruz (Comuna 2)">Santa Cruz (Comuna 2)</option>
+                    <option value="Popular (Comuna 1)">Popular (Comuna 1)</option>
+                  </optgroup>
+                  <optgroup label="Corregimientos de Medellín">
+                    <option value="San Cristóbal (Corregimiento)">San Cristóbal</option>
+                    <option value="San Antonio de Prado (Corregimiento)">San Antonio de Prado</option>
+                    <option value="Santa Elena (Corregimiento)">Santa Elena</option>
+                    <option value="Altavista (Corregimiento)">Altavista</option>
+                    <option value="San Sebastián de Palmitas (Corregimiento)">San Sebastián de Palmitas</option>
+                  </optgroup>
+                  <optgroup label="Área Metropolitana (Valle de Aburrá)">
+                    <option value="Envigado">Envigado</option>
+                    <option value="Itagüí">Itagüí</option>
+                    <option value="Sabaneta">Sabaneta</option>
+                    <option value="Bello">Bello</option>
+                    <option value="La Estrella">La Estrella</option>
+                    <option value="Caldas">Caldas</option>
+                    <option value="Copacabana">Copacabana</option>
+                  </optgroup>
+                </select>
+              </div>
+              <div>
+                <label class="block text-xs font-semibold text-[#A4BEA0] mb-1.5">Barrio o Sector Específico</label>
+                <input type="text" id="pro-barrio" placeholder="Ej: Conquistadores, Belén Rosales, Boston..." class="mobile-field">
+              </div>
+            </div>
+
+            <!-- FECHA DE NACIMIENTO (SOLO MES Y AÑO) -->
+            <div class="grid grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-semibold text-[#A4BEA0] mb-1.5">Mes de Nacimiento *</label>
+                <select id="pro-mes" required class="mobile-field">
+                  <option value="">Selecciona mes...</option>
+                  <option value="01">Enero</option>
+                  <option value="02">Febrero</option>
+                  <option value="03">Marzo</option>
+                  <option value="04">Abril</option>
+                  <option value="05">Mayo</option>
+                  <option value="06">Junio</option>
+                  <option value="07">Julio</option>
+                  <option value="08">Agosto</option>
+                  <option value="09">Septiembre</option>
+                  <option value="10">Octubre</option>
+                  <option value="11">Noviembre</option>
+                  <option value="12">Diciembre</option>
+                </select>
+              </div>
+              <div>
+                <label class="block text-xs font-bold uppercase text-[#A4BEA0] mb-1.5">Año de Nacimiento *</label>
+                <input type="number" id="pro-ano" min="1940" max="2008" required placeholder="Ej: 1988" class="mobile-field">
+              </div>
+            </div>
+
+            <!-- HONEYPOT BOT PROTECTION INVISIBLE -->
+            <input type="text" id="pro-hp-token" style="display:none!important;" tabindex="-1" autocomplete="off">
+
+            <!-- MINI-SIMULADOR DE BOLSILLO INTERACTIVO -->
+            <div class="mt-6 p-4 sm:p-5 rounded-2xl bg-[#091107] border border-[#B8FF3B]/35 shadow-inner">
+              <div class="flex items-center justify-between mb-2">
                 <div class="flex items-center gap-2">
-                  <span id="pro-tel-status" class="text-[10px] text-[#849F80] font-mono">10 dígitos (3XX...)</span>
-                  <button type="button" onclick="triggerWhatsAppOtpVerification('pro')" class="px-2 py-0.5 rounded bg-[#25D366]/20 border border-[#25D366]/40 text-[#25D366] text-[10px] font-bold hover:bg-[#25D366]/30 flex items-center gap-1 transition-all">💬 Validar</button>
+                  <span class="text-xl">👛</span>
+                  <h4 class="text-xs sm:text-sm font-bold text-white font-brand">Mini-Simulador de Bolsillo</h4>
+                </div>
+                <span class="text-[10px] uppercase font-bold text-[#B8FF3B] px-2.5 py-0.5 rounded-full bg-[#B8FF3B]/10 border border-[#B8FF3B]/30 font-mono">¿Cuánto te queda?</span>
+              </div>
+              <p class="text-[11px] sm:text-xs text-[#97A890] mb-4 leading-relaxed">
+                Mueve el control deslizante o pulsa un valor para comparar tus ingresos netos frente a aplicaciones tradicionales que retienen entre el 25% y 30%:
+              </p>
+
+              <!-- Slider Táctil para Celulares -->
+              <div class="mb-4">
+                <div class="flex justify-between items-center text-xs mb-1.5 font-bold">
+                  <span class="text-[#A4BEA0]">Valor del trabajo:</span>
+                  <span id="sim-slider-label" class="text-base text-[#B8FF3B] font-mono font-extrabold">$100.000 COP</span>
+                </div>
+                <input type="range" id="sim-slider" min="50000" max="1200000" step="10000" value="100000" class="sim-slider" oninput="handleSliderChange(this.value)">
+                <div class="flex justify-between text-[10px] text-[#6E8268] mt-1 font-mono">
+                  <span>$50k</span>
+                  <span>$600k</span>
+                  <span>$1.2M</span>
                 </div>
               </div>
-              <div class="flex items-center rounded-xl bg-[#091107] border border-[#243B1E] focus-within:border-[#B8FF3B] overflow-hidden">
-                <span class="px-3 py-3 bg-[#13220F] text-[#B8FF3B] font-bold text-xs select-none border-r border-[#243B1E] flex items-center gap-1 shrink-0">
-                  🇨🇴 +57
+
+              <!-- Botones de valores rápidos -->
+              <div class="grid grid-cols-3 gap-2 mb-4">
+                <button type="button" onclick="setPocketSim(100000)" id="btn-sim-100" class="py-2.5 px-1 rounded-xl text-xs font-bold transition text-center bg-[#1A2E16] text-[#B8FF3B] border border-[#B8FF3B]">
+                  $100.000
+                </button>
+                <button type="button" onclick="setPocketSim(350000)" id="btn-sim-350" class="py-2.5 px-1 rounded-xl text-xs font-bold transition text-center bg-[#0C120A] text-[#97A890] border border-[#24391E] hover:border-[#B8FF3B]/40">
+                  $350.000
+                </button>
+                <button type="button" onclick="setPocketSim(800000)" id="btn-sim-800" class="py-2.5 px-1 rounded-xl text-xs font-bold transition text-center bg-[#0C120A] text-[#97A890] border border-[#24391E] hover:border-[#B8FF3B]/40">
+                  $800.000
+                </button>
+              </div>
+
+              <!-- Tarjetas de Comparativa -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-center">
+                <div class="p-3 rounded-xl bg-[#140E0A] border border-[#EF4444]/30">
+                  <span class="text-[10px] text-[#F87171] uppercase font-bold block">Apps Tradicionales (70%)</span>
+                  <span id="sim-tradicional-val" class="text-base sm:text-lg font-extrabold text-[#FCA5A5] font-mono">$70.000 COP</span>
+                  <small id="sim-loss-val" class="text-[10px] text-[#A67C7C] block mt-0.5">Te descuentan $30.000 COP</small>
+                </div>
+                <div class="p-3 rounded-xl bg-[#101D0E] border border-[#B8FF3B]/50 shadow-[0_0_15px_rgba(184,255,59,0.15)]">
+                  <span class="text-[10px] text-[#B8FF3B] uppercase font-extrabold block">En rebuske Oro (93%)</span>
+                  <span id="sim-rebuske-val" class="text-base sm:text-lg font-extrabold text-[#B8FF3B] font-mono">$93.000 COP</span>
+                  <small id="sim-diff-val" class="text-[10px] text-[#D9FF8B] font-bold block mt-0.5">+ $23.000 COP más para ti</small>
+                </div>
+              </div>
+
+              <div class="mt-3.5 pt-3 border-t border-[#24391E] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1.5 text-xs text-[#A4BEA0]">
+                <span>👑 <b>Mes 1 Fundador (1% Comisión):</b> <span id="sim-mes1-val" class="text-[#FFFA70] font-mono font-black">$99.000 COP netos</span></span>
+                <span class="text-[11px] text-[#C6D8BF]">📄 Certificado formal de ingresos en 1 clic</span>
+              </div>
+            </div>
+
+            <!-- SISTEMA DE PLACAS Y MODELO DE COMISIONES -->
+            <div class="mt-6 pt-6 border-t border-[#24391E]">
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-xs font-bold uppercase tracking-wider text-[#B8FF3B] flex items-center gap-1.5">
+                  <span>🏆</span> Modelo de Placas Oficiales rebuske
                 </span>
-                <input type="tel" id="pro-tel" inputmode="numeric" maxlength="12" required placeholder="300 123 4567" class="w-full bg-transparent px-3 py-3 text-xs sm:text-sm text-[#F4FBF1] placeholder-[#5A7354] focus:outline-none" oninput="formatColombiaPhone(this, 'pro-tel-status')">
+                <span class="text-[10px] uppercase font-mono px-2 py-0.5 rounded-full bg-[#B8FF3B]/10 text-[#B8FF3B] border border-[#B8FF3B]/30">3 Categorías</span>
               </div>
-              <!-- Cajón de Verificación OTP WhatsApp para Profesionales -->
-              <div id="pro-otp-box" class="hidden mt-2 p-3 rounded-xl bg-[#091107] border border-[#25D366]/50">
-                <div class="flex items-center justify-between text-xs text-[#25D366] font-bold mb-1.5">
-                  <span>Código de Verificación WhatsApp</span>
-                  <a id="pro-otp-walink" href="#" target="_blank" class="underline text-[11px] text-[#B8FF3B] hover:text-white">Abrir chat con Laura</a>
-                </div>
-                <div class="flex gap-2">
-                  <input type="text" id="pro-otp-code" maxlength="6" inputmode="numeric" placeholder="6 dígitos" class="bg-[#121A0F] border border-[#243B1E] text-white text-center font-mono rounded-lg px-2 py-1.5 w-28 text-sm focus:outline-none focus:border-[#25D366]">
-                  <button type="button" onclick="confirmOtpCode('pro')" class="bg-[#25D366] text-[#0A1407] font-bold text-xs px-3 py-1.5 rounded-lg hover:bg-[#1EBE5D]">Verificar y Confirmar</button>
-                </div>
-                <p id="pro-otp-msg" class="text-[10px] text-[#A4BEA0] mt-1"></p>
-              </div>
-            </div>
-            <div>
-              <label class="block text-xs font-semibold text-[#A4BEA0] mb-1.5">Oficio / Especialidad Principal *</label>
-              <select id="pro-oficio" required class="mobile-field">
-                <option value="">Selecciona tu especialidad...</option>
-                <option value="Plomería y Destapes">Plomería y Destapes</option>
-                <option value="Electricidad Residencial">Electricidad Residencial</option>
-                <option value="Cerrajería y Aperturas">Cerrajería y Aperturas</option>
-                <option value="Pintura y Resanes">Pintura y Resanes</option>
-                <option value="Aire Acondicionado y Climatización">Aire Acondicionado y Climatización</option>
-                <option value="Auxilio de Batería de Celular">Auxilio de Batería de Celular (Carga rápida máx 30 min)</option>
-                <option value="Mecánica Rápida y Mantenimiento">Mecánica Rápida y Mantenimiento</option>
-                <option value="Mudanzas y Acarreos">Mudanzas y Acarreos</option>
-                <option value="Aseo Profundo y Desinfección">Aseo Profundo y Desinfección</option>
-                <option value="Otro Servicio Técnico">Otro Servicio Técnico</option>
-              </select>
-            </div>
-          </div>
+              <p class="text-xs text-[#97A890] mb-4">
+                Tus ingresos crecen con tu cumplimiento y calidad técnica:
+              </p>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label class="block text-xs font-semibold text-[#A4BEA0] mb-1.5">Comuna o Corregimiento en Medellín *</label>
-              <select id="pro-comuna" required class="mobile-field mb-2" onchange="handleComunaChange(this, 'pro-barrio')">
-                <option value="">Selecciona comuna / zona...</option>
-                <optgroup label="Comunas Urbanas de Medellín">
-                  <option value="Laureles - Estadio (Comuna 11)">Laureles - Estadio (Comuna 11)</option>
-                  <option value="El Poblado (Comuna 14)">El Poblado (Comuna 14)</option>
-                  <option value="Belén (Comuna 16)">Belén (Comuna 16)</option>
-                  <option value="La América (Comuna 12)">La América (Comuna 12)</option>
-                  <option value="San Javier (Comuna 13)">San Javier (Comuna 13)</option>
-                  <option value="Guayabal (Comuna 15)">Guayabal (Comuna 15)</option>
-                  <option value="La Candelaria / Centro (Comuna 10)">La Candelaria / Centro (Comuna 10)</option>
-                  <option value="Buenos Aires (Comuna 9)">Buenos Aires (Comuna 9)</option>
-                  <option value="Villa Hermosa (Comuna 8)">Villa Hermosa (Comuna 8)</option>
-                  <option value="Robledo (Comuna 7)">Robledo (Comuna 7)</option>
-                  <option value="Doce de Octubre (Comuna 6)">Doce de Octubre (Comuna 6)</option>
-                  <option value="Castilla (Comuna 5)">Castilla (Comuna 5)</option>
-                  <option value="Aranjuez (Comuna 4)">Aranjuez (Comuna 4)</option>
-                  <option value="Manrique (Comuna 3)">Manrique (Comuna 3)</option>
-                  <option value="Santa Cruz (Comuna 2)">Santa Cruz (Comuna 2)</option>
-                  <option value="Popular (Comuna 1)">Popular (Comuna 1)</option>
-                </optgroup>
-                <optgroup label="Corregimientos de Medellín">
-                  <option value="San Cristóbal (Corregimiento)">San Cristóbal</option>
-                  <option value="San Antonio de Prado (Corregimiento)">San Antonio de Prado</option>
-                  <option value="Santa Elena (Corregimiento)">Santa Elena</option>
-                  <option value="Altavista (Corregimiento)">Altavista</option>
-                  <option value="San Sebastián de Palmitas (Corregimiento)">San Sebastián de Palmitas</option>
-                </optgroup>
-                <optgroup label="Área Metropolitana (Valle de Aburrá)">
-                  <option value="Envigado">Envigado</option>
-                  <option value="Itagüí">Itagüí</option>
-                  <option value="Sabaneta">Sabaneta</option>
-                  <option value="Bello">Bello</option>
-                  <option value="La Estrella">La Estrella</option>
-                  <option value="Caldas">Caldas</option>
-                  <option value="Copacabana">Copacabana</option>
-                </optgroup>
-              </select>
-              <input type="text" id="pro-barrio" placeholder="Barrio específico (Ej: Conquistadores, Belén Rosales...)" class="mobile-field text-xs">
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
+                <!-- PLACA BRONCE -->
+                <div class="p-3.5 rounded-2xl bg-[#0F170D] border border-[#CD7F32]/50 flex flex-col justify-between">
+                  <div>
+                    <div class="flex items-center justify-between mb-1.5">
+                      <span class="text-xs font-extrabold text-[#E5A566] font-brand">🥉 Placa Bronce</span>
+                      <span class="text-[11px] font-black text-[#F4FBF1] bg-[#CD7F32]/20 px-2 py-0.5 rounded-md font-mono">9% Com.</span>
+                    </div>
+                    <p class="text-[11px] text-[#A4BEA0] leading-snug mb-2">
+                      <strong>Nivel Inicial:</strong> Registro aprobado, KYC completado y antecedentes limpios.
+                    </p>
+                  </div>
+                  <div class="pt-2 border-t border-[#24391E] text-[10px] text-[#97A890]">
+                    Cobras el <strong class="text-[#F4FBF1]">91% neto</strong> directo a tu cuenta.
+                  </div>
+                </div>
+
+                <!-- PLACA PLATA -->
+                <div class="p-3.5 rounded-2xl bg-[#0F170D] border border-[#C0C0C0]/50 flex flex-col justify-between">
+                  <div>
+                    <div class="flex items-center justify-between mb-1.5">
+                      <span class="text-xs font-extrabold text-[#E2E8F0] font-brand">🥈 Placa Plata</span>
+                      <span class="text-[11px] font-black text-[#F4FBF1] bg-white/20 px-2 py-0.5 rounded-md font-mono">8% Com.</span>
+                    </div>
+                    <p class="text-[11px] text-[#A4BEA0] leading-snug mb-2">
+                      <strong>Ascenso:</strong> 25 servicios completados, calificación ≥ 4.7★ y puntualidad ≥ 92%.
+                    </p>
+                  </div>
+                  <div class="pt-2 border-t border-[#24391E] text-[10px] text-[#97A890]">
+                    Cobras el <strong class="text-[#F4FBF1]">92% neto</strong> directo a tu cuenta.
+                  </div>
+                </div>
+
+                <!-- PLACA ORO -->
+                <div class="p-3.5 rounded-2xl bg-[#0F170D] border border-[#F59E0B]/60 flex flex-col justify-between">
+                  <div>
+                    <div class="flex items-center justify-between mb-1.5">
+                      <span class="text-xs font-extrabold text-[#FBBF24] font-brand">🥇 Placa Oro</span>
+                      <span class="text-[11px] font-black text-[#F4FBF1] bg-[#F59E0B]/20 px-2 py-0.5 rounded-md font-mono">7% Com.</span>
+                    </div>
+                    <p class="text-[11px] text-[#A4BEA0] leading-snug mb-2">
+                      <strong>Ascenso:</strong> 80 servicios, calificación ≥ 4.9★, puntualidad ≥ 96% y 0 reclamos en 60d.
+                    </p>
+                  </div>
+                  <div class="pt-2 border-t border-[#24391E] text-[10px] text-[#97A890]">
+                    ¡Cobras el <strong class="text-[#B8FF3B]">93% neto</strong> de por vida!
+                  </div>
+                </div>
+              </div>
+
+              <!-- AVISO DE PROMOCIÓN MES 1 -->
+              <div class="p-3.5 rounded-xl bg-[#1A2E16] border border-[#B8FF3B]/50 flex items-start gap-2.5 text-xs text-[#E5F5E0] mb-4">
+                <span class="text-lg">👑</span>
+                <div>
+                  <strong class="text-[#B8FF3B] block font-brand text-sm">Promoción Temporal Exclusiva · Primer Mes (Solo 100 Cupos)</strong>
+                  <p class="text-[11px] text-[#C4DDC1] leading-relaxed">
+                    Los primeros 100 profesionales registrados operarán al <strong>1% de comisión</strong> durante sus primeros 30 días (¡99% neto para ti!). Finalizado el mes, se activará tu placa ganada (9%, 8% o 7%).
+                  </p>
+                </div>
+              </div>
             </div>
-            <div>
-              <label class="block text-xs font-semibold text-[#A4BEA0] mb-1.5">
-                Cuenta para tus pagos (Nequi / Bancolombia) <span class="text-[#849F80] font-normal lowercase">(opcional en registro)</span>
-              </label>
-              <input type="text" id="pro-banco" placeholder="Ej: Nequi 300 123 4567" class="mobile-field">
-              <p class="text-[11px] text-[#7E967A] mt-1 leading-tight">
-                ℹ️ No es obligatoria para registrarte. Tendrás hasta 4 días tras el lanzamiento para vincularla.
+
+            <!-- BOTÓN CONTINUAR A ETAPA 2 -->
+            <div class="pt-3">
+              <button type="button" onclick="validateAndGoToProStep2()" class="w-full btn-lima-action text-sm sm:text-base tracking-wide flex items-center justify-center gap-2">
+                <span>Continuar a Etapa 2: Verificación KYC y Cobro</span>
+                <span>➔</span>
+              </button>
+              <p class="text-center text-[11px] text-[#A4BEA0] mt-2">
+                ⏱️ Solo falta tu cuenta de cobro y fotos de respaldo para activar tu cuenta técnica.
               </p>
             </div>
           </div>
 
-          <!-- FECHA DE NACIMIENTO (SOLO MES Y AÑO) -->
-          <div class="grid grid-cols-2 gap-4">
-            <div>
-              <label class="block text-xs font-semibold text-[#A4BEA0] mb-1.5">Mes de Nacimiento *</label>
-              <select id="pro-mes" required class="mobile-field">
-                <option value="">Selecciona mes...</option>
-                <option value="01">Enero</option>
-                <option value="02">Febrero</option>
-                <option value="03">Marzo</option>
-                <option value="04">Abril</option>
-                <option value="05">Mayo</option>
-                <option value="06">Junio</option>
-                <option value="07">Julio</option>
-                <option value="08">Agosto</option>
-                <option value="09">Septiembre</option>
-                <option value="10">Octubre</option>
-                <option value="11">Noviembre</option>
-                <option value="12">Diciembre</option>
-              </select>
-            </div>
-            <div>
-              <label class="block text-xs font-bold uppercase text-[#A4BEA0] mb-1.5">Año de Nacimiento *</label>
-              <input type="number" id="pro-ano" min="1940" max="2008" required placeholder="Ej: 1988" class="mobile-field">
-            </div>
-          </div>
-
-          <!-- HONEYPOT BOT PROTECTION INVISIBLE -->
-          <input type="text" id="pro-hp-token" style="display:none!important;" tabindex="-1" autocomplete="off">
-
           <!-- ======================================================== -->
-          <!-- MINI-SIMULADOR DE BOLSILLO INTERACTIVO Y TOUCH-FRIENDLY  -->
+          <!-- ETAPA 2: VERIFICACIÓN KYC & ACTIVACIÓN DE COBRO          -->
           <!-- ======================================================== -->
-          <div class="mt-6 p-4 sm:p-5 rounded-2xl bg-[#091107] border border-[#B8FF3B]/35 shadow-inner">
-            <div class="flex items-center justify-between mb-2">
-              <div class="flex items-center gap-2">
-                <span class="text-xl">👛</span>
-                <h4 class="text-xs sm:text-sm font-bold text-white font-brand">Mini-Simulador de Bolsillo</h4>
+          <div id="pro-step-2" class="space-y-4 hidden">
+            <!-- RESUMEN DEL ASPIRANTE -->
+            <div class="p-3.5 rounded-2xl bg-[#0D180B] border border-[#B8FF3B]/40 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+              <div class="flex items-center gap-2.5">
+                <span class="w-8 h-8 rounded-xl bg-[#B8FF3B]/20 text-[#B8FF3B] flex items-center justify-center font-bold text-sm">2/2</span>
+                <div>
+                  <span id="pro-step-summary" class="text-xs sm:text-sm font-bold text-white block font-brand">Aspirante en Validación</span>
+                  <span class="text-[10px] text-[#B8FF3B]">Datos básicos validados con éxito</span>
+                </div>
               </div>
-              <span class="text-[10px] uppercase font-bold text-[#B8FF3B] px-2.5 py-0.5 rounded-full bg-[#B8FF3B]/10 border border-[#B8FF3B]/30 font-mono">¿Cuánto te queda?</span>
-            </div>
-            <p class="text-[11px] sm:text-xs text-[#97A890] mb-4 leading-relaxed">
-              Mueve el control deslizante o pulsa un valor para comparar tus ingresos netos frente a aplicaciones tradicionales que retienen entre el 25% y 30%:
-            </p>
-
-            <!-- Slider Táctil para Celulares -->
-            <div class="mb-4">
-              <div class="flex justify-between items-center text-xs mb-1.5 font-bold">
-                <span class="text-[#A4BEA0]">Valor del trabajo:</span>
-                <span id="sim-slider-label" class="text-base text-[#B8FF3B] font-mono font-extrabold">$100.000 COP</span>
-              </div>
-              <input type="range" id="sim-slider" min="50000" max="1200000" step="10000" value="100000" class="sim-slider" oninput="handleSliderChange(this.value)">
-              <div class="flex justify-between text-[10px] text-[#6E8268] mt-1 font-mono">
-                <span>$50k</span>
-                <span>$600k</span>
-                <span>$1.2M</span>
-              </div>
-            </div>
-
-            <!-- Botones de valores rápidos -->
-            <div class="grid grid-cols-3 gap-2 mb-4">
-              <button type="button" onclick="setPocketSim(100000)" id="btn-sim-100" class="py-2.5 px-1 rounded-xl text-xs font-bold transition text-center bg-[#1A2E16] text-[#B8FF3B] border border-[#B8FF3B]">
-                $100.000
-              </button>
-              <button type="button" onclick="setPocketSim(350000)" id="btn-sim-350" class="py-2.5 px-1 rounded-xl text-xs font-bold transition text-center bg-[#0C120A] text-[#97A890] border border-[#24391E] hover:border-[#B8FF3B]/40">
-                $350.000
-              </button>
-              <button type="button" onclick="setPocketSim(800000)" id="btn-sim-800" class="py-2.5 px-1 rounded-xl text-xs font-bold transition text-center bg-[#0C120A] text-[#97A890] border border-[#24391E] hover:border-[#B8FF3B]/40">
-                $800.000
+              <button type="button" onclick="goToProStep(1)" class="text-xs text-[#97A890] hover:text-[#B8FF3B] underline transition">
+                Editar datos básicos
               </button>
             </div>
 
-            <!-- Tarjetas de Comparativa -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-center">
-              <div class="p-3 rounded-xl bg-[#140E0A] border border-[#EF4444]/30">
-                <span class="text-[10px] text-[#F87171] uppercase font-bold block">Apps Tradicionales (70%)</span>
-                <span id="sim-tradicional-val" class="text-base sm:text-lg font-extrabold text-[#FCA5A5] font-mono">$70.000 COP</span>
-                <small id="sim-loss-val" class="text-[10px] text-[#A67C7C] block mt-0.5">Te descuentan $30.000 COP</small>
-              </div>
-              <div class="p-3 rounded-xl bg-[#101D0E] border border-[#B8FF3B]/50 shadow-[0_0_15px_rgba(184,255,59,0.15)]">
-                <span class="text-[10px] text-[#B8FF3B] uppercase font-extrabold block">En rebuske Oro (93%)</span>
-                <span id="sim-rebuske-val" class="text-base sm:text-lg font-extrabold text-[#B8FF3B] font-mono">$93.000 COP</span>
-                <small id="sim-diff-val" class="text-[10px] text-[#D9FF8B] font-bold block mt-0.5">+ $23.000 COP más para ti</small>
-              </div>
+            <!-- CUENTA BANCARIA OBLIGATORIA PARA PAGOS EN ETAPA 2 -->
+            <div class="p-4 rounded-2xl bg-[#091107] border border-[#243B1E]">
+              <label class="block text-xs font-semibold text-[#A4BEA0] mb-1.5 flex items-center justify-between">
+                <span>Cuenta para tus pagos (Nequi / Bancolombia) *</span>
+                <span class="text-[10px] text-[#B8FF3B] font-mono font-bold">Obligatoria para cobros</span>
+              </label>
+              <input type="text" id="pro-banco" required placeholder="Ej: Nequi 300 123 4567 o Bancolombia Ahorros 12345678901" class="mobile-field">
+              <p class="text-[11px] text-[#C6D8BF] mt-1.5 leading-tight">
+                🔒 <strong>Bóveda Wompi:</strong> Tus pagos protegidos se liquidan directamente a esta cuenta al culminar cada labor aprobada.
+              </p>
             </div>
 
-            <div class="mt-3.5 pt-3 border-t border-[#24391E] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1.5 text-xs text-[#A4BEA0]">
-              <span>👑 <b>Mes 1 Fundador (1% Comisión):</b> <span id="sim-mes1-val" class="text-[#FFFA70] font-mono font-black">$99.000 COP netos</span></span>
-              <span class="text-[11px] text-[#C6D8BF]">📄 Certificado formal de ingresos en 1 clic</span>
-            </div>
-          </div>
-
-          <!-- ======================================================== -->
-          <!-- SISTEMA DE PLACAS Y MODELO DE COMISIONES                -->
-          <!-- ======================================================== -->
-          <div class="mt-6 pt-6 border-t border-[#24391E]">
-            <div class="flex items-center justify-between mb-3">
-              <span class="text-xs font-bold uppercase tracking-wider text-[#B8FF3B] flex items-center gap-1.5">
-                <span>🏆</span> Modelo de Placas Oficiales rebuske
-              </span>
-              <span class="text-[10px] uppercase font-mono px-2 py-0.5 rounded-full bg-[#B8FF3B]/10 text-[#B8FF3B] border border-[#B8FF3B]/30">3 Categorías</span>
-            </div>
-            <p class="text-xs text-[#97A890] mb-4">
-              Tus ingresos crecen con tu cumplimiento y calidad técnica:
-            </p>
-
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
-              <!-- PLACA BRONCE -->
-              <div class="p-3.5 rounded-2xl bg-[#0F170D] border border-[#CD7F32]/50 flex flex-col justify-between">
-                <div>
-                  <div class="flex items-center justify-between mb-1.5">
-                    <span class="text-xs font-extrabold text-[#E5A566] font-brand">🥉 Placa Bronce</span>
-                    <span class="text-[11px] font-black text-[#F4FBF1] bg-[#CD7F32]/20 px-2 py-0.5 rounded-md font-mono">9% Com.</span>
-                  </div>
-                  <p class="text-[11px] text-[#A4BEA0] leading-snug mb-2">
-                    <strong>Nivel Inicial:</strong> Registro aprobado, KYC completado y antecedentes limpios.
-                  </p>
-                </div>
-                <div class="pt-2 border-t border-[#24391E] text-[10px] text-[#97A890]">
-                  Cobras el <strong class="text-[#F4FBF1]">91% neto</strong> directo a tu cuenta.
-                </div>
-              </div>
-
-              <!-- PLACA PLATA -->
-              <div class="p-3.5 rounded-2xl bg-[#0F170D] border border-[#C0C0C0]/50 flex flex-col justify-between">
-                <div>
-                  <div class="flex items-center justify-between mb-1.5">
-                    <span class="text-xs font-extrabold text-[#E2E8F0] font-brand">🥈 Placa Plata</span>
-                    <span class="text-[11px] font-black text-[#F4FBF1] bg-white/20 px-2 py-0.5 rounded-md font-mono">8% Com.</span>
-                  </div>
-                  <p class="text-[11px] text-[#A4BEA0] leading-snug mb-2">
-                    <strong>Ascenso:</strong> 25 servicios completados, calificación ≥ 4.7★ y puntualidad ≥ 92%.
-                  </p>
-                </div>
-                <div class="pt-2 border-t border-[#24391E] text-[10px] text-[#97A890]">
-                  Cobras el <strong class="text-[#F4FBF1]">92% neto</strong> directo a tu cuenta.
-                </div>
-              </div>
-
-              <!-- PLACA ORO -->
-              <div class="p-3.5 rounded-2xl bg-[#0F170D] border border-[#F59E0B]/60 flex flex-col justify-between">
-                <div>
-                  <div class="flex items-center justify-between mb-1.5">
-                    <span class="text-xs font-extrabold text-[#FBBF24] font-brand">🥇 Placa Oro</span>
-                    <span class="text-[11px] font-black text-[#F4FBF1] bg-[#F59E0B]/20 px-2 py-0.5 rounded-md font-mono">7% Com.</span>
-                  </div>
-                  <p class="text-[11px] text-[#A4BEA0] leading-snug mb-2">
-                    <strong>Ascenso:</strong> 80 servicios, calificación ≥ 4.9★, puntualidad ≥ 96% y 0 reclamos en 60d.
-                  </p>
-                </div>
-                <div class="pt-2 border-t border-[#24391E] text-[10px] text-[#97A890]">
-                  ¡Cobras el <strong class="text-[#B8FF3B]">93% neto</strong> de por vida!
-                </div>
-              </div>
-            </div>
-
-            <!-- AVISO DE PROMOCIÓN MES 1 -->
-            <div class="p-3.5 rounded-xl bg-[#1A2E16] border border-[#B8FF3B]/50 flex items-start gap-2.5 text-xs text-[#E5F5E0] mb-4">
-              <span class="text-lg">👑</span>
+            <!-- PRE-AUDITORÍA FOTOGRÁFICA OBLIGATORIA KYC (6 + 1 FOTOS) -->
+            <div class="pt-2 space-y-4">
               <div>
-                <strong class="text-[#B8FF3B] block font-brand text-sm">Promoción Temporal Exclusiva · Primer Mes (Solo 100 Cupos)</strong>
-                <p class="text-[11px] text-[#C4DDC1] leading-relaxed">
-                  Los primeros 100 profesionales registrados operarán al <strong>1% de comisión</strong> durante sus primeros 30 días (¡99% neto para ti!). Finalizado el mes, se activará tu placa ganada (9%, 8% o 7%).
+                <span class="text-xs font-bold uppercase tracking-wider text-[#B8FF3B] flex items-center gap-1.5">
+                  <span>📸</span> Verificación KYC y Respaldo Técnico
+                </span>
+                <p class="text-xs text-[#97A890] mt-1">
+                  Para garantizar la seguridad de los hogares en Medellín, validamos tus herramientas y tu identidad biométrica:
                 </p>
               </div>
-            </div>
-          </div>
 
-          <!-- ======================================================== -->
-          <!-- PRE-AUDITORÍA FOTOGRÁFICA OBLIGATORIA KYC (6 + 1 FOTOS)  -->
-          <!-- ======================================================== -->
-          <div class="pt-5 border-t border-[#24391E] space-y-4">
-            <div>
-              <span class="text-xs font-bold uppercase tracking-wider text-[#B8FF3B] flex items-center gap-1.5">
-                <span>📸</span> Verificación KYC y Respaldo Técnico
-              </span>
-              <p class="text-xs text-[#97A890] mt-1">
-                Para garantizar la seguridad de los hogares en Medellín, validamos tus herramientas y tu identidad biométrica:
-              </p>
-            </div>
-
-            <!-- FOTO 1: SELFIE DE PERFIL BIOMÉTRICA -->
-            <div class="p-4 rounded-2xl bg-[#091107] border border-[#243B1E]">
-              <label class="block text-xs font-bold text-[#E5F5E0] mb-1">
-                1. Foto de Perfil Biométrica (Rostro claro, sin gafas oscuras ni filtros) *
-              </label>
-              <input type="file" id="pro-foto-perfil" accept="image/*" required onchange="handleFotoPerfil(event)" class="block w-full text-xs text-[#9BB197] file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-[#1E3317] file:text-[#B8FF3B] hover:file:bg-[#284420] cursor-pointer">
-              
-              <div class="mt-2.5 p-2.5 rounded-lg bg-[#241E0F] border border-[#F59E0B]/40 text-[11px] text-[#FDE68A] flex items-center gap-2">
-                <span>⚠️</span>
-                <span><strong>Política de Seguridad:</strong> Al subir esta foto, <strong>no podrá cambiarse durante 30 días</strong>. Elige una foto nítida.</span>
+              <!-- FOTO 1: SELFIE DE PERFIL BIOMÉTRICA -->
+              <div class="p-4 rounded-2xl bg-[#091107] border border-[#243B1E]">
+                <label class="block text-xs font-bold text-[#E5F5E0] mb-1">
+                  1. Foto de Perfil Biométrica (Rostro claro, sin gafas oscuras ni filtros) *
+                </label>
+                <input type="file" id="pro-foto-perfil" accept="image/*" required onchange="handleFotoPerfil(event)" class="block w-full text-xs text-[#9BB197] file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-[#1E3317] file:text-[#B8FF3B] hover:file:bg-[#284420] cursor-pointer">
+                
+                <div class="mt-2.5 p-2.5 rounded-lg bg-[#241E0F] border border-[#F59E0B]/40 text-[11px] text-[#FDE68A] flex items-center gap-2">
+                  <span>⚠️</span>
+                  <span><strong>Política de Seguridad:</strong> Al subir esta foto, <strong>no podrá cambiarse durante 30 días</strong>. Elige una foto nítida.</span>
+                </div>
+                <div id="perfil-preview" class="mt-2 hidden">
+                  <img id="perfil-preview-img" class="w-16 h-16 rounded-full object-cover border-2 border-[#B8FF3B] shadow-md" alt="Selfie de perfil" />
+                </div>
               </div>
-              <div id="perfil-preview" class="mt-2 hidden">
-                <img id="perfil-preview-img" class="w-16 h-16 rounded-full object-cover border-2 border-[#B8FF3B] shadow-md" alt="Selfie de perfil" />
-              </div>
-            </div>
 
-            <!-- FOTOS 2-7: 6 FOTOGRAFÍAS DE HERRAMIENTAS -->
-            <div class="p-4 rounded-2xl bg-[#091107] border border-[#243B1E]">
-              <label class="block text-xs font-bold text-[#E5F5E0] mb-1">
-                2. 6 Fotografías de tus Herramientas y Equipos de Trabajo *
-              </label>
-              <p class="text-[11px] text-[#97A890] mb-2">
-                Sube fotos de lo que realmente tienes disponible (maletines, taladros, multímetros, llaves, escaleras, etc.). No exigimos marcas exclusivas, sino transparencia.
-              </p>
-              <input type="file" id="pro-fotos-herramientas" accept="image/*" multiple required onchange="handleHerramientasFotos(event)" class="block w-full text-xs text-[#9BB197] file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-[#1E3317] file:text-[#B8FF3B] hover:file:bg-[#284420] cursor-pointer">
-              <span id="herramientas-counter" class="text-[11px] text-[#A4BEA0] mt-1.5 block font-mono">0 de 6 fotografías seleccionadas</span>
-              <div id="herramientas-preview-grid" class="grid grid-cols-3 sm:grid-cols-6 gap-2 mt-2 hidden"></div>
-            </div>
-
-            <!-- AVISO DE VALIDACIÓN POR WHATSAPP (CERO LLAMADAS) -->
-            <div class="p-3.5 rounded-2xl bg-[#0B150A] border border-[#B8FF3B]/30 text-xs text-[#C4DDC1] flex items-start gap-3">
-              <span class="text-2xl">💬</span>
-              <div>
-                <strong class="text-[#B8FF3B] block font-brand text-sm">Entrevista de Validación Exclusiva por WhatsApp</strong>
-                <p class="text-[11px] leading-relaxed text-[#9BB197]">
-                  Tu verificación de identidad se realizará <strong>exclusivamente por mensajes de WhatsApp</strong> (mensajes de texto, notas de voz, fotos de respaldo y ubicación en tiempo real). <em>Están estrictamente prohibidas las llamadas telefónicas en esta etapa.</em>
+              <!-- FOTOS 2-7: 6 FOTOGRAFÍAS DE HERRAMIENTAS -->
+              <div class="p-4 rounded-2xl bg-[#091107] border border-[#243B1E]">
+                <label class="block text-xs font-bold text-[#E5F5E0] mb-1">
+                  2. 6 Fotografías de tus Herramientas y Equipos de Trabajo *
+                </label>
+                <p class="text-[11px] text-[#97A890] mb-2">
+                  Sube fotos de lo que realmente tienes disponible (maletines, taladros, multímetros, llaves, escaleras, etc.). No exigimos marcas exclusivas, sino transparencia.
                 </p>
+                <input type="file" id="pro-fotos-herramientas" accept="image/*" multiple required onchange="handleHerramientasFotos(event)" class="block w-full text-xs text-[#9BB197] file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-[#1E3317] file:text-[#B8FF3B] hover:file:bg-[#284420] cursor-pointer">
+                <span id="herramientas-counter" class="text-[11px] text-[#A4BEA0] mt-1.5 block font-mono">0 de 6 fotografías seleccionadas</span>
+                <div id="herramientas-preview-grid" class="grid grid-cols-3 sm:grid-cols-6 gap-2 mt-2 hidden"></div>
+              </div>
+
+              <!-- AVISO DE VALIDACIÓN POR WHATSAPP (CERO LLAMADAS) -->
+              <div class="p-3.5 rounded-2xl bg-[#0B150A] border border-[#B8FF3B]/30 text-xs text-[#C4DDC1] flex items-start gap-3">
+                <span class="text-2xl">💬</span>
+                <div>
+                  <strong class="text-[#B8FF3B] block font-brand text-sm">Entrevista de Validación Exclusiva por WhatsApp</strong>
+                  <p class="text-[11px] leading-relaxed text-[#9BB197]">
+                    Tu verificación de identidad se realizará <strong>exclusivamente por mensajes de WhatsApp</strong> (mensajes de texto, notas de voz, fotos de respaldo y ubicación en tiempo real). <em>Están estrictamente prohibidas las llamadas telefónicas en esta etapa.</em>
+                  </p>
+                </div>
               </div>
             </div>
+
+            <!-- AUTORIZACIONES Y CONSENTIMIENTO INFORMADO KYC (LEY 1581 DE 2012) -->
+            <div class="p-4 rounded-2xl bg-[#091107] border border-[#24391E] space-y-3 text-xs">
+              <span class="font-bold text-[#B8FF3B] block font-brand text-xs uppercase tracking-wide">
+                ⚖️ Autorizaciones Legales y Consentimiento Informado KYC:
+              </span>
+
+              <!-- Checkbox 1: Términos y Tratamiento General -->
+              <label class="flex items-start gap-2.5 text-[#C4DDC1] cursor-pointer">
+                <input type="checkbox" id="pro-check-terminos" required class="mt-1 accent-[#B8FF3B] w-4 h-4 rounded cursor-pointer shrink-0">
+                <span class="text-[11px] leading-relaxed">
+                  He leído y acepto los <a href="/terminos" target="_blank" class="text-[#B8FF3B] underline font-bold">Términos y Condiciones</a> y la <a href="/privacidad" target="_blank" class="text-[#B8FF3B] underline font-bold">Política de Tratamiento de Datos Personales</a> (Ley 1581 de 2012). *
+                </span>
+              </label>
+
+              <!-- Checkbox 2: Datos Sensibles Biométricos -->
+              <label class="flex items-start gap-2.5 text-[#C4DDC1] cursor-pointer">
+                <input type="checkbox" id="pro-check-biometria" required class="mt-1 accent-[#B8FF3B] w-4 h-4 rounded cursor-pointer shrink-0">
+                <span class="text-[11px] leading-relaxed">
+                  Autorizo expresamente el tratamiento de mi biometría facial con fines exclusivos de validación de identidad en puerta mediante código QR y cotejo antifraude. <em>Entiendo que por tratarse de un dato sensible (Ley 1581, art. 5) esta autorización es facultativa; no obstante, su no autorización impedirá la habilitación de mi cuenta técnica por protocolos de seguridad domiciliaria.</em> *
+                </span>
+              </label>
+
+              <!-- Checkbox 3: Consulta de Antecedentes y Minimización -->
+              <label class="flex items-start gap-2.5 text-[#C4DDC1] cursor-pointer">
+                <input type="checkbox" id="pro-check-antecedentes" required class="mt-1 accent-[#B8FF3B] w-4 h-4 rounded cursor-pointer shrink-0">
+                <span class="text-[11px] leading-relaxed">
+                  Autorizo a rebuske a consultar mis antecedentes judiciales, policivos y disciplinarios en bases públicas oficiales. <em>Entiendo que rebuske solo almacenará la constancia de aptitud ("Aprobado / Sin pendientes" y fecha de cotejo), sin acopiar ni archivar documentos judiciales crudos.</em> *
+                </span>
+              </label>
+
+              <!-- Checkbox 4: Notificaciones y Oportunidades (Opcional) -->
+              <label class="flex items-start gap-2.5 text-[#97A890] cursor-pointer">
+                <input type="checkbox" id="pro-check-promo" class="mt-1 accent-[#B8FF3B] w-4 h-4 rounded cursor-pointer shrink-0">
+                <span class="text-[11px] leading-relaxed">
+                  (Opcional) Autorizo el envío de alertas de solicitudes en mi comuna, recordatorios de verificación y novedades operativas por WhatsApp y correo electrónico.
+                </span>
+              </label>
+            </div>
+
+            <!-- CONTENEDOR CLOUDFLARE TURNSTILE (PROTECCIÓN ANTI-BOT) -->
+            <div id="pro-turnstile-slot" class="my-3 flex justify-center"></div>
+
+            <button type="submit" id="btn-submit-pro" class="w-full btn-lima-action text-sm sm:text-base tracking-wide flex items-center justify-center gap-2">
+              <span>Asegurar mi Cupo Primordial (1% Mes 1)</span>
+              <span>⚡</span>
+            </button>
+
+            <button type="button" onclick="goToProStep(1)" class="w-full py-2.5 text-xs text-[#97A890] hover:text-[#B8FF3B] transition text-center flex items-center justify-center gap-1.5">
+              <span>◀ Modificar datos básicos (Paso 1)</span>
+            </button>
           </div>
-
-          <!-- AUTORIZACIONES Y CONSENTIMIENTO INFORMADO KYC (LEY 1581 DE 2012) -->
-          <div class="p-4 rounded-2xl bg-[#091107] border border-[#24391E] space-y-3 text-xs">
-            <span class="font-bold text-[#B8FF3B] block font-brand text-xs uppercase tracking-wide">
-              ⚖️ Autorizaciones Legales y Consentimiento Informado KYC:
-            </span>
-
-            <!-- Checkbox 1: Términos y Tratamiento General -->
-            <label class="flex items-start gap-2.5 text-[#C4DDC1] cursor-pointer">
-              <input type="checkbox" id="pro-check-terminos" required class="mt-1 accent-[#B8FF3B] w-4 h-4 rounded cursor-pointer shrink-0">
-              <span class="text-[11px] leading-relaxed">
-                He leído y acepto los <a href="/terminos" target="_blank" class="text-[#B8FF3B] underline font-bold">Términos y Condiciones</a> y la <a href="/privacidad" target="_blank" class="text-[#B8FF3B] underline font-bold">Política de Tratamiento de Datos Personales</a> (Ley 1581 de 2012). *
-              </span>
-            </label>
-
-            <!-- Checkbox 2: Datos Sensibles Biométricos -->
-            <label class="flex items-start gap-2.5 text-[#C4DDC1] cursor-pointer">
-              <input type="checkbox" id="pro-check-biometria" required class="mt-1 accent-[#B8FF3B] w-4 h-4 rounded cursor-pointer shrink-0">
-              <span class="text-[11px] leading-relaxed">
-                Autorizo expresamente el tratamiento de mi biometría facial con fines exclusivos de validación de identidad en puerta mediante código QR y cotejo antifraude. <em>Entiendo que por tratarse de un dato sensible (Ley 1581, art. 5) esta autorización es facultativa; no obstante, su no autorización impedirá la habilitación de mi cuenta técnica por protocolos de seguridad domiciliaria.</em> *
-              </span>
-            </label>
-
-            <!-- Checkbox 3: Consulta de Antecedentes y Minimización -->
-            <label class="flex items-start gap-2.5 text-[#C4DDC1] cursor-pointer">
-              <input type="checkbox" id="pro-check-antecedentes" required class="mt-1 accent-[#B8FF3B] w-4 h-4 rounded cursor-pointer shrink-0">
-              <span class="text-[11px] leading-relaxed">
-                Autorizo a rebuske a consultar mis antecedentes judiciales, policivos y disciplinarios en bases públicas oficiales. <em>Entiendo que rebuske solo almacenará la constancia de aptitud ("Aprobado / Sin pendientes" y fecha de cotejo), sin acopiar ni archivar documentos judiciales crudos.</em> *
-              </span>
-            </label>
-
-            <!-- Checkbox 4: Notificaciones y Oportunidades (Opcional) -->
-            <label class="flex items-start gap-2.5 text-[#97A890] cursor-pointer">
-              <input type="checkbox" id="pro-check-promo" class="mt-1 accent-[#B8FF3B] w-4 h-4 rounded cursor-pointer shrink-0">
-              <span class="text-[11px] leading-relaxed">
-                (Opcional) Autorizo el envío de alertas de solicitudes en mi comuna, recordatorios de verificación y novedades operativas por WhatsApp y correo electrónico.
-              </span>
-            </label>
-          </div>
-
-          <!-- CONTENEDOR CLOUDFLARE TURNSTILE (PROTECCIÓN ANTI-BOT) -->
-          <div id="pro-turnstile-slot" class="my-3 flex justify-center"></div>
-
-          <button type="submit" id="btn-submit-pro" class="w-full btn-lima-action text-sm sm:text-base tracking-wide flex items-center justify-center gap-2">
-            <span>Asegurar mi Cupo Primordial (1% Mes 1)</span>
-            <span>⚡</span>
-          </button>
 
           <div id="pro-alert-success" class="hidden p-5 rounded-2xl bg-[#192B15] border border-[#B8FF3B] text-center space-y-2">
             <b class="text-base text-[#B8FF3B] block font-brand" id="pro-alert-title">¡Registro de Profesional Exitoso!</b>
@@ -975,8 +1033,8 @@
                 <input type="number" id="cli-ano" min="1940" max="2008" required placeholder="Ej: 1995" class="mobile-field">
               </div>
             </div>
-            <p class="text-[10.5px] text-[#97A890] mt-1.5 leading-snug">
-              ℹ️ <strong>Finalidad:</strong> Requerido exclusivamente para validar tu mayoría de edad legal (18+ años según el Código de Comercio colombiano) para contratar servicios y habilitar beneficios especiales en el mes de tu cumpleaños.
+            <p class="text-[11px] text-[#C6D8BF] mt-1.5 leading-snug">
+              🎁 <strong>¿Por qué te pedimos tu fecha de nacimiento?</strong> Para validar tu mayoría de edad legal (18+ años según el Código de Comercio) y consentirte con <strong>promociones y regalos al azar en el mes de tu cumpleaños</strong> para premiar tu fidelidad en rebuske.
             </p>
           </div>
 
@@ -1268,8 +1326,103 @@
       }
     }
 
-    
+    // ========================================================
+    // NAVEGACIÓN ONBOARDING TÉCNICO EN 2 ETAPAS (PUNTO 10)
+    // ========================================================
+    function goToProStep(step) {
+      const step1 = document.getElementById('pro-step-1');
+      const step2 = document.getElementById('pro-step-2');
+      const tab1 = document.getElementById('step-tab-1');
+      const tab2 = document.getElementById('step-tab-2');
+      if (!step1 || !step2) return;
+
+      if (step === 1) {
+        step1.classList.remove('hidden');
+        step2.classList.add('hidden');
+        if (tab1) {
+          tab1.className = 'p-3 rounded-2xl bg-[#1A2E16] text-[#B8FF3B] border border-[#B8FF3B]/50 flex items-center justify-center gap-2 transition-all';
+          const b1 = tab1.querySelector('span:first-child');
+          if (b1) b1.className = 'w-6 h-6 rounded-full bg-[#B8FF3B] text-[#0C120A] flex items-center justify-center text-xs font-black';
+        }
+        if (tab2) {
+          tab2.className = 'p-3 rounded-2xl bg-[#091107] text-[#97A890] border border-[#24391E] flex items-center justify-center gap-2 transition-all';
+          const b2 = tab2.querySelector('span:first-child');
+          if (b2) b2.className = 'w-6 h-6 rounded-full bg-[#182614] text-[#97A890] flex items-center justify-center text-xs font-black';
+        }
+      } else if (step === 2) {
+        step1.classList.add('hidden');
+        step2.classList.remove('hidden');
+        if (tab2) {
+          tab2.className = 'p-3 rounded-2xl bg-[#1A2E16] text-[#B8FF3B] border border-[#B8FF3B]/50 flex items-center justify-center gap-2 transition-all';
+          const b2 = tab2.querySelector('span:first-child');
+          if (b2) b2.className = 'w-6 h-6 rounded-full bg-[#B8FF3B] text-[#0C120A] flex items-center justify-center text-xs font-black';
+        }
+        if (tab1) {
+          tab1.className = 'p-3 rounded-2xl bg-[#091107] text-[#97A890] border border-[#24391E] flex items-center justify-center gap-2 transition-all';
+          const b1 = tab1.querySelector('span:first-child');
+          if (b1) b1.className = 'w-6 h-6 rounded-full bg-[#182614] text-[#97A890] flex items-center justify-center text-xs font-black';
+        }
+        // Update summary badge
+        const proNombre = (document.getElementById('pro-nombre') || {}).value || '';
+        const proOficio = (document.getElementById('pro-oficio') || {}).value || '';
+        const proComuna = (document.getElementById('pro-comuna') || {}).value || '';
+        const summaryEl = document.getElementById('pro-step-summary');
+        if (summaryEl && proNombre) {
+          summaryEl.textContent = 'Aspirante: ' + proNombre + ' · ' + (proOficio || 'Especialista') + ' · ' + (proComuna || 'Medellín');
+        }
+        const viewProEl = document.getElementById('view-pro');
+        if (viewProEl) viewProEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     }
+
+    function validateAndGoToProStep2() {
+      const nombre = document.getElementById('pro-nombre');
+      const cedula = document.getElementById('pro-cedula');
+      const tel = document.getElementById('pro-tel');
+      const oficio = document.getElementById('pro-oficio');
+      const comuna = document.getElementById('pro-comuna');
+      const mes = document.getElementById('pro-mes');
+      const ano = document.getElementById('pro-ano');
+
+      if (!nombre || !nombre.value.trim()) {
+        alert('Por favor ingresa tu nombre completo.');
+        if (nombre) nombre.focus();
+        return;
+      }
+      const cleanCedula = (cedula ? cedula.value : '').replace(/\D/g, '');
+      if (cleanCedula.length < 6 || cleanCedula.length > 10) {
+        alert('Por favor ingresa una cédula válida de 6 a 10 dígitos.');
+        if (cedula) cedula.focus();
+        return;
+      }
+      const cleanTel = (tel ? tel.value : '').replace(/\D/g, '');
+      if (!/^3\d{9}$/.test(cleanTel)) {
+        alert('Por favor ingresa un número de celular colombiano válido de 10 dígitos (3XX...).');
+        if (tel) tel.focus();
+        return;
+      }
+      if (!oficio || !oficio.value) {
+        alert('Por favor selecciona tu oficio o especialidad principal.');
+        if (oficio) oficio.focus();
+        return;
+      }
+      if (!comuna || !comuna.value) {
+        alert('Por favor selecciona tu comuna o corregimiento en Medellín.');
+        if (comuna) comuna.focus();
+        return;
+      }
+      if (!mes || !mes.value || !ano || !ano.value) {
+        alert('Por favor selecciona tu mes y año de nacimiento.');
+        if (mes && !mes.value) mes.focus();
+        else if (ano) ano.focus();
+        return;
+      }
+
+      goToProStep(2);
+    }
+
+
+    
 
     // Modal de Consentimiento Rápido
     function openConsentModal(actionFn) {
@@ -1291,7 +1444,6 @@
     }
 
     
-    }
 
     // ========================================================
     // LÓGICA DEL MINI-SIMULADOR DE BOLSILLO INTERACTIVO
@@ -1383,7 +1535,6 @@
     }
 
     
-    }
 
     // ========================================================
     // COMPRESIÓN DE IMÁGENES CLIENT-SIDE (CANVAS)
@@ -1442,7 +1593,6 @@
     }
 
     
-    }
 
     async function handleClienteFotoPerfil(e) {
       const file = e.target.files[0];
@@ -1462,7 +1612,6 @@
     }
 
     
-    }
 
     async function handleHerramientasFotos(e) {
       const files = Array.from(e.target.files);
@@ -1491,12 +1640,10 @@
     }
 
     
-    }
 
     // Manejo de Registro Profesional
     
     
-    }
 
     
     // ========================================================
@@ -1806,6 +1953,7 @@
         submitBtn.disabled = false;
         submitBtn.innerHTML = originalText;
       }
+    }
     // Manejo de Registro Cliente
     function handleClienteSubmit(e) {
       e.preventDefault();
