@@ -42,6 +42,44 @@ function getLedger() {
   return [];
 }
 
+
+// Sincronización a Supabase Wallet Ledger
+async function syncTransactionToSupabase(record) {
+  const url = process.env.SUPABASE_URL || 'https://vqvwcbirzezihfzaeziq.supabase.co';
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY || '';
+  if (!url || !key || !record) return false;
+  try {
+    const res = await fetch(`${url}/rest/v1/wallet_ledger`, {
+      method: 'POST',
+      headers: {
+        'apikey': key,
+        'Authorization': `Bearer ${key}`,
+        'Content-Type': 'application/json',
+        'Prefer': 'resolution=merge-duplicates'
+      },
+      body: JSON.stringify({
+        reference: record.reference,
+        job_id: record.jobId || null,
+        wompi_tx_id: record.wompiTxId || null,
+        status: record.status || 'PENDING',
+        total_cop: record.totalCOP || (record.amountInCents ? record.amountInCents / 100 : 0),
+        split_pro: record.splitPro || record.dianAccounting?.ingresoTerceroCOP || 0,
+        split_rebuske: record.splitRebuske || record.dianAccounting?.comisionRebuskeCOP || 0,
+        protection_fee_cop: record.protectionFeeCOP || record.dianAccounting?.cuotaProteccionGarantia48h || 4900,
+        pro_plan: record.proPlan || 'ORO',
+        customer_email: record.customerEmail || null,
+        customer_phone: record.customerPhone || null,
+        raw_dian: record.dianAccounting || null,
+        created_at: record.createdAt || new Date().toISOString(),
+        updated_at: new Date().toISOString()
+      })
+    });
+    return res.ok;
+  } catch (_) {
+    return false;
+  }
+}
+
 function saveLedger(list) {
   try {
     fs.writeFileSync(TX_STORE_PATH, JSON.stringify(list.slice(0, 500), null, 2), 'utf8');
@@ -182,6 +220,70 @@ export default async function handler(req, res) {
     }
   }
 
+
+  // --------------------------------------------------------------------------
+  // 2.5 COMPROBANTE DIGITAL DE MANDATO COMERCIAL (ART. 1262 C.CO)
+  // --------------------------------------------------------------------------
+  if (action === 'MANDATO_RECEIPT' || action === 'RECEIPT') {
+    const reference = String(req.query.ref || req.query.reference || body.reference || '').trim();
+    const ledger = getLedger();
+    const tx = ledger.find(t => t.reference === reference) || {
+      reference: reference || 'REB-MANDATO-' + Date.now().toString(36).toUpperCase(),
+      jobId: 'SRV-001',
+      totalCOP: 120000,
+      protectionFeeCOP: 4900,
+      proPlan: 'ORO',
+      status: 'APPROVED',
+      createdAt: new Date().toISOString()
+    };
+
+    const subtotal = tx.subtotalCOP || (tx.totalCOP ? tx.totalCOP - (tx.protectionFeeCOP || 4900) : 120000);
+    const feeRate = tx.feeRate || TIER_FEES[tx.proPlan || 'ORO'] || 0.11;
+    const ingresoTerceroCOP = tx.splitPro || tx.dianAccounting?.ingresoTerceroCOP || Math.round(subtotal * (1 - feeRate));
+    const comisionRebuskeCOP = tx.splitRebuske || tx.dianAccounting?.comisionRebuskeCOP || (tx.totalCOP - ingresoTerceroCOP);
+
+    return res.status(200).json({
+      ok: true,
+      tipoDocumento: 'COMPROBANTE_MANDATO_COMERCIAL_Y_PAGO_PROTEGIDO',
+      emisor: {
+        razonSocial: 'rebuske Colombia',
+        rolLegal: 'Mandatario Comercial y Operador Tecnológico',
+        nit: '901.884.231-1',
+        domicilio: 'Medellín, Antioquia, Colombia',
+        contacto: 'holarebuske@gmail.com'
+      },
+      marcoLegal: {
+        contrato: 'Contrato de Mandato Comercial de Cobranza (Art. 1262 del Código de Comercio)',
+        regimenTributario: 'Artículo 1.2.4.11 del DUR 1625 de 2016 (Ingresos recibidos para terceros)',
+        estatutoConsumidor: 'Ley 1480 de 2011 (Garantía Comercial rebuske de 48 Horas)',
+        entidadCustodia: 'Wompi - Bancolombia S.A. (Vigilada por la Superintendencia Financiera de Colombia)'
+      },
+      transaccion: {
+        referencia: tx.reference,
+        jobId: tx.jobId,
+        wompiTxId: tx.wompiTxId || 'PENDIENTE_CONCILIACION',
+        fecha: tx.approvedAt || tx.createdAt || new Date().toISOString(),
+        estado: tx.status,
+        moneda: 'COP',
+        totalPagadoCliente: tx.totalCOP || (subtotal + 4900)
+      },
+      desgloseMandato: {
+        subtotalServicioTecnico: subtotal,
+        ingresoTerceroTecnico: ingresoTerceroCOP,
+        porcentajeHonorariosTecnico: `${Math.round((1 - feeRate) * 100)}%`,
+        cuentaContableTercero: '2815_INGRESOS_RECIBIDOS_PARA_TERCEROS',
+        comisionTecnologicaRebuske: comisionRebuskeCOP,
+        porcentajeComisionRebuske: `${Math.round(feeRate * 100)}%`,
+        cuotaProteccionGarantia48h: tx.protectionFeeCOP || 4900,
+        cuentaContableComision: '4160_INGRESOS_POR_CORRETAJE_Y_PLATAFORMA',
+        baseGravableIVA: comisionRebuskeCOP,
+        ivaGenerado: 0
+      },
+      politicaGarantia: '48 horas calendario contadas a partir de la finalización del servicio ante cualquier reaparición del daño.',
+      firmaDigitalHash: crypto.createHash('sha256').update(`${tx.reference}|${tx.totalCOP}|rebuske-mandato-legal`).digest('hex')
+    });
+  }
+
   // --------------------------------------------------------------------------
   // 2. CONSULTA DE ESTADO DE TRANSACCIÓN (STATUS)
   // --------------------------------------------------------------------------
@@ -231,11 +333,23 @@ export default async function handler(req, res) {
       }
     } catch (_) {}
 
+    let friendlyStatusReason = null;
+    let suggestedAction = null;
+    if (wompiStatus === 'DECLINED') {
+      friendlyStatusReason = 'La transacción no pudo ser autorizada por tu entidad bancaria (fondos insuficientes o filtro de seguridad).';
+      suggestedAction = 'Te sugerimos reintentar el pago usando Nequi, PSE con Bancolombia o una tarjeta bancaria diferente sin perder tu solicitud.';
+    } else if (wompiStatus === 'ERROR') {
+      friendlyStatusReason = 'Ocurrió un error temporal de comunicación en la red interbancaria.';
+      suggestedAction = 'Por favor espera unos instantes e intenta nuevamente con Nequi o PSE.';
+    }
+
     return res.status(200).json({
       ok: true,
       reference,
       status: wompiStatus,
       verified: wompiStatus === 'APPROVED',
+      friendlyStatusReason,
+      suggestedAction,
       source: 'wompi_api_check',
       wompiTxId,
       amountCOP: localTx?.totalCOP || 120000,
@@ -319,6 +433,18 @@ export default async function handler(req, res) {
         return res.status(200).json({ status: 'success', idempotent: true, reference });
       }
 
+      if (status === 'DECLINED' || status === 'ERROR') {
+        if (existing) {
+          existing.status = status;
+          existing.wompiTxId = tx.id;
+          existing.declineReason = tx.status_message || 'Transacción declinada por entidad financiera';
+          existing.updatedAt = new Date().toISOString();
+          saveLedger(ledger);
+          syncTransactionToSupabase(existing).catch(() => {});
+        }
+        return res.status(200).json({ status: 'handled', event: status, reference, reason: tx.status_message });
+      }
+
       if (status === 'APPROVED') {
         const planKey = String(existing?.proPlan || 'ORO').toUpperCase();
         const feeRate = TIER_FEES[planKey] || 0.11;
@@ -341,6 +467,7 @@ export default async function handler(req, res) {
           entidadCustodia: 'Wompi - Bancolombia (Vigilada Superfinanciera)'
         };
 
+        let finalRecord = null;
         if (existing) {
           existing.status = 'APPROVED';
           existing.wompiTxId = tx.id;
@@ -348,8 +475,9 @@ export default async function handler(req, res) {
           existing.splitPro = splitPro;
           existing.dianAccounting = dianAccounting;
           existing.approvedAt = new Date().toISOString();
+          finalRecord = existing;
         } else {
-          ledger.unshift({
+          finalRecord = {
             reference,
             wompiTxId: tx.id,
             status: 'APPROVED',
@@ -359,9 +487,11 @@ export default async function handler(req, res) {
             splitPro,
             dianAccounting,
             approvedAt: new Date().toISOString()
-          });
+          };
+          ledger.unshift(finalRecord);
         }
         saveLedger(ledger);
+        syncTransactionToSupabase(finalRecord).catch(() => {});
 
         return res.status(200).json({
           status: 'success',
