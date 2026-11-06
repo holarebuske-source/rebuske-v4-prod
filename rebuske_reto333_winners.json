@@ -1,0 +1,29 @@
+[
+  {
+    "pos": 1,
+    "code": "7K9X2",
+    "ticket": "LUC-333-MED-7K9X2",
+    "nombre": "Andrea Restrepo",
+    "telefono": "+573004567890",
+    "fecha": "2026-11-02 19:40",
+    "regalo": "Hogar Impecable Nochebuena"
+  },
+  {
+    "pos": 2,
+    "code": "RB842",
+    "ticket": "LUC-333-MED-RB842",
+    "nombre": "Daniela Zapata",
+    "telefono": "+573105551234",
+    "fecha": "2026-11-02 20:15",
+    "regalo": "Spa Navideño a Domicilio"
+  },
+  {
+    "pos": 3,
+    "code": "X9M33",
+    "ticket": "LUC-333-MED-X9M33",
+    "nombre": "Juliana Henao",
+    "telefono": "+573158889900",
+    "fecha": "2026-11-02 20:50",
+    "regalo": "Bono de Regalo $100.000"
+  }
+]
