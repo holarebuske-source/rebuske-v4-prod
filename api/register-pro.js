@@ -208,12 +208,12 @@ export default async function handler(req, res) {
       benefits: isPrimordialOpen
         ? {
             tipo: 'ORO_PRIMORDIAL',
-            neto: '93%',
-            comision: '7%',
+            neto: '89%',
+            comision: '11%',
             mes1: '1%',
             mes1Neto: '99%',
-            luegoComision: '7%',
-            luegoNeto: '93%',
+            luegoComision: '11%',
+            luegoNeto: '89%',
             insignia: 'Oro VIP Primordial Vitalicia',
             escalaPlanes: {
               oro: { comision: '11%', neto: '89%', requisitos: '100 Fundadores o Calificación 4.9★+' },
@@ -223,10 +223,10 @@ export default async function handler(req, res) {
           }
         : {
             tipo: 'REGULAR',
-            neto: '91%',
-            comision: '9%',
-            mes1: '9%',
-            mes1Neto: '91%',
+            neto: '82%',
+            comision: '18%',
+            mes1: '18%',
+            mes1Neto: '82%',
             insignia: 'Profesional Estándar Bronce',
             escalaPlanes: {
               oro: { comision: '11%', neto: '89%', requisitos: 'Calificación 4.9★+ y KYC verificado' },
@@ -324,12 +324,12 @@ export default async function handler(req, res) {
       exp: String(exp || '3').trim(),
       tipo: isPrimordial ? 'PRIMORDIAL' : 'ESTANDAR',
       cupoNumero: newCount,
-      comision: isPrimordial ? '7%' : '9%',
-      neto: isPrimordial ? '93%' : '91%',
-      mes1Comision: isPrimordial ? '1%' : '9%',
-      mes1Neto: isPrimordial ? '99%' : '91%',
-      vitaliciaComision: isPrimordial ? '7%' : '9%',
-      vitaliciaNeto: isPrimordial ? '93%' : '91%',
+      comision: isPrimordial ? '11%' : '18%',
+      neto: isPrimordial ? '89%' : '82%',
+      mes1Comision: isPrimordial ? '1%' : '18%',
+      mes1Neto: isPrimordial ? '99%' : '82%',
+      vitaliciaComision: isPrimordial ? '11%' : '18%',
+      vitaliciaNeto: isPrimordial ? '89%' : '82%',
       insignia: isPrimordial ? 'Oro VIP Primordial' : 'Estándar',
       autorizo_terminos: !!body.autorizo_terminos,
       autorizo_datos_sensibles_biometria: !!body.autorizo_datos_sensibles,
@@ -366,8 +366,8 @@ export default async function handler(req, res) {
       mes1Comision: record.mes1Comision,
       insignia: record.insignia,
       message: isPrimordial
-        ? `¡Felicitaciones ${record.nombre}! Aseguraste el Cupo Primordial #${newCount}/100. Recibes 93% neto vitalicio, 0% de comisión en tu primer mes y Placa Oro VIP.`
-        : `¡Bienvenido a Rebuske, ${record.nombre}! Los 100 cupos Primordiales ya fueron completados. Tu cuenta queda registrada con tarifa estándar (91% neto para ti / 9% Rebuske).`
+        ? `¡Felicitaciones ${record.nombre}! Aseguraste el Cupo Primordial #${newCount}/100. Recibes 89% neto vitalicio (Plan Oro VIP), 1% de comisión en tu primer mes y Placa Oro VIP.`
+        : `¡Bienvenido a Rebuske, ${record.nombre}! Los 100 cupos Primordiales ya fueron completados. Tu cuenta queda registrada con tarifa estándar (82% neto para ti / 18% rebuske).`
     });
 
   } catch (error) {
