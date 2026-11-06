@@ -1521,6 +1521,48 @@
       if (otpBox) otpBox.innerHTML = '<p class="text-xs text-[#25D366] font-bold py-1">✅ Línea móvil de WhatsApp verificada y validada en Medellín.</p>';
     }
 
+    
+    function openThankYouModal({ isPro, name, cupoNumero, remaining, message }) {
+      const modal = document.getElementById('rebuske-thankyou-modal');
+      if (!modal) return;
+      const badge = document.getElementById('thankyou-badge');
+      const title = document.getElementById('thankyou-title');
+      const subtitle = document.getElementById('thankyou-subtitle');
+      const benefitTitle = document.getElementById('thankyou-benefit-title');
+      const benefitDesc = document.getElementById('thankyou-benefit-desc');
+      const primaryBtn = document.getElementById('thankyou-primary-btn');
+      const secondaryBtn = document.getElementById('thankyou-secondary-btn');
+
+      if (isPro) {
+        badge.innerText = '👑';
+        title.innerText = cupoNumero ? ('¡Cupo Primordial #' + cupoNumero + '/100 Asegurado!') : '¡Registro de Profesional Exitoso!';
+        subtitle.innerText = '¡Felicitaciones ' + name + '! Tu solicitud ha sido registrada en el sistema. Eres parte del grupo selecto de técnicos fundadores de Medellín.';
+        benefitTitle.innerText = 'BENEFICIO FUNDADOR PRIMORDIAL';
+        benefitDesc.innerText = 'Tarifa especial del 1% de comisión en tu primer mes y 93% neto vitalicio en todos tus servicios.';
+        primaryBtn.href = 'https://wa.me/573043812882?text=' + encodeURIComponent('Hola Laura de rebuske, soy ' + name + '. Acabo de registrarme como técnico con el Cupo #' + (cupoNumero || 'Pro') + '. Adjunto mis documentos para la validación KYC.');
+        primaryBtn.innerHTML = '<span>💬 Unirme y Validar KYC en WhatsApp</span>';
+        secondaryBtn.href = '/';
+        secondaryBtn.innerHTML = '<span>📱 Ver la App Web rebuske</span>';
+      } else {
+        badge.innerText = '🎉';
+        title.innerText = '¡Bono de $15.000 COP Reservado!';
+        subtitle.innerText = '¡Excelente ' + name + '! Quedaste inscrito en la Lista VIP de rebuske Medellín.';
+        benefitTitle.innerText = 'CUPÓN RESERVADO · VÁLIDO DESDE 1 DIC';
+        benefitDesc.innerText = 'Cupón TUBONO15K-VIP de $15.000 COP listo para usar en tu primer servicio (100% cubierto por rebuske).';
+        primaryBtn.href = '/';
+        primaryBtn.innerHTML = '<span>🚀 Abrir App Web y Probar rebuske</span>';
+        secondaryBtn.href = 'https://wa.me/573043812882?text=' + encodeURIComponent('Hola Laura de rebuske, soy ' + name + '. Me registré en la lista VIP para recibir mi cupón de $15.000 COP.');
+        secondaryBtn.innerHTML = '<span>💬 Chatear con Laura en WhatsApp</span>';
+      }
+
+      modal.classList.remove('hidden');
+    }
+
+    function closeThankYouModal() {
+      const modal = document.getElementById('rebuske-thankyou-modal');
+      if (modal) modal.classList.add('hidden');
+    }
+
     function handleProSubmit(e) {
       e.preventDefault();
 
@@ -1667,6 +1709,13 @@
           if (data.currentCount) {
             document.getElementById('pro-counter-badge').innerText = data.currentCount + ' / 100 Asignados';
           }
+          openThankYouModal({
+            isPro: true,
+            name: nombre,
+            cupoNumero: data.cupoNumero || data.currentCount,
+            remaining: data.remaining,
+            message: data.message
+          });
           document.getElementById('form-pro').reset();
           document.getElementById('perfil-preview').classList.add('hidden');
           document.getElementById('herramientas-preview-grid').classList.add('hidden');
@@ -1787,6 +1836,10 @@
           alertBox.className = 'p-5 rounded-2xl bg-[#221C0E] border border-[#F59E0B] text-center space-y-2';
           document.getElementById('cli-alert-title').innerText = '🎉 ¡Bienvenido a la Lista VIP rebuske!';
           document.getElementById('cli-alert-msg').innerText = 'Hemos registrado a ' + nombre + ' (' + email + ') con tu cupón TUBONO15K-VIP. Te notificaremos el link oficial de Google Play Store apenas la app esté lista.';
+          openThankYouModal({
+            isPro: false,
+            name: nombre
+          });
           document.getElementById('form-cliente').reset();
           const previewBox = document.getElementById('cli-foto-preview-box');
           if (previewBox) previewBox.classList.add('hidden');
@@ -1993,6 +2046,49 @@
       <a href="/privacidad#cookies" target="_blank" class="text-[11px] text-[#7A9174] hover:text-[#B8FF3B] underline transition">
         Conoce más en la Política de Cookies
       </a>
+    </div>
+  </div>
+
+
+  <!-- ============================================================== -->
+  <!-- MODAL DE CONFIRMACIÓN TRIUNFAL POST-REGISTRO (VALERIA UI/UX)   -->
+  <!-- ============================================================== -->
+  <div id="rebuske-thankyou-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md hidden transition-opacity duration-300">
+    <div class="relative w-full max-w-md bg-[#0F180D] border-2 border-[#B8FF3B] rounded-3xl p-6 sm:p-8 text-center shadow-[0_0_50px_rgba(184,255,59,0.3)]">
+      <div id="thankyou-badge" class="w-16 h-16 mx-auto mb-4 rounded-full bg-[#192B15] border-2 border-[#B8FF3B] flex items-center justify-center text-3xl shadow-[0_0_20px_rgba(184,255,59,0.4)]">
+        👑
+      </div>
+      <h3 id="thankyou-title" class="text-2xl font-black text-white mb-2 font-display">
+        ¡Registro Exitoso!
+      </h3>
+      <p id="thankyou-subtitle" class="text-sm text-[#A7BCA0] mb-6 leading-relaxed">
+        Tu lugar en rebuske ha sido reservado con éxito.
+      </p>
+
+      <!-- Caja de Beneficio Resaltado -->
+      <div id="thankyou-benefit-box" class="bg-[#142211] border border-[#2F4A1F] rounded-2xl p-4 mb-6 text-left">
+        <div class="flex items-center gap-3">
+          <span class="text-2xl">🎁</span>
+          <div>
+            <b id="thankyou-benefit-title" class="text-xs text-[#B8FF3B] block uppercase tracking-wider font-mono">BENEFICIO ASIGNADO</b>
+            <span id="thankyou-benefit-desc" class="text-xs text-[#E5F5E0]">Tarifa del 1% el primer mes y 93% neto vitalicio.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botones de Acción -->
+      <div class="space-y-3">
+        <a id="thankyou-primary-btn" href="https://wa.me/573043812882" target="_blank" class="w-full py-3.5 px-6 rounded-xl font-black text-sm text-[#0C120A] bg-[#B8FF3B] hover:bg-[#a6eb2f] transition flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(184,255,59,0.3)]">
+          <span>💬 Unirme al Canal Oficial en WhatsApp</span>
+        </a>
+        <a id="thankyou-secondary-btn" href="/" class="w-full py-3 px-6 rounded-xl font-bold text-xs text-[#E5F5E0] bg-[#192B15] hover:bg-[#23381E] border border-[#2F4A1F] transition flex items-center justify-center gap-2">
+          <span>📱 Explorar la App Web rebuske</span>
+        </a>
+      </div>
+
+      <button onclick="closeThankYouModal()" class="mt-4 text-xs text-[#7E967A] hover:text-[#A7BCA0] underline transition">
+        Cerrar esta ventana
+      </button>
     </div>
   </div>
 
