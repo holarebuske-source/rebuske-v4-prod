@@ -542,7 +542,7 @@ const barsHTML=()=>`<div class="chart">${INGRESOS.map((v,i)=>`<div class="b ${i=
 const VIEWS={
 splash:()=>`<div class="ctr full intro" data-a="root" data-x="bienvenida">${HERO(240)}${WM()}<p class="mut fade">Luz y servicios en un clic · toca para entrar</p></div>`,
 
-bienvenida:p=>`<div class="ctr full">${HERO(180,true)}${WM('sm')}<p class="mut txtc">Pago protegido, profesionales verificados y garantía de 2 días en Medellín.</p><div class="stack" style="width:100%;max-width:340px"><div id="waAuthStep1" style="display:flex;flex-direction:column;gap:8px;width:100%"><div style="display:flex;align-items:center;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.16);border-radius:14px;overflow:hidden"><span style="padding:12px 14px;background:rgba(37,211,102,0.15);color:#25D366;font-weight:800;font-size:13px;border-right:1px solid rgba(255,255,255,0.12);display:flex;align-items:center;gap:4px">🇨🇴 +57</span><input type="tel" id="waInputPhone" maxlength="12" placeholder="300 123 4567" style="background:transparent;border:none;padding:12px 14px;color:#fff;font-size:15px;width:100%;outline:none"></div><button class="btn sheen cta" style="background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;border:none;display:flex;align-items:center;justify-content:center;gap:8px" data-a="requestWaOtp"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.969.58 1.961.947 2.796.947 3.179 0 5.767-2.587 5.767-5.766.001-3.187-2.575-5.77-5.767-5.770zm4.27 7.74c-.18.51-1.04.99-1.44 1.05-.39.06-.9.08-2.53-.59-1.95-.81-3.21-2.79-3.3-2.92-.1-.13-.78-1.04-.78-1.99 0-.94.49-1.41.67-1.6.17-.19.38-.24.51-.24.13 0 .26 0 .37.01.12.01.28-.05.44.33.17.4.58 1.41.63 1.51.05.1.09.22.02.35-.07.13-.1.22-.2.34-.1.11-.22.25-.31.34-.11.1-.22.21-.1.42.13.21.57.94 1.22 1.52.84.75 1.55.98 1.77 1.09.22.11.35.09.48-.06.13-.15.56-.65.71-.87.15-.22.3-.19.51-.11.21.08 1.34.63 1.57.75.23.11.38.17.44.27.06.1.06.59-.12 1.1z"/></svg><b>Entrar con WhatsApp</b></button></div><div id="waAuthStep2" style="display:none;flex-direction:column;gap:8px;width:100%;background:rgba(0,0,0,0.4);border:1px solid rgba(37,211,102,0.4);border-radius:16px;padding:12px"><div style="font-size:12px;color:#25D366;font-weight:700;display:flex;justify-content:space-between;align-items:center"><span>Verificación WhatsApp</span><a id="waAuthLinkDirect" href="#" target="_blank" style="color:#B8FF3B;text-decoration:underline;font-size:11px">Abrir en WhatsApp</a></div><p style="font-size:11px;color:var(--mut);margin:0">Ingresa tu código de 6 dígitos:</p><div style="display:flex;gap:6px"><input type="text" id="waInputCode" maxlength="6" inputmode="numeric" placeholder="6 dígitos" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:10px;color:#fff;text-align:center;font-size:18px;font-family:monospace;font-weight:800;padding:8px;width:120px;outline:none"><button class="btn sm" data-a="verifyWaOtp" style="background:#25D366;color:#0A1407;font-weight:800;flex:1">Verificar y Entrar</button></div><small id="waOtpFeedback" style="color:#A4BEA0;font-size:10px"></small></div><div style="display:flex;align-items:center;gap:10px;margin:4px 0;width:100%"><span style="flex:1;height:1px;background:rgba(255,255,255,0.12)"></span><span style="font-size:10px;color:var(--mut);text-transform:uppercase;font-weight:800;letter-spacing:1px">O con tu cuenta</span><span style="flex:1;height:1px;background:rgba(255,255,255,0.12)"></span></div><button class="btn ghost" data-a="google" style="background:#fff;color:#111;display:flex;align-items:center;justify-content:center;gap:10px;font-weight:700;padding:12px;border-radius:14px;width:100%;border:none;box-shadow:0 4px 14px rgba(0,0,0,0.3)"><svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.8-2.4 3.66v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.15z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.26v3.15C3.26 21.36 7.34 24 12 24z"/><path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.26C.46 8.16 0 9.98 0 12s.46 3.84 1.26 5.42l4.02-3.15z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.34 0 3.26 2.64 1.26 6.58l4.02 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/></svg><span>Continuar con Google</span></button><span class="pill" style="align-self:center;margin-top:6px">Plataforma Oficial · Pago Protegido Wompi</span></div><div class="legal"><a href="/terminos" target="_blank" style="color:inherit;text-decoration:underline">Términos</a><a href="/privacidad" target="_blank" style="color:inherit;text-decoration:underline">Privacidad</a><button class="link" data-a="reset">Sincronizar nube</button></div></div>`,
+bienvenida:p=>`<div class="ctr full">${HERO(180,true)}${WM('sm')}<p class="mut txtc">Pago protegido, profesionales verificados y garantía de 2 días en Medellín.</p><div class="stack" style="width:100%;max-width:340px"><div id="waAuthStep1" style="display:flex;flex-direction:column;gap:8px;width:100%"><div style="display:flex;align-items:center;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.16);border-radius:14px;overflow:hidden"><span style="padding:12px 14px;background:rgba(37,211,102,0.15);color:#25D366;font-weight:800;font-size:13px;border-right:1px solid rgba(255,255,255,0.12);display:flex;align-items:center;gap:4px">🇨🇴 +57</span><input type="tel" id="waInputPhone" maxlength="12" placeholder="300 123 4567" style="background:transparent;border:none;padding:12px 14px;color:#fff;font-size:15px;width:100%;outline:none"></div><button class="btn sheen cta" style="background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;border:none;display:flex;align-items:center;justify-content:center;gap:8px" data-a="requestWaOtp"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.969.58 1.961.947 2.796.947 3.179 0 5.767-2.587 5.767-5.766.001-3.187-2.575-5.77-5.767-5.770zm4.27 7.74c-.18.51-1.04.99-1.44 1.05-.39.06-.9.08-2.53-.59-1.95-.81-3.21-2.79-3.3-2.92-.1-.13-.78-1.04-.78-1.99 0-.94.49-1.41.67-1.6.17-.19.38-.24.51-.24.13 0 .26 0 .37.01.12.01.28-.05.44.33.17.4.58 1.41.63 1.51.05.1.09.22.02.35-.07.13-.1.22-.2.34-.1.11-.22.25-.31.34-.11.1-.22.21-.1.42.13.21.57.94 1.22 1.52.84.75 1.55.98 1.77 1.09.22.11.35.09.48-.06.13-.15.56-.65.71-.87.15-.22.3-.19.51-.11.21.08 1.34.63 1.57.75.23.11.38.17.44.27.06.1.06.59-.12 1.1z"/></svg><b>Entrar con WhatsApp</b></button></div><div id="waAuthStep2" style="display:none;flex-direction:column;gap:8px;width:100%;background:rgba(0,0,0,0.4);border:1px solid rgba(37,211,102,0.4);border-radius:16px;padding:12px"><div style="font-size:12px;color:#25D366;font-weight:700;display:flex;justify-content:space-between;align-items:center"><span>Verificación WhatsApp</span><a id="waAuthLinkDirect" href="#" target="_blank" style="color:#B8FF3B;text-decoration:underline;font-size:11px">Abrir en WhatsApp</a></div><p style="font-size:11px;color:var(--mut);margin:0">Ingresa tu código de 6 dígitos:</p><div style="display:flex;gap:6px"><input type="text" id="waInputCode" maxlength="6" inputmode="numeric" placeholder="6 dígitos" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:10px;color:#fff;text-align:center;font-size:18px;font-family:monospace;font-weight:800;padding:8px;width:120px;outline:none"><button class="btn sm" data-a="verifyWaOtp" style="background:#25D366;color:#0A1407;font-weight:800;flex:1">Verificar y Entrar</button></div><small id="waOtpFeedback" style="color:#A4BEA0;font-size:10px"></small></div><div style="display:flex;align-items:center;gap:10px;margin:4px 0;width:100%"><span style="flex:1;height:1px;background:rgba(255,255,255,0.12)"></span><span style="font-size:10px;color:var(--mut);text-transform:uppercase;font-weight:800;letter-spacing:1px">O con tu cuenta</span><span style="flex:1;height:1px;background:rgba(255,255,255,0.12)"></span></div><button class="btn ghost" data-a="google" style="background:#fff;color:#111;display:flex;align-items:center;justify-content:center;gap:10px;font-weight:700;padding:12px;border-radius:14px;width:100%;border:none;box-shadow:0 4px 14px rgba(0,0,0,0.3)"><svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.8-2.4 3.66v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.15z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.26v3.15C3.26 21.36 7.34 24 12 24z"/><path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.26C.46 8.16 0 9.98 0 12s.46 3.84 1.26 5.42l4.02-3.15z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.34 0 3.26 2.64 1.26 6.58l4.02 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/></svg><span>Continuar con Google</span></button><span class="pill" style="align-self:center;margin-top:6px">Plataforma Oficial · Pago Protegido Wompi</span></div><div class="legal"><a href="/tarifas" target="_blank" style="color:inherit;text-decoration:underline">Tarifas</a><a href="/terminos" target="_blank" style="color:inherit;text-decoration:underline">Términos</a><a href="/privacidad" target="_blank" style="color:inherit;text-decoration:underline">Privacidad</a><button class="link" data-a="reset">Sincronizar nube</button></div></div>`,
 
 rol:()=>`${hdr('¿Cómo usarás rebuske?','Puedes cambiarlo después en tu perfil',false)}
 <button class="glass" data-a="rol" data-x="cliente"><span class="ibox">${I('search',22)}</span><div class="grow"><b>Necesito que me resuelvan algo</b><small>Publica una solicitud y compara propuestas verificadas.</small></div></button>
@@ -6703,7 +6703,7 @@ render();
     plomeria: {
       name: 'Plomería',
       icon: '🔧',
-      range: '$80.000 – $180.000',
+      range: 'Desde $60.000 · Visita $35k',
       samplePrice: 85000,
       desc: 'Fugas, griferías, tuberías, destapes',
       pro: {
@@ -6720,7 +6720,7 @@ render();
     electricidad: {
       name: 'Electricidad',
       icon: '⚡',
-      range: '$70.000 – $160.000',
+      range: 'Desde $50.000 · Visita $35k',
       samplePrice: 90000,
       desc: 'Tacos de luz, cortos, cableado, lámparas',
       pro: {
@@ -6737,7 +6737,7 @@ render();
     cerrajeria: {
       name: 'Cerrajería',
       icon: '🔑',
-      range: '$60.000 – $140.000',
+      range: 'Desde $60.000 · Visita $35k',
       samplePrice: 75000,
       desc: 'Aperturas de urgencia, candados, cerraduras',
       pro: {
@@ -6754,7 +6754,7 @@ render();
     pintura: {
       name: 'Pintura',
       icon: '🎨',
-      range: '$90.000 – $200.000',
+      range: 'Desde $70.000 · Visita $35k',
       samplePrice: 110000,
       desc: 'Humedades, muros interiores, retoques finos',
       pro: {
@@ -6811,6 +6811,20 @@ render();
               <small style="font-size:9.5px; color:#7E9573; line-height:1.2;">${t.desc}</small>
             </button>
           `).join('')}
+        </div>
+
+        <!-- BANNER DE TARIFA MÍNIMA Y PRECIOS TRANSPARENTES -->
+        <div style="margin-top:12px; background:linear-gradient(135deg, rgba(184,255,59,0.08), rgba(20,33,16,0.6)); border:1px solid #2F4A1F; border-radius:12px; padding:10px 12px; display:flex; justify-content:space-between; align-items:center; gap:8px;">
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span style="font-size:18px;">🛵</span>
+            <div style="font-size:11px; color:#F2F5EC; line-height:1.3;">
+              <b style="color:#B8FF3B;">Visita Diagnóstica: $35.000 COP</b>
+              <div style="color:#A7BCA0; font-size:10px;">100% abonables a tu reparación si apruebas la labor.</div>
+            </div>
+          </div>
+          <a href="/tarifas" style="background:#B8FF3B; color:#0B0F08; font-size:11px; font-weight:800; padding:6px 10px; border-radius:8px; text-decoration:none; white-space:nowrap; display:inline-flex; align-items:center; gap:4px; box-shadow:0 2px 8px rgba(184,255,59,0.25);">
+            Ver Tarifas ➔
+          </a>
         </div>
       </div>
     `;
