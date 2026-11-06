@@ -6346,7 +6346,7 @@ render();
       <!-- REQUISITO 4: MEDIO DE PAGO CONFIGURADO YA -->
       <h2>4. Medio de pago configurado ya <span class="tag">${r4 ? 'Configurado ✓' : 'Pendiente'}</span></h2>
       <div class="glass req">
-        <small>Configura la cuenta donde recibirás el <b>93%</b> de cada servicio liberado vía <b>Wompi Producción</b> (comisión rebuske: 7%):</small>
+        <small>Configura la cuenta donde recibirás hasta el <b>89% neto</b> de cada servicio liberado vía <b>Wompi Producción</b> (Plan Oro 11% / Plata 14% / Bronce 18%):</small>
         <div class="seg" style="margin-top:6px">
           ${['Nequi', 'Daviplata', 'Bancolombia'].map(m => `
             <button data-a="verifPickPayoutType" data-x="${m}" class="${vf.payoutType === m ? 'on' : ''}">${m}</button>
@@ -7195,7 +7195,7 @@ render();
     // Disparar sonido suave de Luciérnaga al abrir alerta
     playLuciernagaChime();
 
-    const neto = 79050; // $85.000 - 7%
+    const neto = Math.round(85000 * 0.89); // $85.000 - 7%
     return `
       <div style="font-family:'Baloo 2',sans-serif; color:#F2F5EC; padding:6px 2px;">
         <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #23351C; padding-bottom:12px; margin-bottom:14px;">
@@ -7218,7 +7218,7 @@ render();
           <div style="background:#090F06; border-radius:12px; padding:12px; text-align:center;">
             <small style="color:#7E9573; font-size:11px; text-transform:uppercase; letter-spacing:0.5px;">Tu ganancia neta en este trabajo</small>
             <div style="font-size:32px; font-weight:900; color:#B8FF3B; margin:4px 0;">$${neto.toLocaleString('es-CO')} <span style="font-size:14px; color:#A7BCA0;">COP NETO</span></div>
-            <span style="color:#FFF; font-size:11px; background:#1C3015; padding:3px 8px; border-radius:6px;">💰 93% pagado directo a tu Nequi sin esperar días hábiles</span>
+            <span style="color:#FFF; font-size:11px; background:#1C3015; padding:3px 8px; border-radius:6px;">💰 89% neto pagado directo a tu Nequi sin esperar días hábiles</span>
           </div>
         </div>
 
@@ -7304,7 +7304,7 @@ render();
         <span style="background:#1B3014; color:#B8FF3B; font-size:10px; font-weight:bold; padding:3px 8px; border-radius:6px; letter-spacing:0.5px;">DISPERSIÓN FLASH EXITOSA (<18 SEG)</span>
         <h2 style="font-size:24px; color:#B8FF3B; margin:8px 0 4px 0;">¡$79.050 COP en tu Nequi!</h2>
         <p style="font-size:12.5px; color:#A7BCA0; margin-bottom:16px;">
-          Wompi Escrow liberó el <b>93% neto</b> directo a tu cuenta vinculada. Cero papeleo, cero esperas de 24 horas.
+          Wompi Escrow liberó el <b>89% neto</b> directo a tu cuenta vinculada (Plan Oro VIP). Cero papeleo, cero esperas de 24 horas.
         </p>
 
         <div style="background:#0F170D; border:1px solid #28441B; border-radius:14px; padding:14px; margin-bottom:18px; text-align:left; font-size:12px;">
