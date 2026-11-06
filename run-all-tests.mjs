@@ -136,6 +136,17 @@ async function runTestSuite() {
   assert(indexHtml.includes('Doña Gloria') && indexHtml.includes('Laureles'), 'Caso real de Laureles documentado');
   assert(indexHtml.includes('Mateo & Camila') && indexHtml.includes('El Poblado'), 'Caso real de El Poblado documentado');
 
+  // Validación de Escala Oficial de Comisiones (18% Bronce / 14% Plata / 11% Oro / 1% Mes 1)
+  assert(registroHtml.includes('En rebuske Oro (89%)'), 'Simulador muestra Plan Oro al 89% neto');
+  assert(registroHtml.includes('18% Com.') && registroHtml.includes('82% neto'), 'Placa Bronce configurada al 18% com / 82% neto');
+  assert(registroHtml.includes('14% Com.') && registroHtml.includes('86% neto'), 'Placa Plata configurada al 14% com / 86% neto');
+  assert(registroHtml.includes('11% Com.') && registroHtml.includes('89% neto'), 'Placa Oro configurada al 11% com / 89% neto');
+  assert(registroHtml.includes('amount * 0.89'), 'Lógica JS del simulador calcula sobre el 89% para Plan Oro');
+  assert(!registroHtml.includes('En rebuske Oro (93%)'), 'Eliminada referencia obsoleta 93% del simulador');
+  assert(!registroHtml.includes('9% Com.'), 'Eliminada referencia obsoleta 9% Com de Placa Bronce');
+  assert(!/(?<![0-9])8%\s*Com\./i.test(registroHtml), 'Eliminada referencia obsoleta 8% Com de Placa Plata');
+  assert(!registroHtml.includes('7% Com.'), 'Eliminada referencia obsoleta 7% Com de Placa Oro');
+
   // --------------------------------------------------------------------------
   // TEST 5: CUMPLIMIENTO LEGAL, MARCA Y ZERO LEAKS
   // --------------------------------------------------------------------------
