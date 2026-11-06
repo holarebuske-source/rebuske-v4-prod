@@ -1,7 +1,7 @@
 {
   "name": "rebuske-v4-prod",
   "version": "4.0.0",
-  "description": "Rebuske v4 Production — Plataforma de servicios locales con Ruta de Luz, Pago Protegido (Escrow) y sincronización en tiempo real con Supabase REST API.",
+  "description": "rebuske v4 Production — Plataforma de servicios especializados en Medellín con Bóveda Wompi (Escrow), Garantía 48h y sincronización en tiempo real con Supabase REST API.",
   "private": true,
   "type": "module",
   "scripts": {
@@ -9,6 +9,7 @@
     "dev": "npx vercel dev",
     "deploy:preview": "npx vercel",
     "deploy:prod": "npx vercel --prod",
+    "test": "node run-all-tests.mjs",
     "db:check": "node -e \"fetch('https://vqvwcbirzezihfzaeziq.supabase.co/rest/v1/categories?select=*', { headers: { apikey: 'sb_publishable_BK1NkxOB_5Ns0R64v-CW3g_g2TEy4Qi' } }).then(r => r.json()).then(d => console.log('Supabase OK:', d.length, 'categorías')).catch( console.error)\""
   },
   "repository": {
@@ -21,10 +22,9 @@
     "medellin",
     "supabase",
     "vercel",
-    "escrow",
-    "ruta-de-luz"
+    "escrow"
   ],
-  "author": "Camilo (CEO) & Mateo (Arquitecto Full-Stack)",
+  "author": "Camilo (CEO) & Equipo rebuske",
   "license": "UNLICENSED",
   "engines": {
     "node": ">=18.0.0"
