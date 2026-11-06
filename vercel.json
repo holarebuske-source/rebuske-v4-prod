@@ -7,6 +7,10 @@
   "framework": null,
   "rewrites": [
     {
+      "source": "/api/primordiales-status",
+      "destination": "/api/register-pro"
+    },
+    {
       "source": "/registro",
       "destination": "/registro.html"
     },
