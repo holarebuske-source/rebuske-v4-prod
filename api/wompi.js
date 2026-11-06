@@ -80,6 +80,10 @@ export default async function handler(req, res) {
       const reference = `REB-${cleanJobId}-${Date.now().toString(36).toUpperCase()}`;
       const currency = 'COP';
 
+      // Cálculo fiscal DIAN (Mandato Comercial e Ingresos Recibidos para Terceros)
+      const comisionRebuskeCOP = Math.round(totalCOP * 0.07);
+      const ingresoTerceroCOP = totalCOP - comisionRebuskeCOP;
+
       // Firma SHA-256 generada en servidor
       const rawString = `${reference}${amountInCents}${currency}${WOMPI_INTEGRITY_SECRET}`;
       const signature = crypto.createHash('sha256').update(rawString).digest('hex');
@@ -99,6 +103,16 @@ export default async function handler(req, res) {
         customerName: customerName || 'Camila Torres',
         customerPhone: customerPhone || '+573001234567',
         couponApplied,
+        dianAccounting: {
+          regimen: 'MANDATO_COMERCIAL_INTERMEDIACION',
+          ingresoTerceroCOP,
+          cuentaIngresoTercero: '2815_INGRESOS_RECIBIDOS_PARA_TERCEROS',
+          comisionRebuskeCOP,
+          cuentaComision: '4160_INGRESOS_COMISIONES',
+          ivaComisionCOP: 0,
+          cuentaIVA: '2408_IVA_GENERADO',
+          entidadCustodia: 'Wompi - Bancolombia (Vigilada Superfinanciera)'
+        },
         createdAt: new Date().toISOString()
       });
       saveLedger(ledger);
@@ -119,6 +133,12 @@ export default async function handler(req, res) {
           formattedDiscount: discountCOP > 0 ? `-$${discountCOP.toLocaleString('es-CO')} COP` : '$0 COP',
           formattedTotal: `$${totalCOP.toLocaleString('es-CO')} COP`,
           couponApplied
+        },
+        dianBreakdown: {
+          baseComisionCOP: comisionRebuskeCOP,
+          ingresoTerceroCOP,
+          regimen: 'Mandato Comercial (Art. 1262 C.Co - Art. 1.2.4.11 DUR 1625/2016)',
+          custodiaBancaria: 'Wompi / Bancolombia (Vigilada Superfinanciera)'
         },
         security: {
           centsVerified: true,
@@ -270,12 +290,23 @@ export default async function handler(req, res) {
       if (status === 'APPROVED') {
         const splitRebuske = Math.round(amountCOP * 0.07);
         const splitPro = amountCOP - splitRebuske;
+        const dianAccounting = {
+          regimen: 'MANDATO_COMERCIAL_INTERMEDIACION',
+          ingresoTerceroCOP: splitPro,
+          cuentaIngresoTercero: '2815_INGRESOS_RECIBIDOS_PARA_TERCEROS',
+          comisionRebuskeCOP: splitRebuske,
+          cuentaComision: '4160_INGRESOS_COMISIONES',
+          ivaComisionCOP: 0,
+          cuentaIVA: '2408_IVA_GENERADO',
+          entidadCustodia: 'Wompi - Bancolombia (Vigilada Superfinanciera)'
+        };
 
         if (existing) {
           existing.status = 'APPROVED';
           existing.wompiTxId = tx.id;
           existing.splitRebuske = splitRebuske;
           existing.splitPro = splitPro;
+          existing.dianAccounting = dianAccounting;
           existing.approvedAt = new Date().toISOString();
         } else {
           ledger.unshift({
@@ -286,6 +317,7 @@ export default async function handler(req, res) {
             amountInCents: tx.amount_in_cents,
             splitRebuske,
             splitPro,
+            dianAccounting,
             approvedAt: new Date().toISOString()
           });
         }
@@ -295,7 +327,8 @@ export default async function handler(req, res) {
           status: 'success',
           event: 'APPROVED',
           reference,
-          split: { total: amountCOP, rebuskeFee: splitRebuske, proPayout: splitPro }
+          split: { total: amountCOP, rebuskeFee: splitRebuske, proPayout: splitPro },
+          dianAccounting
         });
       }
     }
