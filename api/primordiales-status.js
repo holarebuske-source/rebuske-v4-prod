@@ -47,22 +47,32 @@ export default async function handler(req, res) {
     phase: isPrimordialOpen ? 'FASE 1 - CONVOCATORIA PRIMORDIALES' : 'FASE 2 - REGISTRO REGULAR ESTÁNDAR',
     benefits: isPrimordialOpen
       ? {
-          tipo: 'PRIMORDIAL',
-          neto: '93%',
-          comision: '7%',
+          tipo: 'ORO_PRIMORDIAL',
+          neto: '89%',
+          comision: '11%',
           mes1: '1%',
           mes1Neto: '99%',
-          luegoComision: '7%',
-          luegoNeto: '93%',
-          insignia: 'Oro VIP Primordial Vitalicia'
+          luegoComision: '11%',
+          luegoNeto: '89%',
+          insignia: 'Oro VIP Primordial Vitalicia',
+          escalaPlanes: {
+            oro: { comision: '11%', neto: '89%', requisitos: '100 Fundadores o Calificación 4.9★+' },
+            plata: { comision: '14%', neto: '86%', requisitos: '>10 servicios/mes y Rating 4.7★+' },
+            bronce: { comision: '18%', neto: '82%', requisitos: 'Nuevos y ocasionales' }
+          }
         }
       : {
-          tipo: 'ESTANDAR',
-          neto: '91%',
-          comision: '9%',
-          mes1: '9%',
-          mes1Neto: '91%',
-          insignia: 'Profesional Verificado Estándar'
+          tipo: 'REGULAR',
+          neto: '82%',
+          comision: '18%',
+          mes1: '18%',
+          mes1Neto: '82%',
+          insignia: 'Profesional Estándar Bronce',
+          escalaPlanes: {
+            oro: { comision: '11%', neto: '89%', requisitos: 'Calificación 4.9★+ y KYC verificado' },
+            plata: { comision: '14%', neto: '86%', requisitos: '>10 servicios/mes y Rating 4.7★+' },
+            bronce: { comision: '18%', neto: '82%', requisitos: 'Ingreso estándar inicial' }
+          }
         }
   });
 }
