@@ -1,17 +1,157 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "version": 2,
-  "name": "rebuske-v4-prod",
+  "name": "rebuske",
   "cleanUrls": true,
   "trailingSlash": false,
   "framework": null,
   "rewrites": [
     {
+      "source": "/registro",
+      "destination": "/registro.html"
+    },
+    {
+      "source": "/unete",
+      "destination": "/registro.html"
+    },
+    {
+      "source": "/link",
+      "destination": "/registro.html"
+    },
+    {
+      "source": "/comunidad",
+      "destination": "/registro.html"
+    },
+    {
+      "source": "/registro.html",
+      "destination": "/registro.html"
+    },
+    {
+      "source": "/clientes",
+      "destination": "/clientes-landing.html"
+    },
+    {
+      "source": "/cliente",
+      "destination": "/clientes-landing.html"
+    },
+    {
+      "source": "/hogares",
+      "destination": "/clientes-landing.html"
+    },
+    {
+      "source": "/espera",
+      "destination": "/clientes-landing.html"
+    },
+    {
+      "source": "/clientes-landing.html",
+      "destination": "/clientes-landing.html"
+    },
+    {
+      "source": "/reembolsos",
+      "destination": "/reembolsos.html"
+    },
+    {
+      "source": "/reembolsos.html",
+      "destination": "/reembolsos.html"
+    },
+    {
+      "source": "/descuentos",
+      "destination": "/descuentos.html"
+    },
+    {
+      "source": "/condiciones-descuentos",
+      "destination": "/descuentos.html"
+    },
+    {
+      "source": "/bono",
+      "destination": "/descuentos.html"
+    },
+    {
+      "source": "/descuentos.html",
+      "destination": "/descuentos.html"
+    },
+    {
+      "source": "/eliminar-cuenta",
+      "destination": "/eliminar-cuenta.html"
+    },
+    {
+      "source": "/baja",
+      "destination": "/eliminar-cuenta.html"
+    },
+    {
+      "source": "/api/cancel-account",
+      "destination": "/api/cancel-account.js"
+    },
+    {
+      "source": "/terminos",
+      "destination": "/terminos.html"
+    },
+    {
+      "source": "/privacidad",
+      "destination": "/privacidad.html"
+    },
+    {
+      "source": "/chat",
+      "destination": "/chat.html"
+    },
+    {
+      "source": "/chat.html",
+      "destination": "/chat.html"
+    },
+    {
+      "source": "/sala",
+      "destination": "/chat.html"
+    },
+    {
+      "source": "/api/whatsapp-webhook",
+      "destination": "/api/whatsapp-webhook.js"
+    },
+    {
+      "source": "/webhook/whatsapp",
+      "destination": "/api/whatsapp-webhook.js"
+    },
+    {
       "source": "/api/supabase/:path*",
       "destination": "https://vqvwcbirzezihfzaeziq.supabase.co/rest/v1/:path*"
     },
     {
-      "source": "/((?!supabase-sync\\.js|assets/|.*\\.(?:js|css|png|jpg|jpeg|gif|svg|webp|ico|json|woff2?)).*)",
+      "source": "/pro",
+      "destination": "/pro-landing.html"
+    },
+    {
+      "source": "/pro.html",
+      "destination": "/pro-landing.html"
+    },
+    {
+      "source": "/registro-pro",
+      "destination": "/pro-landing.html"
+    },
+    {
+      "source": "/registro-pro.html",
+      "destination": "/pro-landing.html"
+    },
+    {
+      "source": "/primordial",
+      "destination": "/pro-landing.html"
+    },
+    {
+      "source": "/primordiales",
+      "destination": "/pro-landing.html"
+    },
+    {
+      "source": "/robots.txt",
+      "destination": "/robots.txt"
+    },
+    {
+      "source": "/sitemap.xml",
+      "destination": "/sitemap.xml"
+    },
+    {
+      "source": "/.well-known/assetlinks.json",
+      "destination": "/.well-known/assetlinks.json"
+    },
+    {
+      "source": "/((?!api/|chat|chat\\\\.html|sala|terminos|terminos\\\\.html|privacidad|privacidad\\\\.html|reembolsos|reembolsos\\\\.html|eliminar-cuenta|eliminar-cuenta\\\\.html|baja|registro|registro\\\\.html|unete|link|comunidad|clientes|clientes\\\\.html|cliente|hogares|espera|clientes-landing|clientes-landing\\\\.html|pro|pro/|pro\\\\.html|pro-landing|pro-landing\\\\.html|registro-pro|registro-pro\\\\.html|primordiales|supabase-sync\\\\.js|assets/|robots\\\\.txt|sitemap\\\\.xml|\\.well-known/|.*\\\\.(?:js|css|png|jpg|jpeg|gif|svg|webp|ico|json|woff2?|pdf|txt|xml)).*)",
       "destination": "/index.html"
     }
   ],
@@ -51,6 +191,19 @@
         {
           "key": "Cache-Control",
           "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/.well-known/(.*)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
         }
       ]
     }
