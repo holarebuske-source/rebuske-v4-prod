@@ -6890,9 +6890,15 @@ render();
     const pro = expressState.selectedPro;
     const baseVal = expressState.jobAmount;
     const tip = expressState.tipAmount || 0;
-    const fee = Math.round(baseVal * 0.07);
+    const protectionFee = 4900;
+    // Escala Oficial: Bronce 18%, Plata 14%, Oro 11%
+    const proPlan = pro?.plan || 'Oro';
+    const feeRate = proPlan === 'Bronce' ? 0.18 : (proPlan === 'Plata' ? 0.14 : 0.11);
+    const feePctStr = `${Math.round(feeRate * 100)}%`;
+    const netPctStr = `${Math.round((1 - feeRate) * 100)}%`;
+    const fee = Math.round(baseVal * feeRate);
     const proNet = baseVal - fee;
-    const totalToPay = baseVal + tip;
+    const totalToPay = baseVal + protectionFee + tip;
 
     return `
       <div style="font-family:'Baloo 2',sans-serif; color:#F2F5EC; padding:6px 2px;">
@@ -6910,7 +6916,7 @@ render();
           <p style="margin:0; font-size:11px; color:#A7BCA0;">🛡️ <b>Tu plata está 100% segura.</b> Solo se libera a ${pro.name} cuando confirmes que el arreglo quedó perfecto.</p>
         </div>
 
-        <!-- Desglose Transparente 7% / 93% -->
+        <!-- Desglose Transparente 3 Planes + Cuota de Protección -->
         <div style="background:#0F170D; border:1px solid #23351C; border-radius:14px; padding:12px 14px; margin-bottom:14px; font-size:12px;">
           <b style="color:#FFF; display:block; margin-bottom:8px;">Desglose transparente (Cero sorpresas)</b>
           <div style="display:flex; justify-content:space-between; margin-bottom:4px; color:#A7BCA0;">
@@ -6918,15 +6924,19 @@ render();
             <b style="color:#FFF;">$${baseVal.toLocaleString('es-CO')}</b>
           </div>
           <div style="display:flex; justify-content:space-between; margin-bottom:4px; color:#B8FF3B;">
-            <span>Neto a ${pro.name} al terminar (93%)</span>
+            <span>Neto a ${pro.name} al terminar (${netPctStr})</span>
             <b>$${proNet.toLocaleString('es-CO')}</b>
           </div>
           <div style="display:flex; justify-content:space-between; margin-bottom:4px; color:#7E9573;">
-            <span>Comisión rebuske Tech (7%)</span>
+            <span>Comisión rebuske Tech (${feePctStr})</span>
             <b>$${fee.toLocaleString('es-CO')}</b>
           </div>
+          <div style="display:flex; justify-content:space-between; margin-top:6px; padding-top:6px; border-top:1px dashed #23351C; color:#B8FF3B;">
+            <span>🛡️ Cuota de Pago Protegido y Garantía 48h</span>
+            <b>+$${protectionFee.toLocaleString('es-CO')}</b>
+          </div>
           ${tip > 0 ? `
-            <div style="display:flex; justify-content:space-between; margin-top:6px; padding-top:6px; border-top:1px dashed #23351C; color:#FACC15;">
+            <div style="display:flex; justify-content:space-between; margin-top:4px; color:#FACC15;">
               <span>Propina voluntaria (100% directa al técnico)</span>
               <b>+$${tip.toLocaleString('es-CO')}</b>
             </div>
