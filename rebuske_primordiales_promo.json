@@ -10,5 +10,7 @@
   "regular_fee_rate": 0.09,
   "activation_trigger": "Envío de correos y SMS masivos de activación de cuenta tras completar la recolección de los 100 inscritos.",
   "status_label": "PENDIENTE RECOLECCIÓN COMPLETA DE CONTACTOS Y ENVÍO DE ACTIVACIÓN",
-  "notes": "Durante los 30 días posteriores al envío masivo de activación, los técnicos fundadores pagan solo el 1% de comisión (99% neto en su bolsillo). Tras los 30 días, el código conmuta automáticamente a la tarifa estándar acordada de los 100 Fundadores: 7% de comisión vitalicia (93% neto siempre)."
+  "notes": "Durante los 30 días posteriores a la activación, los técnicos fundadores pagan solo el 1% de comisión (99% neto). Tras los 30 días, el código conmuta automáticamente a la tarifa acordada de Plan Oro VIP: 11% de comisión vitalicia (89% neto siempre).",
+  "post_promo_rebuske_fee": "11%",
+  "post_promo_pro_net": "89%"
 }
