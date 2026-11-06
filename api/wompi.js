@@ -70,6 +70,9 @@ export default async function handler(req, res) {
     try {
       const { jobId, quoteAmount, couponCode, customerEmail, customerName, customerPhone } = body;
 
+      // Cuota de Pago Protegido y Garantía 48h (cubre 100% de la pasarela Wompi)
+      const protectionFeeCOP = 4900;
+
       let subtotalCOP = Number(quoteAmount);
       if (!subtotalCOP || isNaN(subtotalCOP) || subtotalCOP <= 0) {
         subtotalCOP = 120000;
@@ -84,7 +87,8 @@ export default async function handler(req, res) {
         couponApplied = 'TUBONO15K-VIP';
       }
 
-      const totalCOP = Math.max(10000, subtotalCOP - discountCOP);
+      // Total a pagar por el cliente = Cotización + Cuota de Protección ($4.900) - Descuento Bono
+      const totalCOP = Math.max(10000, subtotalCOP + protectionFeeCOP - discountCOP);
       const amountInCents = Math.round(totalCOP * 100);
       const cleanJobId = String(jobId || 'SRV').replace(/[^a-zA-Z0-9_-]/g, '').toUpperCase();
       const reference = `REB-${cleanJobId}-${Date.now().toString(36).toUpperCase()}`;
@@ -93,8 +97,11 @@ export default async function handler(req, res) {
       // Cálculo fiscal DIAN y Split por Plan (Bronce 18%, Plata 14%, Oro 11%)
       const planKey = String(body.proPlan || 'ORO').toUpperCase();
       const feeRate = TIER_FEES[planKey] || 0.11;
-      const comisionRebuskeCOP = Math.round(totalCOP * feeRate);
-      const ingresoTerceroCOP = totalCOP - comisionRebuskeCOP;
+
+      // El técnico recibe su porcentaje pactado íntegro sobre su cotización
+      const ingresoTerceroCOP = Math.round(subtotalCOP * (1 - feeRate));
+      // rebuske percibe su comisión sobre el trabajo + cuota de protección ($4.900) - descuento asumido
+      const comisionRebuskeCOP = totalCOP - ingresoTerceroCOP;
 
       // Firma SHA-256 generada en servidor
       const rawString = `${reference}${amountInCents}${currency}${WOMPI_INTEGRITY_SECRET}`;
@@ -107,6 +114,7 @@ export default async function handler(req, res) {
         proPlan: planKey,
         feeRate,
         subtotalCOP,
+        protectionFeeCOP,
         discountCOP,
         totalCOP,
         amountInCents,
@@ -122,10 +130,12 @@ export default async function handler(req, res) {
           plan: planKey,
           porcentajeComision: `${Math.round(feeRate * 100)}%`,
           porcentajeTecnico: `${Math.round((1 - feeRate) * 100)}%`,
+          subtotalCotizado: subtotalCOP,
+          cuotaProteccionGarantia48h: protectionFeeCOP,
           ingresoTerceroCOP,
           cuentaIngresoTercero: '2815_INGRESOS_RECIBIDOS_PARA_TERCEROS',
           comisionRebuskeCOP,
-          cuentaComision: '4160_INGRESOS_COMISIONES',
+          cuentaComision: '4160_INGRESOS_COMISIONES_Y_PROTECCION',
           ivaComisionCOP: 0,
           cuentaIVA: '2408_IVA_GENERADO',
           entidadCustodia: 'Wompi - Bancolombia (Vigilada Superfinanciera)'
@@ -144,9 +154,11 @@ export default async function handler(req, res) {
         redirectUrl: `https://rebuske.vercel.app/?pago_ref=${encodeURIComponent(reference)}`,
         breakdown: {
           subtotalCOP,
+          protectionFeeCOP,
           discountCOP,
           totalCOP,
           formattedSubtotal: `$${subtotalCOP.toLocaleString('es-CO')} COP`,
+          formattedProtectionFee: `+$${protectionFeeCOP.toLocaleString('es-CO')} COP`,
           formattedDiscount: discountCOP > 0 ? `-$${discountCOP.toLocaleString('es-CO')} COP` : '$0 COP',
           formattedTotal: `$${totalCOP.toLocaleString('es-CO')} COP`,
           couponApplied
@@ -154,6 +166,8 @@ export default async function handler(req, res) {
         dianBreakdown: {
           baseComisionCOP: comisionRebuskeCOP,
           ingresoTerceroCOP,
+          cuotaProteccionCOP: protectionFeeCOP,
+          plan: planKey,
           regimen: 'Mandato Comercial (Art. 1262 C.Co - Art. 1.2.4.11 DUR 1625/2016)',
           custodiaBancaria: 'Wompi / Bancolombia (Vigilada Superfinanciera)'
         },
@@ -307,17 +321,20 @@ export default async function handler(req, res) {
       if (status === 'APPROVED') {
         const planKey = String(existing?.proPlan || 'ORO').toUpperCase();
         const feeRate = TIER_FEES[planKey] || 0.11;
-        const splitRebuske = Math.round(amountCOP * feeRate);
-        const splitPro = amountCOP - splitRebuske;
+        const subtotal = existing?.subtotalCOP || amountCOP;
+        const splitPro = existing?.ingresoTerceroCOP || Math.round(subtotal * (1 - feeRate));
+        const splitRebuske = amountCOP - splitPro;
         const dianAccounting = {
           regimen: 'MANDATO_COMERCIAL_INTERMEDIACION',
           plan: planKey,
           porcentajeComision: `${Math.round(feeRate * 100)}%`,
           porcentajeTecnico: `${Math.round((1 - feeRate) * 100)}%`,
+          subtotalCotizado: subtotal,
+          cuotaProteccionGarantia48h: existing?.protectionFeeCOP || 4900,
           ingresoTerceroCOP: splitPro,
           cuentaIngresoTercero: '2815_INGRESOS_RECIBIDOS_PARA_TERCEROS',
           comisionRebuskeCOP: splitRebuske,
-          cuentaComision: '4160_INGRESOS_COMISIONES',
+          cuentaComision: '4160_INGRESOS_COMISIONES_Y_PROTECCION',
           ivaComisionCOP: 0,
           cuentaIVA: '2408_IVA_GENERADO',
           entidadCustodia: 'Wompi - Bancolombia (Vigilada Superfinanciera)'
