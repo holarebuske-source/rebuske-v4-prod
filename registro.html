@@ -279,7 +279,7 @@
       </h1>
       
       <p class="text-xs sm:text-base text-[#F4FBF1]/80 max-w-2xl mx-auto leading-relaxed px-2">
-        La infraestructura de confianza en servicios especializados en Medellín. Respaldada por <b>Bóveda Wompi</b> (pago protegido), <b>48h de garantía escrita</b> y el catálogo exclusivo <b>'Servicios por Ellas'</b>.
+        La infraestructura de confianza en servicios especializados en Medellín. Respaldada por <b>Bóveda Wompi</b> (pago protegido), <b>Garantía Comercial de 48h escrita</b> y el catálogo exclusivo <b>'Servicios por Ellas'</b>.
       </p>
 
       <!-- Trust Badges Bar -->
@@ -334,7 +334,7 @@
             </li>
             <li class="flex items-center gap-2.5">
               <span class="text-[#B8FF3B] font-bold text-sm">✓</span>
-              <span><strong>Certificado de Ingresos:</strong> Descárgalo en 1 clic para bancos y arriendos</span>
+              <span><strong>Certificado de Ingresos <span class="text-[9.5px] px-2 py-0.5 rounded bg-[#B8FF3B]/20 text-[#B8FF3B] font-bold">Próximamente</span>:</strong> Validado con tu historial</span>
             </li>
             <li class="flex items-center gap-2.5">
               <span class="text-[#B8FF3B] font-bold text-sm">✓</span>
@@ -580,7 +580,7 @@
                 </select>
               </div>
               <div>
-                <label class="block text-xs font-bold uppercase text-[#A4BEA0] mb-1.5">Año de Nacimiento *</label>
+                <label class="block text-xs font-bold uppercase text-[#A4BEA0] mb-1.5">Año de Nacimiento <span class="text-[#849F80] font-normal lowercase">(Opcional)</span></label>
                 <input type="number" id="pro-ano" min="1940" max="2008" required placeholder="Ej: 1988" class="mobile-field">
               </div>
             </div>
@@ -830,278 +830,11 @@
                 </span>
               </label>
 
-              <!-- Checkbox 2: Datos Sensibles Biométricos -->
-              <label class="flex items-start gap-2.5 text-[#C4DDC1] cursor-pointer">
-                <input type="checkbox" id="pro-check-biometria" required class="mt-1 accent-[#B8FF3B] w-4 h-4 rounded cursor-pointer shrink-0">
-                <span class="text-[11px] leading-relaxed">
-                  Autorizo expresamente el tratamiento de mi biometría facial con fines exclusivos de validación de identidad en puerta mediante código QR y cotejo antifraude. <em>Entiendo que por tratarse de un dato sensible (Ley 1581, art. 5) esta autorización es facultativa; no obstante, su no autorización impedirá la habilitación de mi cuenta técnica por protocolos de seguridad domiciliaria.</em> *
-                </span>
-              </label>
-
-              <!-- Checkbox 3: Consulta de Antecedentes y Minimización -->
-              <label class="flex items-start gap-2.5 text-[#C4DDC1] cursor-pointer">
-                <input type="checkbox" id="pro-check-antecedentes" required class="mt-1 accent-[#B8FF3B] w-4 h-4 rounded cursor-pointer shrink-0">
-                <span class="text-[11px] leading-relaxed">
-                  Autorizo a rebuske a consultar mis antecedentes judiciales, policivos y disciplinarios en bases públicas oficiales. <em>Entiendo que rebuske solo almacenará la constancia de aptitud ("Aprobado / Sin pendientes" y fecha de cotejo), sin acopiar ni archivar documentos judiciales crudos.</em> *
-                </span>
-              </label>
-
-              <!-- Checkbox 4: Notificaciones y Oportunidades (Opcional) -->
-              <label class="flex items-start gap-2.5 text-[#97A890] cursor-pointer">
-                <input type="checkbox" id="pro-check-promo" class="mt-1 accent-[#B8FF3B] w-4 h-4 rounded cursor-pointer shrink-0">
-                <span class="text-[11px] leading-relaxed">
-                  (Opcional) Autorizo el envío de alertas de solicitudes en mi comuna, recordatorios de verificación y novedades operativas por WhatsApp y correo electrónico.
-                </span>
-              </label>
-            </div>
-
-            <!-- CONTENEDOR CLOUDFLARE TURNSTILE (PROTECCIÓN ANTI-BOT) -->
-            <div id="pro-turnstile-slot" class="my-3 flex justify-center"></div>
-
-            <button type="submit" id="btn-submit-pro" class="w-full btn-lima-action text-sm sm:text-base tracking-wide flex items-center justify-center gap-2">
-              <span>Asegurar mi Cupo Primordial (1% Mes 1)</span>
-              <span>⚡</span>
-            </button>
-
-            <button type="button" onclick="goToProStep(1)" class="w-full py-2.5 text-xs text-[#97A890] hover:text-[#B8FF3B] transition text-center flex items-center justify-center gap-1.5">
-              <span>◀ Modificar datos básicos (Paso 1)</span>
-            </button>
-          </div>
-
-          <div id="pro-alert-success" class="hidden p-5 rounded-2xl bg-[#192B15] border border-[#B8FF3B] text-center space-y-2">
-            <b class="text-base text-[#B8FF3B] block font-brand" id="pro-alert-title">¡Registro de Profesional Exitoso!</b>
-            <p class="text-xs text-[#F4FBF1]" id="pro-alert-msg">Hemos reservado tu cupo primordial. Nuestro equipo te contactará por WhatsApp para validar tus documentos e iniciar.</p>
-          </div>
-        </form>
-      </div>
-
-      <!-- ========================================================= -->
-      <!-- VISTA 2: FORMULARIO DE CLIENTES HOGARES                     -->
-      <!-- ========================================================= -->
-      <div id="view-cliente" class="hidden cinematic-card rounded-3xl p-5 sm:p-10 border border-[#F59E0B]/40 relative shadow-2xl">
-        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 mb-6 border-b border-[#24391E]">
-          <div>
-            <span class="text-xs font-bold uppercase tracking-wider text-[#F59E0B]">Acceso Anticipado Google Play Store</span>
-            <h3 class="text-xl sm:text-2xl font-black text-white font-brand">Registro de Clientes y Hogares VIP</h3>
-            <p class="text-xs text-[#97A890] mt-0.5">Te avisaremos por WhatsApp y correo el link de descarga. Recibirás tu Bono VIP de $15.000 COP (Vigencia 90 días desde el 1 de Dic 2026 en pedidos &gt; $90k).</p>
-          </div>
-          <div class="px-4 py-2 rounded-2xl bg-[#0C120A] border border-[#24391E] text-center flex-shrink-0 self-start sm:self-auto">
-            <span class="text-[10px] uppercase font-bold text-[#F59E0B] block">Cupón Activado</span>
-            <span class="text-xs sm:text-sm font-black text-white font-mono">TUBONO15K-VIP</span>
-            <a href="/descuentos" target="_blank" class="text-[9.5px] text-[#97A890] hover:text-[#FFFA70] block underline mt-0.5">En pedidos &gt; $90k · Vigencia 90d desde 1 Dic · 1 por hogar · Ver condiciones</a>
-          </div>
-        </div>
-
-        <!-- ACCESO RÁPIDO CON GOOGLE O REGISTRO CON WHATSAPP -->
-        <div class="mb-6 p-4 rounded-2xl bg-[#0C120A] border border-[#24391E] flex flex-col sm:flex-row items-center justify-between gap-3">
-          <div class="text-left w-full sm:w-auto">
-            <span class="text-[11px] font-bold uppercase tracking-wider text-[#F59E0B] block">¿Prefieres no llenar formularios?</span>
-            <span class="text-xs text-[#E4EDE0]">Entra directo con tu cuenta de Google en 1 clic</span>
-          </div>
-          <button type="button" onclick="loginWithGoogle()" class="w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-white hover:bg-gray-100 text-[#1A1A1A] font-bold text-xs shadow transition-all shrink-0">
-            <svg class="w-4 h-4" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.8-2.4 3.66v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.15z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.26v3.15C3.26 21.36 7.34 24 12 24z"/><path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.26C.46 8.16 0 9.98 0 12s.46 3.84 1.26 5.42l4.02-3.15z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.34 0 3.26 2.64 1.26 6.58l4.02 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/></svg>
-            <span>Continuar con Google</span>
-          </button>
-        </div>
-
-        <div class="relative flex items-center justify-center my-4">
-          <div class="border-t border-[#24391E] w-full"></div>
-          <span class="bg-[#121A0F] px-3 text-[11px] font-bold text-[#849F80] uppercase tracking-wider shrink-0">O regístrate con tu celular WhatsApp</span>
-        </div>
-
-        <form id="form-cliente" onsubmit="handleClienteSubmit(event)" class="space-y-4">
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label class="block text-xs font-bold uppercase text-[#A4BEA0] mb-1.5">Tu Nombre y Apellido *</label>
-              <input type="text" id="cli-nombre" required placeholder="Ej: Camila Restrepo" class="mobile-field">
-            </div>
-            <div>
-              <div class="flex items-center justify-between mb-1.5">
-                <label class="text-xs font-bold uppercase text-[#A4BEA0]">Tu Celular WhatsApp *</label>
-                <div class="flex items-center gap-2">
-                  <span id="cli-tel-status" class="text-[10px] text-[#849F80] font-mono">10 dígitos (3XX...)</span>
-                  <button type="button" onclick="triggerWhatsAppOtpVerification('cli')" class="px-2 py-0.5 rounded bg-[#25D366]/20 border border-[#25D366]/40 text-[#25D366] text-[10px] font-bold hover:bg-[#25D366]/30 flex items-center gap-1 transition-all">💬 Validar</button>
-                </div>
-              </div>
-              <div class="flex items-center rounded-xl bg-[#091107] border border-[#243B1E] focus-within:border-[#F59E0B] overflow-hidden">
-                <span class="px-3 py-3 bg-[#1C170A] text-[#F59E0B] font-bold text-xs select-none border-r border-[#243B1E] flex items-center gap-1 shrink-0">
-                  🇨🇴 +57
-                </span>
-                <input type="tel" id="cli-tel" inputmode="numeric" maxlength="12" required placeholder="310 987 6543" class="w-full bg-transparent px-3 py-3 text-xs sm:text-sm text-[#F4FBF1] placeholder-[#5A7354] focus:outline-none" oninput="formatColombiaPhone(this, 'cli-tel-status')">
-              </div>
-              <!-- Cajón de Verificación OTP WhatsApp para Clientes -->
-              <div id="cli-otp-box" class="hidden mt-2 p-3 rounded-xl bg-[#091107] border border-[#25D366]/50">
-                <div class="flex items-center justify-between text-xs text-[#25D366] font-bold mb-1.5">
-                  <span>Código de Verificación WhatsApp</span>
-                  <a id="cli-otp-walink" href="#" target="_blank" class="underline text-[11px] text-[#B8FF3B] hover:text-white">Abrir chat con Laura</a>
-                </div>
-                <div class="flex gap-2">
-                  <input type="text" id="cli-otp-code" maxlength="6" inputmode="numeric" placeholder="6 dígitos" class="bg-[#121A0F] border border-[#243B1E] text-white text-center font-mono rounded-lg px-2 py-1.5 w-28 text-sm focus:outline-none focus:border-[#25D366]">
-                  <button type="button" onclick="confirmOtpCode('cli')" class="bg-[#25D366] text-[#0A1407] font-bold text-xs px-3 py-1.5 rounded-lg hover:bg-[#1EBE5D]">Verificar y Confirmar</button>
-                </div>
-                <p id="cli-otp-msg" class="text-[10px] text-[#A4BEA0] mt-1"></p>
-              </div>
-            </div>
-          </div>
-
-          <div>
-            <label class="block text-xs font-bold uppercase text-[#A4BEA0] mb-1.5">Correo Electrónico (Para recibir el link de Play Store y tu bono) *</label>
-            <input type="email" id="cli-email" required placeholder="ejemplo@gmail.com" class="mobile-field">
-          </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div>
-              <label class="block text-xs font-bold uppercase text-[#A4BEA0] mb-1.5">Comuna o Corregimiento en Medellín *</label>
-              <select id="cli-comuna" required class="mobile-field mb-2" onchange="handleComunaChange(this, 'cli-barrio')">
-                <option value="">Selecciona tu comuna / zona...</option>
-                <optgroup label="Comunas Urbanas de Medellín">
-                  <option value="Laureles - Estadio (Comuna 11)">Laureles - Estadio (Comuna 11)</option>
-                  <option value="El Poblado (Comuna 14)">El Poblado (Comuna 14)</option>
-                  <option value="Belén (Comuna 16)">Belén (Comuna 16)</option>
-                  <option value="La América (Comuna 12)">La América (Comuna 12)</option>
-                  <option value="San Javier (Comuna 13)">San Javier (Comuna 13)</option>
-                  <option value="Guayabal (Comuna 15)">Guayabal (Comuna 15)</option>
-                  <option value="La Candelaria / Centro (Comuna 10)">La Candelaria / Centro (Comuna 10)</option>
-                  <option value="Buenos Aires (Comuna 9)">Buenos Aires (Comuna 9)</option>
-                  <option value="Villa Hermosa (Comuna 8)">Villa Hermosa (Comuna 8)</option>
-                  <option value="Robledo (Comuna 7)">Robledo (Comuna 7)</option>
-                  <option value="Doce de Octubre (Comuna 6)">Doce de Octubre (Comuna 6)</option>
-                  <option value="Castilla (Comuna 5)">Castilla (Comuna 5)</option>
-                  <option value="Aranjuez (Comuna 4)">Aranjuez (Comuna 4)</option>
-                  <option value="Manrique (Comuna 3)">Manrique (Comuna 3)</option>
-                  <option value="Santa Cruz (Comuna 2)">Santa Cruz (Comuna 2)</option>
-                  <option value="Popular (Comuna 1)">Popular (Comuna 1)</option>
-                </optgroup>
-                <optgroup label="Corregimientos de Medellín">
-                  <option value="San Cristóbal (Corregimiento)">San Cristóbal</option>
-                  <option value="San Antonio de Prado (Corregimiento)">San Antonio de Prado</option>
-                  <option value="Santa Elena (Corregimiento)">Santa Elena</option>
-                  <option value="Altavista (Corregimiento)">Altavista</option>
-                  <option value="San Sebastián de Palmitas (Corregimiento)">San Sebastián de Palmitas</option>
-                </optgroup>
-                <optgroup label="Área Metropolitana (Valle de Aburrá)">
-                  <option value="Envigado">Envigado</option>
-                  <option value="Itagüí">Itagüí</option>
-                  <option value="Sabaneta">Sabaneta</option>
-                  <option value="Bello">Bello</option>
-                  <option value="La Estrella">La Estrella</option>
-                  <option value="Caldas">Caldas</option>
-                  <option value="Copacabana">Copacabana</option>
-                </optgroup>
-              </select>
-              <input type="text" id="cli-barrio" placeholder="Barrio específico (Ej: Conquistadores, Belén Rosales...)" class="mobile-field text-xs">
-            </div>
-            <div>
-              <label class="block text-xs font-bold uppercase text-[#A4BEA0] mb-1.5">¿Qué servicios sueles necesitar más? *</label>
-              <select id="cli-interes" required class="mobile-field">
-                <option value="">Selecciona una opción...</option>
-                <option value="Plomería y Filtraciones">Plomería y Filtraciones</option>
-                <option value="Electricidad y Cortos">Electricidad y Cortos</option>
-                <option value="Cerrajería y Emergencias">Cerrajería y Emergencias</option>
-                <option value="Pintura y Remodelación">Pintura y Remodelación</option>
-                <option value="Mantenimiento de Vehículos">Mantenimiento de Vehículos</option>
-                <option value="Aseo y Desinfección">Aseo y Desinfección</option>
-                <option value="Mudanzas">Mudanzas</option>
-                <option value="Varios / Todos los anteriores">Varios / Todos los anteriores</option>
-              </select>
-            </div>
-          </div>
-
-          <!-- FECHA DE NACIMIENTO (SOLO MES Y AÑO) -->
-          <div>
-            <div class="grid grid-cols-2 gap-4">
-              <div>
-                <label class="block text-xs font-bold uppercase text-[#A4BEA0] mb-1.5">Mes de Nacimiento *</label>
-                <select id="cli-mes" required class="mobile-field">
-                  <option value="">Selecciona mes...</option>
-                  <option value="01">Enero</option>
-                  <option value="02">Febrero</option>
-                  <option value="03">Marzo</option>
-                  <option value="04">Abril</option>
-                  <option value="05">Mayo</option>
-                  <option value="06">Junio</option>
-                  <option value="07">Julio</option>
-                  <option value="08">Agosto</option>
-                  <option value="09">Septiembre</option>
-                  <option value="10">Octubre</option>
-                  <option value="11">Noviembre</option>
-                  <option value="12">Diciembre</option>
-                </select>
-              </div>
-              <div>
-                <label class="block text-xs font-bold uppercase text-[#A4BEA0] mb-1.5">Año de Nacimiento *</label>
-                <input type="number" id="cli-ano" min="1940" max="2008" required placeholder="Ej: 1995" class="mobile-field">
-              </div>
-            </div>
-            <p class="text-[11px] text-[#C6D8BF] mt-1.5 leading-snug">
-              🎁 <strong>¿Por qué te pedimos tu fecha de nacimiento?</strong> Para validar tu mayoría de edad legal (18+ años según el Código de Comercio) y consentirte con <strong>promociones y regalos al azar en el mes de tu cumpleaños</strong> para premiar tu fidelidad en rebuske.
-            </p>
-          </div>
-
-          <!-- FOTO DE PERFIL DEL CLIENTE (EDITABLE / AVATAR) -->
-          <div class="p-4 rounded-2xl bg-[#0E170C] border border-[#F59E0B]/35">
-            <div class="flex items-center justify-between mb-1">
-              <label class="block text-xs font-bold uppercase text-[#FFFA70]">Tu Foto de Perfil (Rostro Visible) *</label>
-              <span class="text-[10px] text-[#A4BEA0] font-mono">Modificable en tu cuenta</span>
-            </div>
-            <p class="text-[11px] text-[#97A890] mb-3 leading-relaxed">
-              Sube una foto clara de tu rostro. Esta foto será visible para el técnico en el chat y cotizaciones (podrás cambiarla cuando desees desde tu perfil). Servirá de cotejo inicial para contrastar con tu selfie biométrica inalterable cuando se lance la app en Play Store.
-            </p>
-            <input type="file" id="cli-foto-perfil" accept="image/*" required onchange="handleClienteFotoPerfil(event)" class="block w-full text-xs text-[#9BB197] file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-[#2A2312] file:text-[#FFFA70] hover:file:bg-[#3D3019] cursor-pointer">
-            <div id="cli-foto-preview-box" class="mt-3 hidden flex items-center gap-3">
-              <img id="cli-foto-preview-img" src="" alt="Vista previa perfil" class="w-14 h-14 rounded-full object-cover border-2 border-[#F59E0B] shadow-md">
-              <span class="text-[11px] text-[#B8FF3B] font-bold">✓ Foto de perfil seleccionada</span>
-            </div>
-          </div>
-
-          <!-- HONEYPOT BOT PROTECTION INVISIBLE -->
-          <input type="text" id="cli-hp-token" style="display:none!important;" tabindex="-1" autocomplete="off">
-
-          <!-- Micro-tarjetas Modo Familiar & QR -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-2 pt-2">
-            <div class="p-3.5 rounded-2xl bg-[#0D150B] border border-[#24391E] flex items-start gap-2.5">
-              <span class="text-xl">👨‍👩‍👧‍👦</span>
-              <div>
-                <b class="text-xs text-white block font-brand">Modo Familiar («Poner Gente»)</b>
-                <p class="text-[11px] text-[#97A890] leading-snug">Tus familiares piden técnicos con tu tarjeta Wompi centralizada y tú autorizas todo cargo.</p>
-              </div>
-            </div>
-            <div class="p-3.5 rounded-2xl bg-[#0D150B] border border-[#24391E] flex items-start gap-2.5">
-              <span class="text-xl">📲</span>
-              <div>
-                <b class="text-xs text-white block font-brand">Credencial QR en Puerta</b>
-                <p class="text-[11px] text-[#97A890] leading-snug">Escaneas su QR oficial con foto y cédula antes de abrirle la puerta de tu hogar.</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Términos del Bono Normal de 15k -->
-          <div class="p-4 rounded-2xl bg-[#141006] border border-[#423114] text-xs text-[#D8C7A5] space-y-1">
-            <span class="font-bold text-[#F59E0B] flex items-center gap-1.5">
-              <span>🎁</span> Términos del Bono de Bienvenida ($15.000 COP)
-            </span>
-            <p>El bono de $15.000 COP aplica en tu primer servicio igual o superior a $90.000 COP con 0% de comisión para la app. Vigencia: 90 días desde el 1 de diciembre de 2026. Límite: 1 bono por hogar y método de pago.</p>
-          </div>
-
-          <!-- AUTORIZACIONES Y CONSENTIMIENTO INFORMADO CLIENTE (LEY 1581 DE 2012) -->
-          <div class="p-4 rounded-2xl bg-[#091107] border border-[#24391E] space-y-3 text-xs">
-            <span class="font-bold text-[#FFFA70] block font-brand text-xs uppercase tracking-wide">
-              ⚖️ Autorizaciones Legales y Consentimiento Informado:
-            </span>
-
-            <!-- Checkbox 1: Términos y Tratamiento General -->
+              <!-- Checkbox 2: Mayoría de Edad Legal (Ley 27 de 1977 y Código Civil) -->
             <label class="flex items-start gap-2.5 text-[#C4DDC1] cursor-pointer">
-              <input type="checkbox" id="cli-check-terminos" required class="mt-1 accent-[#F59E0B] w-4 h-4 rounded cursor-pointer shrink-0">
+              <input type="checkbox" id="cli-check-edad" required class="mt-1 accent-[#F59E0B] w-4 h-4 rounded cursor-pointer shrink-0">
               <span class="text-[11px] leading-relaxed">
-                He leído y acepto los <a href="/terminos" target="_blank" class="text-[#FFFA70] underline font-bold">Términos y Condiciones</a>, la <a href="/privacidad" target="_blank" class="text-[#FFFA70] underline font-bold">Política de Tratamiento de Datos Personales</a> (Ley 1581 de 2012) y las <a href="/descuentos" target="_blank" class="text-[#FFFA70] underline font-bold">Condiciones de Descuentos</a>. *
-              </span>
-            </label>
-
-            <!-- Checkbox 2: Datos Sensibles Biométricos -->
-            <label class="flex items-start gap-2.5 text-[#C4DDC1] cursor-pointer">
-              <input type="checkbox" id="cli-check-biometria" required class="mt-1 accent-[#F59E0B] w-4 h-4 rounded cursor-pointer shrink-0">
-              <span class="text-[11px] leading-relaxed">
-                Autorizo expresamente el tratamiento de mis datos sensibles biométricos (selfie facial en vivo en la app) con fines exclusivos de validación de identidad en puerta y seguridad domiciliaria. <em>Entiendo que por tratarse de un dato sensible (Ley 1581, art. 5) esta autorización es facultativa; no obstante, su no autorización impedirá coordinar visitas técnicas en mi hogar por protocolos de protección comunitaria.</em> *
+                Declaro bajo la gravedad de juramento que <strong>soy mayor de 18 años</strong> y cuento con plena capacidad civil y contractual para solicitar servicios (Ley 27 de 1977 y Código Civil colombiano). *
               </span>
             </label>
 
@@ -1140,13 +873,13 @@
       </div>
       <div class="p-5 sm:p-6 rounded-2xl bg-[#121A0E] border border-[#24391E]">
         <div class="text-2xl mb-2">🛡️</div>
-        <h4 class="text-sm font-bold text-white mb-1">Garantía Legal de 48h</h4>
+        <h4 class="text-sm font-bold text-white mb-1">Garantía Comercial rebuske de 48h (Ley 1480)</h4>
         <p class="text-xs text-[#97A890]">Si surge cualquier imprevisto técnico, el profesional regresa sin costo adicional bajo la Ley 1480.</p>
       </div>
       <div class="p-5 sm:p-6 rounded-2xl bg-[#121A0E] border border-[#24391E]">
         <div class="text-2xl mb-2">⚡</div>
-        <h4 class="text-sm font-bold text-white mb-1">Modo Luz Express</h4>
-        <p class="text-xs text-[#97A890]">Atención prioritaria en menos de 35 minutos para cerrajería urgente, plomería crítica o auxilio de batería.</p>
+        <h4 class="text-sm font-bold text-white mb-1">Servicio Express Prioritario</h4>
+        <p class="text-xs text-[#97A890]">Objetivo de llegada prioritaria (tiempo estimado: 35 a 45 min según tráfico) para cerrajería urgente, plomería crítica o auxilio de batería.</p>
       </div>
     </div>
 
@@ -1964,25 +1697,18 @@
         return;
       }
 
-      const fotoInput = document.getElementById('cli-foto-perfil');
-      if (!fotoInput.files || fotoInput.files.length === 0) {
-        alert('Por favor adjunta tu foto de perfil con rostro visible.');
-        fotoInput.focus();
-        return;
-      }
-
       const chkTerminos = document.getElementById('cli-check-terminos');
-      const chkBiometria = document.getElementById('cli-check-biometria');
+      const chkEdad = document.getElementById('cli-check-edad');
 
       if (!chkTerminos || !chkTerminos.checked) {
-        alert('Debes leer y aceptar los Términos, Política de Tratamiento de Datos y Condiciones de Descuentos.');
+        alert('Debes leer y aceptar los Términos y Condiciones y la Política de Tratamiento de Datos Personales.');
         chkTerminos.focus();
         return;
       }
 
-      if (!chkBiometria || !chkBiometria.checked) {
-        alert('Debes autorizar el tratamiento de datos sensibles biométricos para la verificación de seguridad domiciliaria.');
-        chkBiometria.focus();
+      if (!chkEdad || !chkEdad.checked) {
+        alert('Debes declarar bajo juramento ser mayor de 18 años para registrarte en la plataforma.');
+        chkEdad.focus();
         return;
       }
 
