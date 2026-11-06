@@ -1,0 +1,57 @@
+{
+  "totalClientes": 100,
+  "totalPros": 100,
+  "primordialesAsignados": 16,
+  "cuentasSinBancoInicial": 16,
+  "escenariosTrampa": [
+    {
+      "escenario": "Intento de evasión de pago y comisión por chat",
+      "involucrados": "Gabriel Londoño ↔ Santiago Uribe",
+      "mensaje": "Hermano, cancelemos acá en rebuske y te doy $80.000 en efectivo directo en la casa.",
+      "detectado": true,
+      "accionTomada": "Mensaje interceptado y bloqueado en tiempo real. Se desplegó alerta de advertencia: \"Tu pago y garantía legal de 48h solo están protegidos si usas la Bóveda Wompi de rebuske\". Advertencia registrada en el historial del técnico."
+    },
+    {
+      "escenario": "Fotos falsas de herramientas en KYC",
+      "involucrados": "Lucas Vélez",
+      "detectado": true,
+      "accionTomada": "El detector de metadatos EXIF y hashes SHA-256 detectó ausencia de metadatos de cámara de celular y coincidencia con imágenes de catálogo web. La cuenta no fue activada y se derivó a entrevista por WhatsApp con Laura para verificación con video en vivo."
+    },
+    {
+      "escenario": "GPS Spoofing / Check-in a destiempo",
+      "involucrados": "Natalia Giraldo (distancia: 4.2 km)",
+      "detectado": true,
+      "accionTomada": "Botón \"Iniciar Servicio\" bloqueado por geofence (> 150m). Se notificó al técnico: \"Debes estar en el domicilio del cliente para iniciar\". Se activó el temporizador de tolerancia de 30 minutos sin penalización."
+    },
+    {
+      "escenario": "Cobro de repuestos/materiales sin factura física",
+      "involucrados": "Jorge Restrepo",
+      "detectado": true,
+      "accionTomada": "La regla de rebuske rechaza cualquier sobrecosto de materiales que no incluya foto legible de factura con NIT de ferretería. El cobro extra fue rechazado por el supervisor y el cliente solo pagó la mano de obra autorizada."
+    },
+    {
+      "escenario": "Técnico sin cuenta bancaria cumplidos los 4 días de gracia",
+      "involucrados": "Felipe Arango (Mecánica Rápida y Mantenimiento)",
+      "detectado": true,
+      "accionTomada": "El sistema impidió tomar la orden y desplegó aviso modal: \"Han transcurrido 4 días desde el lanzamiento. Para recibir pagos de clientes debes vincular tu Nequi o Bancolombia\". El técnico ingresó su número de Nequi en 20 segundos y fue habilitado de inmediato."
+    },
+    {
+      "escenario": "Ataque automatizado de bots en formulario de registro",
+      "involucrados": "IP 186.84.120.44",
+      "detectado": true,
+      "accionTomada": "El honeypot invisible y la regla temporal (> 900ms) descartaron los 25 intentos silenciosamente con respuesta HTTP 200/400 vacía. Los cupos legítimos quedaron protegidos sin necesidad de captchas invasivos para personas reales."
+    },
+    {
+      "escenario": "Intento de reseña maliciosa sin servicio completado",
+      "involucrados": "Valentina Restrepo → Jorge Londoño",
+      "detectado": true,
+      "accionTomada": "El motor de reputación exige obligatoriamente acta digital firmada por ambas partes para habilitar el formulario de calificación. El intento de reseña fue desestimado automáticamente."
+    },
+    {
+      "escenario": "Incumplimiento de garantía por parte del técnico original",
+      "involucrados": "Esteban Cano (servicio de Paula Correa)",
+      "detectado": true,
+      "accionTomada": "Conforme al manual de calidad de rebuske, el técnico original fue suspendido preventivamente por 2 días, perdiendo visibilidad en la app. Se envió notificación formal a su correo y WhatsApp."
+    }
+  ]
+}
