@@ -584,7 +584,7 @@ home:()=>{const act=S.jobs.filter(j=>!j.cl&&j.s!=='calificado'&&j.s!=='disputa')
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#7F1D1D" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
   </div>
   <div class="grow">
-    <b style="color:#FCA5A5;font-size:13px;display:block">Modo Luz Express · Emergencias Eléctricas &lt;35 min</b>
+    <b style="color:#FCA5A5;font-size:13px;display:block">Servicio Express Prioritario · Emergencias Eléctricas (35-45 min)</b>
     <small style="color:#E5E7EB;font-size:11px">Exclusivo para cortos circuitos, brequeras quemadas y emergencias eléctricas urgentes.</small>
   </div>
   <span class="tag" style="background:#EF4444;color:#FFF;border:none;font-weight:800;font-size:10px">SOS</span>
@@ -1635,8 +1635,8 @@ const A={
         <div style="width:60px;height:60px;border-radius:50%;background:#EF4444;border:3px solid #FCA5A5;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 25px rgba(239,68,68,0.7)">
           <span style="font-size:28px">🚨</span>
         </div>
-        <h2 style="margin:0 0 4px;color:#FCA5A5;font-size:18px">Modo Luz Express · Emergencias Eléctricas</h2>
-        <small style="color:#D1D5DB;display:block;margin-bottom:14px">Llegada prioritaria garantizada en menos de 35 minutos en Medellín (Exclusivo Eléctrico).</small>
+        <h2 style="margin:0 0 4px;color:#FCA5A5;font-size:18px">Servicio Express Prioritario · Emergencias Eléctricas</h2>
+        <small style="color:#D1D5DB;display:block;margin-bottom:14px">Llegada técnica prioritaria (tiempo estimado: 35 a 45 min en Medellín según tráfico).</small>
         
         <div class="glass rows" style="text-align:left;margin-bottom:14px">
           <div><span>Especialidad exclusiva</span><b>Electricidad Urgente (Cortos/Brequeras)</b></div>
@@ -1657,14 +1657,14 @@ const A={
     const id = 'j' + Date.now();
     S.jobs.unshift({
       id,
-      t: 'Urgencia Luz Express Eléctrica (<35 min)',
+      t: 'Urgencia Express Eléctrica (35-45 min)',
       c: 'Electricidad',
       z: S.zona || 'Laureles',
       v: 90000,
       k: 'Express',
       s: 'buscando',
       pro: 'p1',
-      chat: [{ f: 'pro', m: '¡Alerta de emergencia eléctrica recibida! Llevo multímetro, breakers dieléctricos y herramientas de seguridad. Llego en menos de 35 min.' }]
+      chat: [{ f: 'pro', m: '¡Alerta de emergencia eléctrica recibida! Llevo multímetro, breakers dieléctricos y herramientas de seguridad. Llego en un tiempo estimado de 35 a 45 min.' }]
     });
     save();
     go('chat', { id });
