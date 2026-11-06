@@ -1753,7 +1753,7 @@ const A={
     }
     toast('✅ Reporte recibido. Soporte y Antifraude han sido notificados.');
   },
-  pagar: d => {
+  pagar: async d => {
     const j = job(d.id), p = cur().p;
     if (!j || p.st) return;
 
@@ -1768,52 +1768,77 @@ const A={
     const baseAmount = Math.max(0, Number(j.v || 80000) - descBono);
     const totalAmount = j.extGar ? Math.round(baseAmount * 1.25) : baseAmount;
 
-    if (typeof WidgetCheckout !== 'undefined') {
-      const grossCop = totalAmount;
-      const amountInCents = Math.round(grossCop * 100);
-      const reference = `REB-${String(j.id).toUpperCase()}-${Date.now().toString(36).toUpperCase()}`;
+    toast('🔒 Sellando pago con firma criptográfica SHA-256 en servidor...');
 
-      try {
+    try {
+      const checkoutRes = await fetch('/api/wompi?action=CREATE_CHECKOUT', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          jobId: j.id,
+          quoteAmount: totalAmount,
+          couponCode: (j.bonoVip && !bonoBloqueado && j.v > 90000) ? 'TUBONO15K-VIP' : '',
+          customerEmail: S.client?.email || 'holarebuske@gmail.com',
+          customerName: S.client?.nombre || 'Camila Torres',
+          customerPhone: S.client?.tel || '+573001234567'
+        })
+      });
+
+      const serverData = await checkoutRes.json();
+      if (serverData && serverData.ok && typeof WidgetCheckout !== 'undefined') {
+        j.wompiRef = serverData.reference;
+        j.wompiAmountInCents = serverData.amountInCents;
+        j.wompiSig = serverData.signature;
+
         const checkout = new WidgetCheckout({
           currency: 'COP',
-          amountInCents: amountInCents,
-          reference: reference,
-          publicKey: 'pub_prod_rlfigFJClWV8X56CCbtRngsxy8vF7lzW',
-          redirectUrl: window.location.href
+          amountInCents: serverData.amountInCents,
+          reference: serverData.reference,
+          publicKey: serverData.publicKey || 'pub_prod_rlfigFJClWV8X56CCbtRngsxy8vF7lzW',
+          signature: { integrity: serverData.signature },
+          redirectUrl: window.location.origin + '/?pago_ref=' + encodeURIComponent(serverData.reference)
         });
 
-        checkout.open(function (result) {
+        checkout.open(async function (result) {
           const tx = result && result.transaction;
-          if (tx && (tx.status === 'APPROVED' || tx.status === 'PENDING')) {
-            j.s = 'retenido';
-            j.wompiTxId = tx.id;
-            j.wompiRef = reference;
-            j.totalCobrado = grossCop;
-            if (descBono > 0) {
-              S.bonoVipRedimido = true;
-              j.bonoVipAplicado = true;
-              j.dirUsada = clientDir;
-              j.metodoPagoUsado = metodoActual;
-              if (clientDir.length > 3) {
-                if (!S.bonosRedimidosDir) S.bonosRedimidosDir = [];
-                if (!S.bonosRedimidosDir.includes(clientDir)) S.bonosRedimidosDir.push(clientDir);
-              }
-              if (!S.bonosRedimidosMetodos) S.bonosRedimidosMetodos = [];
-              if (!S.bonosRedimidosMetodos.includes(metodoActual)) S.bonosRedimidosMetodos.push(metodoActual);
-            }
+          toast('Verificando pago con Wompi...');
 
-            S.wal.pend = (S.wal.pend || 0) + grossCop;
-            save();
+          // VERIFICACIÓN ESTRICTA EN SERVIDOR (NUNCA MARCA PAGADO SIN APROBACIÓN REAL)
+          try {
+            const statusRes = await fetch('/api/wompi?action=STATUS&ref=' + encodeURIComponent(serverData.reference));
+            const statusData = await statusRes.json();
+
+            if (statusData && statusData.verified && statusData.status === 'APPROVED') {
+              j.s = 'retenido';
+              j.wompiTxId = statusData.wompiTxId || tx?.id;
+              j.totalCobrado = serverData.breakdown.totalCOP;
+              if (descBono > 0) {
+                S.bonoVipRedimido = true;
+                j.bonoVipAplicado = true;
+                if (clientDir.length > 3) {
+                  if (!S.bonosRedimidosDir) S.bonosRedimidosDir = [];
+                  if (!S.bonosRedimidosDir.includes(clientDir)) S.bonosRedimidosDir.push(clientDir);
+                }
+                if (!S.bonosRedimidosMetodos) S.bonosRedimidosMetodos = [];
+                if (!S.bonosRedimidosMetodos.includes(metodoActual)) S.bonosRedimidosMetodos.push(metodoActual);
+              }
+              S.wal.pend = (S.wal.pend || 0) + serverData.breakdown.totalCOP;
+              save();
+              swap('ruta', { id: j.id });
+              toast('✅ Pago confirmado por Wompi y retenido en Bóveda');
+            } else {
+              toast('⏳ Transacción en proceso de aprobación bancaria.');
+              swap('ruta', { id: j.id });
+            }
+          } catch (_) {
+            toast('⏳ Transacción enviada a pasarela.');
             swap('ruta', { id: j.id });
-            toast('✅ Pago en custodia Bóveda Wompi (Garantía ' + (j.extGar ? '30d extendida' : '48h') + ' activa)');
-          } else {
-            toast('Transacción cerrada o pendiente en Wompi');
           }
         });
         return;
-      } catch (err) {
-        console.warn('Wompi Widget fallback:', err);
       }
+    } catch (err) {
+      console.warn('Wompi Server Checkout Fallback:', err);
     }
 
     p.st = 'load'; render();
@@ -2513,16 +2538,6 @@ render();
     apiUrl: 'https://production.wompi.co/v1',
     widgetUrl: 'https://checkout.wompi.co/widget.js',
     publicKey: 'pub_prod_rlfigFJClWV8X56CCbtRngsxy8vF7lzW',
-    privateKey: 'prv_prod_4oIQNfg2niXirIqpzONGpmVIdaq1b9yu',
-    eventsSecret: 'prod_events_qat3lsI2jTaA82Ky5r2iEd2qCNNAzfEJ',
-    integritySecret: 'prod_integrity_6TeHFI9CwfIMh4RzN7RFJAZY6MaCxws0',
-    sandboxFallback: {
-      apiUrl: 'https://sandbox.wompi.co/v1',
-      publicKey: 'pub_test_m1oWAq8iWH5DTFkOO1xPtoUQuZsjwXga',
-      privateKey: 'prv_test_QrbKy2b5fSz3LtAMrcFtZFXvywlY4xqI',
-      eventsSecret: 'test_events_I3jI0yiPDSlwJs5L9izTeUt3MzqFH74f',
-      integritySecret: 'test_integrity_oSbKyiTdCmUI0F2BaMXd8E7BbOWlHYxQ'
-    },
     currency: 'COP'
   };
   const WOMPI_TX_LOG_KEY = 'rebuske_v4_wompi_transactions';
@@ -6595,6 +6610,30 @@ render();
         }
       }, 350);
     }
+
+    // Verificación Segura de Retorno de Pasarela Wompi
+    const pagoRef = params.get('pago_ref');
+    if (pagoRef) {
+      setTimeout(async () => {
+        try {
+          if (typeof toast === 'function') toast('🔍 Verificando pago con Wompi...');
+          const res = await fetch('/api/wompi?action=STATUS&ref=' + encodeURIComponent(pagoRef));
+          const data = await res.json();
+          if (data && data.verified && data.status === 'APPROVED') {
+            const j = (S.jobs || []).find(item => item.wompiRef === pagoRef) || (S.jobs || [])[0];
+            if (j) {
+              j.s = 'retenido';
+              j.wompiTxId = data.wompiTxId || j.wompiTxId;
+              save();
+              if (typeof toast === 'function') toast('✅ Pago APROBADO por Wompi y retenido en Bóveda');
+              if (typeof go === 'function') go('ruta', { id: j.id });
+            }
+          } else {
+            if (typeof toast === 'function') toast('⏳ Transacción Wompi: ' + (data.status || 'PENDING') + '. En proceso bancario.');
+          }
+        } catch (_) {}
+      }, 500);
+    }
   });
 
 </script>
@@ -7379,22 +7418,6 @@ render();
         : 'Servicio cancelado con éxito. Tu reembolso del 100% ha sido liberado en la Bóveda Wompi.');
     };
   })();
-
-  // 3. Deep Link & Redención Reto 333: Apartado 'Servicios por Ellas'
-  window.addEventListener('DOMContentLoaded', () => {
-    const hash = window.location.hash;
-    const params = new URLSearchParams(window.location.search);
-    if (hash === '#servicios-ellas' || params.get('cat') === 'Ellas Construyen') {
-      setTimeout(() => {
-        if (typeof go === 'function') {
-          go('buscar', { cat: 'Ellas Construyen' });
-          if (typeof toast === 'function') {
-            toast('👩 Apartado Servicios por Ellas · Solo Mujeres Profesionales');
-          }
-        }
-      }, 350);
-    }
-  });
 
   // 4. Registro Oficial Service Worker PWA
   if ('serviceWorker' in navigator) {
