@@ -23,6 +23,16 @@ const WOMPI_INTEGRITY_SECRET = process.env.WOMPI_INTEGRITY_SECRET || 'prod_integ
 const TX_STORE_PATH = path.join(process.cwd(), 'wompi_transactions_ledger.json');
 const FIFTEEN_MINUTES_MS = 15 * 60 * 1000;
 
+// Escala Oficial de Comisiones rebuske v4 (3 Planes):
+// - BRONCE: 18% (82% técnico) - Nuevos / Ocasionales
+// - PLATA:  14% (86% técnico) - Activos (>10 servicios/mes, rating 4.7+)
+// - ORO:    11% (89% técnico) - Primordiales / VIP (rating 4.9+)
+const TIER_FEES = {
+  BRONCE: 0.18,
+  PLATA: 0.14,
+  ORO: 0.11
+};
+
 function getLedger() {
   try {
     if (fs.existsSync(TX_STORE_PATH)) {
@@ -80,8 +90,10 @@ export default async function handler(req, res) {
       const reference = `REB-${cleanJobId}-${Date.now().toString(36).toUpperCase()}`;
       const currency = 'COP';
 
-      // Cálculo fiscal DIAN (Mandato Comercial e Ingresos Recibidos para Terceros)
-      const comisionRebuskeCOP = Math.round(totalCOP * 0.07);
+      // Cálculo fiscal DIAN y Split por Plan (Bronce 18%, Plata 14%, Oro 11%)
+      const planKey = String(body.proPlan || 'ORO').toUpperCase();
+      const feeRate = TIER_FEES[planKey] || 0.11;
+      const comisionRebuskeCOP = Math.round(totalCOP * feeRate);
       const ingresoTerceroCOP = totalCOP - comisionRebuskeCOP;
 
       // Firma SHA-256 generada en servidor
@@ -92,6 +104,8 @@ export default async function handler(req, res) {
       ledger.unshift({
         reference,
         jobId: cleanJobId,
+        proPlan: planKey,
+        feeRate,
         subtotalCOP,
         discountCOP,
         totalCOP,
@@ -105,6 +119,9 @@ export default async function handler(req, res) {
         couponApplied,
         dianAccounting: {
           regimen: 'MANDATO_COMERCIAL_INTERMEDIACION',
+          plan: planKey,
+          porcentajeComision: `${Math.round(feeRate * 100)}%`,
+          porcentajeTecnico: `${Math.round((1 - feeRate) * 100)}%`,
           ingresoTerceroCOP,
           cuentaIngresoTercero: '2815_INGRESOS_RECIBIDOS_PARA_TERCEROS',
           comisionRebuskeCOP,
@@ -288,10 +305,15 @@ export default async function handler(req, res) {
       }
 
       if (status === 'APPROVED') {
-        const splitRebuske = Math.round(amountCOP * 0.07);
+        const planKey = String(existing?.proPlan || 'ORO').toUpperCase();
+        const feeRate = TIER_FEES[planKey] || 0.11;
+        const splitRebuske = Math.round(amountCOP * feeRate);
         const splitPro = amountCOP - splitRebuske;
         const dianAccounting = {
           regimen: 'MANDATO_COMERCIAL_INTERMEDIACION',
+          plan: planKey,
+          porcentajeComision: `${Math.round(feeRate * 100)}%`,
+          porcentajeTecnico: `${Math.round((1 - feeRate) * 100)}%`,
           ingresoTerceroCOP: splitPro,
           cuentaIngresoTercero: '2815_INGRESOS_RECIBIDOS_PARA_TERCEROS',
           comisionRebuskeCOP: splitRebuske,
