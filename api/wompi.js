@@ -294,7 +294,8 @@ export default async function handler(req, res) {
     console.log('[Tomás FinTech] Webhook Wompi recibido:', event?.event, event?.data?.transaction?.id);
 
     // Verificación de Checksum
-    const signature = req.headers['x-event-checksum'] || req.headers['x-wompi-signature'];
+    const reqHeaders = req.headers || {};
+    const signature = reqHeaders['x-event-checksum'] || reqHeaders['x-wompi-signature'];
     if (signature && event?.data?.transaction) {
       const tx = event.data.transaction;
       const rawString = `${tx.id}${tx.status}${tx.amount_in_cents}${event.timestamp || ''}${WOMPI_EVENTS_SECRET}`;
