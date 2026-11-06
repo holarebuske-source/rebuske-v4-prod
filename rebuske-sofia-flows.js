@@ -143,6 +143,109 @@
   // ==========================================================================
   // RENDER: COMPONENTE DE 4 OFICIOS VISUALES EN HOME (FLUJO 1 - TAP 1)
   // ==========================================================================
+  
+  // ==========================================================================
+  // RENDER: BLOQUE DE CASOS REALES EN MEDELLÍN (VALERIA UI/UX CONVERSIÓN)
+  // ==========================================================================
+  function renderRealCasesSection() {
+    return `
+      <div class="real-cases-section" style="margin:20px 0 10px 0; background:linear-gradient(160deg, #10180D, #0A1108); border:1px solid #23351C; border-radius:18px; padding:18px; box-shadow:0 8px 30px rgba(0,0,0,0.45); font-family:'Baloo 2',sans-serif;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; border-bottom:1px solid #1E2D18; padding-bottom:10px;">
+          <div>
+            <span style="background:rgba(184,255,59,0.12); border:1px solid #B8FF3B; color:#B8FF3B; font-size:9.5px; font-weight:800; padding:2px 8px; border-radius:99px; letter-spacing:0.5px;">⭐ CASOS REALES MEDELLÍN</span>
+            <h3 style="margin:4px 0 0; font-size:15px; color:#F2F5EC; font-weight:800;">Garantía 48h Cumplida en tu Barrio</h3>
+          </div>
+          <span style="font-size:11px; color:#7E967A; font-weight:600;">100% Verificados</span>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:12px;">
+          <!-- Caso 1 -->
+          <div style="background:#131F10; border:1px solid #1E3116; border-radius:14px; padding:12px;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:6px;">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <div style="width:32px; height:32px; border-radius:50%; background:#1F3617; border:1px solid #B8FF3B; display:flex; align-items:center; justify-content:center; font-size:14px;">👩‍💼</div>
+                <div>
+                  <b style="font-size:12px; color:#FFF; display:block; line-height:1.2;">Doña Gloria</b>
+                  <span style="font-size:10.5px; color:#A7BCA0;">Laureles · Fuga en Lavaplatos</span>
+                </div>
+              </div>
+              <span style="font-size:10px; color:#B8FF3B; background:rgba(184,255,59,0.1); padding:2px 6px; border-radius:4px; font-weight:700;">42 min</span>
+            </div>
+            <p style="font-size:11px; color:#C6D8BF; margin:0 0 6px 0; line-height:1.4;">
+              "Don Carlos llegó puntual, con carné y herramientas limpias. Reparó la fuga y me dio la garantía de 48h con acta digital. Excelente."
+            </p>
+            <div style="display:flex; justify-content:space-between; font-size:9.5px; color:#7E967A;">
+              <span>Técnico: Carlos M. (Oro VIP)</span>
+              <span style="color:#B8FF3B;">★★★★★ 5.0</span>
+            </div>
+          </div>
+
+          <!-- Caso 2 -->
+          <div style="background:#131F10; border:1px solid #1E3116; border-radius:14px; padding:12px;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:6px;">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <div style="width:32px; height:32px; border-radius:50%; background:#1F3617; border:1px solid #B8FF3B; display:flex; align-items:center; justify-content:center; font-size:14px;">👨‍💻</div>
+                <div>
+                  <b style="font-size:12px; color:#FFF; display:block; line-height:1.2;">Mateo & Camila</b>
+                  <span style="font-size:10.5px; color:#A7BCA0;">El Poblado · Cortocircuito Breakers</span>
+                </div>
+              </div>
+              <span style="font-size:10px; color:#B8FF3B; background:rgba(184,255,59,0.1); padding:2px 6px; border-radius:4px; font-weight:700;">38 min</span>
+            </div>
+            <p style="font-size:11px; color:#C6D8BF; margin:0 0 6px 0; line-height:1.4;">
+              "Se nos fue la luz a las 7 PM. El electricista diagnosticó el breaker quemado, el pago por Wompi fue transparente y seguro."
+            </p>
+            <div style="display:flex; justify-content:space-between; font-size:9.5px; color:#7E967A;">
+              <span>Técnico: David R. (Oro VIP)</span>
+              <span style="color:#B8FF3B;">★★★★★ 4.9</span>
+            </div>
+          </div>
+
+          <!-- Caso 3 -->
+          <div style="background:#131F10; border:1px solid #1E3116; border-radius:14px; padding:12px;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:6px;">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <div style="width:32px; height:32px; border-radius:50%; background:#1F3617; border:1px solid #B8FF3B; display:flex; align-items:center; justify-content:center; font-size:14px;">🔑</div>
+                <div>
+                  <b style="font-size:12px; color:#FFF; display:block; line-height:1.2;">Andrés R.</b>
+                  <span style="font-size:10.5px; color:#A7BCA0;">Belén Rosales · Apertura Chapa</span>
+                </div>
+              </div>
+              <span style="font-size:10px; color:#B8FF3B; background:rgba(184,255,59,0.1); padding:2px 6px; border-radius:4px; font-weight:700;">35 min</span>
+            </div>
+            <p style="font-size:11px; color:#C6D8BF; margin:0 0 6px 0; line-height:1.4;">
+              "Olvidé las llaves dentro. Abrieron la cerradura de seguridad sin dañar la puerta ni el marco. Rápido y muy respetuoso."
+            </p>
+            <div style="display:flex; justify-content:space-between; font-size:9.5px; color:#7E967A;">
+              <span>Técnico: Jorge H. (Plata)</span>
+              <span style="color:#B8FF3B;">★★★★★ 5.0</span>
+            </div>
+          </div>
+
+          <!-- Caso 4 -->
+          <div style="background:#131F10; border:1px solid #1E3116; border-radius:14px; padding:12px;">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:6px;">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <div style="width:32px; height:32px; border-radius:50%; background:#1F3617; border:1px solid #B8FF3B; display:flex; align-items:center; justify-content:center; font-size:14px;">👵</div>
+                <div>
+                  <b style="font-size:12px; color:#FFF; display:block; line-height:1.2;">Marina E.</b>
+                  <span style="font-size:10.5px; color:#A7BCA0;">Envigado · Mantenimiento Calentador</span>
+                </div>
+              </div>
+              <span style="font-size:10px; color:#B8FF3B; background:rgba(184,255,59,0.1); padding:2px 6px; border-radius:4px; font-weight:700;">45 min</span>
+            </div>
+            <p style="font-size:11px; color:#C6D8BF; margin:0 0 6px 0; line-height:1.4;">
+              "Da mucha tranquilidad saber que revisan antecedentes judiciales y cédula de los técnicos antes de enviarlos a tu casa."
+            </p>
+            <div style="display:flex; justify-content:space-between; font-size:9.5px; color:#7E967A;">
+              <span>Técnico: Fernando T. (Oro VIP)</span>
+              <span style="color:#B8FF3B;">★★★★★ 4.9</span>
+            </div>
+          </div>
+        </div>
+      </div>`;
+  }
+
   function renderExpressTradeSection() {
     return `
       <div class="express-catalog-card" style="margin:14px 0; background:linear-gradient(145deg, #121A0F, #0A1108); border:1.5px solid #2F4A1F; border-radius:18px; padding:16px; box-shadow:0 8px 30px rgba(0,0,0,0.5);">
@@ -612,10 +715,11 @@
         return (
           originalHtml.slice(0, searchEndIndex) +
           renderExpressTradeSection() +
+          renderRealCasesSection() +
           originalHtml.slice(searchEndIndex)
         );
       }
-      return renderExpressTradeSection() + originalHtml;
+      return renderExpressTradeSection() + renderRealCasesSection() + originalHtml;
     };
     global.VIEWS.home._sofiaHooked = true;
   }
