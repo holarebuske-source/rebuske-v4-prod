@@ -20,7 +20,7 @@
   <!-- Tipografía Unificada Syne (Compactada para evitar deformación de ancho) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -35,7 +35,7 @@
       --accent-warm: #FFD35C;
       --text-white: #F2F5EE;
       --text-gray: #B4BDAE;
-      --font-main: 'Syne', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       --glow-card: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(60, 255, 46, 0.08);
     }
 
@@ -45,7 +45,7 @@
     body {
       background-color: var(--bg-dark);
       color: var(--text-gray);
-      font-family: var(--font-main) !important;
+      font-family: 'Plus Jakarta Sans', sans-serif !important;
       letter-spacing: -0.025em !important;
       font-size: 15.5px;
       line-height: 1.6;
@@ -56,8 +56,8 @@
     }
 
     h1, h2, h3, h4, h5, .brand-logo, .sec-title, .cat-title {
-      font-family: var(--font-main) !important;
-      letter-spacing: -0.038em !important;
+      font-family: 'Plus Jakarta Sans', sans-serif !important;
+      letter-spacing: -0.015em; /* compat: letter-spacing: -0.038em */ !important;
       font-weight: 700 !important;
       line-height: 1.15 !important;
     }
