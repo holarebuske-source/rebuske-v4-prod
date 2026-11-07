@@ -11,6 +11,14 @@
       "destination": "/api/register-pro"
     },
     {
+      "source": "/registro/tecnico",
+      "destination": "/registro-tecnico.html"
+    },
+    {
+      "source": "/registro/cliente",
+      "destination": "/registro-cliente.html"
+    },
+    {
       "source": "/entrada",
       "destination": "/entrada.html"
     },
