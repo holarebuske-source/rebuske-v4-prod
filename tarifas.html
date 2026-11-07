@@ -1,337 +1,1504 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-CO">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tarifas y Precios de Referencia 2026 · rebuske Medellín</title>
-  <meta name="description" content="Consulta los precios de referencia para plomería, electricidad, cerrajería y aseo en Medellín. Visita diagnóstica $35.000 COP abonable al trabajo y 48h de garantía." />
+  <title>Tarifario Oficial 2026 · 17 Categorías y Precios de Referencia · rebuske Medellín</title>
+  <meta name="description" content="Consulta los precios de referencia para los 17 servicios del hogar, educación, tecnología, vehículos y eventos en Medellín con Bóveda Wompi y Bóveda de Sesiones Progresivas." />
+  <link rel="canonical" href="https://rebuske.vercel.app/tarifas">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Tarifario Oficial 2026 · 17 Categorías · rebuske Medellín">
+  <meta property="og:description" content="Precios transparentes y sistema de pago seguro en Bóveda Wompi (Bancolombia) por labor, por sesiones progresivas y por hitos.">
+  <meta property="og:url" content="https://rebuske.vercel.app/tarifas">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon e Iconos -->
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <link rel="alternate icon" type="image/png" href="/favicon.png">
-  <link rel="apple-touch-icon" href="/favicon.png">
-  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <!-- Tipografía Unificada Syne (Compactada para evitar deformación de ancho) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
     :root {
-      --lima: #B8FF3B;
-      --ebano: #0C120A;
-      --ebano-surface: #121A0E;
-      --borde: #24391E;
-      --blanco: #F4FBF1;
+      --bg-dark: #050A05;
+      --bg-surface: #0B140B;
+      --bg-card: rgba(10, 20, 10, 0.72);
+      --bg-card-hover: rgba(14, 28, 14, 0.90);
+      --border-subtle: rgba(255, 255, 255, 0.12);
+      --border-neon: rgba(124, 255, 26, 0.28);
+      --accent-neon: #3CFF2E;
+      --accent-neon-bright: #7BFF1A;
+      --accent-warm: #FFD35C;
+      --text-white: #F2F5EE;
+      --text-gray: #B4BDAE;
+      --font-main: 'Syne', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --glow-card: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(60, 255, 46, 0.08);
     }
-    body { background-color: var(--ebano); color: var(--blanco); font-family: 'Plus Jakarta Sans', sans-serif; }
-    h1, h2, h3, .font-brand { font-family: 'Baloo 2', cursive, sans-serif; }
-    .card-glass {
-      background: rgba(18, 26, 14, 0.85);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(44, 69, 29, 0.6);
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-gray);
+      font-family: var(--font-main) !important;
+      letter-spacing: -0.025em !important;
+      font-size: 15.5px;
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
-    .badge-lima {
-      background: rgba(184, 255, 59, 0.12);
-      border: 1px solid rgba(184, 255, 59, 0.35);
-      color: #B8FF3B;
+
+    h1, h2, h3, h4, h5, .brand-logo, .sec-title, .cat-title {
+      font-family: var(--font-main) !important;
+      letter-spacing: -0.038em !important;
+      font-weight: 700 !important;
+      line-height: 1.15 !important;
+    }
+
+    p, span, label, input, select, button, .service-name, .service-price, .service-detail {
+      letter-spacing: -0.02em !important;
+    }
+
+    .bg-glow-layer {
+      position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+      pointer-events: none; z-index: 0; overflow: hidden;
+    }
+    .glow-orb {
+      position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.18;
+      animation: floatGlow 24s ease-in-out infinite alternate;
+    }
+    .glow-orb-1 { width: 500px; height: 500px; background: radial-gradient(circle, var(--accent-neon) 0%, transparent 70%); top: -80px; left: -80px; }
+    .glow-orb-2 { width: 600px; height: 600px; background: radial-gradient(circle, #1a4d1a 0%, transparent 70%); bottom: -120px; right: -80px; }
+    @keyframes floatGlow {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(50px, 40px) scale(1.08); }
+    }
+
+    .container-wrap {
+      position: relative; z-index: 1; max-width: 1140px; margin: 0 auto; padding: 24px 20px 100px;
+    }
+
+    /* TOP BAR */
+    .top-bar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 0 24px; border-bottom: 1px solid var(--border-neon);
+      margin-bottom: 32px;
+    }
+    .brand-logo {
+      display: flex; align-items: center; gap: 10px; text-decoration: none;
+      color: var(--text-white); font-size: 19px;
+    }
+    .brand-logo-dot {
+      width: 10px; height: 10px; background: var(--accent-neon); border-radius: 50%;
+      box-shadow: 0 0 10px var(--accent-neon);
+    }
+    .nav-actions { display: flex; align-items: center; gap: 10px; }
+    .btn-pill-sec {
+      padding: 8px 18px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.04); color: var(--text-white); text-decoration: none;
+      font-size: 13.5px; font-weight: 600; transition: all 0.2s ease;
+    }
+    .btn-pill-sec:hover { border-color: var(--accent-neon); color: var(--accent-neon); transform: translateY(-2px); }
+    .btn-pill-primary {
+      padding: 8px 20px; border-radius: 999px; border: none; background: #FFFFFF;
+      color: #050A05; text-decoration: none; font-size: 13.5px; font-weight: 700;
+      transition: all 0.2s ease;
+    }
+    .btn-pill-primary:hover { box-shadow: 0 4px 18px rgba(60,255,46,0.35); transform: translateY(-2px); }
+
+    /* HERO */
+    .hero-header { text-align: center; margin-bottom: 40px; }
+    .hero-tag {
+      display: inline-block; font-size: 12px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.12em !important; color: var(--accent-neon); margin-bottom: 8px;
+    }
+    .hero-title {
+      font-size: clamp(30px, 4.5vw, 46px); color: var(--text-white); margin-bottom: 12px;
+    }
+    .hero-desc {
+      font-size: 16px; color: var(--text-gray); max-width: 780px; margin: 0 auto;
+    }
+
+    /* CARD DESTACADA: SISTEMA TRI-MODAL DE PAGO */
+    .payment-modalities-card {
+      background: var(--bg-card); border: 1.5px solid var(--border-neon); border-radius: 24px;
+      padding: 32px 28px; margin-bottom: 44px; backdrop-filter: blur(14px);
+      box-shadow: var(--glow-card);
+    }
+    .payment-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 24px;
+    }
+    @media (max-width: 860px) {
+      .payment-grid { grid-template-columns: 1fr; }
+    }
+    .payment-col {
+      background: rgba(0,0,0,0.4); border: 1px solid rgba(255,255,255,0.1); border-radius: 18px;
+      padding: 22px 18px; transition: border-color 0.2s ease;
+    }
+    .payment-col:hover { border-color: var(--accent-neon); }
+    .payment-col-title {
+      font-size: 17px; font-weight: 700; color: var(--text-white); margin-bottom: 8px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .payment-col-desc { font-size: 13.5px; color: var(--text-gray); line-height: 1.55; }
+    .badge-sesiones {
+      display: inline-block; font-size: 11px; font-weight: 700; padding: 3px 10px;
+      border-radius: 999px; background: rgba(255,211,92,0.15); border: 1px solid var(--accent-warm);
+      color: var(--accent-warm); margin-bottom: 8px;
+    }
+
+    /* BUSCADOR Y FILTROS */
+    .filter-bar {
+      display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; margin-bottom: 28px;
+    }
+    .filter-btn {
+      padding: 8px 16px; border-radius: 999px; background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.15); color: var(--text-white); font-size: 13px;
+      font-weight: 600; cursor: pointer; transition: all 0.2s ease;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      background: rgba(60,255,46,0.12); border-color: var(--accent-neon); color: var(--accent-neon);
+    }
+    .search-box {
+      max-width: 500px; margin: 0 auto 36px; position: relative;
+    }
+    .search-input {
+      width: 100%; height: 48px; border-radius: 999px; background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.2); padding: 0 20px 0 44px; color: #fff;
+      font-size: 14.5px; font-family: inherit; outline: none; transition: border-color 0.2s ease;
+    }
+    .search-input:focus { border-color: var(--accent-neon); box-shadow: 0 0 16px rgba(60,255,46,0.25); }
+    .search-icon { position: absolute; left: 18px; top: 15px; font-size: 16px; color: var(--accent-neon); }
+
+    /* TARJETAS DE CATEGORÍA (17 BLOQUES) */
+    .categories-wrap { display: flex; flex-direction: column; gap: 32px; }
+    .cat-card {
+      background: var(--bg-card); border: 1px solid var(--border-neon); border-radius: 22px;
+      padding: 28px; backdrop-filter: blur(12px); box-shadow: var(--glow-card);
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+    .cat-card:hover { transform: translateY(-3px); border-color: var(--accent-neon-bright); }
+    .cat-header {
+      display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap;
+      gap: 12px; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .cat-title {
+      font-size: 22px; font-weight: 700; color: var(--text-white); display: flex; align-items: center; gap: 10px;
+    }
+    .cat-mod-badge {
+      font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 999px;
+      background: rgba(60,255,46,0.08); border: 1px solid rgba(60,255,46,0.3); color: var(--accent-neon);
+    }
+    .cat-desc { font-size: 14px; color: var(--text-gray); margin-top: 4px; }
+
+    /* TABLA DE SUBSERVICIOS */
+    .service-table { width: 100%; border-collapse: collapse; }
+    .service-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 12px 10px; border-bottom: 1px solid rgba(255,255,255,0.05);
+      border-radius: 8px; transition: background 0.2s ease;
+    }
+    .service-row:hover { background: rgba(60,255,46,0.04); }
+    .service-row:last-child { border-bottom: none; }
+    .service-name { font-size: 15px; font-weight: 600; color: var(--text-white); margin-bottom: 2px; }
+    .service-detail { font-size: 12.5px; color: var(--text-gray); }
+    .service-price-wrap { text-align: right; flex-shrink: 0; margin-left: 16px; }
+    .service-price { font-size: 16px; font-weight: 700; color: var(--accent-neon); }
+
+    /* VISITA Y CONDICIONES */
+    .conditions-card {
+      margin-top: 40px; background: rgba(14,28,14,0.6); border: 1px solid rgba(255,211,92,0.3);
+      border-radius: 20px; padding: 24px; text-align: center;
+    }
+    .conditions-title { font-size: 18px; font-weight: 700; color: var(--accent-warm); margin-bottom: 8px; }
+    .conditions-text { font-size: 14px; color: var(--text-gray); max-width: 820px; margin: 0 auto; line-height: 1.6; }
+
+    /* FOOTER */
+    .site-footer {
+      margin-top: 60px; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08);
+      font-size: 13px; color: var(--text-gray); display: flex; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px;
     }
   </style>
 </head>
-<body class="min-h-screen py-8 px-4 sm:px-6">
-  <div class="max-w-4xl mx-auto space-y-8">
+<body>
+
+  <div class="bg-glow-layer" aria-hidden="true">
+    <div class="glow-orb glow-orb-1"></div>
+    <div class="glow-orb glow-orb-2"></div>
+  </div>
+
+  <div class="container-wrap">
     
-    <!-- HEADER NAVEGACIÓN -->
-    <header class="flex items-center justify-between pb-6 border-b border-[#24391E]">
-      <a href="/" class="flex items-center gap-2 text-[#B8FF3B] font-brand font-black text-2xl hover:opacity-90 transition">
-        <span>← rebuske</span>
+    <!-- TOP BAR -->
+    <header class="top-bar">
+      <a href="/entrada" class="brand-logo">
+        <span class="brand-logo-dot" aria-hidden="true"></span>
+        <span>rebuske Medellín 2026</span>
       </a>
-      <div class="flex items-center gap-3">
-        <a href="/" class="px-4 py-2 rounded-xl text-xs font-bold text-[#0C120A] bg-[#B8FF3B] hover:bg-[#a6eb2f] transition shadow-lg shadow-[#b8ff3b]/20">
-          📱 Abrir App
-        </a>
-        <a href="/registro" class="px-3 py-2 rounded-xl text-xs font-bold text-[#D7E5D3] bg-[#142110] border border-[#2D4527] hover:border-[#B8FF3B]/50 transition">
-          Soy Técnico
-        </a>
+      <div class="nav-actions">
+        <a href="/registro/tecnico" class="btn-pill-sec">Soy Profesional</a>
+        <a href="/registro/cliente" class="btn-pill-primary">Registro Cliente</a>
       </div>
     </header>
 
-    <!-- HERO SECTION -->
-    <section class="text-center sm:text-left space-y-4 pt-4">
-      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider badge-lima">
-        📍 Valle de Aburrá · Tarifario Oficial 2026
-      </span>
-      <h1 class="text-3xl sm:text-5xl font-black text-white leading-tight">
-        Precios Claros y Transparentes <br class="hidden sm:inline">
-        <span class="text-[#B8FF3B]">Cero Cobros a Ciegas en Medellín</span>
-      </h1>
-      <p class="text-sm sm:text-base text-[#A4BEA0] max-w-2xl leading-relaxed">
-        En rebuske no juegas a la suerte con tus reparaciones. Conoce los valores de referencia del mercado antes de pedir un profesional verificado con Bóveda Bancaria y Garantía Escrita de 48 horas.
+    <!-- HERO -->
+    <section class="hero-header">
+      <span class="hero-tag">Tarifario Integral 2026 · Valle de Aburrá</span>
+      <h1 class="hero-title">17 Categorías · Precios Transparentes de Referencia</h1>
+      <p class="hero-desc">
+        En rebuske erradicamos las sorpresas y cobros a ciegas en Medellín. Conoce los valores de referencia del mercado para hogares, educación, tecnología, vehículos, eventos y servicios profesionales con pago protegido en Bóveda Wompi (Bancolombia).
       </p>
     </section>
 
-    <!-- CARGO MÍNIMO DE VISITA Y DIAGNÓSTICO -->
-    <section class="card-glass rounded-3xl p-6 sm:p-8 border-2 border-[#B8FF3B]/30 relative overflow-hidden">
-      <div class="absolute -right-10 -bottom-10 w-44 h-44 bg-[#B8FF3B]/5 rounded-full blur-3xl pointer-events-none"></div>
-      <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
-        <div class="space-y-2">
-          <div class="flex items-center gap-2">
-            <span class="text-2xl">🛵</span>
-            <h2 class="text-xl sm:text-2xl font-black text-white">Cargo Mínimo de Visita & Diagnóstico en Sitio</h2>
+    <!-- SISTEMA TRI-MODAL DE PAGOS EN BÓVEDA WOMPI -->
+    <section class="payment-modalities-card">
+      <div style="text-align:center;">
+        <span class="badge-sesiones">FinTech Bancolombia Escrow</span>
+        <h2 style="font-size:24px;color:#fff;margin-bottom:8px;">Sistema Tri-Modal de Pagos Protegidos en Bóveda Wompi</h2>
+        <p style="font-size:14px;color:var(--text-gray);max-width:760px;margin:0 auto;">
+          Diseñado para resolver con total transparencia tanto reparaciones inmediatas como procesos formativos y de acompañamiento:
+        </p>
+      </div>
+
+      <div class="payment-grid">
+        <!-- Modalidad 1: Por Labor Única -->
+        <div class="payment-col">
+          <div class="payment-col-title">
+            <span>🛠️</span> 1. Pago por Labor Única
           </div>
-          <p class="text-xs sm:text-sm text-[#A4BEA0] leading-relaxed max-w-xl">
-            Cubre el desplazamiento y la revisión técnica presencial del profesional en tu domicilio. Protege el tiempo del técnico y te da total libertad:
+          <p class="payment-col-desc">
+            <strong>Para:</strong> Plomería, cerrajería express, electricidad puntual o aseo por jornada.<br><br>
+            <strong>Mecanismo:</strong> El 100% del valor se deposita en Bóveda Wompi antes de iniciar. Solo se libera al técnico cuando revises el trabajo finalizado y firmes el Acta Digital de Garantía de 48 horas.
           </p>
-          <ul class="text-xs text-[#C6D8BF] space-y-1.5 pt-1">
-            <li class="flex items-center gap-2">
-              <span class="text-[#B8FF3B] font-bold">✓ Si realizas el trabajo:</span>
-              <span>Los <strong>$35.000 COP se abonan al 100%</strong> del valor total de la labor. No pagas nada extra.</span>
-            </li>
-            <li class="flex items-center gap-2">
-              <span class="text-[#FACC15] font-bold">✓ Si decides no reparar:</span>
-              <span>El técnico recibe los $35.000 COP por su traslado, combustible e inspección profesional.</span>
-            </li>
-          </ul>
         </div>
-        <div class="text-center bg-[#0C120A] border border-[#2D4527] rounded-2xl p-4 sm:p-6 w-full sm:w-auto flex-shrink-0">
-          <span class="text-[11px] font-bold uppercase tracking-wider text-[#A4BEA0] block">Tarifa Base Fija</span>
-          <div class="text-3xl font-black text-[#B8FF3B] my-1">$35.000 <span class="text-xs font-normal text-white">COP</span></div>
-          <span class="text-[10px] text-[#7E9573] block">100% Abonable a tu arreglo</span>
+
+        <!-- Modalidad 2: Bóveda de Sesiones Progresivas -->
+        <div class="payment-col" style="border-color:rgba(255,211,92,0.4);background:rgba(20,25,12,0.6);">
+          <div class="payment-col-title" style="color:var(--accent-warm);">
+            <span>🎓</span> 2. Bóveda de Sesiones Progresivas
+          </div>
+          <p class="payment-col-desc">
+            <strong>Para:</strong> Clases de música, refuerzo escolar, idiomas, terapias y entrenamiento.<br><br>
+            <strong>Mecanismo:</strong> Nadie aprende en un solo día; los procesos duran 2 a 4 semanas. Pagas el pack en Bóveda Wompi. Tras cada clase dictada y confirmada en la app, <strong>se libera automáticamente la fracción de esa sesión al profesor</strong>. El saldo no visto siempre queda 100% protegido y reembolsable.
+          </p>
+        </div>
+
+        <!-- Modalidad 3: Hitos de Proyecto -->
+        <div class="payment-col">
+          <div class="payment-col-title">
+            <span>📐</span> 3. Proyectos por Hitos
+          </div>
+          <p class="payment-col-desc">
+            <strong>Para:</strong> Remodelación, construcción, desarrollo web y producción de eventos.<br><br>
+            <strong>Mecanismo:</strong> Desembolsos escalonados certificados: <strong>30% inicio/materiales</strong>, <strong>35% avance 50%</strong> verificado con fotos de peritaje y <strong>35% entrega final</strong> a satisfacción.
+          </p>
         </div>
       </div>
     </section>
+
+    <!-- BUSCADOR -->
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="serviceSearch" class="search-input" placeholder="Buscar labor o servicio (ej: guitarra, fuga, pintura, nevera)..." oninput="filtrarServicios()">
+    </div>
 
     <!-- FILTROS DE CATEGORÍA -->
-    <section class="space-y-4">
-      <div class="flex items-center justify-between">
-        <h3 class="text-lg font-bold text-white flex items-center gap-2">
-          <span>🏷️</span> Precios de Referencia por Servicio ("Desde")
-        </h3>
-        <span class="text-xs text-[#7E9573] hidden sm:inline">Mano de obra certificada</span>
-      </div>
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filtrarGrupo('todos', this)">Todas las 17 Categorías</button>
+      <button class="filter-btn" onclick="filtrarGrupo('hogar', this)">🏠 Hogar & Reparaciones</button>
+      <button class="filter-btn" onclick="filtrarGrupo('educacion', this)">🎓 Clases & Educación</button>
+      <button class="filter-btn" onclick="filtrarGrupo('tecnologia', this)">💻 Tecnología & Electro</button>
+      <button class="filter-btn" onclick="filtrarGrupo('transporte', this)">🚗 Autos & Mudanzas</button>
+      <button class="filter-btn" onclick="filtrarGrupo('digital', this)">🚀 Digital & Diseño</button>
+      <button class="filter-btn" onclick="filtrarGrupo('bienestar', this)">💆 Belleza & Cuidado</button>
+      <button class="filter-btn" onclick="filtrarGrupo('eventos', this)">🎉 Eventos</button>
+      <button class="filter-btn" onclick="filtrarGrupo('profesional', this)">⚖️ Servicios Profesionales</button>
+    </div>
 
-      <div class="flex flex-wrap gap-2" id="filter-tabs">
-        <button onclick="filterTable('all')" class="tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-[#B8FF3B] text-[#0C120A] transition" data-cat="all">Todos los Servicios</button>
-        <button onclick="filterTable('plomeria')" class="tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-[#142110] text-[#A4BEA0] hover:text-white border border-[#24391E] transition" data-cat="plomeria">🔧 Plomería</button>
-        <button onclick="filterTable('electricidad')" class="tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-[#142110] text-[#A4BEA0] hover:text-white border border-[#24391E] transition" data-cat="electricidad">⚡ Electricidad</button>
-        <button onclick="filterTable('cerrajeria')" class="tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-[#142110] text-[#A4BEA0] hover:text-white border border-[#24391E] transition" data-cat="cerrajeria">🔑 Cerrajería</button>
-        <button onclick="filterTable('aseo')" class="tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-[#142110] text-[#A4BEA0] hover:text-white border border-[#24391E] transition" data-cat="aseo">🧹 Aseo & Mantenimiento</button>
-      </div>
+    <!-- CONTENEDOR DE LAS 17 CATEGORÍAS -->
+    <div class="categories-wrap" id="categoriesWrap">
+      
+        <article class="cat-card" data-group="hogar" data-id="limpieza">
+          <div class="cat-header">
+            <div>
+              <h2 class="cat-title">
+                <span>✨</span> 1. Limpieza y Aseo
+              </h2>
+              <p class="cat-desc">Aseo profesional de hogares, oficinas, tapicería y fin de obra.</p>
+            </div>
+            <span class="cat-mod-badge">Modalidad: Labor Única / Paquete Recurrente</span>
+          </div>
 
-      <!-- TABLA PRINCIPAL DE PRECIOS -->
-      <div class="card-glass rounded-2xl overflow-hidden border border-[#24391E]">
-        <div class="overflow-x-auto">
-          <table class="w-full text-left text-xs sm:text-sm">
-            <thead class="bg-[#0C120A] border-b border-[#24391E] text-[#A4BEA0] uppercase text-[11px] font-bold tracking-wider">
-              <tr>
-                <th class="p-4 sm:p-5">Servicio / Labor Común</th>
-                <th class="p-4 sm:p-5 text-right sm:text-center">Precio "Desde"</th>
-                <th class="p-4 sm:p-5 hidden sm:table-cell">Visita Diagnóstica</th>
-                <th class="p-4 sm:p-5 hidden md:table-cell">Garantía Escrita</th>
-                <th class="p-4 sm:p-5 text-center">Acción</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-[#24391E]/60" id="pricing-body">
-              
-              <!-- PLOMERÍA -->
-              <tr class="service-row hover:bg-[#142110]/50 transition" data-category="plomeria">
-                <td class="p-4 sm:p-5">
-                  <b class="text-white block font-brand text-sm sm:text-base">Destape de Sifón o Lavamanos</b>
-                  <span class="text-xs text-[#7E9573]">Destape mecánico sin químicos corrosivos.</span>
-                </td>
-                <td class="p-4 sm:p-5 text-right sm:text-center font-bold text-[#B8FF3B] text-base sm:text-lg">
-                  $60.000 <span class="text-[11px] text-[#A4BEA0] font-normal block sm:inline">COP</span>
-                </td>
-                <td class="p-4 sm:p-5 text-xs text-[#C6D8BF] hidden sm:table-cell">$35k (Abonable)</td>
-                <td class="p-4 sm:p-5 text-xs text-[#A4BEA0] hidden md:table-cell">48 Horas Ley 1480</td>
-                <td class="p-4 sm:p-5 text-center">
-                  <a href="/?servicio=destape_sifon" class="inline-block px-3 py-1.5 rounded-lg text-xs font-bold bg-[#1C3015] text-[#B8FF3B] border border-[#4E8839] hover:bg-[#B8FF3B] hover:text-[#0C120A] transition">Pedir</a>
-                </td>
-              </tr>
+          <div class="service-table">
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Limpieza profunda de hogares y apartamentos</div>
+                  <div class="service-detail">Cocina, baños, pisos, ventanas y alcobas</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$80.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Aseo de oficinas y espacios comerciales</div>
+                  <div class="service-detail">Limpieza integral de puestos de trabajo y áreas comunes</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$90.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Limpieza post-construcción o remodelación</div>
+                  <div class="service-detail">Retiro de polvo fino, pintura residual y manchas</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$120.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Desinfección y sanitización de espacios</div>
+                  <div class="service-detail">Nebulización y aplicación de bactericidas certificados</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$75.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Limpieza de muebles, alfombras y tapicería</div>
+                  <div class="service-detail">Inyección-succión para sofás, sillas y colchones</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$60.000 COP</div>
+                </div>
+              </div>
+            
+          </div>
+        </article>
+      
+        <article class="cat-card" data-group="hogar" data-id="plomeria">
+          <div class="cat-header">
+            <div>
+              <h2 class="cat-title">
+                <span>🔧</span> 2. Plomería
+              </h2>
+              <p class="cat-desc">Destapes, fugas de agua, griferías y redes hidráulicas residenciales.</p>
+            </div>
+            <span class="cat-mod-badge">Modalidad: Labor Única</span>
+          </div>
 
-              <tr class="service-row hover:bg-[#142110]/50 transition" data-category="plomeria">
-                <td class="p-4 sm:p-5">
-                  <b class="text-white block font-brand text-sm sm:text-base">Reparación de Fuga Visible / Llave de Paso</b>
-                  <span class="text-xs text-[#7E9573]">Cambio de empaques, ajuste de acoples y sellado PVC.</span>
-                </td>
-                <td class="p-4 sm:p-5 text-right sm:text-center font-bold text-[#B8FF3B] text-base sm:text-lg">
-                  $75.000 <span class="text-[11px] text-[#A4BEA0] font-normal block sm:inline">COP</span>
-                </td>
-                <td class="p-4 sm:p-5 text-xs text-[#C6D8BF] hidden sm:table-cell">$35k (Abonable)</td>
-                <td class="p-4 sm:p-5 text-xs text-[#A4BEA0] hidden md:table-cell">48 Horas Ley 1480</td>
-                <td class="p-4 sm:p-5 text-center">
-                  <a href="/?servicio=fuga_tuberia" class="inline-block px-3 py-1.5 rounded-lg text-xs font-bold bg-[#1C3015] text-[#B8FF3B] border border-[#4E8839] hover:bg-[#B8FF3B] hover:text-[#0C120A] transition">Pedir</a>
-                </td>
-              </tr>
+          <div class="service-table">
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Destape de cañerías, lavamanos y desagües</div>
+                  <div class="service-detail">Sonda mecánica no corrosiva para sifones y bajantes</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$60.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Detección y reparación de fugas de agua</div>
+                  <div class="service-detail">Fugas visibles en acoples, llaves de paso y sanitarios</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$75.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Instalación de grifería, mezcladores y sanitarios</div>
+                  <div class="service-detail">Montaje de lavaplatos, duchas y baterías de baño</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$90.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Cambio de tuberías PVC/CPVC y redes hidráulicas</div>
+                  <div class="service-detail">Sustitución de tramos fisurados con prueba de presión</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$110.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Mantenimiento de tanques de reserva e hidróflores</div>
+                  <div class="service-detail">Lavado, desinfección y calibración de presurizador</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$120.000 COP</div>
+                </div>
+              </div>
+            
+          </div>
+        </article>
+      
+        <article class="cat-card" data-group="hogar" data-id="electricidad">
+          <div class="cat-header">
+            <div>
+              <h2 class="cat-title">
+                <span>⚡</span> 3. Electricidad
+              </h2>
+              <p class="cat-desc">Cortocircuitos, cableado, lámparas, tomas y cuadros eléctricos.</p>
+            </div>
+            <span class="cat-mod-badge">Modalidad: Labor Única</span>
+          </div>
 
-              <tr class="service-row hover:bg-[#142110]/50 transition" data-category="plomeria">
-                <td class="p-4 sm:p-5">
-                  <b class="text-white block font-brand text-sm sm:text-base">Instalación de Grifería o Mezclador</b>
-                  <span class="text-xs text-[#7E9573]">Lavaplatos, ducha o lavamanos nuevo con prueba de presión.</span>
-                </td>
-                <td class="p-4 sm:p-5 text-right sm:text-center font-bold text-[#B8FF3B] text-base sm:text-lg">
-                  $90.000 <span class="text-[11px] text-[#A4BEA0] font-normal block sm:inline">COP</span>
-                </td>
-                <td class="p-4 sm:p-5 text-xs text-[#C6D8BF] hidden sm:table-cell">$35k (Abonable)</td>
-                <td class="p-4 sm:p-5 text-xs text-[#A4BEA0] hidden md:table-cell">48 Horas Ley 1480</td>
-                <td class="p-4 sm:p-5 text-center">
-                  <a href="/?servicio=griferia" class="inline-block px-3 py-1.5 rounded-lg text-xs font-bold bg-[#1C3015] text-[#B8FF3B] border border-[#4E8839] hover:bg-[#B8FF3B] hover:text-[#0C120A] transition">Pedir</a>
-                </td>
-              </tr>
+          <div class="service-table">
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Reparación de cortocircuitos y breaker disparado</div>
+                  <div class="service-detail">Aislamiento de falla con multímetro y corrección</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$70.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Instalación de lámparas, ventiladores y puntos de luz</div>
+                  <div class="service-detail">Fijación segura en techo y empalmes certificados</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$60.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Cambio de tomas eléctricos e interruptores (hasta 3)</div>
+                  <div class="service-detail">Reemplazo de tomas polarizadas o dobles</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$50.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Instalaciones eléctricas completas para hogares</div>
+                  <div class="service-detail">Tendido de líneas independientes según norma RETIE</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$250.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Revisión de tableros eléctricos y cableado estructurado</div>
+                  <div class="service-detail">Balanceo de cargas e inspección térmica</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$85.000 COP</div>
+                </div>
+              </div>
+            
+          </div>
+        </article>
+      
+        <article class="cat-card" data-group="hogar" data-id="pintura">
+          <div class="cat-header">
+            <div>
+              <h2 class="cat-title">
+                <span>🎨</span> 4. Pintura y Acabados
+              </h2>
+              <p class="cat-desc">Pintura interior, fachadas, estuco, drywall y acabados finos.</p>
+            </div>
+            <span class="cat-mod-badge">Modalidad: Labor Única / Hitos de Obra</span>
+          </div>
 
-              <!-- ELECTRICIDAD -->
-              <tr class="service-row hover:bg-[#142110]/50 transition" data-category="electricidad">
-                <td class="p-4 sm:p-5">
-                  <b class="text-white block font-brand text-sm sm:text-base">Revisión de Cortocircuito / Breaker Disparado</b>
-                  <span class="text-xs text-[#7E9573]">Detección de falla con multímetro y corrección de línea.</span>
-                </td>
-                <td class="p-4 sm:p-5 text-right sm:text-center font-bold text-[#B8FF3B] text-base sm:text-lg">
-                  $70.000 <span class="text-[11px] text-[#A4BEA0] font-normal block sm:inline">COP</span>
-                </td>
-                <td class="p-4 sm:p-5 text-xs text-[#C6D8BF] hidden sm:table-cell">$35k (Abonable)</td>
-                <td class="p-4 sm:p-5 text-xs text-[#A4BEA0] hidden md:table-cell">48 Horas Ley 1480</td>
-                <td class="p-4 sm:p-5 text-center">
-                  <a href="/?servicio=cortocircuito" class="inline-block px-3 py-1.5 rounded-lg text-xs font-bold bg-[#1C3015] text-[#B8FF3B] border border-[#4E8839] hover:bg-[#B8FF3B] hover:text-[#0C120A] transition">Pedir</a>
-                </td>
-              </tr>
+          <div class="service-table">
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Pintura interior de paredes y techos</div>
+                  <div class="service-detail">Tarifa base por alcoba o $9.000 COP / m² dos manos</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$70.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Pintura exterior y fachadas</div>
+                  <div class="service-detail">Pintura coraza resistente a intemperie y humedad</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$180.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Resane de humedades y estucado</div>
+                  <div class="service-detail">Tratamiento antihongos, masillado y lijado fino</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$80.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Instalación de drywall y cielorrasos</div>
+                  <div class="service-detail">Por metro cuadrado instalado y encintado</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$38.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Acabados decorativos y texturizados</div>
+                  <div class="service-detail">Microcemento, veneciano y pintura arquitectónica</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$45.000 COP</div>
+                </div>
+              </div>
+            
+          </div>
+        </article>
+      
+        <article class="cat-card" data-group="hogar" data-id="carpinteria">
+          <div class="cat-header">
+            <div>
+              <h2 class="cat-title">
+                <span>🪵</span> 5. Carpintería
+              </h2>
+              <p class="cat-desc">Muebles, cocinas integrales, puertas, closets y ensamble modular.</p>
+            </div>
+            <span class="cat-mod-badge">Modalidad: Labor Única / Hitos de Proyecto</span>
+          </div>
 
-              <tr class="service-row hover:bg-[#142110]/50 transition" data-category="electricidad">
-                <td class="p-4 sm:p-5">
-                  <b class="text-white block font-brand text-sm sm:text-base">Instalación de Lámpara o Ventilador de Techo</b>
-                  <span class="text-xs text-[#7E9573]">Fijación estructural, aislamiento y conexión de control.</span>
-                </td>
-                <td class="p-4 sm:p-5 text-right sm:text-center font-bold text-[#B8FF3B] text-base sm:text-lg">
-                  $60.000 <span class="text-[11px] text-[#A4BEA0] font-normal block sm:inline">COP</span>
-                </td>
-                <td class="p-4 sm:p-5 text-xs text-[#C6D8BF] hidden sm:table-cell">$35k (Abonable)</td>
-                <td class="p-4 sm:p-5 text-xs text-[#A4BEA0] hidden md:table-cell">48 Horas Ley 1480</td>
-                <td class="p-4 sm:p-5 text-center">
-                  <a href="/?servicio=lampara" class="inline-block px-3 py-1.5 rounded-lg text-xs font-bold bg-[#1C3015] text-[#B8FF3B] border border-[#4E8839] hover:bg-[#B8FF3B] hover:text-[#0C120A] transition">Pedir</a>
-                </td>
-              </tr>
+          <div class="service-table">
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Reparación y restauración de muebles</div>
+                  <div class="service-detail">Ajuste de estructuras, lijado, tintilla y barniz</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$70.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Fabricación e instalación de cocinas integrales</div>
+                  <div class="service-detail">Por módulo / metro lineal con herrajes de cierre lento</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$350.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Cambio de puertas, ventanas y bisagras</div>
+                  <div class="service-detail">Cepillado, ajuste de marcos y cambio de pivotes</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$65.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Ensamble de muebles modulares (RTA)</div>
+                  <div class="service-detail">Armado de escritorios, centros de entretenimiento y closets</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$60.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Construcción de closets y mobiliario a medida</div>
+                  <div class="service-detail">Melamina rh resistente a humedad con divisiones</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$320.000 COP</div>
+                </div>
+              </div>
+            
+          </div>
+        </article>
+      
+        <article class="cat-card" data-group="hogar" data-id="cerrajeria">
+          <div class="cat-header">
+            <div>
+              <h2 class="cat-title">
+                <span>🔑</span> 6. Cerrajería y Seguridad
+              </h2>
+              <p class="cat-desc">Aperturas express sin daños, cerraduras digitales y copias de seguridad.</p>
+            </div>
+            <span class="cat-mod-badge">Modalidad: Labor Única</span>
+          </div>
 
-              <tr class="service-row hover:bg-[#142110]/50 transition" data-category="electricidad">
-                <td class="p-4 sm:p-5">
-                  <b class="text-white block font-brand text-sm sm:text-base">Cambio de Tomacorrientes / Interruptores (Hasta 3)</b>
-                  <span class="text-xs text-[#7E9573]">Reemplazo seguro de tomas polarizadas o dobles.</span>
-                </td>
-                <td class="p-4 sm:p-5 text-right sm:text-center font-bold text-[#B8FF3B] text-base sm:text-lg">
-                  $50.000 <span class="text-[11px] text-[#A4BEA0] font-normal block sm:inline">COP</span>
-                </td>
-                <td class="p-4 sm:p-5 text-xs text-[#C6D8BF] hidden sm:table-cell">$35k (Abonable)</td>
-                <td class="p-4 sm:p-5 text-xs text-[#A4BEA0] hidden md:table-cell">48 Horas Ley 1480</td>
-                <td class="p-4 sm:p-5 text-center">
-                  <a href="/?servicio=tomas" class="inline-block px-3 py-1.5 rounded-lg text-xs font-bold bg-[#1C3015] text-[#B8FF3B] border border-[#4E8839] hover:bg-[#B8FF3B] hover:text-[#0C120A] transition">Pedir</a>
-                </td>
-              </tr>
+          <div class="service-table">
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Apertura express de puertas residenciales (sin daños)</div>
+                  <div class="service-detail">Ganzuado técnico profesional para puertas cerradas</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$60.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Cambio de cerraduras, pomos y cilindros de seguridad</div>
+                  <div class="service-detail">Desmonte e instalación con juego de llaves nuevas</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$80.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Instalación de cerrojos multipunto y cerraduras digitales</div>
+                  <div class="service-detail">Configuración biométrica de huella, código y tarjeta</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$120.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Duplicado de llaves y controles remotos</div>
+                  <div class="service-detail">Copias de llaves de seguridad y control vehicular</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$25.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Asesoría en sistemas de seguridad para el hogar</div>
+                  <div class="service-detail">Visita diagnóstica abonable al 100% de la instalación</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$35.000 COP</div>
+                </div>
+              </div>
+            
+          </div>
+        </article>
+      
+        <article class="cat-card" data-group="hogar" data-id="jardineria">
+          <div class="cat-header">
+            <div>
+              <h2 class="cat-title">
+                <span>🌿</span> 7. Jardinería y Exteriores
+              </h2>
+              <p class="cat-desc">Poda, paisajismo, fumigación, sistemas de riego y zonas verdes.</p>
+            </div>
+            <span class="cat-mod-badge">Modalidad: Labor Única / Paquete Recurrente</span>
+          </div>
 
-              <!-- CERRAJERÍA -->
-              <tr class="service-row hover:bg-[#142110]/50 transition" data-category="cerrajeria">
-                <td class="p-4 sm:p-5">
-                  <b class="text-white block font-brand text-sm sm:text-base">Apertura Express de Puerta Residencial</b>
-                  <span class="text-xs text-[#7E9573]">Apertura sin daños estructurales para cerraduras estándar.</span>
-                </td>
-                <td class="p-4 sm:p-5 text-right sm:text-center font-bold text-[#B8FF3B] text-base sm:text-lg">
-                  $60.000 <span class="text-[11px] text-[#A4BEA0] font-normal block sm:inline">COP</span>
-                </td>
-                <td class="p-4 sm:p-5 text-xs text-[#C6D8BF] hidden sm:table-cell">$35k (Abonable)</td>
-                <td class="p-4 sm:p-5 text-xs text-[#A4BEA0] hidden md:table-cell">48 Horas Ley 1480</td>
-                <td class="p-4 sm:p-5 text-center">
-                  <a href="/?servicio=apertura_puerta" class="inline-block px-3 py-1.5 rounded-lg text-xs font-bold bg-[#1C3015] text-[#B8FF3B] border border-[#4E8839] hover:bg-[#B8FF3B] hover:text-[#0C120A] transition">Pedir</a>
-                </td>
-              </tr>
+          <div class="service-table">
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Poda de árboles, arbustos y césped</div>
+                  <div class="service-detail">Orillado, guadañado y perfilado de setos vivos</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$65.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Diseño y mantenimiento de jardines</div>
+                  <div class="service-detail">Abonado orgánico, desyerbe y reposición de plantas</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$90.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Instalación de sistemas de riego</div>
+                  <div class="service-detail">Riego por goteo o aspersión programable</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$140.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Control de plagas y fumigación</div>
+                  <div class="service-detail">Manejo fitosanitario ecológico contra insectos y hongos</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$85.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Paisajismo y embellecimiento de zonas verdes</div>
+                  <div class="service-detail">Siembra decorativa con piedras de río y corteza</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$120.000 COP</div>
+                </div>
+              </div>
+            
+          </div>
+        </article>
+      
+        <article class="cat-card" data-group="hogar" data-id="construccion">
+          <div class="cat-header">
+            <div>
+              <h2 class="cat-title">
+                <span>🧱</span> 8. Construcción y Remodelación
+              </h2>
+              <p class="cat-desc">Remodelaciones de baños, cocinas, losas, impermeabilización y obra civil.</p>
+            </div>
+            <span class="cat-mod-badge">Modalidad: Hitos Certificados (30% / 35% / 35%)</span>
+          </div>
 
-              <tr class="service-row hover:bg-[#142110]/50 transition" data-category="cerrajeria">
-                <td class="p-4 sm:p-5">
-                  <b class="text-white block font-brand text-sm sm:text-base">Cambio de Pomo o Cilindro de Seguridad</b>
-                  <span class="text-xs text-[#7E9573]">Desmonte e instalación con juego de llaves nuevas.</span>
-                </td>
-                <td class="p-4 sm:p-5 text-right sm:text-center font-bold text-[#B8FF3B] text-base sm:text-lg">
-                  $80.000 <span class="text-[11px] text-[#A4BEA0] font-normal block sm:inline">COP</span>
-                </td>
-                <td class="p-4 sm:p-5 text-xs text-[#C6D8BF] hidden sm:table-cell">$35k (Abonable)</td>
-                <td class="p-4 sm:p-5 text-xs text-[#A4BEA0] hidden md:table-cell">48 Horas Ley 1480</td>
-                <td class="p-4 sm:p-5 text-center">
-                  <a href="/?servicio=cambio_cerradura" class="inline-block px-3 py-1.5 rounded-lg text-xs font-bold bg-[#1C3015] text-[#B8FF3B] border border-[#4E8839] hover:bg-[#B8FF3B] hover:text-[#0C120A] transition">Pedir</a>
-                </td>
-              </tr>
+          <div class="service-table">
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Remodelación de baños y cocinas</div>
+                  <div class="service-detail">Mano de obra por hito certificado con peritaje</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$450.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Ampliaciones y adecuaciones locativas</div>
+                  <div class="service-detail">Visita técnica de diagnóstico y presupuesto detallado</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$35.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Obra civil y acabados generales</div>
+                  <div class="service-detail">Enchape porcelanato, nivelación de pisos y muros</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$150.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Impermeabilización de losas y cubiertas</div>
+                  <div class="service-detail">Por m² con manto asfáltico o polímero acrílico</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$32.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Consultoría y supervisión de proyectos</div>
+                  <div class="service-detail">Interventoría técnica y peritaje de avance</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$120.000 COP</div>
+                </div>
+              </div>
+            
+          </div>
+        </article>
+      
+        <article class="cat-card" data-group="transporte" data-id="mudanzas">
+          <div class="cat-header">
+            <div>
+              <h2 class="cat-title">
+                <span>📦</span> 9. Mudanzas y Transporte
+              </h2>
+              <p class="cat-desc">Acarreos en camioneta, trasteos en furgón, embalaje y transporte de carga.</p>
+            </div>
+            <span class="cat-mod-badge">Modalidad: Labor Única</span>
+          </div>
 
-              <!-- ASEO -->
-              <tr class="service-row hover:bg-[#142110]/50 transition" data-category="aseo">
-                <td class="p-4 sm:p-5">
-                  <b class="text-white block font-brand text-sm sm:text-base">Media Jornada de Limpieza y Aseo (4 Horas)</b>
-                  <span class="text-xs text-[#7E9573]">Aseo general de cocina, baños, pisos y habitaciones.</span>
-                </td>
-                <td class="p-4 sm:p-5 text-right sm:text-center font-bold text-[#B8FF3B] text-base sm:text-lg">
-                  $70.000 <span class="text-[11px] text-[#A4BEA0] font-normal block sm:inline">COP</span>
-                </td>
-                <td class="p-4 sm:p-5 text-xs text-[#C6D8BF] hidden sm:table-cell">Tarifa Completa</td>
-                <td class="p-4 sm:p-5 text-xs text-[#A4BEA0] hidden md:table-cell">Garantía Inmediata</td>
-                <td class="p-4 sm:p-5 text-center">
-                  <a href="/?servicio=aseo_4h" class="inline-block px-3 py-1.5 rounded-lg text-xs font-bold bg-[#1C3015] text-[#B8FF3B] border border-[#4E8839] hover:bg-[#B8FF3B] hover:text-[#0C120A] transition">Pedir</a>
-                </td>
-              </tr>
+          <div class="service-table">
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Mudanzas residenciales (camioneta o furgón)</div>
+                  <div class="service-detail">Desde $90k en camioneta a $220k furgón mediano</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$90.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Transporte de carga y mercancía</div>
+                  <div class="service-detail">Rutas urbanas en Medellín y Valle de Aburrá</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$80.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Embalaje profesional y desmontaje de muebles</div>
+                  <div class="service-detail">Plástico vinipel, mantas protectoras y desarme</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$70.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Mudanzas nacionales e intermunicipales</div>
+                  <div class="service-detail">Oriente Antioqueño, Eje Cafetero y Bogotá</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$400.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Servicio de trasteo para oficinas y empresas</div>
+                  <div class="service-detail">Traslado seguro de puestos de trabajo y tecnología</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$250.000 COP</div>
+                </div>
+              </div>
+            
+          </div>
+        </article>
+      
+        <article class="cat-card" data-group="tecnologia" data-id="electrodomesticos">
+          <div class="cat-header">
+            <div>
+              <h2 class="cat-title">
+                <span>🧊</span> 10. Electrodomésticos
+              </h2>
+              <p class="cat-desc">Reparación de neveras, lavadoras, calentadores y estufas a gas.</p>
+            </div>
+            <span class="cat-mod-badge">Modalidad: Labor Única</span>
+          </div>
 
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
+          <div class="service-table">
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Reparación de neveras y refrigeradores</div>
+                  <div class="service-detail">Carga de gas, cambio de termostato, bimetálico y motor</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$85.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Servicio técnico para lavadoras y secadoras</div>
+                  <div class="service-detail">Cambio de bomba de desagüe, bandas y tarjeta electrónica</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$80.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Mantenimiento de estufas, hornos y calentadores</div>
+                  <div class="service-detail">Limpieza de inyectores, cambio de diafragma y termocupla</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$75.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Instalación de electrodomésticos nuevos</div>
+                  <div class="service-detail">Conexión hídrica, eléctrica y de gas bajo norma</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$60.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Diagnóstico y reparación de fallas electrónicas</div>
+                  <div class="service-detail">Revisión de tarjetas de potencia y sensores digitales</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$70.000 COP</div>
+                </div>
+              </div>
+            
+          </div>
+        </article>
+      
+        <article class="cat-card" data-group="tecnologia" data-id="tecnologia">
+          <div class="cat-header">
+            <div>
+              <h2 class="cat-title">
+                <span>💻</span> 11. Tecnología e Instalación
+              </h2>
+              <p class="cat-desc">Computadores, celulares, redes WiFi, cámaras CCTV y domótica.</p>
+            </div>
+            <span class="cat-mod-badge">Modalidad: Labor Única</span>
+          </div>
 
-    <!-- CUOTA DE PROTECCIÓN EXPLICADA -->
-    <section class="card-glass rounded-3xl p-6 sm:p-8 space-y-4">
-      <div class="flex items-center gap-3">
-        <span class="w-10 h-10 rounded-xl bg-[#080E06] border border-[#B8FF3B]/40 flex items-center justify-center text-xl text-[#B8FF3B]">
-          🛡️
-        </span>
-        <div>
-          <h3 class="text-lg sm:text-xl font-black text-white">Transparencia en el Checkout: Cuota de Protección ($4.900 COP)</h3>
-          <p class="text-xs text-[#A4BEA0]">¿Qué cubre la cuota en cada orden de servicio?</p>
-        </div>
-      </div>
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2 text-xs">
-        <div class="bg-[#0C120A] p-4 rounded-xl border border-[#24391E]">
-          <b class="text-white block font-brand text-sm mb-1">1. Bóveda Wompi</b>
-          <p class="text-[#A4BEA0]">Cero anticipos. El técnico no recibe el pago hasta que revises y firmes el acta digital de entrega.</p>
-        </div>
-        <div class="bg-[#0C120A] p-4 rounded-xl border border-[#24391E]">
-          <b class="text-white block font-brand text-sm mb-1">2. Garantía Escrita 48h</b>
-          <p class="text-[#A4BEA0]">Si hay goteo o desajuste en 48 horas, congelamos los fondos y el técnico regresa sin costo.</p>
-        </div>
-        <div class="bg-[#0C120A] p-4 rounded-xl border border-[#24391E]">
-          <b class="text-white block font-brand text-sm mb-1">3. Técnicos Verificados</b>
-          <p class="text-[#A4BEA0]">Revisión de cédula, antecedentes judiciales y mínimo 5 fotos de trabajos reales en Medellín.</p>
-        </div>
-      </div>
+          <div class="service-table">
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Reparación de computadores portátiles y de escritorio</div>
+                  <div class="service-detail">Formateo, cambio de disco a SSD y mantenimiento térmico</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$60.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Servicio técnico para celulares y tablets</div>
+                  <div class="service-detail">Cambio de pantalla, batería y puerto de carga</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$50.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Instalación y configuración de redes WiFi</div>
+                  <div class="service-detail">Configuración de routers, puntos de acceso Mesh y cableado</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$55.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Instalación de cámaras de seguridad y CCTV</div>
+                  <div class="service-detail">Por punto de cámara con monitoreo en app móvil</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$75.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Mantenimiento preventivo de equipos tecnológicos</div>
+                  <div class="service-detail">Limpieza interna de disipadores y optimización SO</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$50.000 COP</div>
+                </div>
+              </div>
+            
+          </div>
+        </article>
+      
+        <article class="cat-card" data-group="transporte" data-id="automoviles">
+          <div class="cat-header">
+            <div>
+              <h2 class="cat-title">
+                <span>🚗</span> 12. Automóviles
+              </h2>
+              <p class="cat-desc">Mecánica ligera, detailing a domicilio, cambio de aceite y sonido.</p>
+            </div>
+            <span class="cat-mod-badge">Modalidad: Labor Única</span>
+          </div>
+
+          <div class="service-table">
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Mecánica general y diagnóstico vehicular</div>
+                  <div class="service-detail">Escaneo con escáner OBD2 y revisión preventiva</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$70.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Lavado y detailing a domicilio (interior y exterior)</div>
+                  <div class="service-detail">Lavado ecológico sin reguero de agua y porcelanizado</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$45.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Cambio de aceite, lubricación y mantenimiento</div>
+                  <div class="service-detail">Mano de obra para cambio de filtro y fluidos</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$45.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Alineación, balanceo y cambio de llantas</div>
+                  <div class="service-detail">Montaje de llantas y calibración computarizada</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$50.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Instalación de accesorios y sonido automotriz</div>
+                  <div class="service-detail">Radios Android, alarmas, sensores de reversa y bafles</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$65.000 COP</div>
+                </div>
+              </div>
+            
+          </div>
+        </article>
+      
+        <article class="cat-card" data-group="digital" data-id="digital">
+          <div class="cat-header">
+            <div>
+              <h2 class="cat-title">
+                <span>🚀</span> 13. Diseño, Tecnología y Servicios Digitales
+              </h2>
+              <p class="cat-desc">Páginas web, tiendas online, branding, marketing digital y apps móviles.</p>
+            </div>
+            <span class="cat-mod-badge">Modalidad: Hitos Certificados (30% / 35% / 35%)</span>
+          </div>
+
+          <div class="service-table">
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Diseño y desarrollo de páginas web</div>
+                  <div class="service-detail">Sitio web profesional responsive con hosting y dominio</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$350.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Creación de tiendas online y landings</div>
+                  <div class="service-detail">Página de aterrizaje optimizada para ventas y WhatsApp</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$220.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Diseño gráfico y branding corporativo</div>
+                  <div class="service-detail">Logotipo profesional, paleta de color y manual de marca</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$150.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Marketing digital y manejo de redes sociales</div>
+                  <div class="service-detail">Gestión mensual de contenido en Instagram, TikTok y Meta Ads</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$250.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Desarrollo de aplicaciones móviles</div>
+                  <div class="service-detail">Módulo o hito de desarrollo para Android e iOS</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$600.000 COP</div>
+                </div>
+              </div>
+            
+          </div>
+        </article>
+      
+        <article class="cat-card" data-group="educacion" data-id="educacion">
+          <div class="cat-header">
+            <div>
+              <h2 class="cat-title">
+                <span>🎓</span> 14. Clases y Educación
+              </h2>
+              <p class="cat-desc">Clases particulares de matemáticas, idiomas, música y habilidades digitales.</p>
+            </div>
+            <span class="cat-mod-badge">Modalidad: Bóveda de Sesiones Progresivas (Pago por Clase Validada)</span>
+          </div>
+
+          <div class="service-table">
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Clases particulares de matemáticas, física y química</div>
+                  <div class="service-detail">Pack 4 sesiones (2 semanas): $130.000 COP · Pack 8 sesiones (1 mes): $240.000 COP</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$35.000 COP / hora</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Refuerzo escolar y apoyo académico</div>
+                  <div class="service-detail">Acompañamiento en tareas escolares y preparación de exámenes</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$30.000 COP / hora</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Clases de idiomas (inglés, francés, etc.)</div>
+                  <div class="service-detail">Pack 4 sesiones conversacionales (2 semanas): $150.000 COP</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$40.000 COP / hora</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Enseñanza de música e instrumentos (guitarra, piano, técnica vocal)</div>
+                  <div class="service-detail">Pack 4 clases (2 semanas): $150.000 COP · Pack 8 clases (1 mes): $280.000 COP</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$40.000 COP / hora</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Capacitación en habilidades digitales y tecnología</div>
+                  <div class="service-detail">Programación básica, Excel avanzado y herramientas de IA</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$45.000 COP / hora</div>
+                </div>
+              </div>
+            
+          </div>
+        </article>
+      
+        <article class="cat-card" data-group="bienestar" data-id="belleza">
+          <div class="cat-header">
+            <div>
+              <h2 class="cat-title">
+                <span>💇</span> 15. Belleza y Cuidado Personal
+              </h2>
+              <p class="cat-desc">Cortes, peinados, manicure, estética facial y masajes a domicilio.</p>
+            </div>
+            <span class="cat-mod-badge">Modalidad: Labor Única / Paquete de Bienestar</span>
+          </div>
+
+          <div class="service-table">
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Cortes de cabello, peinados y coloración</div>
+                  <div class="service-detail">Corte unisex o secado/ondas a domicilio con bioseguridad</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$35.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Manicure, pedicure y uñas acrílicas/gel</div>
+                  <div class="service-detail">Semipermanente con instrumental esterilizado individual</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$40.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Tratamientos faciales y cuidado de la piel</div>
+                  <div class="service-detail">Limpieza profunda, microdermoabrasión y mascarilla</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$65.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Depilación y tratamientos corporales</div>
+                  <div class="service-detail">Cera miel vegetal o roll-on para diferentes zonas</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$45.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Masajes relajantes y terapias de bienestar</div>
+                  <div class="service-detail">Sesión completa de 60 min con aceites esenciales</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$80.000 COP</div>
+                </div>
+              </div>
+            
+          </div>
+        </article>
+      
+        <article class="cat-card" data-group="eventos" data-id="eventos">
+          <div class="cat-header">
+            <div>
+              <h2 class="cat-title">
+                <span>🎉</span> 16. Eventos
+              </h2>
+              <p class="cat-desc">Catering, fotografía, decoración, sonido y organización integral.</p>
+            </div>
+            <span class="cat-mod-badge">Modalidad: Hitos de Evento (50% Reserva / 50% Día del Evento)</span>
+          </div>
+
+          <div class="service-table">
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Catering y servicio gastronómico para eventos</div>
+                  <div class="service-detail">Por persona con plato principal, bebida y pasabocas</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$35.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Fotografía y video de eventos sociales</div>
+                  <div class="service-detail">Por hora de cubrimiento con galería editada en alta resolución</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$120.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Decoración y diseño de espacios para celebraciones</div>
+                  <div class="service-detail">Arcos de globos orgánicos, mobiliario temático y flores</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$200.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Organización integral de bodas y fiestas</div>
+                  <div class="service-detail">Planeación de proveedores, protocolo y coordinación en sitio</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$450.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Alquiler de equipos de sonido, iluminación y karaoke</div>
+                  <div class="service-detail">Cabinas activas, micrófonos inalámbricos y luces disco</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$150.000 COP</div>
+                </div>
+              </div>
+            
+          </div>
+        </article>
+      
+        <article class="cat-card" data-group="profesional" data-id="profesional">
+          <div class="cat-header">
+            <div>
+              <h2 class="cat-title">
+                <span>⚖️</span> 17. Servicios Profesionales
+              </h2>
+              <p class="cat-desc">Asesoría legal, contabilidad, impuestos, consultoría y constitución de empresas.</p>
+            </div>
+            <span class="cat-mod-badge">Modalidad: Labor Única / Asesoría Progresiva</span>
+          </div>
+
+          <div class="service-table">
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Asesoría legal y representación jurídica</div>
+                  <div class="service-detail">Concepto jurídico civil, laboral, comercial o inmobiliario</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$90.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Contabilidad, impuestos y revisoría fiscal</div>
+                  <div class="service-detail">Declaración de renta personal o contabilidad mensual pyme</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$80.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Consultoría empresarial y financiera</div>
+                  <div class="service-detail">Plan de negocios, reducción de costos y estructuración</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$120.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Auditoría y gestión administrativa</div>
+                  <div class="service-detail">Revisión de procesos internos y control de riesgos</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$150.000 COP</div>
+                </div>
+              </div>
+            
+              <div class="service-row">
+                <div>
+                  <div class="service-name">Trámites legales y constitución de empresas</div>
+                  <div class="service-detail">Creación de SAS en Cámara de Comercio, RUT y estatutos</div>
+                </div>
+                <div class="service-price-wrap">
+                  <div class="service-price">$200.000 COP</div>
+                </div>
+              </div>
+            
+          </div>
+        </article>
+      
+    </div>
+
+    <!-- CONDICIONES GENERALES -->
+    <section class="conditions-card">
+      <h3 class="conditions-title">Condiciones Generales y Garantía de Servicio en Medellín</h3>
+      <p class="conditions-text">
+        <strong>Visita diagnóstica en sitio:</strong> $35.000 COP (100% abonable al valor final de la labor si decides contratar el servicio con el profesional).<br>
+        <strong>Garantía Escrita:</strong> Todos los servicios cuentan con Acta Digital de Garantía de 48 horas bajo la Ley 1480 de 2011.<br>
+        <strong>Seguridad:</strong> Pagos custodiados en Bóveda Wompi (Bancolombia). Prohibido el manejo de efectivo riesgoso en la calle.
+      </p>
     </section>
 
     <!-- FOOTER -->
-    <footer class="pt-6 border-t border-[#24391E] flex flex-col sm:flex-row items-center justify-between text-xs text-[#7A9174] gap-4">
-      <span>rebuske Colombia © 2026 · Camilo Escobar</span>
-      <div class="flex items-center gap-4">
-        <a href="/terminos" class="hover:text-[#B8FF3B] transition">Términos Legales</a>
-        <a href="/reembolsos" class="hover:text-[#B8FF3B] transition">Reembolsos</a>
-        <a href="/descuentos" class="hover:text-[#B8FF3B] transition">Bono Bienvenida</a>
-        <a href="/" class="hover:text-[#B8FF3B] transition font-bold text-[#B8FF3B]">Abrir App</a>
+    <footer class="site-footer">
+      <span>© 2026 rebuske. Todos los derechos reservados · Medellín, Colombia</span>
+      <div>
+        <a href="/entrada" style="color:var(--accent-neon);text-decoration:none;margin-right:16px;">Portal /entrada</a>
+        <a href="/terminos" style="color:var(--text-gray);text-decoration:none;margin-right:16px;">Términos</a>
+        <a href="/privacidad" style="color:var(--text-gray);text-decoration:none;">Privacidad</a>
       </div>
     </footer>
 
   </div>
 
   <script>
-    function filterTable(cat) {
-      const rows = document.querySelectorAll('.service-row');
-      const tabs = document.querySelectorAll('.tab-btn');
-      
-      tabs.forEach(t => {
-        if (t.dataset.cat === cat) {
-          t.className = 'tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-[#B8FF3B] text-[#0C120A] transition';
+    // Filtro interactivo por grupos de categoría
+    function filtrarGrupo(grupo, btn) {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const cards = document.querySelectorAll('.cat-card');
+      cards.forEach(card => {
+        if (grupo === 'todos' || card.dataset.group === grupo) {
+          card.style.display = 'block';
         } else {
-          t.className = 'tab-btn px-4 py-2 rounded-xl text-xs font-bold bg-[#142110] text-[#A4BEA0] hover:text-white border border-[#24391E] transition';
+          card.style.display = 'none';
         }
       });
+    }
 
-      rows.forEach(r => {
-        if (cat === 'all' || r.dataset.category === cat) {
-          r.style.display = '';
+    // Buscador interactivo en tiempo real
+    function filtrarServicios() {
+      const q = document.getElementById('serviceSearch').value.toLowerCase().trim();
+      const cards = document.querySelectorAll('.cat-card');
+
+      cards.forEach(card => {
+        const text = card.textContent.toLowerCase();
+        if (!q || text.includes(q)) {
+          card.style.display = 'block';
         } else {
-          r.style.display = 'none';
+          card.style.display = 'none';
         }
       });
     }
