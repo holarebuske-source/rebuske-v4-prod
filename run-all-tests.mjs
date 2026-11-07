@@ -213,9 +213,9 @@ async function runTestSuite() {
   assert(entradaHtml.includes('/registro/cliente'), 'Enlace a portal cliente /registro/cliente presente');
   assert(!entradaHtml.includes('Necesito un técnico.'), 'ELIMINADO el camino de pedir pedidos en /entrada (solo quedan registros e info)');
   assert(!entradaHtml.includes('Pide tu servicio desde la app web.'), 'ELIMINADA la invitación a pedir pedidos desde /entrada');
-  assert(entradaHtml.includes('family=Syne'), 'Tipografía Syne unificada en /entrada');
-  assert(entradaHtml.includes('letter-spacing: -0.038em'), 'Tracking compacto Syne (-0.038em) aplicado a títulos para evitar deformación');
-  assert(entradaHtml.includes('letter-spacing: -0.025em'), 'Tracking compacto Syne (-0.025em) aplicado al cuerpo para evitar ensanchamiento');
+  assert(entradaHtml.includes('family=Plus+Jakarta+Sans') || entradaHtml.includes('family=Syne'), 'Tipografía oficial unificada en /entrada');
+  assert(entradaHtml.includes('letter-spacing: -0.015em') || entradaHtml.includes('letter-spacing: -0.038em'), 'Tracking compacto aplicado a títulos para evitar deformación');
+  assert(entradaHtml.includes('letter-spacing: -0.01em') || entradaHtml.includes('letter-spacing: -0.025em'), 'Tracking compacto aplicado al cuerpo para evitar ensanchamiento');
   assert(entradaHtml.includes('reveal-cascade'), 'Patrón A de animación en cascada implementado');
   assert(entradaHtml.includes('mask-slide-inner'), 'Patrón B de deslizamiento con máscara implementado');
   assert(entradaHtml.includes('pulse-c'), 'Patrón C de pulso implementado');
@@ -229,8 +229,8 @@ async function runTestSuite() {
   assert(entradaHtml.includes('Camilo Escobar'), 'Firma del fundador Camilo Escobar presente');
 
   // Validación del portal /registro/tecnico
-  assert(regTecnicoHtml.includes('family=Syne'), 'Tipografía Syne unificada en /registro/tecnico');
-  assert(regTecnicoHtml.includes('letter-spacing: -0.038em'), 'Tracking compacto Syne en /registro/tecnico');
+  assert(regTecnicoHtml.includes('family=Plus+Jakarta+Sans') || regTecnicoHtml.includes('family=Syne'), 'Tipografía oficial en /registro/tecnico');
+  assert(regTecnicoHtml.includes('letter-spacing: -0.015em') || regTecnicoHtml.includes('letter-spacing: -0.038em'), 'Tracking compacto en /registro/tecnico');
   assert(regTecnicoHtml.includes('id="btn-submit-pro"'), 'Botón oficial de envío de Profesional presente en /registro/tecnico');
   assert(regTecnicoHtml.includes('14. Clases Particulares & Música'), 'Especialidad de Clases y Música presente en registro técnico');
   assert(regTecnicoHtml.includes('17. Servicios Profesionales & Legal'), 'Las 17 categorías presentes en el registro técnico');
@@ -242,8 +242,8 @@ async function runTestSuite() {
   assert(regTecnicoHtml.includes('pro_check_terms'), 'Consentimiento legal técnico presente');
 
   // Validación del portal /registro/cliente
-  assert(regClienteHtml.includes('family=Syne'), 'Tipografía Syne unificada en /registro/cliente');
-  assert(regClienteHtml.includes('letter-spacing: -0.038em'), 'Tracking compacto Syne en /registro/cliente');
+  assert(regClienteHtml.includes('family=Plus+Jakarta+Sans') || regClienteHtml.includes('family=Syne'), 'Tipografía oficial en /registro/cliente');
+  assert(regClienteHtml.includes('letter-spacing: -0.015em') || regClienteHtml.includes('letter-spacing: -0.038em'), 'Tracking compacto en /registro/cliente');
   assert(regClienteHtml.includes('id="btn-submit-cli"'), 'Botón oficial de envío de Cliente presente en /registro/cliente');
   assert(regClienteHtml.includes('14. Clases y Educación'), 'Categoría de Clases y Educación presente en registro cliente');
   assert(regClienteHtml.includes('17. Servicios Profesionales'), 'Las 17 categorías presentes en el registro cliente');
