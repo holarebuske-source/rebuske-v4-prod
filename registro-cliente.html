@@ -20,7 +20,7 @@
   <!-- Tipografía -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -35,7 +35,7 @@
       --text-white: #F2F5EE;
       --text-gray: #B4BDAE;
       --danger: #FF4D4D;
-      --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-main: 'Syne', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     }
 
     * {
@@ -582,6 +582,28 @@
         transition: none !important;
       }
     }
+  
+    /* UNIFICACIÓN TIPOGRÁFICA SYNE COMPACTADA (Evita ensanchamiento y deformación) */
+    html, body {
+      font-family: 'Syne', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+      letter-spacing: -0.025em !important;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    h1, h2, h3, h4, h5, .brand-logo, .hero-title, .form-card-title, .step-title, .sec-title {
+      font-family: 'Syne', sans-serif !important;
+      letter-spacing: -0.038em !important;
+      font-weight: 700 !important;
+      line-height: 1.15 !important;
+    }
+    p, span, label, input, select, button, .form-input, .form-select, .form-label {
+      letter-spacing: -0.02em !important;
+    }
+    .btn-submit-action, .btn-pill-primary {
+      letter-spacing: -0.025em !important;
+      font-weight: 700 !important;
+    }
+
   </style>
 </head>
 <body>
