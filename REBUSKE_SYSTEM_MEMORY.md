@@ -9,7 +9,7 @@ Este archivo rige todas las decisiones, agentes y automatizaciones de Rebuske.
 - ✅ **Meta (Facebook & Instagram):** Conectado directamente vía Meta Graph API v21.0 a la Página Oficial `Rebuske` (ID: 1326854307188662) y `@rebuske.col`.
 - ✅ **WhatsApp Business:** Conectado directamente a la línea oficial `+57 304 381 2882` vía enlaces directos y webhooks.
 - ✅ **X (Twitter):** Conectado directamente a `@rebuskeapp` vía X API v2 (Tokens generados) con fallback instantáneo a X Intent.
-- ✅ **FinTech Wompi Producción:** División estricta 7% Rebuske / 93% Profesional. Pre-filtro KYC con 5 fotos mínimas y foto de perfil sin logos.
+- ✅ **FinTech Wompi Producción:** Matriz oficial escalonada: Bronce 18% (82% pro), Plata 14% (86% pro), Oro VIP 11% (89% pro) y Mes 1 Fundador 1% (99% pro). Pre-filtro KYC con 5 fotos mínimas y foto de perfil sin logos.
 - ✅ **Protocolo de Publicación Inmediata (1 Toque) Aprobado por el CEO Canashi:** Formato estándar obligatorio para todas las campañas. Los agentes 📢 Sofia 📢, 🎨 Valeria 🎨 y 🎭 Da vinci 🎭 presentan cada lanzamiento con enlaces directos pre-cargados al composer/intent de cada red, archivo gráfico fotorrealista vinculado y texto optimizado para publicación en 1 toque.
 
 ## 2. Los Informes Autónomos y el Equipo de 27 Agentes Oficiales
@@ -28,7 +28,7 @@ Este archivo rige todas las decisiones, agentes y automatizaciones de Rebuske.
   - **Galloti (Telemetría y Tiempo Real):** WebSockets para estados en vivo: en camino → trabajando → finalizado.
   - **Elena (Ciencia de Datos):** Modelos predictivos de demanda técnica para Medellín y comunas.
 - **Finanzas, Pagos y Control (7):**
-  - **Tomás (FinTech & Bóveda Wompi):** Control compartido con CEO: tarifa Oro VIP 7% vitalicio y Fundadores 1% primer mes. Retención transparente y confirmada.
+  - **Tomás (FinTech & Bóveda Wompi):** Control compartido con CEO: tarifa Oro VIP 11% (89% pro), Plata 14% (86% pro), Bronce 18% (82% pro) y Fundadores 1% primer mes (99% pro). Retención transparente y confirmada.
   - **Mariana (CFO):** Balance diario de caja y conciliación exacta al centavo.
   - **Cayse (Contabilidad e Impuestos):** Libros mensuales y documentación tributaria a `holarebuske@gmail.com`.
   - **Patricia (Auditoría de Pagos):** Cruce y validación con Nequi, Bancolombia y Daviplata; alerta de demoras al CFO.
@@ -55,7 +55,7 @@ Este archivo rige todas las decisiones, agentes y automatizaciones de Rebuske.
 
 ## 4. Convocatoria de Profesionales Primordiales (`rebuske.vercel.app/pro`)
 - Landing page inspirada en las referencias del CEO:
-  - **Studio Size:** Estética dark luxury brutalist, tipografía contundente, catálogo interactivo de oficios con ganancia neta (93%) y tickets promedio en Medellín.
+  - **Studio Size:** Estética dark luxury brutalist, tipografía contundente, catálogo interactivo de oficios con ganancia neta (89% Oro VIP / 99% mes 1) y tickets promedio en Medellín.
   - **Botón Iridiscente ("Get Moving"):** Brillo reactivo al cursor (`mousemove`), reflejos dinámicos y micro-animación.
   - **Simulador de Teléfono:** Conversación animada secuencial (cliente en El Poblado + plomero primordial + depósito Wompi + desembolso Nequi).
 - Formulario con Google (`@gmail.com`), selfie facial obligatoria (sin logos ni paisajes), comunas de Medellín y cupos en vivo (84/100).
@@ -120,7 +120,7 @@ Aprobado por el CEO para todo el ecosistema de agentes (Sofía, Valeria, Simón,
 | :--- | :--- | :--- | :--- | :--- |
 | **TikTok** | `@somos.rebuske` | Jóvenes, técnicos jóvenes, clientes con urgencias rápidas. | Ágil, divertido, gancho en <0.8s, lenguaje paisa directo, situaciones cotidianas del hogar en Medellín. Resaltadores `--lima` y `--canario`. | Video 9:16 Vertical (1080x1920), 15 a 20s con barra de progreso superior. |
 | **Instagram** | `@rebuske.col` | Hogares, familias, arrendatarios y propietarios en Laureles, Poblado, Envigado. | Confianza, estética cuidada, antes vs después, orgullo del hogar bien arreglado, reseñas 5★ (Don Jairo, Sandra), Bóveda Wompi y 2 días de garantía. | Reels 9:16 y Carruseles 4:5 (1080x1350) con portadas limpias. |
-| **Facebook** | Fanpage Rebuske & Grupos de Barrio | Maestros mayores, agremiaciones de oficios, ferreterías de barrio, amas de casa. | Respetuoso, explicativo, dignificación del oficio, cero intermediarios abusivos (99% mes 1, 93% vitalicio, pago a tiempo sin demoras). | Imágenes 1:1 con tarjetas explicativas y textos descriptivos con enlace directo. |
+| **Facebook** | Fanpage Rebuske & Grupos de Barrio | Maestros mayores, agremiaciones de oficios, ferreterías de barrio, amas de casa. | Respetuoso, explicativo, dignificación del oficio, cero intermediarios abusivos (99% mes 1, 89% Oro VIP, pago a tiempo sin demoras). | Imágenes 1:1 con tarjetas explicativas y textos descriptivos con enlace directo. |
 | **X (Twitter)** | `@rebuskeapp` | Comunidad tech, inversionistas, fundadores, Ruta N, periodistas económicos. | Contundente, editorial, desintermediación FinTech, Bóveda Escrow Wompi, crítica constructiva a apps tradicionales abusivas que cobran 30%. | Hilos editoriales de 5 tweets y tarjetas horizontales 16:9. |
 | **WhatsApp** | `+57 304 381 2882` | Técnicos primordiales activos y clientes en ruta de servicio. | Cercano, servicial, mensajes 1 a 1 concisos, enlaces directos sin fricción. | Mensajes directos con formato enriquecido y plantillas de soporte. |
 | **YouTube** | Rebuske Oficial | Usuarios buscando cómo diagnosticar o solucionar fallas del hogar. | Educativo, tutorial práctico, diagnóstico de humedad, plomería o electricidad + CTA de contratación segura. | Shorts 9:16 y videos explicativos 16:9. |
