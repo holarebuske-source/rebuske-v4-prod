@@ -7,6 +7,14 @@
   "framework": null,
   "rewrites": [
     {
+      "source": "/app",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/app.html",
+      "destination": "/index.html"
+    },
+    {
       "source": "/api/primordiales-status",
       "destination": "/api/register-pro"
     },
