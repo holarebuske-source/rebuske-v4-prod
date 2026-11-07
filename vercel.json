@@ -12,11 +12,11 @@
     },
     {
       "source": "/registro/tecnico",
-      "destination": "/registro-tecnico.html"
+      "destination": "/registro-tecnico"
     },
     {
       "source": "/registro/cliente",
-      "destination": "/registro-cliente.html"
+      "destination": "/registro-cliente"
     },
     {
       "source": "/entrada",
