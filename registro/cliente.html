@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro de Clientes y Hogares VIP · Bono $15.000 COP · rebuske Medellín</title>
+  <meta name="description" content="Inscríbete para recibir el link de descarga en Google Play Store y activa tu Bono VIP de $15.000 COP para tu primer servicio del hogar en Medellín con pago protegido en Bóveda Wompi.">
+  <link rel="canonical" href="https://rebuske.vercel.app/registro/cliente">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Registro de Clientes y Hogares VIP · rebuske Medellín">
+  <meta property="og:description" content="Activa tu Bono de $15.000 COP y asegura acceso prioritario al lanzamiento de la app en Medellín.">
+  <meta property="og:url" content="https://rebuske.vercel.app/registro/cliente">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon e Iconos -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <!-- Tipografía -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark: #050A05;
+      --bg-card: rgba(10, 20, 10, 0.65);
+      --bg-input: rgba(255, 255, 255, 0.04);
+      --border-subtle: rgba(255, 255, 255, 0.15);
+      --border-neon: rgba(124, 255, 26, 0.25);
+      --accent-neon: #3CFF2E;
+      --accent-neon-bright: #7BFF1A;
+      --accent-warm: #FFD35C;
+      --text-white: #F2F5EE;
+      --text-gray: #B4BDAE;
+      --danger: #FF4D4D;
+      --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-gray);
+      font-family: var(--font-main);
+      font-size: 16px;
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Fondo bioluminiscente */
+    .bg-glow-layer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .glow-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: 0.18;
+      animation: floatGlow 18s ease-in-out infinite alternate;
+    }
+    .glow-orb-1 {
+      width: 480px;
+      height: 480px;
+      background: radial-gradient(circle, var(--accent-neon) 0%, transparent 70%);
+      top: -100px;
+      right: -100px;
+    }
+    .glow-orb-2 {
+      width: 550px;
+      height: 550px;
+      background: radial-gradient(circle, #1a4d1a 0%, transparent 70%);
+      bottom: -150px;
+      left: -100px;
+      animation-duration: 22s;
+    }
+
+    @keyframes floatGlow {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(-60px, 40px) scale(1.1); }
+      100% { transform: translate(40px, -70px) scale(0.95); }
+    }
+
+    /* Barra Superior Fija */
+    .top-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 64px;
+      background: rgba(5, 10, 5, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(124, 255, 26, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(16px, 4vw, 40px);
+      z-index: 1000;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text-white);
+      font-weight: 800;
+      font-size: 17px;
+      letter-spacing: -0.02em;
+    }
+    .brand-logo-dot {
+      width: 10px;
+      height: 10px;
+      background: var(--accent-neon);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--accent-neon);
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-pill-sec {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: transparent;
+      color: var(--text-white);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .btn-pill-sec:hover {
+      border-color: var(--accent-neon);
+      color: var(--accent-neon);
+      transform: translateY(-2px);
+    }
+
+    /* Contenedor Principal */
+    .main-container {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+      margin: 90px auto 60px;
+      padding: 0 20px;
+    }
+
+    /* Encabezado */
+    .portal-header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .portal-tag {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--accent-neon);
+      margin-bottom: 8px;
+    }
+    .portal-title {
+      font-size: clamp(28px, 4vw, 38px);
+      font-weight: 900;
+      color: var(--text-white);
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+
+    /* Aclaración destacada */
+    .clarification-banner {
+      background: rgba(60, 255, 46, 0.08);
+      border: 1px solid rgba(60, 255, 46, 0.25);
+      border-radius: 14px;
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      text-align: center;
+      font-size: 14px;
+      color: var(--text-white);
+      line-height: 1.5;
+    }
+    .clarification-banner a {
+      color: var(--accent-neon);
+      font-weight: 700;
+      text-decoration: underline;
+    }
+
+    /* Tarjeta de Cristal */
+    .glass-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid var(--border-neon);
+      border-radius: 20px;
+      padding: clamp(20px, 3.5vw, 32px);
+      margin-bottom: 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Tarjeta de Cupón Activado */
+    .coupon-ticket {
+      background: linear-gradient(135deg, rgba(60, 255, 46, 0.12) 0%, rgba(10, 20, 10, 0.6) 100%);
+      border: 1.5px dashed var(--accent-neon);
+      border-radius: 16px;
+      padding: 18px 24px;
+      text-align: center;
+      margin-bottom: 24px;
+      position: relative;
+    }
+    .coupon-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-gray);
+      margin-bottom: 4px;
+    }
+    .coupon-code {
+      font-size: 26px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      color: var(--accent-neon);
+      text-shadow: 0 0 14px rgba(60, 255, 46, 0.4);
+      margin-bottom: 4px;
+    }
+    .coupon-sub {
+      font-size: 12px;
+      color: var(--text-white);
+    }
+
+    /* Acceso Rápido con Google */
+    .google-fast-btn {
+      width: 100%;
+      height: 48px;
+      background: #FFFFFF;
+      color: #050A05;
+      border: none;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 700;
+      font-family: var(--font-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+    .google-fast-btn:hover {
+      background: #f1f1f1;
+      transform: translateY(-2px);
+    }
+
+    .divider-text {
+      text-align: center;
+      position: relative;
+      margin: 20px 0;
+      font-size: 12px;
+      color: var(--text-gray);
+    }
+    .divider-text::before,
+    .divider-text::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 42%;
+      height: 1px;
+      background: rgba(255, 255, 255, 0.1);
+    }
+    .divider-text::before { left: 0; }
+    .divider-text::after { right: 0; }
+
+    /* Formulario */
+    .form-group {
+      margin-bottom: 18px;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    @media (max-width: 600px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-white);
+      margin-bottom: 6px;
+    }
+    .field-hint {
+      font-size: 11px;
+      color: var(--text-gray);
+      margin-top: 3px;
+    }
+
+    input[type="text"],
+    input[type="tel"],
+    input[type="email"],
+    select {
+      width: 100%;
+      height: 48px;
+      background: var(--bg-input);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 0 16px;
+      color: var(--text-white);
+      font-family: var(--font-main);
+      font-size: 15px;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+    input:focus,
+    select:focus {
+      border-color: var(--accent-neon);
+      background: rgba(60, 255, 46, 0.04);
+      box-shadow: 0 0 14px rgba(60, 255, 46, 0.2);
+    }
+    select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%233CFF2E' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      cursor: pointer;
+    }
+    select option {
+      background-color: #0B1A0B;
+      color: #FFFFFF;
+    }
+
+    /* Validación: Oculta por defecto hasta interacción */
+    .field-error {
+      display: none;
+      color: var(--danger);
+      font-size: 12px;
+      font-weight: 500;
+      margin-top: 4px;
+    }
+    .has-error input,
+    .has-error select {
+      border-color: var(--danger) !important;
+      background: rgba(255, 77, 77, 0.05) !important;
+    }
+    .has-error .field-error {
+      display: block;
+    }
+
+    /* Foto de Perfil Opcional */
+    .avatar-upload-wrap {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 12px 0 18px;
+    }
+    .avatar-preview-circle {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      border: 1.5px dashed rgba(255, 255, 255, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.03);
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: all 0.2s ease;
+    }
+    .avatar-preview-circle:hover {
+      border-color: var(--accent-neon);
+    }
+    .avatar-btn-label {
+      font-size: 13px;
+      color: var(--accent-neon);
+      cursor: pointer;
+      font-weight: 600;
+      text-decoration: underline;
+    }
+
+    /* Acordeón de Términos del Bono */
+    .bono-accordion {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      margin: 18px 0;
+      overflow: hidden;
+    }
+    .bono-accordion-header {
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-white);
+      user-select: none;
+    }
+    .bono-accordion-header:hover {
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .bono-chevron {
+      transition: transform 0.3s ease;
+      color: var(--accent-neon);
+    }
+    .bono-accordion.open .bono-chevron {
+      transform: rotate(180deg);
+    }
+    .bono-accordion-content {
+      display: none;
+      padding: 0 18px 14px;
+      font-size: 12px;
+      color: var(--text-gray);
+      line-height: 1.5;
+    }
+    .bono-accordion.open .bono-accordion-content {
+      display: block;
+    }
+
+    /* Bloque Legal del Cliente (Texto Exacto) */
+    .legal-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      padding: 20px;
+      margin: 20px 0;
+    }
+    .legal-card-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--text-white);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .checkbox-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 14px;
+      font-size: 13px;
+      color: var(--text-gray);
+      line-height: 1.45;
+      cursor: pointer;
+    }
+    .checkbox-label:last-child {
+      margin-bottom: 0;
+    }
+    .checkbox-label input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border: 1.5px solid var(--border-subtle);
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.05);
+      margin-top: 2px;
+      flex-shrink: 0;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.2s ease;
+    }
+    .checkbox-label input[type="checkbox"]:checked {
+      background: var(--accent-neon);
+      border-color: var(--accent-neon);
+    }
+    .checkbox-label input[type="checkbox"]:checked::after {
+      content: '✓';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 12px;
+      color: #050A05;
+      font-weight: 900;
+    }
+
+    /* Botón Submit */
+    .btn-submit-main {
+      width: 100%;
+      padding: 16px 28px;
+      font-size: 16px;
+      font-weight: 800;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      border: none;
+      background: #FFFFFF;
+      color: #050A05;
+    }
+    .btn-submit-main:hover {
+      background: var(--accent-neon);
+      box-shadow: 0 0 25px rgba(60, 255, 46, 0.4);
+      transform: translateY(-2px);
+    }
+    .btn-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--accent-neon);
+      border-radius: 50%;
+    }
+
+    /* Panel de Éxito */
+    .success-panel {
+      display: none;
+      text-align: center;
+      padding: 30px 20px;
+      background: rgba(60, 255, 46, 0.08);
+      border: 1px solid var(--accent-neon);
+      border-radius: 20px;
+      margin-top: 20px;
+    }
+    .success-icon {
+      font-size: 48px;
+      margin-bottom: 12px;
+    }
+    .success-title {
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--accent-neon);
+      margin-bottom: 8px;
+    }
+    .success-desc {
+      font-size: 14px;
+      color: var(--text-white);
+      max-width: 500px;
+      margin: 0 auto 18px;
+      line-height: 1.5;
+    }
+
+    /* Pie de página */
+    .portal-footer {
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-gray);
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .portal-footer a {
+      color: var(--accent-neon);
+      text-decoration: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Fondo bioluminiscente -->
+  <div class="bg-glow-layer" aria-hidden="true">
+    <div class="glow-orb glow-orb-1"></div>
+    <div class="glow-orb glow-orb-2"></div>
+  </div>
+
+  <!-- Barra Superior -->
+  <header class="top-bar">
+    <a href="/entrada" class="brand-logo">
+      <span class="brand-logo-dot"></span>
+      <span>rebuske Medellín 2026</span>
+    </a>
+    <div class="top-actions">
+      <a href="https://rebuske.vercel.app/" class="btn-pill-sec">Abrir App Web</a>
+      <a href="https://wa.me/573043812882?text=Hola%20Laura%2C%20quiero%20conocer%20m%C3%A1s%20sobre%20rebuske" target="_blank" rel="noopener noreferrer" class="btn-pill-sec" title="Chat directo por WhatsApp con Laura">
+        Laura WhatsApp
+      </a>
+    </div>
+  </header>
+
+  <!-- Contenedor Principal -->
+  <main class="main-container">
+
+    <!-- Encabezado -->
+    <header class="portal-header">
+      <span class="portal-tag">Acceso Exclusivo · Hogares de Medellín</span>
+      <h1 class="portal-title">Registro de Clientes y Hogares VIP</h1>
+    </header>
+
+    <!-- Aclaración Destacada -->
+    <div class="clarification-banner">
+      🔔 <strong>Este registro es para recibir el link de Google Play Store y tu bono.</strong><br>
+      Para pedir un servicio hoy mismo sin esperar, usa nuestra <a href="https://rebuske.vercel.app/">App Web Inmediata</a>.
+    </div>
+
+    <!-- Tarjeta de Cristal con Formulario -->
+    <div class="glass-card">
+
+      <!-- Tarjeta Cupón -->
+      <div class="coupon-ticket">
+        <div class="coupon-label">Cupón Activado</div>
+        <div class="coupon-code">TUBONO15K-VIP</div>
+        <div class="coupon-sub">
+          $15.000 COP de regalo en pedidos > $90.000 COP · 1 por hogar · Vigencia 90 días desde 1 de Dic 2026
+        </div>
+      </div>
+
+      <!-- Acceso Rápido con Google -->
+      <button type="button" class="google-fast-btn" onclick="simularGoogleLogin()">
+        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
+        Entrar directo con Google en 1 clic
+      </button>
+
+      <div class="divider-text">O completa tus datos para el bono</div>
+
+      <form id="form-cliente" novalidate onsubmit="event.preventDefault(); enviarRegistroCliente();">
+
+        <!-- Nombre Completo -->
+        <div class="form-group" id="grp-cli-nombre">
+          <label for="cli_nombre">Nombre Completo *</label>
+          <input type="text" id="cli_nombre" placeholder="Ej: Marcela Gómez" required onblur="validarCampoCli(this, 'grp-cli-nombre')">
+          <div class="field-error">Por favor ingresa tu nombre completo.</div>
+        </div>
+
+        <div class="form-row">
+          <!-- Celular WhatsApp -->
+          <div class="form-group" id="grp-cli-telefono">
+            <label for="cli_telefono">Celular WhatsApp (+57) *</label>
+            <input type="tel" id="cli_telefono" placeholder="300 123 4567" maxlength="10" required onblur="validarCampoCli(this, 'grp-cli-telefono')">
+            <div class="field-error">Número celular inválido (10 dígitos).</div>
+          </div>
+
+          <!-- Correo Electrónico -->
+          <div class="form-group" id="grp-cli-email">
+            <label for="cli_email">Correo Electrónico *</label>
+            <input type="email" id="cli_email" placeholder="ejemplo@correo.com" required onblur="validarCampoCli(this, 'grp-cli-email')">
+            <div class="field-error">Por favor ingresa un correo válido.</div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <!-- Comuna de Residencia -->
+          <div class="form-group" id="grp-cli-comuna">
+            <label for="cli_comuna">Comuna de Residencia (Medellín) *</label>
+            <select id="cli_comuna" required onchange="validarCampoCli(this, 'grp-cli-comuna')">
+              <option value="">Selecciona tu comuna...</option>
+              <option value="comuna_1">Comuna 1 - Popular</option>
+              <option value="comuna_2">Comuna 2 - Santa Cruz</option>
+              <option value="comuna_3">Comuna 3 - Manrique</option>
+              <option value="comuna_4">Comuna 4 - Aranjuez</option>
+              <option value="comuna_5">Comuna 5 - Castilla</option>
+              <option value="comuna_6">Comuna 6 - Doce de Octubre</option>
+              <option value="comuna_7">Comuna 7 - Robledo</option>
+              <option value="comuna_8">Comuna 8 - Villa Hermosa</option>
+              <option value="comuna_9">Comuna 9 - Buenos Aires</option>
+              <option value="comuna_10">Comuna 10 - La Candelaria (Centro)</option>
+              <option value="comuna_11">Comuna 11 - Laureles - Estadio</option>
+              <option value="comuna_12">Comuna 12 - La América</option>
+              <option value="comuna_13">Comuna 13 - San Javier</option>
+              <option value="comuna_14">Comuna 14 - El Poblado</option>
+              <option value="comuna_15">Comuna 15 - Guayabal</option>
+              <option value="comuna_16">Comuna 16 - Belén</option>
+              <option value="san_antonio_prado">Corregimiento San Antonio de Prado</option>
+              <option value="san_cristobal">Corregimiento San Cristóbal</option>
+              <option value="santa_elena">Corregimiento Santa Elena</option>
+              <option value="san_sebastian_palmitas">Corregimiento San Sebastián de Palmitas</option>
+              <option value="altavista">Corregimiento Altavista</option>
+            </select>
+            <div class="field-error">Selecciona tu comuna o corregimiento.</div>
+          </div>
+
+          <!-- Servicio de Interés -->
+          <div class="form-group" id="grp-cli-servicio">
+            <label for="cli_servicios">Servicio que más requieres *</label>
+            <select id="cli_servicios" required onchange="validarCampoCli(this, 'grp-cli-servicio')">
+              <option value="">Selecciona una especialidad...</option>
+              <option value="plomeria">Plomería & Redes Hidráulicas</option>
+              <option value="electricidad">Electricidad Residencial</option>
+              <option value="cerrajeria">Cerrajería & Seguridad</option>
+              <option value="aseo">Aseo & Desinfección</option>
+              <option value="gasodomesticos">Gasodomésticos & Calentadores</option>
+              <option value="refrigeracion">Refrigeración & Neveras</option>
+              <option value="lavadoras">Lavadoras & Secadoras</option>
+              <option value="varios">Varios servicios del hogar</option>
+            </select>
+            <div class="field-error">Por favor selecciona un servicio.</div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <!-- Fecha de Nacimiento -->
+          <div class="form-group">
+            <label>Fecha de Nacimiento *</label>
+            <div style="display:flex;gap:8px;">
+              <select id="cli_mes_nac" required style="flex:1">
+                <option value="">Mes...</option>
+                <option value="01">Enero</option><option value="02">Febrero</option>
+                <option value="03">Marzo</option><option value="04">Abril</option>
+                <option value="05">Mayo</option><option value="06">Junio</option>
+                <option value="07">Julio</option><option value="08">Agosto</option>
+                <option value="09">Septiembre</option><option value="10">Octubre</option>
+                <option value="11">Noviembre</option><option value="12">Diciembre</option>
+              </select>
+              <select id="cli_ano_nac" required style="flex:1">
+                <option value="">Año...</option>
+                <option value="2005">2005</option><option value="2004">2004</option>
+                <option value="2003">2003</option><option value="2002">2002</option>
+                <option value="2001">2001</option><option value="2000">2000</option>
+                <option value="1995">1995</option><option value="1990">1990</option>
+                <option value="1985">1985</option><option value="1980">1980</option>
+                <option value="1975">1975</option><option value="1970">1970</option>
+                <option value="1965">1965</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Foto de Perfil Opcional -->
+          <div class="form-group">
+            <label>Foto de Perfil (Opcional)</label>
+            <div class="avatar-upload-wrap">
+              <div class="avatar-preview-circle" id="cli-avatar-preview" onclick="document.getElementById('cli_foto_input').click()">
+                <span style="font-size:24px;">👤</span>
+              </div>
+              <div>
+                <span class="avatar-btn-label" onclick="document.getElementById('cli_foto_input').click()">Seleccionar foto</span>
+                <div class="field-hint" id="cli-foto-status">Para reconocer a tu hogar</div>
+              </div>
+              <input type="file" id="cli_foto_input" accept="image/*" style="display:none" onchange="previewCliFoto(this)">
+            </div>
+          </div>
+        </div>
+
+        <!-- Acordeón de Términos del Bono (Desplegable cerrado por defecto) -->
+        <div class="bono-accordion" id="bono-terms-accordion">
+          <div class="bono-accordion-header" onclick="toggleBonoTerms()">
+            <span>📜 Términos del Bono de Bienvenida ($15.000 COP)</span>
+            <span class="bono-chevron" aria-hidden="true">▼</span>
+          </div>
+          <div class="bono-accordion-content">
+            <p>El bono de $15.000 COP aplica en tu primer servicio igual o superior a $90.000 COP con 0% de comisión para la app. Vigencia: 90 días desde el 1 de diciembre de 2026. Límite: 1 bono por hogar y método de pago.</p>
+          </div>
+        </div>
+
+        <!-- BLOQUE LEGAL DEL CLIENTE (Texto Exacto) -->
+        <div class="legal-card">
+          <div class="legal-card-title">
+            <span>⚖️</span>
+            <span>Autorizaciones Legales y Consentimiento Informado</span>
+          </div>
+
+          <label class="checkbox-label">
+            <input type="checkbox" id="cli_check_terms" required>
+            <span>He leído y acepto los Términos y Condiciones, la Política de Tratamiento de Datos Personales (Ley 1581 de 2012) y las Condiciones de Descuentos. *</span>
+          </label>
+
+          <label class="checkbox-label">
+            <input type="checkbox" id="cli_check_biometria" required>
+            <span>Autorizo expresamente el tratamiento de mis datos sensibles biométricos (selfie facial en vivo en la app) con fines exclusivos de validación de identidad en puerta y seguridad domiciliaria. Entiendo que por tratarse de un dato sensible (Ley 1581, art. 5) esta autorización es facultativa; no obstante, su no autorización impedirá coordinar visitas técnicas en mi hogar por protocolos de protección comunitaria. *</span>
+          </label>
+
+          <label class="checkbox-label">
+            <input type="checkbox" id="cli_check_alertas">
+            <span>(Opcional) Autorizo el envío de notificaciones de apertura en Google Play Store, novedades de mi comuna y alertas de mi Bono VIP de $15.000 COP por WhatsApp y correo electrónico.</span>
+          </label>
+        </div>
+
+        <!-- Botón de Envío -->
+        <button type="submit" id="btn-submit-cli" class="btn-submit-main">
+          Activar mi Bono de $15.000 COP y Acceso Prioritario ⚡<span class="btn-dot" aria-hidden="true"></span>
+        </button>
+
+      </form>
+
+      <!-- Panel de Éxito -->
+      <div class="success-panel" id="cli-success-msg">
+        <div class="success-icon">🎉</div>
+        <h4 class="success-title">¡Bono de $15.000 COP Activado!</h4>
+        <p class="success-desc">
+          Tu registro en la lista prioritaria de Google Play Store ha sido confirmado con el código <strong>TUBONO15K-VIP</strong>. Te enviaremos el enlace de descarga tan pronto esté publicada la aplicación.<br><br>
+          ¿Necesitas un técnico hoy mismo?
+        </p>
+        <a href="https://rebuske.vercel.app/" class="btn-pill-sec" style="background:#FFFFFF;color:#050A05;font-weight:700;">
+          Abrir App Web Inmediata ➔
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Pie de página -->
+    <footer class="portal-footer">
+      <p>rebuske Medellín 2026 · Plataforma Tecnológica de Servicios del Hogar · Fundador: Camilo Escobar</p>
+      <p style="margin-top:6px;">
+        <a href="/terminos">Términos y Condiciones</a> · 
+        <a href="/privacidad">Política de Privacidad</a> · 
+        <a href="/reembolsos">Política de Reembolsos</a> · 
+        <a href="/descuentos">Condiciones de Descuentos</a>
+      </p>
+    </footer>
+
+  </main>
+
+  <script>
+    function toggleBonoTerms() {
+      const acc = document.getElementById('bono-terms-accordion');
+      acc.classList.toggle('open');
+    }
+
+    function previewCliFoto(input) {
+      if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const circle = document.getElementById('cli-avatar-preview');
+          circle.innerHTML = '<img src="' + e.target.result + '" style="width:100%;height:100%;object-fit:cover">';
+          document.getElementById('cli-foto-status').textContent = 'Foto seleccionada ✓';
+          document.getElementById('cli-foto-status').style.color = 'var(--accent-neon)';
+        };
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    function simularGoogleLogin() {
+      const email = prompt('Ingresa tu correo de Google para asociar el bono de $15.000 COP:');
+      if (email && email.includes('@')) {
+        document.getElementById('cli_email').value = email;
+        document.getElementById('cli_nombre').focus();
+      }
+    }
+
+    function validarCampoCli(input, groupClassId) {
+      const group = document.getElementById(groupClassId);
+      if (!group) return true;
+      let valid = true;
+
+      if (input.type === 'tel') {
+        const clean = input.value.replace(/\D/g, '');
+        valid = clean.length === 10;
+      } else if (input.type === 'email') {
+        valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value.trim());
+      } else if (input.required) {
+        valid = input.value.trim().length > 0;
+      }
+
+      if (!valid) {
+        group.classList.add('has-error');
+      } else {
+        group.classList.remove('has-error');
+      }
+      return valid;
+    }
+
+    async function enviarRegistroCliente() {
+      const c1 = validarCampoCli(document.getElementById('cli_nombre'), 'grp-cli-nombre');
+      const c2 = validarCampoCli(document.getElementById('cli_telefono'), 'grp-cli-telefono');
+      const c3 = validarCampoCli(document.getElementById('cli_email'), 'grp-cli-email');
+      const c4 = validarCampoCli(document.getElementById('cli_comuna'), 'grp-cli-comuna');
+      const c5 = validarCampoCli(document.getElementById('cli_servicios'), 'grp-cli-servicio');
+
+      const mes = document.getElementById('cli_mes_nac').value;
+      const ano = document.getElementById('cli_ano_nac').value;
+      const t1 = document.getElementById('cli_check_terms').checked;
+      const t2 = document.getElementById('cli_check_biometria').checked;
+
+      if (!c1 || !c2 || !c3 || !c4 || !c5 || !mes || !ano) {
+        alert('Por favor completa todos los campos obligatorios resaltados en rojo.');
+        return;
+      }
+
+      if (!t1 || !t2) {
+        alert('Debes marcar las casillas de consentimiento informático y términos obligatorios (*).');
+        return;
+      }
+
+      const btn = document.getElementById('btn-submit-cli');
+      btn.disabled = true;
+      btn.textContent = 'Activando tu bono...';
+
+      const payload = {
+        name: document.getElementById('cli_nombre').value.trim(),
+        phone: document.getElementById('cli_telefono').value.trim(),
+        email: document.getElementById('cli_email').value.trim(),
+        zone: document.getElementById('cli_comuna').value,
+        service: document.getElementById('cli_servicios').value,
+        birthMonth: mes,
+        birthYear: ano,
+        cupon: 'TUBONO15K-VIP'
+      };
+
+      try {
+        await fetch('/api/register-client', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+      } catch (err) {}
+
+      document.getElementById('form-cliente').style.display = 'none';
+      document.getElementById('cli-success-msg').style.display = 'block';
+      document.getElementById('cli-success-msg').scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
