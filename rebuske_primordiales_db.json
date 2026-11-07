@@ -1,5 +1,5 @@
 {
-  "count": 97,
+  "count": 98,
   "registrations": [
     {
       "id": "pro_1793944589966",
@@ -408,6 +408,39 @@
       "cookies_analitica_consentimiento": false,
       "antecedentes_estado": "APTO_SIN_REPORTES_PENDIENTE_COTEJO",
       "antecedentes_fecha_consulta": "2026-11-07T03:37:06.340Z",
+      "autorizo_promo": false
+    },
+    {
+      "id": "pro_1794023503892",
+      "fecha": "2026-11-07T03:51:43.890Z",
+      "nombre": "Técnico Blindado QA",
+      "tel": "+573119876543",
+      "oficio": "Electricidad",
+      "zona": "El Poblado",
+      "cedula": "1099887766",
+      "banco": "Bancolombia Ahorros 1234",
+      "nacimiento": "NA/NA",
+      "ultimoAcceso": "2026-11-07T03:51:43.890Z",
+      "exp": "3",
+      "tipo": "PRIMORDIAL",
+      "cupoNumero": 98,
+      "comision": "11%",
+      "neto": "89%",
+      "mes1Comision": "1%",
+      "mes1Neto": "99%",
+      "vitaliciaComision": "11%",
+      "vitaliciaNeto": "89%",
+      "insignia": "Oro VIP Primordial",
+      "mandato_aceptado": true,
+      "mandato_hash": "18b8b929e472d698cbb71e12eb79936ecc79a27ed16173f2515a6cf829b3ab00",
+      "mandato_ip": "127.0.0.1",
+      "user_agent": "QA Test Agent",
+      "autorizo_terminos": true,
+      "autorizo_datos_sensibles_biometria": true,
+      "autorizo_consulta_antecedentes": true,
+      "cookies_analitica_consentimiento": false,
+      "antecedentes_estado": "APTO_SIN_REPORTES_PENDIENTE_COTEJO",
+      "antecedentes_fecha_consulta": "2026-11-07T03:51:43.890Z",
       "autorizo_promo": false
     }
   ]
