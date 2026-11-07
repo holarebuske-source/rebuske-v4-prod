@@ -11,6 +11,14 @@
       "destination": "/api/register-pro"
     },
     {
+      "source": "/entrada",
+      "destination": "/entrada.html"
+    },
+    {
+      "source": "/entrada.html",
+      "destination": "/entrada.html"
+    },
+    {
       "source": "/registro",
       "destination": "/registro.html"
     },
