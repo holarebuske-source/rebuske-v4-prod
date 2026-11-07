@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro Técnico Profesional · 1% Primer Mes · rebuske Medellín</title>
+  <meta name="description" content="Inscríbete como técnico profesional independiente en rebuske Medellín. Aparta uno de los 100 cupos con 1% de comisión en tu primer mes y pago protegido en Bóveda Wompi.">
+  <link rel="canonical" href="https://rebuske.vercel.app/registro/tecnico">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Registro Técnico Profesional · rebuske Medellín">
+  <meta property="og:description" content="Asegura 1% de comisión en tu primer mes (99% neto) y pago protegido por peritaje en Medellín.">
+  <meta property="og:url" content="https://rebuske.vercel.app/registro/tecnico">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon e Iconos -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <!-- Tipografía -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark: #050A05;
+      --bg-card: rgba(10, 20, 10, 0.65);
+      --bg-input: rgba(255, 255, 255, 0.04);
+      --border-subtle: rgba(255, 255, 255, 0.15);
+      --border-neon: rgba(124, 255, 26, 0.25);
+      --accent-neon: #3CFF2E;
+      --accent-neon-bright: #7BFF1A;
+      --accent-warm: #FFD35C;
+      --text-white: #F2F5EE;
+      --text-gray: #B4BDAE;
+      --danger: #FF4D4D;
+      --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-gray);
+      font-family: var(--font-main);
+      font-size: 16px;
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Fondo bioluminiscente */
+    .bg-glow-layer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .glow-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      opacity: 0.18;
+      animation: floatGlow 18s ease-in-out infinite alternate;
+    }
+    .glow-orb-1 {
+      width: 480px;
+      height: 480px;
+      background: radial-gradient(circle, var(--accent-neon) 0%, transparent 70%);
+      top: -100px;
+      left: -100px;
+    }
+    .glow-orb-2 {
+      width: 550px;
+      height: 550px;
+      background: radial-gradient(circle, #1a4d1a 0%, transparent 70%);
+      bottom: -150px;
+      right: -100px;
+      animation-duration: 22s;
+    }
+
+    @keyframes floatGlow {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(60px, 40px) scale(1.1); }
+      100% { transform: translate(-40px, 70px) scale(0.95); }
+    }
+
+    /* Barra Superior Fija */
+    .top-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 64px;
+      background: rgba(5, 10, 5, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(124, 255, 26, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(16px, 4vw, 40px);
+      z-index: 1000;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text-white);
+      font-weight: 800;
+      font-size: 17px;
+      letter-spacing: -0.02em;
+    }
+    .brand-logo-dot {
+      width: 10px;
+      height: 10px;
+      background: var(--accent-neon);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--accent-neon);
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-pill-sec {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: transparent;
+      color: var(--text-white);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .btn-pill-sec:hover {
+      border-color: var(--accent-neon);
+      color: var(--accent-neon);
+      transform: translateY(-2px);
+    }
+
+    .btn-pill-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 22px;
+      border-radius: 999px;
+      border: none;
+      background: #FFFFFF;
+      color: #050A05;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+    }
+    .btn-pill-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(60, 255, 46, 0.3);
+    }
+    .btn-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--accent-neon);
+      border-radius: 50%;
+      transition: transform 0.2s ease;
+    }
+    .btn-pill-primary:hover .btn-dot {
+      transform: scale(1.2);
+    }
+
+    /* Contenedor Principal */
+    .main-container {
+      position: relative;
+      z-index: 1;
+      max-width: 840px;
+      margin: 90px auto 60px;
+      padding: 0 20px;
+    }
+
+    /* Encabezado del Portal */
+    .portal-header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+    .portal-tag {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--accent-neon);
+      margin-bottom: 8px;
+    }
+    .portal-title {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 900;
+      color: var(--text-white);
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 10px;
+    }
+    .portal-subtitle {
+      font-size: 16px;
+      color: var(--text-gray);
+      max-width: 620px;
+      margin: 0 auto;
+    }
+
+    /* Barra de Progreso Superior */
+    .progress-track-wrapper {
+      background: rgba(10, 20, 10, 0.7);
+      border: 1px solid var(--border-neon);
+      border-radius: 16px;
+      padding: 16px 20px;
+      margin-bottom: 28px;
+      backdrop-filter: blur(10px);
+    }
+    .progress-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .progress-step-text {
+      color: var(--accent-neon);
+    }
+    .progress-cupo-text {
+      color: var(--accent-warm);
+    }
+    .progress-bar-bg {
+      width: 100%;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 999px;
+      overflow: hidden;
+      position: relative;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      width: 50%;
+      background: linear-gradient(90deg, var(--accent-neon), var(--accent-neon-bright));
+      border-radius: 999px;
+      transition: width 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+      box-shadow: 0 0 12px var(--accent-neon);
+    }
+
+    /* Tarjetas de Cristal */
+    .glass-card {
+      background: var(--bg-card);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid var(--border-neon);
+      border-radius: 20px;
+      padding: clamp(20px, 3.5vw, 32px);
+      margin-bottom: 24px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    /* Simulador de Ingresos */
+    .sim-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .sim-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text-white);
+    }
+    .sim-val-display {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--accent-neon);
+      background: rgba(60, 255, 46, 0.1);
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(60, 255, 46, 0.3);
+    }
+
+    .range-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 8px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.15);
+      outline: none;
+      margin: 18px 0;
+    }
+    .range-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: var(--accent-neon);
+      cursor: pointer;
+      box-shadow: 0 0 14px var(--accent-neon);
+      border: 2px solid #FFFFFF;
+      transition: transform 0.1s ease;
+    }
+    .range-slider::-webkit-slider-thumb:hover {
+      transform: scale(1.15);
+    }
+
+    .quick-chips {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .quick-chip {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--text-white);
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .quick-chip:hover {
+      border-color: var(--accent-neon);
+      background: rgba(60, 255, 46, 0.12);
+    }
+
+    .sim-bar-item {
+      margin-bottom: 12px;
+    }
+    .sim-bar-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .sim-bar-track {
+      width: 100%;
+      height: 10px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .sim-bar-fill-trad {
+      height: 100%;
+      background: #737373;
+      border-radius: 999px;
+      transition: width 0.3s ease;
+    }
+    .sim-bar-fill-rebuske {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent-neon), var(--accent-neon-bright));
+      border-radius: 999px;
+      box-shadow: 0 0 10px var(--accent-neon);
+      transition: width 0.3s ease;
+    }
+
+    /* Placas Oficiales */
+    .placas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 12px;
+      margin: 18px 0;
+    }
+    .placa-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 14px;
+      padding: 16px;
+      text-align: center;
+    }
+    .placa-card.active-gold {
+      border-color: rgba(255, 211, 92, 0.4);
+      background: rgba(255, 211, 92, 0.04);
+    }
+    .placa-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--text-white);
+      margin-bottom: 4px;
+    }
+    .placa-com {
+      font-size: 18px;
+      font-weight: 900;
+      color: var(--accent-neon);
+    }
+    .placa-card.active-gold .placa-com {
+      color: var(--accent-warm);
+    }
+    .placa-req {
+      font-size: 11px;
+      color: var(--text-gray);
+      margin-top: 4px;
+    }
+
+    .promo-callout {
+      background: rgba(60, 255, 46, 0.06);
+      border: 1px solid rgba(60, 255, 46, 0.25);
+      border-radius: 14px;
+      padding: 16px;
+      margin: 16px 0;
+    }
+    .promo-callout h4 {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--accent-neon);
+      margin-bottom: 4px;
+    }
+    .promo-callout p {
+      font-size: 13px;
+      color: var(--text-white);
+      line-height: 1.5;
+    }
+
+    /* Formulario y Pasos */
+    .step-container {
+      position: relative;
+      overflow: hidden;
+    }
+    .form-step {
+      display: none;
+      animation: fadeInStep 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+    }
+    .form-step.active {
+      display: block;
+    }
+
+    @keyframes fadeInStep {
+      from {
+        opacity: 0;
+        transform: translateX(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .step-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent-neon);
+      background: rgba(60, 255, 46, 0.1);
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    @media (max-width: 600px) {
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-white);
+      margin-bottom: 6px;
+    }
+    .field-hint {
+      font-size: 11px;
+      color: var(--text-gray);
+      margin-top: 3px;
+    }
+
+    input[type="text"],
+    input[type="tel"],
+    input[type="email"],
+    select {
+      width: 100%;
+      height: 48px;
+      background: var(--bg-input);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 0 16px;
+      color: var(--text-white);
+      font-family: var(--font-main);
+      font-size: 15px;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+    input:focus,
+    select:focus {
+      border-color: var(--accent-neon);
+      background: rgba(60, 255, 46, 0.04);
+      box-shadow: 0 0 14px rgba(60, 255, 46, 0.2);
+    }
+    select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%233CFF2E' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      cursor: pointer;
+    }
+    select option {
+      background-color: #0B1A0B;
+      color: #FFFFFF;
+    }
+
+    /* Validación: Oculta por defecto hasta interacción */
+    .field-error {
+      display: none;
+      color: var(--danger);
+      font-size: 12px;
+      font-weight: 500;
+      margin-top: 4px;
+    }
+    .has-error input,
+    .has-error select {
+      border-color: var(--danger) !important;
+      background: rgba(255, 77, 77, 0.05) !important;
+    }
+    .has-error .field-error {
+      display: block;
+    }
+
+    /* Cajas de Subida de Fotos KYC */
+    .kyc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin: 16px 0;
+    }
+    .kyc-upload-box {
+      border: 1.5px dashed rgba(255, 255, 255, 0.2);
+      border-radius: 14px;
+      padding: 16px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.02);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      min-height: 120px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .kyc-upload-box:hover {
+      border-color: var(--accent-neon);
+      background: rgba(60, 255, 46, 0.05);
+    }
+    .kyc-upload-box.uploaded {
+      border-color: var(--accent-neon);
+      border-style: solid;
+      background: rgba(60, 255, 46, 0.08);
+    }
+    .kyc-icon {
+      font-size: 22px;
+      margin-bottom: 6px;
+    }
+    .kyc-label {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-white);
+    }
+    .kyc-status {
+      font-size: 11px;
+      color: var(--text-gray);
+      margin-top: 3px;
+    }
+    .kyc-upload-box.uploaded .kyc-status {
+      color: var(--accent-neon);
+      font-weight: 700;
+    }
+    .kyc-preview-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.25;
+      pointer-events: none;
+    }
+
+    /* Bloque Legal */
+    .legal-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      padding: 20px;
+      margin: 20px 0;
+    }
+    .legal-card-title {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--text-white);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .checkbox-label {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 14px;
+      font-size: 13px;
+      color: var(--text-gray);
+      line-height: 1.45;
+      cursor: pointer;
+    }
+    .checkbox-label:last-child {
+      margin-bottom: 0;
+    }
+    .checkbox-label input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border: 1.5px solid var(--border-subtle);
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.05);
+      margin-top: 2px;
+      flex-shrink: 0;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.2s ease;
+    }
+    .checkbox-label input[type="checkbox"]:checked {
+      background: var(--accent-neon);
+      border-color: var(--accent-neon);
+    }
+    .checkbox-label input[type="checkbox"]:checked::after {
+      content: '✓';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 12px;
+      color: #050A05;
+      font-weight: 900;
+    }
+
+    /* Botones de Acción */
+    .btn-step-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+      flex-wrap: wrap;
+    }
+
+    .btn-full {
+      width: 100%;
+      padding: 14px 28px;
+      font-size: 16px;
+      font-weight: 800;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      border: none;
+    }
+    .btn-full-primary {
+      background: #FFFFFF;
+      color: #050A05;
+    }
+    .btn-full-primary:hover {
+      background: var(--accent-neon);
+      box-shadow: 0 0 25px rgba(60, 255, 46, 0.4);
+      transform: translateY(-2px);
+    }
+    .btn-full-sec {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: var(--text-white);
+    }
+    .btn-full-sec:hover {
+      border-color: var(--accent-neon);
+      color: var(--accent-neon);
+    }
+
+    /* Mensaje de Éxito */
+    .success-panel {
+      display: none;
+      text-align: center;
+      padding: 30px 20px;
+      background: rgba(60, 255, 46, 0.08);
+      border: 1px solid var(--accent-neon);
+      border-radius: 20px;
+      margin-top: 20px;
+    }
+    .success-icon {
+      font-size: 48px;
+      margin-bottom: 12px;
+    }
+    .success-title {
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--accent-neon);
+      margin-bottom: 8px;
+    }
+    .success-desc {
+      font-size: 14px;
+      color: var(--text-white);
+      max-width: 500px;
+      margin: 0 auto 18px;
+      line-height: 1.5;
+    }
+
+    /* Pie de página */
+    .portal-footer {
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-gray);
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .portal-footer a {
+      color: var(--accent-neon);
+      text-decoration: none;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Fondo bioluminiscente -->
+  <div class="bg-glow-layer" aria-hidden="true">
+    <div class="glow-orb glow-orb-1"></div>
+    <div class="glow-orb glow-orb-2"></div>
+  </div>
+
+  <!-- Barra Superior -->
+  <header class="top-bar">
+    <a href="/entrada" class="brand-logo">
+      <span class="brand-logo-dot"></span>
+      <span>rebuske Medellín 2026</span>
+    </a>
+    <div class="top-actions">
+      <a href="/entrada" class="btn-pill-sec">Volver a Inicio</a>
+      <a href="https://wa.me/573043812882?text=Hola%20Laura%2C%20quiero%20conocer%20m%C3%A1s%20sobre%20rebuske" target="_blank" rel="noopener noreferrer" class="btn-pill-sec" title="Chat directo por WhatsApp con Laura">
+        Laura WhatsApp
+      </a>
+    </div>
+  </header>
+
+  <!-- Contenedor Principal -->
+  <main class="main-container">
+    
+    <!-- Encabezado -->
+    <header class="portal-header">
+      <span class="portal-tag">Convocatoria Oficial · Técnicos Independientes</span>
+      <h1 class="portal-title">Inscripción para Técnicos y Profesionales</h1>
+      <p class="portal-subtitle">Asegura uno de los 100 cupos con tarifa preferencial del 1% el primer mes.</p>
+    </header>
+
+    <!-- Barra de Progreso de Pasos -->
+    <div class="progress-track-wrapper">
+      <div class="progress-labels">
+        <span class="progress-step-text" id="step-indicator-text">Paso 1 de 2: Alta Rápida (60s)</span>
+        <span class="progress-cupo-text">Cupos: <strong id="cupos-count">0/100</strong> Asignados</span>
+      </div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="progress-bar-fill" style="width: 50%;"></div>
+      </div>
+    </div>
+
+    <!-- BLOQUE PREVIO: Simulador de Ingresos y Placas (Modo Lectura e Interacción) -->
+    <section class="glass-card" id="bloque-simulador" aria-labelledby="sim-header-title">
+      <div class="sim-header">
+        <h2 class="sim-title" id="sim-header-title">Simulador de Ingresos y Placas</h2>
+        <div class="sim-val-display" id="sim-val-display">Valor del trabajo: $100.000 COP</div>
+      </div>
+
+      <p style="font-size:14px;color:var(--text-gray);margin-bottom:12px;">
+        Compara lo que te descuentan las aplicaciones tradicionales (30%) frente a lo que recibes con el modelo de placas de rebuske:
+      </p>
+
+      <input type="range" class="range-slider" id="sim-slider" min="50000" max="1200000" step="10000" value="100000" oninput="actualizarSimulador(this.value)">
+
+      <div class="quick-chips">
+        <button type="button" class="quick-chip" onclick="setSimValue(100000)">$100.000</button>
+        <button type="button" class="quick-chip" onclick="setSimValue(300000)">$300.000</button>
+        <button type="button" class="quick-chip" onclick="setSimValue(600000)">$600.000</button>
+        <button type="button" class="quick-chip" onclick="setSimValue(1200000)">$1.200.000</button>
+      </div>
+
+      <!-- Barras Comparativas -->
+      <div class="sim-bar-item">
+        <div class="sim-bar-label">
+          <span style="color:var(--text-gray)">Apps Tradicionales (70%)</span>
+          <span id="trad-display" style="color:var(--text-gray)">$70.000 COP (Te descuentan $30.000 COP)</span>
+        </div>
+        <div class="sim-bar-track">
+          <div class="sim-bar-fill-trad" id="trad-bar" style="width: 70%;"></div>
+        </div>
+      </div>
+
+      <div class="sim-bar-item">
+        <div class="sim-bar-label">
+          <span style="color:var(--accent-neon);font-weight:800;">En rebuske Oro (93%)</span>
+          <span id="reb-display" style="color:var(--accent-neon);font-weight:800;">$93.000 COP + $23.000 COP más para ti</span>
+        </div>
+        <div class="sim-bar-track">
+          <div class="sim-bar-fill-rebuske" id="reb-bar" style="width: 93%;"></div>
+        </div>
+      </div>
+
+      <!-- Placas Oficiales -->
+      <div class="placas-grid">
+        <div class="placa-card">
+          <div class="placa-title">Placa Bronce</div>
+          <div class="placa-com">9% Com.</div>
+          <div class="placa-req">Técnico Verificado</div>
+        </div>
+        <div class="placa-card">
+          <div class="placa-title">Placa Plata</div>
+          <div class="placa-com">8% Com.</div>
+          <div class="placa-req">5+ Trabajos con 4.8★</div>
+        </div>
+        <div class="placa-card active-gold">
+          <div class="placa-title">Placa Oro</div>
+          <div class="placa-com">7% Com.</div>
+          <div class="placa-req">Top 100 o Calidad 4.9★</div>
+        </div>
+      </div>
+
+      <!-- Promoción Temporal Exclusiva -->
+      <div class="promo-callout">
+        <h4>Promoción Temporal Exclusiva · Primer Mes (Solo 100 Cupos)</h4>
+        <p>Los primeros 100 profesionales registrados operarán al 1% de comisión durante sus primeros 30 días (¡99% neto para ti!). Finalizado el mes, se activará tu placa ganada (9%, 8% o 7%).</p>
+      </div>
+
+      <button type="button" class="btn-full btn-full-primary" onclick="irAlPaso1()">
+        Continuar al registro ➔
+      </button>
+    </section>
+
+    <!-- FORMULARIO DE TÉCNICO EN 2 PASOS -->
+    <div class="glass-card" id="contenedor-formulario">
+
+      <!-- ================= PASO 1 ================= -->
+      <div class="form-step active" id="paso-1">
+        <span class="step-badge">Paso 1 de 2: Datos Básicos</span>
+        <h3 style="font-size:20px;font-weight:800;color:var(--text-white);margin-bottom:18px;">
+          Completa tus datos básicos para apartar tu cupo (1% de comisión)
+        </h3>
+
+        <form id="form-tecnico-p1" novalidate onsubmit="event.preventDefault(); validarYAvanzarPaso1();">
+          
+          <!-- Nombre Completo -->
+          <div class="form-group" id="grp-pro-nombre">
+            <label for="pro_nombre">Nombre Completo *</label>
+            <input type="text" id="pro_nombre" placeholder="Ej: Camilo Andrés Escobar" required onblur="validarCampoIndividual(this, 'grp-pro-nombre')">
+            <div class="field-error">Por favor ingresa tu nombre completo.</div>
+          </div>
+
+          <div class="form-row">
+            <!-- Cédula de Ciudadanía -->
+            <div class="form-group" id="grp-pro-cedula">
+              <label for="pro_cedula">Cédula de Ciudadanía *</label>
+              <input type="tel" id="pro_cedula" placeholder="Sin puntos ni comas" maxlength="10" required onblur="validarCampoIndividual(this, 'grp-pro-cedula')">
+              <div class="field-error">Cédula inválida (debe contener entre 6 y 10 dígitos).</div>
+            </div>
+
+            <!-- Celular WhatsApp -->
+            <div class="form-group" id="grp-pro-telefono">
+              <label for="pro_telefono">Celular WhatsApp (+57) *</label>
+              <input type="tel" id="pro_telefono" placeholder="300 123 4567" maxlength="10" required onblur="validarCampoIndividual(this, 'grp-pro-telefono')">
+              <div class="field-error">Número celular inválido (10 dígitos requeridos).</div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <!-- Especialidad / Oficio -->
+            <div class="form-group" id="grp-pro-oficio">
+              <label for="pro_oficio">Oficio Principal *</label>
+              <select id="pro_oficio" required onchange="validarCampoIndividual(this, 'grp-pro-oficio')">
+                <option value="">Selecciona tu especialidad...</option>
+                <option value="plomeria">Plomería & Redes Hidráulicas</option>
+                <option value="electricidad">Electricidad Residencial</option>
+                <option value="cerrajeria">Cerrajería & Seguridad</option>
+                <option value="aseo">Aseo & Desinfección</option>
+                <option value="gasodomesticos">Gasodomésticos & Calentadores</option>
+                <option value="refrigeracion">Refrigeración & Neveras</option>
+                <option value="lavadoras">Lavadoras & Secadoras</option>
+                <option value="techos">Techos & Cubiertas</option>
+                <option value="pintura">Pintura & Tratamiento de Muros</option>
+                <option value="carpinteria">Carpintería & Mobiliario</option>
+              </select>
+              <div class="field-error">Por favor selecciona tu oficio principal.</div>
+            </div>
+
+            <!-- Comuna de Medellín -->
+            <div class="form-group" id="grp-pro-comuna">
+              <label for="pro_comuna">Comuna / Corregimiento (Medellín) *</label>
+              <select id="pro_comuna" required onchange="validarCampoIndividual(this, 'grp-pro-comuna')">
+                <option value="">Selecciona tu zona...</option>
+                <option value="comuna_1">Comuna 1 - Popular</option>
+                <option value="comuna_2">Comuna 2 - Santa Cruz</option>
+                <option value="comuna_3">Comuna 3 - Manrique</option>
+                <option value="comuna_4">Comuna 4 - Aranjuez</option>
+                <option value="comuna_5">Comuna 5 - Castilla</option>
+                <option value="comuna_6">Comuna 6 - Doce de Octubre</option>
+                <option value="comuna_7">Comuna 7 - Robledo</option>
+                <option value="comuna_8">Comuna 8 - Villa Hermosa</option>
+                <option value="comuna_9">Comuna 9 - Buenos Aires</option>
+                <option value="comuna_10">Comuna 10 - La Candelaria (Centro)</option>
+                <option value="comuna_11">Comuna 11 - Laureles - Estadio</option>
+                <option value="comuna_12">Comuna 12 - La América</option>
+                <option value="comuna_13">Comuna 13 - San Javier</option>
+                <option value="comuna_14">Comuna 14 - El Poblado</option>
+                <option value="comuna_15">Comuna 15 - Guayabal</option>
+                <option value="comuna_16">Comuna 16 - Belén</option>
+                <option value="san_antonio_prado">Corregimiento San Antonio de Prado</option>
+                <option value="san_cristobal">Corregimiento San Cristóbal</option>
+                <option value="santa_elena">Corregimiento Santa Elena</option>
+                <option value="san_sebastian_palmitas">Corregimiento San Sebastián de Palmitas</option>
+                <option value="altavista">Corregimiento Altavista</option>
+              </select>
+              <div class="field-error">Por favor selecciona tu comuna de cobertura.</div>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <!-- Barrio -->
+            <div class="form-group" id="grp-pro-barrio">
+              <label for="pro_barrio">Barrio de Residencia *</label>
+              <input type="text" id="pro_barrio" placeholder="Ej: Conquistadores, Belén Rosales..." required onblur="validarCampoIndividual(this, 'grp-pro-barrio')">
+              <div class="field-error">Por favor escribe tu barrio.</div>
+            </div>
+
+            <!-- Fecha de Nacimiento -->
+            <div class="form-group">
+              <label>Fecha de Nacimiento *</label>
+              <div style="display:flex;gap:8px;">
+                <select id="pro_mes_nac" required style="flex:1">
+                  <option value="">Mes...</option>
+                  <option value="01">Enero</option><option value="02">Febrero</option>
+                  <option value="03">Marzo</option><option value="04">Abril</option>
+                  <option value="05">Mayo</option><option value="06">Junio</option>
+                  <option value="07">Julio</option><option value="08">Agosto</option>
+                  <option value="09">Septiembre</option><option value="10">Octubre</option>
+                  <option value="11">Noviembre</option><option value="12">Diciembre</option>
+                </select>
+                <select id="pro_ano_nac" required style="flex:1">
+                  <option value="">Año...</option>
+                  <option value="2005">2005</option><option value="2004">2004</option>
+                  <option value="2003">2003</option><option value="2002">2002</option>
+                  <option value="2001">2001</option><option value="2000">2000</option>
+                  <option value="1995">1995</option><option value="1990">1990</option>
+                  <option value="1985">1985</option><option value="1980">1980</option>
+                  <option value="1975">1975</option><option value="1970">1970</option>
+                  <option value="1965">1965</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-full btn-full-primary" style="margin-top:16px;">
+            Continuar al Paso 2 (Verificación & Cobro) ➔
+          </button>
+        </form>
+      </div>
+
+      <!-- ================= PASO 2 ================= -->
+      <div class="form-step" id="paso-2">
+        <span class="step-badge">Paso 2 de 2: Verificación KYC & Cobro</span>
+        <h3 style="font-size:20px;font-weight:800;color:var(--text-white);margin-bottom:8px;">
+          Validación de Identidad y Cuenta de Depósito
+        </h3>
+        <p style="font-size:14px;color:var(--text-gray);margin-bottom:18px;">
+          Tus fondos se desembolsan directamente a tu cuenta tras la entrega del servicio por Bóveda Wompi (Bancolombia).
+        </p>
+
+        <form id="form-tecnico-p2" novalidate onsubmit="event.preventDefault(); enviarRegistroProFinal();">
+          
+          <!-- Cuenta de Cobro -->
+          <div class="form-group" id="grp-pro-cuenta">
+            <label for="pro_cuenta">Número de Cuenta Nequi o Bancolombia *</label>
+            <input type="text" id="pro_cuenta" placeholder="Ej: Nequi 3001234567 o Ahorros 123-456789-01" required onblur="validarCampoIndividual(this, 'grp-pro-cuenta')">
+            <div class="field-hint">A esta cuenta se transferirán tus pagos de cada labor finalizada.</div>
+            <div class="field-error">Ingresa el número de cuenta donde recibirás tus ingresos.</div>
+          </div>
+
+          <!-- Documentación y Fotos KYC -->
+          <div class="form-group">
+            <label>Carga de Documentación de Seguridad (KYC)</label>
+            <div class="field-hint">Sube fotos legibles desde tu dispositivo para habilitar tu Credencial QR en puerta.</div>
+            
+            <div class="kyc-grid">
+              <!-- Cédula Frente -->
+              <div class="kyc-upload-box" id="box-ced-front" onclick="triggerFileInput('file_ced_front')">
+                <div class="kyc-icon">🪪</div>
+                <div class="kyc-label">Cédula Frontal *</div>
+                <div class="kyc-status" id="st-ced-front">Subir foto</div>
+                <input type="file" id="file_ced_front" accept="image/*" style="display:none" onchange="handleKycPreview(this, 'box-ced-front', 'st-ced-front')">
+              </div>
+
+              <!-- Cédula Reverso -->
+              <div class="kyc-upload-box" id="box-ced-back" onclick="triggerFileInput('file_ced_back')">
+                <div class="kyc-icon">🔄</div>
+                <div class="kyc-label">Cédula Reverso *</div>
+                <div class="kyc-status" id="st-ced-back">Subir foto</div>
+                <input type="file" id="file_ced_back" accept="image/*" style="display:none" onchange="handleKycPreview(this, 'box-ced-back', 'st-ced-back')">
+              </div>
+
+              <!-- Selfie con documento -->
+              <div class="kyc-upload-box" id="box-selfie" onclick="triggerFileInput('file_selfie')">
+                <div class="kyc-icon">🤳</div>
+                <div class="kyc-label">Selfie con Documento *</div>
+                <div class="kyc-status" id="st-selfie">Foto en mano</div>
+                <input type="file" id="file_selfie" accept="image/*" style="display:none" onchange="handleKycPreview(this, 'box-selfie', 'st-selfie')">
+              </div>
+
+              <!-- Foto de perfil sin logo -->
+              <div class="kyc-upload-box" id="box-foto-perfil" onclick="triggerFileInput('file_foto_perfil')">
+                <div class="kyc-icon">👤</div>
+                <div class="kyc-label">Foto Perfil (Sin Logo) *</div>
+                <div class="kyc-status" id="st-foto-perfil">Foto formal</div>
+                <input type="file" id="file_foto_perfil" accept="image/*" style="display:none" onchange="handleKycPreview(this, 'box-foto-perfil', 'st-foto-perfil')">
+              </div>
+
+              <!-- Certificado Antecedentes -->
+              <div class="kyc-upload-box" id="box-antecedentes" onclick="triggerFileInput('file_antecedentes')">
+                <div class="kyc-icon">📜</div>
+                <div class="kyc-label">Antecedentes Policía *</div>
+                <div class="kyc-status" id="st-antecedentes">PDF o foto</div>
+                <input type="file" id="file_antecedentes" accept="image/*,.pdf" style="display:none" onchange="handleKycPreview(this, 'box-antecedentes', 'st-antecedentes')">
+              </div>
+            </div>
+          </div>
+
+          <!-- BLOQUE LEGAL DEL TÉCNICO (Texto Exacto) -->
+          <div class="legal-card">
+            <div class="legal-card-title">
+              <span>⚖️</span>
+              <span>Autorizaciones Legales y Consentimiento Informado</span>
+            </div>
+
+            <label class="checkbox-label">
+              <input type="checkbox" id="pro_check_terms" required>
+              <span>KYC: He leído y acepto los Términos y Condiciones y la Política de Tratamiento de Datos Personales (Ley 1581 de 2012). *</span>
+            </label>
+
+            <label class="checkbox-label">
+              <input type="checkbox" id="pro_check_biometria" required>
+              <span>Autorizo expresamente el tratamiento de mi biometría facial con fines exclusivos de validación de identidad en puerta mediante código QR y cotejo antifraude. Entiendo que por tratarse de un dato sensible (Ley 1581, art. 5) esta autorización es facultativa; no obstante, su no autorización impedirá la habilitación de mi cuenta técnica por protocolos de seguridad domiciliaria. *</span>
+            </label>
+
+            <label class="checkbox-label">
+              <input type="checkbox" id="pro_check_antecedentes" required>
+              <span>Autorizo a rebuske a consultar mis antecedentes judiciales, policivos y disciplinarios en bases públicas oficiales. Entiendo que rebuske solo almacenará la constancia de aptitud (“Aprobado / Sin pendientes” y fecha de cotejo), sin acopiar ni archivar documentos judiciales crudos. *</span>
+            </label>
+
+            <label class="checkbox-label">
+              <input type="checkbox" id="pro_check_alertas">
+              <span>(Opcional) Autorizo el envío de alertas de solicitudes en mi comuna, recordatorios de verificación y novedades operativas por WhatsApp y correo electrónico.</span>
+            </label>
+          </div>
+
+          <!-- Acciones del Paso 2 -->
+          <div class="btn-step-actions">
+            <button type="button" class="btn-full btn-full-sec" style="flex:1" onclick="volverPaso1Pro()">
+              ◀ Modificar datos básicos (Paso 1)
+            </button>
+            <button type="submit" id="btn-submit-pro" class="btn-full btn-full-primary" style="flex:2">
+              Asegurar mi Cupo Primordial (1% Mes 1) ⚡<span class="btn-dot" aria-hidden="true"></span>
+            </button>
+          </div>
+        </form>
+
+        <!-- Panel de Éxito -->
+        <div class="success-panel" id="pro-success-msg">
+          <div class="success-icon">🎉</div>
+          <h4 class="success-title">¡Cupo Primordial Registrado con Éxito!</h4>
+          <p class="success-desc">
+            Hemos recibido tus datos y documentación. Nuestro equipo de seguridad procesará el cotejo de antecedentes en 24 horas y te contactaremos a tu WhatsApp para activar tu Credencial QR y tu tarifa preferencial del 1% (99% neto para ti).
+          </p>
+          <a href="/entrada" class="btn-pill-primary">Volver al Portal Oficial</a>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Pie de página -->
+    <footer class="portal-footer">
+      <p>rebuske Medellín 2026 · Plataforma Tecnológica de Servicios del Hogar · Fundador: Camilo Escobar</p>
+      <p style="margin-top:6px;">
+        <a href="/terminos">Términos y Condiciones</a> · 
+        <a href="/privacidad">Política de Privacidad</a> · 
+        <a href="/reembolsos">Política de Reembolsos</a> · 
+        <a href="/tarifas">Tarifas Oficiales</a>
+      </p>
+    </footer>
+
+  </main>
+
+  <script>
+    // Contador animado a 84/100
+    (function initCounter() {
+      let count = 0;
+      const target = 84;
+      const el = document.getElementById('cupos-count');
+      const stepTime = 1800 / target;
+      const timer = setInterval(() => {
+        count++;
+        if (el) el.textContent = count + '/100';
+        if (count >= target) clearInterval(timer);
+      }, stepTime);
+    })();
+
+    // Simulador de Ingresos
+    function formatCOP(num) {
+      return '$' + Math.round(num).toLocaleString('es-CO');
+    }
+
+    function actualizarSimulador(val) {
+      const v = parseFloat(val);
+      document.getElementById('sim-val-display').textContent = 'Valor del trabajo: ' + formatCOP(v) + ' COP';
+      
+      const appsNeto = v * 0.70;
+      const appsCom = v * 0.30;
+      const rebNeto = v * 0.93;
+      const rebDif = rebNeto - appsNeto;
+
+      document.getElementById('trad-display').textContent = formatCOP(appsNeto) + ' COP (Te descuentan ' + formatCOP(appsCom) + ' COP)';
+      document.getElementById('reb-display').textContent = formatCOP(rebNeto) + ' COP + ' + formatCOP(rebDif) + ' COP más para ti';
+    }
+
+    function setSimValue(val) {
+      document.getElementById('sim-slider').value = val;
+      actualizarSimulador(val);
+    }
+
+    // Scroll al Paso 1
+    function irAlPaso1() {
+      document.getElementById('contenedor-formulario').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Navegación de Pasos
+    function validarCampoIndividual(input, groupClassId) {
+      const group = document.getElementById(groupClassId);
+      if (!group) return true;
+      let valid = true;
+
+      if (input.type === 'tel' && input.id === 'pro_cedula') {
+        const clean = input.value.replace(/\D/g, '');
+        valid = clean.length >= 6 && clean.length <= 10;
+      } else if (input.type === 'tel' && input.id === 'pro_telefono') {
+        const clean = input.value.replace(/\D/g, '');
+        valid = clean.length === 10;
+      } else if (input.required) {
+        valid = input.value.trim().length > 0;
+      }
+
+      if (!valid) {
+        group.classList.add('has-error');
+      } else {
+        group.classList.remove('has-error');
+      }
+      return valid;
+    }
+
+    function validarYAvanzarPaso1() {
+      let valido = true;
+      const c1 = validarCampoIndividual(document.getElementById('pro_nombre'), 'grp-pro-nombre');
+      const c2 = validarCampoIndividual(document.getElementById('pro_cedula'), 'grp-pro-cedula');
+      const c3 = validarCampoIndividual(document.getElementById('pro_telefono'), 'grp-pro-telefono');
+      const c4 = validarCampoIndividual(document.getElementById('pro_oficio'), 'grp-pro-oficio');
+      const c5 = validarCampoIndividual(document.getElementById('pro_comuna'), 'grp-pro-comuna');
+      const c6 = validarCampoIndividual(document.getElementById('pro_barrio'), 'grp-pro-barrio');
+
+      const mes = document.getElementById('pro_mes_nac').value;
+      const ano = document.getElementById('pro_ano_nac').value;
+      if (!mes || !ano) valido = false;
+
+      if (!c1 || !c2 || !c3 || !c4 || !c5 || !c6 || !valido) {
+        alert('Por favor verifica los campos resaltados en rojo antes de continuar.');
+        return;
+      }
+
+      // Cambiar a Paso 2
+      document.getElementById('paso-1').classList.remove('active');
+      document.getElementById('paso-2').classList.add('active');
+      document.getElementById('step-indicator-text').textContent = 'Paso 2 de 2: Verificación KYC & Cobro';
+      document.getElementById('progress-bar-fill').style.width = '100%';
+      document.getElementById('contenedor-formulario').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function volverPaso1Pro() {
+      document.getElementById('paso-2').classList.remove('active');
+      document.getElementById('paso-1').classList.add('active');
+      document.getElementById('step-indicator-text').textContent = 'Paso 1 de 2: Alta Rápida (60s)';
+      document.getElementById('progress-bar-fill').style.width = '50%';
+      document.getElementById('contenedor-formulario').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Carga de Archivos KYC
+    function triggerFileInput(id) {
+      document.getElementById(id).click();
+    }
+
+    function handleKycPreview(input, boxId, statusId) {
+      if (input.files && input.files[0]) {
+        const file = input.files[0];
+        const box = document.getElementById(boxId);
+        const status = document.getElementById(statusId);
+
+        box.classList.add('uploaded');
+        status.textContent = 'Archivo seleccionado ✓';
+
+        if (file.type.startsWith('image/')) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            let existingImg = box.querySelector('.kyc-preview-img');
+            if (!existingImg) {
+              existingImg = document.createElement('img');
+              existingImg.className = 'kyc-preview-img';
+              box.appendChild(existingImg);
+            }
+            existingImg.src = e.target.result;
+          };
+          reader.readAsDataURL(file);
+        }
+      }
+    }
+
+    // Envío Final Pro
+    async function enviarRegistroProFinal() {
+      const cuenta = document.getElementById('pro_cuenta').value.trim();
+      if (!cuenta) {
+        document.getElementById('grp-pro-cuenta').classList.add('has-error');
+        alert('Por favor ingresa tu cuenta de cobro.');
+        return;
+      }
+
+      const t1 = document.getElementById('pro_check_terms').checked;
+      const t2 = document.getElementById('pro_check_biometria').checked;
+      const t3 = document.getElementById('pro_check_antecedentes').checked;
+      if (!t1 || !t2 || !t3) {
+        alert('Debes marcar las autorizaciones obligatorias marcadas con asterisco (*).');
+        return;
+      }
+
+      const btn = document.getElementById('btn-submit-pro');
+      btn.disabled = true;
+      btn.textContent = 'Enviando registro...';
+
+      const payload = {
+        name: document.getElementById('pro_nombre').value.trim(),
+        cedula: document.getElementById('pro_cedula').value.trim(),
+        phone: document.getElementById('pro_telefono').value.trim(),
+        category: document.getElementById('pro_oficio').value,
+        zone: document.getElementById('pro_comuna').value,
+        barrio: document.getElementById('pro_barrio').value.trim(),
+        birthMonth: document.getElementById('pro_mes_nac').value,
+        birthYear: document.getElementById('pro_ano_nac').value,
+        account: cuenta,
+        autorizo_mandato: true
+      };
+
+      try {
+        await fetch('/api/register-pro', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+      } catch (err) {}
+
+      document.getElementById('form-tecnico-p2').style.display = 'none';
+      document.getElementById('pro-success-msg').style.display = 'block';
+      document.getElementById('pro-success-msg').scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
