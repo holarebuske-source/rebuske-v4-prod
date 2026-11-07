@@ -146,7 +146,7 @@ export default async function handler(req, res) {
       const signature = crypto.createHash('sha256').update(rawString).digest('hex');
 
       const ledger = getLedger();
-      ledger.unshift({
+      const newTxRecord = {
         reference,
         jobId: cleanJobId,
         proPlan: planKey,
@@ -179,8 +179,10 @@ export default async function handler(req, res) {
           entidadCustodia: 'Wompi - Bancolombia (Vigilada Superfinanciera)'
         },
         createdAt: new Date().toISOString()
-      });
+      };
+      ledger.unshift(newTxRecord);
       saveLedger(ledger);
+      syncTransactionToSupabase(newTxRecord).catch(() => {});
 
       return res.status(200).json({
         ok: true,
