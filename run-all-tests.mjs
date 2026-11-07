@@ -232,6 +232,8 @@ async function runTestSuite() {
   assert(regTecnicoHtml.includes('family=Syne'), 'Tipografía Syne unificada en /registro/tecnico');
   assert(regTecnicoHtml.includes('letter-spacing: -0.038em'), 'Tracking compacto Syne en /registro/tecnico');
   assert(regTecnicoHtml.includes('id="btn-submit-pro"'), 'Botón oficial de envío de Profesional presente en /registro/tecnico');
+  assert(regTecnicoHtml.includes('14. Clases Particulares & Música'), 'Especialidad de Clases y Música presente en registro técnico');
+  assert(regTecnicoHtml.includes('17. Servicios Profesionales & Legal'), 'Las 17 categorías presentes en el registro técnico');
   assert(regTecnicoHtml.includes('En rebuske Oro (93%)'), 'Simulador técnico muestra Plan Oro al 93% neto');
   assert(regTecnicoHtml.includes('9% Com.') && regTecnicoHtml.includes('Placa Bronce'), 'Placa Bronce configurada al 9% Com.');
   assert(regTecnicoHtml.includes('8% Com.') && regTecnicoHtml.includes('Placa Plata'), 'Placa Plata configurada al 8% Com.');
@@ -243,9 +245,20 @@ async function runTestSuite() {
   assert(regClienteHtml.includes('family=Syne'), 'Tipografía Syne unificada en /registro/cliente');
   assert(regClienteHtml.includes('letter-spacing: -0.038em'), 'Tracking compacto Syne en /registro/cliente');
   assert(regClienteHtml.includes('id="btn-submit-cli"'), 'Botón oficial de envío de Cliente presente en /registro/cliente');
+  assert(regClienteHtml.includes('14. Clases y Educación'), 'Categoría de Clases y Educación presente en registro cliente');
+  assert(regClienteHtml.includes('17. Servicios Profesionales'), 'Las 17 categorías presentes en el registro cliente');
   assert(regClienteHtml.includes('TUBONO15K-VIP'), 'Bono de cliente muestra código TUBONO15K-VIP');
   assert(regClienteHtml.includes('Google Play Store'), 'Aclaración de lista de espera Play Store presente');
   assert(regClienteHtml.includes('cli_check_terms'), 'Consentimiento legal cliente presente');
+
+  // Validación de Tarifario Oficial y Sistema Tri-Modal de Pagos (17 Servicios)
+  const tarifasHtml = fs.readFileSync('./tarifas.html', 'utf8');
+  assert(tarifasHtml.includes('Sistema Tri-Modal de Pagos'), 'Sistema Tri-Modal de Pagos documentado en tarifas.html');
+  assert(tarifasHtml.includes('Bóveda de Sesiones Progresivas'), 'Bóveda de Sesiones Progresivas para clases/educación documentada');
+  assert(tarifasHtml.includes('14. Clases y Educación') && tarifasHtml.includes('Enseñanza de música'), 'Categoría 14 de Clases y Música presente en tarifario');
+  assert(tarifasHtml.includes('1. Limpieza y Aseo') && tarifasHtml.includes('17. Servicios Profesionales'), 'Catálogo completo de 17 servicios presente en tarifas.html');
+  assert(indexHtml.includes('Clases y Educación (Música & Refuerzo)'), '17 categorías integradas en selector CATS de index.html');
+  assert(indexHtml.includes('Sesiones Progresivas (Clases)'), 'Opción de Sesiones Progresivas integrada en solicitud de index.html');
 
   assert(!indexHtml.includes('id="rebuske-sticky-mobile-bar"'), 'Sticky Action Bar móvil eliminada de index.html para despejar el flujo real');
   assert(indexHtml.includes('real-cases-section'), 'Sección de Casos Reales en Medellín presente en index.html');
