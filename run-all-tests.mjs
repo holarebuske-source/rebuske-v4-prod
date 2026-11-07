@@ -211,6 +211,17 @@ async function runTestSuite() {
   assert(entradaHtml.includes('Empieza aquí'), 'Sección unificada "Empieza aquí" presente');
   assert(entradaHtml.includes('/registro/tecnico'), 'Enlace a portal técnico /registro/tecnico presente');
   assert(entradaHtml.includes('/registro/cliente'), 'Enlace a portal cliente /registro/cliente presente');
+  assert(!entradaHtml.includes('Necesito un técnico.'), 'ELIMINADO el camino de pedir pedidos en /entrada (solo quedan registros e info)');
+  assert(!entradaHtml.includes('Pide tu servicio desde la app web.'), 'ELIMINADA la invitación a pedir pedidos desde /entrada');
+  assert(entradaHtml.includes('family=Syne'), 'Tipografía Syne unificada en /entrada');
+  assert(entradaHtml.includes('letter-spacing: -0.038em'), 'Tracking compacto Syne (-0.038em) aplicado a títulos para evitar deformación');
+  assert(entradaHtml.includes('letter-spacing: -0.025em'), 'Tracking compacto Syne (-0.025em) aplicado al cuerpo para evitar ensanchamiento');
+  assert(entradaHtml.includes('reveal-cascade'), 'Patrón A de animación en cascada implementado');
+  assert(entradaHtml.includes('mask-slide-inner'), 'Patrón B de deslizamiento con máscara implementado');
+  assert(entradaHtml.includes('pulse-c'), 'Patrón C de pulso implementado');
+  assert(entradaHtml.includes('float-d'), 'Patrón D de flotación bioluminiscente implementado');
+  assert(entradaHtml.includes('elevate-hover'), 'Patrón E de elevación al hover implementado');
+  assert(entradaHtml.includes('haz-luz-wompi'), 'Haz de luz bioluminiscente con base cálida (#FFD35C) en Bóveda Wompi implementado');
   assert(entradaHtml.includes('Nuestros Servicios'), 'Sección "Nuestros Servicios" con 4 bloques presente');
   assert(entradaHtml.includes('Plomería') && entradaHtml.includes('Electricidad') && entradaHtml.includes('Cerrajería') && entradaHtml.includes('Aseo'), '4 especialidades principales presentes en /entrada');
   assert(entradaHtml.includes('Cómo funciona para el cliente'), 'Flujo de 5 pasos para el cliente presente');
@@ -218,6 +229,8 @@ async function runTestSuite() {
   assert(entradaHtml.includes('Camilo Escobar'), 'Firma del fundador Camilo Escobar presente');
 
   // Validación del portal /registro/tecnico
+  assert(regTecnicoHtml.includes('family=Syne'), 'Tipografía Syne unificada en /registro/tecnico');
+  assert(regTecnicoHtml.includes('letter-spacing: -0.038em'), 'Tracking compacto Syne en /registro/tecnico');
   assert(regTecnicoHtml.includes('id="btn-submit-pro"'), 'Botón oficial de envío de Profesional presente en /registro/tecnico');
   assert(regTecnicoHtml.includes('En rebuske Oro (93%)'), 'Simulador técnico muestra Plan Oro al 93% neto');
   assert(regTecnicoHtml.includes('9% Com.') && regTecnicoHtml.includes('Placa Bronce'), 'Placa Bronce configurada al 9% Com.');
@@ -227,6 +240,8 @@ async function runTestSuite() {
   assert(regTecnicoHtml.includes('pro_check_terms'), 'Consentimiento legal técnico presente');
 
   // Validación del portal /registro/cliente
+  assert(regClienteHtml.includes('family=Syne'), 'Tipografía Syne unificada en /registro/cliente');
+  assert(regClienteHtml.includes('letter-spacing: -0.038em'), 'Tracking compacto Syne en /registro/cliente');
   assert(regClienteHtml.includes('id="btn-submit-cli"'), 'Botón oficial de envío de Cliente presente en /registro/cliente');
   assert(regClienteHtml.includes('TUBONO15K-VIP'), 'Bono de cliente muestra código TUBONO15K-VIP');
   assert(regClienteHtml.includes('Google Play Store'), 'Aclaración de lista de espera Play Store presente');
