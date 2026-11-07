@@ -265,7 +265,17 @@ async function runTestSuite() {
     assert(!indexHtml.toLowerCase().includes(p), `Filtro Lingüístico: Ausencia de modismo prohibido "${p}" en index.html`);
   }
 
-  assert(entradaHtml.includes('Modo Luz Express'), 'Protocolo de seguridad incluye Modo Luz Express');
+  // REGLA INQUEBRANTABLE: AUSENCIA TOTAL DE MODO LUZ Y RUTA DE LUZ
+  const forbiddenLuzTerms = ['modo luz', 'luz express', 'ruta de luz'];
+  for (const term of forbiddenLuzTerms) {
+    assert(!entradaHtml.toLowerCase().includes(term), `Ausencia absoluta de "${term}" en entrada.html`);
+    assert(!registroHtml.toLowerCase().includes(term), `Ausencia absoluta de "${term}" en registro.html`);
+    assert(!indexHtml.toLowerCase().includes(term), `Ausencia absoluta de "${term}" en index.html`);
+    assert(!regTecnicoHtml.toLowerCase().includes(term), `Ausencia absoluta de "${term}" en registro-tecnico.html`);
+    assert(!regClienteHtml.toLowerCase().includes(term), `Ausencia absoluta de "${term}" en registro-cliente.html`);
+  }
+
+  assert(entradaHtml.includes('Despacho Inmediato en Comunas'), 'Protocolo de seguridad incluye Despacho Inmediato en Comunas');
   assert(fs.existsSync('./PROTOCOLO_PERITAJE_OPERATIVO.md'), 'Protocolo Operativo de Peritaje existe en el repositorio');
 
   const lastHtmlIdx = indexHtml.lastIndexOf('</html>');
