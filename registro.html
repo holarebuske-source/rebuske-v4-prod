@@ -816,11 +816,19 @@
               </div>
             </div>
 
-            <!-- AUTORIZACIONES Y CONSENTIMIENTO INFORMADO KYC (LEY 1581 DE 2012) -->
+            <!-- AUTORIZACIONES Y CONSENTIMIENTO INFORMADO KYC (LEY 1581 DE 2012 Y ART. 1262 C.CO) -->
             <div class="p-4 rounded-2xl bg-[#091107] border border-[#24391E] space-y-3 text-xs">
               <span class="font-bold text-[#B8FF3B] block font-brand text-xs uppercase tracking-wide">
-                ⚖️ Autorizaciones Legales y Consentimiento Informado KYC:
+                ⚖️ Autorizaciones Legales, Mandato y Consentimiento KYC:
               </span>
+
+              <!-- Checkbox 0: Mandato Comercial Art. 1262 C.Co (BLINDAJE DIAN) -->
+              <label class="flex items-start gap-2.5 text-[#C4DDC1] cursor-pointer">
+                <input type="checkbox" id="pro-check-mandato" required class="mt-1 accent-[#B8FF3B] w-4 h-4 rounded cursor-pointer shrink-0">
+                <span class="text-[11px] leading-relaxed">
+                  <strong>Mandato Comercial de Cobranza (Art. 1262 Código de Comercio):</strong> Autorizo a <strong>rebuske</strong> como mandatario comercial para recaudar en custodia bancaria (Wompi) los pagos de clientes por mis servicios y dispersar a mi cuenta el 99% (mes 1) o 82%/86%/89% según mi plan, reconociendo que los fondos de la labor son ingresos propios para terceros (Art. 1.2.4.11 DUR 1625/2016). *
+                </span>
+              </label>
 
               <!-- Checkbox 1: Términos y Tratamiento General -->
               <label class="flex items-start gap-2.5 text-[#C4DDC1] cursor-pointer">
@@ -830,7 +838,148 @@
                 </span>
               </label>
 
-              <!-- Checkbox 2: Mayoría de Edad Legal (Ley 27 de 1977 y Código Civil) -->
+              <!-- Checkbox 2: Datos Sensibles Biométricos -->
+              <label class="flex items-start gap-2.5 text-[#C4DDC1] cursor-pointer">
+                <input type="checkbox" id="pro-check-biometria" required class="mt-1 accent-[#B8FF3B] w-4 h-4 rounded cursor-pointer shrink-0">
+                <span class="text-[11px] leading-relaxed">
+                  Autorizo el tratamiento de mis <strong>datos sensibles biométricos</strong> (selfie facial) con el fin exclusivo de generar mi credencial técnica digital para identificación segura ante el cliente en puerta. *
+                </span>
+              </label>
+
+              <!-- Checkbox 3: Verificación de Antecedentes -->
+              <label class="flex items-start gap-2.5 text-[#C4DDC1] cursor-pointer">
+                <input type="checkbox" id="pro-check-antecedentes" required class="mt-1 accent-[#B8FF3B] w-4 h-4 rounded cursor-pointer shrink-0">
+                <span class="text-[11px] leading-relaxed">
+                  Autorizo la <strong>verificación de antecedentes judiciales y de policía</strong> en bases públicas oficiales de Colombia como requisito indispensable de seguridad para operar en la plataforma. *
+                </span>
+              </label>
+
+              <!-- Checkbox 4: Novedades y Ofertas Técnicas (Opcional) -->
+              <label class="flex items-start gap-2.5 text-[#97A890] cursor-pointer">
+                <input type="checkbox" id="pro-check-promo" class="mt-1 accent-[#B8FF3B] w-4 h-4 rounded cursor-pointer shrink-0">
+                <span class="text-[11px] leading-relaxed">
+                  (Opcional) Autorizo el envío de notificaciones de nuevos servicios en mi comuna, capacitaciones y novedades operativas por WhatsApp y correo electrónico.
+                </span>
+              </label>
+            </div>
+
+            <!-- CONTENEDOR CLOUDFLARE TURNSTILE (PRO) -->
+            <div id="pro-turnstile-slot" class="my-3 flex justify-center"></div>
+
+            <button type="submit" id="btn-submit-pro" class="w-full btn-lima-action text-sm sm:text-base tracking-wide flex items-center justify-center gap-2">
+              <span>Asegurar mi Cupo Primordial (1% Mes 1)</span>
+              <span>⚡</span>
+            </button>
+
+            <div id="pro-alert-success" class="hidden p-5 rounded-2xl bg-[#192B15] border border-[#B8FF3B] text-center space-y-2">
+              <b class="text-base text-[#B8FF3B] block font-brand" id="pro-alert-title">¡Registro de Profesional Exitoso!</b>
+              <p class="text-xs text-[#F4FBF1]" id="pro-alert-msg">Hemos reservado tu cupo primordial. Nuestro equipo te contactará por WhatsApp para validar tus documentos e iniciar.</p>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <!-- ========================================================= -->
+      <!-- VISTA 2: FORMULARIO DE CLIENTES HOGARES                     -->
+      <!-- ========================================================= -->
+      <div id="view-cliente" class="hidden cinematic-card rounded-3xl p-6 sm:p-10 border border-[#F59E0B]/30 relative">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 mb-6 border-b border-[#24391E]">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-[#F59E0B]">Acceso Anticipado Google Play Store</span>
+            <h3 class="text-2xl font-black text-white font-brand">Registro de Clientes y Hogares VIP</h3>
+            <p class="text-xs text-[#97A890]">Te avisaremos por correo el link de descarga apenas esté lista la app y recibirás tu bono de $15.000 COP.</p>
+          </div>
+          <div class="px-4 py-2 rounded-2xl bg-[#0C120A] border border-[#24391E] text-center flex-shrink-0">
+            <span class="text-[10px] uppercase font-bold text-[#F59E0B] block">Cupón Activado</span>
+            <span class="text-sm font-black text-white font-mono">TUBONO15K-VIP</span>
+          </div>
+        </div>
+
+        <form id="form-cliente" onsubmit="handleClienteSubmit(event)" class="space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold uppercase text-[#A4BEA0] mb-1.5">Tu Nombre y Apellido *</label>
+              <input type="text" id="cli-nombre" required placeholder="Ej: Camila Restrepo" class="w-full bg-[#080E06] border border-[#243B1E] rounded-xl px-4 py-3 text-sm text-[#F4FBF1] focus:outline-none focus:border-[#F59E0B]">
+            </div>
+            <div>
+              <label class="block text-xs font-bold uppercase text-[#A4BEA0] mb-1.5">Tu Teléfono / WhatsApp *</label>
+              <input type="tel" id="cli-tel" required placeholder="Ej: 310 987 6543" class="w-full bg-[#080E06] border border-[#243B1E] rounded-xl px-4 py-3 text-sm text-[#F4FBF1] focus:outline-none focus:border-[#F59E0B]">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold uppercase text-[#A4BEA0] mb-1.5">Correo Electrónico (Para recibir el link de Play Store y tu bono) *</label>
+            <input type="email" id="cli-email" required placeholder="ejemplo@gmail.com" class="w-full bg-[#080E06] border border-[#243B1E] rounded-xl px-4 py-3 text-sm text-[#F4FBF1] focus:outline-none focus:border-[#F59E0B]">
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold uppercase text-[#A4BEA0] mb-1.5">Comuna o Barrio en Medellín *</label>
+              <input type="text" id="cli-zona" required placeholder="Ej: Laureles, Poblado, Belén, Envigado..." class="w-full bg-[#080E06] border border-[#243B1E] rounded-xl px-4 py-3 text-sm text-[#F4FBF1] focus:outline-none focus:border-[#F59E0B]">
+            </div>
+            <div>
+              <label class="block text-xs font-bold uppercase text-[#A4BEA0] mb-1.5">¿Qué servicios sueles necesitar más? *</label>
+              <select id="cli-interes" required class="w-full bg-[#080E06] border border-[#243B1E] rounded-xl px-4 py-3 text-sm text-[#F4FBF1] focus:outline-none focus:border-[#F59E0B]">
+                <option value="">Selecciona una opción...</option>
+                <option value="Plomería y Filtraciones">Plomería y Filtraciones</option>
+                <option value="Electricidad y Cortos">Electricidad y Cortos</option>
+                <option value="Cerrajería y Emergencias">Cerrajería y Emergencias</option>
+                <option value="Pintura y Remodelación">Pintura y Remodelación</option>
+                <option value="Mantenimiento de Vehículos">Mantenimiento de Vehículos</option>
+                <option value="Aseo y Desinfección">Aseo y Desinfección</option>
+                <option value="Mudanzas">Mudanzas</option>
+                <option value="Varios / Todos los anteriores">Varios / Todos los anteriores</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- FECHA DE NACIMIENTO (SOLO MES Y AÑO) -->
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold uppercase text-[#A4BEA0] mb-1.5">Mes de Nacimiento *</label>
+              <select id="cli-mes" required class="w-full bg-[#080E06] border border-[#243B1E] rounded-xl px-3 py-3 text-sm text-[#F4FBF1] focus:outline-none focus:border-[#F59E0B]">
+                <option value="">Selecciona mes...</option>
+                <option value="01">Enero</option>
+                <option value="02">Febrero</option>
+                <option value="03">Marzo</option>
+                <option value="04">Abril</option>
+                <option value="05">Mayo</option>
+                <option value="06">Junio</option>
+                <option value="07">Julio</option>
+                <option value="08">Agosto</option>
+                <option value="09">Septiembre</option>
+                <option value="10">Octubre</option>
+                <option value="11">Noviembre</option>
+                <option value="12">Diciembre</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-xs font-bold uppercase text-[#A4BEA0] mb-1.5">Año de Nacimiento *</label>
+              <input type="number" id="cli-ano" min="1940" max="2008" required placeholder="Ej: 1995" class="w-full bg-[#080E06] border border-[#243B1E] rounded-xl px-4 py-3 text-sm text-[#F4FBF1] focus:outline-none focus:border-[#F59E0B]">
+            </div>
+          </div>
+
+          <!-- HONEYPOT BOT PROTECTION INVISIBLE -->
+          <input type="text" id="cli-hp-token" style="display:none!important;" tabindex="-1" autocomplete="off">
+
+          <div class="p-4 rounded-2xl bg-[#141006] border border-[#423114] text-xs text-[#D8C7A5] space-y-1">
+            <span class="font-bold text-[#F59E0B] flex items-center gap-1.5">
+              <span>🎁</span> Términos del Bono de Bienvenida
+            </span>
+            <p>El bono de $15.000 COP aplica en tu primer servicio igual o superior a $90.000 COP con 0% de comisión para la app. Recibirás tu confirmación de inmediato por correo.</p>
+          </div>
+
+          <!-- AUTORIZACIONES CLIENTES (LEY 1581) -->
+          <div class="p-4 rounded-2xl bg-[#091107] border border-[#24391E] space-y-3 text-xs">
+            <!-- Checkbox 1: Términos y Tratamiento General -->
+            <label class="flex items-start gap-2.5 text-[#C4DDC1] cursor-pointer">
+              <input type="checkbox" id="cli-check-terminos" required class="mt-1 accent-[#F59E0B] w-4 h-4 rounded cursor-pointer shrink-0">
+              <span class="text-[11px] leading-relaxed">
+                He leído y acepto los <a href="/terminos" target="_blank" class="text-[#F59E0B] underline font-bold">Términos y Condiciones</a> y la <a href="/privacidad" target="_blank" class="text-[#F59E0B] underline font-bold">Política de Tratamiento de Datos Personales</a> (Ley 1581 de 2012). *
+              </span>
+            </label>
+
+            <!-- Checkbox 2: Mayoría de Edad Legal -->
             <label class="flex items-start gap-2.5 text-[#C4DDC1] cursor-pointer">
               <input type="checkbox" id="cli-check-edad" required class="mt-1 accent-[#F59E0B] w-4 h-4 rounded cursor-pointer shrink-0">
               <span class="text-[11px] leading-relaxed">
@@ -847,7 +996,7 @@
             </label>
           </div>
 
-          <!-- CONTENEDOR CLOUDFLARE TURNSTILE (PROTECCIÓN ANTI-BOT) -->
+          <!-- CONTENEDOR CLOUDFLARE TURNSTILE (CLIENTE) -->
           <div id="cli-turnstile-slot" class="my-3 flex justify-center"></div>
 
           <button type="submit" id="btn-submit-cli" class="w-full btn-lima-action text-sm sm:text-base tracking-wide flex items-center justify-center gap-2">
@@ -1587,9 +1736,16 @@
         return;
       }
 
+      const chkMandato = document.getElementById('pro-check-mandato');
       const chkTerminos = document.getElementById('pro-check-terminos');
       const chkBiometria = document.getElementById('pro-check-biometria');
       const chkAntecedentes = document.getElementById('pro-check-antecedentes');
+
+      if (!chkMandato || !chkMandato.checked) {
+        alert('Debes aceptar el Contrato de Mandato Comercial de Cobranza (Art. 1262 Código de Comercio) para que rebuske pueda dispersar tus ingresos legalmente.');
+        chkMandato.focus();
+        return;
+      }
 
       if (!chkTerminos || !chkTerminos.checked) {
         alert('Debes leer y aceptar los Términos y Condiciones y la Política de Tratamiento de Datos Personales (Ley 1581).');
@@ -1672,6 +1828,7 @@
             anoNacimiento,
             turnstileToken,
             exp: '3',
+            autorizo_mandato: true,
             consentimientoLey1581: true,
             autorizo_terminos: true,
             autorizo_datos_sensibles: true,
