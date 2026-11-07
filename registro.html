@@ -1,2872 +1,1480 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es-CO">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>rebuske · Registro Oficial Medellín 2026</title>
-  <meta name="description" content="rebuske es la infraestructura de confianza en servicios especializados en Medellín. Tu Hogar Protegido. Tu Mano de Obra Valorada.">
+  <title>rebuske · Tu Hogar Protegido. Tu Mano de Obra Valorada · Medellín 2026</title>
+  <meta name="description" content="Servicios técnicos para el hogar en Medellín con pago protegido en Bóveda Wompi y peritaje oficial. Plomería, electricidad, cerrajería y aseo con garantía escrita de 48h.">
+  <link rel="canonical" href="https://rebuske.vercel.app/entrada">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="rebuske · Tu Hogar Protegido. Tu Mano de Obra Valorada">
+  <meta property="og:description" content="Técnicos verificados con credencial QR en Medellín. Pago custodiado en Bóveda Wompi hasta tu visto bueno.">
+  <meta property="og:url" content="https://rebuske.vercel.app/entrada">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon e Iconos -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <!-- Tipografía -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="icon" type="image/png" href="/assets/icons/campana-lima/icon-192x192.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --bg-dark: #050A05;
-      --bg-darker: #0B1A0B;
+      --bg-card: rgba(10, 20, 10, 0.65);
+      --bg-card-hover: rgba(14, 28, 14, 0.85);
+      --border-subtle: rgba(255, 255, 255, 0.12);
+      --border-neon: rgba(124, 255, 26, 0.22);
       --accent-neon: #3CFF2E;
-      --accent-neon-light: #7BFF1A;
+      --accent-neon-bright: #7BFF1A;
       --accent-warm: #FFD35C;
       --text-white: #F2F5EE;
       --text-gray: #B4BDAE;
-      --text-gray-dark: #5A6358;
-      --glass-bg: rgba(10, 20, 10, 0.6);
-      --glass-border: rgba(124, 255, 26, 0.2);
-      --input-bg: rgba(255, 255, 255, 0.04);
-      --input-border: rgba(255, 255, 255, 0.15);
-      --chip-bg: rgba(255, 255, 255, 0.05);
-      --font-main: 'Manrope', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     }
 
-    *, *::before, *::after {
+    * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       background-color: var(--bg-dark);
-      background-image: 
-        radial-gradient(circle at 15% 20%, rgba(60, 255, 46, 0.08) 0%, transparent 45%),
-        radial-gradient(circle at 85% 75%, rgba(123, 255, 26, 0.06) 0%, transparent 50%),
-        radial-gradient(circle at 50% 50%, rgba(11, 26, 11, 0.9) 0%, var(--bg-dark) 100%);
-      background-attachment: fixed;
-      color: var(--text-white);
+      color: var(--text-gray);
       font-family: var(--font-main);
       font-size: 16px;
       line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
       overflow-x: hidden;
+      position: relative;
     }
 
-    /* Enlaces y botones base */
-    a {
-      color: inherit;
-      text-decoration: none;
-      transition: color 0.2s ease;
+    /* Fondo bioluminiscente difuso */
+    .bg-glow-layer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
     }
-    button, input, select, textarea {
-      font-family: inherit;
-    }
-
-    /* Botón Principal */
-    .btn-main {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      background: #FFFFFF;
-      color: #050A05;
-      font-weight: 700;
-      font-size: 15px;
-      padding: 14px 26px;
-      border-radius: 999px;
-      border: none;
-      cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .btn-main:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(255, 255, 255, 0.25);
-    }
-    .btn-main .btn-dot {
-      width: 8px;
-      height: 8px;
-      background-color: var(--accent-neon);
+    .glow-orb {
+      position: absolute;
       border-radius: 50%;
-      display: inline-block;
-      transition: transform 0.2s ease;
+      filter: blur(85px);
+      opacity: 0.16;
+      animation: floatGlow 20s ease-in-out infinite alternate;
     }
-    .btn-main:hover .btn-dot {
-      transform: scale(1.15);
+    .glow-orb-1 {
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, var(--accent-neon) 0%, transparent 70%);
+      top: -80px;
+      left: -80px;
+    }
+    .glow-orb-2 {
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, #1a4d1a 0%, transparent 70%);
+      bottom: -120px;
+      right: -80px;
+      animation-duration: 25s;
     }
 
-    /* Botón Secundario */
-    .btn-sec {
+    @keyframes floatGlow {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(60px, 40px) scale(1.1); }
+      100% { transform: translate(-40px, 70px) scale(0.95); }
+    }
+
+    /* 1. BARRA SUPERIOR FIJA */
+    .top-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 64px;
+      background: rgba(5, 10, 5, 0.7);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(124, 255, 26, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(16px, 4vw, 48px);
+      z-index: 1000;
+      transform: translateY(-100%);
+      animation: slideDownBar 0.6s ease forwards;
+      transition: background 0.3s ease;
+    }
+    .top-bar.scrolled {
+      background: rgba(5, 10, 5, 0.92);
+    }
+    @keyframes slideDownBar {
+      to { transform: translateY(0); }
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text-white);
+      font-weight: 800;
+      font-size: 17px;
+      letter-spacing: -0.02em;
+    }
+    .brand-logo-dot {
+      width: 10px;
+      height: 10px;
+      background: var(--accent-neon);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--accent-neon);
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-pill-sec {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      padding: 10px 20px;
+      gap: 8px;
+      padding: 8px 18px;
       border-radius: 999px;
       border: 1px solid rgba(255, 255, 255, 0.2);
       background: transparent;
       color: var(--text-white);
+      text-decoration: none;
       font-size: 14px;
-      font-weight: 600;
+      font-weight: 500;
+      transition: all 0.2s ease;
       cursor: pointer;
-      transition: background 0.2s ease, border-color 0.2s ease;
     }
-    .btn-sec:hover {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: rgba(255, 255, 255, 0.4);
-    }
-
-    /* Tarjetas de Cristal */
-    .glass-card {
-      background: var(--glass-bg);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid var(--glass-border);
-      border-radius: 20px;
-      padding: 28px;
-      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-    }
-    .glass-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(60, 255, 46, 0.6);
-      box-shadow: 0 0 24px rgba(60, 255, 46, 0.25);
-    }
-
-    /* Inputs y Formularios */
-    .field-group {
-      margin-bottom: 20px;
-      position: relative;
-    }
-    .field-label {
-      display: block;
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--text-white);
-      margin-bottom: 8px;
-    }
-    .field-input, .field-select {
-      width: 100%;
-      height: 48px;
-      border-radius: 12px;
-      background: var(--input-bg);
-      border: 1px solid var(--input-border);
-      color: var(--text-white);
-      padding: 0 16px;
-      font-size: 15px;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
-      outline: none;
-    }
-    .field-input:focus, .field-select:focus {
+    .btn-pill-sec:hover {
       border-color: var(--accent-neon);
-      box-shadow: 0 0 12px rgba(60, 255, 46, 0.25);
-    }
-    .field-select {
-      appearance: none;
-      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23B4BDAE' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-      background-repeat: no-repeat;
-      background-position: right 16px center;
-      background-size: 16px;
-      cursor: pointer;
-    }
-    .field-select option {
-      background: #0B1A0B;
-      color: #F2F5EE;
-    }
-    .field-select optgroup {
-      background: #050A05;
       color: var(--accent-neon);
-      font-weight: bold;
-    }
-    .field-help {
-      font-size: 12px;
-      color: var(--text-gray);
-      margin-top: 6px;
-    }
-    .field-error {
-      font-size: 12px;
-      color: #FF8A8A;
-      margin-top: 6px;
-      display: none;
-    }
-    .shake {
-      animation: shake 0.3s cubic-bezier(.36,.07,.19,.97) both;
-    }
-    @keyframes shake {
-      10%, 90% { transform: translate3d(-1px, 0, 0); }
-      20%, 80% { transform: translate3d(2px, 0, 0); }
-      30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
-      40%, 60% { transform: translate3d(4px, 0, 0); }
+      transform: translateY(-2px);
     }
 
-    /* Rótulos generales */
-    .sec-label {
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--accent-neon);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+    .btn-pill-primary {
       display: inline-flex;
       align-items: center;
-      gap: 12px;
-      margin-bottom: 12px;
+      gap: 8px;
+      padding: 9px 22px;
+      border-radius: 999px;
+      border: none;
+      background: #FFFFFF;
+      color: #050A05;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+    }
+    .btn-pill-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 18px rgba(60, 255, 46, 0.35);
+    }
+    .btn-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--accent-neon);
+      border-radius: 50%;
+      transition: transform 0.2s ease;
+    }
+    .btn-pill-primary:hover .btn-dot {
+      transform: scale(1.2);
+    }
+
+    /* CONTENEDOR GENERAL DE SECCIONES */
+    .section-wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 90px clamp(16px, 4vw, 40px);
+    }
+
+    .sec-tag {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent-neon);
+      margin-bottom: 8px;
     }
     .sec-title {
       font-size: clamp(28px, 4vw, 40px);
-      font-weight: 800;
+      font-weight: 900;
       color: var(--text-white);
+      letter-spacing: -0.02em;
       line-height: 1.2;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
     .sec-desc {
       font-size: 16px;
       color: var(--text-gray);
-      max-width: 640px;
-      margin: 0 auto 36px;
-    }
-
-    /* Accesibilidad Focus */
-    a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
-      outline: 3px solid var(--accent-neon);
-      outline-offset: 3px;
-    }
-
-    /* Animaciones reutilizables */
-    .cascade-item {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s cubic-bezier(0.215, 0.61, 0.355, 1), transform 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
-    }
-    .cascade-item.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    .pulse-glow {
-      animation: pulseAnim 2s infinite ease-in-out;
-    }
-    @keyframes pulseAnim {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.08); }
-    }
-
-    /* 4. BARRA SUPERIOR FIJA */
-    #navbar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 64px;
-      z-index: 1000;
-      background: rgba(5, 10, 5, 0.7);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 clamp(16px, 5vw, 64px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      transform: translateY(-100%);
-      transition: transform 0.6s ease, background 0.3s ease;
-    }
-    #navbar.loaded {
-      transform: translateY(0);
-    }
-    #navbar.scrolled {
-      background: rgba(5, 10, 5, 0.92);
-    }
-    .nav-brand {
-      font-weight: 800;
-      font-size: 17px;
-      color: var(--text-white);
-      letter-spacing: -0.02em;
-    }
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    /* 5. HERO */
-    #hero {
-      position: relative;
-      min-height: 100vh;
-      padding: 130px clamp(16px, 5vw, 64px) 60px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      overflow: hidden;
-    }
-    #hero-canvas {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-      pointer-events: none;
-    }
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 1200px;
-      margin: 0 auto;
-      width: 100%;
-    }
-    .hero-label {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--accent-neon);
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      margin-bottom: 24px;
-      opacity: 0;
-      transition: opacity 0.5s ease;
-    }
-    .hero-label.visible {
-      opacity: 1;
-    }
-    .hero-label-line {
-      width: 24px;
-      height: 2px;
-      background: var(--accent-neon);
-      display: inline-block;
-    }
-    .hero-title-container {
-      margin-bottom: 32px;
-    }
-    .h1-mask {
-      overflow: hidden;
-      display: block;
-    }
-    .h1-line {
-      display: block;
-      font-size: clamp(38px, 6.2vw, 92px);
-      font-weight: 800;
-      line-height: 1.05;
-      letter-spacing: -0.03em;
-      color: var(--text-white);
-      transform: translateX(-100%);
-      transition: transform 0.8s cubic-bezier(0.215, 0.61, 0.355, 1);
-    }
-    .h1-line.right-line {
-      text-align: right;
-      transform: translateX(100%);
-      padding-right: 4%;
-    }
-    .h1-line.visible {
-      transform: translateX(0);
-    }
-    .hero-bottom-row {
-      display: flex;
-      justify-content: flex-end;
-      margin-top: 10px;
-    }
-    .hero-desc-wrap {
-      max-width: 340px;
-    }
-    .hero-desc {
-      font-size: 16px;
-      color: var(--text-gray);
-      line-height: 1.55;
-      margin-bottom: 24px;
-    }
-    .hero-chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    .chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 7px 15px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      background: rgba(255, 255, 255, 0.05);
-      font-size: 14px;
-      color: var(--text-white);
-    }
-
-    /* 6. PAGO PROTEGIDO */
-    #pago-protegido {
-      position: relative;
-      padding: 90px clamp(16px, 5vw, 64px);
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .trust-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      position: relative;
-      z-index: 2;
-    }
-    .trust-card {
-      text-align: center;
-      padding: 36px 24px;
-    }
-    .trust-card .card-icon {
-      font-size: 32px;
-      display: block;
-      margin-bottom: 16px;
-    }
-    .trust-card h3 {
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--text-white);
-      margin-bottom: 12px;
-    }
-    .trust-card p {
-      font-size: 15px;
-      color: var(--text-gray);
-      line-height: 1.5;
-    }
-    /* Haz de luz */
-    .light-beam {
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      width: 2px;
-      height: 0%;
-      transform: translateX(-50%);
-      background: linear-gradient(180deg, var(--accent-neon-light) 0%, var(--accent-warm) 100%);
-      box-shadow: 0 0 20px 4px var(--accent-neon-light);
-      z-index: 1;
-      pointer-events: none;
-      transition: height 0.1s linear, opacity 0.4s ease;
-    }
-    .light-beam.pulsing {
-      opacity: 0.3 !important;
-      animation: beamPulse 4s infinite ease-in-out;
-    }
-    @keyframes beamPulse {
-      0%, 100% { opacity: 0.2; }
-      50% { opacity: 0.45; }
-    }
-
-    /* 7. CREDENCIAL QR */
-    #credencial-qr {
-      padding: 90px clamp(16px, 5vw, 64px);
-      max-width: 1100px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-items: center;
-      gap: 48px;
-    }
-    .qr-text-block .qr-icon {
-      font-size: 38px;
-      display: block;
-      margin-bottom: 16px;
-    }
-    .qr-text-block h3 {
-      font-size: clamp(26px, 3.5vw, 36px);
-      font-weight: 800;
-      color: var(--text-white);
-      margin-bottom: 14px;
-      line-height: 1.2;
-    }
-    .qr-text-block p {
-      font-size: 16px;
-      color: var(--text-gray);
+      max-width: 680px;
       line-height: 1.6;
     }
-    .qr-visual-frame {
-      position: relative;
-      width: 320px;
-      height: 200px;
-      margin: 0 auto;
-    }
-    .qr-bracket {
-      position: absolute;
-      width: 24px;
-      height: 24px;
-      border: 3px solid var(--accent-neon);
-      animation: bracketPulse 2s infinite ease-in-out;
-    }
-    .qr-b-tl { top: 0; left: 0; border-right: none; border-bottom: none; }
-    .qr-b-tr { top: 0; right: 0; border-left: none; border-bottom: none; }
-    .qr-b-bl { bottom: 0; left: 0; border-right: none; border-top: none; }
-    .qr-b-br { bottom: 0; right: 0; border-left: none; border-top: none; }
-    @keyframes bracketPulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.5; }
-    }
-    .qr-card-inner {
-      position: absolute;
-      inset: 8px;
-      background: #081408;
-      border: 1px solid rgba(124, 255, 26, 0.3);
-      border-radius: 12px;
-      overflow: hidden;
+
+    /* 2. HERO CON SERVICIOS Y PARTICULAS (16s Loop) */
+    .hero-section {
+      min-height: 88vh;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-    }
-    .qr-dots-grid {
-      display: grid;
-      grid-template-columns: repeat(14, 10px);
-      grid-gap: 6px;
-    }
-    .qr-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 1px;
-      background: rgba(60, 255, 46, 0.4);
-    }
-    .qr-dot.active {
-      background: var(--accent-neon);
-      box-shadow: 0 0 6px var(--accent-neon);
-    }
-    .qr-scan-line {
-      position: absolute;
-      left: 0;
-      right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, var(--accent-neon), transparent);
-      box-shadow: 0 0 12px 2px var(--accent-neon);
-      animation: scanMove 3s infinite ease-in-out alternate;
-    }
-    @keyframes scanMove {
-      0% { top: 10px; }
-      100% { top: 180px; }
+      text-align: center;
+      padding-top: 100px;
+      padding-bottom: 60px;
+      position: relative;
     }
 
-    /* 8. DOS CAMINOS (CARRUSEL 3D) */
-    #dos-caminos {
+    .hero-canvas-container {
       position: relative;
-      padding: 100px clamp(16px, 5vw, 64px);
-      overflow: hidden;
-      text-align: center;
+      width: 100%;
+      max-width: 700px;
+      height: 280px;
+      margin: 0 auto 20px;
     }
-    #helix-canvas {
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 600px;
+    #heroCanvas {
+      width: 100%;
       height: 100%;
-      z-index: 1;
-      pointer-events: none;
-      opacity: 0.6;
-    }
-    .carousel-3d-wrap {
-      position: relative;
-      z-index: 2;
-      max-width: 900px;
-      height: 520px;
-      margin: 0 auto;
-      perspective: 1200px;
-    }
-    .c-card {
-      position: absolute;
-      top: 0;
-      left: 50%;
-      width: min(440px, 90vw);
-      margin-left: max(-220px, -45vw);
-      height: auto;
-      text-align: left;
-      cursor: pointer;
-      transition: transform 1s cubic-bezier(0.645, 0.045, 0.355, 1), opacity 1s ease, filter 1s ease;
-    }
-    .c-card.front {
-      transform: translate3d(0, 0, 0) scale(1) rotateY(0deg);
-      opacity: 1;
-      filter: blur(0px);
-      z-index: 10;
-      pointer-events: auto;
-    }
-    .c-card.back {
-      transform: translate3d(80px, 20px, -180px) scale(0.75) rotateY(-25deg);
-      opacity: 0.6;
-      filter: blur(3px);
-      z-index: 5;
-    }
-    .c-card .card-icon {
-      font-size: 36px;
       display: block;
-      margin-bottom: 12px;
     }
-    .c-card h3 {
-      font-size: 24px;
-      font-weight: 800;
-      margin-bottom: 10px;
+
+    .hero-tagline {
+      font-size: clamp(32px, 5.5vw, 56px);
+      font-weight: 900;
       color: var(--text-white);
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      max-width: 820px;
+      margin: 0 auto 16px;
     }
-    .c-card p {
-      font-size: 15px;
-      color: var(--text-gray);
-      margin-bottom: 16px;
-      line-height: 1.5;
-    }
-    .c-card ul {
-      list-style: none;
+
+    /* Display reactivo de Servicio en Hero */
+    .hero-service-display {
+      min-height: 60px;
       margin-bottom: 24px;
     }
-    .c-card ul li {
-      font-size: 14px;
-      color: var(--text-white);
-      margin-bottom: 8px;
-      line-height: 1.45;
-    }
-    .badge-bono {
-      display: inline-block;
-      padding: 4px 12px;
+    .hero-service-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(60, 255, 46, 0.08);
+      border: 1px solid rgba(60, 255, 46, 0.3);
+      padding: 8px 20px;
       border-radius: 999px;
-      background: rgba(124, 255, 26, 0.15);
-      border: 1px solid rgba(124, 255, 26, 0.3);
+      font-size: 17px;
+      font-weight: 800;
       color: var(--accent-neon);
-      font-size: 12px;
-      font-weight: 700;
       margin-bottom: 12px;
+      transition: opacity 0.5s ease;
     }
-    .carousel-nav-controls {
-      position: relative;
-      z-index: 12;
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-      margin-top: 24px;
+    .hero-ver-servicio-btn {
+      display: inline-block;
+      font-size: 13px;
+      color: var(--text-white);
+      text-decoration: underline;
+      cursor: pointer;
+      margin-left: 8px;
     }
 
-    /* 9. SELECTOR DE FORMULARIOS */
-    #selector-sticky-container {
-      position: sticky;
-      top: 80px;
-      z-index: 900;
+    /* Puntos Indicadores del Hero */
+    .hero-dots-indicator {
       display: flex;
+      gap: 10px;
       justify-content: center;
-      padding: 12px clamp(16px, 5vw, 64px);
-      pointer-events: none;
+      margin-bottom: 28px;
     }
-    .segment-control {
-      pointer-events: auto;
-      position: relative;
+    .hero-dot-btn {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .hero-dot-btn.active {
+      background: var(--accent-neon);
+      box-shadow: 0 0 12px var(--accent-neon);
+      transform: scale(1.25);
+    }
+
+    /* 4 Chips de Confianza en Hero */
+    .hero-chips-wrap {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      max-width: 840px;
+      margin: 0 auto;
+    }
+    .hero-chip {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      border-radius: 999px;
+      padding: 8px 18px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-white);
       display: inline-flex;
-      background: rgba(255, 255, 255, 0.05);
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Movimiento Reducido Fallback */
+    .hero-reduced-row {
+      display: none;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin: 20px 0;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-canvas-container { display: none !important; }
+      .hero-reduced-row { display: grid !important; }
+    }
+
+    /* 3. EMPIEZA AQUÍ (Tres Tarjetas Claras) */
+    .start-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 36px;
+    }
+    @media (max-width: 860px) {
+      .start-cards-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .start-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-neon);
+      border-radius: 20px;
+      padding: 32px 26px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 999px;
-      padding: 4px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
     }
-    .segment-slider {
-      position: absolute;
-      top: 4px;
-      left: 4px;
-      height: calc(100% - 8px);
-      width: 50%;
-      background: #FFFFFF;
-      border-radius: 999px;
-      transition: transform 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
-      z-index: 1;
+    .start-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent-neon);
+      box-shadow: 0 10px 30px rgba(60, 255, 46, 0.2);
     }
-    .segment-btn {
-      position: relative;
-      z-index: 2;
-      border: none;
-      background: transparent;
-      padding: 10px 22px;
-      border-radius: 999px;
-      font-size: 14px;
-      font-weight: 700;
+    .start-card-icon {
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+    .start-card-title {
+      font-size: 22px;
+      font-weight: 800;
       color: var(--text-white);
-      cursor: pointer;
-      transition: color 0.3s ease;
-      white-space: nowrap;
+      margin-bottom: 10px;
     }
-    .segment-btn.active {
-      color: #050A05;
+    .start-card-desc {
+      font-size: 15px;
+      color: var(--text-gray);
+      line-height: 1.5;
+      margin-bottom: 24px;
+      flex-grow: 1;
     }
 
-    /* 10. PROTOCOLO DE SEGURIDAD */
-    #protocolo {
-      padding: 80px clamp(16px, 5vw, 64px);
-      max-width: 1100px;
-      margin: 0 auto;
-      text-align: center;
+    /* 4. NUESTROS SERVICIOS (Cuatro Bloques) */
+    .services-intro {
+      font-size: 14px;
+      color: var(--accent-warm);
+      font-weight: 600;
+      margin-top: 6px;
+      margin-bottom: 28px;
     }
-    .proto-grid {
+    .services-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 20px;
-      text-align: left;
     }
-    .proto-card {
-      cursor: pointer;
-      user-select: none;
-    }
-    .proto-header {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-    }
-    .proto-header .proto-icon {
-      font-size: 26px;
-      flex-shrink: 0;
-      margin-top: 2px;
-    }
-    .proto-header-text {
-      flex-grow: 1;
-    }
-    .proto-header-text h3 {
-      font-size: 17px;
-      font-weight: 800;
-      color: var(--text-white);
-      line-height: 1.3;
-      margin-bottom: 4px;
-    }
-    .proto-header-text .proto-sub {
-      font-size: 13px;
-      color: var(--accent-neon);
-      font-weight: 600;
-    }
-    .proto-chevron {
-      font-size: 14px;
-      color: var(--text-gray);
-      transition: transform 0.4s ease;
-      margin-top: 6px;
-    }
-    .proto-card.open .proto-chevron {
-      transform: rotate(180deg);
-    }
-    .proto-content {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s cubic-bezier(0.215, 0.61, 0.355, 1), opacity 0.4s ease;
-      opacity: 0;
-    }
-    .proto-card.open .proto-content {
-      max-height: 240px;
-      opacity: 1;
-      margin-top: 14px;
-      padding-top: 14px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-    }
-    .proto-content p {
-      font-size: 14px;
-      color: var(--text-gray);
-      line-height: 1.6;
+    @media (max-width: 800px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
-    /* 11. CONVOCATORIA */
-    #convocatoria {
-      padding: 70px clamp(16px, 5vw, 64px) 30px;
-      max-width: 800px;
-      margin: 0 auto;
-      text-align: center;
+    .service-block-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 20px;
+      padding: 28px;
+      backdrop-filter: blur(10px);
+      transition: all 0.25s ease;
+      scroll-margin-top: 100px;
     }
-    .conv-counter {
-      margin: 24px 0 32px;
-      font-size: 18px;
-      color: var(--text-gray);
+    .service-block-card:hover,
+    .service-block-card.highlighted {
+      border-color: var(--accent-neon);
+      box-shadow: 0 8px 26px rgba(60, 255, 46, 0.2);
     }
-    .num-green {
-      font-size: clamp(38px, 6vw, 56px);
-      font-weight: 800;
-      color: var(--accent-neon);
-      display: inline-block;
-      vertical-align: middle;
-    }
-    .num-slash {
-      font-size: 32px;
-      color: var(--text-gray);
-      margin: 0 4px;
-    }
-    .num-sub {
-      font-size: 16px;
-      color: var(--text-gray);
-      margin-left: 6px;
-    }
-    .conv-steps {
-      display: inline-flex;
-      align-items: center;
-      gap: 14px;
-      margin-top: 10px;
-    }
-    .step-node {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 14px;
-      font-weight: 700;
-    }
-    .step-circle {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-    }
-    .step-circle.filled {
-      background: var(--accent-neon);
-      color: #050A05;
-      font-weight: 800;
-    }
-    .step-circle.outlined {
-      border: 2px solid var(--accent-neon);
-      color: var(--accent-neon);
-    }
-    .step-line {
-      width: 60px;
-      height: 2px;
-      background: linear-gradient(90deg, var(--accent-neon), rgba(60, 255, 46, 0.2));
-    }
-
-    /* CONTENEDOR DE FORMULARIOS */
-    .forms-wrapper {
-      max-width: 680px;
-      margin: 0 auto 80px;
-      padding: 0 clamp(16px, 5vw, 24px);
-    }
-    .form-view {
-      display: none;
-      animation: fadeIn 0.4s ease both;
-    }
-    .form-view.active {
-      display: block;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(12px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* 12. FORMULARIO TÉCNICO PASO 1 */
-    .form-step-indicator {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 24px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      font-size: 13px;
-      color: var(--accent-neon);
-      font-weight: 700;
-    }
-    .input-with-button {
-      display: flex;
-      gap: 8px;
-    }
-    .prefix-badge {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0 12px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--input-border);
-      border-radius: 12px;
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--text-white);
-      white-space: nowrap;
-    }
-
-    /* 13. SIMULADOR Y PLACAS */
-    .simulador-card {
-      margin: 40px 0;
-      background: rgba(10, 20, 10, 0.85);
-      border: 1px solid var(--glass-border);
-    }
-    .sim-header h3 {
+    .service-block-title {
       font-size: 20px;
       font-weight: 800;
       color: var(--text-white);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
-    .sim-header h4 {
-      font-size: 15px;
-      color: var(--accent-neon);
-      font-weight: 700;
-      margin: 4px 0 10px;
+    .service-items-list {
+      list-style: none;
+      margin-bottom: 18px;
     }
-    .sim-val-label {
-      font-size: 18px;
-      font-weight: 800;
-      color: var(--accent-neon);
-      margin: 14px 0;
-    }
-    .range-slider {
-      width: 100%;
-      height: 8px;
-      border-radius: 4px;
-      background: rgba(255, 255, 255, 0.1);
-      outline: none;
-      -webkit-appearance: none;
-    }
-    .range-slider::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      width: 22px;
-      height: 22px;
-      border-radius: 50%;
-      background: #FFFFFF;
-      border: 2px solid var(--accent-neon);
-      cursor: pointer;
-      box-shadow: 0 0 10px rgba(60, 255, 46, 0.5);
-    }
-    .sim-ticks {
+    .service-item-row {
       display: flex;
       justify-content: space-between;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 14px;
+      transition: background 0.2s ease, padding 0.2s ease;
+    }
+    .service-item-row:hover {
+      background: rgba(60, 255, 46, 0.05);
+      padding-left: 6px;
+      padding-right: 6px;
+      border-radius: 6px;
+    }
+    .service-item-name {
+      color: var(--text-white);
+      font-weight: 500;
+    }
+    .service-item-price {
+      color: var(--accent-neon);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .service-block-footer {
       font-size: 12px;
       color: var(--text-gray);
-      margin-top: 6px;
+      line-height: 1.5;
+      padding-top: 10px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.1);
     }
-    .quick-btns {
+
+    /* 5. CÓMO FUNCIONA PARA EL CLIENTE (5 Pasos) */
+    .steps-container {
+      margin-top: 36px;
+      position: relative;
+    }
+    .steps-line-track {
+      position: absolute;
+      top: 24px;
+      bottom: 24px;
+      left: 27px;
+      width: 3px;
+      background: rgba(255, 255, 255, 0.1);
+      z-index: 1;
+    }
+    .steps-line-fill {
+      width: 100%;
+      height: 0%;
+      background: var(--accent-neon);
+      box-shadow: 0 0 10px var(--accent-neon);
+      transition: height 2s ease;
+    }
+    .step-item {
       display: flex;
-      gap: 8px;
-      margin: 16px 0 24px;
+      align-items: flex-start;
+      gap: 20px;
+      margin-bottom: 28px;
+      position: relative;
+      z-index: 2;
     }
-    .quick-btn {
-      flex: 1;
-      padding: 8px 10px;
-      border-radius: 8px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.15);
+    .step-item:last-child {
+      margin-bottom: 0;
+    }
+    .step-number {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: #0B1A0B;
+      border: 2px solid rgba(255, 255, 255, 0.2);
       color: var(--text-white);
-      font-size: 13px;
-      font-weight: 600;
-      cursor: pointer;
+      font-size: 18px;
+      font-weight: 900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: all 0.3s ease;
     }
-    .quick-btn:hover {
+    .step-item.active .step-number {
       border-color: var(--accent-neon);
+      color: var(--accent-neon);
+      box-shadow: 0 0 16px rgba(60, 255, 46, 0.4);
       background: rgba(60, 255, 46, 0.1);
     }
-    .sim-rows {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-bottom: 20px;
+    .step-content {
+      padding-top: 12px;
     }
-    .sim-row {
-      padding: 12px 14px;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      font-size: 14px;
+    .step-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text-white);
+      margin-bottom: 4px;
     }
-    .sim-row b {
-      color: var(--accent-neon);
-    }
-    .sim-bars {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 14px;
-    }
-    .bar-track {
-      width: 100%;
-      height: 12px;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 6px;
-      overflow: hidden;
-      position: relative;
-    }
-    .bar-fill {
-      height: 100%;
-      border-radius: 6px;
-      transition: width 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
-    }
-    .bar-gray { background: var(--text-gray-dark); width: 70%; }
-    .bar-green { background: var(--accent-neon); width: 93%; }
 
-    /* Placas */
-    .placas-container {
-      margin: 40px 0;
-    }
-    .placas-grid {
+    /* 6. PAGO PROTEGIDO (Tres tarjetas de confianza) */
+    .trust-cards-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-top: 16px;
+      gap: 18px;
+      margin-top: 32px;
     }
-    .placa-card {
-      padding: 20px 16px;
-      border-radius: 16px;
-      text-align: left;
-      font-size: 13px;
-      position: relative;
-      overflow: hidden;
+    @media (max-width: 800px) {
+      .trust-cards-grid {
+        grid-template-columns: 1fr;
+      }
     }
-    .placa-card h4 {
-      font-size: 15px;
+    .trust-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-neon);
+      border-radius: 18px;
+      padding: 24px;
+      text-align: center;
+    }
+    .trust-card-icon {
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+    .trust-card-title {
+      font-size: 16px;
       font-weight: 800;
       color: var(--text-white);
       margin-bottom: 6px;
     }
-    .placa-oro-sweep::after {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -60%;
-      width: 40%;
-      height: 200%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-      transform: rotate(25deg);
-      animation: sweepAnim 6s infinite ease-in-out;
-    }
-    @keyframes sweepAnim {
-      0%, 80% { left: -60%; }
-      100% { left: 140%; }
-    }
-
-    /* Caja de Promoción */
-    .promo-box {
-      margin: 30px 0;
-      padding: 24px;
-      border-radius: 16px;
-      background: rgba(11, 26, 11, 0.8);
-      position: relative;
-      border: 1px solid transparent;
-      background-clip: padding-box;
-    }
-    .promo-box::before {
-      content: '';
-      position: absolute;
-      inset: -1px;
-      border-radius: 17px;
-      background: linear-gradient(135deg, var(--accent-neon), transparent 60%, var(--accent-neon));
-      z-index: -1;
-      animation: rotateBorder 8s linear infinite;
-    }
-    @keyframes rotateBorder {
-      0% { filter: hue-rotate(0deg); }
-      100% { filter: hue-rotate(360deg); }
-    }
-    .promo-box h3 {
-      font-size: 17px;
-      font-weight: 800;
-      color: var(--accent-neon);
-      margin-bottom: 8px;
-    }
-    .promo-box p {
-      font-size: 14px;
-      color: var(--text-white);
+    .trust-card-desc {
+      font-size: 13px;
+      color: var(--text-gray);
       line-height: 1.5;
     }
 
-    /* 14. FORMULARIO TÉCNICO PASO 2 */
-    .kyc-status-bar {
+    /* 7. CREDENCIAL QR EN PUERTA */
+    .qr-badge-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-neon);
+      border-radius: 20px;
+      padding: clamp(24px, 4vw, 40px);
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      margin-bottom: 24px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      font-size: 13px;
+      gap: 36px;
+      margin-top: 32px;
+      flex-wrap: wrap;
     }
-    .photo-upload-grid {
+    .qr-box {
+      width: 140px;
+      height: 140px;
+      background: rgba(0, 0, 0, 0.6);
+      border: 1.5px solid var(--accent-neon);
+      border-radius: 14px;
+      padding: 10px;
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      margin: 12px 0 20px;
-    }
-    .photo-upload-box {
-      aspect-ratio: 1;
-      border: 2px dashed rgba(255, 255, 255, 0.2);
-      border-radius: 12px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      font-size: 11px;
-      color: var(--text-gray);
-      text-align: center;
-      padding: 8px;
-      transition: border-color 0.2s ease, background 0.2s ease;
-    }
-    .photo-upload-box:hover {
-      border-color: var(--accent-neon);
-      background: rgba(60, 255, 46, 0.05);
-    }
-    .legal-block {
-      border-left: 2px solid var(--accent-neon);
-      padding-left: 18px;
-      margin: 24px 0;
-    }
-    .checkbox-label {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      font-size: 13px;
-      color: var(--text-gray);
-      margin-bottom: 14px;
-      cursor: pointer;
-      line-height: 1.45;
-    }
-    .checkbox-label input[type="checkbox"] {
-      width: 18px;
-      height: 18px;
-      accent-color: var(--accent-neon);
-      margin-top: 2px;
+      grid-template-columns: repeat(10, 1fr);
+      gap: 2px;
+      position: relative;
+      overflow: hidden;
       flex-shrink: 0;
     }
-
-    /* 15. FORMULARIO CLIENTE */
-    .coupon-ticket {
-      background: rgba(11, 26, 11, 0.85);
-      border: 1px dashed var(--accent-neon);
-      border-radius: 16px;
-      padding: 20px;
-      margin: 20px 0;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .coupon-code {
-      font-family: monospace;
-      font-size: 24px;
-      font-weight: 800;
-      color: var(--accent-neon);
-      letter-spacing: 2px;
-      margin: 6px 0;
-    }
-    .coupon-sweep::after {
-      content: '';
+    .qr-scan-line {
       position: absolute;
       top: 0;
-      left: -100%;
-      width: 60%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(60, 255, 46, 0.2), transparent);
-      transform: skewX(-20deg);
-      animation: couponSweep 5s infinite;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--accent-neon);
+      box-shadow: 0 0 10px var(--accent-neon);
+      animation: qrScan 2.5s ease-in-out infinite alternate;
     }
-    @keyframes couponSweep {
-      0%, 80% { left: -100%; }
-      100% { left: 180%; }
+    @keyframes qrScan {
+      0% { top: 6px; }
+      100% { top: 130px; }
     }
-    .google-btn {
-      width: 100%;
-      background: #FFFFFF;
-      color: #050A05;
-      font-weight: 700;
-      padding: 14px;
-      border-radius: 999px;
-      border: none;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      font-size: 15px;
-      margin: 14px 0 20px;
+    .qr-cell {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 1px;
     }
-    .sep-line {
-      display: flex;
-      align-items: center;
-      text-align: center;
-      color: var(--text-gray);
-      font-size: 13px;
-      margin: 20px 0;
+    .qr-cell.filled {
+      background: var(--accent-neon);
     }
-    .sep-line::before, .sep-line::after {
-      content: '';
+    .qr-info-content {
       flex: 1;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+      min-width: 260px;
     }
-    .sep-line:not(:empty)::before { margin-right: 12px; }
-    .sep-line:not(:empty)::after { margin-left: 12px; }
-    .avatar-preview-circle {
-      width: 96px;
-      height: 96px;
-      border-radius: 50%;
-      border: 2px solid rgba(255, 255, 255, 0.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 14px 0;
-      background: rgba(255, 255, 255, 0.05);
-      overflow: hidden;
-      transition: border-color 0.3s ease;
-    }
-    .client-info-blocks {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      margin: 20px 0;
-    }
-    .client-info-box {
-      padding: 14px;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      font-size: 13px;
-      color: var(--text-gray);
-      line-height: 1.45;
-    }
-
-    /* Mensajes de Éxito */
-    .success-alert {
-      display: none;
-      padding: 24px;
-      border-radius: 16px;
-      background: rgba(60, 255, 46, 0.1);
-      border: 1px solid var(--accent-neon);
-      color: var(--text-white);
-      text-align: center;
-      margin-top: 20px;
-      animation: slideDown 0.6s ease both;
-    }
-    .success-alert h3 {
-      font-size: 20px;
-      font-weight: 800;
-      color: var(--accent-neon);
-      margin-bottom: 8px;
-    }
-    @keyframes slideDown {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* 16. CIERRE CON AUTORIZACIÓN */
-    #cierre {
-      position: relative;
-      padding: 100px clamp(16px, 5vw, 64px);
-      text-align: center;
-      overflow: hidden;
-    }
-    #cierre-canvas {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 700px;
-      height: 400px;
-      z-index: 1;
-      pointer-events: none;
-      opacity: 0.7;
-    }
-    .cierre-aurora {
-      position: absolute;
-      width: 320px;
-      height: 320px;
-      background: radial-gradient(circle, rgba(60, 255, 46, 0.15) 0%, transparent 70%);
-      filter: blur(80px);
-      z-index: 0;
-      animation: auroraMove 20s infinite alternate ease-in-out;
-    }
-    .cierre-aurora-2 {
-      right: 15%;
-      top: 20%;
-      animation-delay: -10s;
-    }
-    @keyframes auroraMove {
-      0% { transform: translate(0, 0); }
-      100% { transform: translate(60px, -40px); }
-    }
-    .cierre-card {
-      position: relative;
-      z-index: 2;
-      max-width: 620px;
-      margin: 0 auto;
-    }
-    .cierre-card h3 {
+    .qr-info-title {
       font-size: 22px;
       font-weight: 800;
       color: var(--text-white);
-      margin-bottom: 12px;
+      margin-bottom: 8px;
     }
-    .cierre-card p {
+    .qr-info-desc {
       font-size: 14px;
       color: var(--text-gray);
-      margin-bottom: 24px;
       line-height: 1.6;
     }
-    .cierre-actions {
-      display: flex;
-      justify-content: center;
-      gap: 14px;
-    }
 
-    /* 17. PIE DE PÁGINA */
-    #footer {
-      padding: 40px clamp(16px, 5vw, 64px);
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      text-align: center;
-      background: #050A05;
+    /* 8. PROTOCOLO DE SEGURIDAD (Acordeón de 4 piezas) */
+    .protocol-accordion {
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .protocol-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: border-color 0.2s ease;
+    }
+    .protocol-item.open {
+      border-color: var(--accent-neon);
+    }
+    .protocol-header {
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      user-select: none;
+    }
+    .protocol-header h3 {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--text-white);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .protocol-chevron {
+      color: var(--accent-neon);
+      transition: transform 0.3s ease;
+      font-size: 14px;
+    }
+    .protocol-item.open .protocol-chevron {
+      transform: rotate(180deg);
+    }
+    .protocol-body {
+      display: none;
+      padding: 0 24px 20px;
       font-size: 14px;
       color: var(--text-gray);
+      line-height: 1.6;
+    }
+    .protocol-item.open .protocol-body {
+      display: block;
+    }
+
+    /* 9. PIE DE PÁGINA */
+    .site-footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      background: #030603;
+      padding: 60px clamp(16px, 4vw, 48px) 140px;
+      position: relative;
+      z-index: 1;
+    }
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+    .footer-brand h4 {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text-white);
+      margin-bottom: 6px;
+    }
+    .footer-brand p {
+      font-size: 13px;
+      color: var(--text-gray);
+      max-width: 380px;
     }
     .footer-links {
       display: flex;
+      gap: 32px;
       flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-      margin-top: 16px;
     }
-    .footer-links a:hover {
-      color: var(--accent-neon);
-    }
-
-    /* 18. BANNER DE COOKIES */
-    #cookie-banner {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%) translateY(40px);
-      width: min(560px, 92vw);
-      background: rgba(10, 20, 10, 0.95);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(124, 255, 26, 0.3);
-      border-radius: 16px;
-      padding: 20px 24px;
-      z-index: 2000;
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.8);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    #cookie-banner.show {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-      pointer-events: auto;
-    }
-    #cookie-banner h4 {
-      font-size: 16px;
+    .footer-col h5 {
+      font-size: 13px;
       font-weight: 700;
-      color: var(--text-white);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent-neon);
+      margin-bottom: 12px;
+    }
+    .footer-col ul {
+      list-style: none;
+    }
+    .footer-col li {
       margin-bottom: 8px;
     }
-    #cookie-banner p {
-      font-size: 13px;
+    .footer-col a {
       color: var(--text-gray);
-      line-height: 1.5;
-      margin-bottom: 16px;
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.2s ease;
+    }
+    .footer-col a:hover {
+      color: var(--text-white);
+    }
+    .footer-bottom {
+      max-width: 1100px;
+      margin: 40px auto 0;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 12px;
+      color: var(--text-gray);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* 10. BANNER DE COOKIES (Solo Abajo, Máx 120px) */
+    .cookie-banner {
+      position: fixed;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 32px);
+      max-width: 860px;
+      max-height: 120px;
+      background: rgba(8, 16, 8, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border-neon);
+      border-radius: 16px;
+      padding: 14px 20px;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .cookie-text {
+      font-size: 12px;
+      color: var(--text-gray);
+      line-height: 1.4;
+      flex: 1;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
     }
     .cookie-actions {
       display: flex;
-      gap: 12px;
-      margin-bottom: 10px;
+      gap: 8px;
+      flex-shrink: 0;
     }
-    .cookie-btn {
-      flex: 1;
-      padding: 10px;
-      font-size: 13px;
-    }
-    .cookie-policy-link {
+    .btn-cookie-accept {
+      background: var(--accent-neon);
+      color: #050A05;
       font-size: 12px;
-      color: var(--accent-neon);
-      display: inline-block;
+      font-weight: 800;
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-cookie-config {
+      background: transparent;
+      color: var(--text-white);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: 999px;
+      cursor: pointer;
     }
 
-    /* RESPONSIVE MÓVIL */
-    @media (max-width: 768px) {
-      .trust-grid { grid-template-columns: 1fr; }
-      #credencial-qr { grid-template-columns: 1fr; text-align: center; }
-      .proto-grid { grid-template-columns: 1fr; }
-      .placas-grid { grid-template-columns: 1fr; }
-      .client-info-blocks { grid-template-columns: 1fr; }
-      .hero-bottom-row { justify-content: flex-start; }
-      .hero-desc-wrap { max-width: 100%; }
-      .h1-line.right-line { text-align: left; padding-right: 0; }
-      .c-card {
-        position: relative !important;
-        left: 0 !important;
-        margin-left: 0 !important;
-        width: 100% !important;
-        transform: none !important;
-        opacity: 1 !important;
-        filter: none !important;
-        margin-bottom: 24px;
+    @media (max-width: 600px) {
+      .cookie-banner {
+        flex-direction: column;
+        align-items: flex-start;
+        max-height: 140px;
       }
-      .carousel-3d-wrap { height: auto; perspective: none; }
-      .carousel-nav-controls { display: none; }
-    }
-
-    /* PREFERS-REDUCED-MOTION */
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.2s !important;
+      .cookie-actions {
+        width: 100%;
+        justify-content: flex-end;
       }
-      #hero-canvas, #helix-canvas, #cierre-canvas, .cierre-aurora {
-        display: none !important;
-      }
-      .h1-line { transform: none !important; }
-      .cascade-item { transform: none !important; opacity: 1 !important; }
-      .light-beam { display: none; }
-      .c-card { transform: none !important; filter: none !important; }
     }
   </style>
 </head>
 <body>
 
-  <!-- 4. BARRA SUPERIOR FIJA -->
-  <header id="navbar">
-    <a href="https://rebuske.vercel.app/" class="nav-brand">rebuske Medellín 2026</a>
-    <div class="nav-actions">
-      <a href="https://rebuske.vercel.app/" class="btn-sec">Abrir App Web</a>
-      <a href="https://wa.me/573043812882?text=Hola%20Laura%2C%20quiero%20conocer%20m%C3%A1s%20sobre%20rebuske" title="Chat directo por WhatsApp con Laura" class="btn-sec">Laura WhatsApp</a>
+  <!-- Fondo bioluminiscente -->
+  <div class="bg-glow-layer" aria-hidden="true">
+    <div class="glow-orb glow-orb-1"></div>
+    <div class="glow-orb glow-orb-2"></div>
+  </div>
+
+  <!-- 1. BARRA SUPERIOR FIJA -->
+  <header class="top-bar" id="topBar">
+    <a href="https://rebuske.vercel.app/" class="brand-logo">
+      <span class="brand-logo-dot" aria-hidden="true"></span>
+      <span>rebuske Medellín 2026</span>
+    </a>
+    <div class="top-actions">
+      <a href="https://rebuske.vercel.app/" class="btn-pill-sec">Abrir App Web</a>
+      <a href="https://wa.me/573043812882?text=Hola%20Laura%2C%20quiero%20conocer%20m%C3%A1s%20sobre%20rebuske" target="_blank" rel="noopener noreferrer" class="btn-pill-sec" title="Chat directo por WhatsApp con Laura">
+        Laura WhatsApp
+      </a>
     </div>
   </header>
 
-  <!-- 5. HERO -->
-  <section id="hero" aria-labelledby="hero-title">
-    <canvas id="hero-canvas"></canvas>
-    <div class="hero-content">
-      <div class="hero-label">
-        <span class="hero-label-line"></span>PORTAL OFICIAL DE REGISTRO · MEDELLÍN 2026
+  <!-- 2. HERO CON SERVICIOS Y PARTICULAS (16s Loop) -->
+  <section class="section-wrap hero-section">
+    <div class="hero-canvas-container">
+      <canvas id="heroCanvas"></canvas>
+    </div>
+
+    <!-- Fallback accesibilidad reducido -->
+    <div class="hero-reduced-row">
+      <div class="hero-chip">🔧 Plomería · desde $60k</div>
+      <div class="hero-chip">⚡ Electricidad · desde $50k</div>
+      <div class="hero-chip">🔑 Cerrajería · desde $60k</div>
+      <div class="hero-chip">✨ Aseo · desde $70k</div>
+    </div>
+
+    <h1 class="hero-tagline">Tu Hogar Protegido. Tu Mano de Obra Valorada.</h1>
+
+    <!-- Display reactivo del servicio actual -->
+    <div class="hero-service-display">
+      <div class="hero-service-badge" id="heroServiceBadge">
+        <span id="heroServiceIcon">🔧</span>
+        <span id="heroServiceName">Plomería · desde $60.000 COP</span>
+        <span class="hero-ver-servicio-btn" onclick="scrollearAServicio(heroCurrentServiceIdx)">Ver servicios ➔</span>
       </div>
-      <div class="hero-title-container">
-        <h1 id="hero-title">
-          <span class="h1-mask"><span class="h1-line line-left">Tu Hogar Protegido.</span></span>
-          <span class="h1-mask"><span class="h1-line right-line line-right">Tu Mano de Obra Valorada.</span></span>
-        </h1>
+    </div>
+
+    <!-- 4 Puntos Indicadores -->
+    <div class="hero-dots-indicator" id="heroDotsWrap">
+      <button class="hero-dot-btn active" onclick="seleccionarServicioHero(0)" aria-label="Plomería"></button>
+      <button class="hero-dot-btn" onclick="seleccionarServicioHero(1)" aria-label="Electricidad"></button>
+      <button class="hero-dot-btn" onclick="seleccionarServicioHero(2)" aria-label="Cerrajería"></button>
+      <button class="hero-dot-btn" onclick="seleccionarServicioHero(3)" aria-label="Aseo"></button>
+    </div>
+
+    <!-- 4 Chips de Confianza -->
+    <div class="hero-chips-wrap">
+      <span class="hero-chip"><span aria-hidden="true">🔒</span> Bóveda Wompi (Escrow)</span>
+      <span class="hero-chip"><span aria-hidden="true">📜</span> 48h Garantía Ley 1480</span>
+      <span class="hero-chip"><span aria-hidden="true">👩🔧</span> Servicios por Ellas</span>
+      <span class="hero-chip"><span aria-hidden="true">🥇</span> Primeros 100 Cupos Oro</span>
+    </div>
+  </section>
+
+  <!-- 3. EMPIEZA AQUÍ (Tres Opciones Claras) -->
+  <section class="section-wrap" id="empieza-aqui">
+    <div style="text-align:center;">
+      <span class="sec-tag">Elige tu camino</span>
+      <h2 class="sec-title">Empieza aquí</h2>
+      <p class="sec-desc" style="margin:0 auto;">Selecciona la opción correspondiente según tu necesidad en Medellín:</p>
+    </div>
+
+    <div class="start-cards-grid">
+      <!-- Tarjeta 1: Cliente App Web -->
+      <div class="start-card">
+        <div>
+          <div class="start-card-icon" aria-hidden="true">📱</div>
+          <h3 class="start-card-title">Necesito un técnico.</h3>
+          <p class="start-card-desc">Pide tu servicio desde la app web.</p>
+        </div>
+        <a href="https://rebuske.vercel.app/" class="btn-pill-primary" style="justify-content:center;width:100%;">
+          Abrir App Web <span class="btn-dot" aria-hidden="true"></span>
+        </a>
       </div>
-      <div class="hero-bottom-row">
-        <div class="hero-desc-wrap">
-          <p class="hero-desc">La infraestructura de confianza en servicios especializados en Medellín. Respaldada por Bóveda Wompi (pago protegido), 48h de garantía escrita y el catálogo exclusivo ‘Servicios por Ellas’.</p>
-          <div class="hero-chips">
-            <span class="chip"><span aria-hidden="true">🔒</span> Bóveda Wompi (Escrow)</span>
-            <span class="chip"><span aria-hidden="true">📜</span> 48h Garantía Ley 1480</span>
-            <span class="chip"><span aria-hidden="true">👩🔧</span> Servicios por Ellas</span>
-            <span class="chip"><span aria-hidden="true">🥇</span> Primeros 100 Cupos Oro</span>
-          </div>
+
+      <!-- Tarjeta 2: Técnico Profesional -->
+      <div class="start-card" style="border-color:rgba(124,255,26,0.4);">
+        <div>
+          <div class="start-card-icon" aria-hidden="true">🛠️</div>
+          <h3 class="start-card-title">Soy técnico.</h3>
+          <p class="start-card-desc">Regístrate para trabajar con rebuske.</p>
+        </div>
+        <a href="/registro/tecnico" class="btn-pill-primary" style="justify-content:center;width:100%;background:var(--accent-neon);color:#050A05;">
+          Registrarme como Profesional ✦
+        </a>
+      </div>
+
+      <!-- Tarjeta 3: Cliente Play Store y Bono -->
+      <div class="start-card">
+        <div>
+          <div class="start-card-icon" aria-hidden="true">🎁</div>
+          <h3 class="start-card-title">Quiero la app en mi celular.</h3>
+          <p class="start-card-desc">Regístrate para recibir el link de Google Play Store y tu bono.</p>
+        </div>
+        <a href="/registro/cliente" class="btn-pill-primary" style="justify-content:center;width:100%;">
+          Registrarme como Cliente ✦
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. NUESTROS SERVICIOS (Cuatro Bloques con Precios) -->
+  <section class="section-wrap" id="nuestros-servicios">
+    <span class="sec-tag">Tarifas Transparentes</span>
+    <h2 class="sec-title">Nuestros Servicios</h2>
+    <p class="services-intro">Precios de referencia. Cotización final en sitio.</p>
+
+    <div class="services-grid">
+      
+      <!-- Bloque Plomería -->
+      <div class="service-block-card" id="srv-block-0">
+        <h3 class="service-block-title">
+          <span aria-hidden="true">🔧</span> Plomería
+        </h3>
+        <ul class="service-items-list">
+          <li class="service-item-row">
+            <span class="service-item-name">Destape de Sifón o Lavamanos</span>
+            <span class="service-item-price">desde $60.000 COP</span>
+          </li>
+          <li class="service-item-row">
+            <span class="service-item-name">Reparación de Fuga Visible / Llave de Paso</span>
+            <span class="service-item-price">desde $75.000 COP</span>
+          </li>
+          <li class="service-item-row">
+            <span class="service-item-name">Instalación de Grifería o Mezclador</span>
+            <span class="service-item-price">desde $90.000 COP</span>
+          </li>
+        </ul>
+        <div class="service-block-footer">
+          Visita diagnóstica $35.000 COP, abonable al 100% del trabajo. Garantía escrita de 48 horas.
+        </div>
+      </div>
+
+      <!-- Bloque Electricidad -->
+      <div class="service-block-card" id="srv-block-1">
+        <h3 class="service-block-title">
+          <span aria-hidden="true">⚡</span> Electricidad
+        </h3>
+        <ul class="service-items-list">
+          <li class="service-item-row">
+            <span class="service-item-name">Revisión de Cortocircuito / Breaker Disparado</span>
+            <span class="service-item-price">desde $70.000 COP</span>
+          </li>
+          <li class="service-item-row">
+            <span class="service-item-name">Instalación de Lámpara o Ventilador de Techo</span>
+            <span class="service-item-price">desde $60.000 COP</span>
+          </li>
+          <li class="service-item-row">
+            <span class="service-item-name">Cambio de Tomacorrientes / Interruptores (Hasta 3)</span>
+            <span class="service-item-price">desde $50.000 COP</span>
+          </li>
+        </ul>
+        <div class="service-block-footer">
+          Visita diagnóstica $35.000 COP, abonable al 100% del trabajo. Garantía escrita de 48 horas.
+        </div>
+      </div>
+
+      <!-- Bloque Cerrajería -->
+      <div class="service-block-card" id="srv-block-2">
+        <h3 class="service-block-title">
+          <span aria-hidden="true">🔑</span> Cerrajería
+        </h3>
+        <ul class="service-items-list">
+          <li class="service-item-row">
+            <span class="service-item-name">Apertura Express de Puerta Residencial</span>
+            <span class="service-item-price">desde $60.000 COP</span>
+          </li>
+          <li class="service-item-row">
+            <span class="service-item-name">Cambio de Pomo o Cilindro de Seguridad</span>
+            <span class="service-item-price">desde $80.000 COP</span>
+          </li>
+        </ul>
+        <div class="service-block-footer">
+          Visita diagnóstica $35.000 COP, abonable al 100% del trabajo. Garantía escrita de 48 horas.
+        </div>
+      </div>
+
+      <!-- Bloque Aseo -->
+      <div class="service-block-card" id="srv-block-3">
+        <h3 class="service-block-title">
+          <span aria-hidden="true">✨</span> Aseo
+        </h3>
+        <ul class="service-items-list">
+          <li class="service-item-row">
+            <span class="service-item-name">Media Jornada de Limpieza y Aseo (4 horas)</span>
+            <span class="service-item-price">desde $70.000 COP</span>
+          </li>
+        </ul>
+        <div class="service-block-footer">
+          Tarifa completa. Garantía inmediata.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 5. CÓMO FUNCIONA PARA EL CLIENTE (Cinco Pasos) -->
+  <section class="section-wrap" id="como-funciona">
+    <span class="sec-tag">Flujo Seguro</span>
+    <h2 class="sec-title">Cómo funciona para el cliente</h2>
+    <p class="sec-desc">Tu dinero y tu hogar 100% protegidos desde la solicitud hasta la entrega del acta de garantía:</p>
+
+    <div class="steps-container">
+      <div class="steps-line-track">
+        <div class="steps-line-fill" id="stepsLineFill"></div>
+      </div>
+
+      <!-- Paso 1 -->
+      <div class="step-item" id="step-node-1">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h3 class="step-title">Elige el servicio que necesitas.</h3>
+        </div>
+      </div>
+
+      <!-- Paso 2 -->
+      <div class="step-item" id="step-node-2">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h3 class="step-title">Indica tu comuna y tu dirección.</h3>
+        </div>
+      </div>
+
+      <!-- Paso 3 -->
+      <div class="step-item" id="step-node-3">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h3 class="step-title">Recibe técnicos disponibles y elige uno.</h3>
+        </div>
+      </div>
+
+      <!-- Paso 4 -->
+      <div class="step-item" id="step-node-4">
+        <div class="step-number">4</div>
+        <div class="step-content">
+          <h3 class="step-title">Paga en Bóveda Wompi: tu dinero queda protegido.</h3>
+        </div>
+      </div>
+
+      <!-- Paso 5 -->
+      <div class="step-item" id="step-node-5">
+        <div class="step-number">5</div>
+        <div class="step-content">
+          <h3 class="step-title">Aprueba el trabajo. Entonces se libera el pago y recibes el acta digital de garantía de 48 horas.</h3>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 6. PAGO PROTEGIDO -->
-  <section id="pago-protegido" aria-label="Beneficios de Pago Protegido">
-    <div class="light-beam" id="light-beam"></div>
-    <div class="trust-grid">
-      <!-- Tarjeta 1 -->
-      <div class="glass-card trust-card cascade-item" id="trust-card-1">
-        <span class="card-icon" aria-hidden="true">🔒</span>
-        <h3>Pagos en Bóveda Wompi</h3>
-        <p>El dinero se retiene de forma segura y solo se libera cuando el trabajo queda terminado a entera satisfacción.</p>
+  <!-- 6. PAGO PROTEGIDO (Tres tarjetas de confianza) -->
+  <section class="section-wrap" id="pago-protegido">
+    <span class="sec-tag">Bóveda Wompi Escrow</span>
+    <h2 class="sec-title">Pago protegido</h2>
+    <p class="sec-desc">Blindaje financiero respaldado por Bancolombia para clientes y profesionales en Medellín:</p>
+
+    <div class="trust-cards-grid">
+      <div class="trust-card">
+        <div class="trust-card-icon" aria-hidden="true">🏦</div>
+        <h3 class="trust-card-title">Custodia en Bóveda Bancolombia (Wompi)</h3>
+        <p class="trust-card-desc">El dinero no se entrega al técnico de inmediato. Permanece en custodia bancaria segura.</p>
       </div>
-      <!-- Tarjeta 2 -->
-      <div class="glass-card trust-card cascade-item" id="trust-card-2">
-        <span class="card-icon" aria-hidden="true">🛡️</span>
-        <h3>Garantía Legal de 48h</h3>
-        <p>Si surge cualquier imprevisto técnico, el profesional regresa sin costo adicional bajo la Ley 1480.</p>
+
+      <div class="trust-card">
+        <div class="trust-card-icon" aria-hidden="true">✍️</div>
+        <h3 class="trust-card-title">Desembolso contra firma de satisfacción</h3>
+        <p class="trust-card-desc">Solo cuando tú revises la labor y des el visto bueno en la app, se libera el pago al profesional.</p>
       </div>
-      <!-- Tarjeta 3 -->
-      <div class="glass-card trust-card cascade-item" id="trust-card-3">
-        <span class="card-icon" aria-hidden="true">⚡</span>
-        <h3>Modo Luz Express</h3>
-        <p>Atención prioritaria en menos de 35 minutos para cerrajería urgente, plomería crítica o auxilio de batería.</p>
+
+      <div class="trust-card">
+        <div class="trust-card-icon" aria-hidden="true">🛡️</div>
+        <h3 class="trust-card-title">0% de cobro anticipado al profesional</h3>
+        <p class="trust-card-desc">El técnico no arriesga su mano de obra ni cobra en efectivo inseguro en la calle.</p>
       </div>
     </div>
   </section>
 
-  <!-- 7. CREDENCIAL QR -->
-  <section id="credencial-qr" aria-label="Credencial QR en Puerta">
-    <div class="qr-text-block cascade-item">
-      <span class="qr-icon" aria-hidden="true">📲</span>
-      <h3>Credencial QR en Puerta</h3>
-      <p>Escaneas su QR oficial con foto y cédula antes de abrirle la puerta de tu hogar.</p>
-    </div>
-    <div class="qr-visual-frame cascade-item">
-      <div class="qr-bracket qr-b-tl"></div>
-      <div class="qr-bracket qr-b-tr"></div>
-      <div class="qr-bracket qr-b-bl"></div>
-      <div class="qr-bracket qr-b-br"></div>
-      <div class="qr-card-inner">
-        <div class="qr-dots-grid">
-          <!-- Cuadrícula decorativa QR -->
-          <div class="qr-dot active"></div><div class="qr-dot active"></div><div class="qr-dot active"></div><div class="qr-dot"></div><div class="qr-dot active"></div><div class="qr-dot"></div><div class="qr-dot active"></div><div class="qr-dot active"></div><div class="qr-dot"></div><div class="qr-dot active"></div><div class="qr-dot active"></div><div class="qr-dot active"></div><div class="qr-dot active"></div><div class="qr-dot"></div>
-          <div class="qr-dot active"></div><div class="qr-dot"></div><div class="qr-dot active"></div><div class="qr-dot active"></div><div class="qr-dot"></div><div class="qr-dot active"></div><div class="qr-dot"></div><div class="qr-dot"></div><div class="qr-dot active"></div><div class="qr-dot"></div><div class="qr-dot active"></div><div class="qr-dot"></div><div class="qr-dot active"></div><div class="qr-dot active"></div>
-          <div class="qr-dot active"></div><div class="qr-dot active"></div><div class="qr-dot"></div><div class="qr-dot"></div><div class="qr-dot active"></div><div class="qr-dot active"></div><div class="qr-dot active"></div><div class="qr-dot active"></div><div class="qr-dot"></div><div class="qr-dot active"></div><div class="qr-dot"></div><div class="qr-dot active"></div><div class="qr-dot active"></div><div class="qr-dot"></div>
-          <div class="qr-dot"></div><div class="qr-dot active"></div><div class="qr-dot active"></div><div class="qr-dot active"></div><div class="qr-dot"></div><div class="qr-dot"></div><div class="qr-dot active"></div><div class="qr-dot"></div><div class="qr-dot active"></div><div class="qr-dot active"></div><div class="qr-dot active"></div><div class="qr-dot"></div><div class="qr-dot"></div><div class="qr-dot active"></div>
-          <div class="qr-dot active"></div><div class="qr-dot"></div><div class="qr-dot active"></div><div class="qr-dot"></div><div class="qr-dot active"></div><div class="qr-dot active"></div><div class="qr-dot"></div><div class="qr-dot active"></div><div class="qr-dot"></div><div class="qr-dot"></div><div class="qr-dot active"></div><div class="qr-dot active"></div><div class="qr-dot"></div><div class="qr-dot active"></div>
-          <div class="qr-dot active"></div><div class="qr-dot active"></div><div class="qr-dot"></div><div class="qr-dot active"></div><div class="qr-dot"></div><div class="qr-dot active"></div><div class="qr-dot active"></div><div class="qr-dot active"></div><div class="qr-dot active"></div><div class="qr-dot"></div><div class="qr-dot"></div><div class="qr-dot active"></div><div class="qr-dot active"></div><div class="qr-dot"></div>
-        </div>
+  <!-- 7. CREDENCIAL QR EN PUERTA -->
+  <section class="section-wrap" id="credencial-qr">
+    <div class="qr-badge-card">
+      <div class="qr-box" aria-hidden="true">
         <div class="qr-scan-line"></div>
+        <div class="qr-cell filled"></div><div class="qr-cell filled"></div><div class="qr-cell"></div><div class="qr-cell filled"></div><div class="qr-cell"></div><div class="qr-cell filled"></div><div class="qr-cell filled"></div><div class="qr-cell"></div><div class="qr-cell filled"></div><div class="qr-cell filled"></div>
+        <div class="qr-cell filled"></div><div class="qr-cell"></div><div class="qr-cell filled"></div><div class="qr-cell"></div><div class="qr-cell filled"></div><div class="qr-cell"></div><div class="qr-cell filled"></div><div class="qr-cell filled"></div><div class="qr-cell"></div><div class="qr-cell filled"></div>
+        <div class="qr-cell"></div><div class="qr-cell filled"></div><div class="qr-cell filled"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell filled"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell filled"></div><div class="qr-cell"></div>
+        <div class="qr-cell filled"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell filled"></div><div class="qr-cell filled"></div><div class="qr-cell"></div><div class="qr-cell filled"></div><div class="qr-cell filled"></div><div class="qr-cell"></div><div class="qr-cell filled"></div>
+        <div class="qr-cell"></div><div class="qr-cell filled"></div><div class="qr-cell filled"></div><div class="qr-cell filled"></div><div class="qr-cell"></div><div class="qr-cell filled"></div><div class="qr-cell"></div><div class="qr-cell filled"></div><div class="qr-cell filled"></div><div class="qr-cell"></div>
+        <div class="qr-cell filled"></div><div class="qr-cell"></div><div class="qr-cell filled"></div><div class="qr-cell"></div><div class="qr-cell filled"></div><div class="qr-cell filled"></div><div class="qr-cell filled"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell filled"></div>
+        <div class="qr-cell filled"></div><div class="qr-cell filled"></div><div class="qr-cell"></div><div class="qr-cell filled"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell filled"></div><div class="qr-cell filled"></div><div class="qr-cell filled"></div><div class="qr-cell filled"></div>
+        <div class="qr-cell"></div><div class="qr-cell filled"></div><div class="qr-cell filled"></div><div class="qr-cell"></div><div class="qr-cell filled"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell filled"></div><div class="qr-cell"></div><div class="qr-cell filled"></div>
+        <div class="qr-cell filled"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell filled"></div><div class="qr-cell filled"></div><div class="qr-cell filled"></div><div class="qr-cell filled"></div><div class="qr-cell"></div><div class="qr-cell filled"></div><div class="qr-cell"></div>
+        <div class="qr-cell filled"></div><div class="qr-cell filled"></div><div class="qr-cell filled"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell filled"></div><div class="qr-cell"></div><div class="qr-cell filled"></div><div class="qr-cell filled"></div><div class="qr-cell filled"></div>
+      </div>
+      <div class="qr-info-content">
+        <span class="sec-tag">Seguridad Domiciliaria</span>
+        <h3 class="qr-info-title">Credencial QR en puerta</h3>
+        <p class="qr-info-desc">
+          Antes de abrir la puerta de tu hogar, escanea con la cámara de tu celular la credencial digital del profesional. El sistema valida en tiempo real su identidad biométrica cotejada, antecedentes policivos y orden de servicio activa en tu comuna.
+        </p>
       </div>
     </div>
   </section>
 
-  <!-- 8. DOS CAMINOS (TARJETAS TÉCNICO Y CLIENTE) -->
-  <section id="dos-caminos" aria-label="Dos Caminos: Profesional o Cliente">
-    <canvas id="helix-canvas"></canvas>
-    <div class="carousel-3d-wrap">
-      <!-- Tarjeta Técnico -->
-      <div class="glass-card c-card front" id="card-pro" onclick="selectCarouselCard('pro')">
-        <span class="card-icon" aria-hidden="true">🛠️</span>
-        <h3>Soy Profesional / Técnico</h3>
-        <p>Prestas servicios de plomería, electricidad, cerrajería, pintura o aseo a fondo y quieres clientes garantizados en tu comuna sin regateos.</p>
-        <ul>
-          <li>✓ Solo 1% de comisión en tu primer mes (¡99% neto para ti!)</li>
-          <li>✓ Bóveda Wompi: Pago apartado antes de salir a la casa</li>
-          <li>✓ Bolsillo protegido (93% Oro): vs 70% en apps tradicionales</li>
-          <li>✓ Certificado de Ingresos: Descárgalo en 1 clic para bancos y arriendos</li>
-          <li>✓ Cero fiao: Clientes en tu misma comuna sin trancones</li>
-        </ul>
-        <button type="button" class="btn-main" onclick="activarFormulario('pro')">
-          Registrarme como Profesional ✦<span class="btn-dot" aria-hidden="true"></span>
-        </button>
-      </div>
+  <!-- 8. PROTOCOLO OFICIAL DE SEGURIDAD Y GARANTÍAS -->
+  <section class="section-wrap" id="protocolo-seguridad">
+    <span class="sec-tag">Protección Integral</span>
+    <h2 class="sec-title">Protocolo oficial de seguridad y garantías</h2>
+    <p class="sec-desc">Los cuatro pilares normativos y operativos que blindan cada visita técnica en Medellín:</p>
 
-      <!-- Tarjeta Cliente -->
-      <div class="glass-card c-card back" id="card-cli" onclick="selectCarouselCard('cli')">
-        <span class="badge-bono">🎁 Bono $15.000 COP Bienvenida</span>
-        <span class="card-icon" aria-hidden="true">🏡</span>
-        <h3>Soy Cliente / Hogar</h3>
-        <p>Buscas expertos confiables, con antecedentes verificados y garantía real para reparaciones, mantenimiento o emergencias en tu hogar.</p>
-        <ul>
-          <li>✓ Cero riesgo de anticipos: El técnico cobra solo cuando apruebes el trabajo</li>
-          <li>✓ Código QR en Puerta: Escanea su credencial oficial antes de abrir</li>
-          <li>✓ Modo Familiar («Poner Gente»): Vincula parientes con pago digital centralizado</li>
-          <li>✓ Acta Digital de Garantía 48h: Respaldo legal escrito bajo la Ley 1480</li>
-          <li>✓ Servicios por Ellas & Auxilio +$3.333: Categoría femenina y llegada express</li>
-        </ul>
-        <button type="button" class="btn-main" onclick="activarFormulario('cli')">
-          Registrarme como Cliente ✦<span class="btn-dot" aria-hidden="true"></span>
-        </button>
-      </div>
-    </div>
-    <div class="carousel-nav-controls">
-      <button type="button" class="btn-sec" onclick="toggleCarousel()" aria-label="Anterior">Anterior</button>
-      <button type="button" class="btn-sec" onclick="toggleCarousel()" aria-label="Siguiente">Siguiente</button>
-    </div>
-  </section>
-
-  <!-- 9. SELECTOR DE FORMULARIOS -->
-  <div id="selector-sticky-container">
-    <div class="segment-control" role="tablist">
-      <div class="segment-slider" id="segment-slider"></div>
-      <button type="button" class="segment-btn active" id="btn-tab-pro" role="tab" aria-selected="true" onclick="activarFormulario('pro')">
-        🛠️ Registro Profesional 1% Mes 1
-      </button>
-      <button type="button" class="segment-btn" id="btn-tab-cli" role="tab" aria-selected="false" onclick="activarFormulario('cli')">
-        🏠 Registro Cliente VIP Bono $15k
-      </button>
-    </div>
-  </div>
-
-  <!-- 10. PROTOCOLO DE SEGURIDAD -->
-  <section id="protocolo" aria-labelledby="proto-title">
-    <div class="sec-label">Transparencia y Respaldo Jurídico</div>
-    <h2 id="proto-title" class="sec-title">Protocolo Oficial de Seguridad y Garantías</h2>
-    <p class="sec-desc">Todo lo que necesitas saber sobre cómo protegemos tu dinero, tu casa y tu trabajo en Medellín.</p>
-
-    <div class="proto-grid">
+    <div class="protocol-accordion">
+      
       <!-- Pieza 1 -->
-      <div class="glass-card proto-card cascade-item" onclick="toggleProto(this)" aria-expanded="false">
-        <div class="proto-header">
-          <span class="proto-icon" aria-hidden="true">🔒</span>
-          <div class="proto-header-text">
-            <h3>1. Bóveda Wompi (Custodia Bancaria Escrow)</h3>
-            <div class="proto-sub">¿Quién custodia el dinero mientras se hace el trabajo?</div>
-          </div>
-          <span class="proto-chevron" aria-hidden="true">▼</span>
+      <div class="protocol-item open">
+        <div class="protocol-header" onclick="toggleProtocol(this)">
+          <h3><span aria-hidden="true">🔍</span> Peritaje Técnico 100%</h3>
+          <span class="protocol-chevron" aria-hidden="true">▼</span>
         </div>
-        <div class="proto-content">
-          <p>El valor del servicio se aparta de manera 100% segura a través de Wompi (Bancolombia) antes de que el profesional se desplace al domicilio. Ni la empresa ni el profesional pueden tocar estos fondos durante la ejecución. El desembolso solo se efectúa una vez el cliente revise y autorice formalmente que la labor finalizó y quedó bien ejecutada.</p>
+        <div class="protocol-body">
+          Cada técnico registrado en rebuske atraviesa un riguroso proceso de validación que incluye verificación de identidad con cédula colombiana, consulta de antecedentes en bases públicas oficiales (Policía Nacional, Procuraduría y Contraloría) y prueba técnica de idoneidad en su oficio.
         </div>
       </div>
 
       <!-- Pieza 2 -->
-      <div class="glass-card proto-card cascade-item" onclick="toggleProto(this)" aria-expanded="false">
-        <div class="proto-header">
-          <span class="proto-icon" aria-hidden="true">🚫</span>
-          <div class="proto-header-text">
-            <h3>2. Cero Efectivo (Prohibición Total en Domicilio)</h3>
-            <div class="proto-sub">Cero transacciones manuales para seguridad de ambas partes</div>
-          </div>
-          <span class="proto-chevron" aria-hidden="true">▼</span>
+      <div class="protocol-item">
+        <div class="protocol-header" onclick="toggleProtocol(this)">
+          <h3><span aria-hidden="true">🔒</span> Bóveda Wompi (Escrow)</h3>
+          <span class="protocol-chevron" aria-hidden="true">▼</span>
         </div>
-        <div class="proto-content">
-          <p>Por política de seguridad preventiva, está estrictamente prohibido entregar o solicitar dinero en efectivo en la puerta o dentro del inmueble. Todos los cobros se tramitan a través de medios digitales certificados (Nequi, Bancolombia, Daviplata, PSE o tarjetas). Esto previene malentendidos, elimina riesgos de robo y asegura la validez de tu garantía legal.</p>
+        <div class="protocol-body">
+          El valor del servicio se aparta de manera 100% segura a través de Wompi (Bancolombia) antes de que el profesional se desplace al domicilio. Ni la empresa ni el profesional pueden tocar estos fondos durante la ejecución. El desembolso solo se efectúa una vez el cliente revise y autorice formalmente que la labor finalizó y quedó bien ejecutada.
         </div>
       </div>
 
       <!-- Pieza 3 -->
-      <div class="glass-card proto-card cascade-item" onclick="toggleProto(this)" aria-expanded="false">
-        <div class="proto-header">
-          <span class="proto-icon" aria-hidden="true">⚖️</span>
-          <div class="proto-header-text">
-            <h3>3. Peritaje Técnico Imparcial en Caso de Inconformidad</h3>
-            <div class="proto-sub">Resolución justa de discrepancias técnicas</div>
-          </div>
-          <span class="proto-chevron" aria-hidden="true">▼</span>
+      <div class="protocol-item">
+        <div class="protocol-header" onclick="toggleProtocol(this)">
+          <h3><span aria-hidden="true">⚡</span> Modo Luz Express</h3>
+          <span class="protocol-chevron" aria-hidden="true">▼</span>
         </div>
-        <div class="proto-content">
-          <p>Si el cliente considera que el trabajo no cumple con los estándares acordados, el pago permanece congelado de inmediato. 💬 Laura 💬 y el equipo operativo coordinan una visita de peritaje técnico neutral en Medellín para inspeccionar la obra. Si el peritaje dictamina inconformidad, el profesional debe corregir el trabajo sin costo adicional o se procede a la reversión total de los fondos conforme al Art. 51 de la Ley 1480 de 2011.</p>
+        <div class="protocol-body">
+          Para emergencias domiciliarias (fugas de agua críticas, cortocircuitos o bloqueos de cerradura), el sistema activa el radar de proximidad conectando con el técnico verificado más cercano a tu comuna con tiempo de llegada estimado entre 35 y 45 minutos.
         </div>
       </div>
 
       <!-- Pieza 4 -->
-      <div class="glass-card proto-card cascade-item" onclick="toggleProto(this)" aria-expanded="false">
-        <div class="proto-header">
-          <span class="proto-icon" aria-hidden="true">📜</span>
-          <div class="proto-header-text">
-            <h3>4. Acta Digital de Garantía de 48h en PDF (Ley 527 de 1999)</h3>
-            <div class="proto-sub">Certificado legal probatorio expedido al culminar</div>
-          </div>
-          <span class="proto-chevron" aria-hidden="true">▼</span>
+      <div class="protocol-item">
+        <div class="protocol-header" onclick="toggleProtocol(this)">
+          <h3><span aria-hidden="true">📜</span> Garantía Escrita de 48 Horas (Ley 1480)</h3>
+          <span class="protocol-chevron" aria-hidden="true">▼</span>
         </div>
-        <div class="proto-content">
-          <p>Una vez liberado el servicio a entera satisfacción, el sistema emite automáticamente un Acta Digital de Garantía en formato PDF con firma electrónica probatoria (Ley 527 de 1999), detallando el técnico asignado, la labor ejecutada, las fotos de evidencia y las 48 horas de garantía escrita (o 30 días si el cliente contrató Garantía Extendida). El documento llega de inmediato al correo del cliente y reposa en el historial del profesional.</p>
+        <div class="protocol-body">
+          Conforme al Estatuto del Consumidor (Ley 1480 de 2011), todos los trabajos cuentan con un Acta Digital de Garantía expedida al momento de finalizar. Si la reparación presenta cualquier falla dentro de las 48 horas siguientes, el profesional regresa sin costo adicional o se aplica la política de reembolso de fondos.
         </div>
       </div>
+
     </div>
   </section>
 
-  <!-- 11. CONVOCATORIA -->
-  <section id="convocatoria" aria-labelledby="conv-title">
-    <div class="sec-label">Convocatoria Medellín · Fase 1</div>
-    <h2 id="conv-title" class="sec-title">Inscripción para Técnicos y Profesionales</h2>
-    <p class="sec-desc">Asegura uno de los 100 cupos con tarifa preferencial del 1% el primer mes.</p>
-
-    <div class="conv-counter">
-      Cupos Disponibles <span class="num-green" id="cupos-count">0</span><span class="num-slash">/</span><span class="num-green">100</span><span class="num-sub">Asignados</span>
-    </div>
-
-    <div class="conv-steps">
-      <div class="step-node">
-        <span class="step-circle filled">1</span>
-        <span>Alta Rápida (60s)</span>
-      </div>
-      <div class="step-line"></div>
-      <div class="step-node">
-        <span class="step-circle outlined">2</span>
-        <span>Verificación KYC & Cobro</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTENEDOR DE FORMULARIOS -->
-  <div class="forms-wrapper">
-
-    <!-- ======================================================== -->
-    <!-- FORMULARIO TÉCNICO / PROFESIONAL (PASO 1 + SIMULADOR + PASO 2) -->
-    <!-- ======================================================== -->
-    <div id="view-pro" class="form-view active">
-      
-      <!-- 12. FORMULARIO TÉCNICO PASO 1 -->
-      <div class="glass-card" id="pro-step-1">
-        <div class="form-step-indicator">
-          <span>⚡ Paso 1 de 2: Completa tus datos básicos para apartar tu cupo con tarifa del 1%.</span>
-          <span>60 Segundos</span>
-        </div>
-
-        <form id="form-pro-p1" onsubmit="event.preventDefault(); validarPaso1Pro();">
-          <!-- Nombre Completo -->
-          <div class="field-group">
-            <label class="field-label" for="pro_nombre">Nombre Completo *</label>
-            <input type="text" id="pro_nombre" class="field-input" required autocomplete="name">
-            <div class="field-error" id="err_pro_nombre">Por favor ingresa tu nombre completo</div>
-          </div>
-
-          <!-- Cédula de Ciudadanía -->
-          <div class="field-group">
-            <label class="field-label" for="pro_cedula">Cédula de Ciudadanía *</label>
-            <input type="number" id="pro_cedula" class="field-input" required aria-describedby="desc_pro_cedula">
-            <div class="field-help" id="desc_pro_cedula">6 a 10 dígitos.</div>
-            <div class="field-error" id="err_pro_cedula">Cédula inválida (debe contener entre 6 y 10 dígitos)</div>
-          </div>
-
-          <!-- Celular WhatsApp -->
-          <div class="field-group">
-            <label class="field-label" for="pro_telefono">Celular WhatsApp (Móvil Colombia) *</label>
-            <div class="input-with-button">
-              <span class="prefix-badge">🇨🇴 +57</span>
-              <input type="tel" id="pro_telefono" class="field-input" required aria-describedby="desc_pro_telefono" placeholder="3001234567">
-              <button type="button" class="btn-sec" onclick="validarCelular('pro_telefono')">💬 Validar</button>
-            </div>
-            <div class="field-help" id="desc_pro_telefono">10 dígitos (3XX...).</div>
-            <div class="field-error" id="err_pro_telefono">Ingresa un número celular colombiano válido de 10 dígitos</div>
-          </div>
-
-          <!-- Código de Verificación WhatsApp -->
-          <div class="field-group">
-            <label class="field-label" for="pro_codigo_otp">Código de Verificación WhatsApp</label>
-            <input type="number" id="pro_codigo_otp" class="field-input" placeholder="Ej: 123456">
-            <div class="field-help"><a href="#" class="link-laura" style="color:var(--accent-neon);">Abrir chat con Laura</a></div>
-          </div>
-
-          <div style="margin: 16px 0 24px;">
-            <button type="button" class="btn-main" onclick="verificarCodigoOTP('pro')">
-              Verificar y Confirmar<span class="btn-dot" aria-hidden="true"></span>
-            </button>
-          </div>
-
-          <!-- Oficio / Especialidad Principal -->
-          <div class="field-group">
-            <label class="field-label" for="pro_oficio">Oficio / Especialidad Principal *</label>
-            <select id="pro_oficio" class="field-select" required>
-              <option value="">Selecciona tu especialidad...</option>
-              <option value="Plomería y Destapes">Plomería y Destapes</option>
-              <option value="Electricidad Residencial">Electricidad Residencial</option>
-              <option value="Cerrajería y Aperturas">Cerrajería y Aperturas</option>
-              <option value="Pintura y Resanes">Pintura y Resanes</option>
-              <option value="Aire Acondicionado y Climatización">Aire Acondicionado y Climatización</option>
-              <option value="Auxilio de Batería de Celular (Carga rápida máx 30 min)">Auxilio de Batería de Celular (Carga rápida máx 30 min)</option>
-              <option value="Mecánica Rápida y Mantenimiento">Mecánica Rápida y Mantenimiento</option>
-              <option value="Mudanzas y Acarreos">Mudanzas y Acarreos</option>
-              <option value="Aseo Profundo y Desinfección">Aseo Profundo y Desinfección</option>
-              <option value="Otro Servicio Técnico">Otro Servicio Técnico</option>
-            </select>
-          </div>
-
-          <!-- Comuna o Corregimiento en Medellín -->
-          <div class="field-group">
-            <label class="field-label" for="pro_comuna">Comuna o Corregimiento en Medellín *</label>
-            <select id="pro_comuna" class="field-select" required>
-              <option value="">Selecciona comuna / zona...</option>
-              <optgroup label="Comunas Urbanas de Medellín">
-                <option value="Laureles - Estadio (Comuna 11)">Laureles - Estadio (Comuna 11)</option>
-                <option value="El Poblado (Comuna 14)">El Poblado (Comuna 14)</option>
-                <option value="Belén (Comuna 16)">Belén (Comuna 16)</option>
-                <option value="La América (Comuna 12)">La América (Comuna 12)</option>
-                <option value="San Javier (Comuna 13)">San Javier (Comuna 13)</option>
-                <option value="Guayabal (Comuna 15)">Guayabal (Comuna 15)</option>
-                <option value="La Candelaria / Centro (Comuna 10)">La Candelaria / Centro (Comuna 10)</option>
-                <option value="Buenos Aires (Comuna 9)">Buenos Aires (Comuna 9)</option>
-                <option value="Villa Hermosa (Comuna 8)">Villa Hermosa (Comuna 8)</option>
-                <option value="Robledo (Comuna 7)">Robledo (Comuna 7)</option>
-                <option value="Doce de Octubre (Comuna 6)">Doce de Octubre (Comuna 6)</option>
-                <option value="Castilla (Comuna 5)">Castilla (Comuna 5)</option>
-                <option value="Aranjuez (Comuna 4)">Aranjuez (Comuna 4)</option>
-                <option value="Manrique (Comuna 3)">Manrique (Comuna 3)</option>
-                <option value="Santa Cruz (Comuna 2)">Santa Cruz (Comuna 2)</option>
-                <option value="Popular (Comuna 1)">Popular (Comuna 1)</option>
-              </optgroup>
-              <optgroup label="Corregimientos de Medellín">
-                <option value="San Cristóbal">San Cristóbal</option>
-                <option value="San Antonio de Prado">San Antonio de Prado</option>
-                <option value="Santa Elena">Santa Elena</option>
-                <option value="Altavista">Altavista</option>
-                <option value="San Sebastián de Palmitas">San Sebastián de Palmitas</option>
-              </optgroup>
-              <optgroup label="Área Metropolitana (Valle de Aburrá)">
-                <option value="Envigado">Envigado</option>
-                <option value="Itagüí">Itagüí</option>
-                <option value="Sabaneta">Sabaneta</option>
-                <option value="Bello">Bello</option>
-                <option value="La Estrella">La Estrella</option>
-                <option value="Caldas">Caldas</option>
-                <option value="Copacabana">Copacabana</option>
-              </optgroup>
-            </select>
-          </div>
-
-          <!-- Barrio o Sector Específico -->
-          <div class="field-group">
-            <label class="field-label" for="pro_barrio">Barrio o Sector Específico</label>
-            <input type="text" id="pro_barrio" class="field-input" placeholder="Ej: Conquistadores, Carlos E. Restrepo">
-          </div>
-
-          <!-- Mes y Año de Nacimiento -->
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
-            <div class="field-group">
-              <label class="field-label" for="pro_mes_nac">Mes de Nacimiento *</label>
-              <select id="pro_mes_nac" class="field-select" required>
-                <option value="">Selecciona mes...</option>
-                <option value="Enero">Enero</option>
-                <option value="Febrero">Febrero</option>
-                <option value="Marzo">Marzo</option>
-                <option value="Abril">Abril</option>
-                <option value="Mayo">Mayo</option>
-                <option value="Junio">Junio</option>
-                <option value="Julio">Julio</option>
-                <option value="Agosto">Agosto</option>
-                <option value="Septiembre">Septiembre</option>
-                <option value="Octubre">Octubre</option>
-                <option value="Noviembre">Noviembre</option>
-                <option value="Diciembre">Diciembre</option>
-              </select>
-            </div>
-            <div class="field-group">
-              <label class="field-label" for="pro_ano_nac">Año de Nacimiento *</label>
-              <input type="number" id="pro_ano_nac" class="field-input" min="1930" max="2008" placeholder="Ej: 1988" required>
-            </div>
-          </div>
-        </form>
+  <!-- 9. PIE DE PÁGINA -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <h4>rebuske Medellín 2026</h4>
+        <p>Plataforma tecnológica de servicios técnicos para el hogar con pago protegido en Bóveda Wompi (Bancolombia). Fundador: Camilo Escobar.</p>
+        <p style="margin-top:12px;font-size:12px;color:var(--accent-neon);">
+          Medellín, Antioquia, Colombia · Nit en trámite
+        </p>
       </div>
 
-      <!-- 13. SIMULADOR Y PLACAS -->
-      <div class="glass-card simulador-card">
-        <!-- Parte A: Mini-simulador -->
-        <div class="sim-header">
-          <h3>👛 Mini-Simulador de Bolsillo</h3>
-          <h4>¿Cuánto te queda?</h4>
-          <p class="field-help" style="font-size:14px;color:var(--text-gray);margin-bottom:12px">Mueve el control deslizante o pulsa un valor para comparar tus ingresos netos frente a aplicaciones tradicionales que retienen entre el 25% y 30%:</p>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Plataforma</h5>
+          <ul>
+            <li><a href="https://rebuske.vercel.app/">Abrir App Web</a></li>
+            <li><a href="/registro/tecnico">Registro de Técnicos</a></li>
+            <li><a href="/registro/cliente">Registro de Clientes VIP</a></li>
+            <li><a href="/tarifas">Tarifas Oficiales</a></li>
+          </ul>
         </div>
 
-        <div class="sim-val-label" id="sim-val-display">Valor del trabajo: $100.000 COP</div>
-
-        <input type="range" class="range-slider" id="sim-slider" min="50000" max="1200000" step="10000" value="100000" oninput="actualizarSimulador(this.value)">
-        
-        <div class="sim-ticks">
-          <span>$50k</span>
-          <span>$600k</span>
-          <span>$1.2M</span>
+        <div class="footer-col">
+          <h5>Legal y Normativo</h5>
+          <ul>
+            <li><a href="/terminos">Términos y Condiciones</a></li>
+            <li><a href="/privacidad">Política de Privacidad</a></li>
+            <li><a href="/reembolsos">Política de Reembolsos</a></li>
+            <li><a href="/descuentos">Condiciones de Descuentos</a></li>
+            <li><a href="/eliminar-cuenta">Eliminar Cuenta</a></li>
+            <li><a href="/privacidad#cookies">Política de Cookies</a></li>
+          </ul>
         </div>
 
-        <div class="quick-btns">
-          <button type="button" class="quick-btn" onclick="setSimValue(100000)">$100.000</button>
-          <button type="button" class="quick-btn" onclick="setSimValue(350000)">$350.000</button>
-          <button type="button" class="quick-btn" onclick="setSimValue(800000)">$800.000</button>
+        <div class="footer-col">
+          <h5>Contacto Directo</h5>
+          <ul>
+            <li>
+              <a href="https://wa.me/573043812882?text=Hola%20Laura%2C%20quiero%20conocer%20m%C3%A1s%20sobre%20rebuske" target="_blank" rel="noopener noreferrer">
+                Laura WhatsApp (+57 304 381 2882)
+              </a>
+            </li>
+            <li><a href="mailto:holarebuske@gmail.com">holarebuske@gmail.com</a></li>
+          </ul>
         </div>
-
-        <div class="sim-rows">
-          <div class="sim-row" id="sim-row-1">Apps Tradicionales (70%) $70.000 COP. Te descuentan $30.000 COP</div>
-          <div class="sim-row" id="sim-row-2">En rebuske Oro (93%) $93.000 COP + $23.000 COP más para ti</div>
-          <div class="sim-row" id="sim-row-3">👑 Mes 1 Fundador (1% Comisión): $99.000 COP netos 📄 Certificado formal de ingresos en 1 clic</div>
-        </div>
-
-        <div class="sim-bars">
-          <div>
-            <div style="font-size:12px;color:var(--text-gray);margin-bottom:4px">Apps tradicionales (70%)</div>
-            <div class="bar-track"><div class="bar-fill bar-gray"></div></div>
-          </div>
-          <div>
-            <div style="font-size:12px;color:var(--accent-neon);margin-bottom:4px">rebuske (93%)</div>
-            <div class="bar-track"><div class="bar-fill bar-green"></div></div>
-          </div>
-        </div>
-
-        <!-- Parte B: Placas -->
-        <div class="placas-container">
-          <h3 style="font-size:18px;font-weight:800;color:var(--text-white);margin-bottom:4px">🏆 Modelo de Placas Oficiales rebuske 3 Categorías</h3>
-          <p style="font-size:13px;color:var(--text-gray)">Tus ingresos crecen con tu cumplimiento y calidad técnica:</p>
-
-          <div class="placas-grid">
-            <!-- Placa Bronce -->
-            <div class="glass-card placa-card">
-              <h4>🥉 Placa Bronce 9% Com.</h4>
-              <p style="color:var(--text-gray);margin-bottom:6px">Nivel Inicial: Registro aprobado, KYC completado y antecedentes limpios.</p>
-              <b style="color:var(--accent-neon)">Cobras el 91% neto directo a tu cuenta.</b>
-            </div>
-
-            <!-- Placa Plata -->
-            <div class="glass-card placa-card">
-              <h4>🥈 Placa Plata 8% Com.</h4>
-              <p style="color:var(--text-gray);margin-bottom:6px">Ascenso: 25 servicios completados, calificación ≥ 4.7★ y puntualidad ≥ 92%.</p>
-              <b style="color:var(--accent-neon)">Cobras el 92% neto directo a tu cuenta.</b>
-            </div>
-
-            <!-- Placa Oro -->
-            <div class="glass-card placa-card placa-oro-sweep">
-              <h4>🥇 Placa Oro 7% Com.</h4>
-              <p style="color:var(--text-gray);margin-bottom:6px">Ascenso: 80 servicios, calificación ≥ 4.9★, puntualidad ≥ 96% y 0 reclamos en 60d.</p>
-              <b style="color:var(--accent-neon)">¡Cobras el 93% neto de por vida!</b>
-            </div>
-          </div>
-        </div>
-
-        <!-- Parte C: Promoción y botón -->
-        <div class="promo-box">
-          <span style="font-size:28px;display:block;margin-bottom:8px" aria-hidden="true">👑</span>
-          <h3>Promoción Temporal Exclusiva · Primer Mes (Solo 100 Cupos)</h3>
-          <p>Los primeros 100 profesionales registrados operarán al 1% de comisión durante sus primeros 30 días (¡99% neto para ti!). Finalizado el mes, se activará tu placa ganada (9%, 8% o 7%).</p>
-        </div>
-
-        <div style="text-align:center;margin-top:24px">
-          <button type="button" class="btn-main" onclick="avanzarPaso2Pro()">
-            Continuar a Etapa 2: Verificación KYC y Cobro ➔<span class="btn-dot" aria-hidden="true"></span>
-          </button>
-          <div style="font-size:12px;color:var(--text-gray);margin-top:10px">
-            ⏱️ Solo falta tu cuenta de cobro y fotos de respaldo para activar tu cuenta técnica.
-          </div>
-        </div>
-      </div>
-
-      <!-- 14. FORMULARIO TÉCNICO PASO 2 -->
-      <div class="glass-card" id="pro-step-2" style="display:none;margin-top:24px">
-        <div class="kyc-status-bar">
-          <div style="display:flex;align-items:center;gap:8px">
-            <span class="step-circle filled" style="width:24px;height:24px;font-size:11px">2/2</span>
-            <span class="badge-bono" style="margin:0">Aspirante en Validación</span>
-          </div>
-          <div>✓ Datos básicos validados con éxito (<a href="#" onclick="volverPaso1Pro()" style="color:var(--accent-neon);text-decoration:underline">Editar datos básicos</a>)</div>
-        </div>
-
-        <form id="form-pro-p2" onsubmit="event.preventDefault(); enviarRegistroProFinal();">
-          <!-- Cuenta de cobro -->
-          <div class="field-group">
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
-              <label class="field-label" for="pro_cuenta" style="margin-bottom:0">Cuenta para tus pagos (Nequi / Bancolombia) *</label>
-              <span class="badge-bono" style="margin:0;font-size:11px;padding:2px 8px">Obligatoria para cobros</span>
-            </div>
-            <input type="text" id="pro_cuenta" class="field-input" placeholder="Ej: Nequi 3001234567 o Bancolombia Ahorros 123456789" required>
-            <div class="field-help">🔒 Bóveda Wompi: Tus pagos protegidos se liquidan directamente a esta cuenta al culminar cada labor aprobada.</div>
-          </div>
-
-          <!-- Bloque KYC -->
-          <div style="margin:30px 0 20px">
-            <h3 style="font-size:18px;font-weight:800;color:var(--text-white);margin-bottom:6px">📸 Verificación KYC y Respaldo Técnico</h3>
-            <p style="font-size:14px;color:var(--text-gray);line-height:1.5">Para garantizar la seguridad de los hogares en Medellín, validamos tus herramientas y tu identidad biométrica:</p>
-          </div>
-
-          <!-- Foto Perfil Biométrica -->
-          <div class="field-group">
-            <label class="field-label">1. Foto de Perfil Biométrica (Rostro claro, sin gafas oscuras ni filtros) *</label>
-            <div class="field-help" style="color:#FFD35C;margin-bottom:10px">⚠️ Política de Seguridad: Al subir esta foto, no podrá cambiarse durante 30 días. Elige una foto nítida.</div>
-            <input type="file" id="file_pro_selfie" accept="image/*" style="display:none" onchange="previewProSelfie(this)">
-            <div class="photo-upload-box" style="height:120px;width:100%" onclick="document.getElementById('file_pro_selfie').click()" id="box-selfie-label">
-              <span style="font-size:24px;display:block;margin-bottom:6px" aria-hidden="true">📷</span>
-              <span>Selfie de perfil</span>
-            </div>
-          </div>
-
-          <!-- 6 Fotografías de Herramientas -->
-          <div class="field-group">
-            <label class="field-label">2. 6 Fotografías de tus Herramientas y Equipos de Trabajo *</label>
-            <p style="font-size:13px;color:var(--text-gray);margin-bottom:8px">Sube fotos de lo que realmente tienes disponible (maletines, taladros, multímetros, llaves, escaleras, etc.). No exigimos marcas exclusivas, sino transparencia.</p>
-            <div id="tools-counter" style="font-size:12px;font-weight:700;color:var(--accent-neon);margin-bottom:8px">0 de 6 fotografías seleccionadas</div>
-
-            <div class="photo-upload-grid">
-              <input type="file" id="file_tool_1" accept="image/*" style="display:none" onchange="updateToolCount(1, this)">
-              <div class="photo-upload-box" onclick="document.getElementById('file_tool_1').click()" id="box-tool-1">Herramienta 1</div>
-
-              <input type="file" id="file_tool_2" accept="image/*" style="display:none" onchange="updateToolCount(2, this)">
-              <div class="photo-upload-box" onclick="document.getElementById('file_tool_2').click()" id="box-tool-2">Herramienta 2</div>
-
-              <input type="file" id="file_tool_3" accept="image/*" style="display:none" onchange="updateToolCount(3, this)">
-              <div class="photo-upload-box" onclick="document.getElementById('file_tool_3').click()" id="box-tool-3">Herramienta 3</div>
-
-              <input type="file" id="file_tool_4" accept="image/*" style="display:none" onchange="updateToolCount(4, this)">
-              <div class="photo-upload-box" onclick="document.getElementById('file_tool_4').click()" id="box-tool-4">Herramienta 4</div>
-
-              <input type="file" id="file_tool_5" accept="image/*" style="display:none" onchange="updateToolCount(5, this)">
-              <div class="photo-upload-box" onclick="document.getElementById('file_tool_5').click()" id="box-tool-5">Herramienta 5</div>
-
-              <input type="file" id="file_tool_6" accept="image/*" style="display:none" onchange="updateToolCount(6, this)">
-              <div class="photo-upload-box" onclick="document.getElementById('file_tool_6').click()" id="box-tool-6">Herramienta 6</div>
-            </div>
-          </div>
-
-          <!-- Entrevista WhatsApp -->
-          <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px;margin:20px 0;font-size:13px;color:var(--text-gray);line-height:1.5">
-            <b style="color:var(--text-white);display:block;margin-bottom:4px">💬 Entrevista de Validación Exclusiva por WhatsApp</b>
-            Tu verificación de identidad se realizará exclusivamente por mensajes de WhatsApp (mensajes de texto, notas de voz, fotos de respaldo y ubicación en tiempo real). Están estrictamente prohibidas las llamadas telefónicas en esta etapa.
-          </div>
-
-          <!-- Bloque Legal Técnico -->
-          <div class="legal-block">
-            <h4 style="font-size:15px;font-weight:800;color:var(--text-white);margin-bottom:12px">⚖️ Autorizaciones Legales y Consentimiento Informado</h4>
-            
-            <label class="checkbox-label">
-              <input type="checkbox" id="pro_check_terms" required>
-              <span>KYC: He leído y acepto los Términos y Condiciones y la Política de Tratamiento de Datos Personales (Ley 1581 de 2012). *</span>
-            </label>
-
-            <label class="checkbox-label">
-              <input type="checkbox" id="pro_check_biometria" required>
-              <span>Autorizo expresamente el tratamiento de mi biometría facial con fines exclusivos de validación de identidad en puerta mediante código QR y cotejo antifraude. Entiendo que por tratarse de un dato sensible (Ley 1581, art. 5) esta autorización es facultativa; no obstante, su no autorización impedirá la habilitación de mi cuenta técnica por protocolos de seguridad domiciliaria. *</span>
-            </label>
-
-            <label class="checkbox-label">
-              <input type="checkbox" id="pro_check_antecedentes" required>
-              <span>Autorizo a rebuske a consultar mis antecedentes judiciales, policivos y disciplinarios en bases públicas oficiales. Entiendo que rebuske solo almacenará la constancia de aptitud (“Aprobado / Sin pendientes” y fecha de cotejo), sin acopiar ni archivar documentos judiciales crudos. *</span>
-            </label>
-
-            <label class="checkbox-label">
-              <input type="checkbox" id="pro_check_alertas">
-              <span>(Opcional) Autorizo el envío de alertas de solicitudes en mi comuna, recordatorios de verificación y novedades operativas por WhatsApp y correo electrónico.</span>
-            </label>
-          </div>
-
-          <!-- Botones Paso 2 -->
-          <div style="display:flex;gap:12px;margin-top:24px;flex-wrap:wrap">
-            <button type="submit" id="btn-submit-pro" class="btn-main" style="flex:1">
-              Asegurar mi Cupo Primordial (1% Mes 1) ⚡<span class="btn-dot" aria-hidden="true"></span>
-            </button>
-            <button type="button" class="btn-sec" onclick="volverPaso1Pro()">
-              ◀ Modificar datos básicos (Paso 1)
-            </button>
-          </div>
-
-          <!-- Mensaje de éxito Pro -->
-          <div class="success-alert" id="pro-success-msg">
-            <h3>¡Registro de Profesional Exitoso!</h3>
-            <p>Hemos reservado tu cupo primordial. Nuestro equipo te contactará por WhatsApp para validar tus documentos e iniciar.</p>
-          </div>
-        </form>
-      </div>
-
-    </div>
-
-    <!-- ======================================================== -->
-    <!-- 15. FORMULARIO CLIENTE -->
-    <!-- ======================================================== -->
-    <div id="view-cliente" class="form-view">
-      <div class="glass-card">
-        <div style="text-align:center;margin-bottom:20px">
-          <span class="badge-bono" style="font-size:13px;padding:6px 16px">Acceso Anticipado Google Play Store</span>
-          <h2 style="font-size:28px;font-weight:800;color:var(--text-white);margin:10px 0 6px">Registro de Clientes y Hogares VIP</h2>
-          <p style="font-size:15px;color:var(--text-gray);line-height:1.5">Te avisaremos por WhatsApp y correo el link de descarga. Recibirás tu Bono VIP de $15.000 COP (Vigencia 90 días desde el 1 de Dic 2026 en pedidos > $90k).</p>
-        </div>
-
-        <!-- Tarjeta de cupón -->
-        <div class="coupon-ticket coupon-sweep">
-          <div style="font-size:12px;text-transform:uppercase;letter-spacing:1px;color:var(--text-gray)">Cupón Activado</div>
-          <div class="coupon-code">TUBONO15K-VIP</div>
-          <a href="/descuentos" style="font-size:12px;color:var(--accent-neon);text-decoration:underline">
-            En pedidos > $90k · Vigencia 90d desde 1 Dic · 1 por hogar · Ver condiciones
-          </a>
-        </div>
-
-        <!-- Acceso con Google -->
-        <div style="text-align:center;margin:20px 0">
-          <div style="font-size:14px;color:var(--text-gray);margin-bottom:8px">¿Prefieres no llenar formularios? Entra directo con tu cuenta de Google en 1 clic</div>
-          <button type="button" class="google-btn" onclick="iniciarGoogleAuth()">
-            <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg>
-            Continuar con Google
-          </button>
-          <div class="sep-line">O regístrate con tu celular WhatsApp</div>
-        </div>
-
-        <form id="form-cliente" onsubmit="event.preventDefault(); enviarRegistroCliente();">
-          <!-- Tu Nombre y Apellido -->
-          <div class="field-group">
-            <label class="field-label" for="cli_nombre">Tu Nombre y Apellido *</label>
-            <input type="text" id="cli_nombre" class="field-input" required autocomplete="name">
-          </div>
-
-          <!-- Tu Celular WhatsApp -->
-          <div class="field-group">
-            <label class="field-label" for="cli_telefono">Tu Celular WhatsApp *</label>
-            <div class="input-with-button">
-              <span class="prefix-badge">🇨🇴 +57</span>
-              <input type="tel" id="cli_telefono" class="field-input" required aria-describedby="desc_cli_telefono" placeholder="3001234567">
-              <button type="button" class="btn-sec" onclick="validarCelular('cli_telefono')">💬 Validar</button>
-            </div>
-            <div class="field-help" id="desc_cli_telefono">10 dígitos (3XX...).</div>
-          </div>
-
-          <!-- Código de Verificación WhatsApp -->
-          <div class="field-group">
-            <label class="field-label" for="cli_codigo_otp">Código de Verificación WhatsApp</label>
-            <input type="number" id="cli_codigo_otp" class="field-input" placeholder="Ej: 123456">
-            <div class="field-help"><a href="#" class="link-laura" style="color:var(--accent-neon);">Abrir chat con Laura</a></div>
-          </div>
-
-          <div style="margin: 16px 0 24px;">
-            <button type="button" class="btn-main" onclick="verificarCodigoOTP('cli')">
-              Verificar y Confirmar<span class="btn-dot" aria-hidden="true"></span>
-            </button>
-          </div>
-
-          <!-- Correo Electrónico -->
-          <div class="field-group">
-            <label class="field-label" for="cli_email">Correo Electrónico (Para recibir el link de Play Store y tu bono) *</label>
-            <input type="email" id="cli_email" class="field-input" required autocomplete="email">
-          </div>
-
-          <!-- Comuna o Corregimiento en Medellín -->
-          <div class="field-group">
-            <label class="field-label" for="cli_comuna">Comuna o Corregimiento en Medellín *</label>
-            <select id="cli_comuna" class="field-select" required>
-              <option value="">Selecciona tu comuna / zona...</option>
-              <optgroup label="Comunas Urbanas de Medellín">
-                <option value="Laureles - Estadio (Comuna 11)">Laureles - Estadio (Comuna 11)</option>
-                <option value="El Poblado (Comuna 14)">El Poblado (Comuna 14)</option>
-                <option value="Belén (Comuna 16)">Belén (Comuna 16)</option>
-                <option value="La América (Comuna 12)">La América (Comuna 12)</option>
-                <option value="San Javier (Comuna 13)">San Javier (Comuna 13)</option>
-                <option value="Guayabal (Comuna 15)">Guayabal (Comuna 15)</option>
-                <option value="La Candelaria / Centro (Comuna 10)">La Candelaria / Centro (Comuna 10)</option>
-                <option value="Buenos Aires (Comuna 9)">Buenos Aires (Comuna 9)</option>
-                <option value="Villa Hermosa (Comuna 8)">Villa Hermosa (Comuna 8)</option>
-                <option value="Robledo (Comuna 7)">Robledo (Comuna 7)</option>
-                <option value="Doce de Octubre (Comuna 6)">Doce de Octubre (Comuna 6)</option>
-                <option value="Castilla (Comuna 5)">Castilla (Comuna 5)</option>
-                <option value="Aranjuez (Comuna 4)">Aranjuez (Comuna 4)</option>
-                <option value="Manrique (Comuna 3)">Manrique (Comuna 3)</option>
-                <option value="Santa Cruz (Comuna 2)">Santa Cruz (Comuna 2)</option>
-                <option value="Popular (Comuna 1)">Popular (Comuna 1)</option>
-              </optgroup>
-              <optgroup label="Corregimientos de Medellín">
-                <option value="San Cristóbal">San Cristóbal</option>
-                <option value="San Antonio de Prado">San Antonio de Prado</option>
-                <option value="Santa Elena">Santa Elena</option>
-                <option value="Altavista">Altavista</option>
-                <option value="San Sebastián de Palmitas">San Sebastián de Palmitas</option>
-              </optgroup>
-              <optgroup label="Área Metropolitana (Valle de Aburrá)">
-                <option value="Envigado">Envigado</option>
-                <option value="Itagüí">Itagüí</option>
-                <option value="Sabaneta">Sabaneta</option>
-                <option value="Bello">Bello</option>
-                <option value="La Estrella">La Estrella</option>
-                <option value="Caldas">Caldas</option>
-                <option value="Copacabana">Copacabana</option>
-              </optgroup>
-            </select>
-          </div>
-
-          <!-- ¿Qué servicios sueles necesitar más? -->
-          <div class="field-group">
-            <label class="field-label" for="cli_servicios">¿Qué servicios sueles necesitar más? *</label>
-            <select id="cli_servicios" class="field-select" required>
-              <option value="">Selecciona una opción...</option>
-              <option value="Plomería y Filtraciones">Plomería y Filtraciones</option>
-              <option value="Electricidad y Cortos">Electricidad y Cortos</option>
-              <option value="Cerrajería y Emergencias">Cerrajería y Emergencias</option>
-              <option value="Pintura y Remodelación">Pintura y Remodelación</option>
-              <option value="Mantenimiento de Vehículos">Mantenimiento de Vehículos</option>
-              <option value="Aseo y Desinfección">Aseo y Desinfección</option>
-              <option value="Mudanzas">Mudanzas</option>
-              <option value="Varios / Todos los anteriores">Varios / Todos los anteriores</option>
-            </select>
-          </div>
-
-          <!-- Mes y Año de Nacimiento -->
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
-            <div class="field-group">
-              <label class="field-label" for="cli_mes_nac">Mes de Nacimiento *</label>
-              <select id="cli_mes_nac" class="field-select" required>
-                <option value="">Selecciona mes...</option>
-                <option value="Enero">Enero</option>
-                <option value="Febrero">Febrero</option>
-                <option value="Marzo">Marzo</option>
-                <option value="Abril">Abril</option>
-                <option value="Mayo">Mayo</option>
-                <option value="Junio">Junio</option>
-                <option value="Julio">Julio</option>
-                <option value="Agosto">Agosto</option>
-                <option value="Septiembre">Septiembre</option>
-                <option value="Octubre">Octubre</option>
-                <option value="Noviembre">Noviembre</option>
-                <option value="Diciembre">Diciembre</option>
-              </select>
-            </div>
-            <div class="field-group">
-              <label class="field-label" for="cli_ano_nac">Año de Nacimiento *</label>
-              <input type="number" id="cli_ano_nac" class="field-input" min="1920" max="2008" placeholder="Ej: 1995" required>
-            </div>
-          </div>
-
-          <!-- Bloque explicativo fecha nacimiento -->
-          <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px;margin:16px 0;font-size:13px;color:var(--text-gray);line-height:1.5">
-            🎁 ¿Por qué te pedimos tu fecha de nacimiento? Para validar tu mayoría de edad legal (18+ años según el Código de Comercio) y consentirte con promociones y regalos al azar en el mes de tu cumpleaños para premiar tu fidelidad en rebuske.
-          </div>
-
-          <!-- Tu Foto de Perfil -->
-          <div class="field-group">
-            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
-              <label class="field-label" style="margin-bottom:0">Tu Foto de Perfil (Rostro Visible) *</label>
-              <span class="badge-bono" style="margin:0;font-size:11px;padding:2px 8px">Modificable en tu cuenta</span>
-            </div>
-            <p style="font-size:13px;color:var(--text-gray);margin-bottom:12px;line-height:1.5">Sube una foto clara de tu rostro. Esta foto será visible para el técnico en el chat y cotizaciones (podrás cambiarla cuando desees desde tu perfil). Servirá de cotejo inicial para contrastar con tu selfie biométrica inalterable cuando se lance la app en Play Store.</p>
-
-            <div style="display:flex;align-items:center;gap:16px">
-              <div class="avatar-preview-circle" id="cli-avatar-preview">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#B4BDAE" stroke-width="1.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-              </div>
-              <div>
-                <input type="file" id="cli_foto" accept="image/*" style="display:none" onchange="previewCliFoto(this)">
-                <button type="button" class="btn-sec" onclick="document.getElementById('cli_foto').click()">Subir foto de perfil</button>
-                <div id="cli-foto-status" style="font-size:12px;color:var(--text-gray);margin-top:6px">Ninguna foto seleccionada</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Dos bloques informativos cliente -->
-          <div class="client-info-blocks">
-            <div class="client-info-box">
-              👨👩👧👦 Modo Familiar («Poner Gente»). Tus familiares piden técnicos con tu tarjeta Wompi centralizada y tú autorizas todo cargo.
-            </div>
-            <div class="client-info-box">
-              📲 Credencial QR en Puerta. Escaneas su QR oficial con foto y cédula antes de abrirle la puerta de tu hogar.
-            </div>
-          </div>
-
-          <!-- Bloque términos del bono -->
-          <div style="background:rgba(60,255,46,0.05);border:1px solid rgba(60,255,46,0.2);border-radius:12px;padding:16px;margin:20px 0">
-            <h4 style="font-size:14px;font-weight:800;color:var(--accent-neon);margin-bottom:6px">🎁 Términos del Bono de Bienvenida ($15.000 COP)</h4>
-            <p style="font-size:13px;color:var(--text-white);line-height:1.5">El bono de $15.000 COP aplica en tu primer servicio igual o superior a $90.000 COP con 0% de comisión para la app. Vigencia: 90 días desde el 1 de diciembre de 2026. Límite: 1 bono por hogar y método de pago.</p>
-          </div>
-
-          <!-- Bloque legal cliente -->
-          <div class="legal-block">
-            <h4 style="font-size:15px;font-weight:800;color:var(--text-white);margin-bottom:12px">⚖️ Autorizaciones Legales y Consentimiento Informado</h4>
-
-            <label class="checkbox-label">
-              <input type="checkbox" id="cli_check_terms" required>
-              <span>He leído y acepto los Términos y Condiciones, la Política de Tratamiento de Datos Personales (Ley 1581 de 2012) y las Condiciones de Descuentos. *</span>
-            </label>
-
-            <label class="checkbox-label">
-              <input type="checkbox" id="cli_check_biometria" required>
-              <span>Autorizo expresamente el tratamiento de mis datos sensibles biométricos (selfie facial en vivo en la app) con fines exclusivos de validación de identidad en puerta y seguridad domiciliaria. Entiendo que por tratarse de un dato sensible (Ley 1581, art. 5) esta autorización es facultativa; no obstante, su no autorización impedirá coordinar visitas técnicas en mi hogar por protocolos de protección comunitaria. *</span>
-            </label>
-
-            <label class="checkbox-label">
-              <input type="checkbox" id="cli_check_alertas">
-              <span>(Opcional) Autorizo el envío de notificaciones de apertura en Google Play Store, novedades de mi comuna y alertas de mi Bono VIP de $15.000 COP por WhatsApp y correo electrónico.</span>
-            </label>
-          </div>
-
-          <div style="margin-top:24px">
-            <button type="submit" id="btn-submit-cli" class="btn-main" style="width:100%">
-              Obtener Link de Play Store + Bono $15.000 COP 🚀<span class="btn-dot" aria-hidden="true"></span>
-            </button>
-          </div>
-
-          <!-- Mensaje de éxito Cliente -->
-          <div class="success-alert" id="cli-success-msg">
-            <h3>¡Registro de Cliente Exitoso!</h3>
-            <p>Hemos registrado tu correo. Apenas la aplicación esté lista en Google Play Store te enviaremos el enlace oficial y tu bono VIP.</p>
-          </div>
-        </form>
       </div>
     </div>
 
-  </div>
-
-  <!-- 16. CIERRE CON AUTORIZACIÓN -->
-  <section id="cierre" aria-labelledby="cierre-title">
-    <div class="cierre-aurora"></div>
-    <div class="cierre-aurora cierre-aurora-2"></div>
-    <canvas id="cierre-canvas"></canvas>
-
-    <div class="glass-card cierre-card cascade-item">
-      <h3 id="cierre-title">⚡ Autorización Rápida y Términos</h3>
-      <p>Al presionar aceptar, autorizas el tratamiento de tus datos personales conforme a la Ley 1581 de 2012 para la coordinación logística de servicios y pagos seguros en Bóveda Wompi, y confirmas conocer nuestros Términos, Política de Reembolsos y Condiciones de Descuentos.</p>
-      <div class="cierre-actions">
-        <button type="button" class="btn-main" onclick="window.scrollTo({top: document.getElementById('selector-sticky-container').offsetTop - 20, behavior:'smooth'})">
-          Aceptar y Continuar ⚡<span class="btn-dot" aria-hidden="true"></span>
-        </button>
-        <button type="button" class="btn-sec" onclick="window.scrollTo({top: 0, behavior:'smooth'})">Cancelar</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- 17. PIE DE PÁGINA -->
-  <footer id="footer">
-    <div>rebuske Colombia © 2026 · Responsable: Camilo Escobar · Medellín, Colombia</div>
-    <div class="footer-links">
-      <a href="/tarifas">Tarifario</a>
-      <a href="/terminos">Términos</a>
-      <a href="/privacidad">Privacidad</a>
-      <a href="/reembolsos">Reembolsos</a>
-      <a href="/descuentos">Condiciones de Descuentos</a>
-      <a href="/eliminar-cuenta">Eliminar Cuenta</a>
+    <div class="footer-bottom">
+      <span>© 2026 rebuske. Todos los derechos reservados. Cumplimiento estricto Ley 1480 y Ley 1581 de Colombia.</span>
+      <span>Medellín · El Poblado · Laureles · Belén · Envigado</span>
     </div>
   </footer>
 
-  <!-- 18. BANNER DE COOKIES (FLOTANTE) -->
-  <div id="cookie-banner" role="dialog" aria-labelledby="cookie-title" aria-describedby="cookie-desc">
-    <h4 id="cookie-title">Preferencias de Cookies y Analítica</h4>
-    <p id="cookie-desc">Usamos cookies esenciales para operar la plataforma y pagos Wompi. Con tu permiso, usamos herramientas de analítica y medición (Google Analytics 4 y píxeles) para optimizar el servicio en Medellín sin rastrear datos sensibles.</p>
-    <div class="cookie-actions">
-      <button type="button" class="btn-main cookie-btn" onclick="aceptarCookies(true)">
-        Aceptar Analítica<span class="btn-dot" aria-hidden="true"></span>
-      </button>
-      <button type="button" class="btn-sec cookie-btn" onclick="aceptarCookies(false)">Solo Esenciales</button>
+  <!-- 10. BANNER DE COOKIES (Solo abajo, máx 120px) -->
+  <aside class="cookie-banner" id="cookieBanner" aria-label="Consentimiento de cookies">
+    <div class="cookie-text">
+      Usamos cookies esenciales para operar la plataforma y pagos Wompi. Con tu permiso, usamos herramientas de analítica (Google Analytics 4) para optimizar el servicio en Medellín sin rastrear datos sensibles.
     </div>
-    <a href="/privacidad#cookies" class="cookie-policy-link">Conoce más en la Política de Cookies</a>
-  </div>
+    <div class="cookie-actions">
+      <button class="btn-cookie-config" onclick="cerrarCookies()">Configurar</button>
+      <button class="btn-cookie-accept" onclick="aceptarCookies()">Aceptar todas</button>
+    </div>
+  </aside>
 
-  <!-- SCRIPTS PRINCIPALES -->
+  <!-- SCRIPTS Y ANIMACIONES -->
   <script>
-    // -------------------------------------------------------------
-    // ANIMACIONES Y COMPORTAMIENTOS BÁSICOS
-    // -------------------------------------------------------------
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
     // Barra superior scroll listener
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('DOMContentLoaded', () => {
-      setTimeout(() => navbar.classList.add('loaded'), 50);
-      initHeroAnimations();
-      initScrollObservers();
-      initCookieBanner();
-      initCanvases();
+    window.addEventListener('scroll', () => {
+      const bar = document.getElementById('topBar');
+      if (window.scrollY > 40) {
+        bar.classList.add('scrolled');
+      } else {
+        bar.classList.remove('scrolled');
+      }
+
+      // Animación de línea de pasos
+      const howSection = document.getElementById('como-funciona');
+      if (howSection) {
+        const rect = howSection.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.75) {
+          document.getElementById('stepsLineFill').style.height = '100%';
+          for (let i = 1; i <= 5; i++) {
+            setTimeout(() => {
+              const node = document.getElementById('step-node-' + i);
+              if (node) node.classList.add('active');
+            }, i * 350);
+          }
+        }
+      }
     });
 
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 40) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
-      updateLightBeam();
-    }, { passive: true });
-
-    // Hero title masked entrance
-    function initHeroAnimations() {
-      if (prefersReducedMotion) {
-        document.querySelectorAll('.hero-label, .h1-line, .cascade-item').forEach(el => el.classList.add('visible'));
-        return;
-      }
-      setTimeout(() => {
-        const lbl = document.querySelector('.hero-label');
-        if (lbl) lbl.classList.add('visible');
-      }, 200);
-
-      setTimeout(() => {
-        const l1 = document.querySelector('.line-left');
-        if (l1) l1.classList.add('visible');
-      }, 400);
-
-      setTimeout(() => {
-        const l2 = document.querySelector('.line-right');
-        if (l2) l2.classList.add('visible');
-      }, 600);
+    // Control de Acordeón del Protocolo
+    function toggleProtocol(headerEl) {
+      const item = headerEl.parentElement;
+      item.classList.toggle('open');
     }
 
-    // Scroll Observer para cascadas (Patrón A)
-    function initScrollObservers() {
-      const items = document.querySelectorAll('.cascade-item');
-      if (prefersReducedMotion) {
-        items.forEach(el => el.classList.add('visible'));
-        return;
-      }
-
-      const observer = new IntersectionObserver((entries, obs) => {
-        entries.forEach((entry, idx) => {
-          if (entry.isIntersecting) {
-            setTimeout(() => {
-              entry.target.classList.add('visible');
-            }, idx * 80);
-            obs.unobserve(entry.target);
-          }
-        });
-      }, { rootMargin: '0px 0px -20% 0px' });
-
-      items.forEach(el => observer.observe(el));
-
-      // Contador de convocatoria
-      const convSec = document.getElementById('convocatoria');
-      if (convSec) {
-        const counterObs = new IntersectionObserver((entries, obs) => {
-          if (entries[0].isIntersecting) {
-            animarContador(84);
-            obs.unobserve(convSec);
-          }
-        }, { threshold: 0.3 });
-        counterObs.observe(convSec);
-      }
-    }
-
-    function animarContador(target) {
-      const el = document.getElementById('cupos-count');
-      if (!el) return;
-      if (prefersReducedMotion) {
-        el.textContent = target;
-        return;
-      }
-      let start = 0;
-      const duration = 1500;
-      const startTime = performance.now();
-      function update(t) {
-        const progress = Math.min((t - startTime) / duration, 1);
-        const ease = 1 - Math.pow(2, -10 * progress);
-        const current = Math.floor(ease * target);
-        el.textContent = current;
-        if (progress < 1) {
-          requestAnimationFrame(update);
-        } else {
-          el.textContent = target;
-        }
-      }
-      requestAnimationFrame(update);
-    }
-
-    // Haz de Luz en Sección 6
-    function updateLightBeam() {
-      const sec = document.getElementById('pago-protegido');
-      const beam = document.getElementById('light-beam');
-      if (!sec || !beam || prefersReducedMotion) return;
-
-      const rect = sec.getBoundingClientRect();
-      const secHeight = sec.offsetHeight;
-      const windowHeight = window.innerHeight;
-
-      if (rect.top < windowHeight && rect.bottom > 0) {
-        const scrollDist = windowHeight - rect.top;
-        const progress = Math.min(Math.max(scrollDist / (secHeight * 0.7), 0), 1);
-        beam.style.height = (progress * 100) + '%';
-        if (progress >= 0.95) {
-          beam.classList.add('pulsing');
-        } else {
-          beam.classList.remove('pulsing');
-        }
-      }
-    }
-
-    // -------------------------------------------------------------
-    // 8. CARRUSEL 3D
-    // -------------------------------------------------------------
-    let currentCarousel = 'pro';
-    function selectCarouselCard(type) {
-      if (type === currentCarousel) return;
-      toggleCarousel();
-    }
-    function toggleCarousel() {
-      const cardPro = document.getElementById('card-pro');
-      const cardCli = document.getElementById('card-cli');
-      if (!cardPro || !cardCli) return;
-
-      if (currentCarousel === 'pro') {
-        currentCarousel = 'cli';
-        cardPro.className = 'glass-card c-card back';
-        cardCli.className = 'glass-card c-card front';
-      } else {
-        currentCarousel = 'pro';
-        cardPro.className = 'glass-card c-card front';
-        cardCli.className = 'glass-card c-card back';
-      }
-    }
-
-    // -------------------------------------------------------------
-    // 9. SELECTOR DE FORMULARIOS
-    // -------------------------------------------------------------
-    function activarFormulario(tab) {
-      const slider = document.getElementById('segment-slider');
-      const btnPro = document.getElementById('btn-tab-pro');
-      const btnCli = document.getElementById('btn-tab-cli');
-      const viewPro = document.getElementById('view-pro');
-      const viewCli = document.getElementById('view-cliente');
-
-      if (tab === 'pro') {
-        slider.style.transform = 'translateX(0%)';
-        btnPro.classList.add('active');
-        btnPro.setAttribute('aria-selected', 'true');
-        btnCli.classList.remove('active');
-        btnCli.setAttribute('aria-selected', 'false');
-        viewPro.classList.add('active');
-        viewCli.classList.remove('active');
-      } else {
-        slider.style.transform = 'translateX(100%)';
-        btnCli.classList.add('active');
-        btnCli.setAttribute('aria-selected', 'true');
-        btnPro.classList.remove('active');
-        btnPro.setAttribute('aria-selected', 'false');
-        viewCli.classList.add('active');
-        viewPro.classList.remove('active');
-      }
-    }
-
-    // -------------------------------------------------------------
-    // 10. PROTOCOLO ACORDEÓN
-    // -------------------------------------------------------------
-    function toggleProto(el) {
-      const isOpen = el.classList.contains('open');
-      if (isOpen) {
-        el.classList.remove('open');
-        el.setAttribute('aria-expanded', 'false');
-      } else {
-        el.classList.add('open');
-        el.setAttribute('aria-expanded', 'true');
-      }
-    }
-
-    // -------------------------------------------------------------
-    // 13. SIMULADOR Y PLACAS
-    // -------------------------------------------------------------
-    function setSimValue(val) {
-      document.getElementById('sim-slider').value = val;
-      actualizarSimulador(val);
-    }
-    function formatCOP(num) {
-      return '$' + Math.round(num).toLocaleString('es-CO');
-    }
-    function actualizarSimulador(val) {
-      const v = Number(val);
-      document.getElementById('sim-val-display').textContent = 'Valor del trabajo: ' + formatCOP(v) + ' COP';
-
-      const appsNeto = v * 0.70;
-      const appsCom = v * 0.30;
-      const rebNeto = v * 0.93;
-      const rebDif = v * 0.23;
-      const mes1Neto = v * 0.99;
-
-      document.getElementById('sim-row-1').textContent = 
-        'Apps Tradicionales (70%) ' + formatCOP(appsNeto) + ' COP. Te descuentan ' + formatCOP(appsCom) + ' COP';
-      document.getElementById('sim-row-2').textContent = 
-        'En rebuske Oro (93%) ' + formatCOP(rebNeto) + ' COP + ' + formatCOP(rebDif) + ' COP más para ti';
-      document.getElementById('sim-row-3').textContent = 
-        '👑 Mes 1 Fundador (1% Comisión): ' + formatCOP(mes1Neto) + ' COP netos 📄 Certificado formal de ingresos en 1 clic';
-    }
-
-    // Flujo Técnico Paso 1 a Paso 2
-    function validarPaso1Pro() {
-      const nom = document.getElementById('pro_nombre').value.trim();
-      const ced = document.getElementById('pro_cedula').value.trim();
-      const tel = document.getElementById('pro_telefono').value.trim();
-      const ofi = document.getElementById('pro_oficio').value;
-      const com = document.getElementById('pro_comuna').value;
-      const mes = document.getElementById('pro_mes_nac').value;
-      const ano = document.getElementById('pro_ano_nac').value;
-
-      if (!nom || !ced || !tel || !ofi || !com || !mes || !ano) {
-        alert('Por favor completa todos los campos obligatorios (*) del Paso 1.');
-        return false;
-      }
-      return true;
-    }
-
-    function avanzarPaso2Pro() {
-      if (!validarPaso1Pro()) {
-        const step1 = document.getElementById('pro-step-1');
-        step1.scrollIntoView({ behavior: 'smooth' });
-        return;
-      }
-      document.getElementById('pro-step-1').style.display = 'none';
-      document.querySelector('.simulador-card').style.display = 'none';
-      document.getElementById('pro-step-2').style.display = 'block';
-      document.getElementById('pro-step-2').scrollIntoView({ behavior: 'smooth' });
-    }
-
-    function volverPaso1Pro() {
-      document.getElementById('pro-step-1').style.display = 'block';
-      document.querySelector('.simulador-card').style.display = 'block';
-      document.getElementById('pro-step-2').style.display = 'none';
-      document.getElementById('pro-step-1').scrollIntoView({ behavior: 'smooth' });
-    }
-
-    // Fotos Pro KYC
-    function previewProSelfie(input) {
-      if (input.files && input.files[0]) {
-        const box = document.getElementById('box-selfie-label');
-        box.innerHTML = '✓ Selfie seleccionada (' + input.files[0].name + ')';
-        box.style.borderColor = 'var(--accent-neon)';
-      }
-    }
-
-    let selectedToolsCount = 0;
-    const selectedToolsSet = new Set();
-    function updateToolCount(idx, input) {
-      if (input.files && input.files[0]) {
-        selectedToolsSet.add(idx);
-        const box = document.getElementById('box-tool-' + idx);
-        box.style.borderColor = 'var(--accent-neon)';
-        box.style.background = 'rgba(60,255,46,0.1)';
-        box.textContent = '✓ ' + idx;
-      } else {
-        selectedToolsSet.delete(idx);
-      }
-      document.getElementById('tools-counter').textContent = selectedToolsSet.size + ' de 6 fotografías seleccionadas';
-    }
-
-    // Enviar Registro Pro Final
-    async function enviarRegistroProFinal() {
-      const cuenta = document.getElementById('pro_cuenta').value.trim();
-      if (!cuenta) {
-        alert('Por favor ingresa tu cuenta de cobro (Nequi / Bancolombia).');
-        return;
-      }
-      const btn = document.getElementById('btn-submit-pro');
-      btn.disabled = true;
-      btn.textContent = 'Enviando registro...';
-
-      const payload = {
-        name: document.getElementById('pro_nombre').value.trim(),
-        cedula: document.getElementById('pro_cedula').value.trim(),
-        phone: document.getElementById('pro_telefono').value.trim(),
-        category: document.getElementById('pro_oficio').value,
-        zone: document.getElementById('pro_comuna').value,
-        barrio: document.getElementById('pro_barrio').value.trim(),
-        birthMonth: document.getElementById('pro_mes_nac').value,
-        birthYear: document.getElementById('pro_ano_nac').value,
-        account: cuenta,
-        autorizo_mandato: true
-      };
-
-      try {
-        const res = await fetch('/api/register-pro', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-        const data = await res.json().catch(() => ({}));
-      } catch (err) {}
-
-      document.getElementById('pro-success-msg').style.display = 'block';
-      btn.style.display = 'none';
-      document.getElementById('pro-success-msg').scrollIntoView({ behavior: 'smooth' });
-    }
-
-    // Cliente Preview Foto
-    function previewCliFoto(input) {
-      if (input.files && input.files[0]) {
-        const reader = new FileReader();
-        reader.onload = ev => {
-          const circle = document.getElementById('cli-avatar-preview');
-          circle.innerHTML = '<img src="' + ev.target.result + '" style="width:100%;height:100%;object-fit:cover">';
-          circle.style.borderColor = 'var(--accent-neon)';
-          document.getElementById('cli-foto-status').textContent = 'Vista previa perfil ✓ Foto de perfil seleccionada';
-          document.getElementById('cli-foto-status').style.color = 'var(--accent-neon)';
-        };
-        reader.readAsDataURL(input.files[0]);
-      }
-    }
-
-    // Enviar Registro Cliente
-    async function enviarRegistroCliente() {
-      const btn = document.getElementById('btn-submit-cli');
-      btn.disabled = true;
-      btn.textContent = 'Procesando registro...';
-
-      const payload = {
-        name: document.getElementById('cli_nombre').value.trim(),
-        phone: document.getElementById('cli_telefono').value.trim(),
-        email: document.getElementById('cli_email').value.trim(),
-        zone: document.getElementById('cli_comuna').value,
-        service: document.getElementById('cli_servicios').value,
-        birthMonth: document.getElementById('cli_mes_nac').value,
-        birthYear: document.getElementById('cli_ano_nac').value
-      };
-
-      try {
-        await fetch('/api/register-client', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-      } catch(e) {}
-
-      document.getElementById('cli-success-msg').style.display = 'block';
-      btn.style.display = 'none';
-      document.getElementById('cli-success-msg').scrollIntoView({ behavior: 'smooth' });
-    }
-
-    function validarCelular(id) {
-      const val = document.getElementById(id).value.trim();
-      if (/^3\d{9}$/.test(val)) {
-        alert('✓ Número colombiano válido (+57 ' + val + '). Enviando código SMS/WhatsApp...');
-      } else {
-        alert('Por favor ingresa un celular válido de 10 dígitos que empiece por 3.');
-      }
-    }
-
-    function verificarCodigoOTP(role) {
-      const otp = document.getElementById(role + '_codigo_otp').value.trim();
-      if (otp.length >= 4) {
-        alert('✓ Código de WhatsApp verificado con éxito.');
-      } else {
-        alert('Ingresa el código numérico recibido.');
-      }
-    }
-
-    function iniciarGoogleAuth() {
-      alert('Autenticación con Google iniciada. Redirigiendo a consentimiento de cuenta...');
-    }
-
-    // -------------------------------------------------------------
-    // 18. BANNER DE COOKIES
-    // -------------------------------------------------------------
-    function initCookieBanner() {
-      const consent = localStorage.getItem('rebuske_cookies_consent');
-      if (!consent) {
-        setTimeout(() => {
-          const banner = document.getElementById('cookie-banner');
-          if (banner) banner.classList.add('show');
-        }, 1000);
-      }
-    }
-    function aceptarCookies(analytics) {
-      localStorage.setItem('rebuske_cookies_consent', analytics ? 'all' : 'essential');
-      const banner = document.getElementById('cookie-banner');
+    // Banner de Cookies con persistencia
+    function cerrarCookies() {
+      const banner = document.getElementById('cookieBanner');
       if (banner) {
         banner.style.opacity = '0';
         banner.style.transform = 'translateX(-50%) translateY(40px)';
-        setTimeout(() => banner.remove(), 400);
+        setTimeout(() => banner.style.display = 'none', 300);
+      }
+      localStorage.setItem('rebuske_cookies_accepted', 'config');
+    }
+
+    function aceptarCookies() {
+      const banner = document.getElementById('cookieBanner');
+      if (banner) {
+        banner.style.opacity = '0';
+        banner.style.transform = 'translateX(-50%) translateY(40px)';
+        setTimeout(() => banner.style.display = 'none', 300);
+      }
+      localStorage.setItem('rebuske_cookies_accepted', 'all');
+    }
+
+    if (localStorage.getItem('rebuske_cookies_accepted')) {
+      const banner = document.getElementById('cookieBanner');
+      if (banner) banner.style.display = 'none';
+    }
+
+    // Scroll y Resaltado a Bloque de Servicios
+    function scrollearAServicio(idx) {
+      const target = document.getElementById('srv-block-' + idx);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        target.classList.add('highlighted');
+        setTimeout(() => target.classList.remove('highlighted'), 2000);
       }
     }
 
-    // -------------------------------------------------------------
-    // CANVAS ANIMATIONS (HERO, HÉLICE, CIERRE)
-    // -------------------------------------------------------------
-    function initCanvases() {
-      if (prefersReducedMotion) return;
+    // ========================================================================
+    // HERO PARTICULAS EN CICLO DE 16 SEGUNDOS (CASA -> 4 SERVICIOS)
+    // ========================================================================
+    const servicesData = [
+      { name: 'Plomería · desde $60.000 COP', icon: '🔧', blockId: 'srv-block-0' },
+      { name: 'Electricidad · desde $50.000 COP', icon: '⚡', blockId: 'srv-block-1' },
+      { name: 'Cerrajería · desde $60.000 COP', icon: '🔑', blockId: 'srv-block-2' },
+      { name: 'Aseo · desde $70.000 COP', icon: '✨', blockId: 'srv-block-3' }
+    ];
 
-      // 1. HERO PARTICLES (CASA)
-      const hCanvas = document.getElementById('hero-canvas');
-      if (hCanvas) {
-        const ctx = hCanvas.getContext('2d');
-        let width = hCanvas.width = hCanvas.parentElement.offsetWidth;
-        let height = hCanvas.height = hCanvas.parentElement.offsetHeight;
+    let heroCurrentServiceIdx = 0;
+    let heroCycleManualHold = false;
+    let heroCanvas, heroCtx;
+    let heroParticles = [];
+    const isMobileScreen = window.innerWidth < 768;
+    const NUM_PARTICLES = isMobileScreen ? 400 : 1800;
 
-        window.addEventListener('resize', () => {
-          width = hCanvas.width = hCanvas.parentElement.offsetWidth;
-          height = hCanvas.height = hCanvas.parentElement.offsetHeight;
+    function initHeroCanvas() {
+      heroCanvas = document.getElementById('heroCanvas');
+      if (!heroCanvas) return;
+      heroCtx = heroCanvas.getContext('2d');
+      resizeHeroCanvas();
+      window.addEventListener('resize', resizeHeroCanvas);
+
+      // Generar partículas iniciales
+      heroParticles = [];
+      for (let i = 0; i < NUM_PARTICLES; i++) {
+        heroParticles.push({
+          x: Math.random() * heroCanvas.width,
+          y: Math.random() * heroCanvas.height,
+          vx: (Math.random() - 0.5) * 0.8,
+          vy: (Math.random() - 0.5) * 0.8,
+          size: Math.random() * 1.5 + 1,
+          alpha: Math.random() * 0.6 + 0.4
         });
-
-        const isMobile = window.innerWidth <= 768;
-        const pCount = isMobile ? 400 : 1800;
-        const particles = [];
-
-        // Generar puntos de la silueta de la casa (mitad derecha)
-        const houseTargetPoints = [];
-        const houseCenterX = width * (isMobile ? 0.5 : 0.72);
-        const houseCenterY = height * 0.45;
-        const scale = isMobile ? 0.7 : 1.1;
-
-        // Techo triángulo
-        for (let i = 0; i <= 30; i++) {
-          const t = i / 30;
-          houseTargetPoints.push({ x: houseCenterX - 140 * scale + (140 * scale * t), y: houseCenterY - 40 * scale - (100 * scale * t) });
-          houseTargetPoints.push({ x: houseCenterX + (140 * scale * t), y: houseCenterY - 140 * scale + (100 * scale * t) });
-        }
-        // Base rectangular
-        for (let i = 0; i <= 40; i++) {
-          const t = i / 40;
-          houseTargetPoints.push({ x: houseCenterX - 140 * scale + (280 * scale * t), y: houseCenterY - 40 * scale }); // techo base
-          houseTargetPoints.push({ x: houseCenterX - 140 * scale + (280 * scale * t), y: houseCenterY + 140 * scale }); // suelo
-          houseTargetPoints.push({ x: houseCenterX - 140 * scale, y: houseCenterY - 40 * scale + (180 * scale * t) }); // pared izq
-          houseTargetPoints.push({ x: houseCenterX + 140 * scale, y: houseCenterY - 40 * scale + (180 * scale * t) }); // pared der
-        }
-        // Puerta
-        for (let i = 0; i <= 20; i++) {
-          const t = i / 20;
-          houseTargetPoints.push({ x: houseCenterX - 30 * scale + (60 * scale * t), y: houseCenterY + 60 * scale });
-          houseTargetPoints.push({ x: houseCenterX - 30 * scale, y: houseCenterY + 60 * scale + (80 * scale * t) });
-          houseTargetPoints.push({ x: houseCenterX + 30 * scale, y: houseCenterY + 60 * scale + (80 * scale * t) });
-        }
-
-        for (let i = 0; i < pCount; i++) {
-          const target = houseTargetPoints[i % houseTargetPoints.length];
-          particles.push({
-            x: Math.random() * width,
-            y: Math.random() * height,
-            tx: target.x + (Math.random() - 0.5) * 20,
-            ty: target.y + (Math.random() - 0.5) * 20,
-            rx: Math.random() * width,
-            ry: Math.random() * height,
-            vx: (Math.random() - 0.5) * 2,
-            vy: (Math.random() - 0.5) * 2,
-            size: 1 + Math.random(),
-            alpha: 0.4 + Math.random() * 0.6
-          });
-        }
-
-        let startTime = performance.now();
-        function renderHero(now) {
-          ctx.clearRect(0, 0, width, height);
-          const elapsed = ((now - startTime) % 10000) / 1000; // 0 to 10s
-
-          for (let p of particles) {
-            let destX, destY;
-            if (elapsed < 2.5) {
-              // Movimiento hacia la casa
-              const t = elapsed / 2.5;
-              destX = p.rx + (p.tx - p.rx) * t;
-              destY = p.ry + (p.ty - p.ry) * t;
-            } else if (elapsed < 5.5) {
-              // Respiración de la casa
-              destX = p.tx + Math.sin(now * 0.003 + p.ty) * 3;
-              destY = p.ty + Math.cos(now * 0.003 + p.tx) * 3;
-            } else if (elapsed < 7.5) {
-              // Dispersión aleatoria
-              const t = (elapsed - 5.5) / 2.0;
-              destX = p.tx + p.vx * 90 * t;
-              destY = p.ty + p.vy * 90 * t;
-            } else {
-              // Regreso a la casa
-              const t = (elapsed - 7.5) / 2.5;
-              destX = (p.tx + p.vx * 90) + (p.tx - (p.tx + p.vx * 90)) * t;
-              destY = (p.ty + p.vy * 90) + (p.ty - (p.ty + p.vy * 90)) * t;
-            }
-
-            p.x += (destX - p.x) * 0.1;
-            p.y += (destY - p.y) * 0.1;
-
-            ctx.fillStyle = `rgba(60, 255, 46, ${p.alpha})`;
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-            ctx.fill();
-          }
-          requestAnimationFrame(renderHero);
-        }
-        requestAnimationFrame(renderHero);
       }
 
-      // 2. HELIX CANVAS (SECCIÓN 8)
-      const helixCanvas = document.getElementById('helix-canvas');
-      if (helixCanvas) {
-        const hCtx = helixCanvas.getContext('2d');
-        helixCanvas.width = 600;
-        helixCanvas.height = 500;
-
-        function renderHelix(now) {
-          hCtx.clearRect(0, 0, 600, 500);
-          const angle = (now * 0.00078) % (Math.PI * 2); // 8s loop
-          const count = 40;
-          for (let i = 0; i < count; i++) {
-            const y = (i / count) * 480 + 10;
-            const phase = i * 0.25 + angle;
-            const x1 = 300 + Math.sin(phase) * 110;
-            const x2 = 300 - Math.sin(phase) * 110;
-            const scale1 = (Math.cos(phase) + 1.2) * 1.5;
-            const scale2 = (-Math.cos(phase) + 1.2) * 1.5;
-
-            hCtx.fillStyle = 'rgba(60, 255, 46, 0.45)';
-            hCtx.beginPath();
-            hCtx.arc(x1, y, scale1, 0, Math.PI * 2);
-            hCtx.fill();
-
-            hCtx.fillStyle = 'rgba(123, 255, 26, 0.35)';
-            hCtx.beginPath();
-            hCtx.arc(x2, y, scale2, 0, Math.PI * 2);
-            hCtx.fill();
-          }
-          requestAnimationFrame(renderHelix);
-        }
-        requestAnimationFrame(renderHelix);
-      }
-
-      // 3. CIERRE CANVAS (SECCIÓN 16 - 800 DOTS MORPH)
-      const cCanvas = document.getElementById('cierre-canvas');
-      if (cCanvas) {
-        const cCtx = cCanvas.getContext('2d');
-        cCanvas.width = 700;
-        cCanvas.height = 400;
-        const dots = [];
-        const dCount = 800;
-
-        for (let i = 0; i < dCount; i++) {
-          const side = i % 2 === 0 ? -1 : 1;
-          dots.push({
-            lobeX: 350 + side * (70 + Math.random() * 60),
-            lobeY: 200 + (Math.random() - 0.5) * 120,
-            sphereAngle: Math.random() * Math.PI * 2,
-            sphereRadius: 15 + Math.random() * 85,
-            x: 350,
-            y: 200,
-            size: 1 + Math.random() * 1.5
-          });
-        }
-
-        let cStart = performance.now();
-        function renderCierre(now) {
-          cCtx.clearRect(0, 0, 700, 400);
-          const t = ((now - cStart) % 6000) / 1000; // 6s cycle
-          let morph = 0;
-
-          if (t < 2) {
-            // Lóbulos separados acercándose
-            morph = t / 2;
-          } else if (t < 3) {
-            // Unión en esfera
-            morph = 1;
-          } else if (t < 5) {
-            // División de nuevo en lóbulos
-            morph = 1 - (t - 3) / 2;
-          } else {
-            morph = 0;
-          }
-
-          for (let d of dots) {
-            const sphX = 350 + Math.cos(d.sphereAngle) * d.sphereRadius;
-            const sphY = 200 + Math.sin(d.sphereAngle) * d.sphereRadius;
-
-            const targetX = d.lobeX + (sphX - d.lobeX) * morph;
-            const targetY = d.lobeY + (sphY - d.lobeY) * morph;
-
-            d.x += (targetX - d.x) * 0.1;
-            d.y += (targetY - d.y) * 0.1;
-
-            cCtx.fillStyle = 'rgba(60, 255, 46, 0.4)';
-            cCtx.beginPath();
-            cCtx.arc(d.x, d.y, d.size, 0, Math.PI * 2);
-            cCtx.fill();
-          }
-          requestAnimationFrame(renderCierre);
-        }
-        requestAnimationFrame(renderCierre);
-      }
+      requestAnimationFrame(renderHeroParticles);
     }
+
+    function resizeHeroCanvas() {
+      if (!heroCanvas) return;
+      const rect = heroCanvas.parentElement.getBoundingClientRect();
+      heroCanvas.width = rect.width;
+      heroCanvas.height = rect.height;
+    }
+
+    let heroStartTime = performance.now();
+
+    function renderHeroParticles(now) {
+      if (!heroCtx || !heroCanvas) return;
+      heroCtx.clearRect(0, 0, heroCanvas.width, heroCanvas.height);
+
+      const elapsed = ((now - heroStartTime) % 16000) / 1000; // 0s a 16s
+      const cx = heroCanvas.width / 2;
+      const cy = heroCanvas.height / 2;
+
+      // Determinación de fase
+      let activeService = 0;
+      if (elapsed < 3) {
+        // Fase 0-2s Casa, 2-3s dispersión
+        activeService = -1; // Casa
+      } else if (elapsed < 6) {
+        activeService = 0; // Plomería
+      } else if (elapsed < 9) {
+        activeService = 1; // Electricidad
+      } else if (elapsed < 12) {
+        activeService = 2; // Cerrajería
+      } else {
+        activeService = 3; // Aseo
+      }
+
+      if (!heroCycleManualHold && activeService >= 0 && activeService !== heroCurrentServiceIdx) {
+        actualizarDisplayHero(activeService);
+      }
+
+      // Dibujar partículas
+      const scale = isMobileScreen ? 0.65 : 1.0;
+      heroCtx.fillStyle = '#3CFF2E';
+
+      for (let i = 0; i < heroParticles.length; i++) {
+        const p = heroParticles[i];
+        
+        // Objetivo de posición según tiempo
+        let tx = cx, ty = cy;
+        const angle = (i / heroParticles.length) * Math.PI * 2;
+
+        if (activeService === -1) {
+          // Forma de Casa: Techo triangular + Base rectangular
+          if (i < heroParticles.length * 0.4) {
+            // Techo
+            const t = i / (heroParticles.length * 0.4);
+            tx = cx - 120 * scale + (240 * scale * t);
+            ty = cy - 40 * scale - (1 - Math.abs(t - 0.5) * 2) * (80 * scale);
+          } else {
+            // Cuerpo rectangular
+            const t = (i - heroParticles.length * 0.4) / (heroParticles.length * 0.6);
+            const side = Math.floor(t * 3);
+            if (side === 0) { tx = cx - 110 * scale; ty = cy - 40 * scale + (t * 3 * 90 * scale); }
+            else if (side === 1) { tx = cx - 110 * scale + ((t * 3 - 1) * 220 * scale); ty = cy + 50 * scale; }
+            else { tx = cx + 110 * scale; ty = cy + 50 * scale - ((t * 3 - 2) * 90 * scale); }
+          }
+        } else {
+          // Icono circular orbital expandido por servicio
+          const r = (60 + (activeService * 12) + Math.sin(now * 0.003 + i) * 10) * scale;
+          tx = cx + Math.cos(angle + (now * 0.0005)) * r;
+          ty = cy + Math.sin(angle + (now * 0.0005)) * r * 0.85;
+        }
+
+        // Movimiento suave hacia el objetivo
+        p.x += (tx - p.x) * 0.04;
+        p.y += (ty - p.y) * 0.04;
+
+        heroCtx.globalAlpha = p.alpha;
+        heroCtx.fillRect(p.x, p.y, p.size, p.size);
+      }
+
+      requestAnimationFrame(renderHeroParticles);
+    }
+
+    function actualizarDisplayHero(idx) {
+      heroCurrentServiceIdx = idx;
+      const s = servicesData[idx];
+      document.getElementById('heroServiceIcon').textContent = s.icon;
+      document.getElementById('heroServiceName').textContent = s.name;
+
+      const dots = document.querySelectorAll('.hero-dot-btn');
+      dots.forEach((dot, dIdx) => {
+        dot.classList.toggle('active', dIdx === idx);
+      });
+    }
+
+    function seleccionarServicioHero(idx) {
+      heroCycleManualHold = true;
+      actualizarDisplayHero(idx);
+    }
+
+    // Inicializar al cargar
+    window.addEventListener('DOMContentLoaded', () => {
+      initHeroCanvas();
+    });
   </script>
 </body>
 </html>
