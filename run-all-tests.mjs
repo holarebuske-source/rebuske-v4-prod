@@ -221,7 +221,7 @@ async function runTestSuite() {
   assert(entradaHtml.includes('pulse-c'), 'Patrón C de pulso implementado');
   assert(entradaHtml.includes('float-d'), 'Patrón D de flotación bioluminiscente implementado');
   assert(entradaHtml.includes('elevate-hover'), 'Patrón E de elevación al hover implementado');
-  assert(entradaHtml.includes('haz-luz-wompi'), 'Haz de luz bioluminiscente con base cálida (#FFD35C) en Bóveda Wompi implementado');
+  assert(entradaHtml.includes('haz-resplandor-wompi') || entradaHtml.includes('haz-luz-wompi'), 'Haz de resplandor bioluminiscente con base cálida (#FFD35C / #FFFA70) en Bóveda Wompi implementado');
   assert(entradaHtml.includes('Nuestros Servicios'), 'Sección "Nuestros Servicios" con 4 bloques presente');
   assert(entradaHtml.includes('Plomería') && entradaHtml.includes('Electricidad') && entradaHtml.includes('Cerrajería') && entradaHtml.includes('Aseo'), '4 especialidades principales presentes en /entrada');
   assert(entradaHtml.includes('Cómo funciona para el cliente'), 'Flujo de 5 pasos para el cliente presente');
