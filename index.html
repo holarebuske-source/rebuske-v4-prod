@@ -1585,7 +1585,7 @@ const A={
   navpro:d=>root('pro',{tab:d.t}),
   back:()=>back(),
   close:()=>closeSheet(),
-  go:d=>go(d.x,{id:d.id,cat:d.c}),
+  go:d=>go(d.x,{id:d.id,cat:d.c,t:d.t,b:d.b?Number(d.b):undefined}),
   jobgo:d=>{const j=job(d.id);if(j)go(DEST[j.s],{id:j.id})},
   tab:d=>{cur().p.tab=d.x;render()},
   seg:(d,el)=>{
@@ -1670,45 +1670,538 @@ const A={
     go('chat', { id });
     toast('🚨 Solicitud Express activada. Técnico en camino.');
   },
+  diagChip: (d, el) => {
+    const ta = document.getElementById('diag_txt');
+    if (ta && d.text) {
+      ta.value = d.text;
+      ta.focus();
+    }
+    document.querySelectorAll('.chip-diag').forEach(c => c.style.borderColor = 'rgba(255,255,255,0.15)');
+    if (el) el.style.borderColor = '#38BDF8';
+  },
+  diagPickPhoto: () => {
+    const inp = document.getElementById('diag_foto');
+    if (inp) inp.click();
+  },
+  diagRemovePhoto: () => {
+    window._tempDiagPhoto = null;
+    const prev = document.getElementById('diag_foto_preview');
+    if (prev) {
+      prev.style.display = 'none';
+      prev.innerHTML = '';
+    }
+    const st = document.getElementById('diag_foto_status');
+    if (st) st.textContent = 'Opcional (mejora la precisión)';
+    const inp = document.getElementById('diag_foto');
+    if (inp) inp.value = '';
+  },
+  diagVoice: () => {
+    const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!SpeechRec) {
+      toast('⚠️ Dictado por voz no disponible en este navegador. Escribe el texto.');
+      return;
+    }
+    if (window._diagRecActive) {
+      try { window._diagRecInstance.stop(); } catch(e){}
+      window._diagRecActive = false;
+      const lbl = document.getElementById('voice_label');
+      if (lbl) lbl.textContent = 'Dictar por voz';
+      const ic = document.getElementById('voice_icon');
+      if (ic) ic.textContent = '🎙️';
+      return;
+    }
+    try {
+      const rec = new SpeechRec();
+      rec.lang = 'es-CO';
+      rec.continuous = false;
+      rec.interimResults = false;
+      rec.onstart = () => {
+        window._diagRecActive = true;
+        window._diagRecInstance = rec;
+        const lbl = document.getElementById('voice_label');
+        if (lbl) lbl.textContent = 'Escuchando...';
+        const ic = document.getElementById('voice_icon');
+        if (ic) ic.textContent = '🔴';
+        toast('🎙️ Habla ahora: describe tu avería...');
+      };
+      rec.onresult = ev => {
+        const tr = (ev.results && ev.results[0] && ev.results[0][0]) ? ev.results[0][0].transcript : '';
+        const ta = document.getElementById('diag_txt');
+        if (ta && tr) {
+          ta.value = (ta.value ? ta.value + ' ' : '') + tr;
+        }
+        toast('✓ Dictado recibido');
+      };
+      rec.onerror = () => {
+        window._diagRecActive = false;
+        const lbl = document.getElementById('voice_label');
+        if (lbl) lbl.textContent = 'Dictar por voz';
+        const ic = document.getElementById('voice_icon');
+        if (ic) ic.textContent = '🎙️';
+        toast('⚠️ No se capturó audio. Puedes escribir el daño.');
+      };
+      rec.onend = () => {
+        window._diagRecActive = false;
+        const lbl = document.getElementById('voice_label');
+        if (lbl) lbl.textContent = 'Dictar por voz';
+        const ic = document.getElementById('voice_icon');
+        if (ic) ic.textContent = '🎙️';
+      };
+      rec.start();
+    } catch(err) {
+      toast('⚠️ Permiso de micrófono requerido');
+    }
+  },
   diagnosticoInteligente: () => {
     openSheet(`
-      <h2>💡 Diagnóstico Inteligente del Daño</h2>
-      <small>Describe o sube una foto de tu avería para conocer el precio justo en Medellín antes de contratar.</small>
-      <label style="margin-top:10px">¿Qué está fallando en tu casa?
-        <textarea id="diag_txt" rows="3" placeholder="Ej: Fuga de agua debajo del lavaplatos o calentador se apaga solo"></textarea>
-      </label>
-      <div style="background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.3);border-radius:10px;padding:10px;margin:10px 0;font-size:11.5px;color:#CBD5E1">
-        ℹ️ Te daremos la categoría exacta y el rango de precio de referencia oficial sin enviar solicitudes a técnicos todavía.
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+        <h2 style="margin:0;font-size:18px;display:flex;align-items:center;gap:8px">
+          <span>🔍</span> Diagnóstico Inteligente del Daño
+        </h2>
+        <span class="tag" style="background:rgba(56,189,248,0.2);color:#38BDF8;border:1px solid rgba(56,189,248,0.4);font-size:10px;font-weight:700">IA Medellín</span>
       </div>
+      <small style="color:#94A3B8;display:block;margin-bottom:12px;font-size:11.5px;line-height:1.4">
+        Describe la falla, sube una foto o usa dictado por voz. Analizamos severidad, causas técnicas probables y tarifas justas oficiales en Medellín.
+      </small>
+
+      <!-- AVERÍAS FRECUENTES EN MEDELLÍN (CHIPS 1 TOQUE) -->
+      <div style="margin-bottom:10px">
+        <small style="color:#E2E8F0;font-weight:700;display:block;margin-bottom:6px;font-size:11px">Averías frecuentes (toca para autocompletar):</small>
+        <div id="diag_chips" style="display:flex;flex-wrap:wrap;gap:6px">
+          <button type="button" class="chip-diag" data-a="diagChip" data-text="Fuga de agua en tubería o llave goteando" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);color:#E2E8F0;padding:5px 9px;border-radius:12px;font-size:11px;cursor:pointer">💧 Fuga / Grifo</button>
+          <button type="button" class="chip-diag" data-a="diagChip" data-text="Corto circuito, breaker disparado o toma quemada" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);color:#E2E8F0;padding:5px 9px;border-radius:12px;font-size:11px;cursor:pointer">⚡ Corto / Brequera</button>
+          <button type="button" class="chip-diag" data-a="diagChip" data-text="Calentador a gas se apaga solo y no sale agua caliente" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);color:#E2E8F0;padding:5px 9px;border-radius:12px;font-size:11px;cursor:pointer">🔥 Calentador a gas</button>
+          <button type="button" class="chip-diag" data-a="diagChip" data-text="Nevera no congela ni enfría y motor hace ruido" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);color:#E2E8F0;padding:5px 9px;border-radius:12px;font-size:11px;cursor:pointer">❄️ Nevera / No enfría</button>
+          <button type="button" class="chip-diag" data-a="diagChip" data-text="Lavadora no centrifuga y no desagua el agua" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);color:#E2E8F0;padding:5px 9px;border-radius:12px;font-size:11px;cursor:pointer">🧺 Lavadora / Centrifugado</button>
+          <button type="button" class="chip-diag" data-a="diagChip" data-text="Llave trabada o partida en la cerradura de la puerta" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);color:#E2E8F0;padding:5px 9px;border-radius:12px;font-size:11px;cursor:pointer">🔑 Chapa / Llave trabada</button>
+          <button type="button" class="chip-diag" data-a="diagChip" data-text="Gotera en el tejado o canoa rota cuando llueve" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);color:#E2E8F0;padding:5px 9px;border-radius:12px;font-size:11px;cursor:pointer">🌧️ Gotera / Techo</button>
+          <button type="button" class="chip-diag" data-a="diagChip" data-text="Humedad con hongo y descarapelado en pared o muro" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);color:#E2E8F0;padding:5px 9px;border-radius:12px;font-size:11px;cursor:pointer">🧱 Humedad / Pared</button>
+          <button type="button" class="chip-diag" data-a="diagChip" data-text="Puerta descolgada o bisagra de clóset rota" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);color:#E2E8F0;padding:5px 9px;border-radius:12px;font-size:11px;cursor:pointer">🚪 Mueble / Bisagra</button>
+          <button type="button" class="chip-diag" data-a="diagChip" data-text="Aire acondicionado gotea agua por la pared y no enfría" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);color:#E2E8F0;padding:5px 9px;border-radius:12px;font-size:11px;cursor:pointer">❄️ Aire acondicionado</button>
+        </div>
+      </div>
+
+      <!-- TEXTO Y DICTADO POR VOZ -->
+      <label style="margin-top:4px;display:block">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+          <span style="font-size:12px;font-weight:700;color:#F1F5F9">¿Qué está fallando exactamente?</span>
+          <button type="button" id="btn_dictar_voz" class="btn sm ghost" data-a="diagVoice" style="padding:4px 10px;font-size:11px;border-color:rgba(56,189,248,0.4);color:#38BDF8;display:flex;align-items:center;gap:4px">
+            <span id="voice_icon">🎙️</span> <span id="voice_label">Dictar por voz</span>
+          </button>
+        </div>
+        <textarea id="diag_txt" rows="3" placeholder="Ej: El calentador prende unos segundos y se apaga botando agua fría, o siento olor a gas cerca de la válvula..." style="width:100%;box-sizing:border-box;border-radius:12px;background:rgba(15,23,42,0.8);border:1px solid rgba(255,255,255,0.15);color:#FFF;padding:10px;font-size:13px;resize:none"></textarea>
+      </label>
+
+      <!-- FOTO DEL DAÑO -->
+      <div style="margin-top:8px">
+        <input type="file" id="diag_foto" accept="image/*" style="display:none">
+        <div style="display:flex;align-items:center;gap:10px">
+          <button type="button" class="btn sm ghost" data-a="diagPickPhoto" style="padding:7px 12px;font-size:11.5px;border-color:rgba(184,255,59,0.4);color:#B8FF3B;display:flex;align-items:center;gap:6px">
+            📷 <span>Adjuntar foto del daño</span>
+          </button>
+          <small id="diag_foto_status" style="color:#94A3B8;font-size:11px">${window._tempDiagPhoto ? '✓ 1 foto cargada' : 'Opcional (mejora la precisión)'}</small>
+        </div>
+        <div id="diag_foto_preview" style="${window._tempDiagPhoto ? 'margin-top:8px;position:relative;display:inline-block;' : 'display:none;margin-top:8px;position:relative'}">
+          ${window._tempDiagPhoto ? `<img src="${window._tempDiagPhoto}" style="width:72px;height:72px;object-fit:cover;border-radius:10px;border:1.5px solid #38BDF8"><button type="button" data-a="diagRemovePhoto" style="position:absolute;top:-6px;right:-6px;background:#EF4444;color:#FFF;border:none;border-radius:50%;width:20px;height:20px;font-size:11px;cursor:pointer;line-height:20px;text-align:center">×</button>` : ''}
+        </div>
+      </div>
+
+      <!-- ALERTA DE TRANSPARENCIA -->
+      <div style="background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.25);border-radius:12px;padding:10px 12px;margin:12px 0;font-size:11.5px;color:#CBD5E1;line-height:1.4">
+        🛡️ <b>Transparencia rebuske:</b> Consulta 100% gratuita. Te entregamos la causa probable, rango de repuestos y tarifa diagnóstica unificada ($35.000 COP, abonables al trabajo si contratas).
+      </div>
+
       <div class="row2">
         <button class="btn ghost" data-a="close">Cerrar</button>
-        <button class="btn sheen" data-a="evaluarDiagnostico">Analizar Daño</button>
+        <button class="btn sheen" data-a="evaluarDiagnostico" style="background:linear-gradient(135deg,#38BDF8,#0284C7);color:#FFF;font-weight:800">
+          ⚡ Diagnosticar Avería
+        </button>
       </div>
     `);
   },
   evaluarDiagnostico: () => {
-    const txt = (val('diag_txt') || '').toLowerCase();
-    closeSheet();
-    let cat = 'Plomería', rango = '$70.000 – $130.000 COP';
-    if (txt.includes('luz') || txt.includes('enchufe') || txt.includes('corto') || txt.includes('taco')) {
-      cat = 'Electricidad'; rango = '$60.000 – $120.000 COP';
-    } else if (txt.includes('llave') || txt.includes('cerradura') || txt.includes('puerta')) {
-      cat = 'Cerrajería'; rango = '$80.000 – $140.000 COP';
-    } else if (txt.includes('pint') || txt.includes('pared') || txt.includes('muro')) {
-      cat = 'Pintura'; rango = '$90.000 – $220.000 COP';
+    const txtRaw = val('diag_txt') || '';
+    const hasPhoto = !!window._tempDiagPhoto;
+    if (!txtRaw && !hasPhoto) {
+      toast('⚠️ Describe el daño, selecciona una avería rápida o sube una foto.');
+      return;
     }
+    closeSheet();
+
+    // MOTOR DE DIAGNÓSTICO TÉCNICO MULTIVARIABLE (10 ESPECIALIDADES MEDELLÍN)
+    const txt = txtRaw.toLowerCase();
+    const specs = [
+      {
+        id: 'gas',
+        cat: 'Gasodomésticos & Calentadores',
+        catApp: 'Reparaciones',
+        icon: '🔥',
+        highTokens: ['calentador', 'gasodomest', 'termocupla', 'calentador de paso', 'red de gas', 'fuga de gas', 'olor a gas', 'estufa a gas', 'horno a gas', 'calentadores'],
+        midTokens: ['gas', 'piloto', 'haceb', 'bosch', 'challenger', 'mabe', 'termostato', 'llama', 'chimenea', 'chispero', 'agua caliente', 'agua fria', 'agua tibia', 'no calienta', 'se apaga'],
+        urgency: () => {
+          const isCritical = txt.includes('gas') && (txt.includes('olor') || txt.includes('huele') || txt.includes('fuga') || txt.includes('escape'));
+          return {
+            tag: isCritical ? 'CRÍTICA · RIESGO INMEDIATO' : 'URGENTE',
+            bg: isCritical ? 'rgba(239,68,68,0.2)' : 'rgba(245,158,11,0.2)',
+            color: isCritical ? '#FCA5A5' : '#FCD34D',
+            border: isCritical ? '#EF4444' : '#F59E0B',
+            alerta: isCritical ? '🚨 <b>¡ALERTA DE SEGURIDAD!</b> Posible escape de gas detectado. Cierra inmediatamente la válvula maestra de paso y abre ventanas. No enciendas fósforos ni interruptores.' : null,
+            alertaBg: 'rgba(239,68,68,0.15)',
+            alertaBorder: '#EF4444'
+          };
+        },
+        rangoMO: '$80.000 – $150.000 COP',
+        repuestos: 'Termocupla ($25k–$45k), membrana diafragma ($15k–$30k), microswitch ($20k–$40k)',
+        causa: (txt.includes('gas') && (txt.includes('olor') || txt.includes('huele') || txt.includes('fuga')))
+          ? 'Posible fuga en racor o válvula de paso. Cierre la llave general de gas de inmediato.'
+          : 'Desgaste en sensor de llama (termocupla), diafragma vencido o carbonilla en inyectores.',
+        presupuesto: 80000,
+        solicitudTxt: 'Revisión técnica de calentador / gas: ' + (txtRaw || 'Falla en encendido o paso de gas')
+      },
+      {
+        id: 'elect',
+        cat: 'Electricidad Residencial',
+        catApp: 'Reparaciones',
+        icon: '⚡',
+        highTokens: ['breaker', 'breakers', 'brequera', 'cortocircuito', 'corto circuito', 'caja de tacos', 'tomacorriente', 'tomacorrientes', 'enchufe', 'enchufes', 'acometida', 'electrico', 'electricidad', 'totalizador'],
+        midTokens: ['corto', 'taco', 'tacos', 'chispa', 'chispas', 'chispazo', 'quemado', 'olor a quemado', 'cable', 'cableado', 'parpadeo', 'baja de luz', 'sin luz', 'sin energia', 'sobrecarga', 'panel led', 'diferencial', 'lampara'],
+        urgency: () => {
+          const isCritical = txt.includes('corto') || txt.includes('quemado') || txt.includes('chisp');
+          return {
+            tag: isCritical ? 'CRÍTICA (35-45 min)' : 'MODERADA',
+            bg: isCritical ? 'rgba(239,68,68,0.2)' : 'rgba(56,189,248,0.2)',
+            color: isCritical ? '#FCA5A5' : '#38BDF8',
+            border: isCritical ? '#EF4444' : '#38BDF8',
+            alerta: isCritical ? '⚡ <b>¡PELIGRO ELÉCTRICO!</b> Cortocircuito o chispa activa. Baja el taco / totalizador general de inmediato para evitar sobrecargas y conato de incendio.' : null,
+            alertaBg: 'rgba(239,68,68,0.15)',
+            alertaBorder: '#EF4444'
+          };
+        },
+        isExpress: true,
+        rangoMO: '$60.000 – $130.000 COP',
+        repuestos: 'Breaker termomagnético 15-20A ($18k–$35k), tomacorriente GFCI ($15k–$45k), cableado AWG',
+        causa: (txt.includes('corto') || txt.includes('quemado') || txt.includes('chisp'))
+          ? 'Cortocircuito activo o sobrecalentamiento en bornera por sobrecarga. Baje el totalizador general.'
+          : 'Falso contacto en neutro, breaker fatigado térmicamente o sulfatación en terminales.',
+        presupuesto: 70000,
+        solicitudTxt: 'Reparación eléctrica: ' + (txtRaw || 'Corto circuito o falla en brequera')
+      },
+      {
+        id: 'plom',
+        cat: 'Plomería & Redes Hidráulicas',
+        catApp: 'Reparaciones',
+        icon: '💧',
+        highTokens: ['plomer', 'plomeria', 'tubo roto', 'tuberia', 'griferia', 'grifo', 'mezclador', 'sanitario', 'inodoro', 'sifon', 'desague', 'bajante', 'motobomba', 'flotador', 'fuga de agua', 'fuga de tuberia'],
+        midTokens: ['fuga', 'goteo', 'gotea', 'gotera en tubo', 'tubo', 'tanque', 'lavaplatos', 'lavamanos', 'ducha', 'registro', 'llave de agua', 'rebosa', 'inund', 'taponamiento', 'bano'],
+        urgency: () => {
+          const isCritical = txt.includes('inund') || txt.includes('tubo roto') || txt.includes('chorro');
+          return {
+            tag: isCritical ? 'CRÍTICA · FUGA ACTIVA' : 'URGENTE',
+            bg: isCritical ? 'rgba(239,68,68,0.2)' : 'rgba(56,189,248,0.2)',
+            color: isCritical ? '#FCA5A5' : '#38BDF8',
+            border: isCritical ? '#EF4444' : '#38BDF8',
+            alerta: isCritical ? '💧 <b>¡FUGA DE AGUA ACTIVA!</b> Cierra la llave de paso del contador para detener el flujo de agua y evitar daños en pisos y techos inferiores.' : null,
+            alertaBg: 'rgba(239,68,68,0.15)',
+            alertaBorder: '#EF4444'
+          };
+        },
+        rangoMO: '$70.000 – $140.000 COP',
+        repuestos: 'Válvula y sapito sanitario ($25k–$55k), acople flexible inoxidable ($15k–$28k), cartucho cerámico ($20k–$45k)',
+        causa: (txt.includes('inund') || txt.includes('tubo roto'))
+          ? 'Rotura por golpe de ariete o desacople de junta de presión. Cierre la llave general de paso.'
+          : 'Desgaste en empaques nitrilo, calcificación en vástago de grifo o desajuste en tuerca de acople.',
+        presupuesto: 75000,
+        solicitudTxt: 'Reparación de plomería: ' + (txtRaw || 'Fuga de agua o tubería rota')
+      },
+      {
+        id: 'refri',
+        cat: 'Refrigeración & Neveras',
+        catApp: 'Reparaciones',
+        icon: '❄️',
+        highTokens: ['nevera', 'neveras', 'refrigerador', 'refrigeracion', 'congelador', 'nevecon', 'compresor de nevera', 'motor de nevera'],
+        midTokens: ['no enfria', 'no congela', 'escarcha', 'hielo', 'gas refrigerante', 'whirlpool', 'termostato de nevera', 'bimetalico', 'lg', 'samsung'],
+        urgency: () => ({
+          tag: 'URGENTE (Prioridad Alimentos)',
+          bg: 'rgba(245,158,11,0.2)',
+          color: '#FCD34D',
+          border: '#F59E0B',
+          alerta: '❄️ Mantén la puerta de la nevera cerrada para preservar el frío interno mientras llega el técnico.',
+          alertaBg: 'rgba(245,158,11,0.12)',
+          alertaBorder: '#F59E0B'
+        }),
+        rangoMO: '$90.000 – $180.000 COP',
+        repuestos: 'Bimetálico y sensor defrost ($25k–$55k), relé térmico ($25k–$45k), carga de refrigerante ($85k–$150k)',
+        causa: 'Bloqueo por hielo en ducto de evaporador (falla en sensor/resistencia) o pérdida de compresión térmica.',
+        presupuesto: 95000,
+        solicitudTxt: 'Reparación de nevera / refrigeración: ' + (txtRaw || 'No enfría o hace escarcha')
+      },
+      {
+        id: 'lava',
+        cat: 'Lavadoras & Secadoras',
+        catApp: 'Reparaciones',
+        icon: '🧺',
+        highTokens: ['lavadora', 'lavadoras', 'secadora', 'secadoras', 'centrifuga', 'centrifugado', 'no centrifuga', 'tambor de lavadora', 'tina de lavadora'],
+        midTokens: ['no desagua', 'desague lavadora', 'bota agua lavadora', 'correa lavadora', 'golpeteo lavadora', 'bloqueo puerta lavadora'],
+        urgency: () => ({
+          tag: 'MODERADA',
+          bg: 'rgba(56,189,248,0.2)',
+          color: '#38BDF8',
+          border: '#38BDF8',
+          alerta: '🧺 Desconecta la toma eléctrica y retira la ropa pesada para evitar deformación del tambor.',
+          alertaBg: 'rgba(56,189,248,0.12)',
+          alertaBorder: '#38BDF8'
+        }),
+        rangoMO: '$80.000 – $160.000 COP',
+        repuestos: 'Electrobomba de desagüe ($45k–$90k), correa Poly-V ($20k–$42k), varillas de suspensión ($55k–$110k)',
+        causa: 'Obstrucción en electrobomba de evacuación o descalibración en los amortiguadores de suspensión de la tina.',
+        presupuesto: 85000,
+        solicitudTxt: 'Reparación de lavadora / secadora: ' + (txtRaw || 'No centrifuga o bota agua')
+      },
+      {
+        id: 'cerraj',
+        cat: 'Cerrajería & Seguridad',
+        catApp: 'Reparaciones',
+        icon: '🔑',
+        highTokens: ['cerradura', 'cerraduras', 'cerrajeria', 'cerrojo', 'chapa', 'chapas', 'llave partida', 'llave trabada', 'quede afuera', 'candado'],
+        midTokens: ['llave', 'llaves', 'puerta trabada', 'guarda', 'cilindro', 'pestillo', 'manija', 'cantonera', 'blindada'],
+        urgency: () => {
+          const isLockedOut = txt.includes('afuera') || txt.includes('partid') || txt.includes('trabad');
+          return {
+            tag: isLockedOut ? 'URGENTE · APERTURA TÉCNICA' : 'MODERADA',
+            bg: isLockedOut ? 'rgba(239,68,68,0.2)' : 'rgba(56,189,248,0.2)',
+            color: isLockedOut ? '#FCA5A5' : '#38BDF8',
+            border: isLockedOut ? '#EF4444' : '#38BDF8',
+            alerta: isLockedOut ? '🔑 Evita introducir alambres o destornilladores; pueden dañar los pines del tambor y encarecer la apertura.' : null,
+            alertaBg: 'rgba(239,68,68,0.15)',
+            alertaBorder: '#EF4444'
+          };
+        },
+        rangoMO: '$75.000 – $130.000 COP',
+        repuestos: 'Cilindro de seguridad con llaves ($35k–$85k), cerrojo auxiliar Yale/Cisa ($60k–$140k)',
+        causa: (txt.includes('partid'))
+          ? 'Fractura de vástago en cilindro por fatiga mecánica de la llave. Requiere extracción sin daño a la cerradura.'
+          : 'Descalibración en resortes de pines de latón o desalineación del pestillo con la cantonera.',
+        presupuesto: 75000,
+        solicitudTxt: 'Cerrajería técnica: ' + (txtRaw || 'Apertura de cerradura o llave trabada')
+      },
+      {
+        id: 'techo',
+        cat: 'Techos & Cubiertas',
+        catApp: 'Reparaciones',
+        icon: '🌧️',
+        highTokens: ['gotera en techo', 'goteras en techo', 'tejado', 'canoa', 'canoas', 'impermeabiliz', 'teja', 'tejas', 'manto asfaltico', 'caballete de techo', 'filtracion techo'],
+        midTokens: ['techo', 'gotera', 'goteras', 'bajante lluvia', 'cemento asfaltico'],
+        urgency: () => ({
+          tag: 'ALTA (Riesgo por Lluvias)',
+          bg: 'rgba(245,158,11,0.2)',
+          color: '#FCD34D',
+          border: '#F59E0B',
+          alerta: '🌧️ En Medellín las lluvias son torrenciales; sella filtraciones para prevenir desplomes de drywall.',
+          alertaBg: 'rgba(245,158,11,0.12)',
+          alertaBorder: '#F59E0B'
+        }),
+        rangoMO: '$120.000 – $260.000 COP',
+        repuestos: 'Cinta impermeabilizante autoadhesiva ($35k–$75k), teja termoacústica ($40k–$80k), masilla poliuretano ($32k–$55k)',
+        causa: 'Fisura por dilatación en teja, juntas de caballete degradadas o canoa obstruida con desbordamiento.',
+        presupuesto: 130000,
+        solicitudTxt: 'Reparación de goteras / techos: ' + (txtRaw || 'Gotera en tejado o canoa desbordada')
+      },
+      {
+        id: 'pint',
+        cat: 'Pintura & Tratamiento de Muros',
+        catApp: 'Reparaciones',
+        icon: '🧱',
+        highTokens: ['pintura', 'pintar', 'resane', 'estuco', 'estucar', 'humedad en pared', 'hongo en pared', 'moho', 'descarapelado'],
+        midTokens: ['pared', 'muro', 'humedad', 'burbuja', 'grieta', 'fisura', 'cieloraso', 'drywall'],
+        urgency: () => ({
+          tag: 'PROGRAMADA · MANTENIMIENTO',
+          bg: 'rgba(184,255,59,0.15)',
+          color: '#B8FF3B',
+          border: '#B8FF3B',
+          alerta: null
+        }),
+        rangoMO: '$90.000 – $240.000 COP',
+        repuestos: 'Galón vinilo tipo 1 ($58k–$95k), sellador bloqueador de humedad ($70k–$130k), masilla acrílica ($25k–$48k)',
+        causa: 'Humedad por capilaridad ascendente o filtración que desintegra el estuco y propicia colonias de hongos.',
+        presupuesto: 95000,
+        solicitudTxt: 'Pintura y resanes: ' + (txtRaw || 'Tratamiento de humedad o pintura de muro')
+      },
+      {
+        id: 'carp',
+        cat: 'Carpintería & Mobiliario',
+        catApp: 'Reparaciones',
+        icon: '🚪',
+        highTokens: ['carpinter', 'carpinteria', 'closet', 'armario', 'bisagra', 'bisagras', 'puerta caida', 'mueble de cocina', 'cocina integral'],
+        midTokens: ['mueble', 'cajon', 'cajones', 'corredera', 'riel', 'repisa', 'formica', 'madera', 'descolgado'],
+        urgency: () => ({
+          tag: 'PROGRAMADA',
+          bg: 'rgba(184,255,59,0.15)',
+          color: '#B8FF3B',
+          border: '#B8FF3B',
+          alerta: null
+        }),
+        rangoMO: '$65.000 – $130.000 COP',
+        repuestos: 'Par bisagras parche cierre lento ($14k–$28k), juego rieles telescópicos pesados ($22k–$48k)',
+        causa: 'Desprendimiento de tornillos de fijación por fatiga del aglomerado o desalineación en correderas de rodamientos.',
+        presupuesto: 70000,
+        solicitudTxt: 'Carpintería de muebles: ' + (txtRaw || 'Reparación de bisagras o cajones descolgados')
+      },
+      {
+        id: 'aire',
+        cat: 'Aires Acondicionados & Climatización',
+        catApp: 'Reparaciones',
+        icon: '❄️',
+        highTokens: ['aire acondicionado', 'aires acondicionados', 'minisplit', 'split', 'climatizador', 'climatizacion', 'carga de gas aire'],
+        midTokens: ['gotea aire', 'aire gotea', 'mantenimiento aire', 'filtro aire', 'compresor aire'],
+        urgency: () => ({
+          tag: 'MODERADA',
+          bg: 'rgba(56,189,248,0.2)',
+          color: '#38BDF8',
+          border: '#38BDF8',
+          alerta: '❄️ Apaga el equipo si gotea adentro para no afectar la tarjeta electrónica del split.',
+          alertaBg: 'rgba(56,189,248,0.12)',
+          alertaBorder: '#38BDF8'
+        }),
+        rangoMO: '$90.000 – $170.000 COP',
+        repuestos: 'Kit de mantenimiento y limpieza química ($70k–$110k), manguera cristal de drenaje ($15k–$30k)',
+        causa: 'Acumulación de biopelícula que bloquea el codo de condensados o saturación de suciedad en el serpentín evaporador.',
+        presupuesto: 90000,
+        solicitudTxt: 'Mantenimiento de aire acondicionado: ' + (txtRaw || 'Goteo de agua o falta de enfriamiento')
+      }
+    ];
+
+    let best = null, maxScore = 0;
+    for (const sp of specs) {
+      let score = 0;
+      const high = sp.highTokens || [];
+      const mid = sp.midTokens || [];
+      for (const tok of high) {
+        if (txt.includes(tok)) score += 5;
+      }
+      for (const tok of mid) {
+        if (txt.includes(tok)) score += 2;
+      }
+      if (score > maxScore) {
+        maxScore = score;
+        best = sp;
+      }
+    }
+
+    let diag = null;
+    if (!best || maxScore === 0) {
+      if (hasPhoto) {
+        diag = {
+          cat: 'Inspección Técnica Especializada',
+          catApp: 'Reparaciones',
+          icon: '🔍',
+          sevTag: 'EVALUACIÓN EN SITIO',
+          sevColorBg: 'rgba(56,189,248,0.2)',
+          sevColorText: '#38BDF8',
+          sevBorder: '#38BDF8',
+          alerta: null,
+          rangoMO: '$60.000 – $140.000 COP',
+          repuestos: 'A determinar en peritaje presencial',
+          causa: 'Análisis preliminar con fotografía adjunta. Se requiere peritaje técnico presencial para determinar origen exacto del daño.',
+          presupuesto: 60000,
+          isExpress: false,
+          solicitudTxt: 'Inspección técnica de avería con foto adjunta'
+        };
+      } else {
+        diag = {
+          cat: 'Reparaciones Generales del Hogar',
+          catApp: 'Reparaciones',
+          icon: '🛠️',
+          sevTag: 'VISITA DIAGNÓSTICA RECOMENDADA',
+          sevColorBg: 'rgba(184,255,59,0.15)',
+          sevColorText: '#B8FF3B',
+          sevBorder: '#B8FF3B',
+          alerta: null,
+          rangoMO: '$50.000 – $120.000 COP',
+          repuestos: 'A determinar según peritaje',
+          causa: 'Se recomienda visita diagnóstica presencial con instrumental técnico para cotizar mano de obra y repuestos exactos.',
+          presupuesto: 60000,
+          isExpress: false,
+          solicitudTxt: 'Servicio general de reparación del hogar: ' + (txtRaw || 'Avería a diagnosticar en sitio')
+        };
+      }
+    } else {
+      const urg = best.urgency();
+      diag = {
+        ...best,
+        sevTag: urg.tag,
+        sevColorBg: urg.bg,
+        sevColorText: urg.color,
+        sevBorder: urg.border,
+        alerta: urg.alerta,
+        alertaBg: urg.alertaBg,
+        alertaBorder: urg.alertaBorder
+      };
+    }
+
     openSheet(`
-      <h2>Resultado del Diagnóstico</h2>
-      <div class="glass rows" style="margin:12px 0">
-        <div><span>Categoría detectada</span><b class="lima">${cat}</b></div>
-        <div><span>Rango justo Medellín</span><b>${rango}</b></div>
-        <div><span>Garantía aplicable</span><b>2 días (Ley 1480)</b></div>
-        <div><span>Custodia requerida</span><b>Wompi 100% Protegido</b></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:6px">
+        <h2 style="margin:0;font-size:17px;display:flex;align-items:center;gap:6px">
+          <span>${diag.icon}</span> <span>${diag.cat}</span>
+        </h2>
+        <span class="tag" style="background:${diag.sevColorBg};color:${diag.sevColorText};border:1px solid ${diag.sevBorder};font-size:10px;font-weight:800;letter-spacing:0.02em">
+          ${diag.sevTag}
+        </span>
       </div>
-      <small style="display:block;margin-bottom:12px">¿Deseas activar la Ruta de Luz para recibir 3 propuestas de técnicos en tu zona?</small>
+      <small style="color:#94A3B8;display:block;margin-bottom:10px;font-size:11.5px">
+        Diagnóstico técnico asistido · Tarifas de referencia oficial Medellín
+      </small>
+
+      ${diag.alerta ? `
+      <div style="background:${diag.alertaBg};border:1px solid ${diag.alertaBorder};border-radius:12px;padding:10px 12px;margin-bottom:12px;font-size:11.5px;color:#FFF;line-height:1.4">
+        ${diag.alerta}
+      </div>` : ''}
+
+      <div class="glass rows" style="margin:10px 0;font-size:12.5px">
+        <div>
+          <span>Causa técnica probable</span>
+          <b style="color:#F1F5F9;text-align:right;max-width:62%;font-size:11.5px;font-weight:600">${diag.causa}</b>
+        </div>
+        <div>
+          <span>Mano de obra Medellín</span>
+          <b class="lima" style="font-size:13px">${diag.rangoMO}</b>
+        </div>
+        <div>
+          <span>Repuestos probables</span>
+          <b style="color:#38BDF8;text-align:right;max-width:62%;font-size:11px">${diag.repuestos}</b>
+        </div>
+        <div>
+          <span>Visita diagnóstica</span>
+          <b style="color:#FCD34D">$35.000 COP <small style="color:#94A3B8;font-weight:400">(abonable a la labor)</small></b>
+        </div>
+        <div>
+          <span>Garantía aplicable</span>
+          <b>Garantía Comercial rebuske de 48 h (Ley 1480)</b>
+        </div>
+        <div>
+          <span>Custodia de fondos</span>
+          <b>Bóveda Wompi · Bancolombia S.A.</b>
+        </div>
+      </div>
+
+      ${diag.isExpress ? `
+      <div style="background:rgba(239,68,68,0.12);border:1.5px solid #EF4444;border-radius:12px;padding:10px 12px;margin:10px 0;display:flex;align-items:center;gap:10px">
+        <span style="font-size:22px">🚨</span>
+        <div class="grow">
+          <b style="color:#FCA5A5;font-size:12px;display:block">¿Es una emergencia eléctrica crítica?</b>
+          <small style="color:#E5E7EB;font-size:10.5px">Activa el Servicio Express Prioritario con llegada de 35 a 45 min.</small>
+        </div>
+        <button class="btn sm" data-a="luzExpress" style="background:#EF4444;color:#FFF;font-weight:800;font-size:11px;padding:6px 12px;white-space:nowrap">Pedir SOS</button>
+      </div>` : ''}
+
+      <small style="display:block;margin:8px 0 12px;color:#94A3B8;font-size:11px;text-align:center">
+        ${diag.isExpress ? 'O si prefieres cotizar sin urgencia extrema:' : 'Publica tu solicitud gratis para recibir propuestas de técnicos certificados en tu zona.'}
+      </small>
+
       <div class="row2">
-        <button class="btn ghost" data-a="close">Solo consultar</button>
-        <button class="btn sheen" data-a="go" data-x="solicitud" data-c="${cat}">Solicitar propuestas</button>
+        <button class="btn ghost" data-a="diagnosticoInteligente">Otro daño</button>
+        <button class="btn sheen" data-a="go" data-x="solicitud" data-c="${diag.catApp}" data-t="${esc(diag.solicitudTxt)}" data-b="${diag.presupuesto}">
+          Solicitar propuestas (${diag.cat.split(' ')[0]})
+        </button>
       </div>
     `);
   },
@@ -2485,6 +2978,23 @@ document.addEventListener('change',e=>{
   if(e.target.id==='fc'){const v=e.target.value;cur().p.cat=CATS.some(c=>c[0]===v)?v:'';render()}
   if(e.target.id==='fo'){cur().p.o=e.target.value;render()}
   if(e.target.id==='sc'||e.target.id==='sz'){/* selección solo en el formulario */}
+  if(e.target.id==='diag_foto'){
+    const f = e.target.files && e.target.files[0];
+    if(f){
+      const r = new FileReader();
+      r.onload = ev => {
+        window._tempDiagPhoto = ev.target.result;
+        const prev = document.getElementById('diag_foto_preview');
+        if(prev){
+          prev.style.display = 'inline-block';
+          prev.innerHTML = '<img src="' + ev.target.result + '" style="width:72px;height:72px;object-fit:cover;border-radius:10px;border:1.5px solid #38BDF8"><button type="button" data-a="diagRemovePhoto" style="position:absolute;top:-6px;right:-6px;background:#EF4444;color:#FFF;border:none;border-radius:50%;width:20px;height:20px;font-size:11px;cursor:pointer;line-height:20px;text-align:center">×</button>';
+        }
+        const st = document.getElementById('diag_foto_status');
+        if(st) st.textContent = '✓ Foto cargada (' + Math.round(f.size/1024) + ' KB)';
+      };
+      r.readAsDataURL(f);
+    }
+  }
   if(e.target.id==='modal_file_trab'){
     const f = e.target.files && e.target.files[0];
     if(f){
