@@ -241,6 +241,40 @@ async function runTestSuite() {
   const leakReg = registroHtml.slice(lastRegHtmlIdx + 7).trim();
   assert(leakReg.length === 0, 'ZERO código filtrado después de </html> en registro.html');
 
+  // --------------------------------------------------------------------------
+  // TEST 7: MOTOR DE DIAGNÓSTICO INTELIGENTE DEL DAÑO (10 OFICIOS, FOTO & VOZ)
+  // --------------------------------------------------------------------------
+  console.log('\n[TEST 7/7] Verificando Motor de Diagnóstico Inteligente multivariable...');
+  assert(indexHtml.includes('id="diag_foto"'), 'Input de subida de foto real (#diag_foto) presente en index.html');
+  assert(indexHtml.includes('id="diag_foto_preview"'), 'Contenedor de vista previa (#diag_foto_preview) presente en index.html');
+  assert(indexHtml.includes('id="btn_dictar_voz"'), 'Botón de dictado por voz (#btn_dictar_voz) implementado');
+  assert(indexHtml.includes('class="chip-diag"'), 'Chips de averías rápidas (.chip-diag) presentes en el modal');
+
+  // Validación de las 10 especialidades técnicas de Medellín
+  const oficiosEsperados = [
+    'Gasodomésticos & Calentadores',
+    'Electricidad Residencial',
+    'Plomería & Redes Hidráulicas',
+    'Refrigeración & Neveras',
+    'Lavadoras & Secadoras',
+    'Cerrajería & Seguridad',
+    'Techos & Cubiertas',
+    'Pintura & Tratamiento de Muros',
+    'Carpintería & Mobiliario',
+    'Aires Acondicionados & Climatización'
+  ];
+  for (const oficio of oficiosEsperados) {
+    assert(indexHtml.includes(oficio), `Especialidad técnica "${oficio}" integrada en el motor de diagnóstico`);
+  }
+
+  // Verificación de eliminación del fallback ingenuo que daba siempre la misma respuesta
+  assert(!indexHtml.includes("let cat = 'Plomería', rango = '$70.000 – $130.000 COP'"), 'ELIMINADO el fallback estático de Plomería ($70k-$130k)');
+  assert(!indexHtml.includes('¿Deseas activar la Ruta de Luz para recibir 3 propuestas'), 'ELIMINADA la mención comercial "Ruta de Luz" del diagnóstico preliminar');
+
+  // Verificación de tarifas y garantías oficiales
+  assert(indexHtml.includes('$35.000 COP') && indexHtml.includes('(abonable a la labor)'), 'Tarifa de visita diagnóstica unificada $35.000 COP (abonable a la labor)');
+  assert(indexHtml.includes('Garantía Comercial rebuske de 48 h (Ley 1480)'), 'Garantía oficial de 48h (Ley 1480) presente en el resultado del diagnóstico');
+
   console.log('\n======================================================================');
   console.log(`🎉 TODAS LAS PRUEBAS PASARON EXITOSAMENTE: ${passedTests}/${totalTests} pruebas superadas (100%).`);
   console.log('Certificado de Calidad rebuske v5 aprobado por Lucas QA.');
