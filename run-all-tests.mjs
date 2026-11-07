@@ -192,34 +192,50 @@ async function runTestSuite() {
   assert(indexHtml.includes('/api/dispatch-alert'), 'Radar de búsqueda en index.html conectado a /api/dispatch-alert');
 
   // --------------------------------------------------------------------------
-  // TEST 5: CONVERSIÓN & UI/UX (VALERIA) - PÁGINAS /ENTRADA Y /REGISTRO 2026
+  // TEST 5: CONVERSIÓN & UI/UX (VALERIA) - PORTAL /ENTRADA Y REGISTROS SEPARADOS
   // --------------------------------------------------------------------------
-  console.log('\n[TEST 5/6] Verificando elementos de UI/UX, conversión y retención...');
+  console.log('\n[TEST 5/6] Verificando elementos de UI/UX, conversión y arquitectura desacoplada...');
   assert(fs.existsSync('./entrada.html'), 'entrada.html existe en el repositorio');
   assert(fs.existsSync('./registro.html'), 'registro.html existe en el repositorio');
+  assert(fs.existsSync('./registro-tecnico.html'), 'registro-tecnico.html existe en el repositorio');
+  assert(fs.existsSync('./registro-cliente.html'), 'registro-cliente.html existe en el repositorio');
+
   const entradaHtml = fs.readFileSync('./entrada.html', 'utf8');
   const registroHtml = fs.readFileSync('./registro.html', 'utf8');
+  const regTecnicoHtml = fs.readFileSync('./registro-tecnico.html', 'utf8');
+  const regClienteHtml = fs.readFileSync('./registro-cliente.html', 'utf8');
+
   assert(entradaHtml === registroHtml, 'entrada.html y registro.html tienen sincronización 100% idéntica');
 
-  assert(registroHtml.includes('id="btn-submit-pro"'), 'Botón oficial de envío de Profesional presente en registro/entrada');
-  assert(registroHtml.includes('id="btn-submit-cli"'), 'Botón oficial de envío de Cliente presente en registro/entrada');
-  assert(registroHtml.includes('id="view-cliente"'), 'Vista unificada de Cliente VIP presente en registro/entrada');
-  assert(registroHtml.includes('id="view-pro"'), 'Vista oficial de Técnico/Profesional presente en registro/entrada');
+  // Validación de la nueva landing /entrada
+  assert(entradaHtml.includes('Empieza aquí'), 'Sección unificada "Empieza aquí" presente');
+  assert(entradaHtml.includes('/registro/tecnico'), 'Enlace a portal técnico /registro/tecnico presente');
+  assert(entradaHtml.includes('/registro/cliente'), 'Enlace a portal cliente /registro/cliente presente');
+  assert(entradaHtml.includes('Nuestros Servicios'), 'Sección "Nuestros Servicios" con 4 bloques presente');
+  assert(entradaHtml.includes('Plomería') && entradaHtml.includes('Electricidad') && entradaHtml.includes('Cerrajería') && entradaHtml.includes('Aseo'), '4 especialidades principales presentes en /entrada');
+  assert(entradaHtml.includes('Cómo funciona para el cliente'), 'Flujo de 5 pasos para el cliente presente');
+  assert(entradaHtml.includes('Bóveda Wompi (Escrow)'), 'Bóveda Wompi documentada en /entrada');
+  assert(entradaHtml.includes('Camilo Escobar'), 'Firma del fundador Camilo Escobar presente');
+
+  // Validación del portal /registro/tecnico
+  assert(regTecnicoHtml.includes('id="btn-submit-pro"'), 'Botón oficial de envío de Profesional presente en /registro/tecnico');
+  assert(regTecnicoHtml.includes('En rebuske Oro (93%)'), 'Simulador técnico muestra Plan Oro al 93% neto');
+  assert(regTecnicoHtml.includes('9% Com.') && regTecnicoHtml.includes('Placa Bronce'), 'Placa Bronce configurada al 9% Com.');
+  assert(regTecnicoHtml.includes('8% Com.') && regTecnicoHtml.includes('Placa Plata'), 'Placa Plata configurada al 8% Com.');
+  assert(regTecnicoHtml.includes('7% Com.') && regTecnicoHtml.includes('Placa Oro'), 'Placa Oro configurada al 7% Com.');
+  assert(regTecnicoHtml.includes('v * 0.93'), 'Lógica JS del simulador calcula sobre el 93% para Plan Oro');
+  assert(regTecnicoHtml.includes('pro_check_terms'), 'Consentimiento legal técnico presente');
+
+  // Validación del portal /registro/cliente
+  assert(regClienteHtml.includes('id="btn-submit-cli"'), 'Botón oficial de envío de Cliente presente en /registro/cliente');
+  assert(regClienteHtml.includes('TUBONO15K-VIP'), 'Bono de cliente muestra código TUBONO15K-VIP');
+  assert(regClienteHtml.includes('Google Play Store'), 'Aclaración de lista de espera Play Store presente');
+  assert(regClienteHtml.includes('cli_check_terms'), 'Consentimiento legal cliente presente');
 
   assert(!indexHtml.includes('id="rebuske-sticky-mobile-bar"'), 'Sticky Action Bar móvil eliminada de index.html para despejar el flujo real');
   assert(indexHtml.includes('real-cases-section'), 'Sección de Casos Reales en Medellín presente en index.html');
   assert(indexHtml.includes('Doña Gloria') && indexHtml.includes('Laureles'), 'Caso real de Laureles documentado');
   assert(indexHtml.includes('Mateo & Camila') && indexHtml.includes('El Poblado'), 'Caso real de El Poblado documentado');
-
-  // Validación de Escala Oficial y Textos Exactos Rebuske 2026
-  assert(registroHtml.includes('En rebuske Oro (93%)'), 'Simulador muestra Plan Oro al 93% neto');
-  assert(registroHtml.includes('9% Com.') && registroHtml.includes('Placa Bronce'), 'Placa Bronce configurada al 9% Com.');
-  assert(registroHtml.includes('8% Com.') && registroHtml.includes('Placa Plata'), 'Placa Plata configurada al 8% Com.');
-  assert(registroHtml.includes('7% Com.') && registroHtml.includes('Placa Oro'), 'Placa Oro configurada al 7% Com.');
-  assert(registroHtml.includes('id="cupos-count"') && registroHtml.includes('animarContador(84)'), 'Contador de cupos animado a 84 de 100 asignados');
-  assert(registroHtml.includes('TUBONO15K-VIP'), 'Bono de cliente muestra código TUBONO15K-VIP');
-  assert(registroHtml.includes('Camilo Escobar'), 'Firma del fundador Camilo Escobar presente');
-  assert(registroHtml.includes('v * 0.93'), 'Lógica JS del simulador calcula sobre el 93% para Plan Oro');
 
   // --------------------------------------------------------------------------
   // TEST 6: DICCIONARIO PAISA, CUMPLIMIENTO LEGAL Y ZERO LEAKS
@@ -229,10 +245,12 @@ async function runTestSuite() {
   for (const p of palabrasProhibidas) {
     assert(!registroHtml.toLowerCase().includes(p), `Filtro Lingüístico: Ausencia de modismo prohibido "${p}" en registro.html`);
     assert(!entradaHtml.toLowerCase().includes(p), `Filtro Lingüístico: Ausencia de modismo prohibido "${p}" en entrada.html`);
+    assert(!regTecnicoHtml.toLowerCase().includes(p), `Filtro Lingüístico: Ausencia de modismo prohibido "${p}" en registro-tecnico.html`);
+    assert(!regClienteHtml.toLowerCase().includes(p), `Filtro Lingüístico: Ausencia de modismo prohibido "${p}" en registro-cliente.html`);
     assert(!indexHtml.toLowerCase().includes(p), `Filtro Lingüístico: Ausencia de modismo prohibido "${p}" en index.html`);
   }
 
-  assert(registroHtml.includes('Modo Luz Express'), 'Protocolo de seguridad incluye Modo Luz Express');
+  assert(entradaHtml.includes('Modo Luz Express'), 'Protocolo de seguridad incluye Modo Luz Express');
   assert(fs.existsSync('./PROTOCOLO_PERITAJE_OPERATIVO.md'), 'Protocolo Operativo de Peritaje existe en el repositorio');
 
   const lastHtmlIdx = indexHtml.lastIndexOf('</html>');
@@ -246,6 +264,14 @@ async function runTestSuite() {
   const lastEntHtmlIdx = entradaHtml.lastIndexOf('</html>');
   const leakEnt = entradaHtml.slice(lastEntHtmlIdx + 7).trim();
   assert(leakEnt.length === 0, 'ZERO código filtrado después de </html> en entrada.html');
+
+  const lastTecHtmlIdx = regTecnicoHtml.lastIndexOf('</html>');
+  const leakTec = regTecnicoHtml.slice(lastTecHtmlIdx + 7).trim();
+  assert(leakTec.length === 0, 'ZERO código filtrado después de </html> en registro-tecnico.html');
+
+  const lastCliHtmlIdx = regClienteHtml.lastIndexOf('</html>');
+  const leakCli = regClienteHtml.slice(lastCliHtmlIdx + 7).trim();
+  assert(leakCli.length === 0, 'ZERO código filtrado después de </html> en registro-cliente.html');
 
   // --------------------------------------------------------------------------
   // TEST 7: MOTOR DE DIAGNÓSTICO INTELIGENTE DEL DAÑO (10 OFICIOS, FOTO & VOZ)
