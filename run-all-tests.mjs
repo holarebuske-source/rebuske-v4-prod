@@ -206,7 +206,7 @@ async function runTestSuite() {
   assert(registroHtml.includes('id="view-cliente"'), 'Vista unificada de Cliente VIP presente en registro/entrada');
   assert(registroHtml.includes('id="view-pro"'), 'Vista oficial de Técnico/Profesional presente en registro/entrada');
 
-  assert(indexHtml.includes('id="rebuske-sticky-mobile-bar"'), 'Sticky Action Bar móvil presente en index.html');
+  assert(!indexHtml.includes('id="rebuske-sticky-mobile-bar"'), 'Sticky Action Bar móvil eliminada de index.html para despejar el flujo real');
   assert(indexHtml.includes('real-cases-section'), 'Sección de Casos Reales en Medellín presente en index.html');
   assert(indexHtml.includes('Doña Gloria') && indexHtml.includes('Laureles'), 'Caso real de Laureles documentado');
   assert(indexHtml.includes('Mateo & Camila') && indexHtml.includes('El Poblado'), 'Caso real de El Poblado documentado');
