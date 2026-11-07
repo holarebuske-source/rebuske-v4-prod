@@ -19,10 +19,10 @@ const newEntradaHtml = `<!DOCTYPE html>
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
   <link rel="manifest" href="/site.webmanifest">
 
-  <!-- Tipografía Oficial: Syne de Google Fonts -->
+  <!-- Tipografía Oficial: Plus Jakarta Sans & Baloo 2 (Exactamente la misma de la App Web, CERO letras anchas deformes) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
     /* ======================================================== */
@@ -50,7 +50,8 @@ const newEntradaHtml = `<!DOCTYPE html>
       --glass-border: rgba(255, 255, 255, 0.12);
       --glass-border-lima: rgba(184, 255, 59, 0.32);
       --glass-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
-      --font-main: 'Syne', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-title: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     }
 
     * {
@@ -64,7 +65,8 @@ const newEntradaHtml = `<!DOCTYPE html>
     }
 
     /* ======================================================== */
-    /* TIPOGRAFÍA COMPACTADA (SYNE ÓPTICO MEDELLÍN)             */
+    /* TIPOGRAFÍA OFICIAL PLUS JAKARTA SANS (CERO ENSANCHAMIENTO) */
+    /* Proporciones tipográficas exactas de la App Web           */
     /* ======================================================== */
     body {
       background-color: var(--ebano);
@@ -74,8 +76,9 @@ const newEntradaHtml = `<!DOCTYPE html>
         radial-gradient(circle at 20% 70%, rgba(22, 36, 19, 0.6) 0%, transparent 70%);
       color: var(--mut);
       font-family: var(--font-main) !important;
-      letter-spacing: -0.025em !important;
-      font-size: 16px;
+      letter-spacing: -0.01em !important;
+      /* tracking compacto: letter-spacing: -0.025em; */
+      font-size: 15.5px;
       line-height: 1.6;
       overflow-x: hidden;
       position: relative;
@@ -84,15 +87,17 @@ const newEntradaHtml = `<!DOCTYPE html>
     }
 
     h1, h2, h3, h4, h5, .sec-title, .hero-tagline, .brand-logo, .start-card-title, .qr-info-title, .trust-card-title, .service-block-title {
-      font-family: var(--font-main) !important;
-      letter-spacing: -0.038em !important;
-      font-weight: 700 !important;
-      line-height: 1.15 !important;
+      font-family: var(--font-title) !important;
+      letter-spacing: -0.015em !important;
+      /* tracking de títulos: letter-spacing: -0.038em; */
+      font-weight: 800 !important;
+      line-height: 1.18 !important;
       color: var(--tinta);
     }
 
     p, span, label, input, select, button, .sec-desc, .start-card-desc, .trust-card-desc, .service-item-name, .service-item-price {
-      letter-spacing: -0.02em !important;
+      font-family: var(--font-main) !important;
+      letter-spacing: normal !important;
     }
 
     /* Fondo bioluminiscente difuso (Animación preservada) */
@@ -429,33 +434,20 @@ const newEntradaHtml = `<!DOCTYPE html>
       letter-spacing: 0.02em;
     }
 
-    .hero-canvas-container {
-      position: relative;
-      width: 100%;
-      max-width: 680px;
-      height: 240px;
-      margin: 0 auto 16px;
-    }
-    #heroCanvas {
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
-
     .hero-tagline {
       font-size: clamp(32px, 5.5vw, 54px);
       font-weight: 800;
       color: var(--tinta);
-      letter-spacing: -0.038em !important;
+      letter-spacing: -0.015em !important;
       line-height: 1.12;
       max-width: 860px;
-      margin: 0 auto 16px;
+      margin: 0 auto 18px;
     }
 
     /* Display reactivo del servicio actual en Hero */
     .hero-service-display {
-      min-height: 60px;
-      margin-bottom: 20px;
+      min-height: 56px;
+      margin-bottom: 24px;
     }
     .hero-service-badge {
       display: inline-flex;
@@ -466,13 +458,13 @@ const newEntradaHtml = `<!DOCTYPE html>
       -webkit-backdrop-filter: blur(var(--glass-blur));
       border: 1px solid var(--glass-border);
       border-top: 1px solid var(--glass-border-lima);
-      padding: 10px 24px;
+      padding: 12px 28px;
       border-radius: 100px;
       font-size: 17px;
       font-weight: 700;
       color: var(--lima);
       box-shadow: var(--glass-shadow), 0 0 24px rgba(184, 255, 59, 0.12);
-      transition: opacity 0.5s ease;
+      transition: opacity 0.4s ease, transform 0.4s ease;
     }
     .hero-ver-servicio-btn {
       display: inline-block;
@@ -596,8 +588,7 @@ const newEntradaHtml = `<!DOCTYPE html>
       margin: 20px 0;
     }
     @media (prefers-reduced-motion: reduce) {
-      .hero-canvas-container { display: none !important; }
-      .hero-reduced-row { display: grid !important; }
+      .glow-orb { animation: none !important; }
     }
 
     /* ======================================================== */
@@ -1258,7 +1249,7 @@ const newEntradaHtml = `<!DOCTYPE html>
     </div>
   </header>
 
-  <!-- 2. HERO CON SERVICIOS Y PARTICULAS (16s Loop Preservado) -->
+  <!-- 2. HERO PRINCIPAL LIMPIO ESTILO APP (SIN CANVAS NI CASAS/CÍRCULOS) -->
   <section class="section-wrap hero-section">
     
     <!-- Banner de Acceso al Catálogo de 17 Categorías -->
@@ -1268,23 +1259,11 @@ const newEntradaHtml = `<!DOCTYPE html>
       <span style="color:var(--lima);">Ver Tarifas ➔</span>
     </a>
 
-    <div class="hero-canvas-container">
-      <canvas id="heroCanvas"></canvas>
-    </div>
-
-    <!-- Fallback accesibilidad reducido -->
-    <div class="hero-reduced-row">
-      <div class="hero-chip">🔧 Plomería · desde $60k</div>
-      <div class="hero-chip">⚡ Electricidad · desde $50k</div>
-      <div class="hero-chip">🔑 Cerrajería · desde $60k</div>
-      <div class="hero-chip">✨ Aseo · desde $70k</div>
-    </div>
-
     <div class="mask-slide-wrap">
       <h1 class="hero-tagline mask-slide-inner">Tu Hogar Protegido. Tu Mano de Obra Valorada.</h1>
     </div>
 
-    <p class="sec-desc reveal-cascade stagger-1" style="margin: 0 auto 20px; font-size: 17px; max-width: 760px;">
+    <p class="sec-desc reveal-cascade stagger-1" style="margin: 0 auto 24px; font-size: 17px; max-width: 760px;">
       La plataforma de multiservicios de Medellín con pago protegido en <strong>Bóveda Wompi (Escrow)</strong>, 
       técnicos verificados con cédula biométrica y <strong>Acta Digital de Garantía de 48 horas</strong>.
     </p>
@@ -1767,7 +1746,7 @@ const newEntradaHtml = `<!DOCTYPE html>
     </div>
   </div>
 
-  <!-- SCRIPT UNIFICADO: ANIMACIONES, CANVAS 16s Y OBSERVERS PRESERVADOS -->
+  <!-- SCRIPT UNIFICADO: ANIMACIONES Y OBSERVERS PRESERVADOS -->
   <script>
     // Barra superior scroll listener
     window.addEventListener('scroll', () => {
@@ -1861,7 +1840,7 @@ const newEntradaHtml = `<!DOCTYPE html>
     });
 
     // ========================================================================
-    // HERO PARTICULAS EN CICLO DE 16 SEGUNDOS (CASA -> 4 SERVICIOS)
+    // HERO ROTACIÓN LIMPIA DE SERVICIOS (SIN CANVAS, SIN CASAS NI CÍRCULOS)
     // ========================================================================
     const servicesData = [
       { name: 'Plomería · desde $60.000 COP', icon: '🔧', blockId: 'srv-block-0' },
@@ -1872,108 +1851,14 @@ const newEntradaHtml = `<!DOCTYPE html>
 
     let heroCurrentServiceIdx = 0;
     let heroCycleManualHold = false;
-    let heroCanvas, heroCtx;
-    let heroParticles = [];
-    const isMobileScreen = window.innerWidth < 768;
-    const NUM_PARTICLES = isMobileScreen ? 400 : 1800;
-
-    function initHeroCanvas() {
-      heroCanvas = document.getElementById('heroCanvas');
-      if (!heroCanvas) return;
-      heroCtx = heroCanvas.getContext('2d');
-      resizeHeroCanvas();
-      window.addEventListener('resize', resizeHeroCanvas);
-
-      heroParticles = [];
-      for (let i = 0; i < NUM_PARTICLES; i++) {
-        heroParticles.push({
-          x: Math.random() * heroCanvas.width,
-          y: Math.random() * heroCanvas.height,
-          vx: (Math.random() - 0.5) * 0.8,
-          vy: (Math.random() - 0.5) * 0.8,
-          size: Math.random() * 1.5 + 1,
-          alpha: Math.random() * 0.6 + 0.4
-        });
-      }
-
-      requestAnimationFrame(renderHeroParticles);
-    }
-
-    function resizeHeroCanvas() {
-      if (!heroCanvas) return;
-      const rect = heroCanvas.parentElement.getBoundingClientRect();
-      heroCanvas.width = rect.width;
-      heroCanvas.height = rect.height;
-    }
-
-    let heroStartTime = performance.now();
-
-    function renderHeroParticles(now) {
-      if (!heroCtx || !heroCanvas) return;
-      heroCtx.clearRect(0, 0, heroCanvas.width, heroCanvas.height);
-
-      const elapsed = ((now - heroStartTime) % 16000) / 1000;
-      const cx = heroCanvas.width / 2;
-      const cy = heroCanvas.height / 2;
-
-      let activeService = 0;
-      if (elapsed < 3) {
-        activeService = -1; // Casa
-      } else if (elapsed < 6) {
-        activeService = 0; // Plomería
-      } else if (elapsed < 9) {
-        activeService = 1; // Electricidad
-      } else if (elapsed < 12) {
-        activeService = 2; // Cerrajería
-      } else {
-        activeService = 3; // Aseo
-      }
-
-      if (!heroCycleManualHold && activeService >= 0 && activeService !== heroCurrentServiceIdx) {
-        actualizarDisplayHero(activeService);
-      }
-
-      const scale = isMobileScreen ? 0.65 : 1.0;
-      heroCtx.fillStyle = '#B8FF3B'; // Color Lima oficial de la App
-
-      for (let i = 0; i < heroParticles.length; i++) {
-        const p = heroParticles[i];
-        let tx = cx, ty = cy;
-        const angle = (i / heroParticles.length) * Math.PI * 2;
-
-        if (activeService === -1) {
-          if (i < heroParticles.length * 0.4) {
-            const t = i / (heroParticles.length * 0.4);
-            tx = cx - 120 * scale + (240 * scale * t);
-            ty = cy - 40 * scale - (1 - Math.abs(t - 0.5) * 2) * (80 * scale);
-          } else {
-            const t = (i - heroParticles.length * 0.4) / (heroParticles.length * 0.6);
-            const side = Math.floor(t * 3);
-            if (side === 0) { tx = cx - 110 * scale; ty = cy - 40 * scale + (t * 3 * 90 * scale); }
-            else if (side === 1) { tx = cx - 110 * scale + ((t * 3 - 1) * 220 * scale); ty = cy + 50 * scale; }
-            else { tx = cx + 110 * scale; ty = cy + 50 * scale - ((t * 3 - 2) * 90 * scale); }
-          }
-        } else {
-          const r = (60 + (activeService * 12) + Math.sin(now * 0.003 + i) * 10) * scale;
-          tx = cx + Math.cos(angle + (now * 0.0005)) * r;
-          ty = cy + Math.sin(angle + (now * 0.0005)) * r * 0.85;
-        }
-
-        p.x += (tx - p.x) * 0.04;
-        p.y += (ty - p.y) * 0.04;
-
-        heroCtx.globalAlpha = p.alpha;
-        heroCtx.fillRect(p.x, p.y, p.size, p.size);
-      }
-
-      requestAnimationFrame(renderHeroParticles);
-    }
 
     function actualizarDisplayHero(idx) {
       heroCurrentServiceIdx = idx;
       const s = servicesData[idx];
-      document.getElementById('heroServiceIcon').textContent = s.icon;
-      document.getElementById('heroServiceName').textContent = s.name;
+      const iconEl = document.getElementById('heroServiceIcon');
+      const nameEl = document.getElementById('heroServiceName');
+      if (iconEl) iconEl.textContent = s.icon;
+      if (nameEl) nameEl.textContent = s.name;
 
       const dots = document.querySelectorAll('.hero-dot-btn');
       dots.forEach((dot, dIdx) => {
@@ -1986,8 +1871,15 @@ const newEntradaHtml = `<!DOCTYPE html>
       actualizarDisplayHero(idx);
     }
 
+    // Rotación suave del badge de servicios
+    setInterval(() => {
+      if (!heroCycleManualHold) {
+        const nextIdx = (heroCurrentServiceIdx + 1) % servicesData.length;
+        actualizarDisplayHero(nextIdx);
+      }
+    }, 3200);
+
     window.addEventListener('DOMContentLoaded', () => {
-      initHeroCanvas();
       document.querySelectorAll('.mask-slide-inner').forEach(el => {
         const rect = el.getBoundingClientRect();
         if (rect.top < window.innerHeight) el.classList.add('is-visible');
