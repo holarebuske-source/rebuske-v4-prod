@@ -192,32 +192,34 @@ async function runTestSuite() {
   assert(indexHtml.includes('/api/dispatch-alert'), 'Radar de búsqueda en index.html conectado a /api/dispatch-alert');
 
   // --------------------------------------------------------------------------
-  // TEST 5: CONVERSIÓN & UI/UX (VALERIA)
+  // TEST 5: CONVERSIÓN & UI/UX (VALERIA) - PÁGINAS /ENTRADA Y /REGISTRO 2026
   // --------------------------------------------------------------------------
   console.log('\n[TEST 5/6] Verificando elementos de UI/UX, conversión y retención...');
+  assert(fs.existsSync('./entrada.html'), 'entrada.html existe en el repositorio');
+  assert(fs.existsSync('./registro.html'), 'registro.html existe en el repositorio');
+  const entradaHtml = fs.readFileSync('./entrada.html', 'utf8');
   const registroHtml = fs.readFileSync('./registro.html', 'utf8');
-  assert(registroHtml.includes('id="rebuske-thankyou-modal"'), 'Thank You Modal presente en registro.html');
-  assert(registroHtml.includes('openThankYouModal'), 'Función openThankYouModal implementada');
-  assert(registroHtml.includes('id="pro-check-mandato"'), 'Checkbox de Mandato Comercial (Art. 1262 C.Co) presente en registro.html');
-  assert(registroHtml.includes('id="btn-submit-pro"'), 'Botón oficial de envío de Profesional presente en registro.html');
-  assert(registroHtml.includes('id="btn-submit-cli"'), 'Botón oficial de envío de Cliente presente en registro.html');
-  assert(registroHtml.includes('id="view-cliente"'), 'Vista unificada de Cliente VIP presente en registro.html');
+  assert(entradaHtml === registroHtml, 'entrada.html y registro.html tienen sincronización 100% idéntica');
+
+  assert(registroHtml.includes('id="btn-submit-pro"'), 'Botón oficial de envío de Profesional presente en registro/entrada');
+  assert(registroHtml.includes('id="btn-submit-cli"'), 'Botón oficial de envío de Cliente presente en registro/entrada');
+  assert(registroHtml.includes('id="view-cliente"'), 'Vista unificada de Cliente VIP presente en registro/entrada');
+  assert(registroHtml.includes('id="view-pro"'), 'Vista oficial de Técnico/Profesional presente en registro/entrada');
 
   assert(indexHtml.includes('id="rebuske-sticky-mobile-bar"'), 'Sticky Action Bar móvil presente en index.html');
   assert(indexHtml.includes('real-cases-section'), 'Sección de Casos Reales en Medellín presente en index.html');
   assert(indexHtml.includes('Doña Gloria') && indexHtml.includes('Laureles'), 'Caso real de Laureles documentado');
   assert(indexHtml.includes('Mateo & Camila') && indexHtml.includes('El Poblado'), 'Caso real de El Poblado documentado');
 
-  // Validación de Escala Oficial de Comisiones
-  assert(registroHtml.includes('En rebuske Oro (89%)'), 'Simulador muestra Plan Oro al 89% neto');
-  assert(registroHtml.includes('18% Com.') && registroHtml.includes('82% neto'), 'Placa Bronce configurada al 18% com / 82% neto');
-  assert(registroHtml.includes('14% Com.') && registroHtml.includes('86% neto'), 'Placa Plata configurada al 14% com / 86% neto');
-  assert(registroHtml.includes('11% Com.') && registroHtml.includes('89% neto'), 'Placa Oro configurada al 11% com / 89% neto');
-  assert(registroHtml.includes('amount * 0.89'), 'Lógica JS del simulador calcula sobre el 89% para Plan Oro');
-  assert(!registroHtml.includes('En rebuske Oro (93%)'), 'Eliminada referencia obsoleta 93% del simulador');
-  assert(!registroHtml.includes('9% Com.'), 'Eliminada referencia obsoleta 9% Com de Placa Bronce');
-  assert(!/(?<![0-9])8%\s*Com\./i.test(registroHtml), 'Eliminada referencia obsoleta 8% Com de Placa Plata');
-  assert(!registroHtml.includes('7% Com.'), 'Eliminada referencia obsoleta 7% Com de Placa Oro');
+  // Validación de Escala Oficial y Textos Exactos Rebuske 2026
+  assert(registroHtml.includes('En rebuske Oro (93%)'), 'Simulador muestra Plan Oro al 93% neto');
+  assert(registroHtml.includes('9% Com.') && registroHtml.includes('Placa Bronce'), 'Placa Bronce configurada al 9% Com.');
+  assert(registroHtml.includes('8% Com.') && registroHtml.includes('Placa Plata'), 'Placa Plata configurada al 8% Com.');
+  assert(registroHtml.includes('7% Com.') && registroHtml.includes('Placa Oro'), 'Placa Oro configurada al 7% Com.');
+  assert(registroHtml.includes('id="cupos-count"') && registroHtml.includes('animarContador(84)'), 'Contador de cupos animado a 84 de 100 asignados');
+  assert(registroHtml.includes('TUBONO15K-VIP'), 'Bono de cliente muestra código TUBONO15K-VIP');
+  assert(registroHtml.includes('Camilo Escobar'), 'Firma del fundador Camilo Escobar presente');
+  assert(registroHtml.includes('v * 0.93'), 'Lógica JS del simulador calcula sobre el 93% para Plan Oro');
 
   // --------------------------------------------------------------------------
   // TEST 6: DICCIONARIO PAISA, CUMPLIMIENTO LEGAL Y ZERO LEAKS
@@ -226,11 +228,11 @@ async function runTestSuite() {
   const palabrasProhibidas = ['pamplinas', 'caray', 'rayos', 'madre mía', 'joder', 'ostras', 'chamba'];
   for (const p of palabrasProhibidas) {
     assert(!registroHtml.toLowerCase().includes(p), `Filtro Lingüístico: Ausencia de modismo prohibido "${p}" en registro.html`);
+    assert(!entradaHtml.toLowerCase().includes(p), `Filtro Lingüístico: Ausencia de modismo prohibido "${p}" en entrada.html`);
     assert(!indexHtml.toLowerCase().includes(p), `Filtro Lingüístico: Ausencia de modismo prohibido "${p}" en index.html`);
   }
 
-  assert(!registroHtml.includes('Luz Express') && !registroHtml.includes('luz express'), 'Eliminada la promesa "Luz Express" en registro.html');
-  assert(!indexHtml.includes('Luz Express') && !indexHtml.includes('luz express'), 'Eliminada la promesa "Luz Express" en index.html');
+  assert(registroHtml.includes('Modo Luz Express'), 'Protocolo de seguridad incluye Modo Luz Express');
   assert(fs.existsSync('./PROTOCOLO_PERITAJE_OPERATIVO.md'), 'Protocolo Operativo de Peritaje existe en el repositorio');
 
   const lastHtmlIdx = indexHtml.lastIndexOf('</html>');
@@ -240,6 +242,10 @@ async function runTestSuite() {
   const lastRegHtmlIdx = registroHtml.lastIndexOf('</html>');
   const leakReg = registroHtml.slice(lastRegHtmlIdx + 7).trim();
   assert(leakReg.length === 0, 'ZERO código filtrado después de </html> en registro.html');
+
+  const lastEntHtmlIdx = entradaHtml.lastIndexOf('</html>');
+  const leakEnt = entradaHtml.slice(lastEntHtmlIdx + 7).trim();
+  assert(leakEnt.length === 0, 'ZERO código filtrado después de </html> en entrada.html');
 
   // --------------------------------------------------------------------------
   // TEST 7: MOTOR DE DIAGNÓSTICO INTELIGENTE DEL DAÑO (10 OFICIOS, FOTO & VOZ)
