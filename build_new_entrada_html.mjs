@@ -1,0 +1,2004 @@
+import fs from 'node:fs';
+
+const newEntradaHtml = `<!DOCTYPE html>
+<html lang="es-CO">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>rebuske · Tu Hogar Protegido. Tu Mano de Obra Valorada · Medellín 2026</title>
+  
+  <!-- SEO & Metadatos Oficiales -->
+  <meta name="description" content="rebuske: La plataforma de 17 servicios para el hogar y profesionales en Medellín. Pago protegido en Bóveda Wompi (Escrow), Acta Digital de Garantía de 48h y técnicos verificados.">
+  <meta name="keywords" content="servicios medellin, plomeria, cerrajeria, electricidad, aseo, clases de musica, reparaciones hogar, pago protegido wompi, rebuske">
+  <meta name="theme-color" content="#0C120A">
+  <meta name="robots" content="index, follow">
+
+  <!-- Favicon e Iconos PWA Oficiales -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
+
+  <!-- Tipografía Oficial: Syne de Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ======================================================== */
+    /* SISTEMA DE DISEÑO OFICIAL REBUSKE (ORGANIC LUMINOUS GLASS) */
+    /* Exactamente alineado a la estética visual de la App Web  */
+    /* ======================================================== */
+    :root {
+      --brand-lima: #B8FF3B;
+      --color-primary: #AFFF3E;
+      --color-forest: #4E8839;
+      --color-lemon: #D9DF36;
+      --color-canary: #FFFA70;
+      --color-ebony: #3E4C35;
+      --ebano: #0C120A;
+      --noche: #162413;
+      --bosque: #4E8839;
+      --lima: #B8FF3B;
+      --gy: #AFFF3E;
+      --canario: #FFFA70;
+      --tinta: #F4FBF1;
+      --mut: rgba(244, 251, 241, 0.68);
+      --glass-blur: 22px;
+      --glass-surface: rgba(22, 36, 19, 0.78);
+      --glass-surface-hover: rgba(26, 44, 22, 0.90);
+      --glass-border: rgba(255, 255, 255, 0.12);
+      --glass-border-lima: rgba(184, 255, 59, 0.32);
+      --glass-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+      --font-main: 'Syne', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* ======================================================== */
+    /* TIPOGRAFÍA COMPACTADA (SYNE ÓPTICO MEDELLÍN)             */
+    /* ======================================================== */
+    body {
+      background-color: var(--ebano);
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(78, 136, 57, 0.18) 0%, transparent 60%),
+        radial-gradient(circle at 80% 40%, rgba(184, 255, 59, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 20% 70%, rgba(22, 36, 19, 0.6) 0%, transparent 70%);
+      color: var(--mut);
+      font-family: var(--font-main) !important;
+      letter-spacing: -0.025em !important;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    h1, h2, h3, h4, h5, .sec-title, .hero-tagline, .brand-logo, .start-card-title, .qr-info-title, .trust-card-title, .service-block-title {
+      font-family: var(--font-main) !important;
+      letter-spacing: -0.038em !important;
+      font-weight: 700 !important;
+      line-height: 1.15 !important;
+      color: var(--tinta);
+    }
+
+    p, span, label, input, select, button, .sec-desc, .start-card-desc, .trust-card-desc, .service-item-name, .service-item-price {
+      letter-spacing: -0.02em !important;
+    }
+
+    /* Fondo bioluminiscente difuso (Animación preservada) */
+    .bg-glow-layer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    .glow-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(85px);
+      opacity: 0.22;
+      animation: floatGlow 22s ease-in-out infinite alternate;
+    }
+    .glow-orb-1 {
+      width: 550px;
+      height: 550px;
+      background: radial-gradient(circle, var(--lima) 0%, transparent 70%);
+      top: -100px;
+      left: -100px;
+    }
+    .glow-orb-2 {
+      width: 650px;
+      height: 650px;
+      background: radial-gradient(circle, var(--bosque) 0%, transparent 70%);
+      bottom: -150px;
+      right: -100px;
+      animation-duration: 28s;
+    }
+    .glow-orb-3 {
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(circle, rgba(255, 250, 112, 0.16) 0%, transparent 70%);
+      top: 45%;
+      left: 35%;
+      animation-duration: 18s;
+      animation-delay: -6s;
+    }
+    @keyframes floatGlow {
+      0% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(60px, 40px) scale(1.1); }
+      100% { transform: translate(-40px, 70px) scale(0.95); }
+    }
+
+    /* ======================================================== */
+    /* ANIMACIONES OFICIALES PRESERVADAS (A, B, C, D, E)        */
+    /* ======================================================== */
+
+    /* Patrón A: Entrada en Cascada */
+    .reveal-cascade {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.65s cubic-bezier(0.215, 0.61, 0.355, 1), transform 0.65s cubic-bezier(0.215, 0.61, 0.355, 1);
+      will-change: opacity, transform;
+    }
+    .reveal-cascade.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .stagger-1 { transition-delay: 0.08s; }
+    .stagger-2 { transition-delay: 0.16s; }
+    .stagger-3 { transition-delay: 0.24s; }
+    .stagger-4 { transition-delay: 0.32s; }
+    .stagger-5 { transition-delay: 0.40s; }
+
+    /* Patrón B: Deslizamiento con Máscara */
+    .mask-slide-wrap {
+      overflow: hidden;
+      display: block;
+    }
+    .mask-slide-inner {
+      display: block;
+      transform: translateY(100%);
+      opacity: 0;
+      transition: transform 0.8s cubic-bezier(0.215, 0.61, 0.355, 1), opacity 0.8s ease;
+    }
+    .mask-slide-inner.slide-left {
+      transform: translateX(-100%);
+    }
+    .mask-slide-inner.slide-right {
+      transform: translateX(100%);
+    }
+    .mask-slide-inner.is-visible {
+      transform: translate(0, 0);
+      opacity: 1;
+    }
+
+    /* Patrón C: Pulso */
+    .pulse-c {
+      animation: pulseC 2s infinite ease-in-out;
+    }
+    @keyframes pulseC {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
+
+    /* Patrón D: Flotación */
+    .float-d-1 {
+      animation: floatD 3.8s ease-in-out infinite alternate;
+    }
+    .float-d-2 {
+      animation: floatD 4.6s ease-in-out infinite alternate;
+      animation-delay: -1.5s;
+    }
+    .float-d-3 {
+      animation: floatD 5.2s ease-in-out infinite alternate;
+      animation-delay: -2.8s;
+    }
+    @keyframes floatD {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-7px); }
+    }
+
+    /* Patrón E: Elevación al Hover estilo App */
+    .elevate-hover {
+      transition: transform 0.25s cubic-bezier(0.2, 0.7, 0.2, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .elevate-hover:hover {
+      transform: translateY(-4px);
+      border-color: var(--lima);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5), 0 0 28px rgba(184, 255, 59, 0.16);
+    }
+
+    /* ======================================================== */
+    /* 1. BARRA SUPERIOR FIJA ESTILO APP                        */
+    /* ======================================================== */
+    .top-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 72px;
+      background: rgba(12, 18, 10, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(16px, 4vw, 40px);
+      z-index: 1000;
+      transform: translateY(-100%);
+      animation: slideDownBar 0.6s ease forwards;
+      transition: background 0.3s ease, border-color 0.3s ease;
+    }
+    .top-bar.scrolled {
+      background: rgba(12, 18, 10, 0.95);
+      border-bottom-color: rgba(184, 255, 59, 0.2);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+    }
+    @keyframes slideDownBar {
+      to { transform: translateY(0); }
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--tinta);
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: -0.038em;
+    }
+    .brand-logo-dot {
+      width: 10px;
+      height: 10px;
+      background: var(--lima);
+      border-radius: 50%;
+      box-shadow: 0 0 12px var(--lima);
+    }
+    .brand-tag {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: rgba(184, 255, 59, 0.12);
+      border: 1px solid rgba(184, 255, 59, 0.3);
+      color: var(--lima);
+      letter-spacing: 0.04em !important;
+      text-transform: uppercase;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-pill-sec {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 18px;
+      border-radius: 100px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: rgba(22, 36, 19, 0.65);
+      color: var(--tinta);
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+    .btn-pill-sec:hover {
+      border-color: var(--lima);
+      color: var(--lima);
+      background: rgba(184, 255, 59, 0.08);
+      transform: translateY(-2px);
+    }
+
+    .btn-pill-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 9px 20px;
+      border-radius: 100px;
+      border: none;
+      background: linear-gradient(135deg, var(--lima) 0%, var(--gy) 100%);
+      color: var(--ebano);
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 800;
+      box-shadow: 0 8px 24px rgba(184, 255, 59, 0.32);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+    }
+    .btn-pill-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 28px rgba(184, 255, 59, 0.45);
+    }
+    .btn-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--ebano);
+      border-radius: 50%;
+      box-shadow: 0 0 6px var(--ebano);
+      transition: transform 0.2s ease;
+    }
+    .btn-pill-primary:hover .btn-dot {
+      transform: scale(1.2);
+    }
+
+    /* CONTENEDOR GENERAL DE SECCIONES ESTILO APP */
+    .section-wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 80px clamp(16px, 4vw, 36px);
+    }
+
+    .sec-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em !important;
+      color: var(--lima);
+      background: rgba(184, 255, 59, 0.10);
+      border: 1px solid rgba(184, 255, 59, 0.32);
+      padding: 5px 14px;
+      border-radius: 100px;
+      margin-bottom: 12px;
+    }
+    .sec-title {
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 800;
+      color: var(--tinta);
+      letter-spacing: -0.038em !important;
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+    .sec-desc {
+      font-size: 16px;
+      color: var(--mut);
+      max-width: 680px;
+      line-height: 1.6;
+    }
+
+    /* ======================================================== */
+    /* 2. HERO CON SERVICIOS Y PARTICULAS (16s Loop)            */
+    /* ======================================================== */
+    .hero-section {
+      min-height: 86vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding-top: 116px;
+      padding-bottom: 50px;
+      position: relative;
+    }
+
+    /* Banner Destacado hacia Tarifas */
+    .hero-promo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 18px;
+      border-radius: 100px;
+      background: rgba(22, 36, 19, 0.85);
+      border: 1px solid var(--glass-border-lima);
+      color: var(--tinta);
+      font-size: 13.5px;
+      font-weight: 600;
+      text-decoration: none;
+      margin-bottom: 18px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 20px rgba(184, 255, 59, 0.08);
+      transition: all 0.25s ease;
+    }
+    .hero-promo-badge:hover {
+      border-color: var(--lima);
+      transform: translateY(-2px);
+      color: var(--lima);
+    }
+    .hero-promo-tag {
+      font-size: 11px;
+      font-weight: 800;
+      background: var(--lima);
+      color: var(--ebano);
+      padding: 3px 8px;
+      border-radius: 999px;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-canvas-container {
+      position: relative;
+      width: 100%;
+      max-width: 680px;
+      height: 240px;
+      margin: 0 auto 16px;
+    }
+    #heroCanvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .hero-tagline {
+      font-size: clamp(32px, 5.5vw, 54px);
+      font-weight: 800;
+      color: var(--tinta);
+      letter-spacing: -0.038em !important;
+      line-height: 1.12;
+      max-width: 860px;
+      margin: 0 auto 16px;
+    }
+
+    /* Display reactivo del servicio actual en Hero */
+    .hero-service-display {
+      min-height: 60px;
+      margin-bottom: 20px;
+    }
+    .hero-service-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--glass-surface);
+      backdrop-filter: blur(var(--glass-blur));
+      -webkit-backdrop-filter: blur(var(--glass-blur));
+      border: 1px solid var(--glass-border);
+      border-top: 1px solid var(--glass-border-lima);
+      padding: 10px 24px;
+      border-radius: 100px;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--lima);
+      box-shadow: var(--glass-shadow), 0 0 24px rgba(184, 255, 59, 0.12);
+      transition: opacity 0.5s ease;
+    }
+    .hero-ver-servicio-btn {
+      display: inline-block;
+      font-size: 13px;
+      color: var(--canario);
+      text-decoration: underline;
+      cursor: pointer;
+      margin-left: 6px;
+      font-weight: 600;
+    }
+
+    /* Puntos Indicadores del Hero */
+    .hero-dots-indicator {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+    .hero-dot-btn {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.18);
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .hero-dot-btn.active {
+      background: var(--lima);
+      box-shadow: 0 0 12px var(--lima);
+      transform: scale(1.25);
+    }
+
+    /* Botonera Principal en Hero */
+    .hero-cta-group {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+    .btn-hero-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 28px;
+      border-radius: 100px;
+      border: none;
+      background: linear-gradient(135deg, var(--lima) 0%, var(--gy) 100%);
+      color: var(--ebano);
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 800;
+      box-shadow: 0 10px 28px rgba(184, 255, 59, 0.38);
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+    .btn-hero-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 34px rgba(184, 255, 59, 0.50);
+    }
+    .btn-hero-sec {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 13px 26px;
+      border-radius: 100px;
+      border: 1.5px solid rgba(255, 255, 255, 0.18);
+      background: rgba(22, 36, 19, 0.7);
+      color: var(--tinta);
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 700;
+      backdrop-filter: blur(14px);
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+    .btn-hero-sec:hover {
+      border-color: var(--lima);
+      color: var(--lima);
+      transform: translateY(-3px);
+      background: rgba(184, 255, 59, 0.10);
+    }
+
+    /* 4 Chips de Confianza en Hero */
+    .hero-chips-wrap {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .hero-chip {
+      background: rgba(22, 36, 19, 0.65);
+      border: 1px solid var(--glass-border);
+      border-radius: 100px;
+      padding: 8px 18px;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--tinta);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      backdrop-filter: blur(12px);
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+    .hero-chip:hover {
+      border-color: var(--lima);
+      transform: translateY(-2px);
+      color: var(--lima);
+    }
+
+    /* Fallback accesibilidad reducido */
+    .hero-reduced-row {
+      display: none;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin: 20px 0;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-canvas-container { display: none !important; }
+      .hero-reduced-row { display: grid !important; }
+    }
+
+    /* ======================================================== */
+    /* 3. EMPIEZA AQUÍ (DOS CAMINOS DE REGISTRO CLAROS)         */
+    /* ======================================================== */
+    .start-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 36px;
+    }
+    @media (max-width: 768px) {
+      .start-cards-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .start-card {
+      background: var(--glass-surface);
+      backdrop-filter: blur(var(--glass-blur));
+      -webkit-backdrop-filter: blur(var(--glass-blur));
+      border: 1px solid var(--glass-border);
+      border-top: 1px solid var(--glass-border-lima);
+      border-radius: 24px;
+      padding: 36px 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--glass-shadow);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .start-card:hover {
+      border-color: var(--lima);
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.55), 0 0 32px rgba(184, 255, 59, 0.16);
+    }
+    .start-icon-container {
+      width: 54px;
+      height: 54px;
+      border-radius: 16px;
+      background: rgba(184, 255, 59, 0.12);
+      border: 1px solid var(--glass-border-lima);
+      display: grid;
+      place-items: center;
+      font-size: 26px;
+      margin-bottom: 20px;
+    }
+    .start-card-title {
+      font-size: 25px;
+      font-weight: 800;
+      color: var(--tinta);
+      margin-bottom: 12px;
+    }
+    .start-card-desc {
+      font-size: 15px;
+      color: var(--mut);
+      line-height: 1.6;
+      margin-bottom: 24px;
+      flex-grow: 1;
+    }
+    .start-perks-list {
+      list-style: none;
+      margin-bottom: 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .start-perk-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--tinta);
+      font-weight: 500;
+    }
+    .start-perk-item span.icon {
+      color: var(--lima);
+      font-size: 16px;
+    }
+
+    /* ======================================================== */
+    /* 4. NUESTROS SERVICIOS (17 CATEGORÍAS & TARIFAS)          */
+    /* ======================================================== */
+    .services-nav-scroller {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 10px 0 20px;
+      margin-bottom: 20px;
+      scrollbar-width: none;
+    }
+    .services-nav-scroller::-webkit-scrollbar {
+      display: none;
+    }
+    .cat-pill-chip {
+      white-space: nowrap;
+      padding: 8px 16px;
+      border-radius: 100px;
+      background: rgba(22, 36, 19, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: var(--tinta);
+      font-size: 13.5px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .cat-pill-chip:hover, .cat-pill-chip.active {
+      border-color: var(--lima);
+      background: rgba(184, 255, 59, 0.12);
+      color: var(--lima);
+      transform: translateY(-2px);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+    @media (max-width: 800px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .service-block-card {
+      background: var(--glass-surface);
+      backdrop-filter: blur(var(--glass-blur));
+      -webkit-backdrop-filter: blur(var(--glass-blur));
+      border: 1px solid var(--glass-border);
+      border-top: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 22px;
+      padding: 28px;
+      transition: all 0.25s ease;
+      scroll-margin-top: 100px;
+      box-shadow: var(--glass-shadow);
+    }
+    .service-block-card:hover,
+    .service-block-card.highlighted {
+      border-color: var(--lima);
+      border-top-color: var(--lima);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 28px rgba(184, 255, 59, 0.18);
+    }
+    .service-block-title {
+      font-size: 21px;
+      font-weight: 800;
+      color: var(--tinta);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .service-items-list {
+      list-style: none;
+      margin-bottom: 18px;
+    }
+    .service-item-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 11px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 14.5px;
+      transition: background 0.2s ease, padding 0.2s ease;
+    }
+    .service-item-row:hover {
+      background: rgba(184, 255, 59, 0.06);
+      padding-left: 8px;
+      padding-right: 8px;
+      border-radius: 8px;
+    }
+    .service-item-name {
+      color: var(--tinta);
+      font-weight: 500;
+    }
+    .service-item-price {
+      color: var(--lima);
+      font-weight: 800;
+      white-space: nowrap;
+    }
+    .service-block-footer {
+      font-size: 13px;
+      color: var(--mut);
+      line-height: 1.5;
+      padding-top: 14px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.12);
+    }
+
+    /* Banner CTA hacia el Tarifario Completo */
+    .catalog-callout-card {
+      margin-top: 32px;
+      background: linear-gradient(135deg, rgba(22, 36, 19, 0.85) 0%, rgba(12, 18, 10, 0.95) 100%);
+      border: 1px solid var(--glass-border-lima);
+      border-radius: 24px;
+      padding: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 28px rgba(184, 255, 59, 0.1);
+    }
+    .catalog-callout-info h3 {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--tinta);
+      margin-bottom: 6px;
+    }
+    .catalog-callout-info p {
+      font-size: 14.5px;
+      color: var(--mut);
+      max-width: 600px;
+    }
+
+    /* ======================================================== */
+    /* 5. CÓMO FUNCIONA PARA EL CLIENTE                         */
+    /* ======================================================== */
+    .steps-container {
+      margin-top: 36px;
+      position: relative;
+    }
+    .steps-line-track {
+      position: absolute;
+      top: 24px;
+      bottom: 24px;
+      left: 27px;
+      width: 3px;
+      background: rgba(255, 255, 255, 0.12);
+      z-index: 1;
+    }
+    .steps-line-fill {
+      width: 100%;
+      height: 0%;
+      background: var(--lima);
+      box-shadow: 0 0 12px var(--lima);
+      transition: height 2s ease;
+    }
+    .step-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 22px;
+      margin-bottom: 26px;
+      position: relative;
+      z-index: 2;
+    }
+    .step-item:last-child {
+      margin-bottom: 0;
+    }
+    .step-number {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: var(--noche);
+      border: 2px solid rgba(255, 255, 255, 0.18);
+      color: var(--tinta);
+      font-size: 18px;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+      transition: all 0.3s ease;
+    }
+    .step-item.active .step-number {
+      border-color: var(--lima);
+      color: var(--ebano);
+      background: var(--lima);
+      box-shadow: 0 0 20px rgba(184, 255, 59, 0.55);
+    }
+    .step-content {
+      padding-top: 10px;
+      background: var(--glass-surface);
+      border: 1px solid var(--glass-border);
+      border-radius: 18px;
+      padding: 16px 22px;
+      flex: 1;
+      backdrop-filter: blur(12px);
+    }
+    .step-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--tinta);
+      line-height: 1.4;
+    }
+
+    /* ======================================================== */
+    /* 6. PAGO PROTEGIDO (TRI-MODAL WOMPI ESCROW)               */
+    /* ======================================================== */
+    .haz-resplandor-wompi {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 900px;
+      height: 480px;
+      background: radial-gradient(ellipse 60% 40% at 50% 100%, rgba(255, 250, 112, 0.14) 0%, rgba(184, 255, 59, 0.08) 40%, transparent 75%);
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(45px);
+    }
+    .trust-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-top: 36px;
+      position: relative;
+      z-index: 1;
+    }
+    @media (max-width: 860px) {
+      .trust-cards-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .trust-card {
+      background: var(--glass-surface);
+      backdrop-filter: blur(var(--glass-blur));
+      -webkit-backdrop-filter: blur(var(--glass-blur));
+      border: 1px solid var(--glass-border);
+      border-top: 1px solid var(--glass-border-lima);
+      border-radius: 22px;
+      padding: 30px 24px;
+      text-align: center;
+      box-shadow: var(--glass-shadow);
+      transition: all 0.25s ease;
+    }
+    .trust-card:hover {
+      border-color: var(--lima);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 28px rgba(184, 255, 59, 0.16);
+    }
+    .trust-card-icon {
+      font-size: 34px;
+      margin-bottom: 16px;
+      display: inline-block;
+    }
+    .trust-card-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--tinta);
+      margin-bottom: 10px;
+    }
+    .trust-card-desc {
+      font-size: 14px;
+      color: var(--mut);
+      line-height: 1.6;
+    }
+
+    /* ======================================================== */
+    /* 7. CREDENCIAL QR EN PUERTA                               */
+    /* ======================================================== */
+    .qr-badge-card {
+      background: var(--glass-surface);
+      backdrop-filter: blur(var(--glass-blur));
+      -webkit-backdrop-filter: blur(var(--glass-blur));
+      border: 1px solid var(--glass-border);
+      border-top: 1px solid var(--glass-border-lima);
+      border-radius: 24px;
+      padding: clamp(26px, 4vw, 40px);
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      margin-top: 32px;
+      flex-wrap: wrap;
+      box-shadow: var(--glass-shadow);
+    }
+    .qr-box {
+      width: 140px;
+      height: 140px;
+      background: rgba(0, 0, 0, 0.7);
+      border: 1.5px solid var(--lima);
+      border-radius: 16px;
+      padding: 10px;
+      display: grid;
+      grid-template-columns: repeat(10, 1fr);
+      gap: 2px;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+      box-shadow: 0 0 24px rgba(184, 255, 59, 0.25);
+    }
+    .qr-scan-line {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2.5px;
+      background: var(--lima);
+      box-shadow: 0 0 12px var(--lima);
+      animation: qrScan 2.5s ease-in-out infinite alternate;
+    }
+    @keyframes qrScan {
+      0% { top: 6px; }
+      100% { top: 130px; }
+    }
+    .qr-cell {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 1px;
+    }
+    .qr-cell.filled {
+      background: var(--lima);
+    }
+    .qr-info-content {
+      flex: 1;
+      min-width: 260px;
+    }
+    .qr-info-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--tinta);
+      margin-bottom: 8px;
+    }
+    .qr-info-desc {
+      font-size: 15px;
+      color: var(--mut);
+      line-height: 1.6;
+    }
+
+    /* ======================================================== */
+    /* 8. PROTOCOLO DE SEGURIDAD (ACORDEÓN ESTILO APP)          */
+    /* ======================================================== */
+    .protocol-accordion {
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .protocol-item {
+      background: var(--glass-surface);
+      backdrop-filter: blur(var(--glass-blur));
+      -webkit-backdrop-filter: blur(var(--glass-blur));
+      border: 1px solid var(--glass-border);
+      border-radius: 18px;
+      overflow: hidden;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+    .protocol-item.open {
+      border-color: var(--lima);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4), 0 0 20px rgba(184, 255, 59, 0.12);
+    }
+    .protocol-header {
+      padding: 18px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      user-select: none;
+    }
+    .protocol-header h3 {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--tinta);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .protocol-chevron {
+      color: var(--lima);
+      transition: transform 0.3s ease;
+      font-size: 14px;
+      font-weight: 800;
+    }
+    .protocol-item.open .protocol-chevron {
+      transform: rotate(180deg);
+    }
+    .protocol-body {
+      display: none;
+      padding: 0 24px 22px;
+      font-size: 14.5px;
+      color: var(--mut);
+      line-height: 1.6;
+    }
+    .protocol-item.open .protocol-body {
+      display: block;
+    }
+
+    /* ======================================================== */
+    /* 9. PIE DE PÁGINA ESTILO APP                              */
+    /* ======================================================== */
+    .site-footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      background: #080C07;
+      padding: 60px clamp(16px, 4vw, 40px) 130px;
+      position: relative;
+      z-index: 1;
+    }
+    .footer-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 32px;
+    }
+    .footer-brand h4 {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--tinta);
+      margin-bottom: 6px;
+    }
+    .footer-brand p {
+      font-size: 13.5px;
+      color: var(--mut);
+      max-width: 380px;
+      line-height: 1.5;
+    }
+    .footer-links {
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .footer-col h5 {
+      font-size: 13px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--lima);
+      margin-bottom: 12px;
+    }
+    .footer-col ul {
+      list-style: none;
+    }
+    .footer-col li {
+      margin-bottom: 8px;
+    }
+    .footer-col a {
+      color: var(--mut);
+      text-decoration: none;
+      font-size: 13.5px;
+      transition: color 0.2s ease;
+    }
+    .footer-col a:hover {
+      color: var(--tinta);
+    }
+    .footer-bottom {
+      max-width: 1080px;
+      margin: 40px auto 0;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      font-size: 12.5px;
+      color: var(--mut);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    /* ======================================================== */
+    /* 10. BANNER DE COOKIES (Solo Abajo, Máx 120px)            */
+    /* ======================================================== */
+    .cookie-banner {
+      position: fixed;
+      bottom: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(100% - 32px);
+      max-width: 860px;
+      max-height: 120px;
+      background: rgba(12, 18, 10, 0.95);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--glass-border-lima);
+      border-radius: 18px;
+      padding: 14px 22px;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .cookie-text {
+      font-size: 12.5px;
+      color: var(--mut);
+      line-height: 1.4;
+      flex: 1;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+    .cookie-actions {
+      display: flex;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+    .btn-cookie-accept {
+      background: linear-gradient(135deg, var(--lima) 0%, var(--gy) 100%);
+      color: var(--ebano);
+      font-size: 12px;
+      font-weight: 800;
+      padding: 8px 18px;
+      border-radius: 100px;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-cookie-config {
+      background: transparent;
+      color: var(--tinta);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: 100px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 600px) {
+      .cookie-banner {
+        flex-direction: column;
+        align-items: flex-start;
+        max-height: 140px;
+      }
+      .cookie-actions {
+        width: 100%;
+        justify-content: flex-end;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Fondo bioluminiscente con orbes difusos (Animación preservada) -->
+  <div class="bg-glow-layer" aria-hidden="true">
+    <div class="glow-orb glow-orb-1"></div>
+    <div class="glow-orb glow-orb-2"></div>
+    <div class="glow-orb glow-orb-3"></div>
+  </div>
+
+  <!-- 1. BARRA SUPERIOR FIJA ESTILO APP -->
+  <header class="top-bar" id="topBar">
+    <a href="/entrada" class="brand-logo">
+      <span class="brand-logo-dot pulse-c" aria-hidden="true"></span>
+      <span>rebuske</span>
+      <span class="brand-tag">Medellín 2026</span>
+    </a>
+    <div class="top-actions">
+      <a href="/app" class="btn-pill-sec" title="Abrir App Web Interactiva">
+        📱 App Web
+      </a>
+      <a href="/tarifas" class="btn-pill-sec" title="Ver 17 Categorías y Tarifas">
+        ✨ Tarifas
+      </a>
+      <a href="https://wa.me/573043812882?text=Hola%20Laura%2C%20quiero%20conocer%20m%C3%A1s%20sobre%20rebuske" target="_blank" rel="noopener noreferrer" class="btn-pill-sec" title="Chat directo por WhatsApp con Laura">
+        WhatsApp
+      </a>
+      <a href="/registro/tecnico" class="btn-pill-sec" style="font-size:13px;">Soy Técnico</a>
+      <a href="/registro/cliente" class="btn-pill-primary" style="font-size:13px;padding:8px 18px;">
+        Registro Cliente <span class="btn-dot" aria-hidden="true"></span>
+      </a>
+    </div>
+  </header>
+
+  <!-- 2. HERO CON SERVICIOS Y PARTICULAS (16s Loop Preservado) -->
+  <section class="section-wrap hero-section">
+    
+    <!-- Banner de Acceso al Catálogo de 17 Categorías -->
+    <a href="/tarifas" class="hero-promo-badge elevate-hover reveal-cascade">
+      <span class="hero-promo-tag">OFICIAL 2026</span>
+      <span>17 Categorías · Bóveda de Clases & Multiservicios</span>
+      <span style="color:var(--lima);">Ver Tarifas ➔</span>
+    </a>
+
+    <div class="hero-canvas-container">
+      <canvas id="heroCanvas"></canvas>
+    </div>
+
+    <!-- Fallback accesibilidad reducido -->
+    <div class="hero-reduced-row">
+      <div class="hero-chip">🔧 Plomería · desde $60k</div>
+      <div class="hero-chip">⚡ Electricidad · desde $50k</div>
+      <div class="hero-chip">🔑 Cerrajería · desde $60k</div>
+      <div class="hero-chip">✨ Aseo · desde $70k</div>
+    </div>
+
+    <div class="mask-slide-wrap">
+      <h1 class="hero-tagline mask-slide-inner">Tu Hogar Protegido. Tu Mano de Obra Valorada.</h1>
+    </div>
+
+    <p class="sec-desc reveal-cascade stagger-1" style="margin: 0 auto 20px; font-size: 17px; max-width: 760px;">
+      La plataforma de multiservicios de Medellín con pago protegido en <strong>Bóveda Wompi (Escrow)</strong>, 
+      técnicos verificados con cédula biométrica y <strong>Acta Digital de Garantía de 48 horas</strong>.
+    </p>
+
+    <!-- Display reactivo del servicio actual -->
+    <div class="hero-service-display reveal-cascade stagger-2">
+      <div class="hero-service-badge float-d-1" id="heroServiceBadge">
+        <span id="heroServiceIcon" style="font-size: 20px;">🔧</span>
+        <span id="heroServiceName">Plomería · desde $60.000 COP</span>
+        <span class="hero-ver-servicio-btn" onclick="scrollearAServicio(heroCurrentServiceIdx)">Ver detalle ➔</span>
+      </div>
+    </div>
+
+    <!-- 4 Puntos Indicadores del Hero -->
+    <div class="hero-dots-indicator reveal-cascade stagger-3" id="heroDotsWrap">
+      <button class="hero-dot-btn active" onclick="seleccionarServicioHero(0)" aria-label="Plomería"></button>
+      <button class="hero-dot-btn" onclick="seleccionarServicioHero(1)" aria-label="Electricidad"></button>
+      <button class="hero-dot-btn" onclick="seleccionarServicioHero(2)" aria-label="Cerrajería"></button>
+      <button class="hero-dot-btn" onclick="seleccionarServicioHero(3)" aria-label="Aseo"></button>
+    </div>
+
+    <!-- Botonera Central Hero estilo App -->
+    <div class="hero-cta-group reveal-cascade stagger-4">
+      <a href="/registro/tecnico" class="btn-hero-primary">
+        <span>Soy Profesional / Técnico (99% Neto Mes 1)</span>
+        <span>➔</span>
+      </a>
+      <a href="/registro/cliente" class="btn-hero-sec">
+        <span>Registro Clientes VIP (Bono $15.000)</span>
+      </a>
+      <a href="/app" class="btn-hero-sec" style="border-color: rgba(184, 255, 59, 0.35);">
+        <span>📱 Abrir App Web</span>
+      </a>
+    </div>
+
+    <!-- 4 Chips de Confianza -->
+    <div class="hero-chips-wrap reveal-cascade stagger-5">
+      <span class="hero-chip elevate-hover"><span aria-hidden="true">🔒</span> Bóveda Wompi Escrow (Bancolombia)</span>
+      <span class="hero-chip elevate-hover"><span aria-hidden="true">📜</span> 48h Garantía Ley 1480</span>
+      <span class="hero-chip elevate-hover"><span aria-hidden="true">👩‍🔧</span> Red de Servicios Profesionales</span>
+      <span class="hero-chip elevate-hover"><span aria-hidden="true">🥇</span> Primeros 100 Cupos al 1% Comisión</span>
+    </div>
+  </section>
+
+  <!-- 3. EMPIEZA AQUÍ (DOS CAMINOS DE REGISTRO CLAROS) -->
+  <section class="section-wrap" id="empieza-aqui">
+    <div style="text-align:center;">
+      <span class="sec-tag reveal-cascade">Elige tu camino</span>
+      <div class="mask-slide-wrap">
+        <h2 class="sec-title mask-slide-inner">Empieza aquí</h2>
+      </div>
+      <p class="sec-desc reveal-cascade stagger-1" style="margin:0 auto;">Selecciona tu perfil para ingresar al ecosistema protegido de rebuske en Medellín:</p>
+    </div>
+
+    <div class="start-cards-grid">
+      <!-- Tarjeta 1: Técnico Profesional -->
+      <div class="start-card elevate-hover reveal-cascade stagger-2">
+        <div>
+          <div class="start-icon-container pulse-c" aria-hidden="true">🛠️</div>
+          <h3 class="start-card-title">Soy Profesional / Técnico</h3>
+          <p class="start-card-desc">
+            Únete a la red con el mejor esquema de remuneración de Colombia. Tu dinero no se pierde: cobras seguro en tu cuenta bancaria respaldado por la plataforma.
+          </p>
+          <ul class="start-perks-list">
+            <li class="start-perk-item"><span class="icon">✓</span> <strong>Beneficio Mes 1:</strong> Solo 1% de comisión (te llevas el 99% neto de tus labores).</li>
+            <li class="start-perk-item"><span class="icon">✓</span> <strong>Placas por mérito:</strong> Bronce (9%), Plata (8%) y Oro (7%).</li>
+            <li class="start-perk-item"><span class="icon">✓</span> <strong>Cero impagos:</strong> La Bóveda Wompi asegura los fondos antes de que inicies el trabajo.</li>
+          </ul>
+        </div>
+        <a href="/registro/tecnico" class="btn-hero-primary" style="width:100%;text-align:center;">
+          Registrarme como Técnico ➔
+        </a>
+      </div>
+
+      <!-- Tarjeta 2: Cliente Hogar VIP -->
+      <div class="start-card elevate-hover reveal-cascade stagger-3">
+        <div>
+          <div class="start-icon-container pulse-c" aria-hidden="true" style="background:rgba(255,250,112,0.12);border-color:rgba(255,250,112,0.3);">🏠</div>
+          <h3 class="start-card-title">Soy Hogar / Cliente VIP</h3>
+          <p class="start-card-desc">
+            Contrata con total tranquilidad en Medellín. Especialistas verificados, pagos en custodia que solo se liberan tras tu visto bueno y respaldo con acta digital de 48h.
+          </p>
+          <ul class="start-perks-list">
+            <li class="start-perk-item"><span class="icon">✓</span> <strong>Custodia Total:</strong> Tu dinero queda en Bóveda Wompi y no se desembolsa hasta que apruebes.</li>
+            <li class="start-perk-item"><span class="icon">✓</span> <strong>Garantía 48 horas:</strong> Acta formal legalmente vinculante conforme a la Ley 1480.</li>
+            <li class="start-perk-item"><span class="icon">✓</span> <strong>Bono VIP:</strong> $15.000 COP de descuento para tu primer servicio.</li>
+          </ul>
+        </div>
+        <a href="/registro/cliente" class="btn-hero-sec" style="width:100%;text-align:center;border-color:var(--lima);color:var(--lima);">
+          Registro Clientes VIP (Bono $15.000) ➔
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. NUESTROS SERVICIOS (17 CATEGORÍAS & PRECIOS MEDELLÍN) -->
+  <section class="section-wrap" id="nuestros-servicios">
+    <div style="text-align:center;">
+      <span class="sec-tag reveal-cascade">Tarifas Transparentes Medellín 2026</span>
+      <div class="mask-slide-wrap">
+        <h2 class="sec-title mask-slide-inner">Nuestros Servicios</h2>
+      </div>
+      <p class="sec-desc reveal-cascade stagger-1" style="margin:0 auto 20px;">
+        17 categorías oficiales y más de 85 sub-servicios con precios de referencia honestos para el Valle de Aburrá:
+      </p>
+    </div>
+
+    <!-- Scroller Horizontal de Categorías estilo App -->
+    <div class="services-nav-scroller reveal-cascade stagger-2">
+      <a href="/tarifas" class="cat-pill-chip active"><span>🧹</span> Limpieza y Aseo</a>
+      <a href="/tarifas" class="cat-pill-chip"><span>🔧</span> Plomería</a>
+      <a href="/tarifas" class="cat-pill-chip"><span>⚡</span> Electricidad</a>
+      <a href="/tarifas" class="cat-pill-chip"><span>🎨</span> Pintura & Acabados</a>
+      <a href="/tarifas" class="cat-pill-chip"><span>🪚</span> Carpintería</a>
+      <a href="/tarifas" class="cat-pill-chip"><span>🔑</span> Cerrajería</a>
+      <a href="/tarifas" class="cat-pill-chip"><span>🌿</span> Jardinería</a>
+      <a href="/tarifas" class="cat-pill-chip"><span>🏗️</span> Remodelación</a>
+      <a href="/tarifas" class="cat-pill-chip"><span>📦</span> Mudanzas</a>
+      <a href="/tarifas" class="cat-pill-chip"><span>❄️</span> Electrodomésticos</a>
+      <a href="/tarifas" class="cat-pill-chip"><span>💻</span> Tecnología</a>
+      <a href="/tarifas" class="cat-pill-chip"><span>🚗</span> Automóviles</a>
+      <a href="/tarifas" class="cat-pill-chip"><span>📱</span> Diseño & Web</a>
+      <a href="/tarifas" class="cat-pill-chip"><span>🎓</span> Clases & Música</a>
+      <a href="/tarifas" class="cat-pill-chip"><span>💇</span> Belleza & Cuidado</a>
+      <a href="/tarifas" class="cat-pill-chip"><span>🎉</span> Eventos</a>
+      <a href="/tarifas" class="cat-pill-chip"><span>⚖️</span> Profesionales</a>
+    </div>
+
+    <div class="services-grid">
+      <!-- Bloque Plomería -->
+      <div class="service-block-card elevate-hover reveal-cascade stagger-1" id="srv-block-0">
+        <h3 class="service-block-title">
+          <span aria-hidden="true">🔧</span> Plomería
+        </h3>
+        <ul class="service-items-list">
+          <li class="service-item-row">
+            <span class="service-item-name">Destape de cañerías / sifón simple</span>
+            <span class="service-item-price">desde $60.000 COP</span>
+          </li>
+          <li class="service-item-row">
+            <span class="service-item-name">Cambio de grifería o mezclador</span>
+            <span class="service-item-price">desde $75.000 COP</span>
+          </li>
+          <li class="service-item-row">
+            <span class="service-item-name">Detección y reparación de fuga</span>
+            <span class="service-item-price">desde $90.000 COP</span>
+          </li>
+        </ul>
+        <div class="service-block-footer">
+          Visita diagnóstica $35.000 COP, abonable al 100% del trabajo si se ejecuta. Garantía escrita de 48 horas.
+        </div>
+      </div>
+
+      <!-- Bloque Electricidad -->
+      <div class="service-block-card elevate-hover reveal-cascade stagger-2" id="srv-block-1">
+        <h3 class="service-block-title">
+          <span aria-hidden="true">⚡</span> Electricidad
+        </h3>
+        <ul class="service-items-list">
+          <li class="service-item-row">
+            <span class="service-item-name">Cambio de toma o interruptor</span>
+            <span class="service-item-price">desde $50.000 COP</span>
+          </li>
+          <li class="service-item-row">
+            <span class="service-item-name">Instalación de lámpara o ventilador</span>
+            <span class="service-item-price">desde $70.000 COP</span>
+          </li>
+          <li class="service-item-row">
+            <span class="service-item-name">Revisión y arreglo de cortocircuito</span>
+            <span class="service-item-price">desde $80.000 COP</span>
+          </li>
+        </ul>
+        <div class="service-block-footer">
+          Diagnóstico $35.000 COP abonable. Técnicos certificados con matrícula o peritaje técnico rebuske.
+        </div>
+      </div>
+
+      <!-- Bloque Cerrajería -->
+      <div class="service-block-card elevate-hover reveal-cascade stagger-3" id="srv-block-2">
+        <h3 class="service-block-title">
+          <span aria-hidden="true">🔑</span> Cerrajería
+        </h3>
+        <ul class="service-items-list">
+          <li class="service-item-row">
+            <span class="service-item-name">Apertura express de puerta residencial</span>
+            <span class="service-item-price">desde $60.000 COP</span>
+          </li>
+          <li class="service-item-row">
+            <span class="service-item-name">Cambio de pomo o cerradura tradicional</span>
+            <span class="service-item-price">desde $70.000 COP</span>
+          </li>
+          <li class="service-item-row">
+            <span class="service-item-name">Instalación de cerradura de seguridad digital</span>
+            <span class="service-item-price">desde $150.000 COP</span>
+          </li>
+        </ul>
+        <div class="service-block-footer">
+          Atención prioritaria en tu comuna. Garantía escrita de 48 horas en mano de obra.
+        </div>
+      </div>
+
+      <!-- Bloque Aseo -->
+      <div class="service-block-card elevate-hover reveal-cascade stagger-4" id="srv-block-3">
+        <h3 class="service-block-title">
+          <span aria-hidden="true">✨</span> Limpieza y Aseo
+        </h3>
+        <ul class="service-items-list">
+          <li class="service-item-row">
+            <span class="service-item-name">Media Jornada de Limpieza y Aseo (4 horas)</span>
+            <span class="service-item-price">desde $70.000 COP</span>
+          </li>
+          <li class="service-item-row">
+            <span class="service-item-name">Jornada Completa de Limpieza (8 horas)</span>
+            <span class="service-item-price">desde $110.000 COP</span>
+          </li>
+          <li class="service-item-row">
+            <span class="service-item-name">Limpieza profunda / post-remodelación</span>
+            <span class="service-item-price">desde $140.000 COP</span>
+          </li>
+        </ul>
+        <div class="service-block-footer">
+          Personal de confianza verificado con antecedentes y calificación comunitaria en Medellín.
+        </div>
+      </div>
+    </div>
+
+    <!-- Callout Card hacia Tarifas Oficiales -->
+    <div class="catalog-callout-card elevate-hover reveal-cascade">
+      <div class="catalog-callout-info">
+        <h3>¿Necesitas clases de música, mudanzas o diseño digital?</h3>
+        <p>
+          Explora el catálogo completo con las <strong>17 categorías oficiales</strong> (incluyendo el sistema de Bóveda Progresiva para clases de 2 a 4 semanas) y tarifas de referencia de Medellín.
+        </p>
+      </div>
+      <a href="/tarifas" class="btn-hero-primary">
+        Ver Catálogo Completo (17 Categorías) ➔
+      </a>
+    </div>
+  </section>
+
+  <!-- 5. CÓMO FUNCIONA PARA EL CLIENTE -->
+  <section class="section-wrap" id="como-funciona">
+    <div style="text-align:center;">
+      <span class="sec-tag reveal-cascade">Flujo Seguro</span>
+      <div class="mask-slide-wrap">
+        <h2 class="sec-title mask-slide-inner">Cómo funciona para el cliente</h2>
+      </div>
+      <p class="sec-desc reveal-cascade stagger-1" style="margin:0 auto;">
+        Tu dinero y tu hogar 100% protegidos desde la solicitud hasta la firma del acta de garantía:
+      </p>
+    </div>
+
+    <div class="steps-container">
+      <div class="steps-line-track">
+        <div class="steps-line-fill" id="stepsLineFill"></div>
+      </div>
+
+      <!-- Paso 1 -->
+      <div class="step-item reveal-cascade stagger-1" id="step-node-1">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h3 class="step-title">Elige el servicio que necesitas entre las 17 categorías disponibles.</h3>
+        </div>
+      </div>
+
+      <!-- Paso 2 -->
+      <div class="step-item reveal-cascade stagger-2" id="step-node-2">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h3 class="step-title">Indica tu comuna y dirección en Medellín para ubicar profesionales cercanos.</h3>
+        </div>
+      </div>
+
+      <!-- Paso 3 -->
+      <div class="step-item reveal-cascade stagger-3" id="step-node-3">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h3 class="step-title">Recibe perfiles verificados con su cédula, calificación real y elige el que prefieras.</h3>
+        </div>
+      </div>
+
+      <!-- Paso 4 -->
+      <div class="step-item reveal-cascade stagger-4" id="step-node-4">
+        <div class="step-number">4</div>
+        <div class="step-content">
+          <h3 class="step-title">Paga en Bóveda Wompi (Escrow): tu dinero queda en custodia en Bancolombia y no se toca.</h3>
+        </div>
+      </div>
+
+      <!-- Paso 5 -->
+      <div class="step-item reveal-cascade stagger-5" id="step-node-5">
+        <div class="step-number">5</div>
+        <div class="step-content">
+          <h3 class="step-title">Aprueba el trabajo. Se libera el pago y recibes el acta digital de garantía de 48 horas.</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. PAGO PROTEGIDO (TRI-MODAL WOMPI ESCROW) -->
+  <section class="section-wrap" id="pago-protegido">
+    <!-- Resplandor bioluminiscente con base cálida -->
+    <div class="haz-resplandor-wompi" aria-hidden="true"></div>
+
+    <div style="text-align:center;position:relative;z-index:1;">
+      <span class="sec-tag reveal-cascade">Bóveda Wompi Escrow (Bancolombia)</span>
+      <div class="mask-slide-wrap">
+        <h2 class="sec-title mask-slide-inner">Pago protegido para cada labor</h2>
+      </div>
+      <p class="sec-desc reveal-cascade stagger-1" style="margin:0 auto;">
+        Blindaje financiero formal para clientes y profesionales independientes en el Valle de Aburrá:
+      </p>
+    </div>
+
+    <div class="trust-cards-grid">
+      <div class="trust-card elevate-hover reveal-cascade stagger-1">
+        <div class="trust-card-icon pulse-c" aria-hidden="true">🛠️</div>
+        <h3 class="trust-card-title">1. Por Labor Única (Escrow 100%)</h3>
+        <p class="trust-card-desc">
+          Para reparaciones del hogar: el valor queda custodiado en Bóveda Wompi y solo se desembolsa al técnico tras tu visto bueno y firma del acta de 48 horas.
+        </p>
+      </div>
+
+      <div class="trust-card elevate-hover reveal-cascade stagger-2" style="border-top-color:var(--canario);background:rgba(26,38,20,0.85);">
+        <div class="trust-card-icon pulse-c" aria-hidden="true">🎓</div>
+        <h3 class="trust-card-title" style="color:var(--canario);">2. Bóveda de Sesiones Progresivas</h3>
+        <p class="trust-card-desc">
+          Para clases de música, tutorías o idiomas: nadie aprende en un día. Pagas el pack de 2 a 4 semanas en Bóveda y se libera sesión a sesión al registrar asistencia mutua. Saldo no visto 100% reembolsable.
+        </p>
+      </div>
+
+      <div class="trust-card elevate-hover reveal-cascade stagger-3">
+        <div class="trust-card-icon pulse-c" aria-hidden="true">📐</div>
+        <h3 class="trust-card-title">3. Proyectos por Hitos Certificados</h3>
+        <p class="trust-card-desc">
+          Para remodelaciones, carpintería a medida o diseño digital: desembolsos escalonados (30% inicio/materiales, 35% avance con peritaje fotográfico y 35% entrega final a satisfacción).
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. CREDENCIAL QR EN PUERTA -->
+  <section class="section-wrap" id="credencial-qr">
+    <div class="qr-badge-card elevate-hover reveal-cascade">
+      <div class="qr-box" aria-hidden="true">
+        <div class="qr-scan-line"></div>
+        <div class="qr-cell filled"></div><div class="qr-cell filled"></div><div class="qr-cell"></div><div class="qr-cell filled"></div><div class="qr-cell"></div><div class="qr-cell filled"></div><div class="qr-cell filled"></div><div class="qr-cell"></div><div class="qr-cell filled"></div><div class="qr-cell filled"></div>
+        <div class="qr-cell filled"></div><div class="qr-cell"></div><div class="qr-cell filled"></div><div class="qr-cell"></div><div class="qr-cell filled"></div><div class="qr-cell"></div><div class="qr-cell filled"></div><div class="qr-cell filled"></div><div class="qr-cell"></div><div class="qr-cell filled"></div>
+        <div class="qr-cell"></div><div class="qr-cell filled"></div><div class="qr-cell filled"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell filled"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell filled"></div><div class="qr-cell"></div>
+        <div class="qr-cell filled"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell filled"></div><div class="qr-cell filled"></div><div class="qr-cell"></div><div class="qr-cell filled"></div><div class="qr-cell filled"></div><div class="qr-cell"></div><div class="qr-cell filled"></div>
+        <div class="qr-cell"></div><div class="qr-cell filled"></div><div class="qr-cell filled"></div><div class="qr-cell filled"></div><div class="qr-cell"></div><div class="qr-cell filled"></div><div class="qr-cell"></div><div class="qr-cell filled"></div><div class="qr-cell filled"></div><div class="qr-cell"></div>
+        <div class="qr-cell filled"></div><div class="qr-cell"></div><div class="qr-cell filled"></div><div class="qr-cell"></div><div class="qr-cell filled"></div><div class="qr-cell filled"></div><div class="qr-cell filled"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell filled"></div>
+        <div class="qr-cell filled"></div><div class="qr-cell filled"></div><div class="qr-cell"></div><div class="qr-cell filled"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell filled"></div><div class="qr-cell filled"></div><div class="qr-cell filled"></div><div class="qr-cell filled"></div>
+        <div class="qr-cell"></div><div class="qr-cell filled"></div><div class="qr-cell filled"></div><div class="qr-cell"></div><div class="qr-cell filled"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell filled"></div><div class="qr-cell"></div><div class="qr-cell filled"></div>
+        <div class="qr-cell filled"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell filled"></div><div class="qr-cell filled"></div><div class="qr-cell filled"></div><div class="qr-cell filled"></div><div class="qr-cell"></div><div class="qr-cell filled"></div><div class="qr-cell"></div>
+        <div class="qr-cell filled"></div><div class="qr-cell filled"></div><div class="qr-cell filled"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell filled"></div><div class="qr-cell filled"></div><div class="qr-cell filled"></div>
+      </div>
+      <div class="qr-info-content">
+        <span class="sec-tag">Seguridad Domiciliaria</span>
+        <h3 class="qr-info-title">Credencial QR en puerta</h3>
+        <p class="qr-info-desc">
+          Antes de abrir la puerta de tu hogar, escanea con la cámara de tu celular la credencial digital del profesional. El sistema valida en tiempo real su identidad biométrica cotejada, antecedentes policivos y orden de servicio activa en tu comuna.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. PROTOCOLO OFICIAL DE SEGURIDAD Y GARANTÍAS -->
+  <section class="section-wrap" id="protocolo-seguridad">
+    <div style="text-align:center;">
+      <span class="sec-tag reveal-cascade">Protección Integral</span>
+      <div class="mask-slide-wrap">
+        <h2 class="sec-title mask-slide-inner">Protocolo oficial de seguridad y garantías</h2>
+      </div>
+      <p class="sec-desc reveal-cascade stagger-1" style="margin:0 auto;">
+        Los cuatro pilares normativos y operativos que blindan cada visita técnica en Medellín:
+      </p>
+    </div>
+
+    <div class="protocol-accordion">
+      <!-- Pieza 1 -->
+      <div class="protocol-item open reveal-cascade stagger-1">
+        <div class="protocol-header" onclick="toggleProtocol(this)">
+          <h3><span aria-hidden="true">🔍</span> Peritaje Técnico 100%</h3>
+          <span class="protocol-chevron" aria-hidden="true">▼</span>
+        </div>
+        <div class="protocol-body">
+          Cada técnico registrado en rebuske atraviesa verificación de antecedentes penales en Policía Nacional, Procuraduría y Contraloría, junto a prueba técnica de oficio y cotejo de identidad biométrica facial.
+        </div>
+      </div>
+
+      <!-- Pieza 2 -->
+      <div class="protocol-item reveal-cascade stagger-2">
+        <div class="protocol-header" onclick="toggleProtocol(this)">
+          <h3><span aria-hidden="true">🔒</span> Bóveda Wompi (Escrow)</h3>
+          <span class="protocol-chevron" aria-hidden="true">▼</span>
+        </div>
+        <div class="protocol-body">
+          El cliente nunca le transfiere dinero directamente a cuentas personales sin garantía. Los fondos quedan retenidos en una bóveda fiduciaria regulada por la Superintendencia Financiera a través de Wompi (Bancolombia) y solo se desembolsan contra firma de satisfacción.
+        </div>
+      </div>
+
+      <!-- Pieza 3 -->
+      <div class="protocol-item reveal-cascade stagger-3">
+        <div class="protocol-header" onclick="toggleProtocol(this)">
+          <h3><span aria-hidden="true">📍</span> Despacho Inmediato en Comunas</h3>
+          <span class="protocol-chevron" aria-hidden="true">▼</span>
+        </div>
+        <div class="protocol-body">
+          Rastreo de disponibilidad en las 16 comunas y 5 corregimientos de Medellín (El Poblado, Laureles, Belén, Robledo, Envigado, Itagüí, Bello). El técnico más cercano recibe la notificación y llega en minutos sin sobrecostos arbitrarios.
+        </div>
+      </div>
+
+      <!-- Pieza 4 -->
+      <div class="protocol-item reveal-cascade stagger-4">
+        <div class="protocol-header" onclick="toggleProtocol(this)">
+          <h3><span aria-hidden="true">📜</span> Garantía Escrita de 48 Horas (Ley 1480)</h3>
+          <span class="protocol-chevron" aria-hidden="true">▼</span>
+        </div>
+        <div class="protocol-body">
+          Conforme al Estatuto del Consumidor (Ley 1480 de 2011), cada labor finalizada genera un Acta Digital de Garantía con vigencia de 48 horas. Si la fuga persiste, la cerradura falla o el trabajo presenta imperfecciones, el técnico regresa sin costo alguno o se reembolsa el 100% de la bóveda.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. PIE DE PÁGINA ESTILO APP -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <h4>rebuske Medellín 2026</h4>
+        <p>Plataforma fundada por <strong>Camilo Escobar</strong> en Medellín. Ecosistema de multiservicios bajo demanda y trabajo independiente. Tu hogar protegido, tu mano de obra valorada.</p>
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Plataforma</h5>
+          <ul>
+            <li><a href="/app">App Web Interactiva</a></li>
+            <li><a href="/tarifas">Tarifas y 17 Categorías</a></li>
+            <li><a href="/registro/tecnico">Registro Profesionales</a></li>
+            <li><a href="/registro/cliente">Registro Clientes VIP</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Legal & Seguridad</h5>
+          <ul>
+            <li><a href="/terminos">Términos y Condiciones</a></li>
+            <li><a href="/privacidad">Política de Privacidad</a></li>
+            <li><a href="/reembolsos">Política de Reembolsos</a></li>
+            <li><a href="/descuentos">Condiciones de Bonos</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5>Contacto Directo</h5>
+          <ul>
+            <li><a href="https://wa.me/573043812882?text=Hola%20Laura%2C%20necesito%20soporte%20en%20rebuske" target="_blank" rel="noopener noreferrer">Soporte WhatsApp</a></li>
+            <li><a href="mailto:soporte@rebuske.com">soporte@rebuske.com</a></li>
+            <li><a href="#como-funciona">Cómo Funciona</a></li>
+            <li><a href="#protocolo-seguridad">Protocolo de Seguridad</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 rebuske Inc. Todos los derechos reservados · Medellín, Colombia.</span>
+      <span>Pagos procesados en Bóveda Wompi (Bancolombia) · Ley 1480 de 2011</span>
+    </div>
+  </footer>
+
+  <!-- 10. BANNER DE COOKIES (Solo Abajo, Máx 120px) -->
+  <div class="cookie-banner" id="cookieBanner" role="region" aria-label="Consentimiento de cookies">
+    <div class="cookie-text">
+      Usamos cookies técnicas para garantizar el funcionamiento seguro de la plataforma, la Bóveda Wompi y el radar de técnicos en Medellín.
+    </div>
+    <div class="cookie-actions">
+      <button class="btn-cookie-config" onclick="cerrarCookies()">Solo necesarias</button>
+      <button class="btn-cookie-accept" onclick="aceptarCookies()">Aceptar todas</button>
+    </div>
+  </div>
+
+  <!-- SCRIPT UNIFICADO: ANIMACIONES, CANVAS 16s Y OBSERVERS PRESERVADOS -->
+  <script>
+    // Barra superior scroll listener
+    window.addEventListener('scroll', () => {
+      const bar = document.getElementById('topBar');
+      if (window.scrollY > 40) {
+        bar.classList.add('scrolled');
+      } else {
+        bar.classList.remove('scrolled');
+      }
+
+      // Animación de línea de pasos
+      const howSection = document.getElementById('como-funciona');
+      if (howSection) {
+        const rect = howSection.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.75) {
+          document.getElementById('stepsLineFill').style.height = '100%';
+          for (let i = 1; i <= 5; i++) {
+            setTimeout(() => {
+              const node = document.getElementById('step-node-' + i);
+              if (node) node.classList.add('active');
+            }, i * 280);
+          }
+        }
+      }
+    });
+
+    // Control de Acordeón del Protocolo
+    function toggleProtocol(headerEl) {
+      const item = headerEl.parentElement;
+      item.classList.toggle('open');
+    }
+
+    // Banner de Cookies con persistencia
+    function cerrarCookies() {
+      const banner = document.getElementById('cookieBanner');
+      if (banner) {
+        banner.style.opacity = '0';
+        banner.style.transform = 'translateX(-50%) translateY(40px)';
+        setTimeout(() => banner.style.display = 'none', 300);
+      }
+      localStorage.setItem('rebuske_cookies_accepted', 'config');
+    }
+
+    function aceptarCookies() {
+      const banner = document.getElementById('cookieBanner');
+      if (banner) {
+        banner.style.opacity = '0';
+        banner.style.transform = 'translateX(-50%) translateY(40px)';
+        setTimeout(() => banner.style.display = 'none', 300);
+      }
+      localStorage.setItem('rebuske_cookies_accepted', 'all');
+    }
+
+    if (localStorage.getItem('rebuske_cookies_accepted')) {
+      const banner = document.getElementById('cookieBanner');
+      if (banner) banner.style.display = 'none';
+    }
+
+    // Scroll y Resaltado a Bloque de Servicios
+    function scrollearAServicio(idx) {
+      const target = document.getElementById('srv-block-' + idx);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        target.classList.add('highlighted');
+        setTimeout(() => target.classList.remove('highlighted'), 2000);
+      }
+    }
+
+    // ========================================================================
+    // OBSERVADOR PARA PATRÓN A (CASCADA) Y PATRÓN B (DESLIZAMIENTO CON MÁSCARA)
+    // ========================================================================
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px 0px -12% 0px',
+      threshold: 0.1
+    };
+
+    const animObserver = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          const maskInners = entry.target.querySelectorAll('.mask-slide-inner');
+          maskInners.forEach(m => m.classList.add('is-visible'));
+          obs.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal-cascade, .mask-slide-wrap').forEach(el => {
+      animObserver.observe(el);
+    });
+
+    // ========================================================================
+    // HERO PARTICULAS EN CICLO DE 16 SEGUNDOS (CASA -> 4 SERVICIOS)
+    // ========================================================================
+    const servicesData = [
+      { name: 'Plomería · desde $60.000 COP', icon: '🔧', blockId: 'srv-block-0' },
+      { name: 'Electricidad · desde $50.000 COP', icon: '⚡', blockId: 'srv-block-1' },
+      { name: 'Cerrajería · desde $60.000 COP', icon: '🔑', blockId: 'srv-block-2' },
+      { name: 'Limpieza y Aseo · desde $70.000 COP', icon: '✨', blockId: 'srv-block-3' }
+    ];
+
+    let heroCurrentServiceIdx = 0;
+    let heroCycleManualHold = false;
+    let heroCanvas, heroCtx;
+    let heroParticles = [];
+    const isMobileScreen = window.innerWidth < 768;
+    const NUM_PARTICLES = isMobileScreen ? 400 : 1800;
+
+    function initHeroCanvas() {
+      heroCanvas = document.getElementById('heroCanvas');
+      if (!heroCanvas) return;
+      heroCtx = heroCanvas.getContext('2d');
+      resizeHeroCanvas();
+      window.addEventListener('resize', resizeHeroCanvas);
+
+      heroParticles = [];
+      for (let i = 0; i < NUM_PARTICLES; i++) {
+        heroParticles.push({
+          x: Math.random() * heroCanvas.width,
+          y: Math.random() * heroCanvas.height,
+          vx: (Math.random() - 0.5) * 0.8,
+          vy: (Math.random() - 0.5) * 0.8,
+          size: Math.random() * 1.5 + 1,
+          alpha: Math.random() * 0.6 + 0.4
+        });
+      }
+
+      requestAnimationFrame(renderHeroParticles);
+    }
+
+    function resizeHeroCanvas() {
+      if (!heroCanvas) return;
+      const rect = heroCanvas.parentElement.getBoundingClientRect();
+      heroCanvas.width = rect.width;
+      heroCanvas.height = rect.height;
+    }
+
+    let heroStartTime = performance.now();
+
+    function renderHeroParticles(now) {
+      if (!heroCtx || !heroCanvas) return;
+      heroCtx.clearRect(0, 0, heroCanvas.width, heroCanvas.height);
+
+      const elapsed = ((now - heroStartTime) % 16000) / 1000;
+      const cx = heroCanvas.width / 2;
+      const cy = heroCanvas.height / 2;
+
+      let activeService = 0;
+      if (elapsed < 3) {
+        activeService = -1; // Casa
+      } else if (elapsed < 6) {
+        activeService = 0; // Plomería
+      } else if (elapsed < 9) {
+        activeService = 1; // Electricidad
+      } else if (elapsed < 12) {
+        activeService = 2; // Cerrajería
+      } else {
+        activeService = 3; // Aseo
+      }
+
+      if (!heroCycleManualHold && activeService >= 0 && activeService !== heroCurrentServiceIdx) {
+        actualizarDisplayHero(activeService);
+      }
+
+      const scale = isMobileScreen ? 0.65 : 1.0;
+      heroCtx.fillStyle = '#B8FF3B'; // Color Lima oficial de la App
+
+      for (let i = 0; i < heroParticles.length; i++) {
+        const p = heroParticles[i];
+        let tx = cx, ty = cy;
+        const angle = (i / heroParticles.length) * Math.PI * 2;
+
+        if (activeService === -1) {
+          if (i < heroParticles.length * 0.4) {
+            const t = i / (heroParticles.length * 0.4);
+            tx = cx - 120 * scale + (240 * scale * t);
+            ty = cy - 40 * scale - (1 - Math.abs(t - 0.5) * 2) * (80 * scale);
+          } else {
+            const t = (i - heroParticles.length * 0.4) / (heroParticles.length * 0.6);
+            const side = Math.floor(t * 3);
+            if (side === 0) { tx = cx - 110 * scale; ty = cy - 40 * scale + (t * 3 * 90 * scale); }
+            else if (side === 1) { tx = cx - 110 * scale + ((t * 3 - 1) * 220 * scale); ty = cy + 50 * scale; }
+            else { tx = cx + 110 * scale; ty = cy + 50 * scale - ((t * 3 - 2) * 90 * scale); }
+          }
+        } else {
+          const r = (60 + (activeService * 12) + Math.sin(now * 0.003 + i) * 10) * scale;
+          tx = cx + Math.cos(angle + (now * 0.0005)) * r;
+          ty = cy + Math.sin(angle + (now * 0.0005)) * r * 0.85;
+        }
+
+        p.x += (tx - p.x) * 0.04;
+        p.y += (ty - p.y) * 0.04;
+
+        heroCtx.globalAlpha = p.alpha;
+        heroCtx.fillRect(p.x, p.y, p.size, p.size);
+      }
+
+      requestAnimationFrame(renderHeroParticles);
+    }
+
+    function actualizarDisplayHero(idx) {
+      heroCurrentServiceIdx = idx;
+      const s = servicesData[idx];
+      document.getElementById('heroServiceIcon').textContent = s.icon;
+      document.getElementById('heroServiceName').textContent = s.name;
+
+      const dots = document.querySelectorAll('.hero-dot-btn');
+      dots.forEach((dot, dIdx) => {
+        dot.classList.toggle('active', dIdx === idx);
+      });
+    }
+
+    function seleccionarServicioHero(idx) {
+      heroCycleManualHold = true;
+      actualizarDisplayHero(idx);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      initHeroCanvas();
+      document.querySelectorAll('.mask-slide-inner').forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight) el.classList.add('is-visible');
+      });
+    });
+  </script>
+</body>
+</html>
+`;
+
+fs.writeFileSync('C:/Users/camil/.gemini/antigravity/scratch/rebuske-app/rebuske-v4-prod/entrada.html', newEntradaHtml, 'utf8');
+// También sincronizar en registro.html que es un alias idéntico
+fs.writeFileSync('C:/Users/camil/.gemini/antigravity/scratch/rebuske-app/rebuske-v4-prod/registro.html', newEntradaHtml, 'utf8');
+console.log('✅ entrada.html y registro.html actualizados con el diseño visual y organización de la App!');
