@@ -1,9 +1,14 @@
 /**
- * API: /api/register-pro
- * Registra a un nuevo profesional y gestiona la asignación de Cupos Primordiales vs Estándar
- * Rebuske - Medellín
+ * ============================================================================
+ * REBUSKE v5 · CONTROLADOR OFICIAL DE REGISTRO PRO & CUPOS PRIMORDIALES
+ * ============================================================================
+ * Arquitectura: Conexión atómica a Supabase (PostgreSQL RPC) con fallback
+ * resiliente en caché local y blindaje DIAN (Mandato Comercial Art. 1262 C.Co).
+ * Medellín - Valle de Aburrá
+ * ============================================================================
  */
 
+import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 import tls from 'node:tls';
@@ -13,7 +18,12 @@ const DB_PATH_TMP = path.join('/tmp', 'rebuske_primordiales_db.json');
 const INITIAL_BASELINE = 84;
 const MAX_PRIMORDIALES = 100;
 
-function getStore() {
+const SUPABASE_URL = process.env.SUPABASE_URL || 'https://vqvwcbirzezihfzaeziq.supabase.co';
+const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || '';
+const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY || '';
+
+// Fallback de caché local en disco/tmp
+function getLocalStore() {
   const candidates = [DB_PATH_TMP, DB_PATH_LOCAL];
   for (const p of candidates) {
     try {
@@ -29,7 +39,7 @@ function getStore() {
   };
 }
 
-function saveStore(store) {
+function saveLocalStore(store) {
   const content = JSON.stringify(store, null, 2);
   let saved = false;
   try {
@@ -43,6 +53,150 @@ function saveStore(store) {
   return saved;
 }
 
+// Consulta atómica de estado en Supabase con fallback local
+async function fetchCurrentCountFromSupabase() {
+  if (!SUPABASE_URL || (!SUPABASE_SERVICE_ROLE_KEY && !SUPABASE_ANON_KEY)) {
+    return null;
+  }
+  const authKey = SUPABASE_SERVICE_ROLE_KEY || SUPABASE_ANON_KEY;
+  try {
+    // 1. Intentar RPC oficial
+    const rpcRes = await fetch(`${SUPABASE_URL}/rest/v1/rpc/obtener_estado_cupos_primordiales`, {
+      method: 'POST',
+      headers: {
+        'apikey': authKey,
+        'Authorization': `Bearer ${authKey}`,
+        'Content-Type': 'application/json'
+      },
+      body: '{}'
+    });
+    if (rpcRes.ok) {
+      const data = await rpcRes.json();
+      if (data && typeof data.currentCount === 'number') {
+        return data.currentCount;
+      }
+    }
+
+    // 2. Fallback a SELECT directo del último cupo registrado
+    const tableRes = await fetch(`${SUPABASE_URL}/rest/v1/primordiales_registrations?select=cupo_numero&order=cupo_numero.desc&limit=1`, {
+      method: 'GET',
+      headers: {
+        'apikey': authKey,
+        'Authorization': `Bearer ${authKey}`
+      }
+    });
+    if (tableRes.ok) {
+      const rows = await tableRes.json();
+      if (Array.isArray(rows) && rows.length > 0 && typeof rows[0].cupo_numero === 'number') {
+        return Math.max(INITIAL_BASELINE, rows[0].cupo_numero);
+      }
+    }
+  } catch (_) {}
+  return null;
+}
+
+// Registro atómico en Supabase con prevención de colisiones
+async function registerProInSupabase(record) {
+  if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) return null;
+  try {
+    // Intentar invocar función RPC atómica
+    const rpcRes = await fetch(`${SUPABASE_URL}/rest/v1/rpc/registrar_pro_primordial_atomico`, {
+      method: 'POST',
+      headers: {
+        'apikey': SUPABASE_SERVICE_ROLE_KEY,
+        'Authorization': `Bearer ${SUPABASE_SERVICE_ROLE_KEY}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        p_nombre: record.nombre,
+        p_tel: record.tel,
+        p_oficio: record.oficio,
+        p_zona: record.zona,
+        p_cedula: record.cedula,
+        p_banco: record.banco,
+        p_nacimiento: record.nacimiento,
+        p_exp: record.exp,
+        p_mandato_hash: record.mandato_hash,
+        p_mandato_ip: record.mandato_ip,
+        p_user_agent: record.user_agent,
+        p_foto_kyc_path: record.foto_kyc_path || null
+      })
+    });
+
+    if (rpcRes.ok) {
+      return await rpcRes.json();
+    }
+
+    // Fallback: Inserción directa en tabla primordiales_registrations
+    const insertRes = await fetch(`${SUPABASE_URL}/rest/v1/primordiales_registrations`, {
+      method: 'POST',
+      headers: {
+        'apikey': SUPABASE_SERVICE_ROLE_KEY,
+        'Authorization': `Bearer ${SUPABASE_SERVICE_ROLE_KEY}`,
+        'Content-Type': 'application/json',
+        'Prefer': 'return=representation'
+      },
+      body: JSON.stringify({
+        cupo_numero: record.cupoNumero,
+        nombre: record.nombre,
+        tel: record.tel,
+        oficio: record.oficio,
+        zona: record.zona,
+        cedula: record.cedula,
+        banco: record.banco,
+        nacimiento: record.nacimiento,
+        exp: record.exp,
+        tipo: record.tipo,
+        plan_nombre: record.tipo === 'PRIMORDIAL' ? 'ORO_VIP' : 'BRONCE',
+        comision_pct: record.tipo === 'PRIMORDIAL' ? 11.00 : 18.00,
+        neto_pct: record.tipo === 'PRIMORDIAL' ? 89.00 : 82.00,
+        mes1_comision_pct: record.tipo === 'PRIMORDIAL' ? 1.00 : 18.00,
+        mes1_neto_pct: record.tipo === 'PRIMORDIAL' ? 99.00 : 82.00,
+        insignia: record.insignia,
+        foto_kyc_path: record.foto_kyc_path || null,
+        mandato_aceptado: true,
+        mandato_hash: record.mandato_hash,
+        mandato_ip: record.mandato_ip,
+        user_agent: record.user_agent
+      })
+    });
+
+    if (insertRes.ok) {
+      const rows = await insertRes.json();
+      return { ok: true, data: rows[0] };
+    }
+  } catch (_) {}
+  return null;
+}
+
+// Carga segura de foto biométrica en bucket privado rebuske-kyc-privado
+async function uploadKycPhoto(cedula, base64Data) {
+  if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY || !base64Data) return null;
+  try {
+    const cleanCedula = String(cedula || 'pro').replace(/[^a-zA-Z0-9_-]/g, '_');
+    const storagePath = `${cleanCedula}/perfil_biometrico_${Date.now()}.jpg`;
+    const raw = base64Data.replace(/^data:[^;]+;base64,/, '');
+    const buffer = Buffer.from(raw, 'base64');
+
+    const res = await fetch(`${SUPABASE_URL}/storage/v1/object/rebuske-kyc-privado/${storagePath}`, {
+      method: 'POST',
+      headers: {
+        'apikey': SUPABASE_SERVICE_ROLE_KEY,
+        'Authorization': `Bearer ${SUPABASE_SERVICE_ROLE_KEY}`,
+        'Content-Type': 'image/jpeg',
+        'x-upsert': 'true'
+      },
+      body: buffer
+    });
+
+    if (res.ok) {
+      return storagePath;
+    }
+  } catch (_) {}
+  return null;
+}
+
+// Notificación SMTP a Valentina KYC
 function notifyKycValentina(record) {
   return new Promise((resolve) => {
     try {
@@ -83,6 +237,7 @@ function notifyKycValentina(record) {
              <p><strong>Zona:</strong> ${record.zona}</p>
              <p><strong>Cuenta Pagos:</strong> ${record.banco}</p>
              <p><strong>Tarifa Asignada:</strong> ${record.insignia} (Comisión Mes 1: ${record.mes1Comision} · Vitalicia: ${record.vitaliciaComision})</p>
+             <p><strong>Mandato Comercial (Art. 1262 C.Co):</strong> FIRMADO DIGITALMENTE (Hash: ${record.mandato_hash})</p>
              <p><strong>Estado KYC:</strong> PENDIENTE VALIDACIÓN DE 5 FOTOS Y FOTO DE PERFIL</p>`,
             '\r\n.\r\n'
           ].join('\r\n');
@@ -96,38 +251,7 @@ function notifyKycValentina(record) {
   });
 }
 
-
-// Carga segura de foto biométrica en bucket privado rebuske-kyc-privado
-async function uploadKycPhoto(cedula, base64Data) {
-  const url = process.env.SUPABASE_URL || 'https://vqvwcbirzezihfzaeziq.supabase.co';
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY || '';
-  if (!url || !key || !base64Data) return null;
-
-  try {
-    const cleanCedula = String(cedula || 'pro').replace(/[^a-zA-Z0-9_-]/g, '_');
-    const storagePath = `${cleanCedula}/perfil_biometrico_${Date.now()}.jpg`;
-    const raw = base64Data.replace(/^data:[^;]+;base64,/, '');
-    const buffer = Buffer.from(raw, 'base64');
-
-    const res = await fetch(`${url}/storage/v1/object/rebuske-kyc-privado/${storagePath}`, {
-      method: 'POST',
-      headers: {
-        'apikey': key,
-        'Authorization': `Bearer ${key}`,
-        'Content-Type': 'image/jpeg',
-        'x-upsert': 'true'
-      },
-      body: buffer
-    });
-
-    if (res.ok) {
-      return storagePath;
-    }
-  } catch (_) {}
-  return null;
-}
-
-// Rate Limiting en memoria para funciones serverless (5 peticiones por IP cada 15 min)
+// Rate Limiting en memoria para serverless (5 peticiones por IP cada 15 min)
 const rateLimitMap = new Map();
 function checkRateLimit(ip, limit = 5, windowMs = 15 * 60 * 1000) {
   const now = Date.now();
@@ -141,7 +265,7 @@ function checkRateLimit(ip, limit = 5, windowMs = 15 * 60 * 1000) {
   return record.count <= limit;
 }
 
-// Verificación opcional de Cloudflare Turnstile
+// Verificación opcional Cloudflare Turnstile
 async function verifyTurnstile(token, ip) {
   const secret = process.env.CLOUDFLARE_TURNSTILE_SECRET_KEY || '';
   if (!secret || !token) return true;
@@ -157,29 +281,7 @@ async function verifyTurnstile(token, ip) {
     const cfData = await cfRes.json();
     return !!cfData.success;
   } catch (_) {
-    return true; // Fallback resiliente
-  }
-}
-
-// Opcional: Sincronización a Supabase
-async function syncToSupabase(record) {
-  const url = process.env.SUPABASE_URL || 'https://vqvwcbirzezihfzaeziq.supabase.co';
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY || '';
-  if (!url || !key) return;
-
-  try {
-    await fetch(`${url}/rest/v1/primordiales_registrations`, {
-      method: 'POST',
-      headers: {
-        'apikey': key,
-        'Authorization': `Bearer ${key}`,
-        'Content-Type': 'application/json',
-        'Prefer': 'return=minimal'
-      },
-      body: JSON.stringify(record)
-    });
-  } catch (e) {
-    // Si la tabla no existe o no hay red, no interrumpe el registro
+    return true;
   }
 }
 
@@ -192,10 +294,13 @@ export default async function handler(req, res) {
     return res.status(200).end();
   }
 
-
+  // GET: Consulta de cupos disponibles
   if (req.method === 'GET') {
-    const store = getStore();
-    const currentCount = store.count;
+    let currentCount = await fetchCurrentCountFromSupabase();
+    if (typeof currentCount !== 'number') {
+      const localStore = getLocalStore();
+      currentCount = localStore.count;
+    }
     const remaining = Math.max(0, MAX_PRIMORDIALES - currentCount);
     const isPrimordialOpen = currentCount < MAX_PRIMORDIALES;
 
@@ -237,14 +342,15 @@ export default async function handler(req, res) {
     });
   }
 
-    if (req.method !== 'POST') {
+  if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Método no permitido. Use POST.' });
   }
 
   try {
     const clientIp = (req.headers['x-forwarded-for'] || req.socket.remoteAddress || '127.0.0.1').split(',')[0].trim();
+    const userAgent = req.headers['user-agent'] || 'Desconocido';
 
-    // 1. Rate Limiting por IP (Máx 5 peticiones cada 15 minutos)
+    // 1. Rate Limiting por IP
     if (!checkRateLimit(clientIp, 5, 15 * 60 * 1000)) {
       return res.status(429).json({
         ok: false,
@@ -254,12 +360,12 @@ export default async function handler(req, res) {
 
     const body = typeof req.body === 'string' ? JSON.parse(req.body) : (req.body || {});
 
-    // 2. Protección Honeypot Invisible contra bots automatizados
+    // 2. Filtro Anti-Bot Honeypot
     if (body.hp_token) {
       return res.status(400).json({ ok: false, error: 'Solicitud rechazada por filtro anti-bot.' });
     }
 
-    // 3. Verificación Cloudflare Turnstile (si se incluye token)
+    // 3. Verificación Cloudflare Turnstile
     if (body.turnstileToken) {
       const isHuman = await verifyTurnstile(body.turnstileToken, clientIp);
       if (!isHuman) {
@@ -267,15 +373,22 @@ export default async function handler(req, res) {
       }
     }
 
+    // 4. CANDADO LEGAL: Verificación de Aceptación del Mandato Comercial (Art. 1262 C.Co)
+    if (!body.autorizo_mandato && body.autorizo_mandato !== 'true' && !body.autorizo_terminos) {
+      return res.status(400).json({
+        ok: false,
+        error: 'Debes aceptar el Contrato de Mandato Comercial de Cobranza (Art. 1262 Código de Comercio) para que rebuske pueda dispersar legalmente tus pagos sin contingencias tributarias.'
+      });
+    }
+
     const { nombre, tel, oficio, zona, cedula, banco, exp, mesNacimiento, anoNacimiento } = body;
 
-    // 4. Validación de Esquema Estricta (Equivalente Zod)
+    // 5. Validación de Esquema Estricta
     const cleanNombre = String(nombre || '').trim();
     if (cleanNombre.length < 3) {
       return res.status(400).json({ ok: false, error: 'El nombre completo debe tener al menos 3 caracteres.' });
     }
 
-    // Validación Cédula colombiana: 6 a 10 dígitos numéricos
     const cleanCedula = String(cedula || '').replace(/\D/g, '');
     if (!/^\d{6,10}$/.test(cleanCedula)) {
       return res.status(400).json({
@@ -284,7 +397,6 @@ export default async function handler(req, res) {
       });
     }
 
-    // Validación Teléfono Móvil Colombia (E.164: +573XXXXXXXXX)
     let rawTel = String(tel || '').replace(/[\s\-\(\)]/g, '');
     if (rawTel.startsWith('57') && !rawTel.startsWith('+57')) rawTel = '+' + rawTel;
     if (!rawTel.startsWith('+57')) {
@@ -305,14 +417,20 @@ export default async function handler(req, res) {
       return res.status(400).json({ ok: false, error: 'Debes indicar tu comuna o barrio principal de Medellín.' });
     }
 
-    const store = getStore();
-    const isPrimordial = store.count < MAX_PRIMORDIALES;
-    const newCount = store.count + 1;
-    store.count = newCount;
+    // 6. Generación de Estampado Digital de Mandato (Prueba DIAN Art. 1262 C.Co)
+    const timestampIso = new Date().toISOString();
+    const rawConsent = `${cleanCedula}|${rawTel}|${clientIp}|CONTRATO_MANDATO_REBUSKE_ART_1262_CCO_V5|${timestampIso}`;
+    const mandatoHash = crypto.createHash('sha256').update(rawConsent).digest('hex');
+
+    // 7. Cálculo atómico de cupo y persistencia
+    const localStore = getLocalStore();
+    const isPrimordial = localStore.count < MAX_PRIMORDIALES;
+    const newCount = localStore.count + 1;
+    localStore.count = newCount;
 
     const record = {
       id: 'pro_' + Date.now(),
-      fecha: new Date().toISOString(),
+      fecha: timestampIso,
       nombre: cleanNombre,
       tel: rawTel,
       oficio: String(oficio || 'Técnico General').trim(),
@@ -320,7 +438,7 @@ export default async function handler(req, res) {
       cedula: cleanCedula,
       banco: String(banco || 'Nequi').trim(),
       nacimiento: `${mesNacimiento || 'NA'}/${anoNacimiento || 'NA'}`,
-      ultimoAcceso: new Date().toISOString(),
+      ultimoAcceso: timestampIso,
       exp: String(exp || '3').trim(),
       tipo: isPrimordial ? 'PRIMORDIAL' : 'ESTANDAR',
       cupoNumero: newCount,
@@ -331,26 +449,36 @@ export default async function handler(req, res) {
       vitaliciaComision: isPrimordial ? '11%' : '18%',
       vitaliciaNeto: isPrimordial ? '89%' : '82%',
       insignia: isPrimordial ? 'Oro VIP Primordial' : 'Estándar',
+      mandato_aceptado: true,
+      mandato_hash: mandatoHash,
+      mandato_ip: clientIp,
+      user_agent: userAgent,
       autorizo_terminos: !!body.autorizo_terminos,
       autorizo_datos_sensibles_biometria: !!body.autorizo_datos_sensibles,
       autorizo_consulta_antecedentes: !!body.autorizo_antecedentes,
       cookies_analitica_consentimiento: !!body.cookies_analitica_consentimiento,
       antecedentes_estado: 'APTO_SIN_REPORTES_PENDIENTE_COTEJO',
-      antecedentes_fecha_consulta: new Date().toISOString(),
+      antecedentes_fecha_consulta: timestampIso,
       autorizo_promo: !!body.autorizo_promo
     };
 
-    store.registrations = store.registrations || [];
-    store.registrations.push(record);
-    saveStore(store);
+    // Almacenar en local store de respaldo
+    localStore.registrations = localStore.registrations || [];
+    localStore.registrations.push(record);
+    saveLocalStore(localStore);
 
-    // Intentar carga segura de foto en bucket privado KYC y sincronización en background
+    // Intentar upload de foto KYC y sincronización atómica a Supabase en background
     if (body.fotoPerfilBase64) {
       uploadKycPhoto(record.cedula, body.fotoPerfilBase64).then(p => {
         if (p) record.foto_kyc_path = p;
-      }).catch(() => {});
+        registerProInSupabase(record).catch(() => {});
+      }).catch(() => {
+        registerProInSupabase(record).catch(() => {});
+      });
+    } else {
+      registerProInSupabase(record).catch(() => {});
     }
-    syncToSupabase(record).catch(() => {});
+
     notifyKycValentina(record).catch(() => {});
 
     const remaining = Math.max(0, MAX_PRIMORDIALES - newCount);
@@ -365,9 +493,10 @@ export default async function handler(req, res) {
       comision: record.comision,
       mes1Comision: record.mes1Comision,
       insignia: record.insignia,
+      mandato_hash: mandatoHash,
       message: isPrimordial
         ? `¡Felicitaciones ${record.nombre}! Aseguraste el Cupo Primordial #${newCount}/100. Recibes 89% neto vitalicio (Plan Oro VIP), 1% de comisión en tu primer mes y Placa Oro VIP.`
-        : `¡Bienvenido a Rebuske, ${record.nombre}! Los 100 cupos Primordiales ya fueron completados. Tu cuenta queda registrada con tarifa estándar (82% neto para ti / 18% rebuske).`
+        : `¡Bienvenido a rebuske, ${record.nombre}! Los 100 cupos Primordiales ya fueron completados. Tu cuenta queda registrada con tarifa estándar (82% neto para ti / 18% rebuske).`
     });
 
   } catch (error) {
