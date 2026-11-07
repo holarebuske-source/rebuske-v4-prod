@@ -376,7 +376,25 @@ const ini=n=>n.split(' ').map(w=>w[0]).slice(0,2).join('').toUpperCase();
 const q=s=>document.querySelector(s);
 const val=id=>{const el=document.getElementById(id);return el?el.value.trim():''};
 const com=nv=>nv==='Oro'?.06:.07;
-const CATS=[['Hogar','home'],['Reparaciones','tool'],['Vehículos','pin'],['Tecnología','shield'],['Personal','user'],['Eventos','star'],['Transporte','bag'],['Profesionales','wallet']];
+const CATS = [
+  ['Limpieza y Aseo', 'home'],
+  ['Plomería', 'tool'],
+  ['Electricidad', 'tool'],
+  ['Pintura y Acabados', 'tool'],
+  ['Carpintería', 'tool'],
+  ['Cerrajería y Seguridad', 'shield'],
+  ['Jardinería y Exteriores', 'home'],
+  ['Construcción y Remodelación', 'tool'],
+  ['Mudanzas y Transporte', 'bag'],
+  ['Electrodomésticos', 'tool'],
+  ['Tecnología e Instalación', 'shield'],
+  ['Automóviles', 'pin'],
+  ['Diseño y Servicios Digitales', 'star'],
+  ['Clases y Educación (Música & Refuerzo)', 'user'],
+  ['Belleza y Cuidado Personal', 'user'],
+  ['Eventos y Celebraciones', 'star'],
+  ['Servicios Profesionales', 'wallet']
+];
 const ZONAS=['Laureles','El Poblado','Belén','Centro','Envigado','Zona Norte','Aeropuerto'];
 const CAT_REF_PRECIOS = {
   'Todas las categorías': [
@@ -663,8 +681,8 @@ solicitud:p=>{const x=PR(p.id),cat=p.cat||x.c||'Reparaciones',b=p.b||x.p||60000,
 <label>Categoría<select id="sc" class="sel">${CATS.map(c=>`<option ${c[0]===cat?'selected':''}>${c[0]}</option>`).join('')}</select></label>
 <label>Describe el problema<textarea id="sd" rows="3" placeholder="Ej: el lavaplatos bota agua por debajo">${esc(p.t||'')}</textarea></label>
 <label>Zona<select id="sz" class="sel">${ZONAS.map(k=>`<option ${k===z?'selected':''}>${k}</option>`).join('')}</select></label>
-<small>Tipo de trabajo</small>
-<div class="seg">${['Corto','Mediano','Largo'].map(s=>`<button data-a="seg" class="${(p.k||'Corto')===s?'on':''}">${s}</button>`).join('')}</div>
+<small>Modalidad de Pago en Bóveda Wompi</small>
+<div class="seg">${['Labor Única','Sesiones Progresivas (Clases)','Hitos de Proyecto'].map(s=>`<button data-a="seg" class="${(p.k||'Labor Única')===s?'on':''}">${s}</button>`).join('')}</div>
 <label>Presupuesto (COP)<input id="sb" class="field" type="number" inputmode="numeric" value="${b}"></label>
 <div class="glass sum"><div><span>Tu presupuesto</span><b id="sbv">${M(b)}</b></div><small>La comisión del 7% la paga el profesional al liberar el pago. Nunca se suma a tu cuenta.</small></div>
 <div class="sticky"><button class="btn sheen" data-a="publicar">Publicar solicitud gratis</button></div>`},
