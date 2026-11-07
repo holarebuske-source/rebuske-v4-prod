@@ -53,3 +53,7 @@ Antes de dar cualquier entrega o despliegue por concluido:
 1. Ejecutar `npm test` (`node run-all-tests.mjs`). Debe arrojar **100% pruebas aprobadas**.
 2. Verificar que no exista fuga de código tras `</html>` (cero caracteres huérfanos).
 3. Asegurar que el conteo de Serverless Functions en `api/` nunca supere **12** (Límite estricto del plan Hobby de Vercel).
+
+
+### REGLA INQUEBRANTABLE: PROHIBICIÓN TOTAL DE "MODO LUZ" Y "RUTA DE LUZ"
+Queda estrictamente prohibido usar, mencionar, proponer o escribir los términos "Modo Luz", "Modo Luz Express", "Luz Express" o "Ruta de Luz" en cualquier archivo, pantalla, comunicación, cotización o código de rebuske. Usar únicamente "Despacho Inmediato", "Radar de Proximidad" o "Seguimiento en Vivo".
