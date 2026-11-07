@@ -1356,7 +1356,7 @@ const entradaHtml = `<!DOCTYPE html>
       <!-- Pieza 3 -->
       <div class="protocol-item reveal-cascade stagger-3">
         <div class="protocol-header" onclick="toggleProtocol(this)">
-          <h3><span aria-hidden="true">⚡</span> Modo Luz Express</h3>
+          <h3><span aria-hidden="true">⚡</span> Despacho Inmediato en Comunas</h3>
           <span class="protocol-chevron" aria-hidden="true">▼</span>
         </div>
         <div class="protocol-body">
