@@ -261,9 +261,12 @@ async function runTestSuite() {
   assert(indexHtml.includes('Sesiones Progresivas (Clases)'), 'Opción de Sesiones Progresivas integrada en solicitud de index.html');
 
   assert(!indexHtml.includes('id="rebuske-sticky-mobile-bar"'), 'Sticky Action Bar móvil eliminada de index.html para despejar el flujo real');
-  assert(indexHtml.includes('real-cases-section'), 'Sección de Casos Reales en Medellín presente en index.html');
-  assert(indexHtml.includes('Doña Gloria') && indexHtml.includes('Laureles'), 'Caso real de Laureles documentado');
-  assert(indexHtml.includes('Mateo & Camila') && indexHtml.includes('El Poblado'), 'Caso real de El Poblado documentado');
+  // Verificación estricta: Cero testimonios ficticios ni datos demo en index.html
+  assert(!indexHtml.includes('Doña Gloria'), 'Cero testimonios ficticios de Doña Gloria en index.html');
+  assert(!indexHtml.includes('Mateo & Camila'), 'Cero testimonios ficticios de Mateo & Camila en index.html');
+  assert(!indexHtml.includes('Marina E.'), 'Cero testimonios ficticios de Marina E. en index.html');
+  assert(!indexHtml.includes('Andrés R.'), 'Cero testimonios ficticios de Andrés R. en index.html');
+  assert(!indexHtml.includes('4242'), 'Cero tarjetas bancarias de prueba 4242 en index.html');
 
   // --------------------------------------------------------------------------
   // TEST 6: DICCIONARIO PAISA, CUMPLIMIENTO LEGAL Y ZERO LEAKS
