@@ -56,7 +56,7 @@
       title: 'Documento Maestro · Marketing y Voz v1.0',
       version: 'Octubre 2026',
       pages: 16,
-      summary: 'Buyer personas (Camila 29 y Don Jairo 42), 4 adjetivos (Cercana, Firme, Audaz, Experta), Diccionario Oficial, Estrategia TikTok/IG/FB/Calle y KPIs 90 días.',
+      summary: 'Públicos objetivo (Clientes y Rebuskers), 4 adjetivos (Cercana, Firme, Audaz, Experta), Diccionario Oficial, Estrategia TikTok/IG/FB/Calle y KPIs 90 días.',
       status: 'APRENDIDO · ACTIVO'
     },
     {
@@ -114,7 +114,7 @@
       ]
     },
     rebusker_pro: {
-      label: 'Para quien se rebusca · Rebuskers (Don Jairo, 42)',
+      label: 'Para quien se rebusca · Rebuskers de Oficio',
       phrases: [
         '¿Andás de un lado a otro pidiendo que te llamen? Acá te buscan a vos.',
         'Hacés bien las cosas y merecés que te paguen sin vueltas.',
@@ -286,115 +286,16 @@
           { id: 'x', name: 'X (Twitter)', handle: '@rebuskeapp', api: 'X API v2 · LIVE', connected: true, autoReply: true, metric: 'Token OAuth 2.0' },
           { id: 'youtube', name: 'YouTube & Shorts', handle: '@rebuske', api: 'YouTube Data API v3', connected: true, autoReply: true, metric: 'Shorts Antes/Después' }
         ],
-        inbox: [
-          {
-            id: 'msg-1',
-            network: 'Instagram Reels',
-            user: '@mariana_laureles',
-            role: 'Cliente (Lado A)',
-            tone: 'Educar / Vender',
-            question: '¿Cuánto me cobran por cambiar un grifo en Laureles y qué pasa si vuelve a gotear?',
-            suggestedReply: '¡Hola Mariana! En Medellín, cambiar un grifo cuesta entre $35.000 y $90.000 COP según el modelo. En Rebuske publicas gratis, recibes hasta 3 cotizaciones de Rebuskers verificados de Laureles y tu pago queda protegido con Garantía de 2 días: no sueltas la plata hasta que quedó como debe. ARREGLA · CONFÍA · REPITE.',
-            replied: false,
-            time: 'Hace 3 min'
-          },
-          {
-            id: 'msg-2',
-            network: 'Facebook Grupo Barrio',
-            user: 'Don Jairo (Plomero · Centro)',
-            role: 'Rebusker (Lado B)',
-            tone: 'Reclutamiento Oficio',
-            question: 'Soy plomero hace 18 años en el Centro. ¿Cómo funciona el cobro y cada cuánto puedo retirar mi plata?',
-            suggestedReply: '¡Bienvenido Maestro Jairo! En Rebuske recibes solicitudes de tu zona directo al celular. El cliente deja el pago protegido desde el inicio, la comisión es solo del 7% cuando ya tienes la plata liberada (6% en nivel Oro) y puedes retirar cada 4 días a Nequi, Daviplata o Bancolombia. Tu trabajo vale. Regístrate en rebuske.co.',
-            replied: false,
-            time: 'Hace 8 min'
-          },
-          {
-            id: 'msg-3',
-            network: 'WhatsApp Business',
-            user: 'Camila Torres (El Poblado)',
-            role: 'Soporte Garantía 2D',
-            tone: 'Resolver Queja',
-            question: 'Hola, ayer me arreglaron el sifón pero hoy amaneció con una gotica leve.',
-            suggestedReply: 'Camila, entendemos la molestia: no es la experiencia que queremos para ti. Tu pago sigue congelado por la garantía de 2 días, así que tu plata está a salvo. Abrimos tu caso ya: un especialista lo revisa hoy y coordina el ajuste por el chat de la app. Gracias por decirlo — así Rebuske mejora.',
-            replied: false,
-            time: 'Hace 14 min'
-          }
-        ],
-        publishedLog: [
-          { ts: 'Hoy · 11:20', net: 'Instagram + TikTok', title: 'Reel: 3 errores al contratar un plomero en Medellín', status: 'PUBLICADO' },
-          { ts: 'Hoy · 09:30', net: 'Facebook + WhatsApp', title: 'Historia Don Jairo · Plomero verificado Centro', status: 'PUBLICADO' }
-        ]
+        inbox: [],
+        publishedLog: []
       },
-      campaigns: [
-        {
-          id: 'cmp-1',
-          name: 'Ruta de Luz · Laureles Hogar',
-          zone: 'Laureles',
-          channel: 'WhatsApp + IG Reels',
-          budget: 450000,
-          leads: 68,
-          conversions: 29,
-          roas: '4.6x',
-          status: 'Activa',
-          createdAt: 'Hoy · 09:15'
-        },
-        {
-          id: 'cmp-2',
-          name: 'Plomería Urgente 15 min · El Poblado',
-          zone: 'El Poblado',
-          channel: 'Instagram Ads',
-          budget: 620000,
-          leads: 94,
-          conversions: 41,
-          roas: '5.2x',
-          status: 'Activa',
-          createdAt: 'Ayer · 18:40'
-        },
-        {
-          id: 'cmp-3',
-          name: 'Garantía 2 Días · Envigado & Belén',
-          zone: 'Envigado',
-          channel: 'WhatsApp Vecinos',
-          budget: 320000,
-          leads: 51,
-          conversions: 22,
-          roas: '4.1x',
-          status: 'Completada',
-          createdAt: 'Oct 26'
-        }
-      ],
-      kycQueue: [
-        {
-          id: 'kyc-1',
-          proId: 'p6',
-          name: 'Carlos Mario Restrepo',
-          oficio: 'Electricidad Residencial',
-          zona: 'El Poblado',
-          exp: 11,
-          docs: 'Cédula · Antecedentes · CONTE',
-          status: 'pendiente',
-          score: '98%'
-        },
-        {
-          id: 'kyc-2',
-          proId: 'p7',
-          name: 'Paola Andrea Henao',
-          oficio: 'Limpieza & Desinfección',
-          zona: 'Laureles',
-          exp: 7,
-          docs: 'Cédula · Antecedentes · Referencias',
-          status: 'pendiente',
-          score: '96%'
-        }
-      ],
-      scheduledJobs: {
-        j1: { syncedAt: 'Hoy · 15:00', calId: 'gcal-rebuske-j1' }
-      },
+      campaigns: [],
+      kycQueue: [],
+      scheduledJobs: {},
       auditLog: [
         { ts: '11:40', msg: 'Sofía (Diseño PDF) cargó los 4 manuales oficiales de Rebuske (69 frases OOH + Manual v2.0).' },
         { ts: '10:15', msg: 'Pago protegido verificado: Garantía 2 días activa en servicios en curso.' },
-        { ts: '09:42', msg: 'Campaña omnicanal Laureles alcanzó 4.6x ROAS (CAC < $10.000 COP).' },
+        
         { ts: '09:00', msg: 'Sincronización automática Supabase PostgreSQL completada.' }
       ]
     };
@@ -599,7 +500,7 @@
     const jobs = (global.S && Array.isArray(global.S.jobs)) ? global.S.jobs : [];
     const pros = (global.PROS && Array.isArray(global.PROS)) ? global.PROS : [];
     const gmvJobs = jobs.reduce((acc, j) => acc + (Number(j.v) || 0), 0);
-    const baseGMV = 14850000;
+    const baseGMV = 0;
     const totalGMV = baseGMV + gmvJobs;
     const netRevenue = Math.round(totalGMV * 0.068);
     const activeEscrows = jobs.filter(j => ['retenido', 'en_camino', 'llego', 'en_proceso', 'finalizado'].includes(j.s));
@@ -627,7 +528,7 @@
   function renderTabKPIs(p) {
     const m = computeMetrics();
     const sb = ADM.supabase;
-    const gmvSeries = [52, 64, 61, 78, 85, 96];
+    const gmvSeries = [0, 0, 0, 0, 0, 0];
     const meses = (global.MESES && global.MESES.length) ? global.MESES : ['May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct'];
     const H = 140, W = 310;
     const pts = gmvSeries.map((v, i) => [(i + 0.5) * W / 6, H - v * H / 100]);
@@ -997,7 +898,7 @@
           <div><span>GMV Total Procesado</span><b>${fmtMoney(m.totalGMV)}</b></div>
           <div><span>Comisión Neta Rebuske (7% / 6% Oro)</span><b class="lima">${fmtMoney(m.netRevenue)}</b></div>
           <div><span>Saldo en Pago Protegido Activo</span><b class="w">${fmtMoney(m.escrowAmount)}</b></div>
-          <div><span>Disponible Wallet Rebuskers</span><b>${fmtMoney((global.S && global.S.wal && global.S.wal.saldo) || 186000)}</b></div>
+          <div><span>Disponible Wallet Rebuskers</span><b>${fmtMoney((global.S && global.S.wal && Number(global.S.wal.saldo)) || 0)}</b></div>
           <div><span>Tickets Retenidos por Garantía 2D</span><b>${m.disputes.length} (${fmtMoney(m.disputes.reduce((a, b) => a + (b.v || 0), 0))})</b></div>
         </div>
         <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px">
@@ -1052,7 +953,7 @@
         </div>
       </div>
 
-      <h2>Tickets de Garantía Activos (${m.disputes.length}) <button class="link" data-a="adminSimulateDispute">+ Simular ticket</button></h2>
+      <h2>Tickets de Garantía Activos (${m.disputes.length})</h2>
       ${m.disputes.length ? m.disputes.map(j => {
         const pro = typeof global.PR === 'function' ? global.PR(j.pro) : { n: 'Rebusker', o: j.c };
         return `
@@ -1881,27 +1782,9 @@
       if (typeof global.render === 'function') global.render();
     },
 
-    adminSimulateDispute: () => {
-      if (!global.S || !Array.isArray(global.S.jobs)) return;
-      const id = 'j' + Date.now();
-      global.S.jobs.unshift({
-        id,
-        t: 'Ajuste de presión hidráulica',
-        c: 'Reparaciones',
-        z: ADM.selectedZone || 'Laureles',
-        v: 95000,
-        k: 'Corto',
-        pro: 'p1',
-        s: 'disputa',
-        chat: [],
-        disp: 'Persiste goteo leve al segundo día de garantía.'
-      });
-      if (typeof global.save === 'function') global.save();
-      logAdmin(`Nuevo ticket de garantía 2D recibido (#${id}).`);
-      if (typeof global.render === 'function') global.render();
-      if (typeof global.toast === 'function') {
-        global.toast('Ticket de garantía de 2 días simulado');
-      }
+    adminAuditDispute: () => {
+      if (typeof global.toast === 'function') global.toast('Canal de disputas oficial activo bajo Ley 1480');
+    }
     },
 
     adminApproveKYC: d => {
@@ -2067,29 +1950,28 @@
   function ensureVerifState() {
     if (!ADM.verifForm) {
       ADM.verifForm = {
-        avatarLoaded: true,
-        avatarFileName: 'rostro_julian_restrepo_sin_logo.jpg',
-        avatarDataUrl: '',
-        avatarNoLogo: true,
-        portfolio: [
-          { name: 'Trabajo 1 · Instalación grifería monocontrol', ts: 'Verificada' },
-          { name: 'Trabajo 2 · Reparación tubería cobre sin romper', ts: 'Verificada' },
-          { name: 'Trabajo 3 · Mantenimiento calentador de paso', ts: 'Verificada' },
-          { name: 'Trabajo 4 · Cambio de sifón y sellado hermético', ts: 'Verificada' },
-          { name: 'Trabajo 5 · Red hidráulica baño principal Laureles', ts: 'Verificada' }
-        ],
-        fullName: 'Julián Restrepo',
-        cedula: '1037648920',
-        phone: '+57 300 444 5566',
-        oficio: 'Plomería & Hidráulica',
-        zona: 'Laureles',
-        exp: '9',
-        bio: 'Plomero certificado con 9 años de experiencia en Medellín. Cotizo antes de empezar y entrego garantía escrita de 2 días.',
+        cedulaFront: false,
+        cedulaBack: false,
+        selfie: false,
+        backgroundCheck: false,
+        certification: false,
+        toolsPhoto: false,
+        portfolio: [],
+        fullName: '',
+        cedula: '',
+        phone: '',
+        oficio: '',
+        zona: '',
+        exp: '',
+        bio: '',
         payoutType: 'Nequi',
-        payoutNumber: '3004445566',
-        payoutHolder: 'Julián Restrepo',
-        status: 'listo_para_enviar'
+        payoutNumber: '',
+        payoutHolder: '',
+        status: 'borrador'
       };
+    }
+    return ADM.verifForm;
+  }
     }
     return ADM.verifForm;
   }
@@ -2228,7 +2110,7 @@
       <!-- REQUISITO 3: TODOS LOS DATOS LLENADOS AL 100% -->
       <h2>3. Todos los datos llenados al 100% <span class="tag">${r3 ? 'Completo ✓' : 'Incompleto'}</span></h2>
       <div class="glass req">
-        <label>Nombre y apellidos completos<input id="vfName" class="field" value="${safeEsc(vf.fullName)}" placeholder="Ej: Julián Restrepo"></label>
+        <label>Nombre y apellidos completos<input id="vfName" class="field" value="${safeEsc(vf.fullName)}" placeholder="Ej: Nombre y Apellido"></label>
         <label>Cédula de ciudadanía (CC)<input id="vfCedula" class="field" value="${safeEsc(vf.cedula)}" placeholder="Ej: 1037648920"></label>
         <label>Celular / WhatsApp verificado<input id="vfPhone" class="field" value="${safeEsc(vf.phone)}" placeholder="Ej: +57 300 444 5566"></label>
         <label>Oficio / Especialidad principal<input id="vfOficio" class="field" value="${safeEsc(vf.oficio)}" placeholder="Ej: Plomería & Hidráulica"></label>
