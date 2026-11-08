@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dossier de Migración Rebuske v5 · 20 Documentos Oficiales</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Baloo+2:wght@600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --bg: #0B100E;
+      --card: #131B15;
+      --border: rgba(184, 255, 59, 0.15);
+      --lima: #B8FF3B;
+      --text: #F2F5EC;
+      --text-mut: #94A3B8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      display: flex;
+      min-height: 100vh;
+    }
+    aside {
+      width: 320px;
+      background: #0E1511;
+      border-right: 1px solid var(--border);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .brand span {
+      font-family: 'Baloo 2', cursive;
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--lima);
+    }
+    .nav-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .nav-btn {
+      width: 100%;
+      text-align: left;
+      padding: 10px 14px;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--text-mut);
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s;
+    }
+    .nav-btn:hover, .nav-btn.active {
+      background: var(--card);
+      border-color: var(--lima);
+      color: var(--lima);
+    }
+    main {
+      flex: 1;
+      padding: 40px 60px;
+      max-width: 1000px;
+      overflow-y: auto;
+    }
+    .doc-header {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 20px;
+      margin-bottom: 30px;
+    }
+    .doc-badge {
+      display: inline-block;
+      background: rgba(184, 255, 59, 0.1);
+      border: 1px solid var(--lima);
+      color: var(--lima);
+      padding: 4px 12px;
+      border-radius: 99px;
+      font-size: 11px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    h1, h2, h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin: 24px 0 12px 0;
+      line-height: 1.3;
+    }
+    h1 { font-size: 28px; color: var(--lima); }
+    h2 { font-size: 20px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 8px; }
+    h3 { font-size: 16px; color: #E2E8F0; }
+    p, li {
+      font-size: 14.5px;
+      color: #CBD5E1;
+      line-height: 1.7;
+      margin-bottom: 12px;
+    }
+    ul, ol { padding-left: 24px; margin-bottom: 16px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 13.5px;
+      background: var(--card);
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    th, td {
+      padding: 12px 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      text-align: left;
+    }
+    th {
+      background: #0E1511;
+      color: var(--lima);
+      font-weight: 700;
+    }
+    pre, code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+    }
+    pre {
+      background: #070B09;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 18px;
+      overflow-x: auto;
+      margin: 18px 0;
+      color: #AFFF3E;
+    }
+    .action-btns {
+      float: right;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .print-btn, .download-btn {
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      font-size: 13px;
+      font-family: inherit;
+      transition: all 0.2s;
+    }
+    .print-btn {
+      border: 1px solid var(--lima);
+      background: var(--lima);
+      color: #111;
+    }
+    .download-btn {
+      border: 1px solid rgba(184, 255, 59, 0.4);
+      background: rgba(184, 255, 59, 0.1);
+      color: var(--lima);
+    }
+    .download-btn:hover {
+      background: rgba(184, 255, 59, 0.2);
+    }
+    @media (max-width: 768px) {
+      body { flex-direction: column; }
+      aside { width: 100%; height: auto; position: static; }
+      main { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <aside>
+    <a href="/" class="brand">
+      <i class="fa-solid fa-bolt" style="color: var(--lima); font-size: 20px;"></i>
+      <span>rebuske</span>
+    </a>
+    <div style="font-size: 11px; color: var(--text-mut); text-transform: uppercase; font-weight: 700; letter-spacing: 0.05em;">Dossier de Migración (20 Docs)</div>
+    <ul class="nav-list" id="navList">
+      <!-- Dinámico -->
+    </ul>
+    <div style="margin-top: auto; padding-top: 16px; border-top: 1px solid var(--border); font-size: 11px; color: var(--text-mut);">
+      <div>👑 Camilo Escobar · CEO</div>
+      <div>152/152 Tests en Verde</div>
+    </div>
+  </aside>
+
+  <main>
+    <div class="action-btns">
+      <a href="/CODIGO_COMPLETO_REBUSKE_APP_Y_ENTRADA.doc" download="CODIGO_COMPLETO_REBUSKE_APP_Y_ENTRADA.doc" class="download-btn">
+        <i class="fa-solid fa-file-code"></i> Descargar Código Completo (.doc · 22.099 líneas)
+      </a>
+      <button class="print-btn" onclick="window.print()"><i class="fa-solid fa-print"></i> Imprimir / PDF</button>
+    </div>
+    <div id="docContent">
+      <div class="doc-badge">DOCUMENTACIÓN MAESTRA</div>
+      <h1 id="docTitle">Cargando documento...</h1>
+      <div id="docBody">Selecciona un documento en la barra lateral para visualizarlo.</div>
+    </div>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script>
+    const DOC_FILES = [
+      { id: "DOC_01", title: "01. Inventario de Agentes", file: "docs/migracion/DOC_01_INVENTARIO_AGENTES.md" },
+      { id: "DOC_02", title: "02. Inventario de APIs", file: "docs/migracion/DOC_02_INVENTARIO_APIS.md" },
+      { id: "DOC_03", title: "03. Arquitectura Técnica", file: "docs/migracion/DOC_03_ARQUITECTURA_TECNICA.md" },
+      { id: "DOC_04", title: "04. Código Base App Principal", file: "docs/migracion/DOC_04_CODIGO_BASE_APP_PRINCIPAL.md" },
+      { id: "DOC_05", title: "05. Código Registro y Entrada", file: "docs/migracion/DOC_05_CODIGO_BASE_REGISTRO_ENTRADA.md" },
+      { id: "DOC_06", title: "06. Sistema de Pagos Wompi", file: "docs/migracion/DOC_06_SISTEMA_PAGOS.md" },
+      { id: "DOC_07", title: "07. Lógica y Flujos de Decisión", file: "docs/migracion/DOC_07_FLUJOS_PENSAMIENTO_LOGICA_DECISION.md" },
+      { id: "DOC_08", title: "08. Gestión de Datos y Privacidad", file: "docs/migracion/DOC_08_GESTION_DATOS_PRIVACIDAD.md" },
+      { id: "DOC_09", title: "09. Seguridad Informática", file: "docs/migracion/DOC_09_SEGURIDAD_IMPLEMENTADA.md" },
+      { id: "DOC_10", title: "10. Accesibilidad Universal y UX", file: "docs/migracion/DOC_10_ACCESIBILIDAD_UX.md" },
+      { id: "DOC_11", title: "11. Cronología Octubre 2026", file: "docs/migracion/DOC_11_CRONOLOGIA_OCTUBRE_2026.md" },
+      { id: "DOC_12", title: "12. Cronología Noviembre 2026", file: "docs/migracion/DOC_12_CRONOLOGIA_NOVIEMBRE_2026.md" },
+      { id: "DOC_13", title: "13. Integraciones Inter-Agente", file: "docs/migracion/DOC_13_INTEGRACIONES_ENTRE_SISTEMAS.md" },
+      { id: "DOC_14", title: "14. Métricas y Analíticas", file: "docs/migracion/DOC_14_METRICAS_Y_ANALITICAS.md" },
+      { id: "DOC_15", title: "15. Automatizaciones con n8n", file: "docs/migracion/DOC_15_AUTOMATIZACIONES_CON_N8N.md" },
+      { id: "DOC_16", title: "16. Marketing y Protocolo 1-Touch", file: "docs/migracion/DOC_16_ESTRATEGIA_MARKETING_PROMOCION.md" },
+      { id: "DOC_17", title: "17. Backups y Recuperación", file: "docs/migracion/DOC_17_BACKUPS_Y_RECUPERACION.md" },
+      { id: "DOC_18", title: "18. Pendientes y Roadmap", file: "docs/migracion/DOC_18_PENDIENTES_Y_ROADMAP.md" },
+      { id: "DOC_19", title: "19. Lecciones Aprendidas", file: "docs/migracion/DOC_19_LECCIONES_APRENDIDAS_BEST_PRACTICES.md" },
+      { id: "DOC_20", title: "20. Checklist Final de Migración", file: "docs/migracion/DOC_20_CHECKLIST_FINAL_MIGRACION.md" }
+    ];
+
+    const navList = document.getElementById('navList');
+    const docBody = document.getElementById('docBody');
+    const docTitle = document.getElementById('docTitle');
+
+    DOC_FILES.forEach((item, index) => {
+      const li = document.createElement('li');
+      const btn = document.createElement('button');
+      btn.className = `nav-btn \${index === 0 ? 'active' : ''}`;
+      btn.innerHTML = `<i class="fa-regular fa-file-lines"></i> <span>\${item.title}</span>`;
+      btn.onclick = () => loadDoc(item, btn);
+      li.appendChild(btn);
+      navList.appendChild(li);
+    });
+
+    async function loadDoc(item, btnElement) {
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+      if (btnElement) btnElement.classList.add('active');
+
+      docTitle.textContent = item.title;
+      docBody.innerHTML = '<p style="color: var(--text-mut);">Cargando contenido oficial...</p>';
+
+      try {
+        const res = await fetch('/' + item.file);
+        if (!res.ok) throw new Error('No se pudo cargar el archivo');
+        const text = await res.text();
+        docBody.innerHTML = marked.parse(text);
+      } catch (err) {
+        docBody.innerHTML = `<p style="color: #EF4444;">Error cargando \${item.file}: \${err.message}</p>`;
+      }
+    }
+
+    loadDoc(DOC_FILES[0], document.querySelector('.nav-btn'));
+  </script>
+</body>
+</html>
