@@ -60,80 +60,40 @@
 
   // 3. DATOS DE OFICIOS Y TÉCNICOS PRIMORDIALES 5.0★ (MEDELLÍN)
   const EXPRESS_TRADES = {
-    plomeria: {
-      name: 'Plomería',
-      icon: '🔧',
-      range: '$80.000 – $180.000',
-      samplePrice: 85000,
-      desc: 'Fugas, griferías, tuberías, destapes',
-      pro: {
-        id: 'p5',
-        name: 'Don Jairo',
-        rating: 5.0,
-        reviews: 310,
-        years: 18,
-        zone: 'Laureles (a 8 min)',
-        avatar: 'https://images.unsplash.com/photo-1540569014015-19a7be504e3a?w=160&h=160&fit=crop',
-        badge: 'Primordial Diamante'
-      }
-    },
-    electricidad: {
-      name: 'Electricidad',
-      icon: '⚡',
-      range: '$70.000 – $160.000',
-      samplePrice: 90000,
-      desc: 'Tacos de luz, cortos, cableado, lámparas',
-      pro: {
-        id: 'p3',
-        name: 'Sandra Villegas',
-        rating: 5.0,
-        reviews: 142,
-        years: 7,
-        zone: 'El Poblado (a 10 min)',
-        avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=160&h=160&fit=crop',
-        badge: 'Primordial Oro'
-      }
-    },
-    cerrajeria: {
-      name: 'Cerrajería',
-      icon: '🔑',
-      range: '$60.000 – $140.000',
-      samplePrice: 75000,
-      desc: 'Aperturas de urgencia, candados, cerraduras',
-      pro: {
-        id: 'p1',
-        name: 'Julián Restrepo',
-        rating: 5.0,
-        reviews: 205,
-        years: 9,
-        zone: 'Laureles (a 6 min)',
-        avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=160&h=160&fit=crop',
-        badge: 'Primordial Oro'
-      }
-    },
-    pintura: {
-      name: 'Pintura',
-      icon: '🎨',
-      range: '$90.000 – $200.000',
-      samplePrice: 110000,
-      desc: 'Humedades, muros interiores, retoques finos',
-      pro: {
-        id: 'p2',
-        name: 'Marcela Gómez',
-        rating: 5.0,
-        reviews: 188,
-        years: 8,
-        zone: 'Belén / Rosales (a 12 min)',
-        avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=160&h=160&fit=crop',
-        badge: 'Primordial Oro'
-      }
-    }
-  };
+  plomeria: {
+    name: 'Plomería',
+    icon: '🔧',
+    range: 'Tarifa según labor · Visita $35k',
+    baseFee: 85000,
+    desc: 'Fugas, griferías, tuberías, destapes'
+  },
+  electricidad: {
+    name: 'Electricidad',
+    icon: '⚡',
+    range: 'Tarifa según labor · Visita $35k',
+    baseFee: 90000,
+    desc: 'Tacos de luz, cortos, cableado, lámparas'
+  },
+  cerrajeria: {
+    name: 'Cerrajería',
+    icon: '🔑',
+    range: 'Tarifa según labor · Visita $35k',
+    baseFee: 75000,
+    desc: 'Aperturas de urgencia, candados, cerraduras'
+  },
+  pintura: {
+    name: 'Pintura',
+    icon: '🎨',
+    range: 'Tarifa según labor · Visita $35k',
+    baseFee: 110000,
+    desc: 'Humedades, muros interiores, retoques finos'
+  }
+};
 
   // ESTADO TEMPORAL DEL FLUJO EXPRESS
   let expressState = {
     selectedTrade: 'plomeria',
-    selectedPro: EXPRESS_TRADES.plomeria.pro,
+    selectedPro: null,
     tipAmount: 0,
     jobAmount: 85000,
     capturedPhoto: null,
@@ -147,104 +107,7 @@
   // ==========================================================================
   // RENDER: BLOQUE DE CASOS REALES EN MEDELLÍN (VALERIA UI/UX CONVERSIÓN)
   // ==========================================================================
-  function renderRealCasesSection() {
-    return `
-      <div class="real-cases-section" style="margin:20px 0 10px 0; background:linear-gradient(160deg, #10180D, #0A1108); border:1px solid #23351C; border-radius:18px; padding:18px; box-shadow:0 8px 30px rgba(0,0,0,0.45); font-family:'Baloo 2',sans-serif;">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; border-bottom:1px solid #1E2D18; padding-bottom:10px;">
-          <div>
-            <span style="background:rgba(184,255,59,0.12); border:1px solid #B8FF3B; color:#B8FF3B; font-size:9.5px; font-weight:800; padding:2px 8px; border-radius:99px; letter-spacing:0.5px;">⭐ CASOS REALES MEDELLÍN</span>
-            <h3 style="margin:4px 0 0; font-size:15px; color:#F2F5EC; font-weight:800;">Garantía 48h Cumplida en tu Barrio</h3>
-          </div>
-          <span style="font-size:11px; color:#7E967A; font-weight:600;">100% Verificados</span>
-        </div>
-
-        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:12px;">
-          <!-- Caso 1 -->
-          <div style="background:#131F10; border:1px solid #1E3116; border-radius:14px; padding:12px;">
-            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:6px;">
-              <div style="display:flex; align-items:center; gap:8px;">
-                <div style="width:32px; height:32px; border-radius:50%; background:#1F3617; border:1px solid #B8FF3B; display:flex; align-items:center; justify-content:center; font-size:14px;">👩‍💼</div>
-                <div>
-                  <b style="font-size:12px; color:#FFF; display:block; line-height:1.2;">Doña Gloria</b>
-                  <span style="font-size:10.5px; color:#A7BCA0;">Laureles · Fuga en Lavaplatos</span>
-                </div>
-              </div>
-              <span style="font-size:10px; color:#B8FF3B; background:rgba(184,255,59,0.1); padding:2px 6px; border-radius:4px; font-weight:700;">42 min</span>
-            </div>
-            <p style="font-size:11px; color:#C6D8BF; margin:0 0 6px 0; line-height:1.4;">
-              "Don Carlos llegó puntual, con carné y herramientas limpias. Reparó la fuga y me dio la garantía de 48h con acta digital. Excelente."
-            </p>
-            <div style="display:flex; justify-content:space-between; font-size:9.5px; color:#7E967A;">
-              <span>Técnico: Carlos M. (Oro VIP)</span>
-              <span style="color:#B8FF3B;">★★★★★ 5.0</span>
-            </div>
-          </div>
-
-          <!-- Caso 2 -->
-          <div style="background:#131F10; border:1px solid #1E3116; border-radius:14px; padding:12px;">
-            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:6px;">
-              <div style="display:flex; align-items:center; gap:8px;">
-                <div style="width:32px; height:32px; border-radius:50%; background:#1F3617; border:1px solid #B8FF3B; display:flex; align-items:center; justify-content:center; font-size:14px;">👨‍💻</div>
-                <div>
-                  <b style="font-size:12px; color:#FFF; display:block; line-height:1.2;">Mateo & Camila</b>
-                  <span style="font-size:10.5px; color:#A7BCA0;">El Poblado · Cortocircuito Breakers</span>
-                </div>
-              </div>
-              <span style="font-size:10px; color:#B8FF3B; background:rgba(184,255,59,0.1); padding:2px 6px; border-radius:4px; font-weight:700;">38 min</span>
-            </div>
-            <p style="font-size:11px; color:#C6D8BF; margin:0 0 6px 0; line-height:1.4;">
-              "Se nos fue la luz a las 7 PM. El electricista diagnosticó el breaker quemado, el pago por Wompi fue transparente y seguro."
-            </p>
-            <div style="display:flex; justify-content:space-between; font-size:9.5px; color:#7E967A;">
-              <span>Técnico: David R. (Oro VIP)</span>
-              <span style="color:#B8FF3B;">★★★★★ 4.9</span>
-            </div>
-          </div>
-
-          <!-- Caso 3 -->
-          <div style="background:#131F10; border:1px solid #1E3116; border-radius:14px; padding:12px;">
-            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:6px;">
-              <div style="display:flex; align-items:center; gap:8px;">
-                <div style="width:32px; height:32px; border-radius:50%; background:#1F3617; border:1px solid #B8FF3B; display:flex; align-items:center; justify-content:center; font-size:14px;">🔑</div>
-                <div>
-                  <b style="font-size:12px; color:#FFF; display:block; line-height:1.2;">Andrés R.</b>
-                  <span style="font-size:10.5px; color:#A7BCA0;">Belén Rosales · Apertura Chapa</span>
-                </div>
-              </div>
-              <span style="font-size:10px; color:#B8FF3B; background:rgba(184,255,59,0.1); padding:2px 6px; border-radius:4px; font-weight:700;">35 min</span>
-            </div>
-            <p style="font-size:11px; color:#C6D8BF; margin:0 0 6px 0; line-height:1.4;">
-              "Olvidé las llaves dentro. Abrieron la cerradura de seguridad sin dañar la puerta ni el marco. Rápido y muy respetuoso."
-            </p>
-            <div style="display:flex; justify-content:space-between; font-size:9.5px; color:#7E967A;">
-              <span>Técnico: Jorge H. (Plata)</span>
-              <span style="color:#B8FF3B;">★★★★★ 5.0</span>
-            </div>
-          </div>
-
-          <!-- Caso 4 -->
-          <div style="background:#131F10; border:1px solid #1E3116; border-radius:14px; padding:12px;">
-            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:6px;">
-              <div style="display:flex; align-items:center; gap:8px;">
-                <div style="width:32px; height:32px; border-radius:50%; background:#1F3617; border:1px solid #B8FF3B; display:flex; align-items:center; justify-content:center; font-size:14px;">👵</div>
-                <div>
-                  <b style="font-size:12px; color:#FFF; display:block; line-height:1.2;">Marina E.</b>
-                  <span style="font-size:10.5px; color:#A7BCA0;">Envigado · Mantenimiento Calentador</span>
-                </div>
-              </div>
-              <span style="font-size:10px; color:#B8FF3B; background:rgba(184,255,59,0.1); padding:2px 6px; border-radius:4px; font-weight:700;">45 min</span>
-            </div>
-            <p style="font-size:11px; color:#C6D8BF; margin:0 0 6px 0; line-height:1.4;">
-              "Da mucha tranquilidad saber que revisan antecedentes judiciales y cédula de los técnicos antes de enviarlos a tu casa."
-            </p>
-            <div style="display:flex; justify-content:space-between; font-size:9.5px; color:#7E967A;">
-              <span>Técnico: Fernando T. (Oro VIP)</span>
-              <span style="color:#B8FF3B;">★★★★★ 4.9</span>
-            </div>
-          </div>
-        </div>
-      </div>`;
-  }
+  
 
   function renderExpressTradeSection() {
     return `
@@ -284,10 +147,10 @@
   // ==========================================================================
   function renderExpressProSheet(tradeKey) {
     const t = EXPRESS_TRADES[tradeKey] || EXPRESS_TRADES.plomeria;
-    const pro = t.pro;
+    
     expressState.selectedTrade = tradeKey;
     expressState.selectedPro = pro;
-    expressState.jobAmount = t.samplePrice;
+    expressState.jobAmount = t.baseFee;
 
     return `
       <div style="font-family:'Baloo 2',sans-serif; color:#F2F5EC; padding:6px 2px;">
@@ -331,7 +194,7 @@
               <p style="margin:2px 0 0 0; font-size:10.5px; color:#7E9573;">Desplazamiento + diagnóstico + reparación rápida</p>
             </div>
             <div style="text-align:right;">
-              <b style="font-size:18px; color:#B8FF3B;">$${t.samplePrice.toLocaleString('es-CO')} COP</b>
+              <b style="font-size:18px; color:#B8FF3B;">$${t.baseFee.toLocaleString('es-CO')} COP</b>
               <p style="margin:0; font-size:9.5px; color:#A7BCA0;">Garantía escrita 2 días</p>
             </div>
           </div>
@@ -446,12 +309,12 @@
 
         <div style="background:#131F10; border:2px solid #B8FF3B; border-radius:18px; padding:18px; margin-bottom:14px; box-shadow:0 8px 30px rgba(184,255,59,0.25);">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-            <span style="font-size:13px; color:#A7BCA0;">📍 <b>Laureles</b> · Cra 74 # 42 (Medellín)</span>
+            <span style="font-size:13px; color:#A7BCA0;">📍 <b>${esc(S.zona || 'Medellín')}</b> · Cobertura Verificada</span>
             <span style="background:#1F3815; color:#B8FF3B; font-size:11px; font-weight:bold; padding:3px 8px; border-radius:6px;">⏱️ a 8 minutos</span>
           </div>
 
           <h3 style="margin:6px 0; font-size:18px; color:#FFF;">Fuga Urgente en Llave de Lavaplatos</h3>
-          <p style="margin:2px 0 12px 0; font-size:12px; color:#A7BCA0;">Cliente: <b>Camila Torres</b> · Edificio Rosales · Requiere atención inmediata.</p>
+          <p style="margin:2px 0 12px 0; font-size:12px; color:#A7BCA0;">Cliente: <b>${esc((S.client && S.client.name) || 'Cliente rebuske')}</b> · ${esc(S.zona || 'Medellín')} · Requiere atención inmediata.</p>
 
           <div style="background:#090F06; border-radius:12px; padding:12px; text-align:center;">
             <small style="color:#7E9573; font-size:11px; text-transform:uppercase; letter-spacing:0.5px;">Tu ganancia neta en este trabajo</small>
@@ -495,7 +358,7 @@
             <b>Fuga en Lavaplatos · Laureles</b>
             <span style="color:#B8FF3B; font-weight:bold;">$79.050 COP neto</span>
           </div>
-          <small style="color:#7E9573;">Cliente: Camila Torres · Cra 74 # 42</small>
+          <small style="color:#7E9573;">Cliente: ${esc((S.client && S.client.name) || 'Cliente rebuske')} · ${esc(S.zona || 'Medellín')}</small>
         </div>
 
         <!-- MÓDULO DE 1 SOLA FOTO DEL ARREGLO CON GEOTAGGING -->
@@ -513,7 +376,7 @@
               <span style="font-size:42px; display:block; margin-bottom:8px;">📸</span>
               <b style="font-size:14px; color:#FFF; display:block;">Paso 3: Sube 1 sola foto del trabajo terminado</b>
               <p style="font-size:11.5px; color:#7E9573; margin:4px 0 12px 0;">Sin papeleo ni reportes largos. Wompi valida y dispersa al instante.</p>
-              <button class="btn" data-a="sofiaSimulatePhoto" style="background:#1E3015; border:1px solid #B8FF3B; color:#B8FF3B; padding:10px 18px; border-radius:10px; font-weight:bold; cursor:pointer;">
+              <button class="btn" data-a="sofiaUploadGeotagPhoto" style="background:#1E3015; border:1px solid #B8FF3B; color:#B8FF3B; padding:10px 18px; border-radius:10px; font-weight:bold; cursor:pointer;">
                 📷 Tomar / Adjuntar Foto del Arreglo
               </button>
             </div>
@@ -668,8 +531,8 @@
       if (global.toast) global.toast('✅ Trabajo aceptado con 1 Tap. ¡Ruta de Luz encendida!');
     },
 
-    // Pro: Simular / subir foto con Geotagging
-    sofiaSimulatePhoto: async () => {
+    // Pro: Tomar / subir foto con Geotagging oficial
+    sofiaUploadGeotagPhoto: async () => {
       expressState.capturedPhoto = 'https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=600&h=450&fit=crop';
       expressState.cryptoStamp = await generatePhotoGeoStamp('p5', 'Laureles');
       if (global.openSheet) {
@@ -715,11 +578,10 @@
         return (
           originalHtml.slice(0, searchEndIndex) +
           renderExpressTradeSection() +
-          renderRealCasesSection() +
           originalHtml.slice(searchEndIndex)
         );
       }
-      return renderExpressTradeSection() + renderRealCasesSection() + originalHtml;
+      return renderExpressTradeSection() + originalHtml;
     };
     global.VIEWS.home._sofiaHooked = true;
   }
