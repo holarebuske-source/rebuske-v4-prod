@@ -27,6 +27,14 @@
       "destination": "/registro-cliente"
     },
     {
+      "source": "/docs",
+      "destination": "/documentacion.html"
+    },
+    {
+      "source": "/documentacion",
+      "destination": "/documentacion.html"
+    },
+    {
       "source": "/entrada",
       "destination": "/entrada.html"
     },
