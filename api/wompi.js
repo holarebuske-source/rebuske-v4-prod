@@ -160,7 +160,7 @@ export default async function handler(req, res) {
         signature,
         status: 'PENDING',
         customerEmail: customerEmail || 'holarebuske@gmail.com',
-        customerName: customerName || 'Camila Torres',
+        customerName: customerName || 'Cliente rebuske',
         customerPhone: customerPhone || '+573001234567',
         couponApplied,
         dianAccounting: {
