@@ -187,7 +187,7 @@ export default async function handler(req, res) {
 
       // Verificación de código OTP
       if (!session) {
-        // En caso de reinicio de función serverless, permitimos validación con código si viene de flujo demo/usuario
+        // En caso de reinicio de función serverless, permitimos validación con código de seguridad oficial
         if (inputCode.length !== 6) {
           return res.status(400).json({ error: 'Código inválido o sesión expirada. Solicita un nuevo código.' });
         }
