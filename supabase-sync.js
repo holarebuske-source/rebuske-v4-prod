@@ -160,11 +160,11 @@
   // UUIDs fijos de semilla para los actores principales de Rebuske v4
   const SEED_UUIDS = {
     'client_camila': '00000000-0000-4000-8000-0000000000c1',
-    'p1': '00000000-0000-4000-8000-000000000001', // Julián Restrepo
-    'p2': '00000000-0000-4000-8000-000000000002', // Marcela Gómez
-    'p3': '00000000-0000-4000-8000-000000000003', // Sandra Villegas
-    'p4': '00000000-0000-4000-8000-000000000004', // Lupita Salazar
-    'p5': '00000000-0000-4000-8000-000000000005', // Don Jairo
+    'p1': '00000000-0000-4000-8000-000000000001',
+    'p2': '00000000-0000-4000-8000-000000000002',
+    'p3': '00000000-0000-4000-8000-000000000003',
+    'p4': '00000000-0000-4000-8000-000000000004',
+    'p5': '00000000-0000-4000-8000-000000000005',
     'j1': '00000000-0000-4000-8000-000000000101',
     'j2': '00000000-0000-4000-8000-000000000102',
     'j3': '00000000-0000-4000-8000-000000000103',
@@ -629,7 +629,7 @@
               phone_number: '3991111111' // Número oficial de Wompi Sandbox con aprobación automática
             },
             customer_data: {
-              full_name: 'Camila Torres (Cliente Rebuske)',
+              full_name: (global.S && global.S.client && (global.S.client.nombre || global.S.client.name)) || 'Cliente rebuske',
               phone_number: '573001234567'
             }
           };
@@ -694,8 +694,8 @@
           signature: { integrity },
           customerData: {
             email: 'holarebuske@gmail.com',
-            fullName: 'Camila Torres',
-            phoneNumber: '3991111111',
+            fullName: (global.S && global.S.client && (global.S.client.nombre || global.S.client.name)) || 'Cliente rebuske',
+            phoneNumber: (global.S && global.S.client && (global.S.client.tel || global.S.client.phone)) || '3000000000',
             phoneNumberPrefix: '+57'
           }
         });
@@ -830,7 +830,7 @@
 
       // Crear transacción firmada en Wompi Producción
       const wompiTx = await WompiService.createSandboxTransaction(uiJob, 'NEQUI');
-      const proObj = typeof global.PR === 'function' ? global.PR(uiJob.pro || 'p1') : { n: 'Julián Restrepo' };
+      const proObj = typeof global.PR === 'function' ? global.PR(uiJob.pro) : { n: (global.S?.proInfo?.name || 'Profesional rebuske') };
 
       await SupabaseRestClient.insert('wallets', {
         pro_id: proUuid,
@@ -901,13 +901,13 @@
         })
       ]);
 
-      const proObj = typeof global.PR === 'function' ? global.PR(uiJob.pro || 'p1') : { n: 'Julián Restrepo', nv: proTier };
+      const proObj = typeof global.PR === 'function' ? global.PR(uiJob.pro) : { n: (global.S?.proInfo?.name || 'Profesional rebuske'), nv: proTier };
       const splitSummary = {
         wompi_tx_id: uiJob.wompi_tx_id || `wompi_sbx_${Date.now()}`,
         wompi_reference: uiJob.wompi_ref || `REB-${uiJob.id}`,
         wompi_signature: uiJob.wompi_sig || 'firmado_sha256',
-        client_name: uiJob.cl || 'Camila Torres',
-        pro_name: proObj.n || 'Julián Restrepo',
+        client_name: uiJob.cl || (global.S && global.S.client && (global.S.client.nombre || global.S.client.name)) || 'Cliente rebuske',
+        pro_name: proObj.n || (global.S && global.S.proInfo && global.S.proInfo.name) || 'Profesional rebuske',
         pro_tier: proTier,
         job_title: uiJob.t || 'Servicio Rebuske',
         zone: uiJob.z || 'Laureles',
@@ -928,7 +928,7 @@
     async processWithdrawal(proLocalId = 'p1', withdrawnAmount = 0) {
       const proUuid = resolveUUID(proLocalId);
       const now = new Date().toISOString();
-      const proObj = typeof global.PR === 'function' ? global.PR(proLocalId) : { n: 'Julián Restrepo' };
+      const proObj = typeof global.PR === 'function' ? global.PR(proLocalId) : { n: (global.S?.proInfo?.name || 'Profesional rebuske') };
       const amtFmt = `$${Number(withdrawnAmount).toLocaleString('es-CO')} COP`;
 
       await Promise.all([
@@ -962,7 +962,7 @@
         title: `Retiro transferido a tu cuenta: ${amtFmt}`,
         subtitle: `Hola ${proObj.n || 'Profesional'}, tu retiro del ciclo de 4 días fue procesado sin costo de transferencia.`,
         rows: [
-          ['Profesional Titular', proObj.n || 'Julián Restrepo', false],
+          ['Profesional Titular', proObj.n || (global.S && global.S.proInfo && global.S.proInfo.name) || 'Profesional rebuske', false],
           ['Monto Neto Transferido', amtFmt, true],
           ['Costo de Retiro', '$0 COP (Cubierto por Rebuske)', false],
           ['Ciclo de Seguridad', 'Habilitado cada 4 días', false],
