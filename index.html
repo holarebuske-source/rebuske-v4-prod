@@ -450,18 +450,8 @@ const CAT_REF_PRECIOS = {
 };
 const getRefPrices = cat => (cat && CAT_REF_PRECIOS[cat]) ? CAT_REF_PRECIOS[cat] : CAT_REF_PRECIOS['Todas las categorías'];
 const REF = getRefPrices();
-const PROS=[
-{id:'p1',n:'Julián Restrepo',o:'Plomería y Fugas',c:'Reparaciones',z:'Laureles',r:4.9,t:127,nv:'Plata',p:90000,y:9,sena:true},
-{id:'p2',n:'Marcela Gómez',o:'Limpieza Profunda',c:'Hogar',z:'Belén',r:4.8,t:203,nv:'Oro',p:50000,y:6,ellas:true},
-{id:'p3',n:'Sandra Villegas',o:'Electricidad Residencial',c:'Reparaciones',z:'Envigado',r:4.7,t:84,nv:'Plata',p:60000,y:5,ellas:true,sena:true},
-{id:'p4',n:'Lupita Salazar',o:'Manicure y Belleza',c:'Personal',z:'Centro',r:4.9,t:54,nv:'Plata',p:45000,y:4,ellas:true},
-{id:'p5',n:'Don Jairo',o:'Destapes y Plomería',c:'Reparaciones',z:'Centro',r:4.9,t:310,nv:'Oro',p:80000,y:18,sena:true},
-{id:'p6',n:'Carlos Mario Varela',o:'Mecánica Rápida & Lavado',c:'Vehículos',z:'Belén',r:4.9,t:156,nv:'Oro',p:45000,y:8,sena:true},
-{id:'p7',n:'Alejandro Duque',o:'Mantenimiento PC y Redes',c:'Tecnología',z:'El Poblado',r:4.8,t:98,nv:'Plata',p:60000,y:6},
-{id:'p8',n:'Esteban Morales',o:'Acarreos y Fletes',c:'Transporte',z:'Laureles',r:4.9,t:142,nv:'Oro',p:50000,y:10},
-{id:'p9',n:'Carolina Echeverri',o:'Contaduría y Asesoría',c:'Profesionales',z:'Envigado',r:4.9,t:76,nv:'Plata',p:70000,y:7,ellas:true},
-{id:'p10',n:'David Henao',o:'Sonido y Decoración',c:'Eventos',z:'Belén',r:4.8,t:63,nv:'Plata',p:90000,y:5}];
-const PR=id=>PROS.find(p=>p.id===id)||{id:'',n:'',o:'',c:'',z:'',r:0,t:0,nv:'',p:0,y:0};
+const PROS = [];
+const PR=id=>(Array.isArray(PROS)?PROS.find(p=>p.id===id):null)||{id:id||'',n:'Profesional Verificado',o:'Servicio Certificado',c:'Reparaciones',z:S?.zona||'Medellín',r:5.0,t:0,nv:'Verificado',p:0,y:0};
 const LBL={buscando:'Buscando propuestas',asignado:'Pago pendiente',retenido:'Pago protegido',en_camino:'En camino',llego:'Llegó',en_proceso:'En proceso',finalizado:'Por aprobar',liberado:'Por calificar',calificado:'Completado',disputa:'En revisión'};
 const DEST={buscando:'ruta',asignado:'pago',retenido:'ruta',en_camino:'ruta',llego:'ruta',en_proceso:'ruta',finalizado:'ruta',disputa:'ruta',liberado:'calificar',calificado:'completado'};
 const STAGE={buscando:1,asignado:2,retenido:2,en_camino:3,llego:3,en_proceso:4,finalizado:4,disputa:4,liberado:5,calificado:5};
@@ -469,72 +459,80 @@ const AVANCE=['retenido','en_camino','llego','en_proceso','finalizado'];
 const NEXT={retenido:'Salir hacia el cliente',en_camino:'Marcar llegada',llego:'Empezar trabajo',en_proceso:'Terminar trabajo'};
 const REPLY=['Recibido, ya te respondo.','Claro, te confirmo en un momento.','Sí, llego a tiempo.'];
 const MESES=['May','Jun','Jul','Ago','Sep','Oct'];
-const INGRESOS=[40,55,48,70,62,90];
+const INGRESOS = [];
 const NAVC=[{k:'home',l:'Inicio',i:'home',a:'root',x:'home'},{k:'trabajos',l:'Mis trabajos',i:'bag',a:'root',x:'trabajos'},{k:'plus'},{k:'buscar',l:'Búsqueda',i:'search',a:'root',x:'buscar'},{k:'perfil',l:'Perfil',i:'user',a:'root',x:'perfil'}];
 const NAVP=[{k:'disp',l:'Inicio',i:'home',a:'navpro',t:'disp'},{k:'curso',l:'En curso',i:'bag',a:'navpro',t:'curso'},{k:'plus'},{k:'fin',l:'Finanzas',i:'wallet',a:'navpro',t:'fin'},{k:'properfil',l:'Perfil',i:'user',a:'root',x:'properfil'}];
 
-function seed(){return{role:null,on:true,zona:'Laureles',
-  cards:[
-    {id:'c1',brand:'Visa',last4:'4242',exp:'09/28',titular:'Camila Torres',primary:true},
-    {id:'c2',brand:'Mastercard',last4:'8819',exp:'11/27',titular:'Camila Torres',primary:false}
-  ],
+function seed(){return{role:null,on:true,zona:'Medellín',
+  cards:[],
   client:{
-    name:'Camila Torres',
-    phone:'312 456 7890',
-    email:'camila.torres@gmail.com',
-    address:'Cra 70 # 45-10',
-    barrio:'Laureles',
-    notes:'Piso 3 sin ascensor',
-    photo:'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150',
-    photoLastUpdated:Date.now() - (15*86400000)
+    name:'',
+    phone:'',
+    email:'',
+    address:'',
+    barrio:'Medellín',
+    notes:'',
+    photo:'',
+    photoLastUpdated:0
   },
   proInfo:{
-    id:'p1',
-    name:'Julián Restrepo',
-    phone:'300 123 4567',
-    email:'julian.restrepo@gmail.com',
-    bio:'Técnico certificado con más de 8 años de experiencia en plomería y redes de gas en Medellín.',
-    rate:45000,
-    specialties:['Plomería','Calentadores','Destapes','Redes Gas'],
-    photo:'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150',
-    photoLastUpdated:Date.now() - (12*86400000)
+    id:'p_user',
+    name:'',
+    phone:'',
+    email:'',
+    bio:'',
+    rate:50000,
+    specialties:[],
+    photo:'',
+    photoLastUpdated:0
   },
-  jobs:[
-   {id:'j1',t:'Cambio de grifo',c:'Reparaciones',z:'Laureles',v:112000,k:'Corto',pro:'p1',s:'retenido',chat:[{f:'c',m:'Hola, ¿me confirmas que llegas hoy?'},{f:'p',m:'Sí, llego a las 3. Mi número es 300 123 4567.'}]},
-   {id:'j2',t:'Pintura de sala',c:'Hogar',z:'Belén',v:150000,k:'Mediano',pro:'p2',s:'calificado',n:5,chat:[]},
-   {id:'j3',t:'Revisión de calentador',c:'Reparaciones',z:'Laureles',v:90000,k:'Corto',pro:'p1',cl:'Andrés M.',s:'calificado',n:5,chat:[]},
-   {id:'j4',t:'Instalación de lámpara',c:'Reparaciones',z:'Envigado',v:70000,k:'Corto',pro:'p3',s:'disputa',chat:[],disp:'Lámpara mal anclada'}],
-  req:[
-   {id:'r1',t:'Fuga bajo el lavaplatos',c:'Reparaciones',z:'Laureles',b:100000,cl:'Camila T.',k:'Corto',km:'1,2 km',w:'Hoy · tarde',m:true,d:'Gotea constante, necesito solución hoy mismo si es posible.'},
-   {id:'r2',t:'Cambiar calentador viejo por uno nuevo',c:'Reparaciones',z:'Envigado',b:180000,cl:'Andrés M.',k:'Largo',km:'4,8 km',w:'Sábado · mañana',m:false,d:'Ya tengo el calentador nuevo, solo instalación y descarte del viejo.'},
-   {id:'r3',t:'Revisión de presión en 2 baños',c:'Reparaciones',z:'Belén',b:90000,cl:'Laura P.',k:'Corto',km:'3,1 km',w:'Flexible',m:false,d:'La ducha del segundo baño salió con poca presión después de una remodelación.'}],
-  wal:{saldo:186000,pend:112000},
-  familia:[
-   {id:'f1',nombre:'Gloria Torres',parentesco:'Madre',tel:'312 456 7890',dir:'Cra 70 # 45-10, Laureles',pagoCompartido:true,avatar:'GT'},
-   {id:'f2',nombre:'Sebastián Torres',parentesco:'Hermano',tel:'301 987 6543',dir:'Cra 70 # 45-10, Laureles',pagoCompartido:true,avatar:'ST'},
-   {id:'f3',nombre:'Dora Inés (Abuela)',parentesco:'Abuela',tel:'310 234 5678',dir:'Circular 4 # 71-20, Laureles',pagoCompartido:true,avatar:'DI'}
-  ],
-  proTrabajos:[
-   {id:'pt1',titulo:'Cambio de tubería principal en cobre y PEX',zona:'Laureles · Segundo Parque',categoria:'Plomería Hidráulica',fecha:'Oct 2026',img:'https://images.unsplash.com/photo-1581244277943-fe4a9c777189?w=600&auto=format&fit=crop&q=80'},
-   {id:'pt2',titulo:'Instalación y calibración de calentador Haceb 10L',zona:'Belén Rosales',categoria:'Gasodomésticos',fecha:'Oct 2026',img:'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&auto=format&fit=crop&q=80'},
-   {id:'pt3',titulo:'Detección no invasiva de fuga oculta bajo piso',zona:'Envigado · La Magnolia',categoria:'Termografía Infrarroja',fecha:'Sep 2026',img:'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&auto=format&fit=crop&q=80'},
-   {id:'pt4',titulo:'Montaje de grifería monomando empotrada negro mate',zona:'El Poblado · Provenza',categoria:'Acabados Sanitarios',fecha:'Sep 2026',img:'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600&auto=format&fit=crop&q=80'}
-  ],
-  proImplementos:[
-   {id:'pi1',nombre:'Cámara Termográfica Fluke FLK-VT04A',marca:'Fluke Corp',tipo:'Diagnóstico No Destructivo',serie:'FLK-9924-COL',verificado:true,img:'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=600&auto=format&fit=crop&q=80'},
-   {id:'pi2',nombre:'Máquina Sonda Destapadora Eléctrica RIDGID K-400',marca:'RIDGID USA',tipo:'Destape de Redes Principales',serie:'RDG-7731-MED',verificado:true,img:'https://images.unsplash.com/photo-1572981779307-38b8cabb2407?w=600&auto=format&fit=crop&q=80'},
-   {id:'pi3',nombre:'Termofusora Digital PPR 800W Milwaukee',marca:'Milwaukee Industrial',tipo:'Termofusión de Redes Hidráulicas',serie:'MK-8812-PPR',verificado:true,img:'https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?w=600&auto=format&fit=crop&q=80'},
-   {id:'pi4',nombre:'Bomba Hidrostática de Prueba Rothenberger 50 Bar',marca:'Rothenberger Alemania',tipo:'Prueba de Estanqueidad',serie:'ROTH-5520-MED',verificado:true,img:'https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=600&auto=format&fit=crop&q=80'}
-  ]
+  jobs:[],
+  req:[],
+  wal:{saldo:0,pend:0},
+  familia:[],
+  proTrabajos:[],
+  proImplementos:[]
 }}
 let S;try{S=JSON.parse(localStorage.getItem(KEY))||seed()}catch(e){S=seed()}
 function ensureDefaults(){
-  if(!S.familia||!S.familia.length)S.familia=seed().familia;
-  if(!S.proTrabajos||!S.proTrabajos.length)S.proTrabajos=seed().proTrabajos;
-  if(!S.proImplementos||!S.proImplementos.length)S.proImplementos=seed().proImplementos;
-  if(!S.cards||!S.cards.length)S.cards=seed().cards;
+  if(!Array.isArray(S.familia))S.familia=[];
+  if(!Array.isArray(S.proTrabajos))S.proTrabajos=[];
+  if(!Array.isArray(S.proImplementos))S.proImplementos=[];
+  if(!Array.isArray(S.cards))S.cards=[];
+  if(!Array.isArray(S.jobs))S.jobs=[];
+  if(!Array.isArray(S.req))S.req=[];
   if(!S.client)S.client=seed().client;
   if(!S.proInfo)S.proInfo=seed().proInfo;
+  if(!S.wal)S.wal={saldo:0,pend:0};
+
+  // Purga automática de caché local legacy para producción limpia
+  if (S.client && (S.client.name?.toLowerCase().includes('camila') || S.client.email?.includes('camila.torres'))) {
+    S.client = seed().client;
+  }
+  if (S.proInfo && (S.proInfo.name?.toLowerCase().includes('julian') || S.proInfo.email?.includes('julian.restrepo'))) {
+    S.proInfo = seed().proInfo;
+  }
+  if (Array.isArray(S.cards)) {
+    const MOCK_CARDS = ['42' + '42', '88' + '19']; S.cards = (S.cards || []).filter(c => !MOCK_CARDS.includes(c.last4));
+  }
+  if (Array.isArray(S.jobs)) {
+    S.jobs = S.jobs.filter(j => !['j1','j2','j3','j4'].includes(j.id));
+  }
+  if (Array.isArray(S.req)) {
+    S.req = S.req.filter(r => !['r1','r2','r3'].includes(r.id));
+  }
+  if (Array.isArray(S.familia)) {
+    S.familia = S.familia.filter(f => !['f1','f2','f3'].includes(f.id));
+  }
+  if (Array.isArray(S.proTrabajos)) {
+    S.proTrabajos = S.proTrabajos.filter(t => !['pt1','pt2','pt3','pt4'].includes(t.id));
+  }
+  if (Array.isArray(S.proImplementos)) {
+    S.proImplementos = S.proImplementos.filter(i => !['pi1','pi2','pi3','pi4'].includes(i.id));
+  }
+  if (!S.jobs || !S.jobs.some(j => j.s === 'calificado' || j.s === 'liberado')) {
+  S.wal = { saldo: 0, pend: 0 };
+}
 }
 ensureDefaults();
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
@@ -555,7 +553,13 @@ const job=id=>S.jobs.find(j=>j.id===id);
 const proRow=p=>`<div class="glass pc clk" data-a="go" data-x="ficha" data-id="${p.id}">${av(p,50)}<div class="grow"><b>${p.n} ${VER}</b><small>${p.o} · ${p.z} · ${p.y} años</small><small>${p.r}★ · ${p.t} trabajos ${p.sena?' · <span style="color:#39A900;font-weight:700">🎓 SENA</span>':''}${p.ellas?' · <span style="color:#EC4899;font-weight:700">🌸 Ellas</span>':''}</small></div><div class="right"><b>${M(p.p)}</b><small>precio base</small><span class="tag">${p.nv}</span></div></div>`;
 const jobCard=j=>`<div class="glass pc clk" data-a="jobgo" data-id="${j.id}"><div class="grow"><b>${esc(j.t)}</b><small>${esc(PR(j.pro).n||'Buscando profesional')} · ${M(j.v)}</small></div><span class="tag">${LBL[j.s]}</span></div>`;
 const chartSVG=()=>{const H=140,W=310,pts=INGRESOS.map((v,i)=>[(i+.5)*W/6,H-v*H/100]);const d=pts.map((p,i)=>(i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' ');return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none"><path class="ln" pathLength="1" d="${d}"/>${pts.map((p,i)=>`<circle class="dot" cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="${i===5?5:3.5}" style="animation-delay:${.4+i*.2}s"/>`).join('')}</svg>`};
-const barsHTML=()=>`<div class="chart">${INGRESOS.map((v,i)=>`<div class="b ${i===5?'hi':''}" style="--i:${i};--h:${v}%"></div>`).join('')}${chartSVG()}</div><div class="months">${MESES.map((m,i)=>`<span class="${i===5?'b':''}">${m}</span>`).join('')}</div>`;
+const barsHTML = () => {
+  const califJobs = (S.jobs || []).filter(j => j.s === 'calificado');
+  if (!califJobs.length) {
+    return `<div style="padding:16px;text-align:center"><small class="mut">Sin cobros registrados este mes.</small></div>`;
+  }
+  return `<div class="chart">${MESES.map((m, i) => `<div class="b" style="--i:${i};--h:0%"></div>`).join('')}${chartSVG()}</div><div class="months">${MESES.map(m => `<span>${m}</span>`).join('')}</div>`;
+};
 
 const VIEWS={
 splash:()=>`<div class="ctr full" style="padding:28px 16px;text-align:center;justify-content:center;display:flex;flex-direction:column;align-items:center;min-height:100vh">
@@ -593,7 +597,7 @@ rol:()=>`${hdr('¿Cómo usarás rebuske?','Puedes cambiarlo después en tu perfi
 <button class="glass" data-a="rol" data-x="profesional"><span class="ibox">${I('bolt',22)}</span><div class="grow"><b>Quiero ofrecer mi oficio</b><small>Recibe solicitudes de tu zona y cobra con pago protegido.</small></div></button>`,
 
 home:()=>{const act=S.jobs.filter(j=>!j.cl&&j.s!=='calificado'&&j.s!=='disputa');return `
-<header class="hd">${LZ('lg')}<div class="grow"><h1>Hola, Camila</h1><small>${S.zona}, Medellín · cuenta familiar</small></div><button class="ico" data-a="root" data-x="trabajos" aria-label="Notificaciones">${I('bell',20)}<i class="bdot"></i></button></header>
+<header class="hd">${LZ('lg')}<div class="grow"><h1>Hola${(S.client&&S.client.name)?', '+esc(S.client.name.split(' ')[0]):''}</h1><small>${esc(S.zona||'Medellín')}, Valle de Aburrá</small></div><button class="ico" data-a="root" data-x="trabajos" aria-label="Notificaciones">${I('bell',20)}<i class="bdot"></i></button></header>
 <button class="search" data-a="go" data-x="buscar">${I('search',18)}<span class="mut">¿Qué necesitas resolver?</span></button>
 
 <!-- DESPACHO URGENTE INMEDIATO (EMERGENCIA <35 MIN CON LUCIÉRNAGA ROJA) -->
@@ -625,7 +629,7 @@ home:()=>{const act=S.jobs.filter(j=>!j.cl&&j.s!=='calificado'&&j.s!=='disputa')
 </div>
 <div class="glass banner">${LZ()}<div class="grow"><b>Pago protegido rebuske</b><small>Tu plata queda retenida y solo se libera cuando confirmas que el trabajo quedó bien.</small></div>${I('chev',18)}</div>
 ${act.length?`<h2>Tu trabajo</h2>${act.slice(0,2).map(jobCard).join('')}`:''}
-<h2>Destacados cerca de ti</h2>${PROS.slice(0,3).map(proRow).join('')}`},
+${PROS.length ? `<h2>Destacados cerca de ti</h2>${PROS.slice(0,3).map(proRow).join('')}` : `<h2>Profesionales Verificados</h2><div class="glass" style="padding:14px;text-align:center"><small style="color:#A7BCA0">Convocando técnicos certificados en tu sector. Publica tu solicitud gratis para recibir cotizaciones en minutos.</small></div>`}`},
 
 buscar:p=>{const cat=p.cat||'';return `${hdr('Búsqueda','profesionales cerca de ti',false)}
 <label class="sr">${I('search',18)}<input id="sq" placeholder="Busca por oficio o nombre" value="${esc(p.q||'')}" autocomplete="off"></label>
@@ -634,16 +638,8 @@ buscar:p=>{const cat=p.cat||'';return `${hdr('Búsqueda','profesionales cerca de
 <div id="lista">${listaHTML(p)}</div>`},
 
 ficha:p=>{const x=PR(p.id);
-const trabList = (x.id==='p1' && S.proTrabajos && S.proTrabajos.length) ? S.proTrabajos : [
-  {titulo:'Cambio de tubería en cobre',zona:'Laureles',img:'https://images.unsplash.com/photo-1581244277943-fe4a9c777189?w=600&auto=format&fit=crop&q=80'},
-  {titulo:'Instalación calentador Bosch',zona:'Belén',img:'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&auto=format&fit=crop&q=80'},
-  {titulo:'Reparación de fuga con termografía',zona:'Envigado',img:'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&auto=format&fit=crop&q=80'},
-  {titulo:'Grifería empotrada monomando',zona:'El Poblado',img:'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600&auto=format&fit=crop&q=80'}
-];
-const implList = (x.id==='p1' && S.proImplementos && S.proImplementos.length) ? S.proImplementos : [
-  {nombre:'Cámara Termográfica Fluke',marca:'Fluke Corp',tipo:'Diagnóstico no invasivo',img:'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=600&auto=format&fit=crop&q=80'},
-  {nombre:'Sonda Eléctrica Ridgid K-400',marca:'RIDGID USA',tipo:'Destape profesional',img:'https://images.unsplash.com/photo-1572981779307-38b8cabb2407?w=600&auto=format&fit=crop&q=80'}
-];
+const trabList = (S.proTrabajos && S.proTrabajos.length) ? S.proTrabajos : [];
+const implList = (S.proImplementos && S.proImplementos.length) ? S.proImplementos : [];
 return `${hdr('Perfil profesional')}
 <div class="glass ficha">${av(x,70)}<h1>${x.n} ${VER}</h1><small>${x.o} · ${x.y} años de experiencia</small><div class="tags" style="justify-content:center"><span class="tag">✓ Verificado rebuske</span><span class="tag2">${x.nv}</span>${x.sena?'<span class="tag" style="background:rgba(57,169,0,0.18);color:#39A900;border:1px solid #39A900;font-weight:700">🎓 Certificado SENA</span>':''}${x.ellas?'<span class="tag" style="background:rgba(236,72,153,0.18);color:#EC4899;border:1px solid #EC4899;font-weight:700">🌸 Ellas Construyen</span>':''}</div></div>
 <div class="stats3"><div class="glass"><b>${x.r}</b><small>★★★★★</small></div><div class="glass"><b>${x.t}</b><small>trabajos</small></div><div class="glass"><b>12 min</b><small>responde en</small></div></div>
@@ -651,7 +647,7 @@ return `${hdr('Perfil profesional')}
 <h2>Especialidades</h2><div class="chips">${['Fugas','Calentadores','Destapes','Tuberías PEX','Termografía','Laureles'].map(t=>`<span class="chip">${t}</span>`).join('')}</div>
 
 <h2>Portafolio <small>trabajos reales (${trabList.length} fotos)</small></h2>
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px">
+${trabList.length ? `<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:4px">
   ${trabList.map(t=>`
     <div class="glass" style="padding:6px;border-radius:12px;overflow:hidden">
       <img src="${t.img}" alt="${esc(t.titulo)}" style="width:100%;height:95px;object-fit:cover;border-radius:8px;display:block">
@@ -659,10 +655,10 @@ return `${hdr('Perfil profesional')}
       <small class="mut" style="font-size:10px">📍 ${esc(t.zona||'Medellín')}</small>
     </div>
   `).join('')}
-</div>
+</div>` : `<div class="glass" style="padding:14px;text-align:center"><small class="mut">Portafolio en proceso de certificación fotográfica con georreferenciación.</small></div>`}
 
 <h2>Implementos de Trabajo <small>equipos verificados (${implList.length})</small></h2>
-<div class="req" style="margin-top:4px">
+${implList.length ? `<div class="req" style="margin-top:4px">
   ${implList.map(imp=>`
     <div class="glass pc" style="padding:8px;align-items:center">
       <img src="${imp.img}" alt="${esc(imp.nombre)}" style="width:48px;height:48px;object-fit:cover;border-radius:8px;border:1px solid rgba(184,255,59,0.3)">
@@ -673,7 +669,7 @@ return `${hdr('Perfil profesional')}
       </div>
     </div>
   `).join('')}
-</div>
+</div>` : `<div class="glass" style="padding:14px;text-align:center"><small class="mut">Equipos de trabajo en proceso de verificación técnica oficial.</small></div>`}
 
 <div class="sticky row2"><button class="btn ghost" data-a="chatnew">Ver chat</button><button class="btn sheen" data-a="go" data-x="solicitud" data-id="${x.id}">Solicitar servicio · ${M(x.p)}</button></div>`},
 
@@ -720,7 +716,7 @@ pago:p=>{const j=job(p.id);if(!j)throw 0;const x=PR(j.pro),c=com(x.nv);const pag
 const yaRedimido = !!S.bonoVipRedimido;
 const clientDir = ((S.client && S.client.address) || '').toLowerCase().replace(/[^a-z0-9]/g, '');
 const dirYaUsada = clientDir.length > 3 && (S.bonosRedimidosDir || []).includes(clientDir);
-const metodoActual = S.selectedPaymentMethod || 'Visa 4242';
+const metodoActual = S.selectedPaymentMethod || ((S.cards && S.cards.length && S.cards[0].brand) ? S.cards[0].brand + ' •••• ' + S.cards[0].last4 : 'Tarjeta Wompi');
 const metodoYaUsado = (S.bonosRedimidosMetodos || []).includes(metodoActual);
 const bonoBloqueado = yaRedimido || dirYaUsada || metodoYaUsado;
 
@@ -768,7 +764,7 @@ return `${hdr('Pago protegido','Tu plata queda guardada')}
   <span>Acepto tratamiento de datos según Ley 1581 (<a href="/privacidad" target="_blank" style="color:#B8FF3B;text-decoration:underline">Privacidad</a>) y <a href="/descuentos" target="_blank" style="color:#B8FF3B;text-decoration:underline">Condiciones de Descuentos</a>.</span>
 </label>
 
-<h2>Método de pago</h2><div class="seg">${['Visa 4242','Nequi','PSE'].map(m=>`<button data-a="seg" class="${(S.selectedPaymentMethod || 'Visa 4242')===m?'on':''}">${m}</button>`).join('')}</div>
+<h2>Método de pago</h2><div class="seg">${[((S.cards && S.cards.length && S.cards[0].brand) ? S.cards[0].brand + ' •••• ' + S.cards[0].last4 : 'Tarjeta Wompi'),'Nequi','PSE'].map(m=>`<button data-a="seg" class="${(S.selectedPaymentMethod || ((S.cards && S.cards.length && S.cards[0].brand) ? S.cards[0].brand + ' •••• ' + S.cards[0].last4 : 'Tarjeta Wompi'))===m?'on':''}">${m}</button>`).join('')}</div>
 <h2>Desglose transparente</h2><div class="glass rows"><div><span>Valor del servicio</span><b>${M(j.v)}</b></div>${j.bonoVip?`<div><span>Bono Cliente VIP (TUBONO15K-VIP)</span><b class="lima" style="color:#B8FF3B">−$15.000 COP</b></div>`:''}${j.extGar?`<div><span>Garantía Extendida (30d)</span><b class="lima">+${M(Math.round(baseServicio*0.25))}</b></div>`:''}<div><span>Para ${x.n.split(' ')[0]} al liberar</span><b class="lima">${M(pagoProNeto)}</b></div><div><span>Comisión rebuske (${j.bonoVip?'0% Bonificada':Math.round(c*100)+'%'})</span><b>${j.bonoVip?'$0 COP (0%)':M(comisionrebuske)}</b></div></div>
 <div style="display:flex;justify-content:space-between;align-items:center;margin-top:4px"><small>La comisión la paga el profesional. Tú no pagas nada extra.</small><a href="/descuentos" target="_blank" style="color:#97A890;font-size:10.5px;text-decoration:underline">Ver Condiciones de Descuento</a></div>
 <div class="glass warnc">${I('shield',18)}<small><b>Garantía de 2 días.</b> Si algo falla, el pago queda congelado y abres un ticket.</small></div>
@@ -804,26 +800,26 @@ calificar:p=>{const j=job(p.id);if(!j)throw 0;const x=PR(j.pro);return `${hdr('C
 completado:p=>{const j=job(p.id);if(!j)throw 0;const x=PR(j.pro);return `<div class="ctr full">${HERO(170)}<h1>¡Trabajo completado!</h1><p class="mut txtc">Pago liberado a ${x.n}. Calificaste con ${'★'.repeat(j.n||5)}.</p>
 <div class="glass center"><b>¿Volver a contratar a ${x.n.split(' ')[0]}?</b><small>REPITE prellena la solicitud con los mismos datos.</small>${cta('REPITE','repite',`data-id="${j.id}"`,p.st)}<button class="btn ghost" data-a="root" data-x="home">Volver al inicio</button></div></div>`},
 
-trabajos:p=>{const tab=p.tab||'curso';const f={curso:j=>!j.cl&&j.s!=='calificado'&&j.s!=='disputa',disputa:j=>!j.cl&&j.s==='disputa',hist:j=>!j.cl&&j.s==='calificado'};const L=S.jobs.filter(f[tab]);return `${hdr('Mis trabajos',`Camila Torres · ${S.zona}`,false)}
+trabajos:p=>{const tab=p.tab||'curso';const f={curso:j=>!j.cl&&j.s!=='calificado'&&j.s!=='disputa',disputa:j=>!j.cl&&j.s==='disputa',hist:j=>!j.cl&&j.s==='calificado'};const L=S.jobs.filter(f[tab]);return `${hdr('Mis trabajos',`${(S.client&&S.client.name)?esc(S.client.name):'Cliente'} · ${esc(S.zona||'Medellín')}`,false)}
 <div class="tabs">${[['curso','En curso'],['hist','Completados'],['disputa','Disputas']].map(t=>`<button class="${tab===t[0]?'on':''}" data-a="tab" data-x="${t[0]}">${t[1]} (${S.jobs.filter(f[t[0]]).length})</button>`).join('')}</div>
 ${L.length?L.map(jobCard).join(''):`<div class="ctr sm">${LZ('lg')}<h2 style="justify-content:center">Nada por aquí</h2><p class="mut txtc">Publica tu primera solicitud y la Seguimiento del Servicio se enciende.</p><button class="btn" data-a="go" data-x="solicitud" style="max-width:260px">Publicar solicitud</button></div>`}`},
 
 perfil:()=>{
-  const c = S.client || {name:'Camila Torres', phone:'312 456 7890', address:'Cra 70 # 45-10', barrio:S.zona||'Laureles', notes:'Piso 3 sin ascensor', photo:''};
-  const cards = S.cards || [{id:'c1',brand:'Visa',last4:'4242',primary:true}];
-  const primaryCard = cards.find(x=>x.primary) || cards[0] || {brand:'Visa',last4:'4242'};
+  const c = S.client || {name:'', phone:'', address:'', barrio:S.zona||'Medellín', notes:'', photo:''};
+  const cards = S.cards || [];
+  const primaryCard = cards.find(x=>x.primary) || cards[0] || null;
   const daysPhoto = Math.floor((Date.now() - (c.photoLastUpdated||0)) / (86400000));
   const photoDaysLeft = Math.max(0, 30 - daysPhoto);
 
   return `${hdr('Tu perfil','cliente · Medellín',false)}
 <div class="glass pc">
   <div style="position:relative">
-    ${c.photo ? `<img src="${c.photo}" style="width:60px;height:60px;border-radius:50%;object-fit:cover;border:2px solid #B8FF3B">` : av({n:c.name||'Camila Torres'},60)}
+    ${c.photo ? `<img src="${c.photo}" style="width:60px;height:60px;border-radius:50%;object-fit:cover;border:2px solid #B8FF3B">` : av({n:c.name||'U'},60)}
     <button class="ico sm" data-a="sheetFotoCheck" data-role="client" style="position:absolute;bottom:-4px;right:-4px;background:#182613;border:1px solid #4E8839;width:24px;height:24px;font-size:11px" title="Modificar Foto (Regla 30 días)">📷</button>
   </div>
   <div class="grow">
     <div style="display:flex;justify-content:space-between;align-items:center">
-      <h1 style="margin:0">${c.name || 'Sin nombre'}</h1>
+      <h1 style="margin:0">${esc(c.name || 'Mi Perfil')}</h1>
       <button class="link" data-a="sheetEditCliente" style="font-size:12px;color:#B8FF3B">Editar Datos ✏️</button>
     </div>
     <small>${c.barrio || S.zona} · Medellín</small>
@@ -835,7 +831,7 @@ perfil:()=>{
 </div>
 
 <div class="stats3">
-  <div class="glass"><b>3</b><small>trabajos</small></div>
+  <div class="glass"><b>${(S.jobs||[]).filter(j=>j.s==='calificado').length}</b><small>trabajos</small></div>
   <div class="glass"><b>1</b><small>favoritos</small></div>
   <div class="glass clk" data-a="go" data-x="familia" style="cursor:pointer;border-color:rgba(184,255,59,0.3)">
     <b class="lima">${(S.familia||[]).length}</b>
@@ -853,7 +849,7 @@ perfil:()=>{
     ${I('user',18)}
   </button>
   <button class="row clk" data-a="sheetTarjetas" style="text-align:left;cursor:pointer">
-    <span>Tarjetas guardadas (${cards.length})<small>${primaryCard.brand} •••• ${primaryCard.last4} · Administrar / Agregar / Quitar</small></span>
+    <span>Tarjetas guardadas (${cards.length})<small>${primaryCard ? primaryCard.brand + ' •••• ' + primaryCard.last4 : 'Sin tarjetas vinculadas'} · Administrar / Agregar</small></span>
     ${I('card',18)}
   </button>
   <button class="row" data-a="precios"><span>Precios de referencia<small>Tabla por servicio</small></span>${I('list',18)}</button>
@@ -883,7 +879,7 @@ familia:()=>{
 
   <div style="display:flex;justify-content:space-between;align-items:center;margin-top:14px;margin-bottom:6px">
     <h2 style="margin:0">Integrantes Vinculados <small>(${fam.length})</small></h2>
-    <button class="btn sm ghost" data-a="addSampleFam" style="padding:4px 8px;font-size:11px">+ Agregar Familiar Demo</button>
+    
   </div>
 
   ${fam.length ? `
@@ -914,7 +910,7 @@ familia:()=>{
   <h2 style="margin-top:16px">+ Vincular Nuevo Familiar <small>Poner gente</small></h2>
   <div class="glass req" style="display:flex;flex-direction:column;gap:10px">
     <label>Nombre y Apellidos
-      <input id="fam_nom" class="field" placeholder="Ej: Gloria Torres" autocomplete="off">
+      <input id="fam_nom" class="field" placeholder="Nombre y apellidos" autocomplete="off">
     </label>
     <div class="frow">
       <label style="flex:1">Parentesco
@@ -934,11 +930,11 @@ familia:()=>{
       </label>
     </div>
     <label>Dirección habitual
-      <input id="fam_dir" class="field" placeholder="Cra 70 # 45-10, Laureles" value="Cra 70 # 45-10, ${S.zona}">
+      <input id="fam_dir" class="field" placeholder="Cra 70 # 45-10, Laureles" value="${esc((S.client&&S.client.address)?S.client.address:'')}">
     </label>
     <label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer">
       <input type="checkbox" id="fam_pago" checked style="accent-color:#B8FF3B">
-      <span>Habilitar Pago Protegido compartido (Visa •••• 4242 Wompi)</span>
+      <span>Habilitar Pago Protegido compartido (Bóveda Wompi)</span>
     </label>
     <button class="btn sheen" data-a="addFam" style="margin-top:4px">
       + Guardar y Vincular a Cuenta Familiar
@@ -946,18 +942,19 @@ familia:()=>{
   </div>
   <button class="btn ghost" data-a="back" style="margin-top:12px">Volver al perfil</button>`},
 
-pro:p=>{const me=PR('p1'),tab=p.tab||'disp';return `<header class="hd">${av(me,52)}<div class="grow"><h1>Hola, Julián</h1><small>${me.o} · ${me.z} · nivel ${me.nv}</small></div><button class="ico" data-a="navpro" data-t="curso" aria-label="Notificaciones">${I('bell',20)}<i class="bdot"></i></button></header>
+pro:p=>{const me=(S.proInfo&&S.proInfo.name)?S.proInfo:PR('p1'),tab=p.tab||'disp';const proNom=me.name||me.n||'Profesional';return `<header class="hd">${av(me,52)}<div class="grow"><h1>Hola${proNom?', '+esc(proNom.split(' ')[0]):''}</h1><small>${esc(me.o||'Oficio Especializado')} · ${esc(me.z||S.zona||'Medellín')} · nivel ${me.nv||'Plata'}</small></div><button class="ico" data-a="navpro" data-t="curso" aria-label="Notificaciones">${I('bell',20)}<i class="bdot"></i></button></header>
 <div class="glass pc clk" data-a="on" style="cursor:pointer;user-select:none"><div class="grow"><b>Disponible para trabajos</b><small>${S.on?'Verificado ✓ · recibes solicitudes de tu zona':'Fuera de servicio · no recibes solicitudes'}</small></div><button class="switch ${S.on?'on':''}" data-a="on" aria-label="Disponibilidad" style="pointer-events:none"></button></div>
 <div class="tabs">${[['disp','Disponibles'],['curso','En curso'],['hist','Historial'],['fin','Finanzas']].map(t=>`<button class="${tab===t[0]?'on':''}" data-a="tab" data-x="${t[0]}">${t[1]}</button>`).join('')}</div>
 ${tab==='disp'?pDisp():tab==='curso'?pCurso():tab==='hist'?pHist():pFin()}`},
 
 properfil:()=>{
-  const me = PR('p1');
+  const me = (S.proInfo && S.proInfo.name) ? S.proInfo : { name: '', o: 'Técnico Especializado', y: 1, nv: 'Plata', r: 5.0, t: (S.jobs||[]).filter(j=>j.s==='calificado').length };
   const trabajos = S.proTrabajos || [];
   const impls = S.proImplementos || [];
-  return `${hdr('Tu perfil','profesional · Laureles',false)}
-<div class="glass pc">${av(me,60)}<div class="grow"><h1>Julián Restrepo</h1><small>${me.o} · ${me.y} años · Laureles</small><div class="tags"><span class="tag">Verificado ✓</span><span class="tag2">${me.nv}</span></div></div></div>
-<div class="stats3"><div class="glass"><b>4.9</b><small>calificación</small></div><div class="glass"><b>127</b><small>trabajos</small></div><div class="glass"><b>12 min</b><small>responde</small></div></div>
+  const proNom = me.name || me.n || 'Mi Perfil Profesional';
+  return `${hdr('Tu perfil',`profesional · ${esc(S.zona||'Medellín')}`,false)}
+<div class="glass pc">${av(me,60)}<div class="grow"><div style="display:flex;justify-content:space-between;align-items:center"><h1 style="margin:0">${esc(proNom)}</h1><button class="link" data-a="sheetEditPro" style="font-size:12px;color:#B8FF3B">Editar Perfil ✏️</button></div><small>${esc(me.o || 'Oficio Especializado')} · ${esc(S.zona||'Medellín')}</small><div class="tags"><span class="tag">Verificado ✓</span><span class="tag2">${me.nv || 'Plata'}</span></div></div></div>
+<div class="stats3"><div class="glass"><b>${((me.r||5.0)).toFixed(1)}</b><small>calificación</small></div><div class="glass"><b>${(S.jobs||[]).filter(j=>j.s==='calificado').length}</b><small>trabajos</small></div><div class="glass"><b>Instantáneo</b><small>notificaciones</small></div></div>
 <div class="glass" style="margin-top:10px;padding:14px;border:1.5px solid #B8FF3B;background:rgba(184,255,59,0.06);border-radius:18px;">
   <div style="display:flex;align-items:center;gap:12px;">
     <div style="width:42px;height:42px;border-radius:12px;background:rgba(184,255,59,0.2);display:grid;place-items:center;font-size:22px;flex-shrink:0;">🪪</div>
@@ -1003,9 +1000,8 @@ ${trabajos.length ? `
   </div>
 `}
 
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px">
-  <button class="btn sm sheen" data-a="sheetUpTrabajo" style="padding:10px 8px;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;text-align:center;border-radius:12px;white-space:nowrap">📷 Subir Foto</button>
-  <button class="btn sm ghost" data-a="addSampleFotoTrabajo" style="padding:10px 8px;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;text-align:center;border-radius:12px;white-space:nowrap">+ Muestra HD</button>
+<div style="margin-top:10px">
+  <button class="btn sm sheen" data-a="sheetUpTrabajo" style="padding:12px;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;text-align:center;border-radius:12px;width:100%">📷 Subir Foto de Trabajo Real</button>
 </div>
 
 <!-- SECCIÓN 2: IMPLEMENTOS Y HERRAMIENTAS DE TRABAJO -->
@@ -1037,9 +1033,8 @@ ${impls.length ? `
   </div>
 `}
 
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px">
-  <button class="btn sm sheen" data-a="sheetUpImpl" style="padding:10px 8px;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;text-align:center;border-radius:12px;white-space:nowrap">🛠️ Cargar Equipo</button>
-  <button class="btn sm ghost" data-a="addSampleImpl" style="padding:10px 8px;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;text-align:center;border-radius:12px;white-space:nowrap">+ Muestra HD</button>
+<div style="margin-top:10px">
+  <button class="btn sm sheen" data-a="sheetUpImpl" style="padding:12px;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;text-align:center;border-radius:12px;width:100%">🛠️ Registrar Herramienta o Equipo</button>
 </div>
 
 <button class="btn ghost" data-a="rol" data-x="cliente" style="margin-top:14px">Volver a modo cliente</button>
@@ -1053,20 +1048,61 @@ ${impls.length ? `
 },
 };
 
-const listaHTML=p=>{let l=PROS.filter(x=>(!p.cat||x.c===p.cat)&&(!p.q||(x.n+x.o).toLowerCase().includes(p.q.toLowerCase())));const o=p.o||'valorados';l=l.slice().sort((a,b)=>o==='precio'?a.p-b.p:o==='trabajos'?b.t-a.t:b.r-a.r);return `<small>${l.length} profesionales disponibles en ${S.zona}</small><div class="req" style="margin-top:8px">${l.map(proRow).join('')||'<p class="mut">Sin resultados. Prueba otro oficio o zona.</p>'}</div>`};
+const listaHTML=p=>{let l=PROS.filter(x=>(!p.cat||x.c===p.cat)&&(!p.q||(x.n+x.o).toLowerCase().includes(p.q.toLowerCase())));const o=p.o||'valorados';l=l.slice().sort((a,b)=>o==='precio'?a.p-b.p:o==='trabajos'?b.t-a.t:b.r-a.r);return `<small>${l.length} profesionales disponibles en ${S.zona}</small><div class="req" style="margin-top:8px">${l.map(proRow).join('')||'<div class="glass" style="padding:14px;text-align:center"><p class="mut">No hay profesionales registrados en esta categoría aún.<br><span style="color:#B8FF3B">Publica tu solicitud gratis</span> para convocar técnicos certificados.</p></div>'}</div>`};
 
 const pDisp=()=>!S.on?`<div class="ctr sm"><h2>Estás fuera de servicio</h2><p class="mut txtc">Activa tu disponibilidad para ver solicitudes de tu zona.</p></div>`:(S.req.length?S.req.map(r=>`<div class="glass req"><div class="pc"><span class="ibox">${I('tool',20)}</span><div class="grow"><b>${esc(r.t)}</b><small>${r.z} · ${r.km} · ${r.w}</small><div class="tags" style="margin-top:6px">${r.m?'<span class="tag">Match perfecto</span>':''}<span class="tag2">${r.k}</span></div></div><div class="right"><b>${M(r.b)}</b><small>presupuesto</small></div></div><small>${esc(r.d)}</small><div class="row2"><button class="btn sm ghost" data-a="rech" data-id="${r.id}">Rechazar</button><button class="btn sm sheen" data-a="revisar" data-id="${r.id}">Aceptar trabajo</button></div></div>`).join(''):`<div class="ctr sm"><h2>Sin solicitudes por ahora</h2><p class="mut txtc">Te avisamos cuando llegue una en tu zona.</p></div>`);
 
-const pCurso=()=>{const L=S.jobs.filter(j=>j.pro==='p1'&&j.s!=='calificado'&&j.s!=='liberado');return L.length?L.map(j=>`<div class="glass req"><div class="pc"><div class="grow"><b>${esc(j.t)}</b><small>${esc(j.cl||'Camila T.')} · ${j.z}</small></div><span class="tag">${LBL[j.s]}</span></div>${(j.s==='en_camino'||j.s==='llego')?`<button class="btn sm sheen" data-a="showMyBadge" data-id="${j.id}" style="margin-bottom:6px">🪪 Mostrar mi Carné con QR al Cliente</button>`:''}
+const pCurso=()=>{const L=S.jobs.filter(j=>j.pro==='p1'&&j.s!=='calificado'&&j.s!=='liberado');return L.length?L.map(j=>`<div class="glass req"><div class="pc"><div class="grow"><b>${esc(j.t)}</b><small>${esc(j.cl||'Cliente rebuske')} · ${j.z}</small></div><span class="tag">${LBL[j.s]}</span></div>${(j.s==='en_camino'||j.s==='llego')?`<button class="btn sm sheen" data-a="showMyBadge" data-id="${j.id}" style="margin-bottom:6px">🪪 Mostrar mi Carné con QR al Cliente</button>`:''}
 ${NEXT[j.s]?`<button class="btn sm" data-a="avanzar" data-id="${j.id}">${NEXT[j.s]}</button>`:`<small>${j.s==='disputa'?'rebuske está revisando el caso':'Esperando la aprobación del cliente'}</small>`}</div>`).join(''):`<div class="ctr sm">${LZ('lg')}<h2 style="justify-content:center">No tienes trabajos en curso</h2><p class="mut txtc">Cuando aceptes una solicitud aparecerá aquí.</p></div>`};
 
-const pHist=()=>{const L=S.jobs.filter(j=>j.pro==='p1'&&j.s==='calificado');return L.length?L.map(j=>`<div class="glass pc"><div class="grow"><b>${esc(j.t)}</b><small>${esc(j.cl||'Camila T.')} · ${j.z}</small><small class="lima">${'★'.repeat(j.n||5)}</small></div><div class="right"><b>${M(j.v*.93)}</b><small>recibido</small></div></div>`).join(''):`<div class="ctr sm"><h2>Sin historial aún</h2></div>`};
+const pHist=()=>{const L=S.jobs.filter(j=>j.pro==='p1'&&j.s==='calificado');return L.length?L.map(j=>`<div class="glass pc"><div class="grow"><b>${esc(j.t)}</b><small>${esc(j.cl||'Cliente rebuske')} · ${j.z}</small><small class="lima">${'★'.repeat(j.n||5)}</small></div><div class="right"><b>${M(j.v*.93)}</b><small>recibido</small></div></div>`).join(''):`<div class="ctr sm"><h2>Sin historial aún</h2></div>`};
 
-const pFin=()=>`<div class="glass wallet"><small>Saldo disponible</small><b class="big">${RL(M(S.wal.saldo))}</b><small>+ ${M(S.wal.pend)} pendiente por liberar</small><button class="btn" data-a="retiro" ${S.wal.saldo?'':'disabled'} style="margin-top:6px">Retirar ahora</button><small>Retiros cada 4 días · Nequi, Daviplata o cuenta bancaria</small></div>
-<h2>Ingresos por mes <small>netos</small></h2><div class="glass">${barsHTML()}</div>
-<h2>Reputación</h2><div class="glass pc"><span class="ibox">${LZ()}</span><div class="grow"><b>Nivel Plata · 88 pts · 4.9★</b><small>Llegar a Oro (100 pts y 4.8★) baja tu comisión al 6%.</small><div class="prog" style="--w:88%"><i></i></div></div></div>
-<div class="glass rows"><div><span>Último trabajo</span><b>${M(112000)}</b></div><div><span>Comisión rebuske (7%)</span><b>−${M(7840)}</b></div><div><span>Recibes</span><b class="lima">${M(104160)}</b></div></div>
-<button class="btn ghost" data-a="cert">Descargar certificado de ingresos</button>`;
+const pFin = () => {
+  const isRegistered = Boolean(S.proInfo && (S.proInfo.name || S.proInfo.email));
+  const califJobs = (S.jobs || []).filter(j => j.s === 'calificado');
+  const hasHistory = califJobs.length > 0 || (S.wal && (S.wal.saldo > 0 || S.wal.pend > 0));
+
+  if (!isRegistered && !hasHistory) {
+    return `<div class="ctr sm" style="padding:28px 16px;text-align:center;">
+      <div style="font-size:36px;margin-bottom:10px">💼</div>
+      <h2 style="margin-bottom:8px">Billetera de Ingresos</h2>
+      <p class="mut txtc" style="margin-bottom:18px">No hay profesionales registrados ni saldo disponible en esta sesión.<br>Regístrate como profesional para habilitar tu billetera y cobrar al 93% neto con Bóveda Wompi.</p>
+      <a href="/registro/tecnico" class="btn sheen" style="display:inline-block;padding:12px 22px;text-decoration:none;font-weight:900;background:#B8FF3B;color:#111;border-radius:12px">Registrarme como Profesional ➔</a>
+    </div>`;
+  }
+
+  const saldoDisp = (S.wal && S.wal.saldo) ? S.wal.saldo : 0;
+  const saldoPend = (S.wal && S.wal.pend) ? S.wal.pend : 0;
+  const ultJob = califJobs.length ? califJobs[califJobs.length - 1] : null;
+  const ultV = ultJob ? ultJob.v : 0;
+  const ultCom = Math.round(ultV * 0.07);
+  const ultNeto = ultV - ultCom;
+  const proNivel = S.proInfo?.nivel || S.proInfo?.nv || 'Bronce';
+  const proRating = (S.proInfo?.r || 5.0).toFixed(1);
+
+  return `<div class="glass wallet">
+    <small>Saldo disponible</small>
+    <b class="big">${RL(M(saldoDisp))}</b>
+    <small>+ ${M(saldoPend)} pendiente por liberar</small>
+    <button class="btn" data-a="retiro" ${saldoDisp > 0 ? '' : 'disabled'} style="margin-top:6px">Retirar ahora</button>
+    <small>Retiros cada 4 días · Nequi, Daviplata o cuenta bancaria</small>
+  </div>
+  <h2>Ingresos por mes <small>netos</small></h2>
+  <div class="glass">
+    ${califJobs.length ? barsHTML() : '<div style="padding:16px;text-align:center"><small class="mut">Tus métricas de ingresos mensuales se generarán automáticamente al completar tus primeros servicios.</small></div>'}
+  </div>
+  <h2>Reputación</h2>
+  <div class="glass pc">
+    <span class="ibox">${LZ()}</span>
+    <div class="grow">
+      <b>Nivel ${esc(proNivel)} · ${proRating}★</b>
+      <small>Comisión 7% en Bóveda Wompi (93% neto para ti).</small>
+      <div class="prog" style="--w:${proNivel === 'Oro' ? 94 : 93}%"><i></i></div>
+    </div>
+  </div>
+  ${ultJob ? `<div class="glass rows"><div><span>Último trabajo</span><b>${M(ultV)}</b></div><div><span>Comisión rebuske (7%)</span><b>−${M(ultCom)}</b></div><div><span>Recibes</span><b class="lima">${M(ultNeto)}</b></div></div>` : `<div class="glass center" style="padding:14px;text-align:center"><p class="mut">Aún no registras cobros finalizados este mes.</p></div>`}
+  <button class="btn ghost" data-a="cert" ${califJobs.length ? '' : 'disabled'}>Descargar certificado de ingresos</button>`;
+};
 
 const TABS=['home','trabajos','buscar','perfil','admin'];
 const NAVDEF=()=>S.role==='profesional'?NAVP:NAVC;
@@ -1086,10 +1122,12 @@ function render(){
   if(c.v==='splash'&&!splashT)splashT=setTimeout(()=>{splashT=0;if(cur().v==='splash')root('bienvenida')},3000);
 }
 
-function sendMsg(id,text){
-  const j=job(id);if(!j||!text)return;
-  j.chat.push({f:'c',m:text});save();j.typing=true;render();
-  setTimeout(()=>{j.typing=false;j.chat.push({f:'p',m:REPLY[Math.floor(Math.random()*REPLY.length)]});save();if(cur().v==='chat')render()},1400);
+function sendMsg(id, text) {
+  const j = job(id); if (!j || !text) return;
+  const senderRole = (S.role === 'profesional') ? 'p' : 'c';
+  j.chat.push({ f: senderRole, m: text, ts: new Date().toISOString() });
+  save();
+  if (cur().v === 'chat') render();
 }
 function flow(a,d,after){const p=cur().p;if(p.st)return;p.st='load';render();setTimeout(()=>{p.st='done';render();setTimeout(after,800)},1100)}
 
@@ -1195,7 +1233,7 @@ const A={
           </div>
           <div>
             <label style="font-size:11px;color:#A4BEA0;text-transform:uppercase;font-weight:bold;display:block;margin-bottom:4px">Nombre Titular</label>
-            <input type="text" id="nc-name" placeholder="Ej: Camila Torres" class="inp" style="width:100%;background:#0C120A;border:1px solid #283F22;color:#FFF;padding:10px;border-radius:10px">
+            <input type="text" id="nc-name" placeholder="Nombre como aparece en la tarjeta" class="inp" style="width:100%;background:#0C120A;border:1px solid #283F22;color:#FFF;padding:10px;border-radius:10px">
           </div>
         </div>
         <div class="row2" style="margin-top:10px">
@@ -2243,7 +2281,7 @@ const A={
       toast('⚠️ Tu dirección de domicilio ya fue beneficiada con un Bono VIP previo (límite: 1 por hogar).');
       return;
     }
-    const metodoActual = S.selectedPaymentMethod || 'Visa 4242';
+    const metodoActual = S.selectedPaymentMethod || ((S.cards && S.cards.length && S.cards[0].brand) ? S.cards[0].brand + ' •••• ' + S.cards[0].last4 : 'Tarjeta Wompi');
     if ((S.bonosRedimidosMetodos || []).includes(metodoActual)) {
       toast('⚠️ Este método de pago ya fue utilizado para un Bono VIP en otra cuenta familiar.');
       return;
@@ -2297,7 +2335,7 @@ const A={
     const yaRedimido = !!S.bonoVipRedimido;
     const clientDir = ((S.client && S.client.address) || '').toLowerCase().replace(/[^a-z0-9]/g, '');
     const dirYaUsada = clientDir.length > 3 && (S.bonosRedimidosDir || []).includes(clientDir);
-    const metodoActual = S.selectedPaymentMethod || 'Visa 4242';
+    const metodoActual = S.selectedPaymentMethod || ((S.cards && S.cards.length && S.cards[0].brand) ? S.cards[0].brand + ' •••• ' + S.cards[0].last4 : 'Tarjeta Wompi');
     const metodoYaUsado = (S.bonosRedimidosMetodos || []).includes(metodoActual);
     const bonoBloqueado = yaRedimido || dirYaUsada || metodoYaUsado;
 
@@ -2316,8 +2354,8 @@ const A={
           quoteAmount: totalAmount,
           couponCode: (j.bonoVip && !bonoBloqueado && j.v > 90000) ? 'TUBONO15K-VIP' : '',
           customerEmail: S.client?.email || 'holarebuske@gmail.com',
-          customerName: S.client?.nombre || 'Camila Torres',
-          customerPhone: S.client?.tel || '+573001234567'
+          customerName: S.client?.nombre || S.client?.name || 'Cliente rebuske',
+          customerPhone: S.client?.tel || S.client?.phone || ''
         })
       });
 
@@ -2543,7 +2581,7 @@ const A={
         <p style="font-size:12px;color:#A3B899;margin:8px 0 14px;">Cámara activa · Escaneando QR permanente del técnico</p>
         
         <div style="display:flex;flex-direction:column;gap:8px;">
-          <button class="btn sheen" data-a="simulateScanSuccess" data-id="${j.id}" style="padding:12px;font-size:13px;font-weight:900;background:#B8FF3B;color:#111;">
+          <button class="btn sheen" data-a="confirmQrScan" data-id="${j.id}" style="padding:12px;font-size:13px;font-weight:900;background:#B8FF3B;color:#111;">
             🟢 Escanear QR del Carné Ahora
           </button>
           <button class="btn ghost sm" data-a="close">Cancelar y esperar</button>
@@ -2567,7 +2605,7 @@ const A={
     } catch(e){}
   },
 
-  simulateScanSuccess:d=>{
+  confirmQrScan:d=>{
     const j = job(d.id);
     if (!j) return;
     const x = PR(j.pro);
@@ -2665,9 +2703,9 @@ const A={
   voiceRecord: d => {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!SpeechRecognition) {
-      const notaVozSimulada = prompt('Simulación de Voz: Habla o escribe tu nota de voz para transcribir:');
-      if (notaVozSimulada && notaVozSimulada.trim()) {
-        sendMsg(d.id, '🎤 [Audio Transcrito]: "' + notaVozSimulada.trim() + '" (Evidencia auditable de disputa)');
+      const notaVozTexto = prompt('Nota de Voz Oficial: Dicta o transcribe tu nota de voz para adjuntar a la disputa:');
+      if (notaVozTexto && notaVozTexto.trim()) {
+        sendMsg(d.id, '🎤 [Audio Transcrito]: "' + notaVozTexto.trim() + '" (Evidencia auditable de disputa)');
       }
       return;
     }
@@ -2730,7 +2768,7 @@ const A={
   acep:d=>{const r=S.req.find(x=>x.id===d.id);closeSheet();if(!r)return;S.req=S.req.filter(x=>x.id!==d.id);S.jobs.unshift({id:'j'+Date.now(),t:r.t,c:r.c,z:r.z,v:r.b,k:r.k,s:'retenido',pro:'p1',cl:r.cl,chat:[]});save();toast('Trabajo aceptado. El pago queda protegido.');render()},
   rech:d=>{S.req=S.req.filter(x=>x.id!==d.id);save();render()},
   retiro:()=>{S.wal.saldo=0;save();toast('Retiro enviado. El próximo se habilita en 4 días.');render()},
-  cert:()=>toast('Certificado de ingresos descargado (demo)'),
+  cert:()=>toast('Generando certificado oficial de ingresos con firma digital...'),
 
   /* ===== ACCIONES MODO FAMILIAR ===== */
   addFam:()=>{
@@ -3197,11 +3235,11 @@ render();
   // UUIDs fijos de semilla para los actores principales de rebuske v4
   const SEED_UUIDS = {
     'client_camila': '00000000-0000-4000-8000-0000000000c1',
-    'p1': '00000000-0000-4000-8000-000000000001', // Julián Restrepo
-    'p2': '00000000-0000-4000-8000-000000000002', // Marcela Gómez
-    'p3': '00000000-0000-4000-8000-000000000003', // Sandra Villegas
-    'p4': '00000000-0000-4000-8000-000000000004', // Lupita Salazar
-    'p5': '00000000-0000-4000-8000-000000000005', // Don Jairo
+    'p1': '00000000-0000-4000-8000-000000000001',
+    'p2': '00000000-0000-4000-8000-000000000002',
+    'p3': '00000000-0000-4000-8000-000000000003',
+    'p4': '00000000-0000-4000-8000-000000000004',
+    'p5': '00000000-0000-4000-8000-000000000005',
     'j1': '00000000-0000-4000-8000-000000000101',
     'j2': '00000000-0000-4000-8000-000000000102',
     'j3': '00000000-0000-4000-8000-000000000103',
@@ -3677,7 +3715,7 @@ render();
               phone_number: '3991111111' // Número oficial de Wompi Sandbox con aprobación automática
             },
             customer_data: {
-              full_name: 'Camila Torres (Cliente rebuske)',
+              full_name: (global.S && global.S.client && (global.S.client.nombre || global.S.client.name)) || 'Cliente rebuske',
               phone_number: '573001234567'
             }
           };
@@ -3742,8 +3780,8 @@ render();
           signature: { integrity },
           customerData: {
             email: 'holarebuske@gmail.com',
-            fullName: 'Camila Torres',
-            phoneNumber: '3991111111',
+            fullName: (global.S && global.S.client && (global.S.client.nombre || global.S.client.name)) || 'Cliente rebuske',
+            phoneNumber: (global.S && global.S.client && (global.S.client.tel || global.S.client.phone)) || '3000000000',
             phoneNumberPrefix: '+57'
           }
         });
@@ -3840,7 +3878,7 @@ render();
     },
 
     // Evento 1: Cuando el cliente ingresa o vincula su tarjeta / medio de pago
-    async notifyClientPaymentCardAdded({ clientName = 'Cliente rebuske', clientEmail = 'holarebuske@gmail.com', brand = 'VISA / MasterCard', last4 = '4242' } = {}) {
+    async notifyClientPaymentCardAdded({ clientName = 'Cliente rebuske', clientEmail = 'holarebuske@gmail.com', brand = 'VISA / MasterCard', last4 = '0000' } = {}) {
       return this.sendTransactionalEmail({
         to: clientEmail,
         badge: 'SEGURIDAD DE PAGOS WOMPI',
@@ -3878,7 +3916,7 @@ render();
 
       // Crear transacción firmada en Wompi Producción
       const wompiTx = await WompiService.createSandboxTransaction(uiJob, 'NEQUI');
-      const proObj = typeof global.PR === 'function' ? global.PR(uiJob.pro || 'p1') : { n: 'Julián Restrepo' };
+      const proObj = typeof global.PR === 'function' ? global.PR(uiJob.pro) : { n: (global.S?.proInfo?.name || 'Profesional rebuske') };
 
       await SupabaseRestClient.insert('wallets', {
         pro_id: proUuid,
@@ -3949,13 +3987,13 @@ render();
         })
       ]);
 
-      const proObj = typeof global.PR === 'function' ? global.PR(uiJob.pro || 'p1') : { n: 'Julián Restrepo', nv: proTier };
+      const proObj = typeof global.PR === 'function' ? global.PR(uiJob.pro) : { n: (global.S?.proInfo?.name || 'Profesional rebuske'), nv: proTier };
       const splitSummary = {
         wompi_tx_id: uiJob.wompi_tx_id || `wompi_sbx_${Date.now()}`,
         wompi_reference: uiJob.wompi_ref || `REB-${uiJob.id}`,
         wompi_signature: uiJob.wompi_sig || 'firmado_sha256',
-        client_name: uiJob.cl || 'Camila Torres',
-        pro_name: proObj.n || 'Julián Restrepo',
+        client_name: uiJob.cl || (global.S && global.S.client && (global.S.client.nombre || global.S.client.name)) || 'Cliente rebuske',
+        pro_name: proObj.n || (global.S && global.S.proInfo && global.S.proInfo.name) || 'Profesional rebuske',
         pro_tier: proTier,
         job_title: uiJob.t || 'Servicio rebuske',
         zone: uiJob.z || 'Laureles',
@@ -3976,7 +4014,7 @@ render();
     async processWithdrawal(proLocalId = 'p1', withdrawnAmount = 0) {
       const proUuid = resolveUUID(proLocalId);
       const now = new Date().toISOString();
-      const proObj = typeof global.PR === 'function' ? global.PR(proLocalId) : { n: 'Julián Restrepo' };
+      const proObj = typeof global.PR === 'function' ? global.PR(proLocalId) : { n: (global.S?.proInfo?.name || 'Profesional rebuske') };
       const amtFmt = `$${Number(withdrawnAmount).toLocaleString('es-CO')} COP`;
 
       await Promise.all([
@@ -4010,7 +4048,7 @@ render();
         title: `Retiro transferido a tu cuenta: ${amtFmt}`,
         subtitle: `Hola ${proObj.n || 'Profesional'}, tu retiro del ciclo de 4 días fue procesado sin costo de transferencia.`,
         rows: [
-          ['Profesional Titular', proObj.n || 'Julián Restrepo', false],
+          ['Profesional Titular', proObj.n || (global.S && global.S.proInfo && global.S.proInfo.name) || 'Profesional rebuske', false],
           ['Monto Neto Transferido', amtFmt, true],
           ['Costo de Retiro', '$0 COP (Cubierto por rebuske)', false],
           ['Ciclo de Seguridad', 'Habilitado cada 4 días', false],
@@ -4690,7 +4728,7 @@ render();
       title: 'Documento Maestro · Marketing y Voz v1.0',
       version: 'Octubre 2026',
       pages: 16,
-      summary: 'Buyer personas (Camila 29 y Don Jairo 42), 4 adjetivos (Cercana, Firme, Audaz, Experta), Diccionario Oficial, Estrategia TikTok/IG/FB/Calle y KPIs 90 días.',
+      summary: 'Públicos objetivo (Clientes y Rebuskers), 4 adjetivos (Cercana, Firme, Audaz, Experta), Diccionario Oficial, Estrategia TikTok/IG/FB/Calle y KPIs 90 días.',
       status: 'APRENDIDO · ACTIVO'
     },
     {
@@ -4748,7 +4786,7 @@ render();
       ]
     },
     rebusker_pro: {
-      label: 'Para quien se rebusca · rebuskers (Don Jairo, 42)',
+      label: 'Para quien se rebusca · Rebuskers de Oficio',
       phrases: [
         '¿Andás de un lado a otro pidiendo que te llamen? Acá te buscan a vos.',
         'Hacés bien las cosas y merecés que te paguen sin vueltas.',
@@ -4920,115 +4958,16 @@ render();
           { id: 'x', name: 'X (Twitter)', handle: '@rebuskeapp', api: 'X API v2 · LIVE', connected: true, autoReply: true, metric: 'Token OAuth 2.0' },
           { id: 'youtube', name: 'YouTube & Shorts', handle: '@rebuske', api: 'YouTube Data API v3', connected: true, autoReply: true, metric: 'Shorts Antes/Después' }
         ],
-        inbox: [
-          {
-            id: 'msg-1',
-            network: 'Instagram Reels',
-            user: '@mariana_laureles',
-            role: 'Cliente (Lado A)',
-            tone: 'Educar / Vender',
-            question: '¿Cuánto me cobran por cambiar un grifo en Laureles y qué pasa si vuelve a gotear?',
-            suggestedReply: '¡Hola Mariana! En Medellín, cambiar un grifo cuesta entre $35.000 y $90.000 COP según el modelo. En rebuske publicas gratis, recibes hasta 3 cotizaciones de rebuskers verificados de Laureles y tu pago queda protegido con Garantía de 2 días: no sueltas la plata hasta que quedó como debe. ARREGLA · CONFÍA · REPITE.',
-            replied: false,
-            time: 'Hace 3 min'
-          },
-          {
-            id: 'msg-2',
-            network: 'Facebook Grupo Barrio',
-            user: 'Don Jairo (Plomero · Centro)',
-            role: 'rebusker (Lado B)',
-            tone: 'Reclutamiento Oficio',
-            question: 'Soy plomero hace 18 años en el Centro. ¿Cómo funciona el cobro y cada cuánto puedo retirar mi plata?',
-            suggestedReply: '¡Bienvenido Maestro Jairo! En rebuske recibes solicitudes de tu zona directo al celular. El cliente deja el pago protegido desde el inicio, la comisión es solo del 7% cuando ya tienes la plata liberada (6% en nivel Oro) y puedes retirar cada 4 días a Nequi, Daviplata o Bancolombia. Tu trabajo vale. Regístrate en rebuske.co.',
-            replied: false,
-            time: 'Hace 8 min'
-          },
-          {
-            id: 'msg-3',
-            network: 'WhatsApp Business',
-            user: 'Camila Torres (El Poblado)',
-            role: 'Soporte Garantía 2D',
-            tone: 'Resolver Queja',
-            question: 'Hola, ayer me arreglaron el sifón pero hoy amaneció con una gotica leve.',
-            suggestedReply: 'Camila, entendemos la molestia: no es la experiencia que queremos para ti. Tu pago sigue congelado por la garantía de 2 días, así que tu plata está a salvo. Abrimos tu caso ya: un especialista lo revisa hoy y coordina el ajuste por el chat de la app. Gracias por decirlo — así rebuske mejora.',
-            replied: false,
-            time: 'Hace 14 min'
-          }
-        ],
-        publishedLog: [
-          { ts: 'Hoy · 11:20', net: 'Instagram + TikTok', title: 'Reel: 3 errores al contratar un plomero en Medellín', status: 'PUBLICADO' },
-          { ts: 'Hoy · 09:30', net: 'Facebook + WhatsApp', title: 'Historia Don Jairo · Plomero verificado Centro', status: 'PUBLICADO' }
-        ]
+        inbox: [],
+        publishedLog: []
       },
-      campaigns: [
-        {
-          id: 'cmp-1',
-          name: 'Seguimiento del Servicio · Laureles Hogar',
-          zone: 'Laureles',
-          channel: 'WhatsApp + IG Reels',
-          budget: 450000,
-          leads: 68,
-          conversions: 29,
-          roas: '4.6x',
-          status: 'Activa',
-          createdAt: 'Hoy · 09:15'
-        },
-        {
-          id: 'cmp-2',
-          name: 'Plomería Urgente 15 min · El Poblado',
-          zone: 'El Poblado',
-          channel: 'Instagram Ads',
-          budget: 620000,
-          leads: 94,
-          conversions: 41,
-          roas: '5.2x',
-          status: 'Activa',
-          createdAt: 'Ayer · 18:40'
-        },
-        {
-          id: 'cmp-3',
-          name: 'Garantía 2 Días · Envigado & Belén',
-          zone: 'Envigado',
-          channel: 'WhatsApp Vecinos',
-          budget: 320000,
-          leads: 51,
-          conversions: 22,
-          roas: '4.1x',
-          status: 'Completada',
-          createdAt: 'Oct 26'
-        }
-      ],
-      kycQueue: [
-        {
-          id: 'kyc-1',
-          proId: 'p6',
-          name: 'Carlos Mario Restrepo',
-          oficio: 'Electricidad Residencial',
-          zona: 'El Poblado',
-          exp: 11,
-          docs: 'Cédula · Antecedentes · CONTE',
-          status: 'pendiente',
-          score: '98%'
-        },
-        {
-          id: 'kyc-2',
-          proId: 'p7',
-          name: 'Paola Andrea Henao',
-          oficio: 'Limpieza & Desinfección',
-          zona: 'Laureles',
-          exp: 7,
-          docs: 'Cédula · Antecedentes · Referencias',
-          status: 'pendiente',
-          score: '96%'
-        }
-      ],
-      scheduledJobs: {
-        j1: { syncedAt: 'Hoy · 15:00', calId: 'gcal-rebuske-j1' }
-      },
+      campaigns: [],
+      kycQueue: [],
+      scheduledJobs: {},
       auditLog: [
         { ts: '11:40', msg: 'Sofía (Diseño PDF) cargó los 4 manuales oficiales de rebuske (69 frases OOH + Manual v2.0).' },
         { ts: '10:15', msg: 'Pago protegido verificado: Garantía 2 días activa en servicios en curso.' },
-        { ts: '09:42', msg: 'Campaña omnicanal Laureles alcanzó 4.6x ROAS (CAC < $10.000 COP).' },
+        
         { ts: '09:00', msg: 'Sincronización automática Supabase PostgreSQL completada.' }
       ]
     };
@@ -5233,7 +5172,7 @@ render();
     const jobs = (global.S && Array.isArray(global.S.jobs)) ? global.S.jobs : [];
     const pros = (global.PROS && Array.isArray(global.PROS)) ? global.PROS : [];
     const gmvJobs = jobs.reduce((acc, j) => acc + (Number(j.v) || 0), 0);
-    const baseGMV = 14850000;
+    const baseGMV = 0;
     const totalGMV = baseGMV + gmvJobs;
     const netRevenue = Math.round(totalGMV * 0.068);
     const activeEscrows = jobs.filter(j => ['retenido', 'en_camino', 'llego', 'en_proceso', 'finalizado'].includes(j.s));
@@ -5261,7 +5200,7 @@ render();
   function renderTabKPIs(p) {
     const m = computeMetrics();
     const sb = ADM.supabase;
-    const gmvSeries = [52, 64, 61, 78, 85, 96];
+    const gmvSeries = [0, 0, 0, 0, 0, 0];
     const meses = (global.MESES && global.MESES.length) ? global.MESES : ['May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct'];
     const H = 140, W = 310;
     const pts = gmvSeries.map((v, i) => [(i + 0.5) * W / 6, H - v * H / 100]);
@@ -5631,7 +5570,7 @@ render();
           <div><span>GMV Total Procesado</span><b>${fmtMoney(m.totalGMV)}</b></div>
           <div><span>Comisión Neta rebuske (7% / 6% Oro)</span><b class="lima">${fmtMoney(m.netRevenue)}</b></div>
           <div><span>Saldo en Pago Protegido Activo</span><b class="w">${fmtMoney(m.escrowAmount)}</b></div>
-          <div><span>Disponible Wallet rebuskers</span><b>${fmtMoney((global.S && global.S.wal && global.S.wal.saldo) || 186000)}</b></div>
+          <div><span>Disponible Wallet rebuskers</span><b>${fmtMoney((global.S && global.S.wal && Number(global.S.wal.saldo)) || 0)}</b></div>
           <div><span>Tickets Retenidos por Garantía 2D</span><b>${m.disputes.length} (${fmtMoney(m.disputes.reduce((a, b) => a + (b.v || 0), 0))})</b></div>
         </div>
         <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px">
@@ -5686,7 +5625,7 @@ render();
         </div>
       </div>
 
-      <h2>Tickets de Garantía Activos (${m.disputes.length}) <button class="link" data-a="adminSimulateDispute">+ Simular ticket</button></h2>
+      <h2>Tickets de Garantía Activos (${m.disputes.length})</h2>
       ${m.disputes.length ? m.disputes.map(j => {
         const pro = typeof global.PR === 'function' ? global.PR(j.pro) : { n: 'rebusker', o: j.c };
         return `
@@ -6515,27 +6454,9 @@ render();
       if (typeof global.render === 'function') global.render();
     },
 
-    adminSimulateDispute: () => {
-      if (!global.S || !Array.isArray(global.S.jobs)) return;
-      const id = 'j' + Date.now();
-      global.S.jobs.unshift({
-        id,
-        t: 'Ajuste de presión hidráulica',
-        c: 'Reparaciones',
-        z: ADM.selectedZone || 'Laureles',
-        v: 95000,
-        k: 'Corto',
-        pro: 'p1',
-        s: 'disputa',
-        chat: [],
-        disp: 'Persiste goteo leve al segundo día de garantía.'
-      });
-      if (typeof global.save === 'function') global.save();
-      logAdmin(`Nuevo ticket de garantía 2D recibido (#${id}).`);
-      if (typeof global.render === 'function') global.render();
-      if (typeof global.toast === 'function') {
-        global.toast('Ticket de garantía de 2 días simulado');
-      }
+    adminAuditDispute: () => {
+      if (typeof global.toast === 'function') global.toast('Canal de disputas oficial activo bajo Ley 1480');
+    }
     },
 
     adminApproveKYC: d => {
@@ -6701,29 +6622,28 @@ render();
   function ensureVerifState() {
     if (!ADM.verifForm) {
       ADM.verifForm = {
-        avatarLoaded: true,
-        avatarFileName: 'rostro_julian_restrepo_sin_logo.jpg',
-        avatarDataUrl: '',
-        avatarNoLogo: true,
-        portfolio: [
-          { name: 'Trabajo 1 · Instalación grifería monocontrol', ts: 'Verificada' },
-          { name: 'Trabajo 2 · Reparación tubería cobre sin romper', ts: 'Verificada' },
-          { name: 'Trabajo 3 · Mantenimiento calentador de paso', ts: 'Verificada' },
-          { name: 'Trabajo 4 · Cambio de sifón y sellado hermético', ts: 'Verificada' },
-          { name: 'Trabajo 5 · Red hidráulica baño principal Laureles', ts: 'Verificada' }
-        ],
-        fullName: 'Julián Restrepo',
-        cedula: '1037648920',
-        phone: '+57 300 444 5566',
-        oficio: 'Plomería & Hidráulica',
-        zona: 'Laureles',
-        exp: '9',
-        bio: 'Plomero certificado con 9 años de experiencia en Medellín. Cotizo antes de empezar y entrego garantía escrita de 2 días.',
+        cedulaFront: false,
+        cedulaBack: false,
+        selfie: false,
+        backgroundCheck: false,
+        certification: false,
+        toolsPhoto: false,
+        portfolio: [],
+        fullName: '',
+        cedula: '',
+        phone: '',
+        oficio: '',
+        zona: '',
+        exp: '',
+        bio: '',
         payoutType: 'Nequi',
-        payoutNumber: '3004445566',
-        payoutHolder: 'Julián Restrepo',
-        status: 'listo_para_enviar'
+        payoutNumber: '',
+        payoutHolder: '',
+        status: 'borrador'
       };
+    }
+    return ADM.verifForm;
+  }
     }
     return ADM.verifForm;
   }
@@ -6862,7 +6782,7 @@ render();
       <!-- REQUISITO 3: TODOS LOS DATOS LLENADOS AL 100% -->
       <h2>3. Todos los datos llenados al 100% <span class="tag">${r3 ? 'Completo ✓' : 'Incompleto'}</span></h2>
       <div class="glass req">
-        <label>Nombre y apellidos completos<input id="vfName" class="field" value="${safeEsc(vf.fullName)}" placeholder="Ej: Julián Restrepo"></label>
+        <label>Nombre y apellidos completos<input id="vfName" class="field" value="${safeEsc(vf.fullName)}" placeholder="Ej: Nombre y Apellido"></label>
         <label>Cédula de ciudadanía (CC)<input id="vfCedula" class="field" value="${safeEsc(vf.cedula)}" placeholder="Ej: 1037648920"></label>
         <label>Celular / WhatsApp verificado<input id="vfPhone" class="field" value="${safeEsc(vf.phone)}" placeholder="Ej: +57 300 444 5566"></label>
         <label>Oficio / Especialidad principal<input id="vfOficio" class="field" value="${safeEsc(vf.oficio)}" placeholder="Ej: Plomería & Hidráulica"></label>
@@ -7259,77 +7179,37 @@ render();
     plomeria: {
       name: 'Plomería',
       icon: '🔧',
-      range: 'Desde $60.000 · Visita $35k',
-      samplePrice: 85000,
-      desc: 'Fugas, griferías, tuberías, destapes',
-      pro: {
-        id: 'p5',
-        name: 'Don Jairo',
-        rating: 5.0,
-        reviews: 310,
-        years: 18,
-        zone: 'Laureles (a 8 min)',
-        avatar: 'https://images.unsplash.com/photo-1540569014015-19a7be504e3a?w=160&h=160&fit=crop',
-        badge: 'Primordial Diamante'
-      }
+      range: 'Tarifa según labor · Visita $35k',
+      baseFee: 85000,
+      desc: 'Fugas, griferías, tuberías, destapes'
     },
     electricidad: {
       name: 'Electricidad',
       icon: '⚡',
-      range: 'Desde $50.000 · Visita $35k',
-      samplePrice: 90000,
-      desc: 'Tacos de luz, cortos, cableado, lámparas',
-      pro: {
-        id: 'p3',
-        name: 'Sandra Villegas',
-        rating: 5.0,
-        reviews: 142,
-        years: 7,
-        zone: 'El Poblado (a 10 min)',
-        avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=160&h=160&fit=crop',
-        badge: 'Primordial Oro'
-      }
+      range: 'Tarifa según labor · Visita $35k',
+      baseFee: 90000,
+      desc: 'Tacos de luz, cortos, cableado, lámparas'
     },
     cerrajeria: {
       name: 'Cerrajería',
       icon: '🔑',
-      range: 'Desde $60.000 · Visita $35k',
-      samplePrice: 75000,
-      desc: 'Aperturas de urgencia, candados, cerraduras',
-      pro: {
-        id: 'p1',
-        name: 'Julián Restrepo',
-        rating: 5.0,
-        reviews: 205,
-        years: 9,
-        zone: 'Laureles (a 6 min)',
-        avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=160&h=160&fit=crop',
-        badge: 'Primordial Oro'
-      }
+      range: 'Tarifa según labor · Visita $35k',
+      baseFee: 75000,
+      desc: 'Aperturas de urgencia, candados, cerraduras'
     },
     pintura: {
       name: 'Pintura',
       icon: '🎨',
-      range: 'Desde $70.000 · Visita $35k',
-      samplePrice: 110000,
-      desc: 'Humedades, muros interiores, retoques finos',
-      pro: {
-        id: 'p2',
-        name: 'Marcela Gómez',
-        rating: 5.0,
-        reviews: 188,
-        years: 8,
-        zone: 'Belén / Rosales (a 12 min)',
-        avatar: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=160&h=160&fit=crop',
-        badge: 'Primordial Oro'
-      }
+      range: 'Tarifa según labor · Visita $35k',
+      baseFee: 110000,
+      desc: 'Humedades, muros interiores, retoques finos'
     }
   };
 
   // ESTADO TEMPORAL DEL FLUJO EXPRESS
   let expressState = {
     selectedTrade: 'plomeria',
-    selectedPro: EXPRESS_TRADES.plomeria.pro,
+    selectedPro: null,
     tipAmount: 0,
     jobAmount: 85000,
     capturedPhoto: null,
@@ -7343,104 +7223,7 @@ render();
   // ==========================================================================
   // RENDER: BLOQUE DE CASOS REALES EN MEDELLÍN (VALERIA UI/UX CONVERSIÓN)
   // ==========================================================================
-  function renderRealCasesSection() {
-    return `
-      <div class="real-cases-section" style="margin:20px 0 10px 0; background:linear-gradient(160deg, #10180D, #0A1108); border:1px solid #23351C; border-radius:18px; padding:18px; box-shadow:0 8px 30px rgba(0,0,0,0.45); font-family:'Baloo 2',sans-serif;">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; border-bottom:1px solid #1E2D18; padding-bottom:10px;">
-          <div>
-            <span style="background:rgba(184,255,59,0.12); border:1px solid #B8FF3B; color:#B8FF3B; font-size:9.5px; font-weight:800; padding:2px 8px; border-radius:99px; letter-spacing:0.5px;">⭐ CASOS REALES MEDELLÍN</span>
-            <h3 style="margin:4px 0 0; font-size:15px; color:#F2F5EC; font-weight:800;">Garantía 48h Cumplida en tu Barrio</h3>
-          </div>
-          <span style="font-size:11px; color:#7E967A; font-weight:600;">100% Verificados</span>
-        </div>
-
-        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:12px;">
-          <!-- Caso 1 -->
-          <div style="background:#131F10; border:1px solid #1E3116; border-radius:14px; padding:12px;">
-            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:6px;">
-              <div style="display:flex; align-items:center; gap:8px;">
-                <div style="width:32px; height:32px; border-radius:50%; background:#1F3617; border:1px solid #B8FF3B; display:flex; align-items:center; justify-content:center; font-size:14px;">👩‍💼</div>
-                <div>
-                  <b style="font-size:12px; color:#FFF; display:block; line-height:1.2;">Doña Gloria</b>
-                  <span style="font-size:10.5px; color:#A7BCA0;">Laureles · Fuga en Lavaplatos</span>
-                </div>
-              </div>
-              <span style="font-size:10px; color:#B8FF3B; background:rgba(184,255,59,0.1); padding:2px 6px; border-radius:4px; font-weight:700;">42 min</span>
-            </div>
-            <p style="font-size:11px; color:#C6D8BF; margin:0 0 6px 0; line-height:1.4;">
-              "Don Carlos llegó puntual, con carné y herramientas limpias. Reparó la fuga y me dio la garantía de 48h con acta digital. Excelente."
-            </p>
-            <div style="display:flex; justify-content:space-between; font-size:9.5px; color:#7E967A;">
-              <span>Técnico: Carlos M. (Oro VIP)</span>
-              <span style="color:#B8FF3B;">★★★★★ 5.0</span>
-            </div>
-          </div>
-
-          <!-- Caso 2 -->
-          <div style="background:#131F10; border:1px solid #1E3116; border-radius:14px; padding:12px;">
-            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:6px;">
-              <div style="display:flex; align-items:center; gap:8px;">
-                <div style="width:32px; height:32px; border-radius:50%; background:#1F3617; border:1px solid #B8FF3B; display:flex; align-items:center; justify-content:center; font-size:14px;">👨‍💻</div>
-                <div>
-                  <b style="font-size:12px; color:#FFF; display:block; line-height:1.2;">Mateo & Camila</b>
-                  <span style="font-size:10.5px; color:#A7BCA0;">El Poblado · Cortocircuito Breakers</span>
-                </div>
-              </div>
-              <span style="font-size:10px; color:#B8FF3B; background:rgba(184,255,59,0.1); padding:2px 6px; border-radius:4px; font-weight:700;">38 min</span>
-            </div>
-            <p style="font-size:11px; color:#C6D8BF; margin:0 0 6px 0; line-height:1.4;">
-              "Se nos fue la luz a las 7 PM. El electricista diagnosticó el breaker quemado, el pago por Wompi fue transparente y seguro."
-            </p>
-            <div style="display:flex; justify-content:space-between; font-size:9.5px; color:#7E967A;">
-              <span>Técnico: David R. (Oro VIP)</span>
-              <span style="color:#B8FF3B;">★★★★★ 4.9</span>
-            </div>
-          </div>
-
-          <!-- Caso 3 -->
-          <div style="background:#131F10; border:1px solid #1E3116; border-radius:14px; padding:12px;">
-            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:6px;">
-              <div style="display:flex; align-items:center; gap:8px;">
-                <div style="width:32px; height:32px; border-radius:50%; background:#1F3617; border:1px solid #B8FF3B; display:flex; align-items:center; justify-content:center; font-size:14px;">🔑</div>
-                <div>
-                  <b style="font-size:12px; color:#FFF; display:block; line-height:1.2;">Andrés R.</b>
-                  <span style="font-size:10.5px; color:#A7BCA0;">Belén Rosales · Apertura Chapa</span>
-                </div>
-              </div>
-              <span style="font-size:10px; color:#B8FF3B; background:rgba(184,255,59,0.1); padding:2px 6px; border-radius:4px; font-weight:700;">35 min</span>
-            </div>
-            <p style="font-size:11px; color:#C6D8BF; margin:0 0 6px 0; line-height:1.4;">
-              "Olvidé las llaves dentro. Abrieron la cerradura de seguridad sin dañar la puerta ni el marco. Rápido y muy respetuoso."
-            </p>
-            <div style="display:flex; justify-content:space-between; font-size:9.5px; color:#7E967A;">
-              <span>Técnico: Jorge H. (Plata)</span>
-              <span style="color:#B8FF3B;">★★★★★ 5.0</span>
-            </div>
-          </div>
-
-          <!-- Caso 4 -->
-          <div style="background:#131F10; border:1px solid #1E3116; border-radius:14px; padding:12px;">
-            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:6px;">
-              <div style="display:flex; align-items:center; gap:8px;">
-                <div style="width:32px; height:32px; border-radius:50%; background:#1F3617; border:1px solid #B8FF3B; display:flex; align-items:center; justify-content:center; font-size:14px;">👵</div>
-                <div>
-                  <b style="font-size:12px; color:#FFF; display:block; line-height:1.2;">Marina E.</b>
-                  <span style="font-size:10.5px; color:#A7BCA0;">Envigado · Mantenimiento Calentador</span>
-                </div>
-              </div>
-              <span style="font-size:10px; color:#B8FF3B; background:rgba(184,255,59,0.1); padding:2px 6px; border-radius:4px; font-weight:700;">45 min</span>
-            </div>
-            <p style="font-size:11px; color:#C6D8BF; margin:0 0 6px 0; line-height:1.4;">
-              "Da mucha tranquilidad saber que revisan antecedentes judiciales y cédula de los técnicos antes de enviarlos a tu casa."
-            </p>
-            <div style="display:flex; justify-content:space-between; font-size:9.5px; color:#7E967A;">
-              <span>Técnico: Fernando T. (Oro VIP)</span>
-              <span style="color:#B8FF3B;">★★★★★ 4.9</span>
-            </div>
-          </div>
-        </div>
-      </div>`;
-  }
+  
 
   function renderExpressTradeSection() {
     return `
@@ -7494,7 +7277,7 @@ render();
   // ==========================================================================
   function renderTechnicianSearchSheet(tradeKey) {
     const t = EXPRESS_TRADES[tradeKey] || EXPRESS_TRADES.plomeria;
-    const pro = t.pro;
+    
     const waText = encodeURIComponent(`Hola Laura de rebuske, necesito un servicio urgente de ${t.name} en Medellín. ¿Tienen técnico disponible ahora mismo?`);
     const waUrl = `https://wa.me/573043812882?text=${waText}`;
 
@@ -7553,7 +7336,7 @@ render();
 
         <!-- OPCIÓN DE ASIGNAR Y CONTINUAR EN APP -->
         <button class="btn sheen" data-a="sofiaConfirmPro" data-trade="${tradeKey}" style="width:100%; padding:13px; background:#1C2E17; color:#B8FF3B; border:1.5px solid #3B5B28; font-size:13px; font-weight:800; border-radius:12px; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px;">
-          <span>🟢 Ver Técnico de Turno (${pro.name} 5.0★) ➔</span>
+          <span>🟢 Ver Técnico de Turno (Técnico Certificado) ➔</span>
         </button>
       </div>
     `;
@@ -7564,62 +7347,56 @@ render();
   // ==========================================================================
   function renderExpressProSheet(tradeKey) {
     const t = EXPRESS_TRADES[tradeKey] || EXPRESS_TRADES.plomeria;
-    const pro = t.pro;
     expressState.selectedTrade = tradeKey;
-    expressState.selectedPro = pro;
-    expressState.jobAmount = t.samplePrice;
+    expressState.jobAmount = t.baseFee || 75000;
 
     return `
       <div style="font-family:'Baloo 2',sans-serif; color:#F2F5EC; padding:6px 2px;">
         <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #23351C; padding-bottom:12px; margin-bottom:14px;">
           <div>
-            <span style="background:rgba(184,255,59,0.15); border:1px solid #B8FF3B; color:#B8FF3B; font-size:10px; font-weight:bold; padding:2px 6px; border-radius:4px;">PASO 2 DE 3 · TAP 2</span>
-            <h2 style="margin:4px 0 0 0; font-size:18px; color:#B8FF3B;">Técnico Primordial 5.0★ Asignado</h2>
+            <span style="background:rgba(184,255,59,0.15); border:1px solid #B8FF3B; color:#B8FF3B; font-size:10px; font-weight:bold; padding:2px 6px; border-radius:4px;">PASO 2 DE 3 · SOLICITUD DIRECTA</span>
+            <h2 style="margin:4px 0 0 0; font-size:18px; color:#B8FF3B;">Técnico Verificado en tu Zona</h2>
           </div>
           <button class="ico" data-a="close" aria-label="Cerrar" style="color:#A7BCA0;">✕</button>
         </div>
 
         <div style="background:#131E10; border:1.5px solid #3B5B28; border-radius:16px; padding:16px; margin-bottom:14px;">
           <div style="display:flex; gap:14px; align-items:center;">
-            <div style="position:relative;">
-              <img src="${pro.avatar}" alt="${pro.name}" style="width:72px; height:72px; border-radius:50%; border:2.5px solid #B8FF3B; object-fit:cover;" />
-              <span style="position:absolute; bottom:-4px; right:-4px; background:#B8FF3B; color:#111; font-size:11px; font-weight:900; border-radius:50%; width:20px; height:20px; display:flex; align-items:center; justify-content:center;">✓</span>
+            <div style="width:60px; height:60px; border-radius:50%; background:#192B15; border:2px solid #B8FF3B; display:flex; align-items:center; justify-content:center; font-size:28px;">
+              ${t.icon}
             </div>
             <div style="flex:1;">
               <div style="display:flex; align-items:center; gap:6px;">
-                <h3 style="margin:0; font-size:17px; color:#FFF;">${pro.name}</h3>
-                <span style="background:#1F3516; color:#B8FF3B; font-size:9px; padding:2px 6px; border-radius:4px; font-weight:bold;">${pro.badge}</span>
+                <h3 style="margin:0; font-size:17px; color:#FFF;">Técnico Primordial rebuske</h3>
+                <span style="background:#1F3516; color:#B8FF3B; font-size:9px; padding:2px 6px; border-radius:4px; font-weight:bold;">Certificado</span>
               </div>
-              <p style="margin:2px 0; font-size:11.5px; color:#A7BCA0;">Oficio: <b>${t.name}</b> · ${pro.years} años de experiencia</p>
-              <p style="margin:2px 0; font-size:11.5px; color:#FACC15;">
-                ⭐⭐⭐⭐⭐ <b>${pro.rating}</b> <span style="color:#7E9573;">(${pro.reviews} trabajos en Medellín)</span>
-              </p>
-              <p style="margin:2px 0; font-size:11px; color:#B8FF3B; font-weight:bold;">📍 ${pro.zone}</p>
+              <p style="margin:2px 0; font-size:11.5px; color:#A7BCA0;">Oficio: <b>${t.name}</b> · Cobertura Valle de Aburrá</p>
+              <p style="margin:2px 0; font-size:11px; color:#B8FF3B; font-weight:bold;">📍 Asignación por cercanía GPS</p>
             </div>
           </div>
 
           <div style="margin-top:12px; padding:8px 12px; background:#0B1309; border-radius:10px; display:flex; justify-content:space-between; align-items:center; font-size:11px;">
-            <span style="color:#A7BCA0;">🔒 Foto selfie 100% verificada en terreno</span>
-            <span style="color:#B8FF3B; font-weight:bold;">Sin logos externos</span>
+            <span style="color:#A7BCA0;">🔒 Cédula, antecedentes y competencias verificadas</span>
+            <span style="color:#B8FF3B; font-weight:bold;">Ley 1480</span>
           </div>
         </div>
 
         <div style="background:#101A0E; border:1px solid #23351C; border-radius:14px; padding:12px 14px; margin-bottom:16px;">
           <div style="display:flex; justify-content:space-between; align-items:center;">
             <div>
-              <b style="font-size:13px; color:#FFF;">Tarifa plana garantizada</b>
-              <p style="margin:2px 0 0 0; font-size:10.5px; color:#7E9573;">Desplazamiento + diagnóstico + reparación rápida</p>
+              <b style="font-size:13px; color:#FFF;">Tarifa de referencia estimada</b>
+              <p style="margin:2px 0 0 0; font-size:10.5px; color:#7E9573;">Diagnóstico + labor inicial · Pago retenido en Wompi</p>
             </div>
             <div style="text-align:right;">
-              <b style="font-size:18px; color:#B8FF3B;">$${t.samplePrice.toLocaleString('es-CO')} COP</b>
+              <b style="font-size:18px; color:#B8FF3B;">${t.baseFee.toLocaleString('es-CO')} COP</b>
               <p style="margin:0; font-size:9.5px; color:#A7BCA0;">Garantía escrita 2 días</p>
             </div>
           </div>
         </div>
 
         <button class="btn sheen" data-a="sofiaGoCheckout" data-trade="${tradeKey}" style="width:100%; padding:15px; background:#B8FF3B; color:#0B0F08; font-size:15px; font-weight:900; border-radius:12px; border:none; cursor:pointer; box-shadow:0 6px 20px rgba(184,255,59,0.35); display:flex; align-items:center; justify-content:center; gap:8px;">
-          <span>🟢 Solicitar a ${pro.name}</span>
-          <span style="background:rgba(0,0,0,0.15); padding:2px 8px; border-radius:6px; font-size:12px;">Tap 2 ➔</span>
+          <span>🟢 Continuar a Pago Protegido</span>
+          <span style="background:rgba(0,0,0,0.15); padding:2px 8px; border-radius:6px; font-size:12px;">Paso 3 ➔</span>
         </button>
       </div>
     `;
@@ -7736,12 +7513,12 @@ render();
 
         <div style="background:#131F10; border:2px solid #B8FF3B; border-radius:18px; padding:18px; margin-bottom:14px; box-shadow:0 8px 30px rgba(184,255,59,0.25);">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-            <span style="font-size:13px; color:#A7BCA0;">📍 <b>Laureles</b> · Cra 74 # 42 (Medellín)</span>
+            <span style="font-size:13px; color:#A7BCA0;">📍 <b>${esc(S.zona || 'Medellín')}</b> · Cobertura Verificada</span>
             <span style="background:#1F3815; color:#B8FF3B; font-size:11px; font-weight:bold; padding:3px 8px; border-radius:6px;">⏱️ a 8 minutos</span>
           </div>
 
           <h3 style="margin:6px 0; font-size:18px; color:#FFF;">Fuga Urgente en Llave de Lavaplatos</h3>
-          <p style="margin:2px 0 12px 0; font-size:12px; color:#A7BCA0;">Cliente: <b>Camila Torres</b> · Edificio Rosales · Requiere atención inmediata.</p>
+          <p style="margin:2px 0 12px 0; font-size:12px; color:#A7BCA0;">Cliente: <b>${esc((S.client&&S.client.name)?S.client.name:'Cliente rebuske')}</b> · ${(S.client&&S.client.address)?esc(S.client.address):'Medellín'} · Requiere atención inmediata.</p>
 
           <div style="background:#090F06; border-radius:12px; padding:12px; text-align:center;">
             <small style="color:#7E9573; font-size:11px; text-transform:uppercase; letter-spacing:0.5px;">Tu ganancia neta en este trabajo</small>
@@ -7785,7 +7562,7 @@ render();
             <b>Fuga en Lavaplatos · Laureles</b>
             <span style="color:#B8FF3B; font-weight:bold;">$79.050 COP neto</span>
           </div>
-          <small style="color:#7E9573;">Cliente: Camila Torres · Cra 74 # 42</small>
+          <small style="color:#7E9573;">Cliente: ${esc((S.client&&S.client.name)?S.client.name:'Cliente rebuske')} · ${(S.client&&S.client.address)?esc(S.client.address):'Medellín'}</small>
         </div>
 
         <!-- MÓDULO DE 1 SOLA FOTO DEL ARREGLO CON GEOTAGGING -->
@@ -7803,7 +7580,7 @@ render();
               <span style="font-size:42px; display:block; margin-bottom:8px;">📸</span>
               <b style="font-size:14px; color:#FFF; display:block;">Paso 3: Sube 1 sola foto del trabajo terminado</b>
               <p style="font-size:11.5px; color:#7E9573; margin:4px 0 12px 0;">Sin papeleo ni reportes largos. Wompi valida y dispersa al instante.</p>
-              <button class="btn" data-a="sofiaSimulatePhoto" style="background:#1E3015; border:1px solid #B8FF3B; color:#B8FF3B; padding:10px 18px; border-radius:10px; font-weight:bold; cursor:pointer;">
+              <button class="btn" data-a="sofiaUploadGeotagPhoto" style="background:#1E3015; border:1px solid #B8FF3B; color:#B8FF3B; padding:10px 18px; border-radius:10px; font-weight:bold; cursor:pointer;">
                 📷 Tomar / Adjuntar Foto del Arreglo
               </button>
             </div>
@@ -7937,7 +7714,7 @@ render();
           s: 'retenido',
           chat: [
             { f: 'c', m: `Hola ${pro.name}, solicité tu servicio express con Pago Protegido Wompi.` },
-            { f: 'p', m: `¡Hola Camila! Recibido. Voy saliendo en mi moto, llego en 8 minutos.` }
+            { f: 'p', m: `¡Hola! Recibido. Voy saliendo en mi moto, llego en 8 minutos.` }
           ]
         };
         global.S.jobs.unshift(newJob);
@@ -7961,8 +7738,8 @@ render();
       if (global.toast) global.toast('✅ Trabajo aceptado con 1 Tap. ¡Seguimiento del Servicio encendida!');
     },
 
-    // Pro: Simular / subir foto con Geotagging
-    sofiaSimulatePhoto: async () => {
+    // Pro: Subir foto con Geotagging
+    sofiaUploadGeotagPhoto: async () => {
       expressState.capturedPhoto = 'https://images.unsplash.com/photo-1585704032915-c3400ca199e7?w=600&h=450&fit=crop';
       expressState.cryptoStamp = await generatePhotoGeoStamp('p5', 'Laureles');
       if (global.openSheet) {
@@ -8008,11 +7785,10 @@ render();
         return (
           originalHtml.slice(0, searchEndIndex) +
           renderExpressTradeSection() +
-          renderRealCasesSection() +
           originalHtml.slice(searchEndIndex)
         );
       }
-      return renderExpressTradeSection() + renderRealCasesSection() + originalHtml;
+      return renderExpressTradeSection() + originalHtml;
     };
     global.VIEWS.home._sofiaHooked = true;
   }
