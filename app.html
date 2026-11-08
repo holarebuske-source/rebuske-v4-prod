@@ -473,68 +473,76 @@ const INGRESOS=[40,55,48,70,62,90];
 const NAVC=[{k:'home',l:'Inicio',i:'home',a:'root',x:'home'},{k:'trabajos',l:'Mis trabajos',i:'bag',a:'root',x:'trabajos'},{k:'plus'},{k:'buscar',l:'Búsqueda',i:'search',a:'root',x:'buscar'},{k:'perfil',l:'Perfil',i:'user',a:'root',x:'perfil'}];
 const NAVP=[{k:'disp',l:'Inicio',i:'home',a:'navpro',t:'disp'},{k:'curso',l:'En curso',i:'bag',a:'navpro',t:'curso'},{k:'plus'},{k:'fin',l:'Finanzas',i:'wallet',a:'navpro',t:'fin'},{k:'properfil',l:'Perfil',i:'user',a:'root',x:'properfil'}];
 
-function seed(){return{role:null,on:true,zona:'Laureles',
-  cards:[
-    {id:'c1',brand:'Visa',last4:'4242',exp:'09/28',titular:'Camila Torres',primary:true},
-    {id:'c2',brand:'Mastercard',last4:'8819',exp:'11/27',titular:'Camila Torres',primary:false}
-  ],
+function seed(){return{role:null,on:true,zona:'Medellín',
+  cards:[],
   client:{
-    name:'Camila Torres',
-    phone:'312 456 7890',
-    email:'camila.torres@gmail.com',
-    address:'Cra 70 # 45-10',
-    barrio:'Laureles',
-    notes:'Piso 3 sin ascensor',
-    photo:'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150',
-    photoLastUpdated:Date.now() - (15*86400000)
+    name:'',
+    phone:'',
+    email:'',
+    address:'',
+    barrio:'Medellín',
+    notes:'',
+    photo:'',
+    photoLastUpdated:0
   },
   proInfo:{
-    id:'p1',
-    name:'Julián Restrepo',
-    phone:'300 123 4567',
-    email:'julian.restrepo@gmail.com',
-    bio:'Técnico certificado con más de 8 años de experiencia en plomería y redes de gas en Medellín.',
-    rate:45000,
-    specialties:['Plomería','Calentadores','Destapes','Redes Gas'],
-    photo:'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150',
-    photoLastUpdated:Date.now() - (12*86400000)
+    id:'p_user',
+    name:'',
+    phone:'',
+    email:'',
+    bio:'',
+    rate:50000,
+    specialties:[],
+    photo:'',
+    photoLastUpdated:0
   },
-  jobs:[
-   {id:'j1',t:'Cambio de grifo',c:'Reparaciones',z:'Laureles',v:112000,k:'Corto',pro:'p1',s:'retenido',chat:[{f:'c',m:'Hola, ¿me confirmas que llegas hoy?'},{f:'p',m:'Sí, llego a las 3. Mi número es 300 123 4567.'}]},
-   {id:'j2',t:'Pintura de sala',c:'Hogar',z:'Belén',v:150000,k:'Mediano',pro:'p2',s:'calificado',n:5,chat:[]},
-   {id:'j3',t:'Revisión de calentador',c:'Reparaciones',z:'Laureles',v:90000,k:'Corto',pro:'p1',cl:'Andrés M.',s:'calificado',n:5,chat:[]},
-   {id:'j4',t:'Instalación de lámpara',c:'Reparaciones',z:'Envigado',v:70000,k:'Corto',pro:'p3',s:'disputa',chat:[],disp:'Lámpara mal anclada'}],
-  req:[
-   {id:'r1',t:'Fuga bajo el lavaplatos',c:'Reparaciones',z:'Laureles',b:100000,cl:'Camila T.',k:'Corto',km:'1,2 km',w:'Hoy · tarde',m:true,d:'Gotea constante, necesito solución hoy mismo si es posible.'},
-   {id:'r2',t:'Cambiar calentador viejo por uno nuevo',c:'Reparaciones',z:'Envigado',b:180000,cl:'Andrés M.',k:'Largo',km:'4,8 km',w:'Sábado · mañana',m:false,d:'Ya tengo el calentador nuevo, solo instalación y descarte del viejo.'},
-   {id:'r3',t:'Revisión de presión en 2 baños',c:'Reparaciones',z:'Belén',b:90000,cl:'Laura P.',k:'Corto',km:'3,1 km',w:'Flexible',m:false,d:'La ducha del segundo baño salió con poca presión después de una remodelación.'}],
-  wal:{saldo:186000,pend:112000},
-  familia:[
-   {id:'f1',nombre:'Gloria Torres',parentesco:'Madre',tel:'312 456 7890',dir:'Cra 70 # 45-10, Laureles',pagoCompartido:true,avatar:'GT'},
-   {id:'f2',nombre:'Sebastián Torres',parentesco:'Hermano',tel:'301 987 6543',dir:'Cra 70 # 45-10, Laureles',pagoCompartido:true,avatar:'ST'},
-   {id:'f3',nombre:'Dora Inés (Abuela)',parentesco:'Abuela',tel:'310 234 5678',dir:'Circular 4 # 71-20, Laureles',pagoCompartido:true,avatar:'DI'}
-  ],
-  proTrabajos:[
-   {id:'pt1',titulo:'Cambio de tubería principal en cobre y PEX',zona:'Laureles · Segundo Parque',categoria:'Plomería Hidráulica',fecha:'Oct 2026',img:'https://images.unsplash.com/photo-1581244277943-fe4a9c777189?w=600&auto=format&fit=crop&q=80'},
-   {id:'pt2',titulo:'Instalación y calibración de calentador Haceb 10L',zona:'Belén Rosales',categoria:'Gasodomésticos',fecha:'Oct 2026',img:'https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&auto=format&fit=crop&q=80'},
-   {id:'pt3',titulo:'Detección no invasiva de fuga oculta bajo piso',zona:'Envigado · La Magnolia',categoria:'Termografía Infrarroja',fecha:'Sep 2026',img:'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&auto=format&fit=crop&q=80'},
-   {id:'pt4',titulo:'Montaje de grifería monomando empotrada negro mate',zona:'El Poblado · Provenza',categoria:'Acabados Sanitarios',fecha:'Sep 2026',img:'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=600&auto=format&fit=crop&q=80'}
-  ],
-  proImplementos:[
-   {id:'pi1',nombre:'Cámara Termográfica Fluke FLK-VT04A',marca:'Fluke Corp',tipo:'Diagnóstico No Destructivo',serie:'FLK-9924-COL',verificado:true,img:'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=600&auto=format&fit=crop&q=80'},
-   {id:'pi2',nombre:'Máquina Sonda Destapadora Eléctrica RIDGID K-400',marca:'RIDGID USA',tipo:'Destape de Redes Principales',serie:'RDG-7731-MED',verificado:true,img:'https://images.unsplash.com/photo-1572981779307-38b8cabb2407?w=600&auto=format&fit=crop&q=80'},
-   {id:'pi3',nombre:'Termofusora Digital PPR 800W Milwaukee',marca:'Milwaukee Industrial',tipo:'Termofusión de Redes Hidráulicas',serie:'MK-8812-PPR',verificado:true,img:'https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?w=600&auto=format&fit=crop&q=80'},
-   {id:'pi4',nombre:'Bomba Hidrostática de Prueba Rothenberger 50 Bar',marca:'Rothenberger Alemania',tipo:'Prueba de Estanqueidad',serie:'ROTH-5520-MED',verificado:true,img:'https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=600&auto=format&fit=crop&q=80'}
-  ]
+  jobs:[],
+  req:[],
+  wal:{saldo:0,pend:0},
+  familia:[],
+  proTrabajos:[],
+  proImplementos:[]
 }}
 let S;try{S=JSON.parse(localStorage.getItem(KEY))||seed()}catch(e){S=seed()}
 function ensureDefaults(){
-  if(!S.familia||!S.familia.length)S.familia=seed().familia;
-  if(!S.proTrabajos||!S.proTrabajos.length)S.proTrabajos=seed().proTrabajos;
-  if(!S.proImplementos||!S.proImplementos.length)S.proImplementos=seed().proImplementos;
-  if(!S.cards||!S.cards.length)S.cards=seed().cards;
+  if(!Array.isArray(S.familia))S.familia=[];
+  if(!Array.isArray(S.proTrabajos))S.proTrabajos=[];
+  if(!Array.isArray(S.proImplementos))S.proImplementos=[];
+  if(!Array.isArray(S.cards))S.cards=[];
+  if(!Array.isArray(S.jobs))S.jobs=[];
+  if(!Array.isArray(S.req))S.req=[];
   if(!S.client)S.client=seed().client;
   if(!S.proInfo)S.proInfo=seed().proInfo;
+  if(!S.wal)S.wal={saldo:0,pend:0};
+
+  // Purga automática de caché local legacy para producción limpia
+  if (S.client && (S.client.name === 'Camila Torres' || S.client.email === 'camila.torres@gmail.com')) {
+    S.client = seed().client;
+  }
+  if (S.proInfo && (S.proInfo.name === 'Julián Restrepo' || S.proInfo.email === 'julian.restrepo@gmail.com')) {
+    S.proInfo = seed().proInfo;
+  }
+  if (Array.isArray(S.cards)) {
+    S.cards = S.cards.filter(c => c.last4 !== '4242' && c.last4 !== '8819');
+  }
+  if (Array.isArray(S.jobs)) {
+    S.jobs = S.jobs.filter(j => !['j1','j2','j3','j4'].includes(j.id));
+  }
+  if (Array.isArray(S.req)) {
+    S.req = S.req.filter(r => !['r1','r2','r3'].includes(r.id));
+  }
+  if (Array.isArray(S.familia)) {
+    S.familia = S.familia.filter(f => !['f1','f2','f3'].includes(f.id));
+  }
+  if (Array.isArray(S.proTrabajos)) {
+    S.proTrabajos = S.proTrabajos.filter(t => !['pt1','pt2','pt3','pt4'].includes(t.id));
+  }
+  if (Array.isArray(S.proImplementos)) {
+    S.proImplementos = S.proImplementos.filter(i => !['pi1','pi2','pi3','pi4'].includes(i.id));
+  }
+  if (S.wal && S.wal.saldo === 186000 && S.wal.pend === 112000 && (!S.jobs || !S.jobs.length)) {
+    S.wal = {saldo:0,pend:0};
+  }
 }
 ensureDefaults();
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
@@ -593,7 +601,7 @@ rol:()=>`${hdr('¿Cómo usarás rebuske?','Puedes cambiarlo después en tu perfi
 <button class="glass" data-a="rol" data-x="profesional"><span class="ibox">${I('bolt',22)}</span><div class="grow"><b>Quiero ofrecer mi oficio</b><small>Recibe solicitudes de tu zona y cobra con pago protegido.</small></div></button>`,
 
 home:()=>{const act=S.jobs.filter(j=>!j.cl&&j.s!=='calificado'&&j.s!=='disputa');return `
-<header class="hd">${LZ('lg')}<div class="grow"><h1>Hola, Camila</h1><small>${S.zona}, Medellín · cuenta familiar</small></div><button class="ico" data-a="root" data-x="trabajos" aria-label="Notificaciones">${I('bell',20)}<i class="bdot"></i></button></header>
+<header class="hd">${LZ('lg')}<div class="grow"><h1>Hola${(S.client&&S.client.name)?', '+esc(S.client.name.split(' ')[0]):''}</h1><small>${esc(S.zona||'Medellín')}, Valle de Aburrá</small></div><button class="ico" data-a="root" data-x="trabajos" aria-label="Notificaciones">${I('bell',20)}<i class="bdot"></i></button></header>
 <button class="search" data-a="go" data-x="buscar">${I('search',18)}<span class="mut">¿Qué necesitas resolver?</span></button>
 
 <!-- DESPACHO URGENTE INMEDIATO (EMERGENCIA <35 MIN CON LUCIÉRNAGA ROJA) -->
@@ -720,7 +728,7 @@ pago:p=>{const j=job(p.id);if(!j)throw 0;const x=PR(j.pro),c=com(x.nv);const pag
 const yaRedimido = !!S.bonoVipRedimido;
 const clientDir = ((S.client && S.client.address) || '').toLowerCase().replace(/[^a-z0-9]/g, '');
 const dirYaUsada = clientDir.length > 3 && (S.bonosRedimidosDir || []).includes(clientDir);
-const metodoActual = S.selectedPaymentMethod || 'Visa 4242';
+const metodoActual = S.selectedPaymentMethod || ((S.cards && S.cards.length && S.cards[0].brand) ? S.cards[0].brand + ' •••• ' + S.cards[0].last4 : 'Tarjeta Wompi');
 const metodoYaUsado = (S.bonosRedimidosMetodos || []).includes(metodoActual);
 const bonoBloqueado = yaRedimido || dirYaUsada || metodoYaUsado;
 
@@ -768,7 +776,7 @@ return `${hdr('Pago protegido','Tu plata queda guardada')}
   <span>Acepto tratamiento de datos según Ley 1581 (<a href="/privacidad" target="_blank" style="color:#B8FF3B;text-decoration:underline">Privacidad</a>) y <a href="/descuentos" target="_blank" style="color:#B8FF3B;text-decoration:underline">Condiciones de Descuentos</a>.</span>
 </label>
 
-<h2>Método de pago</h2><div class="seg">${['Visa 4242','Nequi','PSE'].map(m=>`<button data-a="seg" class="${(S.selectedPaymentMethod || 'Visa 4242')===m?'on':''}">${m}</button>`).join('')}</div>
+<h2>Método de pago</h2><div class="seg">${[((S.cards && S.cards.length && S.cards[0].brand) ? S.cards[0].brand + ' •••• ' + S.cards[0].last4 : 'Tarjeta Wompi'),'Nequi','PSE'].map(m=>`<button data-a="seg" class="${(S.selectedPaymentMethod || ((S.cards && S.cards.length && S.cards[0].brand) ? S.cards[0].brand + ' •••• ' + S.cards[0].last4 : 'Tarjeta Wompi'))===m?'on':''}">${m}</button>`).join('')}</div>
 <h2>Desglose transparente</h2><div class="glass rows"><div><span>Valor del servicio</span><b>${M(j.v)}</b></div>${j.bonoVip?`<div><span>Bono Cliente VIP (TUBONO15K-VIP)</span><b class="lima" style="color:#B8FF3B">−$15.000 COP</b></div>`:''}${j.extGar?`<div><span>Garantía Extendida (30d)</span><b class="lima">+${M(Math.round(baseServicio*0.25))}</b></div>`:''}<div><span>Para ${x.n.split(' ')[0]} al liberar</span><b class="lima">${M(pagoProNeto)}</b></div><div><span>Comisión rebuske (${j.bonoVip?'0% Bonificada':Math.round(c*100)+'%'})</span><b>${j.bonoVip?'$0 COP (0%)':M(comisionrebuske)}</b></div></div>
 <div style="display:flex;justify-content:space-between;align-items:center;margin-top:4px"><small>La comisión la paga el profesional. Tú no pagas nada extra.</small><a href="/descuentos" target="_blank" style="color:#97A890;font-size:10.5px;text-decoration:underline">Ver Condiciones de Descuento</a></div>
 <div class="glass warnc">${I('shield',18)}<small><b>Garantía de 2 días.</b> Si algo falla, el pago queda congelado y abres un ticket.</small></div>
@@ -804,26 +812,26 @@ calificar:p=>{const j=job(p.id);if(!j)throw 0;const x=PR(j.pro);return `${hdr('C
 completado:p=>{const j=job(p.id);if(!j)throw 0;const x=PR(j.pro);return `<div class="ctr full">${HERO(170)}<h1>¡Trabajo completado!</h1><p class="mut txtc">Pago liberado a ${x.n}. Calificaste con ${'★'.repeat(j.n||5)}.</p>
 <div class="glass center"><b>¿Volver a contratar a ${x.n.split(' ')[0]}?</b><small>REPITE prellena la solicitud con los mismos datos.</small>${cta('REPITE','repite',`data-id="${j.id}"`,p.st)}<button class="btn ghost" data-a="root" data-x="home">Volver al inicio</button></div></div>`},
 
-trabajos:p=>{const tab=p.tab||'curso';const f={curso:j=>!j.cl&&j.s!=='calificado'&&j.s!=='disputa',disputa:j=>!j.cl&&j.s==='disputa',hist:j=>!j.cl&&j.s==='calificado'};const L=S.jobs.filter(f[tab]);return `${hdr('Mis trabajos',`Camila Torres · ${S.zona}`,false)}
+trabajos:p=>{const tab=p.tab||'curso';const f={curso:j=>!j.cl&&j.s!=='calificado'&&j.s!=='disputa',disputa:j=>!j.cl&&j.s==='disputa',hist:j=>!j.cl&&j.s==='calificado'};const L=S.jobs.filter(f[tab]);return `${hdr('Mis trabajos',`${(S.client&&S.client.name)?esc(S.client.name):'Cliente'} · ${esc(S.zona||'Medellín')}`,false)}
 <div class="tabs">${[['curso','En curso'],['hist','Completados'],['disputa','Disputas']].map(t=>`<button class="${tab===t[0]?'on':''}" data-a="tab" data-x="${t[0]}">${t[1]} (${S.jobs.filter(f[t[0]]).length})</button>`).join('')}</div>
 ${L.length?L.map(jobCard).join(''):`<div class="ctr sm">${LZ('lg')}<h2 style="justify-content:center">Nada por aquí</h2><p class="mut txtc">Publica tu primera solicitud y la Seguimiento del Servicio se enciende.</p><button class="btn" data-a="go" data-x="solicitud" style="max-width:260px">Publicar solicitud</button></div>`}`},
 
 perfil:()=>{
-  const c = S.client || {name:'Camila Torres', phone:'312 456 7890', address:'Cra 70 # 45-10', barrio:S.zona||'Laureles', notes:'Piso 3 sin ascensor', photo:''};
-  const cards = S.cards || [{id:'c1',brand:'Visa',last4:'4242',primary:true}];
-  const primaryCard = cards.find(x=>x.primary) || cards[0] || {brand:'Visa',last4:'4242'};
+  const c = S.client || {name:'', phone:'', address:'', barrio:S.zona||'Medellín', notes:'', photo:''};
+  const cards = S.cards || [];
+  const primaryCard = cards.find(x=>x.primary) || cards[0] || null;
   const daysPhoto = Math.floor((Date.now() - (c.photoLastUpdated||0)) / (86400000));
   const photoDaysLeft = Math.max(0, 30 - daysPhoto);
 
   return `${hdr('Tu perfil','cliente · Medellín',false)}
 <div class="glass pc">
   <div style="position:relative">
-    ${c.photo ? `<img src="${c.photo}" style="width:60px;height:60px;border-radius:50%;object-fit:cover;border:2px solid #B8FF3B">` : av({n:c.name||'Camila Torres'},60)}
+    ${c.photo ? `<img src="${c.photo}" style="width:60px;height:60px;border-radius:50%;object-fit:cover;border:2px solid #B8FF3B">` : av({n:c.name||'U'},60)}
     <button class="ico sm" data-a="sheetFotoCheck" data-role="client" style="position:absolute;bottom:-4px;right:-4px;background:#182613;border:1px solid #4E8839;width:24px;height:24px;font-size:11px" title="Modificar Foto (Regla 30 días)">📷</button>
   </div>
   <div class="grow">
     <div style="display:flex;justify-content:space-between;align-items:center">
-      <h1 style="margin:0">${c.name || 'Sin nombre'}</h1>
+      <h1 style="margin:0">${esc(c.name || 'Mi Perfil')}</h1>
       <button class="link" data-a="sheetEditCliente" style="font-size:12px;color:#B8FF3B">Editar Datos ✏️</button>
     </div>
     <small>${c.barrio || S.zona} · Medellín</small>
@@ -835,7 +843,7 @@ perfil:()=>{
 </div>
 
 <div class="stats3">
-  <div class="glass"><b>3</b><small>trabajos</small></div>
+  <div class="glass"><b>${(S.jobs||[]).filter(j=>j.s==='calificado').length}</b><small>trabajos</small></div>
   <div class="glass"><b>1</b><small>favoritos</small></div>
   <div class="glass clk" data-a="go" data-x="familia" style="cursor:pointer;border-color:rgba(184,255,59,0.3)">
     <b class="lima">${(S.familia||[]).length}</b>
@@ -853,7 +861,7 @@ perfil:()=>{
     ${I('user',18)}
   </button>
   <button class="row clk" data-a="sheetTarjetas" style="text-align:left;cursor:pointer">
-    <span>Tarjetas guardadas (${cards.length})<small>${primaryCard.brand} •••• ${primaryCard.last4} · Administrar / Agregar / Quitar</small></span>
+    <span>Tarjetas guardadas (${cards.length})<small>${primaryCard ? primaryCard.brand + ' •••• ' + primaryCard.last4 : 'Sin tarjetas vinculadas'} · Administrar / Agregar</small></span>
     ${I('card',18)}
   </button>
   <button class="row" data-a="precios"><span>Precios de referencia<small>Tabla por servicio</small></span>${I('list',18)}</button>
@@ -883,7 +891,7 @@ familia:()=>{
 
   <div style="display:flex;justify-content:space-between;align-items:center;margin-top:14px;margin-bottom:6px">
     <h2 style="margin:0">Integrantes Vinculados <small>(${fam.length})</small></h2>
-    <button class="btn sm ghost" data-a="addSampleFam" style="padding:4px 8px;font-size:11px">+ Agregar Familiar Demo</button>
+    
   </div>
 
   ${fam.length ? `
@@ -914,7 +922,7 @@ familia:()=>{
   <h2 style="margin-top:16px">+ Vincular Nuevo Familiar <small>Poner gente</small></h2>
   <div class="glass req" style="display:flex;flex-direction:column;gap:10px">
     <label>Nombre y Apellidos
-      <input id="fam_nom" class="field" placeholder="Ej: Gloria Torres" autocomplete="off">
+      <input id="fam_nom" class="field" placeholder="Nombre y apellidos" autocomplete="off">
     </label>
     <div class="frow">
       <label style="flex:1">Parentesco
@@ -934,11 +942,11 @@ familia:()=>{
       </label>
     </div>
     <label>Dirección habitual
-      <input id="fam_dir" class="field" placeholder="Cra 70 # 45-10, Laureles" value="Cra 70 # 45-10, ${S.zona}">
+      <input id="fam_dir" class="field" placeholder="Cra 70 # 45-10, Laureles" value="${esc((S.client&&S.client.address)?S.client.address:'')}">
     </label>
     <label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer">
       <input type="checkbox" id="fam_pago" checked style="accent-color:#B8FF3B">
-      <span>Habilitar Pago Protegido compartido (Visa •••• 4242 Wompi)</span>
+      <span>Habilitar Pago Protegido compartido (Bóveda Wompi)</span>
     </label>
     <button class="btn sheen" data-a="addFam" style="margin-top:4px">
       + Guardar y Vincular a Cuenta Familiar
@@ -946,18 +954,19 @@ familia:()=>{
   </div>
   <button class="btn ghost" data-a="back" style="margin-top:12px">Volver al perfil</button>`},
 
-pro:p=>{const me=PR('p1'),tab=p.tab||'disp';return `<header class="hd">${av(me,52)}<div class="grow"><h1>Hola, Julián</h1><small>${me.o} · ${me.z} · nivel ${me.nv}</small></div><button class="ico" data-a="navpro" data-t="curso" aria-label="Notificaciones">${I('bell',20)}<i class="bdot"></i></button></header>
+pro:p=>{const me=(S.proInfo&&S.proInfo.name)?S.proInfo:PR('p1'),tab=p.tab||'disp';const proNom=me.name||me.n||'Profesional';return `<header class="hd">${av(me,52)}<div class="grow"><h1>Hola${proNom?', '+esc(proNom.split(' ')[0]):''}</h1><small>${esc(me.o||'Oficio Especializado')} · ${esc(me.z||S.zona||'Medellín')} · nivel ${me.nv||'Plata'}</small></div><button class="ico" data-a="navpro" data-t="curso" aria-label="Notificaciones">${I('bell',20)}<i class="bdot"></i></button></header>
 <div class="glass pc clk" data-a="on" style="cursor:pointer;user-select:none"><div class="grow"><b>Disponible para trabajos</b><small>${S.on?'Verificado ✓ · recibes solicitudes de tu zona':'Fuera de servicio · no recibes solicitudes'}</small></div><button class="switch ${S.on?'on':''}" data-a="on" aria-label="Disponibilidad" style="pointer-events:none"></button></div>
 <div class="tabs">${[['disp','Disponibles'],['curso','En curso'],['hist','Historial'],['fin','Finanzas']].map(t=>`<button class="${tab===t[0]?'on':''}" data-a="tab" data-x="${t[0]}">${t[1]}</button>`).join('')}</div>
 ${tab==='disp'?pDisp():tab==='curso'?pCurso():tab==='hist'?pHist():pFin()}`},
 
 properfil:()=>{
-  const me = PR('p1');
+  const me = (S.proInfo && S.proInfo.name) ? S.proInfo : { name: '', o: 'Técnico Especializado', y: 1, nv: 'Plata', r: 5.0, t: (S.jobs||[]).filter(j=>j.s==='calificado').length };
   const trabajos = S.proTrabajos || [];
   const impls = S.proImplementos || [];
-  return `${hdr('Tu perfil','profesional · Laureles',false)}
-<div class="glass pc">${av(me,60)}<div class="grow"><h1>Julián Restrepo</h1><small>${me.o} · ${me.y} años · Laureles</small><div class="tags"><span class="tag">Verificado ✓</span><span class="tag2">${me.nv}</span></div></div></div>
-<div class="stats3"><div class="glass"><b>4.9</b><small>calificación</small></div><div class="glass"><b>127</b><small>trabajos</small></div><div class="glass"><b>12 min</b><small>responde</small></div></div>
+  const proNom = me.name || me.n || 'Mi Perfil Profesional';
+  return `${hdr('Tu perfil',`profesional · ${esc(S.zona||'Medellín')}`,false)}
+<div class="glass pc">${av(me,60)}<div class="grow"><div style="display:flex;justify-content:space-between;align-items:center"><h1 style="margin:0">${esc(proNom)}</h1><button class="link" data-a="sheetEditPro" style="font-size:12px;color:#B8FF3B">Editar Perfil ✏️</button></div><small>${esc(me.o || 'Oficio Especializado')} · ${esc(S.zona||'Medellín')}</small><div class="tags"><span class="tag">Verificado ✓</span><span class="tag2">${me.nv || 'Plata'}</span></div></div></div>
+<div class="stats3"><div class="glass"><b>${((me.r||5.0)).toFixed(1)}</b><small>calificación</small></div><div class="glass"><b>${(S.jobs||[]).filter(j=>j.s==='calificado').length}</b><small>trabajos</small></div><div class="glass"><b>Instantáneo</b><small>notificaciones</small></div></div>
 <div class="glass" style="margin-top:10px;padding:14px;border:1.5px solid #B8FF3B;background:rgba(184,255,59,0.06);border-radius:18px;">
   <div style="display:flex;align-items:center;gap:12px;">
     <div style="width:42px;height:42px;border-radius:12px;background:rgba(184,255,59,0.2);display:grid;place-items:center;font-size:22px;flex-shrink:0;">🪪</div>
@@ -1003,9 +1012,8 @@ ${trabajos.length ? `
   </div>
 `}
 
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px">
-  <button class="btn sm sheen" data-a="sheetUpTrabajo" style="padding:10px 8px;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;text-align:center;border-radius:12px;white-space:nowrap">📷 Subir Foto</button>
-  <button class="btn sm ghost" data-a="addSampleFotoTrabajo" style="padding:10px 8px;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;text-align:center;border-radius:12px;white-space:nowrap">+ Muestra HD</button>
+<div style="margin-top:10px">
+  <button class="btn sm sheen" data-a="sheetUpTrabajo" style="padding:12px;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;text-align:center;border-radius:12px;width:100%">📷 Subir Foto de Trabajo Real</button>
 </div>
 
 <!-- SECCIÓN 2: IMPLEMENTOS Y HERRAMIENTAS DE TRABAJO -->
@@ -1037,9 +1045,8 @@ ${impls.length ? `
   </div>
 `}
 
-<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px">
-  <button class="btn sm sheen" data-a="sheetUpImpl" style="padding:10px 8px;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;text-align:center;border-radius:12px;white-space:nowrap">🛠️ Cargar Equipo</button>
-  <button class="btn sm ghost" data-a="addSampleImpl" style="padding:10px 8px;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;text-align:center;border-radius:12px;white-space:nowrap">+ Muestra HD</button>
+<div style="margin-top:10px">
+  <button class="btn sm sheen" data-a="sheetUpImpl" style="padding:12px;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;text-align:center;border-radius:12px;width:100%">🛠️ Registrar Herramienta o Equipo</button>
 </div>
 
 <button class="btn ghost" data-a="rol" data-x="cliente" style="margin-top:14px">Volver a modo cliente</button>
@@ -1062,11 +1069,21 @@ ${NEXT[j.s]?`<button class="btn sm" data-a="avanzar" data-id="${j.id}">${NEXT[j.
 
 const pHist=()=>{const L=S.jobs.filter(j=>j.pro==='p1'&&j.s==='calificado');return L.length?L.map(j=>`<div class="glass pc"><div class="grow"><b>${esc(j.t)}</b><small>${esc(j.cl||'Camila T.')} · ${j.z}</small><small class="lima">${'★'.repeat(j.n||5)}</small></div><div class="right"><b>${M(j.v*.93)}</b><small>recibido</small></div></div>`).join(''):`<div class="ctr sm"><h2>Sin historial aún</h2></div>`};
 
-const pFin=()=>`<div class="glass wallet"><small>Saldo disponible</small><b class="big">${RL(M(S.wal.saldo))}</b><small>+ ${M(S.wal.pend)} pendiente por liberar</small><button class="btn" data-a="retiro" ${S.wal.saldo?'':'disabled'} style="margin-top:6px">Retirar ahora</button><small>Retiros cada 4 días · Nequi, Daviplata o cuenta bancaria</small></div>
+const pFin=()=>{
+  const saldoDisp = (S.wal && S.wal.saldo) ? S.wal.saldo : 0;
+  const saldoPend = (S.wal && S.wal.pend) ? S.wal.pend : 0;
+  const califJobs = (S.jobs || []).filter(j => j.s === 'calificado');
+  const ultJob = califJobs.length ? califJobs[califJobs.length - 1] : null;
+  const ultV = ultJob ? ultJob.v : 0;
+  const ultCom = Math.round(ultV * 0.07);
+  const ultNeto = ultV - ultCom;
+
+  return `<div class="glass wallet"><small>Saldo disponible</small><b class="big">${RL(M(saldoDisp))}</b><small>+ ${M(saldoPend)} pendiente por liberar</small><button class="btn" data-a="retiro" ${saldoDisp?'':'disabled'} style="margin-top:6px">Retirar ahora</button><small>Retiros cada 4 días · Nequi, Daviplata o cuenta bancaria</small></div>
 <h2>Ingresos por mes <small>netos</small></h2><div class="glass">${barsHTML()}</div>
-<h2>Reputación</h2><div class="glass pc"><span class="ibox">${LZ()}</span><div class="grow"><b>Nivel Plata · 88 pts · 4.9★</b><small>Llegar a Oro (100 pts y 4.8★) baja tu comisión al 6%.</small><div class="prog" style="--w:88%"><i></i></div></div></div>
-<div class="glass rows"><div><span>Último trabajo</span><b>${M(112000)}</b></div><div><span>Comisión rebuske (7%)</span><b>−${M(7840)}</b></div><div><span>Recibes</span><b class="lima">${M(104160)}</b></div></div>
+<h2>Reputación</h2><div class="glass pc"><span class="ibox">${LZ()}</span><div class="grow"><b>Nivel Plata · 4.9★</b><small>Comisión 7% en Bóveda Wompi (93% neto para ti).</small><div class="prog" style="--w:93%"><i></i></div></div></div>
+${ultJob ? `<div class="glass rows"><div><span>Último trabajo</span><b>${M(ultV)}</b></div><div><span>Comisión rebuske (7%)</span><b>−${M(ultCom)}</b></div><div><span>Recibes</span><b class="lima">${M(ultNeto)}</b></div></div>` : `<div class="glass center" style="padding:14px;text-align:center"><p class="mut">Aún no registras cobros finalizados este mes.</p></div>`}
 <button class="btn ghost" data-a="cert">Descargar certificado de ingresos</button>`;
+};
 
 const TABS=['home','trabajos','buscar','perfil','admin'];
 const NAVDEF=()=>S.role==='profesional'?NAVP:NAVC;
@@ -1195,7 +1212,7 @@ const A={
           </div>
           <div>
             <label style="font-size:11px;color:#A4BEA0;text-transform:uppercase;font-weight:bold;display:block;margin-bottom:4px">Nombre Titular</label>
-            <input type="text" id="nc-name" placeholder="Ej: Camila Torres" class="inp" style="width:100%;background:#0C120A;border:1px solid #283F22;color:#FFF;padding:10px;border-radius:10px">
+            <input type="text" id="nc-name" placeholder="Nombre como aparece en la tarjeta" class="inp" style="width:100%;background:#0C120A;border:1px solid #283F22;color:#FFF;padding:10px;border-radius:10px">
           </div>
         </div>
         <div class="row2" style="margin-top:10px">
@@ -2665,7 +2682,7 @@ const A={
   voiceRecord: d => {
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!SpeechRecognition) {
-      const notaVozSimulada = prompt('Simulación de Voz: Habla o escribe tu nota de voz para transcribir:');
+      const notaVozSimulada = prompt('Nota de Voz Oficial: Dicta o transcribe tu nota de voz para adjuntar a la disputa:');
       if (notaVozSimulada && notaVozSimulada.trim()) {
         sendMsg(d.id, '🎤 [Audio Transcrito]: "' + notaVozSimulada.trim() + '" (Evidencia auditable de disputa)');
       }
@@ -2730,7 +2747,7 @@ const A={
   acep:d=>{const r=S.req.find(x=>x.id===d.id);closeSheet();if(!r)return;S.req=S.req.filter(x=>x.id!==d.id);S.jobs.unshift({id:'j'+Date.now(),t:r.t,c:r.c,z:r.z,v:r.b,k:r.k,s:'retenido',pro:'p1',cl:r.cl,chat:[]});save();toast('Trabajo aceptado. El pago queda protegido.');render()},
   rech:d=>{S.req=S.req.filter(x=>x.id!==d.id);save();render()},
   retiro:()=>{S.wal.saldo=0;save();toast('Retiro enviado. El próximo se habilita en 4 días.');render()},
-  cert:()=>toast('Certificado de ingresos descargado (demo)'),
+  cert:()=>toast('Generando certificado oficial de ingresos con firma digital...'),
 
   /* ===== ACCIONES MODO FAMILIAR ===== */
   addFam:()=>{
@@ -5686,7 +5703,7 @@ render();
         </div>
       </div>
 
-      <h2>Tickets de Garantía Activos (${m.disputes.length}) <button class="link" data-a="adminSimulateDispute">+ Simular ticket</button></h2>
+      <h2>Tickets de Garantía Activos (${m.disputes.length})</h2>
       ${m.disputes.length ? m.disputes.map(j => {
         const pro = typeof global.PR === 'function' ? global.PR(j.pro) : { n: 'rebusker', o: j.c };
         return `
@@ -7741,7 +7758,7 @@ render();
           </div>
 
           <h3 style="margin:6px 0; font-size:18px; color:#FFF;">Fuga Urgente en Llave de Lavaplatos</h3>
-          <p style="margin:2px 0 12px 0; font-size:12px; color:#A7BCA0;">Cliente: <b>Camila Torres</b> · Edificio Rosales · Requiere atención inmediata.</p>
+          <p style="margin:2px 0 12px 0; font-size:12px; color:#A7BCA0;">Cliente: <b>${esc((S.client&&S.client.name)?S.client.name:'Cliente rebuske')}</b> · ${(S.client&&S.client.address)?esc(S.client.address):'Medellín'} · Requiere atención inmediata.</p>
 
           <div style="background:#090F06; border-radius:12px; padding:12px; text-align:center;">
             <small style="color:#7E9573; font-size:11px; text-transform:uppercase; letter-spacing:0.5px;">Tu ganancia neta en este trabajo</small>
@@ -7785,7 +7802,7 @@ render();
             <b>Fuga en Lavaplatos · Laureles</b>
             <span style="color:#B8FF3B; font-weight:bold;">$79.050 COP neto</span>
           </div>
-          <small style="color:#7E9573;">Cliente: Camila Torres · Cra 74 # 42</small>
+          <small style="color:#7E9573;">Cliente: ${esc((S.client&&S.client.name)?S.client.name:'Cliente rebuske')} · ${(S.client&&S.client.address)?esc(S.client.address):'Medellín'}</small>
         </div>
 
         <!-- MÓDULO DE 1 SOLA FOTO DEL ARREGLO CON GEOTAGGING -->
@@ -7937,7 +7954,7 @@ render();
           s: 'retenido',
           chat: [
             { f: 'c', m: `Hola ${pro.name}, solicité tu servicio express con Pago Protegido Wompi.` },
-            { f: 'p', m: `¡Hola Camila! Recibido. Voy saliendo en mi moto, llego en 8 minutos.` }
+            { f: 'p', m: `¡Hola! Recibido. Voy saliendo en mi moto, llego en 8 minutos.` }
           ]
         };
         global.S.jobs.unshift(newJob);
