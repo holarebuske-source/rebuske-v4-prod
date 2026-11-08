@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+  <meta charset="utf-8">
+  <title>REBUSKE · BENCHMARK GLOBAL DE APPS DE SERVICIOS DEL HOGAR Y ESTRATEGIA DE DOMINANCIA</title>
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; color: #111; line-height: 1.6; padding: 40px; background: #FFFFFF; }
+    .cover { background: #0B100E; color: #F2F5EC; padding: 50px 40px; border-radius: 10px; margin-bottom: 40px; border-top: 10px solid #B8FF3B; }
+    .cover h1 { color: #B8FF3B; font-size: 28px; margin: 0 0 10px 0; }
+    .cover .subtitle { color: #AFFF3E; font-size: 16px; font-weight: bold; margin-bottom: 15px; }
+    .cover .meta { font-size: 13px; color: #94A3B8; border-top: 1px solid #223326; padding-top: 15px; }
+    h2 { color: #064E3B; border-bottom: 2px solid #10B981; padding-bottom: 8px; margin-top: 40px; font-size: 22px; page-break-before: always; }
+    h3 { color: #0F172A; margin-top: 24px; font-size: 17px; border-left: 4px solid #B8FF3B; padding-left: 10px; }
+    h4 { color: #334155; margin-top: 16px; font-size: 14px; }
+    p, li { font-size: 13.5px; color: #334155; line-height: 1.7; }
+    table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 12.5px; }
+    th, td { border: 1px solid #CBD5E1; padding: 9px 12px; text-align: left; }
+    th { background: #F1F5F9; color: #0F172A; font-weight: bold; }
+    .badge { display: inline-block; padding: 3px 8px; border-radius: 4px; font-size: 11px; font-weight: bold; }
+    .badge-ok { background: #DCFCE7; color: #166534; }
+    .badge-warn { background: #FEF3C7; color: #92400E; }
+    .badge-red { background: #FEE2E2; color: #991B1B; }
+    .highlight { background: #F0FDF4; border: 1px solid #BBF7D0; padding: 16px; border-radius: 8px; margin: 20px 0; }
+  </style>
+</head>
+<body>
+
+  <div class="cover">
+    <h1>REBUSKE · BENCHMARK INTERNACIONAL Y PLAN DE SUPERIORIDAD COMPETITIVA</h1>
+    <div class="subtitle">Análisis Comparativo de Urban Company, TaskRabbit, Thumbtack, Angi y Frontdoor: Lecciones Globales y Adaptación Letal para Medellín</div>
+    <div class="meta">
+      <strong>Dirección General:</strong> Camilo Escobar (👑 Canashi 👑, CEO y Fundador de Rebuske)<br>
+      <strong>Fecha:</strong> Noviembre 2026 | <strong>Ecosistema:</strong> Rebuske v5.0 Producción<br>
+      <strong>Objetivo:</strong> Identificar aciertos y fracasos de los gigantes globales para blindar a Rebuske y dominar el mercado colombiano.
+    </div>
+  </div>
+
+  <h2>1. MAPA COMPARATIVO DE LOS LÍDERES MUNDIALES EN SERVICIOS DEL HOGAR</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Plataforma</th>
+        <th>Países / Mercados</th>
+        <th>Modelo de Negocio</th>
+        <th>Take Rate (Comisión)</th>
+        <th>Garantía al Cliente</th>
+        <th>Principal Falla / Vulnerabilidad</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Urban Company</strong><br>(Valuación ~$2.5B)</td>
+        <td>India, EAU, Singapur, Arabia Saudita</td>
+        <td>Full-Stack Managed Marketplace (Control total de precios, uniforme y herramientas)</td>
+        <td><span class="badge badge-red">30% a 36%</span> (Muy alto)</td>
+        <td>Garantía de 30 días + seguro contra daños</td>
+        <td>Huelgas y descontento masivo de técnicos por comisiones confiscatorias y algoritmos punitivos.</td>
+      </tr>
+      <tr>
+        <td><strong>TaskRabbit</strong><br>(Propiedad de IKEA)</td>
+        <td>EE.UU., Reino Unido, Canadá, Europa</td>
+        <td>Marketplace por horas / integración en tiendas IKEA</td>
+        <td><span class="badge badge-red">15% a 30%</span> + Service Fee</td>
+        <td>"Happiness Pledge" hasta $10.000 USD</td>
+        <td>Precios impredecibles por hora; los técnicos lentos cobran más. Desintermediación frecuente fuera de la app.</td>
+      </tr>
+      <tr>
+        <td><strong>Thumbtack</strong><br>(Valuación ~$3.2B)</td>
+        <td>EE.UU.</td>
+        <td>Lead-Generation (El profesional paga por adelantado por cada contacto)</td>
+        <td>$15 - $80 USD por Lead (Sin garantía de cierre)</td>
+        <td>Garantía de dinero devuelto condicional</td>
+        <td>Los técnicos odian pagar por "leads falsos" o clientes que solo preguntan y nunca contratan. Desgaste del profesional.</td>
+      </tr>
+      <tr>
+        <td><strong>Frontdoor / Streem</strong><br>(Cotiza en NASDAQ)</td>
+        <td>EE.UU.</td>
+        <td>Home Warranty + Triaje por Video con Realidad Aumentada (AR)</td>
+        <td>Membresía anual ($400 - $800 USD) + copago por visita</td>
+        <td>Reemplazo garantizado de electrodomésticos</td>
+        <td>Proceso burocrático, exclusiones en letra pequeña y tiempos de espera de 3 a 5 días para agendar.</td>
+      </tr>
+      <tr>
+        <td><strong>REBUSKE</strong><br>(Colombia v5)</td>
+        <td><strong>Medellín y Valle de Aburrá</strong></td>
+        <td><strong>FinTech Marketplace con Bóveda Wompi & Mandato Comercial (Art. 1262)</strong></td>
+        <td><span class="badge badge-ok">7% neto</span> (Plan Oro)<br><span class="badge badge-ok">1% neto</span> (Mes 1 Fundador)</td>
+        <td><strong>48h Escrita (Ley 1480 de 2011) + Bóveda con Pago Custodiado</strong></td>
+        <td><strong>VENTAJA TOTAL:</strong> Resuelve el abuso de comisiones, elimina el cobro por leads y entrega rapidez (radar 35-45 min).</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>2. ¿QUÉ APRENDIMOS DE ESTOS GIGANTES INTERNACIONALES? (LECCIONES CRÍTICAS)</h2>
+
+  <div class="highlight">
+    <h3>Lección 1: El talón de Aquiles de Urban Company es la codicia del Take Rate (30%-36%)</h3>
+    <p>Urban Company construyó un imperio estandarizando la calidad, pero su ambición de elevar la comisión del 20% al 36% provocó protestas masivas de trabajadores y que los mejores técnicos buscaran trabajar por fuera con los clientes que ya conocían.</p>
+    <p><strong>Nuestra Ventaja Rebuske:</strong> Con nuestro modelo de <strong>Mandato Comercial (Art. 1262 C.Co)</strong> dejamos el <strong>93% neto al técnico</strong> (y 99% el primer mes). Cobramos una cuota tecnológica mínima de $4.900 al cliente. Esto hace que ningún técnico de Medellín quiera saltarse Rebuske: la plataforma les da seguridad, clientes y respeto financiero.</p>
+  </div>
+
+  <div class="highlight">
+    <h3>Lección 2: La Bóveda de Custodia (Escrow) es el verdadero motor de la confianza</h3>
+    <p>En mercados emergentes como India o Latinoamérica, el 85% de los conflictos ocurren porque el cliente paga por adelantado en efectivo y el técnico deja el trabajo a medias, o el cliente no quiere pagar al finalizar. Tanto TaskRabbit como Urban Company eliminaron el efectivo en mano.</p>
+    <p><strong>Nuestra Aplicación Rebuske:</strong> La <strong>Bóveda Wompi</strong> es nuestro baluarte. El dinero está congelado; el cliente sabe que no lo estafan, y el técnico sabe que el dinero ya está en la cuenta 2815 y se le desembolsará inmediatamente apenas el cliente dé el visto bueno.</p>
+  </div>
+
+  <div class="highlight">
+    <h3>Lección 3: El Triaje Previo con Cámara evita el "Viaje Ciego" (Modelo Streem / Frontdoor)</h3>
+    <p>Frontdoor descubrió que el 38% del costo operativo de las reparaciones del hogar proviene de técnicos que llegan a la vivienda solo para decir: <em>"Ah, no traje el empaque que era, tengo que ir a la ferretería y vuelvo mañana"</em>.</p>
+    <p><strong>Nuestra Aplicación Rebuske:</strong> Ya tenemos implementado el <strong>Motor de Diagnóstico Inteligente multivariable</strong> con subida de fotos y notas de voz, asistido por el Bot Laura en WhatsApp. El técnico ve la foto de la avería antes de salir y lleva el repuesto exacto.</p>
+  </div>
+
+  <div class="highlight">
+    <h3>Lección 4: La Estandarización de Tarifas (Baremo Oficial) elimina la desconfianza</h3>
+    <p>Thumbtack y los clasificados tradicionales sufren porque cada técnico cobra lo que le parece según el barrio o la cara del cliente. Urban Company ganó porque fijó un precio cerrado por labor.</p>
+    <p><strong>Nuestra Aplicación Rebuske:</strong> Nuestro portal <code>tarifas.html</code> con el <strong>Baremo Oficial de 17 oficios</strong> garantiza transparencia radical: la visita diagnóstica cuesta $35.000 (abonable a la labor) y los precios de mano de obra están tabulados.</p>
+  </div>
+
+  <h2>3. PLAN MAESTRO: CÓMO SUPERAR A LA COMPETENCIA GLOBAL EN MEDELLÍN</h2>
+
+  <h3>Mejora 1: "Kit de Profesional Primordial" (Estandarización Visual al estilo Urban Company)</h3>
+  <ul>
+    <li><strong>Uniformidad sin Subordinación:</strong> Entregar a los técnicos del Plan Oro un chaleco de trabajo reflectivo en color Ébano Nocturno (#0B100E) con detalles bioluminiscentes en Verde Lima (#B8FF3B) y carné digital QR.</li>
+    <li><strong>QR de Validación Inmediata:</strong> El cliente escanea el carné del técnico con su celular y ve: Foto real, verificación de antecedentes judiciales (Policía / Procuraduría / KYC), especialidad certificada y número de servicios exitosos.</li>
+  </ul>
+
+  <h3>Mejora 2: Triaje Visual Asistido por Inteligencia Artificial en WhatsApp ("Rebuske Lens")</h3>
+  <ul>
+    <li>Integrar visión artificial para que cuando el cliente mande una foto por WhatsApp al Bot Laura (ej. una gotera bajo el lavaplatos), la IA reconozca automáticamente: <em>"Sifón flexible de 1 1/4 pulgada con fisura en la rosca"</em> y pre-cargue en la cotización el repuesto sugerido.</li>
+  </ul>
+
+  <h3>Mejora 3: Alianzas con Ferreterías y Retailers de Medellín (El Modelo IKEA-TaskRabbit Criollo)</h3>
+  <ul>
+    <li>TaskRabbit creció un 400% cuando IKEA lo compró y puso un botón de <em>"Arma tu mueble con TaskRabbit"</em> en cada compra.</li>
+    <li><strong>Estrategia Rebuske:</strong> Cerrar acuerdos con Homecenter (Sodimac), Ferreterías de Barrio en comunas y distribuidores de calentadores (Haceb / Bosch). Cuando el cliente compre una grifería o un calentador en Medellín, el vendedor le entrega el código QR de Rebuske con el cupón <code>TUBONO15K-VIP</code> para instalación certificada con Bóveda Wompi y 48h de garantía.</li>
+  </ul>
+
+  <h3>Mejora 4: Micro-Seguro de Daños Accidentales Integrado en la Cuota de $4.900</h3>
+  <ul>
+    <li>Urban Company incluye cobertura contra daños accidentales a la vivienda hasta cierto monto.</li>
+    <li><strong>Estrategia Rebuske:</strong> Destinar una fracción de la cuota tecnológica de $4.900 para un fondo de garantía de contingencias. Si durante el arreglo de plomería se rompe una baldosa accidentalmente, Rebuske responde en menos de 24 horas. Esto anula por completo la contratación de técnicos callejeros informales.</li>
+  </ul>
+
+  <div class="highlight">
+    <strong>CONCLUSIÓN EJECUTIVA:</strong><br>
+    Rebuske no necesita inventar la rueda desde cero. Tomamos lo mejor del mundo (el baremo y uniformes de Urban Company, el triaje visual de Frontdoor, la garantía de TaskRabbit) y eliminamos sus mayores defectos (el 36% de comisión abusiva y los cobros de leads de Thumbtack), reemplazándolos con la <strong>Bóveda Wompi</strong> y el <strong>Mandato Comercial Colombiano (7%/93%)</strong>.
+  </div>
+
+</body>
+</html>
