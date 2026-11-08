@@ -290,7 +290,7 @@ Ejemplo: "VALERIA: ¡Canashi! Te tengo 4 ideas brutales para la campaña..." o "
         replyText = `¡Canashi, te tengo 4 ideas brutales para llenar los cupos que faltan de los 100 fundadores (vamos 84/100)! 🚀\n\n` +
           `1. 🛠️ Gira de Ferreterías en Medellín: Afiches con el código QR en ferreterías de La 33, Guayabal, Belén y el Centro.\n` +
           `2. 📱 TikTok & Reels con gancho de dolor: "¿Sos plomero o electricista en Medellín y estás mamado de que las apps te quiten el 30%? En Rebuske tienes el 7% vitalicio".\n` +
-          `3. 🤝 Voz a voz con Don Jairo y los primeros pros: Que inviten a 2 colegas con prioridad de asignación.\n` +
+          `3. 🤝 Voz a voz con los primeros profesionales verificados: Que inviten a 2 colegas con prioridad de asignación.\n` +
           `4. 📲 Pauta local en Facebook/IG dirigida a técnicos del Valle de Aburrá.\n\n` +
           `¿Cuál de estas te gusta más para que Sofía y yo empecemos hoy?`;
       } else if (lower.includes('la 1') || lower.includes('ferreteria') || lower.includes('tiktok') || lower.includes('la 2') || lower.includes('todas')) {
