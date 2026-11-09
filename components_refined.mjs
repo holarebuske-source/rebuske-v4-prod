@@ -12,10 +12,10 @@ export function generatePhoneScreensHTML() {
   <section class="section-wrap phones-showcase-section" id="experiencia-app">
     <div class="sec-header reveal-cascade" style="text-align: center; max-width: 820px; margin: 0 auto 36px;">
       <span class="badge-pill" style="margin-bottom: 12px;">
-        ${SVG_ICONS.radar} Tecnología Móvil en Vivo
+        ${SVG_ICONS.radar} iPhone Air Edition · Tecnología Móvil en Vivo
       </span>
       <h2 class="sec-title" style="font-size: clamp(26px, 4vw, 38px); line-height: 1.15; margin-bottom: 14px; text-align: center;">
-        Así Funciona la App en la Pantalla de tu Celular
+        Así Funciona la App en la Pantalla de tu Celular (iPhone Air)
       </h2>
       <p class="sec-desc" style="font-size: 16px; color: var(--mut); line-height: 1.6; text-align: center !important; margin: 0 auto 20px auto !important; max-width: 820px; display: block;">
         Transparencia algorítmica, despacho hiperlocal en el Valle de Aburrá, bóveda bancaria escrow y credenciales con código QR antes de abrir la puerta de tu hogar.
@@ -24,7 +24,7 @@ export function generatePhoneScreensHTML() {
 
     <div class="phones-grid">
 
-      <!-- ================= TELÉFONO 1: PANTALLA PRINCIPAL & CATÁLOGO ================= -->
+      <!-- ================= TELÉFONO 1: PANTALLA PRINCIPAL & CATÁLOGO (IPHONE AIR) ================= -->
       <div class="phone-card-wrap reveal-cascade stagger-1">
         <div class="phone-mockup">
           <div class="phone-screen">
@@ -40,13 +40,13 @@ export function generatePhoneScreensHTML() {
               </div>
             </div>
 
-            <img src="/assets/screenshots/app_screen_1_home.png" alt="Captura Real de la App Rebuske: Catálogo y Buscador" class="phone-real-screenshot" loading="lazy">
+            <img src="/assets/screenshots/app_screen_1_home.png" alt="Captura Real de la App Rebuske en iPhone Air: Catálogo y Buscador" class="phone-real-screenshot" loading="lazy">
             <div class="phone-home-indicator"></div>
           </div>
         </div>
 
         <div class="phone-caption-card">
-          <span class="phone-step-badge">${SVG_ICONS.search} Pantalla 1 · Catálogo Oficial</span>
+          <span class="phone-step-badge">${SVG_ICONS.search} iPhone Air · Catálogo Oficial</span>
           <h3 class="phone-caption-title">Exploración & Búsqueda Directa</h3>
           <p class="phone-caption-desc">
             Buscador predictivo y acceso a las 17 especialidades técnicas en el Valle de Aburrá con precios algorítmicos sin redondeos.
@@ -59,7 +59,7 @@ export function generatePhoneScreensHTML() {
         </div>
       </div>
 
-      <!-- ================= TELÉFONO 2: RADAR TÁCTICO & MONITOREO ================= -->
+      <!-- ================= TELÉFONO 2: RADAR TÁCTICO & MONITOREO (IPHONE AIR) ================= -->
       <div class="phone-card-wrap reveal-cascade stagger-2">
         <div class="phone-mockup">
           <div class="phone-screen">
@@ -75,13 +75,13 @@ export function generatePhoneScreensHTML() {
               </div>
             </div>
 
-            <img src="/assets/screenshots/app_screen_2_radar.png" alt="Captura Real de la App Rebuske: Radar Táctico en Vivo" class="phone-real-screenshot" loading="lazy">
+            <img src="/assets/screenshots/app_screen_2_radar.png" alt="Captura Real de la App Rebuske en iPhone Air: Radar Táctico en Vivo" class="phone-real-screenshot" loading="lazy">
             <div class="phone-home-indicator"></div>
           </div>
         </div>
 
         <div class="phone-caption-card">
-          <span class="phone-step-badge">${SVG_ICONS.radar} Pantalla 2 · Radar Táctico</span>
+          <span class="phone-step-badge">${SVG_ICONS.radar} iPhone Air · Radar Táctico</span>
           <h3 class="phone-caption-title">Despacho en Comunas</h3>
           <p class="phone-caption-desc">
             Seguimiento en tiempo real con geolocalización, tiempo estimado de llegada (&lt;35-45 min) y trazabilidad del técnico asignado.
@@ -94,7 +94,7 @@ export function generatePhoneScreensHTML() {
         </div>
       </div>
 
-      <!-- ================= TELÉFONO 3: BÓVEDA WOMPI ESCROW ================= -->
+      <!-- ================= TELÉFONO 3: BÓVEDA WOMPI ESCROW (IPHONE AIR) ================= -->
       <div class="phone-card-wrap reveal-cascade stagger-3">
         <div class="phone-mockup">
           <div class="phone-screen">
@@ -110,13 +110,13 @@ export function generatePhoneScreensHTML() {
               </div>
             </div>
 
-            <img src="/assets/screenshots/app_screen_3_wompi.png" alt="Captura Real de la App Rebuske: Bóveda Wompi Bancolombia" class="phone-real-screenshot" loading="lazy">
+            <img src="/assets/screenshots/app_screen_3_wompi.png" alt="Captura Real de la App Rebuske en iPhone Air: Bóveda Wompi Bancolombia" class="phone-real-screenshot" loading="lazy">
             <div class="phone-home-indicator"></div>
           </div>
         </div>
 
         <div class="phone-caption-card">
-          <span class="phone-step-badge" style="color:#FFFA70;border-color:rgba(255,250,112,0.3);background:rgba(255,250,112,0.1);">${SVG_ICONS.shield} Pantalla 3 · Bóveda Wompi</span>
+          <span class="phone-step-badge" style="color:#FFFA70;border-color:rgba(255,250,112,0.3);background:rgba(255,250,112,0.1);">${SVG_ICONS.shield} iPhone Air · Bóveda Wompi</span>
           <h3 class="phone-caption-title">Custodia Bancolombia Escrow</h3>
           <p class="phone-caption-desc">
             Tu dinero reposa en custodia bancaria blindada. Solo se desembolsa cuando verificas el trabajo y firmas el acta de garantía.
@@ -129,7 +129,7 @@ export function generatePhoneScreensHTML() {
         </div>
       </div>
 
-      <!-- ================= TELÉFONO 4: BILLETERA PRO & CREDENCIAL QR ================= -->
+      <!-- ================= TELÉFONO 4: BILLETERA PRO & CREDENCIAL QR (IPHONE AIR) ================= -->
       <div class="phone-card-wrap reveal-cascade stagger-4">
         <div class="phone-mockup">
           <div class="phone-screen">
@@ -145,13 +145,13 @@ export function generatePhoneScreensHTML() {
               </div>
             </div>
 
-            <img src="/assets/screenshots/app_screen_4_billetera.png" alt="Captura Real de la App Rebuske: Billetera Pro y Credencial" class="phone-real-screenshot" loading="lazy">
+            <img src="/assets/screenshots/app_screen_4_billetera.png" alt="Captura Real de la App Rebuske en iPhone Air: Billetera Pro y Credencial" class="phone-real-screenshot" loading="lazy">
             <div class="phone-home-indicator"></div>
           </div>
         </div>
 
         <div class="phone-caption-card">
-          <span class="phone-step-badge">${SVG_ICONS.wallet} Pantalla 4 · Billetera Pro</span>
+          <span class="phone-step-badge">${SVG_ICONS.wallet} iPhone Air · Billetera Pro</span>
           <h3 class="phone-caption-title">93% Neto Cada 4 Días</h3>
           <p class="phone-caption-desc">
             Plataforma ética para el trabajador técnico: retiene hasta el 93% neto de sus ingresos con dispersión directa a Nequi o cuenta bancaria.
@@ -285,7 +285,7 @@ export function generateRestoredFooterHTML() {
           Plataforma tecnológica de servicios técnicos para el hogar con pago protegido en Bóveda Wompi (Bancolombia). Fundador: <strong>Camilo Escobar</strong>.
         </p>
         <p style="margin-top:12px;font-size:12.5px;color:var(--lima);">
-          Medellín, Antioquia, Colombia · Nit en trámite · 100% Hecho en Medellín
+          Medellín, Antioquia, Colombia · 100% Hecho en Medellín
         </p>
       </div>
 
