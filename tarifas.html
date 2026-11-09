@@ -1227,30 +1227,35 @@
 
   
 .logo-3d-bubble {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, rgba(184, 255, 59, 0.28), rgba(12, 18, 10, 0.95));
-  border: 1.5px solid rgba(184, 255, 59, 0.5);
-  box-shadow: 0 0 16px rgba(184, 255, 59, 0.35), inset 0 0 10px rgba(184, 255, 59, 0.2);
+  width: 42px;
+  height: 42px;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  overflow: visible !important;
   position: relative;
   flex-shrink: 0;
-  animation: logoBubbleFloat 3.6s ease-in-out infinite alternate;
+  animation: logoFireflyFloat 3.6s ease-in-out infinite alternate;
 }
 .logo-3d-img {
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   object-fit: contain;
-  filter: drop-shadow(0 0 8px rgba(184, 255, 59, 0.6));
+  filter: drop-shadow(0 0 10px rgba(184, 255, 59, 0.75));
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
 }
-@keyframes logoBubbleFloat {
-  0% { transform: translateY(0) scale(1); box-shadow: 0 0 14px rgba(184,255,59,0.3); }
-  50% { transform: translateY(-2px) scale(1.05); box-shadow: 0 0 22px rgba(184,255,59,0.6); }
-  100% { transform: translateY(0) scale(1); box-shadow: 0 0 14px rgba(184,255,59,0.3); }
+.logo-3d-bubble:hover .logo-3d-img {
+  transform: scale(1.12);
+  filter: drop-shadow(0 0 20px rgba(184, 255, 59, 0.95));
+}
+@keyframes logoFireflyFloat {
+  0% { transform: translateY(0) scale(1); filter: drop-shadow(0 0 8px rgba(184,255,59,0.5)); }
+  50% { transform: translateY(-3px) scale(1.05); filter: drop-shadow(0 0 18px rgba(184,255,59,0.85)); }
+  100% { transform: translateY(0) scale(1); filter: drop-shadow(0 0 8px rgba(184,255,59,0.5)); }
 }
 
 </style>
@@ -2553,7 +2558,7 @@
           Plataforma tecnológica de servicios técnicos para el hogar con pago protegido en Bóveda Wompi (Bancolombia). Fundador: <strong>Camilo Escobar</strong>.
         </p>
         <p style="margin-top:12px;font-size:12.5px;color:var(--lima);">
-          Medellín, Antioquia, Colombia · Nit en trámite · 100% Hecho en Medellín
+          Medellín, Antioquia, Colombia · 100% Hecho en Medellín
         </p>
       </div>
 
