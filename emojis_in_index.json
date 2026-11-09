@@ -1,0 +1,557 @@
+[
+  {
+    "lineNum": 553,
+    "emojis": [
+      "★",
+      "✓"
+    ],
+    "line": "const proRow=p=>`<div class=\"glass pc clk\" data-a=\"go\" data-x=\"ficha\" data-id=\"${p.id}\">${av(p,50)}<div class=\"grow\"><b>${p.n} ${VER}</b><small>${p.o} · ${p.z} · ${p.y} años</small><small>${p.r}★ · ${p.t} trabajos ${p.sena?' · <span style=\"color:#39A900;font-weight:700\">✓ Certificado SENA</span>':''}${p.ellas?' · <span style=\"color:#EC4899;font-weight:700\">✓ Ellas Construyen</span>':''}</small></div><div class=\"right\"><b>${M(p.p)}</b><small>precio base</small><span class=\"tag\">${p.nv}</span></div></div>`;"
+  },
+  {
+    "lineNum": 578,
+    "emojis": [
+      "➔"
+    ],
+    "line": "Solicitar Técnico Ahora ➔"
+  },
+  {
+    "lineNum": 644,
+    "emojis": [
+      "✓"
+    ],
+    "line": "<div class=\"glass ficha\">${av(x,70)}<h1>${x.n} ${VER}</h1><small>${x.o} · ${x.y} años de experiencia</small><div class=\"tags\" style=\"justify-content:center\"><span class=\"tag\">✓ Verificado rebuske</span><span class=\"tag2\">${x.nv}</span>${x.sena?'<span class=\"tag\" style=\"background:rgba(57,169,0,0.18);color:#39A900;border:1px solid #39A900;font-weight:700\">✓ Certificado SENA</span>':''}${x.ellas?'<span class=\"tag\" style=\"background:rgba(236,72,153,0.18);color:#EC4899;border:1px solid #EC4899;font-weight:700\">✓ Ellas Construyen</span>':''}</div></div>"
+  },
+  {
+    "lineNum": 645,
+    "emojis": [
+      "★"
+    ],
+    "line": "<div class=\"stats3\"><div class=\"glass\"><b>${x.r}</b><small>★★★★★</small></div><div class=\"glass\"><b>${x.t}</b><small>trabajos</small></div><div class=\"glass\"><b>12 min</b><small>responde en</small></div></div>"
+  },
+  {
+    "lineNum": 668,
+    "emojis": [
+      "✓"
+    ],
+    "line": "<div class=\"tags\" style=\"margin-top:2px\"><span class=\"tag\" style=\"font-size:9px\">✓ Implemento Certificado</span></div>"
+  },
+  {
+    "lineNum": 691,
+    "emojis": [
+      "★"
+    ],
+    "line": "${pend?`<h2>Propuestas comparables <small>elige con calma</small></h2>${(j.props||[]).map((o,i)=>{const px=PR(o.pro),tg=[i===0&&'Mejor mezcla',o.p===Math.min(...j.props.map(z=>z.p))&&'Más económica',px.r===Math.max(...j.props.map(z=>PR(z.pro).r))&&'Mejor calificada'].filter(Boolean);return `<div class=\"glass pcard\" style=\"--d:${i}\">${av(px,46)}<div class=\"grow\"><b>${px.n} ${VER}</b><small>${px.o} · ${px.r}★ · ${px.t} trabajos</small><p class=\"msg\">\"${esc(o.m)}\"</p><div class=\"tags\">${tg.map(t=>`<span class=\"tag\">${t}</span>`).join('')}</div></div><div class=\"right\"><b>${M(o.p)}</b><button class=\"btn sm\" data-a=\"elegir\" data-j=\"${j.id}\" data-id=\"${px.id}\" data-pr=\"${o.p}\">Elegir</button></div></div>`}).join('')}"
+  },
+  {
+    "lineNum": 697,
+    "emojis": [
+      "✓"
+    ],
+    "line": "<div style=\"width:42px;height:42px;border-radius:12px;background:rgba(184,255,59,0.18);border:1px solid #B8FF3B;display:grid;place-items:center;font-size:22px;flex-shrink:0;\">✓</div>"
+  },
+  {
+    "lineNum": 736,
+    "emojis": [
+      "✓"
+    ],
+    "line": "${yaRedimido ? 'Ya utilizaste tu bono en una orden anterior (1 solo uso)' : (dirYaUsada ? 'Dirección de domicilio ya beneficiada con Bono VIP (1 por hogar)' : (metodoYaUsado ? 'Método de pago ya utilizado con Bono VIP (1 por cuenta familiar)' : (j.v>90000 ? (j.bonoVip ? '✓ Descuento -$15.000 COP aplicado a la mano de obra' : 'Toca para aplicar cupón TUBONO15K-VIP') : 'Válido exclusivamente en pedidos mayores a $90.000 COP')))}"
+  },
+  {
+    "lineNum": 739,
+    "emojis": [
+      "✓"
+    ],
+    "line": "<button class=\"chip2 ${j.bonoVip?'on':''}\" style=\"pointer-events:none\">${bonoBloqueado ? 'No disponible' : (j.v>90000 ? (j.bonoVip ? '✓ Aplicado' : '+ Aplicar') : 'Mín. >$90k')}</button>"
+  },
+  {
+    "lineNum": 745,
+    "emojis": [
+      "✓"
+    ],
+    "line": "<b style=\"font-size:12.5px;color:#F3F4F6\">✓ Garantía Extendida (+30 días)</b>"
+  },
+  {
+    "lineNum": 748,
+    "emojis": [
+      "✓"
+    ],
+    "line": "<button class=\"chip2 ${j.extGar?'on':''}\" style=\"pointer-events:none\">${j.extGar?'✓ Agregada':'+ Agregar'}</button>"
+  },
+  {
+    "lineNum": 779,
+    "emojis": [
+      "✓"
+    ],
+    "line": "<span>✓</span>"
+  },
+  {
+    "lineNum": 800,
+    "emojis": [
+      "★"
+    ],
+    "line": "completado:p=>{const j=job(p.id);if(!j)throw 0;const x=PR(j.pro);return `<div class=\"ctr full\">${HERO(170)}<h1>¡Trabajo completado!</h1><p class=\"mut txtc\">Pago liberado a ${x.n}. Calificaste con ${'★'.repeat(j.n||5)}.</p>"
+  },
+  {
+    "lineNum": 827,
+    "emojis": [
+      "✓"
+    ],
+    "line": "<span class=\"tag\">Cliente Verificado ✓</span>"
+  },
+  {
+    "lineNum": 897,
+    "emojis": [
+      "✓"
+    ],
+    "line": "<span class=\"tag2\" style=\"color:#B8FF3B;border-color:rgba(184,255,59,0.4);font-size:10px;padding:2px 8px\">${m.pagoCompartido ? '✓ Pago Protegido Habilitado' : 'Sólo Cotizaciones'}</span>"
+  },
+  {
+    "lineNum": 946,
+    "emojis": [
+      "✓"
+    ],
+    "line": "<div class=\"glass pc clk\" data-a=\"on\" style=\"cursor:pointer;user-select:none\"><div class=\"grow\"><b>Disponible para trabajos</b><small>${S.on?'Verificado ✓ · recibes solicitudes de tu zona':'Fuera de servicio · no recibes solicitudes'}</small></div><button class=\"switch ${S.on?'on':''}\" data-a=\"on\" aria-label=\"Disponibilidad\" style=\"pointer-events:none\"></button></div>"
+  },
+  {
+    "lineNum": 956,
+    "emojis": [
+      "✓"
+    ],
+    "line": "<div class=\"glass pc\">${av(me,60)}<div class=\"grow\"><div style=\"display:flex;justify-content:space-between;align-items:center\"><h1 style=\"margin:0\">${esc(proNom)}</h1><button class=\"link\" data-a=\"sheetEditPro\" style=\"font-size:12px;color:#B8FF3B\">Editar Perfil</button></div><small>${esc(me.o || 'Oficio Especializado')} · ${esc(S.zona||'Medellín')}</small><div class=\"tags\"><span class=\"tag\">Verificado ✓</span><span class=\"tag2\">${me.nv || 'Plata'}</span></div></div></div>"
+  },
+  {
+    "lineNum": 991,
+    "emojis": [
+      "✓"
+    ],
+    "line": "<span class=\"tag\" style=\"font-size:9px;padding:2px 5px\">✓ Verificado</span>"
+  },
+  {
+    "lineNum": 1022,
+    "emojis": [
+      "✓"
+    ],
+    "line": "<span class=\"tag\" style=\"font-size:9px;padding:2px 8px\">✓ Implemento Calibrado</span>"
+  },
+  {
+    "lineNum": 1058,
+    "emojis": [
+      "★"
+    ],
+    "line": "const pHist=()=>{const L=S.jobs.filter(j=>j.pro==='p1'&&j.s==='calificado');return L.length?L.map(j=>`<div class=\"glass pc\"><div class=\"grow\"><b>${esc(j.t)}</b><small>${esc(j.cl||'Cliente rebuske')} · ${j.z}</small><small class=\"lima\">${'★'.repeat(j.n||5)}</small></div><div class=\"right\"><b>${M(j.v*.93)}</b><small>recibido</small></div></div>`).join(''):`<div class=\"ctr sm\"><h2>Sin historial aún</h2></div>`};"
+  },
+  {
+    "lineNum": 1070,
+    "emojis": [
+      "➔"
+    ],
+    "line": "<a href=\"/registro/tecnico\" class=\"btn sheen\" style=\"display:inline-block;padding:12px 22px;text-decoration:none;font-weight:900;background:#B8FF3B;color:#111;border-radius:12px\">Registrarme como Profesional ➔</a>"
+  },
+  {
+    "lineNum": 1098,
+    "emojis": [
+      "★"
+    ],
+    "line": "<b>Nivel ${esc(proNivel)} · ${proRating}★</b>"
+  },
+  {
+    "lineNum": 1469,
+    "emojis": [
+      "✕"
+    ],
+    "line": "<button class=\"ico\" data-a=\"delProSpec\" data-idx=\"${idx}\" style=\"width:14px;height:14px;font-size:9px;color:#ff6b6b\">✕</button>"
+  },
+  {
+    "lineNum": 1789,
+    "emojis": [
+      "✓"
+    ],
+    "line": "toast('✓ Dictado recibido');"
+  },
+  {
+    "lineNum": 1858,
+    "emojis": [
+      "✓"
+    ],
+    "line": "<small id=\"diag_foto_status\" style=\"color:#94A3B8;font-size:11px\">${window._tempDiagPhoto ? '✓ 1 foto cargada' : 'Opcional (mejora la precisión)'}</small>"
+  },
+  {
+    "lineNum": 1867,
+    "emojis": [
+      "✓"
+    ],
+    "line": "✓ <b>Transparencia rebuske:</b> Consulta 100% gratuita. Te entregamos la causa probable, rango de repuestos y tarifa diagnóstica unificada ($35.000 COP, abonables al trabajo si contratas)."
+  },
+  {
+    "lineNum": 2270,
+    "emojis": [
+      "✓"
+    ],
+    "line": "toast(j.extGar ? '✓ Garantía Extendida de 30 días activada (+25%)' : 'Garantía estándar de 2 días');"
+  },
+  {
+    "lineNum": 2329,
+    "emojis": [
+      "✓"
+    ],
+    "line": "toast('✓ Reporte recibido. Soporte y Antifraude han sido notificados.');"
+  },
+  {
+    "lineNum": 2403,
+    "emojis": [
+      "✓"
+    ],
+    "line": "toast('✓ Pago confirmado por Wompi y retenido en Bóveda');"
+  },
+  {
+    "lineNum": 2442,
+    "emojis": [
+      "✓"
+    ],
+    "line": "toast('✓ Pago protegido retenido en Bóveda Wompi (' + (j.extGar ? 'Garantía 30d' : 'Garantía 48h') + ')');"
+  },
+  {
+    "lineNum": 2468,
+    "emojis": [
+      "✓"
+    ],
+    "line": "<small style=\"color:#A3B899;display:block;margin-top:2px;\">CC: 71.***.482 de Medellín · Antecedentes OK ✓</small>"
+  },
+  {
+    "lineNum": 2475,
+    "emojis": [
+      "✓"
+    ],
+    "line": "<div>✓ <b>Póliza Activa:</b> Sura #SUR-849201-COL</div>"
+  },
+  {
+    "lineNum": 2546,
+    "emojis": [
+      "✓"
+    ],
+    "line": "✓ Póliza de Seguro Sura #SUR-849201 Activa<br>"
+  },
+  {
+    "lineNum": 2631,
+    "emojis": [
+      "✓"
+    ],
+    "line": "✓"
+  },
+  {
+    "lineNum": 2650,
+    "emojis": [
+      "✓"
+    ],
+    "line": "<span style=\"color:#B8FF3B;\">✓</span>"
+  },
+  {
+    "lineNum": 2654,
+    "emojis": [
+      "✓"
+    ],
+    "line": "<span style=\"color:#B8FF3B;\">✓</span>"
+  },
+  {
+    "lineNum": 2658,
+    "emojis": [
+      "✓"
+    ],
+    "line": "<span style=\"color:#B8FF3B;\">✓</span>"
+  },
+  {
+    "lineNum": 2662,
+    "emojis": [
+      "✓"
+    ],
+    "line": "<span style=\"color:#B8FF3B;\">✓</span>"
+  },
+  {
+    "lineNum": 2688,
+    "emojis": [
+      "✓"
+    ],
+    "line": "toast('✓ ¡Técnico autenticado por QR! La Seguimiento del Servicio ahora está en modo: Trabajando.');"
+  },
+  {
+    "lineNum": 2725,
+    "emojis": [
+      "✓"
+    ],
+    "line": "toast('✓ Mensaje de voz transcrito y enviado');"
+  },
+  {
+    "lineNum": 3049,
+    "emojis": [
+      "✓"
+    ],
+    "line": "if(st) st.textContent = '✓ Foto cargada (' + Math.round(f.size/1024) + ' KB)';"
+  },
+  {
+    "lineNum": 3933,
+    "emojis": [
+      "✓"
+    ],
+    "line": "subject: `✓ [rebuske] Contratación confirmada y Pago Protegido activo · $${gross.toLocaleString('es-CO')} COP`,"
+  },
+  {
+    "lineNum": 3939,
+    "emojis": [
+      "✓"
+    ],
+    "line": "['Profesional contratado', `${proObj.n || 'Profesional Verificado'} ✓`, false],"
+  },
+  {
+    "lineNum": 4100,
+    "emojis": [
+      "✓"
+    ],
+    "line": "subject: `✓ [rebuske] Ticket de Garantía de 2 Días abierto · ${uiJob.t || 'Servicio'}`,"
+  },
+  {
+    "lineNum": 5676,
+    "emojis": [
+      "✓"
+    ],
+    "line": "<small class=\"lima\">Foto sin logo: ✓ · Portafolio: ${k.photosCount || 5}/5 mín. · Datos: 100% · Pago: ${safeEsc(k.payout || 'Nequi verificado')}</small>"
+  },
+  {
+    "lineNum": 6742,
+    "emojis": [
+      "✓"
+    ],
+    "line": "<h2>1. Foto de perfil real (sin logo) <span class=\"tag\">${r1 ? 'Listo ✓' : 'Falta'}</span></h2>"
+  },
+  {
+    "lineNum": 6763,
+    "emojis": [
+      "✓"
+    ],
+    "line": "<h2>2. Mínimo 5 imágenes de trabajos <span class=\"tag\">${vf.portfolio.length} / 5 mín. ${r2 ? '✓' : 'Faltan ' + (5 - vf.portfolio.length)}</span></h2>"
+  },
+  {
+    "lineNum": 6783,
+    "emojis": [
+      "✓"
+    ],
+    "line": "<h2>3. Todos los datos llenados al 100% <span class=\"tag\">${r3 ? 'Completo ✓' : 'Incompleto'}</span></h2>"
+  },
+  {
+    "lineNum": 6795,
+    "emojis": [
+      "✓"
+    ],
+    "line": "<h2>4. Medio de pago configurado ya <span class=\"tag\">${r4 ? 'Configurado ✓' : 'Pendiente'}</span></h2>"
+  },
+  {
+    "lineNum": 6964,
+    "emojis": [
+      "✓"
+    ],
+    "line": "banner.innerHTML = '✓ <strong>Conexión restablecida:</strong> Datos sincronizados correctamente con la Seguimiento del Servicio.';"
+  },
+  {
+    "lineNum": 6980,
+    "emojis": [
+      "✓"
+    ],
+    "line": "<span style=\"font-size:10px; background:#1C2F16; border:1px solid #4E8839; color:#B8FF3B; font-weight:bold; padding:3px 8px; border-radius:12px;\">✓ Bóveda Wompi</span>"
+  },
+  {
+    "lineNum": 7007,
+    "emojis": [
+      "✓"
+    ],
+    "line": ": '✓ Reembolso del <strong>100% inmediato</strong> a tu Nequi o tarjeta sin costo alguno ni penalidad.'}"
+  },
+  {
+    "lineNum": 7104,
+    "emojis": [
+      "✓"
+    ],
+    "line": "if (typeof toast === 'function') toast('✓ Pago APROBADO por Wompi y retenido en Bóveda');"
+  },
+  {
+    "lineNum": 7123,
+    "emojis": [
+      "➔",
+      "★"
+    ],
+    "line": "*    [ Pantalla Principal ] ➔ [ Tap en Oficio ] ➔ [ Técnico Primordial 5.0★ ] ➔ [ Confirmar Pago Wompi ]"
+  },
+  {
+    "lineNum": 7127,
+    "emojis": [
+      "➔"
+    ],
+    "line": "*    [ Notificación Sonora con Tarifa ] ➔ [ Tap Verde \"Aceptar y Ver Ruta\" ] ➔ [ Subir Foto ] ➔ [ 93% en Nequi ]"
+  },
+  {
+    "lineNum": 7177,
+    "emojis": [
+      "★"
+    ],
+    "line": "// 3. DATOS DE OFICIOS Y TÉCNICOS PRIMORDIALES 5.0★ (MEDELLÍN)"
+  },
+  {
+    "lineNum": 7241,
+    "emojis": [
+      "★"
+    ],
+    "line": "Elige el daño que necesitas resolver. Te asignamos al <b>Técnico Primordial 5.0★</b> más cercano en segundos:"
+  },
+  {
+    "lineNum": 7268,
+    "emojis": [
+      "➔"
+    ],
+    "line": "Ver Tarifas ➔"
+  },
+  {
+    "lineNum": 7306,
+    "emojis": [
+      "✕"
+    ],
+    "line": "<button class=\"ico\" data-a=\"close\" aria-label=\"Cerrar\" style=\"color:#A7BCA0;\">✕</button>"
+  },
+  {
+    "lineNum": 7339,
+    "emojis": [
+      "➔"
+    ],
+    "line": "<span>Ver Técnico de Turno (Técnico Certificado) ➔</span>"
+  },
+  {
+    "lineNum": 7346,
+    "emojis": [
+      "★"
+    ],
+    "line": "// RENDER: SHEET MODAL DE SELECCIÓN TÉCNICO PRIMORDIAL 5.0★ (FLUJO 1 - TAP 2)"
+  },
+  {
+    "lineNum": 7360,
+    "emojis": [
+      "✕"
+    ],
+    "line": "<button class=\"ico\" data-a=\"close\" aria-label=\"Cerrar\" style=\"color:#A7BCA0;\">✕</button>"
+  },
+  {
+    "lineNum": 7399,
+    "emojis": [
+      "➔"
+    ],
+    "line": "<span style=\"background:rgba(0,0,0,0.15); padding:2px 8px; border-radius:6px; font-size:12px;\">Paso 3 ➔</span>"
+  },
+  {
+    "lineNum": 7430,
+    "emojis": [
+      "✕"
+    ],
+    "line": "<button class=\"ico\" data-a=\"close\" aria-label=\"Cerrar\" style=\"color:#A7BCA0;\">✕</button>"
+  },
+  {
+    "lineNum": 7436,
+    "emojis": [
+      "✓"
+    ],
+    "line": "<p style=\"margin:0; font-size:11px; color:#A7BCA0;\">✓ <b>Tu plata está 100% segura.</b> Solo se libera a ${pro.name} cuando confirmes que el arreglo quedó perfecto.</p>"
+  },
+  {
+    "lineNum": 7455,
+    "emojis": [
+      "✓"
+    ],
+    "line": "<span>✓ Cuota de Pago Protegido y Garantía 48h</span>"
+  },
+  {
+    "lineNum": 7489,
+    "emojis": [
+      "✓"
+    ],
+    "line": "<span>✓ Confirmar Pago Seguro Wompi</span>"
+  },
+  {
+    "lineNum": 7490,
+    "emojis": [
+      "✓"
+    ],
+    "line": "<span style=\"background:rgba(0,0,0,0.15); padding:2px 8px; border-radius:6px; font-size:12px;\">Tap 3 Final ✓</span>"
+  },
+  {
+    "lineNum": 7511,
+    "emojis": [
+      "✕"
+    ],
+    "line": "<button class=\"ico\" data-a=\"close\" aria-label=\"Cerrar\" style=\"color:#A7BCA0;\">✕</button>"
+  },
+  {
+    "lineNum": 7531,
+    "emojis": [
+      "✓"
+    ],
+    "line": "✓ Pago 100% asegurado en Bóveda Escrow Wompi · Cero riesgo de que no te paguen"
+  },
+  {
+    "lineNum": 7536,
+    "emojis": [
+      "✓"
+    ],
+    "line": "<span>✓</span>"
+  },
+  {
+    "lineNum": 7557,
+    "emojis": [
+      "✕"
+    ],
+    "line": "<button class=\"ico\" data-a=\"close\" aria-label=\"Cerrar\" style=\"color:#A7BCA0;\">✕</button>"
+  },
+  {
+    "lineNum": 7577,
+    "emojis": [
+      "✓"
+    ],
+    "line": "<p style=\"font-size:11px; color:#A7BCA0; margin-top:8px;\">✓ Foto de reparación registrada con sello GPS criptográfico.</p>"
+  },
+  {
+    "lineNum": 7682,
+    "emojis": [
+      "★"
+    ],
+    "line": "// Tap 2: Solicitar al profesional primordial 5.0★"
+  },
+  {
+    "lineNum": 7729,
+    "emojis": [
+      "✓"
+    ],
+    "line": "global.toast('✓ ¡Pago Asegurado en Wompi! Técnico en camino (8 min)');"
+  },
+  {
+    "lineNum": 7738,
+    "emojis": [
+      "✓"
+    ],
+    "line": "if (global.toast) global.toast('✓ Trabajo aceptado con 1 Tap. ¡Seguimiento del Servicio encendida!');"
+  },
+  {
+    "lineNum": 7850,
+    "emojis": [
+      "✓"
+    ],
+    "line": "banner.innerHTML = '✓ <strong>Conexión restablecida:</strong> Datos sincronizados correctamente con la Seguimiento del Servicio.';"
+  },
+  {
+    "lineNum": 7866,
+    "emojis": [
+      "✓"
+    ],
+    "line": "<span style=\"font-size:10px; background:#1C2F16; border:1px solid #4E8839; color:#B8FF3B; font-weight:bold; padding:3px 8px; border-radius:12px;\">✓ Bóveda Wompi</span>"
+  },
+  {
+    "lineNum": 7893,
+    "emojis": [
+      "✓"
+    ],
+    "line": ": '✓ Reembolso del <strong>100% inmediato</strong> a tu Nequi o tarjeta sin costo alguno ni penalidad.'}"
+  }
+]
