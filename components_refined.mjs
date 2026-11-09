@@ -7,28 +7,27 @@ import { CATEGORIES_DATA } from './categories_data_unrounded.mjs';
 export function generatePhoneScreensHTML() {
   return `
   <!-- ==========================================================================
-       SHOWCASE DE TELÉFONOS EN VIVO · PANTALLAS IDÉNTICAS A LA APP REAL
+       SHOWCASE DE TELÉFONOS EN VIVO · PANTALLAS REALES DE LA APP
        ========================================================================== -->
   <section class="section-wrap phones-showcase-section" id="experiencia-app">
     <div class="sec-header reveal-cascade" style="text-align: center; max-width: 820px; margin: 0 auto 36px;">
       <span class="badge-pill" style="margin-bottom: 12px;">
         ${SVG_ICONS.radar} Tecnología Móvil en Vivo
       </span>
-      <h2 class="sec-title" style="font-size: clamp(26px, 4vw, 38px); line-height: 1.15; margin-bottom: 14px;">
+      <h2 class="sec-title" style="font-size: clamp(26px, 4vw, 38px); line-height: 1.15; margin-bottom: 14px; text-align: center;">
         Así Funciona la App en la Pantalla de tu Celular
       </h2>
-      <p class="sec-desc" style="font-size: 16px; color: var(--mut); line-height: 1.6;">
+      <p class="sec-desc" style="font-size: 16px; color: var(--mut); line-height: 1.6; text-align: center !important; margin: 0 auto 20px auto !important; max-width: 820px; display: block;">
         Transparencia algorítmica, despacho hiperlocal en el Valle de Aburrá, bóveda bancaria escrow y credenciales con código QR antes de abrir la puerta de tu hogar.
       </p>
     </div>
 
     <div class="phones-grid">
 
-      <!-- ================= TELÉFONO 1: PANTALLA PRINCIPAL & RADAR ================= -->
+      <!-- ================= TELÉFONO 1: PANTALLA PRINCIPAL & CATÁLOGO ================= -->
       <div class="phone-card-wrap reveal-cascade stagger-1">
         <div class="phone-mockup">
           <div class="phone-screen">
-            <!-- Barra de Estado -->
             <div class="phone-status-bar">
               <span>9:41</span>
               <div class="phone-island">
@@ -41,105 +40,29 @@ export function generatePhoneScreensHTML() {
               </div>
             </div>
 
-            <!-- Pantalla 1: Home & Radar Real de la App -->
-            <div class="phone-content phone-content-app-home">
-              <!-- Header Real App -->
-              <div class="app-real-hd">
-                <div class="app-lz-icon">
-                  <svg width="22" height="22" viewBox="0 0 390 372" fill="#B8FF3B" aria-hidden="true">
-                    <path fill-rule="evenodd" d="M198.12 328.12 L195.62 328.88 L194.75 329.38 L193.88 330.50 L193.62 331.25 L193.50 350.88 L194.12 352.50 L195.25 353.62 L198.38 354.62 L200.00 354.62 L202.25 353.75 L203.50 352.50 L204.00 351.38 L204.12 332.12 L203.50 330.25 L202.25 328.88 L200.50 328.12 Z"/>
-                  </svg>
-                </div>
-                <div class="app-hd-text">
-                  <span class="app-hd-greet">Hola</span>
-                  <span class="app-hd-loc">El Poblado, Valle de Aburrá</span>
-                </div>
-                <div class="app-bell-btn">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 16V11a6 6 0 0 1 12 0v5l2 2H4zM10 20a2 2 0 0 0 4 0"/></svg>
-                  <span class="app-bell-dot"></span>
-                </div>
-              </div>
-
-              <!-- Search Bar Real App -->
-              <div class="app-real-search">
-                ${SVG_ICONS.search}
-                <span>¿Qué necesitas resolver hoy?</span>
-              </div>
-
-              <!-- Express Urgencia SOS Real App -->
-              <div class="app-real-sos-banner">
-                <div class="sos-icon-badge">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2.5"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg>
-                </div>
-                <div class="sos-text">
-                  <strong>Servicio Express Prioritario</strong>
-                  <small>Urgencias eléctricas y plomería (&lt;35-45 min)</small>
-                </div>
-                <span class="sos-pill">SOS</span>
-              </div>
-
-              <!-- Radar Map In-Progress Real App -->
-              <div class="app-real-radar-box">
-                <div class="radar-live-hud">
-                  <span class="radar-pulse-dot"></span>
-                  <span class="radar-status-txt">Técnico en ruta: Carlos M.</span>
-                  <span class="radar-eta-txt">22 min</span>
-                </div>
-                <div class="radar-track-route">
-                  <span class="track-node start">El Poblado</span>
-                  <span class="track-line"></span>
-                  <span class="track-node moto-node">${SVG_ICONS.moto}</span>
-                  <span class="track-line"></span>
-                  <span class="track-node end">Tu Hogar</span>
-                </div>
-                <div class="radar-eta-detail">Distancia: 2.8 km · Tarifa: $62.840 COP</div>
-              </div>
-
-              <!-- Bottom Nav Bar Real App -->
-              <div class="app-real-bot-nav">
-                <div class="bot-nav-item active">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-7 9 7v9h-6v-6H9v6H3z"/></svg>
-                  <span>Explorar</span>
-                </div>
-                <div class="bot-nav-item">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="6" width="16" height="14" rx="2"/></svg>
-                  <span>Pedidos</span>
-                </div>
-                <div class="bot-nav-item">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16v11H9l-5 4z"/></svg>
-                  <span>Mensajes</span>
-                </div>
-                <div class="bot-nav-item">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="14" rx="2"/></svg>
-                  <span>Billetera</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Home indicator -->
+            <img src="/assets/screenshots/app_screen_1_home.png" alt="Captura Real de la App Rebuske: Catálogo y Buscador" class="phone-real-screenshot" loading="lazy">
             <div class="phone-home-indicator"></div>
           </div>
         </div>
 
-        <!-- Tarjeta de Referencia 01 -->
-        <div class="phone-reference-card">
-          <div class="ref-tag">REFERENCIA OPERATIVA 01</div>
-          <h3 class="ref-title">Radar Hiperlocal de Despacho Inmediato (&lt;45 min)</h3>
-          <p class="ref-desc">
-            Asignación inteligente por cuadrantes en el Valle de Aburrá (Medellín, Envigado, Itagüí, Sabaneta, Bello). El técnico más cercano en motocicleta recibe el requerimiento con trazabilidad GPS en tiempo real.
+        <div class="phone-caption-card">
+          <span class="phone-step-badge">${SVG_ICONS.search} Pantalla 1 · Catálogo Oficial</span>
+          <h3 class="phone-caption-title">Exploración & Búsqueda Directa</h3>
+          <p class="phone-caption-desc">
+            Buscador predictivo y acceso a las 17 especialidades técnicas en el Valle de Aburrá con precios algorítmicos sin redondeos.
           </p>
-          <div class="ref-meta">
-            <span>${SVG_ICONS.clock} Tiempo promedio auditado: <strong>34 minutos</strong></span>
-            <span>${SVG_ICONS.mapPin} Cobertura: <strong>100% comunas y municipios del Valle</strong></span>
+          <div class="phone-caption-tags">
+            <span>17 Especialidades</span>
+            <span>Precios Reales</span>
+            <span>Ellas Construyen</span>
           </div>
         </div>
       </div>
 
-      <!-- ================= TELÉFONO 2: BÓVEDA WOMPI ESCROW ================= -->
+      <!-- ================= TELÉFONO 2: RADAR TÁCTICO & MONITOREO ================= -->
       <div class="phone-card-wrap reveal-cascade stagger-2">
         <div class="phone-mockup">
           <div class="phone-screen">
-            <!-- Barra de Estado -->
             <div class="phone-status-bar">
               <span>9:41</span>
               <div class="phone-island">
@@ -152,81 +75,29 @@ export function generatePhoneScreensHTML() {
               </div>
             </div>
 
-            <!-- Pantalla 2: Bóveda Wompi Escrow Real App -->
-            <div class="phone-content phone-content-app-wompi">
-              <div class="app-real-hd">
-                <div class="app-back-btn">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg>
-                </div>
-                <div class="app-hd-text" style="text-align:center;">
-                  <span class="app-hd-greet">Bóveda Wompi</span>
-                  <span class="app-hd-loc" style="color:#B8FF3B;">Bancolombia Escrow</span>
-                </div>
-                <div style="width:20px;"></div>
-              </div>
-
-              <!-- Vault Shield Graphic -->
-              <div class="wompi-vault-box">
-                <div class="vault-shield-glow">
-                  <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#B8FF3B" stroke-width="2"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><circle cx="12" cy="12" r="2"/></svg>
-                </div>
-                <div class="vault-real-amount">$142.680 <small>COP</small></div>
-                <span class="vault-locked-pill">Fondos Congelados en Custodia</span>
-              </div>
-
-              <!-- Desglose No Redondeado -->
-              <div class="vault-real-breakdown">
-                <div class="v-row">
-                  <span>93% Mano de Obra Técnico</span>
-                  <strong>$132.692 COP</strong>
-                </div>
-                <div class="v-row">
-                  <span>7% Plataforma Rebuske</span>
-                  <span>$9.988 COP</span>
-                </div>
-                <div class="v-row total">
-                  <span>Anticipos en Mano</span>
-                  <strong style="color:#FFFA70;">$0 COP (Prohibido)</strong>
-                </div>
-              </div>
-
-              <!-- Garantía y Ley -->
-              <div class="vault-legal-badge">
-                ${SVG_ICONS.shield}
-                <span>Garantía Escrita 48h (Ley 1480 de 2011)</span>
-              </div>
-
-              <!-- Action Button Real -->
-              <div class="btn-pill-primary sheen" style="width:100%;text-align:center;font-size:11px;padding:9px;margin-top:auto;display:flex;align-items:center;justify-content:center;gap:6px;">
-                <span>Aprobar y Liberar Fondos</span>
-                ${SVG_ICONS.arrowRight}
-              </div>
-            </div>
-
-            <!-- Home indicator -->
+            <img src="/assets/screenshots/app_screen_2_radar.png" alt="Captura Real de la App Rebuske: Radar Táctico en Vivo" class="phone-real-screenshot" loading="lazy">
             <div class="phone-home-indicator"></div>
           </div>
         </div>
 
-        <!-- Tarjeta de Referencia 02 -->
-        <div class="phone-reference-card">
-          <div class="ref-tag">REFERENCIA FINANCIERA 02</div>
-          <h3 class="ref-title">Bóveda Wompi Escrow (Custodia Bancaria & Ley 1480)</h3>
-          <p class="ref-desc">
-            Cero anticipos en mano al técnico. El dinero ingresa a una cuenta fiduciaria bancaria regulada por la Superfinanciera. El técnico sabe que el dinero está asegurado, y el cliente solo autoriza el desembolso tras verificar la labor.
+        <div class="phone-caption-card">
+          <span class="phone-step-badge">${SVG_ICONS.radar} Pantalla 2 · Radar Táctico</span>
+          <h3 class="phone-caption-title">Despacho en Comunas</h3>
+          <p class="phone-caption-desc">
+            Seguimiento en tiempo real con geolocalización, tiempo estimado de llegada (&lt;35-45 min) y trazabilidad del técnico asignado.
           </p>
-          <div class="ref-meta">
-            <span>${SVG_ICONS.shield} Protección de Fondos: <strong>100% Bancaria (Wompi)</strong></span>
-            <span>${SVG_ICONS.document} Respaldo: <strong>Art. 1262 C.Co & Garantía 48h</strong></span>
+          <div class="phone-caption-tags">
+            <span>Llegada en 35-45m</span>
+            <span>Ruta en Vivo</span>
+            <span>Comunas Aburrá</span>
           </div>
         </div>
       </div>
 
-      <!-- ================= TELÉFONO 3: CREDENCIAL QR EN PUERTA ================= -->
+      <!-- ================= TELÉFONO 3: BÓVEDA WOMPI ESCROW ================= -->
       <div class="phone-card-wrap reveal-cascade stagger-3">
         <div class="phone-mockup">
           <div class="phone-screen">
-            <!-- Barra de Estado -->
             <div class="phone-status-bar">
               <span>9:41</span>
               <div class="phone-island">
@@ -239,73 +110,29 @@ export function generatePhoneScreensHTML() {
               </div>
             </div>
 
-            <!-- Pantalla 3: Credencial Oficial & QR Real App -->
-            <div class="phone-content phone-content-app-qr">
-              <div class="app-real-hd">
-                <div class="app-back-btn">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg>
-                </div>
-                <div class="app-hd-text" style="text-align:center;">
-                  <span class="app-hd-greet">Control de Seguridad</span>
-                  <span class="app-hd-loc" style="color:#B8FF3B;">Credencial en Puerta</span>
-                </div>
-                <div style="width:20px;"></div>
-              </div>
-
-              <!-- Profile Badge -->
-              <div class="qr-pro-profile-card">
-                <div class="pro-avatar-ring">
-                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#B8FF3B" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                  <span class="avatar-verified-mark">
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#0C120A" stroke-width="3.5"><polyline points="20 6 9 17 4 12"/></svg>
-                  </span>
-                </div>
-                <div class="pro-name-verified">Andrés Felipe Ruiz</div>
-                <div class="pro-spec-verified">Fontanero Master · C.C. 1.037.xxx.xxx</div>
-
-                <div class="pro-checks-grid">
-                  <div class="check-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#B8FF3B" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> <span>Antecedentes Limpios Policía</span></div>
-                  <div class="check-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#B8FF3B" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> <span>Biometría Facial Cotejada</span></div>
-                  <div class="check-item"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#B8FF3B" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg> <span>Póliza de Responsabilidad Activa</span></div>
-                </div>
-              </div>
-
-              <!-- QR Box -->
-              <div class="app-real-qr-card">
-                <div class="qr-matrix-sim">
-                  <div class="qr-cross tl"></div>
-                  <div class="qr-cross tr"></div>
-                  <div class="qr-cross bl"></div>
-                  <span class="qr-code-center">RBK-2026</span>
-                </div>
-                <small class="qr-scan-hint">Escanea desde tu móvil antes de abrir</small>
-              </div>
-            </div>
-
-            <!-- Home indicator -->
+            <img src="/assets/screenshots/app_screen_3_wompi.png" alt="Captura Real de la App Rebuske: Bóveda Wompi Bancolombia" class="phone-real-screenshot" loading="lazy">
             <div class="phone-home-indicator"></div>
           </div>
         </div>
 
-        <!-- Tarjeta de Referencia 03 -->
-        <div class="phone-reference-card">
-          <div class="ref-tag">REFERENCIA SEGURIDAD 03</div>
-          <h3 class="ref-title">Autenticación en Puerta con Código QR Dinámico</h3>
-          <p class="ref-desc">
-            Seguridad estricta para tu familia. Cada técnico porta una credencial digital encriptada. El residente escanea el código desde la cámara del celular para corroborar identidad, fotografía y antecedentes antes de retirar el seguro de su puerta.
+        <div class="phone-caption-card">
+          <span class="phone-step-badge" style="color:#FFFA70;border-color:rgba(255,250,112,0.3);background:rgba(255,250,112,0.1);">${SVG_ICONS.shield} Pantalla 3 · Bóveda Wompi</span>
+          <h3 class="phone-caption-title">Custodia Bancolombia Escrow</h3>
+          <p class="phone-caption-desc">
+            Tu dinero reposa en custodia bancaria blindada. Solo se desembolsa cuando verificas el trabajo y firmas el acta de garantía.
           </p>
-          <div class="ref-meta">
-            <span>${SVG_ICONS.lock} Verificación: <strong>En tiempo real en la nube</strong></span>
-            <span>${SVG_ICONS.prohibit} Suplantación de identidad: <strong>0% de tolerancia</strong></span>
+          <div class="phone-caption-tags">
+            <span>Bancolombia</span>
+            <span>Cero Adelantos</span>
+            <span>Garantía 48h</span>
           </div>
         </div>
       </div>
 
-      <!-- ================= TELÉFONO 4: BILLETERA 93% NETO ================= -->
+      <!-- ================= TELÉFONO 4: BILLETERA PRO & CREDENCIAL QR ================= -->
       <div class="phone-card-wrap reveal-cascade stagger-4">
         <div class="phone-mockup">
           <div class="phone-screen">
-            <!-- Barra de Estado -->
             <div class="phone-status-bar">
               <span>9:41</span>
               <div class="phone-island">
@@ -318,75 +145,21 @@ export function generatePhoneScreensHTML() {
               </div>
             </div>
 
-            <!-- Pantalla 4: Billetera Real App -->
-            <div class="phone-content phone-content-app-wallet">
-              <div class="app-real-hd">
-                <div class="app-back-btn">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg>
-                </div>
-                <div class="app-hd-text" style="text-align:center;">
-                  <span class="app-hd-greet">Mi Billetera</span>
-                  <span class="app-hd-loc" style="color:#B8FF3B;">93% Neto al Profesional</span>
-                </div>
-                <div style="width:20px;"></div>
-              </div>
-
-              <!-- Wallet Balance Card -->
-              <div class="app-wallet-balance-box">
-                <span class="wallet-subtitle">Saldo Acumulado Disponible</span>
-                <div class="wallet-big-val">$843.520 <small>COP</small></div>
-                <div class="wallet-timing-pill">
-                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#FFFA70" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                  <span>Retiro automático: Miércoles (Cada 4 días)</span>
-                </div>
-              </div>
-
-              <!-- Transacciones con precios no redondeados -->
-              <div class="app-wallet-ledger">
-                <div class="ledger-row">
-                  <div class="ledger-info">
-                    <strong>Fuga Tubería Laureles</strong>
-                    <small>Hoy · Aprobado</small>
-                  </div>
-                  <span class="ledger-val">+$132.692</span>
-                </div>
-                <div class="ledger-row">
-                  <div class="ledger-info">
-                    <strong>Breakers Belén 220V</strong>
-                    <small>Ayer · Aprobado</small>
-                  </div>
-                  <span class="ledger-val">+$113.840</span>
-                </div>
-                <div class="ledger-row">
-                  <div class="ledger-info">
-                    <strong>Cerradura El Poblado</strong>
-                    <small>Hace 2 días</small>
-                  </div>
-                  <span class="ledger-val">+$85.420</span>
-                </div>
-              </div>
-
-              <!-- Destino de Pago -->
-              <div class="wallet-dest-pill">
-                <span>Cuenta: Bancolombia / Nequi (···4821) · 93% Neto</span>
-              </div>
-            </div>
-
-            <!-- Home indicator -->
+            <img src="/assets/screenshots/app_screen_4_billetera.png" alt="Captura Real de la App Rebuske: Billetera Pro y Credencial" class="phone-real-screenshot" loading="lazy">
             <div class="phone-home-indicator"></div>
           </div>
         </div>
 
-        <!-- Tarjeta de Referencia 04 -->
-        <div class="phone-reference-card">
-          <div class="ref-tag">REFERENCIA LABORAL 04</div>
-          <h3 class="ref-title">Billetera de Oficio Autónoma (93% Neto Cada 4 Días)</h3>
-          <p class="ref-desc">
-            Dignificamos el trabajo técnico calificado en Colombia. Sin comisiones abusivas del 30% ni demoras de semanas. El profesional retiene el 93% neto de cada labor y recibe transferencias directas a su cuenta bancaria o billetera digital cada 4 días.
+        <div class="phone-caption-card">
+          <span class="phone-step-badge">${SVG_ICONS.wallet} Pantalla 4 · Billetera Pro</span>
+          <h3 class="phone-caption-title">93% Neto Cada 4 Días</h3>
+          <p class="phone-caption-desc">
+            Plataforma ética para el trabajador técnico: retiene hasta el 93% neto de sus ingresos con dispersión directa a Nequi o cuenta bancaria.
           </p>
-          <div class="ref-meta">
-            <span>${SVG_ICONS.banknote} Retención para el técnico: <strong>93% Neto</strong></span>
-            <span>${SVG_ICONS.zap} Frecuencia de desembolso: <strong>Cada 4 días calendario</strong></span>
+          <div class="phone-caption-tags">
+            <span>93% Neto</span>
+            <span>Cero Deudas</span>
+            <span>Dispersión Cada 4D</span>
           </div>
         </div>
       </div>
@@ -396,9 +169,7 @@ export function generatePhoneScreensHTML() {
   `;
 }
 
-// ============================================================================
-// 2. GENERADOR DEL DIRECTORIO COMPACTO DE SERVICIOS & TARIFARIO CON HOVER
-// ============================================================================
+
 export function generateUnifiedServicesAndTarifarioHTML() {
   return `
   <!-- ==========================================================================
@@ -412,7 +183,7 @@ export function generateUnifiedServicesAndTarifarioHTML() {
       <h2 class="sec-title" style="font-size: clamp(26px, 4vw, 38px); line-height: 1.15; margin-bottom: 14px;">
         Nuestros Servicios & Precios Transparentes de Referencia
       </h2>
-      <p class="sec-desc" style="font-size: 16px; color: var(--mut); line-height: 1.6;">
+      <p class="sec-desc" style="font-size: 16px; color: var(--mut); line-height: 1.6; text-align: center !important; margin: 0 auto 20px auto !important; max-width: 820px; display: block;">
         Consulta las 17 especialidades disponibles en el Valle de Aburrá con precios algorítmicos no redondeados (Plomería, Electricidad, Cerrajería, Limpieza y Aseo y más). 
         <strong>Pasa el cursor sobre cualquier especialidad o flecha para desplegar las labores y precios de referencia.</strong>
       </p>
@@ -504,7 +275,7 @@ export function generateRestoredFooterHTML() {
   <!-- ==========================================================================
        FOOTER OFICIAL RESTAURADO CON MARCO LEGAL, CONTACTO Y ORGANIZACIÓN FORMAL
        ========================================================================== -->
-  <footer class="site-footer">
+  <footer class="site-footer" id="contacto">
     <div class="footer-inner">
       <div class="footer-brand">
         <h4 style="font-family:var(--font-title);font-size:20px;font-weight:800;color:var(--tinta);margin-bottom:8px;">
@@ -571,5 +342,61 @@ export function generateRestoredFooterHTML() {
       <button class="btn-cookie-accept" onclick="aceptarCookies()">Aceptar todas</button>
     </div>
   </aside>
+  `;
+}
+
+// ============================================================================
+// 4. GENERADOR DE SECCIÓN QUIÉNES SOMOS (CAMILO ESCOBAR, 93% NETO, WOMPI)
+// ============================================================================
+export function generateQuienesSomosHTML() {
+  return `
+  <!-- ==========================================================================
+       QUIÉNES SOMOS · ORIGEN, EQUIPO Y DIGNIDAD TÉCNICA EN MEDELLÍN
+       ========================================================================== -->
+  <section class="section-wrap" id="quienes-somos" style="padding-top: 60px;">
+    <div class="sec-header reveal-cascade" style="text-align: center; max-width: 820px; margin: 0 auto 36px;">
+      <span class="badge-pill" style="margin-bottom: 12px;">
+        ${SVG_ICONS.userCheck} Historia y Propósito Rebuske
+      </span>
+      <h2 class="sec-title" style="font-size: clamp(26px, 4vw, 38px); line-height: 1.15; margin-bottom: 14px; text-align: center;">
+        Quiénes Somos: Dignidad para el Técnico, Tranquilidad para tu Hogar
+      </h2>
+      <p class="sec-desc" style="font-size: 16px; color: var(--mut); line-height: 1.6; text-align: center !important; margin: 0 auto 20px auto !important; max-width: 780px; display: block;">
+        Nacimos en Medellín con la convicción de dignificar la mano de obra colombiana eliminando intermediarios abusivos y protegiendo a las familias con tecnología segura.
+      </p>
+    </div>
+
+    <div class="quienes-somos-grid">
+      <div class="quienes-somos-card reveal-cascade">
+        <div class="quienes-somos-icon">
+          ${SVG_ICONS.zap}
+        </div>
+        <h3 class="quienes-somos-title">Liderazgo & Visión Fundadora</h3>
+        <p class="quienes-somos-text">
+          Fundada por <strong>Camilo Escobar</strong> en Medellín, Rebuske nace para que los profesionales técnicos conserven hasta el <strong>93% neto de sus ingresos</strong> cada 4 días, sin pagar comisiones desmedidas del 30% o 40%.
+        </p>
+      </div>
+
+      <div class="quienes-somos-card reveal-cascade stagger-1">
+        <div class="quienes-somos-icon">
+          ${SVG_ICONS.shield}
+        </div>
+        <h3 class="quienes-somos-title">Protección Bancaria Escrow</h3>
+        <p class="quienes-somos-text">
+          Tu dinero reposa en custodia en la <strong>Bóveda Wompi (Bancolombia)</strong>. El especialista cobra únicamente cuando verificas la labor a conformidad y firmas el <strong>Acta Digital de Garantía de 48 horas</strong> (Ley 1480).
+        </p>
+      </div>
+
+      <div class="quienes-somos-card reveal-cascade stagger-2">
+        <div class="quienes-somos-icon">
+          ${SVG_ICONS.mapPin}
+        </div>
+        <h3 class="quienes-somos-title">Cobertura Valle de Aburrá</h3>
+        <p class="quienes-somos-text">
+          Atención hiperlocal con técnicos verificados mediante cédula biométrica en Medellín, Envigado, Itagüí, Sabaneta, Bello, La Estrella, Caldas, Copacabana, Girardota y Barbosa.
+        </p>
+      </div>
+    </div>
+  </section>
   `;
 }
