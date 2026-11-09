@@ -12,10 +12,10 @@ export function generatePhoneScreensHTML() {
   <section class="section-wrap phones-showcase-section" id="experiencia-app">
     <div class="sec-header reveal-cascade" style="text-align: center; max-width: 820px; margin: 0 auto 36px;">
       <span class="badge-pill" style="margin-bottom: 12px;">
-        ${SVG_ICONS.radar} iPhone Air Edition · Tecnología Móvil en Vivo
+        ${SVG_ICONS.radar} Tecnología Móvil en Vivo
       </span>
       <h2 class="sec-title" style="font-size: clamp(26px, 4vw, 38px); line-height: 1.15; margin-bottom: 14px; text-align: center;">
-        Así Funciona la App en la Pantalla de tu Celular (iPhone Air)
+        Así Funciona la App en la Pantalla de tu Celular
       </h2>
       <p class="sec-desc" style="font-size: 16px; color: var(--mut); line-height: 1.6; text-align: center !important; margin: 0 auto 20px auto !important; max-width: 820px; display: block;">
         Transparencia algorítmica, despacho hiperlocal en el Valle de Aburrá, bóveda bancaria escrow y credenciales con código QR antes de abrir la puerta de tu hogar.
@@ -24,9 +24,10 @@ export function generatePhoneScreensHTML() {
 
     <div class="phones-grid">
 
-      <!-- ================= TELÉFONO 1: PANTALLA PRINCIPAL & CATÁLOGO (IPHONE AIR) ================= -->
+      <!-- ================= TELÉFONO 1: PANTALLA PRINCIPAL & CATÁLOGO ================= -->
       <div class="phone-card-wrap reveal-cascade stagger-1">
         <div class="phone-mockup">
+          <div class="phone-glare-overlay"></div>
           <div class="phone-screen">
             <div class="phone-status-bar">
               <span>9:41</span>
@@ -40,13 +41,13 @@ export function generatePhoneScreensHTML() {
               </div>
             </div>
 
-            <img src="/assets/screenshots/app_screen_1_home.png" alt="Captura Real de la App Rebuske en iPhone Air: Catálogo y Buscador" class="phone-real-screenshot" loading="lazy">
+            <img src="/assets/screenshots/app_screen_1_home.png" alt="Captura Real de la App Rebuske: Catálogo y Buscador" class="phone-real-screenshot" loading="lazy">
             <div class="phone-home-indicator"></div>
           </div>
         </div>
 
         <div class="phone-caption-card">
-          <span class="phone-step-badge">${SVG_ICONS.search} iPhone Air · Catálogo Oficial</span>
+          <span class="phone-step-badge">${SVG_ICONS.search} Pantalla 1 · Catálogo Oficial</span>
           <h3 class="phone-caption-title">Exploración & Búsqueda Directa</h3>
           <p class="phone-caption-desc">
             Buscador predictivo y acceso a las 17 especialidades técnicas en el Valle de Aburrá con precios algorítmicos sin redondeos.
@@ -59,9 +60,10 @@ export function generatePhoneScreensHTML() {
         </div>
       </div>
 
-      <!-- ================= TELÉFONO 2: RADAR TÁCTICO & MONITOREO (IPHONE AIR) ================= -->
+      <!-- ================= TELÉFONO 2: RADAR TÁCTICO & MONITOREO ================= -->
       <div class="phone-card-wrap reveal-cascade stagger-2">
         <div class="phone-mockup">
+          <div class="phone-glare-overlay"></div>
           <div class="phone-screen">
             <div class="phone-status-bar">
               <span>9:41</span>
@@ -75,13 +77,13 @@ export function generatePhoneScreensHTML() {
               </div>
             </div>
 
-            <img src="/assets/screenshots/app_screen_2_radar.png" alt="Captura Real de la App Rebuske en iPhone Air: Radar Táctico en Vivo" class="phone-real-screenshot" loading="lazy">
+            <img src="/assets/screenshots/app_screen_2_radar.png" alt="Captura Real de la App Rebuske: Radar Táctico en Vivo" class="phone-real-screenshot" loading="lazy">
             <div class="phone-home-indicator"></div>
           </div>
         </div>
 
         <div class="phone-caption-card">
-          <span class="phone-step-badge">${SVG_ICONS.radar} iPhone Air · Radar Táctico</span>
+          <span class="phone-step-badge">${SVG_ICONS.radar} Pantalla 2 · Radar Táctico</span>
           <h3 class="phone-caption-title">Despacho en Comunas</h3>
           <p class="phone-caption-desc">
             Seguimiento en tiempo real con geolocalización, tiempo estimado de llegada (&lt;35-45 min) y trazabilidad del técnico asignado.
@@ -94,9 +96,10 @@ export function generatePhoneScreensHTML() {
         </div>
       </div>
 
-      <!-- ================= TELÉFONO 3: BÓVEDA WOMPI ESCROW (IPHONE AIR) ================= -->
+      <!-- ================= TELÉFONO 3: BÓVEDA WOMPI ESCROW ================= -->
       <div class="phone-card-wrap reveal-cascade stagger-3">
         <div class="phone-mockup">
+          <div class="phone-glare-overlay"></div>
           <div class="phone-screen">
             <div class="phone-status-bar">
               <span>9:41</span>
@@ -110,13 +113,13 @@ export function generatePhoneScreensHTML() {
               </div>
             </div>
 
-            <img src="/assets/screenshots/app_screen_3_wompi.png" alt="Captura Real de la App Rebuske en iPhone Air: Bóveda Wompi Bancolombia" class="phone-real-screenshot" loading="lazy">
+            <img src="/assets/screenshots/app_screen_3_wompi.png" alt="Captura Real de la App Rebuske: Bóveda Wompi Bancolombia" class="phone-real-screenshot" loading="lazy">
             <div class="phone-home-indicator"></div>
           </div>
         </div>
 
         <div class="phone-caption-card">
-          <span class="phone-step-badge" style="color:#FFFA70;border-color:rgba(255,250,112,0.3);background:rgba(255,250,112,0.1);">${SVG_ICONS.shield} iPhone Air · Bóveda Wompi</span>
+          <span class="phone-step-badge" style="color:#FFFA70;border-color:rgba(255,250,112,0.3);background:rgba(255,250,112,0.1);">${SVG_ICONS.shield} Pantalla 3 · Bóveda Wompi</span>
           <h3 class="phone-caption-title">Custodia Bancolombia Escrow</h3>
           <p class="phone-caption-desc">
             Tu dinero reposa en custodia bancaria blindada. Solo se desembolsa cuando verificas el trabajo y firmas el acta de garantía.
@@ -129,9 +132,10 @@ export function generatePhoneScreensHTML() {
         </div>
       </div>
 
-      <!-- ================= TELÉFONO 4: BILLETERA PRO & CREDENCIAL QR (IPHONE AIR) ================= -->
+      <!-- ================= TELÉFONO 4: BILLETERA PRO & CREDENCIAL QR ================= -->
       <div class="phone-card-wrap reveal-cascade stagger-4">
         <div class="phone-mockup">
+          <div class="phone-glare-overlay"></div>
           <div class="phone-screen">
             <div class="phone-status-bar">
               <span>9:41</span>
@@ -145,13 +149,13 @@ export function generatePhoneScreensHTML() {
               </div>
             </div>
 
-            <img src="/assets/screenshots/app_screen_4_billetera.png" alt="Captura Real de la App Rebuske en iPhone Air: Billetera Pro y Credencial" class="phone-real-screenshot" loading="lazy">
+            <img src="/assets/screenshots/app_screen_4_billetera.png" alt="Captura Real de la App Rebuske: Billetera Pro y Credencial" class="phone-real-screenshot" loading="lazy">
             <div class="phone-home-indicator"></div>
           </div>
         </div>
 
         <div class="phone-caption-card">
-          <span class="phone-step-badge">${SVG_ICONS.wallet} iPhone Air · Billetera Pro</span>
+          <span class="phone-step-badge">${SVG_ICONS.wallet} Pantalla 4 · Billetera Pro</span>
           <h3 class="phone-caption-title">93% Neto Cada 4 Días</h3>
           <p class="phone-caption-desc">
             Plataforma ética para el trabajador técnico: retiene hasta el 93% neto de sus ingresos con dispersión directa a Nequi o cuenta bancaria.
@@ -211,7 +215,7 @@ export function generateUnifiedServicesAndTarifarioHTML() {
     <!-- Grid de tarjetas compactas de servicios con desplegable al hover -->
     <div class="srv-compact-grid" id="srvCompactGrid">
       ${CATEGORIES_DATA.map(cat => `
-        <article class="srv-compact-card" data-group="${cat.group}" data-id="${cat.id}" tabindex="0">
+        <article class="srv-compact-card" data-group="${cat.group}" data-id="${cat.id}" tabindex="0" onclick="toggleSrvCard(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSrvCard(this)">
           <div class="srv-card-main">
             <div class="srv-icon-badge">
               ${SVG_ICONS[cat.iconKey] || SVG_ICONS.shield}
@@ -220,7 +224,7 @@ export function generateUnifiedServicesAndTarifarioHTML() {
               <div class="srv-num-tag">${cat.num}. ${cat.name}</div>
               <div class="srv-price-base">${cat.basePrice}</div>
             </div>
-            <div class="srv-chevron-wrap" title="Pasa el mouse para ver labores">
+            <div class="srv-chevron-wrap" title="Clic o pasar mouse para ver labores">
               ${SVG_ICONS.chevronDown}
             </div>
           </div>
@@ -395,6 +399,104 @@ export function generateQuienesSomosHTML() {
         <p class="quienes-somos-text">
           Atención hiperlocal con técnicos verificados mediante cédula biométrica en Medellín, Envigado, Itagüí, Sabaneta, Bello, La Estrella, Caldas, Copacabana, Girardota y Barbosa.
         </p>
+      </div>
+    </div>
+  </section>
+  `;
+}
+
+// ============================================================================
+// 5. GENERADOR DEL SIMULADOR INTERACTIVO DE AHORRO Y DIGNIFICACIÓN TÉCNICA
+// ============================================================================
+export function generateTechSimulatorHTML() {
+  return `
+  <!-- ==========================================================================
+       SIMULADOR INTERACTIVO DE AHORRO Y DIGNIFICACIÓN TÉCNICA
+       ========================================================================== -->
+  <section class="section-wrap" id="simulador-tecnico" style="padding-top: 50px; padding-bottom: 50px;">
+    <div class="sec-header reveal-cascade" style="text-align: center; max-width: 820px; margin: 0 auto 32px;">
+      <span class="badge-pill" style="margin-bottom: 12px;">
+        ${SVG_ICONS.wallet} Simulador de Ahorro y Dignificación
+      </span>
+      <h2 class="sec-title" style="font-size: clamp(26px, 4vw, 38px); line-height: 1.15; margin-bottom: 14px; text-align: center;">
+        ¿Cuánto Ganas Netamente con Rebuske?
+      </h2>
+      <p class="sec-desc" style="font-size: 16px; color: var(--mut); line-height: 1.6; text-align: center !important; margin: 0 auto 20px auto !important; max-width: 780px; display: block;">
+        Compara la retención de intermediarios tradicionales (20%-30%) frente a las comisiones justas de Rebuske en Medellín. Tu mano de obra se respeta con dispersión bancaria directa cada 4 días:
+      </p>
+    </div>
+
+    <div class="sim-card-wrap reveal-cascade stagger-1">
+      <div class="sim-box">
+        <!-- Control de Facturación Mensual -->
+        <div class="sim-header-row">
+          <div>
+            <label for="simBillingRange" class="sim-label">Tus Ingresos Mensuales Estimados por Labores:</label>
+            <div class="sim-amount-display" id="simBillingValText">$3.500.000 COP</div>
+          </div>
+          <span class="sim-disp-tag">Dispersión Nequi / Bancolombia Cada 4 Días</span>
+        </div>
+
+        <input type="range" id="simBillingRange" class="sim-range-slider" min="1000000" max="8000000" step="100000" value="3500000" oninput="actualizarSimuladorWeb()">
+
+        <!-- Selector de Categorías -->
+        <div class="sim-cats-label">Selecciona tu categoría en Rebuske:</div>
+        <div class="sim-tier-selector">
+          <button type="button" class="sim-tier-btn active" data-rate="0.07" data-net="0.93" data-name="Placa Oro" onclick="seleccionarTierSim(this)">
+            <span class="sim-tier-badge" style="background:rgba(255,250,112,0.15);color:#FFFA70;">7% Com.</span>
+            <strong>Placa Oro (93% Neto)</strong>
+          </button>
+          <button type="button" class="sim-tier-btn" data-rate="0.08" data-net="0.92" data-name="Placa Plata" onclick="seleccionarTierSim(this)">
+            <span class="sim-tier-badge">8% Com.</span>
+            <strong>Placa Plata (92% Neto)</strong>
+          </button>
+          <button type="button" class="sim-tier-btn" data-rate="0.09" data-net="0.91" data-name="Placa Bronce" onclick="seleccionarTierSim(this)">
+            <span class="sim-tier-badge">9% Com.</span>
+            <strong>Placa Bronce (91% Neto)</strong>
+          </button>
+          <button type="button" class="sim-tier-btn promo" data-rate="0.01" data-net="0.99" data-name="Mes 1 Fundador" onclick="seleccionarTierSim(this)">
+            <span class="sim-tier-badge" style="background:#B8FF3B;color:#0C120A;">1% Com.</span>
+            <strong>Mes 1 Fundador (99% Neto)</strong>
+          </button>
+        </div>
+
+        <!-- Resultados en Grid -->
+        <div class="sim-results-grid">
+          <div class="sim-result-card highlight">
+            <span class="sim-res-kicker">Tu Ingreso Neto en Rebuske</span>
+            <div class="sim-res-value" id="simNetValText">$3.255.000 COP</div>
+            <span class="sim-res-sub" id="simNetDescText">Te quedas con el 93% neto de cada trabajo</span>
+          </div>
+
+          <div class="sim-result-card">
+            <span class="sim-res-kicker">Dispersión Cada 4 Días</span>
+            <div class="sim-res-value" id="simPayoutText">~$465.000 COP</div>
+            <span class="sim-res-sub">Aprox. 7 u 8 pagos al mes en tu cuenta</span>
+          </div>
+
+          <div class="sim-result-card alert">
+            <span class="sim-res-kicker">Otras Apps Tradicionales (25%)</span>
+            <div class="sim-res-value" id="simTradLossText">-$875.000 COP</div>
+            <span class="sim-res-sub">Comisiones abusivas retenidas por mes</span>
+          </div>
+
+          <div class="sim-result-card gold">
+            <span class="sim-res-kicker">Ahorro Anual con Rebuske</span>
+            <div class="sim-res-value" id="simYearSavingsText">+$7.560.000 COP</div>
+            <span class="sim-res-sub">Dinero que se queda en tu hogar al año</span>
+          </div>
+        </div>
+
+        <!-- CTA del Simulador -->
+        <div class="sim-footer-row">
+          <p class="sim-guarantee-note">
+            ${SVG_ICONS.shield} Fondos asegurados en Bóveda Wompi (Bancolombia) antes de iniciar labores. Cero deudas, cero moras.
+          </p>
+          <a href="/registro/tecnico" class="btn-hero-primary" style="text-decoration:none;">
+            <span>Asegurar Mi Cupo al 99% Neto (Mes 1)</span>
+            ${SVG_ICONS.arrowRight}
+          </a>
+        </div>
       </div>
     </div>
   </section>
