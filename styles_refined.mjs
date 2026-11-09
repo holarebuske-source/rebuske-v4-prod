@@ -1,4 +1,123 @@
 export const REFINED_STYLES = `
+
+/* ==========================================================================
+   BURBUJA LOGO 3D ANIMADO Y REGLAS DE CENTRADO EXACTO
+   ========================================================================== */
+.logo-3d-bubble {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, rgba(184, 255, 59, 0.28), rgba(12, 18, 10, 0.95));
+  border: 1.5px solid rgba(184, 255, 59, 0.5);
+  box-shadow: 0 0 16px rgba(184, 255, 59, 0.35), inset 0 0 10px rgba(184, 255, 59, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+  animation: logoBubbleFloat 3.6s ease-in-out infinite alternate;
+}
+.logo-3d-img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 8px rgba(184, 255, 59, 0.6));
+}
+@keyframes logoBubbleFloat {
+  0% { transform: translateY(0) scale(1); box-shadow: 0 0 14px rgba(184,255,59,0.3); }
+  50% { transform: translateY(-2px) scale(1.05); box-shadow: 0 0 22px rgba(184,255,59,0.6); }
+  100% { transform: translateY(0) scale(1); box-shadow: 0 0 14px rgba(184,255,59,0.3); }
+}
+
+.sec-desc {
+  font-size: 16px !important;
+  color: var(--mut) !important;
+  max-width: 820px !important;
+  line-height: 1.6 !important;
+  text-align: center !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-bottom: 20px !important;
+  display: block !important;
+}
+
+
+.phone-real-screenshot {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  border-radius: 36px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.phone-status-bar {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 5 !important;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, transparent 100%) !important;
+  padding: 8px 16px 4px !important;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 11px;
+  font-weight: 700;
+  color: #F4FBF1;
+}
+
+.phone-home-indicator {
+  position: absolute !important;
+  bottom: 8px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: 100px !important;
+  height: 4px !important;
+  background: rgba(255, 255, 255, 0.5) !important;
+  border-radius: 4px !important;
+  z-index: 5 !important;
+}
+
+
+.quienes-somos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 22px;
+  margin-top: 32px;
+}
+.quienes-somos-card {
+  background: var(--glass-surface);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: all 0.3s ease;
+}
+.quienes-somos-card:hover {
+  border-color: rgba(184, 255, 59, 0.38);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(0,0,0,0.5), 0 0 20px rgba(184,255,59,0.15);
+}
+.quienes-somos-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: rgba(184, 255, 59, 0.12);
+  border: 1px solid rgba(184, 255, 59, 0.28);
+  color: var(--lima);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* ==========================================================================
    SHOWCASE DE TELÉFONOS EN VIVO · PANTALLAS IDÉNTICAS A LA APP REAL
    ========================================================================== */
