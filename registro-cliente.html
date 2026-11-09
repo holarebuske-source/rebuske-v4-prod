@@ -615,18 +615,17 @@
   </div>
 
   <!-- Barra Superior -->
-  <header class="top-bar">
-    <a href="/entrada" class="brand-logo">
-      <span class="brand-logo-dot"></span>
-      <span>rebuske Medellín 2026</span>
-    </a>
-    <div class="top-actions">
-      <a href="https://rebuske.vercel.app/" class="btn-pill-sec">Abrir App Web</a>
-      <a href="https://wa.me/573043812882?text=Hola%20Laura%2C%20quiero%20conocer%20m%C3%A1s%20sobre%20rebuske" target="_blank" rel="noopener noreferrer" class="btn-pill-sec" title="Chat directo por WhatsApp con Laura">
-        Laura WhatsApp
+  <header class="top-bar" id="topBar">
+      <a href="/entrada" class="brand-logo" title="rebuske Medellín · Página Web Principal">
+        <span class="brand-logo-dot pulse-c" aria-hidden="true"></span>
+        <span class="brand-name">rebuske</span>
+        <span class="brand-tag">Medellín 2026</span>
       </a>
-    </div>
-  </header>
+      <nav class="top-actions" aria-label="Navegación unificada">
+        <a href="/entrada" class="btn-nav-link" title="Página Web de Entrada">🌐 Página Web</a>
+        <a href="/app" class="btn-pill-primary sheen" title="Abrir la Aplicación rebuske">📱 Abrir App ➔</a>
+      </nav>
+    </header>
 
   <!-- Contenedor Principal -->
   <main class="main-container">
@@ -640,7 +639,7 @@
     <!-- Aclaración Destacada -->
     <div class="clarification-banner">
       🔔 <strong>Este registro es para recibir el link de Google Play Store y tu bono.</strong><br>
-      Para pedir un servicio hoy mismo sin esperar, usa nuestra <a href="https://rebuske.vercel.app/">App Web Inmediata</a>.
+      Para pedir un servicio hoy mismo sin esperar, usa nuestra <a href="/app">App Web Inmediata</a>.
     </div>
 
     <!-- Tarjeta de Cristal con Formulario -->
@@ -839,7 +838,7 @@
           Tu registro en la lista prioritaria de Google Play Store ha sido confirmado con el código <strong>TUBONO15K-VIP</strong>. Te enviaremos el enlace de descarga tan pronto esté publicada la aplicación.<br><br>
           ¿Necesitas un técnico hoy mismo?
         </p>
-        <a href="https://rebuske.vercel.app/" class="btn-pill-sec" style="background:#FFFFFF;color:#050A05;font-weight:700;">
+        <a href="/app" class="btn-pill-sec" style="background:#FFFFFF;color:#050A05;font-weight:700;">
           Abrir App Web Inmediata ➔
         </a>
       </div>
@@ -847,14 +846,13 @@
     </div>
 
     <!-- Pie de página -->
-    <footer class="portal-footer">
-      <p>rebuske Medellín 2026 · Plataforma Tecnológica de Servicios del Hogar · Fundador: Camilo Escobar</p>
-      <p style="margin-top:6px;">
-        <a href="/terminos">Términos y Condiciones</a> · 
-        <a href="/privacidad">Política de Privacidad</a> · 
-        <a href="/reembolsos">Política de Reembolsos</a> · 
-        <a href="/descuentos">Condiciones de Descuentos</a>
-      </p>
+    <footer class="site-footer" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;padding:32px 0 44px;border-top:1px solid rgba(255,255,255,0.1);gap:16px;">
+      <span>© 2026 rebuske. Todos los derechos reservados · Medellín, Colombia</span>
+      <div class="footer-links-unified" style="display:flex;align-items:center;gap:16px;">
+        <a href="/entrada" style="color:var(--mut);text-decoration:none;font-weight:600;">🌐 Página Web de Entrada</a>
+        <span style="color:rgba(255,255,255,0.2);">·</span>
+        <a href="/app" style="color:var(--lima);text-decoration:none;font-weight:800;">📱 Abrir Aplicación rebuske ➔</a>
+      </div>
     </footer>
 
   </main>
