@@ -287,5 +287,22 @@ export const CATEGORIES_DATA = [
       { name: 'Trámites en Cámara de Comercio y creación de SAS', detail: 'Estatutos, RUT DIAN, matrícula mercantil y actas', price: '$214.780 COP' },
       { name: 'Auditoría interna y gestión administrativa', detail: 'Revisión de procesos de nómina y seguridad social', price: '$156.320 COP' }
     ]
+  },
+  {
+    id: 'mascotas',
+    group: 'mascotas',
+    num: '18',
+    name: 'Cuidado de Mascotas & Veterinaria',
+    iconKey: 'mascotas',
+    basePrice: 'desde $24.780 COP',
+    desc: 'Paseadores caninos certificados, baño y peluquería a domicilio y consulta veterinaria en Medellín.',
+    modality: 'Labor Única / Rutina Semanal',
+    rows: [
+      { name: 'Paseo canino estructurado y socialización (1 hora)', detail: 'Reporte GPS, hidratación, recogida de excretas y refuerzo positivo', price: '$24.780 COP' },
+      { name: 'Baño, spa y peluquería canina/felina a domicilio', detail: 'Champú medicado, corte higiénico, secado, limpieza de oídos y uñas', price: '$54.890 COP' },
+      { name: 'Consulta veterinaria preventiva y vacunación a domicilio', detail: 'Examen clínico general, desparasitación y certificación médica', price: '$68.450 COP' },
+      { name: 'Cuidado y guardería a domicilio por día (Pet Sitting)', detail: 'Alimentación, juego, suministro de medicamentos y fotos en tiempo real', price: '$42.360 COP' },
+      { name: 'Limpieza dental sin anestesia y desmote de nudos', detail: 'Higiene bucal preventiva con gel enzimático y cepillado suave', price: '$37.890 COP' }
+    ]
   }
 ];
