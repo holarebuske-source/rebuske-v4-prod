@@ -1050,27 +1050,37 @@
 }
 
 .srv-chevron-wrap {
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--mut);
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   flex-shrink: 0;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
 }
 
-.srv-compact-card:hover .srv-chevron-wrap,
-.srv-compact-card:focus-within .srv-chevron-wrap,
-.srv-compact-card.is-open .srv-chevron-wrap {
-  background: rgba(184, 255, 59, 0.2);
+.srv-chevron-wrap:hover {
+  background: rgba(184, 255, 59, 0.22);
+  border-color: var(--lima);
   color: var(--lima);
+  transform: scale(1.08);
+}
+
+.srv-compact-card.is-open .srv-chevron-wrap {
+  background: var(--lima);
+  border-color: var(--lima);
+  color: #0C120A;
   transform: rotate(180deg);
 }
 
-/* DESPLEGABLE COMPACTO Y CONTROLADO */
+/* DESPLEGABLE COMPACTO Y CONTROLADO (SOLO SE ABRE AL CLIC EN LA FLECHA, NO AL HOVER) */
 .srv-dropdown-pane {
   max-height: 0;
   opacity: 0;
@@ -1079,8 +1089,7 @@
   margin-top: 0;
 }
 
-.srv-compact-card.is-open .srv-dropdown-pane,
-.srv-compact-card:hover .srv-dropdown-pane {
+.srv-compact-card.is-open .srv-dropdown-pane {
   max-height: 320px;
   opacity: 1;
   margin-top: 12px;
@@ -1408,9 +1417,9 @@
               <div class="srv-num-tag">1. Limpieza y Aseo</div>
               <div class="srv-price-base">desde $82.540 COP</div>
             </div>
-            <div class="srv-chevron-wrap" title="Pasa el mouse para ver labores">
+            <button type="button" class="srv-chevron-wrap" title="Clic para ver labores" onclick="toggleSrvCard(this, event)">
               <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </div>
+            </button>
           </div>
 
           <div class="srv-dropdown-pane">
@@ -1476,9 +1485,9 @@
               <div class="srv-num-tag">2. Plomería y Redes Hidráulicas</div>
               <div class="srv-price-base">desde $62.840 COP</div>
             </div>
-            <div class="srv-chevron-wrap" title="Pasa el mouse para ver labores">
+            <button type="button" class="srv-chevron-wrap" title="Clic para ver labores" onclick="toggleSrvCard(this, event)">
               <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </div>
+            </button>
           </div>
 
           <div class="srv-dropdown-pane">
@@ -1544,9 +1553,9 @@
               <div class="srv-num-tag">3. Electricidad Residencial y Comercial</div>
               <div class="srv-price-base">desde $52.540 COP</div>
             </div>
-            <div class="srv-chevron-wrap" title="Pasa el mouse para ver labores">
+            <button type="button" class="srv-chevron-wrap" title="Clic para ver labores" onclick="toggleSrvCard(this, event)">
               <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </div>
+            </button>
           </div>
 
           <div class="srv-dropdown-pane">
@@ -1612,9 +1621,9 @@
               <div class="srv-num-tag">4. Pintura y Acabados de Muros</div>
               <div class="srv-price-base">desde $56.740 COP</div>
             </div>
-            <div class="srv-chevron-wrap" title="Pasa el mouse para ver labores">
+            <button type="button" class="srv-chevron-wrap" title="Clic para ver labores" onclick="toggleSrvCard(this, event)">
               <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </div>
+            </button>
           </div>
 
           <div class="srv-dropdown-pane">
@@ -1680,9 +1689,9 @@
               <div class="srv-num-tag">5. Carpintería y Ebanistería</div>
               <div class="srv-price-base">desde $64.820 COP</div>
             </div>
-            <div class="srv-chevron-wrap" title="Pasa el mouse para ver labores">
+            <button type="button" class="srv-chevron-wrap" title="Clic para ver labores" onclick="toggleSrvCard(this, event)">
               <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </div>
+            </button>
           </div>
 
           <div class="srv-dropdown-pane">
@@ -1748,9 +1757,9 @@
               <div class="srv-num-tag">6. Cerrajería y Seguridad</div>
               <div class="srv-price-base">desde $63.480 COP</div>
             </div>
-            <div class="srv-chevron-wrap" title="Pasa el mouse para ver labores">
+            <button type="button" class="srv-chevron-wrap" title="Clic para ver labores" onclick="toggleSrvCard(this, event)">
               <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </div>
+            </button>
           </div>
 
           <div class="srv-dropdown-pane">
@@ -1816,9 +1825,9 @@
               <div class="srv-num-tag">7. Jardinería y Exteriores</div>
               <div class="srv-price-base">desde $58.340 COP</div>
             </div>
-            <div class="srv-chevron-wrap" title="Pasa el mouse para ver labores">
+            <button type="button" class="srv-chevron-wrap" title="Clic para ver labores" onclick="toggleSrvCard(this, event)">
               <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </div>
+            </button>
           </div>
 
           <div class="srv-dropdown-pane">
@@ -1884,9 +1893,9 @@
               <div class="srv-num-tag">8. Construcción y Remodelación</div>
               <div class="srv-price-base">desde $68.450 COP</div>
             </div>
-            <div class="srv-chevron-wrap" title="Pasa el mouse para ver labores">
+            <button type="button" class="srv-chevron-wrap" title="Clic para ver labores" onclick="toggleSrvCard(this, event)">
               <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </div>
+            </button>
           </div>
 
           <div class="srv-dropdown-pane">
@@ -1952,9 +1961,9 @@
               <div class="srv-num-tag">9. Mudanzas y Transporte</div>
               <div class="srv-price-base">desde $84.320 COP</div>
             </div>
-            <div class="srv-chevron-wrap" title="Pasa el mouse para ver labores">
+            <button type="button" class="srv-chevron-wrap" title="Clic para ver labores" onclick="toggleSrvCard(this, event)">
               <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </div>
+            </button>
           </div>
 
           <div class="srv-dropdown-pane">
@@ -2020,9 +2029,9 @@
               <div class="srv-num-tag">10. Electrodomésticos y Refrigeración</div>
               <div class="srv-price-base">desde $72.640 COP</div>
             </div>
-            <div class="srv-chevron-wrap" title="Pasa el mouse para ver labores">
+            <button type="button" class="srv-chevron-wrap" title="Clic para ver labores" onclick="toggleSrvCard(this, event)">
               <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </div>
+            </button>
           </div>
 
           <div class="srv-dropdown-pane">
@@ -2088,9 +2097,9 @@
               <div class="srv-num-tag">11. Tecnología e Instalación</div>
               <div class="srv-price-base">desde $54.380 COP</div>
             </div>
-            <div class="srv-chevron-wrap" title="Pasa el mouse para ver labores">
+            <button type="button" class="srv-chevron-wrap" title="Clic para ver labores" onclick="toggleSrvCard(this, event)">
               <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </div>
+            </button>
           </div>
 
           <div class="srv-dropdown-pane">
@@ -2156,9 +2165,9 @@
               <div class="srv-num-tag">12. Automóviles y Motos</div>
               <div class="srv-price-base">desde $58.740 COP</div>
             </div>
-            <div class="srv-chevron-wrap" title="Pasa el mouse para ver labores">
+            <button type="button" class="srv-chevron-wrap" title="Clic para ver labores" onclick="toggleSrvCard(this, event)">
               <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </div>
+            </button>
           </div>
 
           <div class="srv-dropdown-pane">
@@ -2224,9 +2233,9 @@
               <div class="srv-num-tag">13. Diseño, Tecnología y Servicios Digitales</div>
               <div class="srv-price-base">desde $64.290 COP</div>
             </div>
-            <div class="srv-chevron-wrap" title="Pasa el mouse para ver labores">
+            <button type="button" class="srv-chevron-wrap" title="Clic para ver labores" onclick="toggleSrvCard(this, event)">
               <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </div>
+            </button>
           </div>
 
           <div class="srv-dropdown-pane">
@@ -2292,9 +2301,9 @@
               <div class="srv-num-tag">14. Clases y Educación</div>
               <div class="srv-price-base">desde $42.860 COP</div>
             </div>
-            <div class="srv-chevron-wrap" title="Pasa el mouse para ver labores">
+            <button type="button" class="srv-chevron-wrap" title="Clic para ver labores" onclick="toggleSrvCard(this, event)">
               <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </div>
+            </button>
           </div>
 
           <div class="srv-dropdown-pane">
@@ -2360,9 +2369,9 @@
               <div class="srv-num-tag">15. Belleza y Cuidado Personal</div>
               <div class="srv-price-base">desde $38.450 COP</div>
             </div>
-            <div class="srv-chevron-wrap" title="Pasa el mouse para ver labores">
+            <button type="button" class="srv-chevron-wrap" title="Clic para ver labores" onclick="toggleSrvCard(this, event)">
               <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </div>
+            </button>
           </div>
 
           <div class="srv-dropdown-pane">
@@ -2428,9 +2437,9 @@
               <div class="srv-num-tag">16. Eventos y Protocolo</div>
               <div class="srv-price-base">desde $87.650 COP</div>
             </div>
-            <div class="srv-chevron-wrap" title="Pasa el mouse para ver labores">
+            <button type="button" class="srv-chevron-wrap" title="Clic para ver labores" onclick="toggleSrvCard(this, event)">
               <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </div>
+            </button>
           </div>
 
           <div class="srv-dropdown-pane">
@@ -2496,9 +2505,9 @@
               <div class="srv-num-tag">17. Servicios Profesionales y Legal</div>
               <div class="srv-price-base">desde $94.850 COP</div>
             </div>
-            <div class="srv-chevron-wrap" title="Pasa el mouse para ver labores">
+            <button type="button" class="srv-chevron-wrap" title="Clic para ver labores" onclick="toggleSrvCard(this, event)">
               <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </div>
+            </button>
           </div>
 
           <div class="srv-dropdown-pane">
@@ -2649,6 +2658,17 @@
   
 
   <script>
+    function toggleSrvCard(trigger, ev) {
+      if (ev) ev.stopPropagation();
+      const card = trigger.classList.contains('srv-compact-card') ? trigger : trigger.closest('.srv-compact-card');
+      if (!card) return;
+      const isAlreadyOpen = card.classList.contains('is-open');
+      document.querySelectorAll('.srv-compact-card.is-open').forEach(c => {
+        if (c !== card) c.classList.remove('is-open');
+      });
+      card.classList.toggle('is-open', !isAlreadyOpen);
+    }
+
     function filtrarServiciosCompactos() {
       const query = (document.getElementById('serviceSearch')?.value || '').toLowerCase().trim();
       const cards = document.querySelectorAll('.srv-compact-card');
