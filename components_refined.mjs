@@ -189,7 +189,7 @@ export function generateUnifiedServicesAndTarifarioHTML() {
       </h2>
       <p class="sec-desc" style="font-size: 16px; color: var(--mut); line-height: 1.6; text-align: center !important; margin: 0 auto 20px auto !important; max-width: 820px; display: block;">
         Consulta las 17 especialidades disponibles en el Valle de Aburrá con precios algorítmicos no redondeados (Plomería, Electricidad, Cerrajería, Limpieza y Aseo y más). 
-        <strong>Pasa el cursor sobre cualquier especialidad o flecha para desplegar las labores y precios de referencia.</strong>
+        <strong>Toca la flecha hacia abajo en cualquier especialidad para desplegar u ocultar sus labores y precios de referencia.</strong>
       </p>
     </div>
 
@@ -212,10 +212,10 @@ export function generateUnifiedServicesAndTarifarioHTML() {
       <button class="srv-filter-btn" onclick="filtrarGrupoSrv('profesional', this)">Servicios Profesionales</button>
     </div>
 
-    <!-- Grid de tarjetas compactas de servicios con desplegable al hover -->
+    <!-- Grid de tarjetas compactas de servicios (Despliega SOLO al clic en la flecha) -->
     <div class="srv-compact-grid" id="srvCompactGrid">
       ${CATEGORIES_DATA.map(cat => `
-        <article class="srv-compact-card" data-group="${cat.group}" data-id="${cat.id}" tabindex="0" onclick="toggleSrvCard(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSrvCard(this)">
+        <article class="srv-compact-card" data-group="${cat.group}" data-id="${cat.id}">
           <div class="srv-card-main">
             <div class="srv-icon-badge">
               ${SVG_ICONS[cat.iconKey] || SVG_ICONS.shield}
@@ -224,9 +224,9 @@ export function generateUnifiedServicesAndTarifarioHTML() {
               <div class="srv-num-tag">${cat.num}. ${cat.name}</div>
               <div class="srv-price-base">${cat.basePrice}</div>
             </div>
-            <div class="srv-chevron-wrap" title="Clic o pasar mouse para ver labores">
+            <button type="button" class="srv-chevron-wrap" title="Clic para desplegar u ocultar labores de ${cat.name}" aria-label="Ver labores de ${cat.name}" onclick="toggleSrvCard(this, event)">
               ${SVG_ICONS.chevronDown}
-            </div>
+            </button>
           </div>
 
           <!-- Panel desplegable al hover -->
@@ -439,24 +439,59 @@ export function generateTechSimulatorHTML() {
 
         <input type="range" id="simBillingRange" class="sim-range-slider" min="1000000" max="8000000" step="100000" value="3500000" oninput="actualizarSimuladorWeb()">
 
-        <!-- Selector de Categorías -->
-        <div class="sim-cats-label">Selecciona tu categoría en Rebuske:</div>
+        <!-- Selector de Categorías / Placas Metálicas Oficiales -->
+        <div class="sim-cats-label">Selecciona tu placa y categoría en Rebuske:</div>
         <div class="sim-tier-selector">
-          <button type="button" class="sim-tier-btn active" data-rate="0.07" data-net="0.93" data-name="Placa Oro" onclick="seleccionarTierSim(this)">
-            <span class="sim-tier-badge" style="background:rgba(255,250,112,0.15);color:#FFFA70;">7% Com.</span>
-            <strong>Placa Oro (93% Neto)</strong>
+          <button type="button" class="sim-tier-btn active tier-oro" data-rate="0.07" data-net="0.93" data-name="Placa Oro" onclick="seleccionarTierSim(this)">
+            <div class="sim-placa-header">
+              <div class="sim-placa-icon-badge oro">
+                ${SVG_ICONS.crown}
+              </div>
+              <span class="sim-tier-badge oro">7% Com.</span>
+            </div>
+            <div class="sim-placa-body">
+              <strong class="sim-placa-name">Placa Oro</strong>
+              <small class="sim-placa-net">93% Neto al Técnico</small>
+            </div>
           </button>
-          <button type="button" class="sim-tier-btn" data-rate="0.08" data-net="0.92" data-name="Placa Plata" onclick="seleccionarTierSim(this)">
-            <span class="sim-tier-badge">8% Com.</span>
-            <strong>Placa Plata (92% Neto)</strong>
+          
+          <button type="button" class="sim-tier-btn tier-plata" data-rate="0.08" data-net="0.92" data-name="Placa Plata" onclick="seleccionarTierSim(this)">
+            <div class="sim-placa-header">
+              <div class="sim-placa-icon-badge plata">
+                ${SVG_ICONS.award}
+              </div>
+              <span class="sim-tier-badge plata">8% Com.</span>
+            </div>
+            <div class="sim-placa-body">
+              <strong class="sim-placa-name">Placa Plata</strong>
+              <small class="sim-placa-net">92% Neto al Técnico</small>
+            </div>
           </button>
-          <button type="button" class="sim-tier-btn" data-rate="0.09" data-net="0.91" data-name="Placa Bronce" onclick="seleccionarTierSim(this)">
-            <span class="sim-tier-badge">9% Com.</span>
-            <strong>Placa Bronce (91% Neto)</strong>
+
+          <button type="button" class="sim-tier-btn tier-bronce" data-rate="0.09" data-net="0.91" data-name="Placa Bronce" onclick="seleccionarTierSim(this)">
+            <div class="sim-placa-header">
+              <div class="sim-placa-icon-badge bronce">
+                ${SVG_ICONS.star}
+              </div>
+              <span class="sim-tier-badge bronce">9% Com.</span>
+            </div>
+            <div class="sim-placa-body">
+              <strong class="sim-placa-name">Placa Bronce</strong>
+              <small class="sim-placa-net">91% Neto al Técnico</small>
+            </div>
           </button>
-          <button type="button" class="sim-tier-btn promo" data-rate="0.01" data-net="0.99" data-name="Mes 1 Fundador" onclick="seleccionarTierSim(this)">
-            <span class="sim-tier-badge" style="background:#B8FF3B;color:#0C120A;">1% Com.</span>
-            <strong>Mes 1 Fundador (99% Neto)</strong>
+
+          <button type="button" class="sim-tier-btn promo tier-fundador" data-rate="0.01" data-net="0.99" data-name="Mes 1 Fundador" onclick="seleccionarTierSim(this)">
+            <div class="sim-placa-header">
+              <div class="sim-placa-icon-badge fundador">
+                ${SVG_ICONS.zap}
+              </div>
+              <span class="sim-tier-badge fundador">1% Com.</span>
+            </div>
+            <div class="sim-placa-body">
+              <strong class="sim-placa-name">Mes 1 Fundador</strong>
+              <small class="sim-placa-net">99% Neto (100 Cupos)</small>
+            </div>
           </button>
         </div>
 
