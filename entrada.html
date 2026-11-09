@@ -1708,27 +1708,37 @@
 }
 
 .srv-chevron-wrap {
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--mut);
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   flex-shrink: 0;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
 }
 
-.srv-compact-card:hover .srv-chevron-wrap,
-.srv-compact-card:focus-within .srv-chevron-wrap,
-.srv-compact-card.is-open .srv-chevron-wrap {
-  background: rgba(184, 255, 59, 0.2);
+.srv-chevron-wrap:hover {
+  background: rgba(184, 255, 59, 0.22);
+  border-color: var(--lima);
   color: var(--lima);
+  transform: scale(1.08);
+}
+
+.srv-compact-card.is-open .srv-chevron-wrap {
+  background: var(--lima);
+  border-color: var(--lima);
+  color: #0C120A;
   transform: rotate(180deg);
 }
 
-/* DESPLEGABLE COMPACTO Y CONTROLADO */
+/* DESPLEGABLE COMPACTO Y CONTROLADO (SOLO SE ABRE AL CLIC EN LA FLECHA, NO AL PASAR EL MOUSE) */
 .srv-dropdown-pane {
   max-height: 0;
   opacity: 0;
@@ -1737,8 +1747,7 @@
   margin-top: 0;
 }
 
-.srv-compact-card.is-open .srv-dropdown-pane,
-.srv-compact-card:hover .srv-dropdown-pane {
+.srv-compact-card.is-open .srv-dropdown-pane {
   max-height: 320px;
   opacity: 1;
   margin-top: 12px;
@@ -1986,44 +1995,159 @@
 
 .sim-tier-selector {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 14px;
   margin-bottom: 24px;
 }
 
 .sim-tier-btn {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(18, 28, 18, 0.7);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 14px;
-  padding: 12px 14px;
+  border-radius: 18px;
+  padding: 16px;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 12px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   color: var(--tinta);
   font-family: var(--font-main);
-  font-size: 13px;
+  text-align: left;
+  outline: none;
+  position: relative;
+  backdrop-filter: blur(10px);
 }
 
 .sim-tier-btn:hover {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(184, 255, 59, 0.35);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.5);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
-.sim-tier-btn.active {
-  background: rgba(184, 255, 59, 0.12);
-  border-color: var(--lima);
-  color: var(--lima);
-  box-shadow: 0 0 16px rgba(184, 255, 59, 0.2);
+.sim-placa-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.sim-placa-icon-badge {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.25s ease;
+}
+
+/* Concordancia exacta de colores con los servicios y acabados metálicos */
+.sim-placa-icon-badge.oro {
+  background: rgba(255, 215, 0, 0.12);
+  border: 1px solid rgba(255, 215, 0, 0.4);
+  color: #FFD700;
+}
+.sim-placa-icon-badge.plata {
+  background: rgba(226, 232, 240, 0.12);
+  border: 1px solid rgba(226, 232, 240, 0.4);
+  color: #E2E8F0;
+}
+.sim-placa-icon-badge.bronce {
+  background: rgba(205, 127, 50, 0.14);
+  border: 1px solid rgba(205, 127, 50, 0.4);
+  color: #E09F67;
+}
+.sim-placa-icon-badge.fundador {
+  background: rgba(184, 255, 59, 0.15);
+  border: 1px solid rgba(184, 255, 59, 0.45);
+  color: #B8FF3B;
 }
 
 .sim-tier-badge {
   font-size: 11px;
   font-weight: 800;
-  background: rgba(255, 255, 255, 0.08);
-  padding: 3px 8px;
-  border-radius: 6px;
+  padding: 4px 10px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+}
+.sim-tier-badge.oro {
+  background: rgba(255, 215, 0, 0.15);
+  color: #FFD700;
+  border-color: rgba(255, 215, 0, 0.35);
+}
+.sim-tier-badge.plata {
+  background: rgba(226, 232, 240, 0.15);
+  color: #E2E8F0;
+  border-color: rgba(226, 232, 240, 0.35);
+}
+.sim-tier-badge.bronce {
+  background: rgba(205, 127, 50, 0.15);
+  color: #E09F67;
+  border-color: rgba(205, 127, 50, 0.35);
+}
+.sim-tier-badge.fundador {
+  background: #B8FF3B;
+  color: #0C120A;
+  border-color: #B8FF3B;
+}
+
+.sim-placa-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.sim-placa-name {
+  font-family: var(--font-title);
+  font-size: 15.5px;
+  font-weight: 800;
+  color: var(--tinta);
+}
+.sim-placa-net {
+  font-size: 12px;
+  color: var(--mut);
+  font-weight: 600;
+}
+
+/* Estados activos con brillo metálico específico */
+.sim-tier-btn.active.tier-oro {
+  background: rgba(255, 215, 0, 0.08);
+  border-color: #FFD700;
+  box-shadow: 0 0 24px rgba(255, 215, 0, 0.22);
+}
+.sim-tier-btn.active.tier-oro .sim-placa-icon-badge {
+  background: #FFD700;
+  color: #0C120A;
+}
+
+.sim-tier-btn.active.tier-plata {
+  background: rgba(226, 232, 240, 0.08);
+  border-color: #CBD5E1;
+  box-shadow: 0 0 24px rgba(203, 213, 225, 0.2);
+}
+.sim-tier-btn.active.tier-plata .sim-placa-icon-badge {
+  background: #E2E8F0;
+  color: #0C120A;
+}
+
+.sim-tier-btn.active.tier-bronce {
+  background: rgba(205, 127, 50, 0.08);
+  border-color: #E09F67;
+  box-shadow: 0 0 24px rgba(205, 127, 50, 0.2);
+}
+.sim-tier-btn.active.tier-bronce .sim-placa-icon-badge {
+  background: #E09F67;
+  color: #0C120A;
+}
+
+.sim-tier-btn.active.tier-fundador {
+  background: rgba(184, 255, 59, 0.08);
+  border-color: var(--lima);
+  box-shadow: 0 0 26px rgba(184, 255, 59, 0.28);
+}
+.sim-tier-btn.active.tier-fundador .sim-placa-icon-badge {
+  background: var(--lima);
+  color: #0C120A;
 }
 
 .sim-results-grid {
@@ -2115,6 +2239,403 @@
   flex-shrink: 0;
 }
 
+/* ==========================================================================
+   HERO EDITORIAL DARK LUXURY · MUJER PROFESIONAL REBUSKE & ILUMINACIÓN CINEMÁTICA
+   (Inspirado directamente en la estética de estudio fotográfico de alta gama)
+   ========================================================================== */
+html {
+  scroll-behavior: smooth !important;
+}
+
+.hero-luxury-wrap {
+  position: relative;
+  min-height: 86vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  padding: 100px 24px 70px;
+  background: 
+    radial-gradient(ellipse 65% 55% at 50% 45%, rgba(224, 112, 24, 0.22) 0%, rgba(184, 255, 59, 0.04) 45%, transparent 75%),
+    #050805;
+}
+
+.hero-giant-watermark {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-title);
+  font-size: clamp(80px, 16vw, 220px);
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(244, 251, 241, 0.05);
+  pointer-events: none;
+  z-index: 1;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.hero-luxury-container {
+  max-width: 1360px;
+  margin: 0 auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  position: relative;
+  z-index: 3;
+  gap: 36px;
+}
+
+@media (min-width: 992px) {
+  .hero-luxury-container {
+    grid-template-columns: 1.15fr 0.9fr 1.05fr;
+    gap: 20px;
+  }
+}
+
+/* Columna Izquierda: Copy, CTAs y Métricas */
+.hero-luxury-left {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: left;
+}
+
+.hero-pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(224, 112, 24, 0.12);
+  border: 1px solid rgba(224, 112, 24, 0.35);
+  color: #FFA552;
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 999px;
+  align-self: flex-start;
+}
+
+.hero-editorial-title {
+  font-family: var(--font-title);
+  font-size: clamp(32px, 4.2vw, 56px);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: #F4FBF1;
+  margin: 0;
+}
+
+.hero-editorial-accent {
+  background: linear-gradient(135deg, #FFA552 0%, #FFD700 50%, #B8FF3B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.hero-editorial-desc {
+  font-size: clamp(15px, 1.4vw, 17px);
+  color: rgba(244, 251, 241, 0.72);
+  line-height: 1.6;
+  max-width: 480px;
+  margin: 0;
+}
+
+.hero-editorial-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.hero-metrics-row {
+  display: flex;
+  gap: 14px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+.hero-stat-card {
+  background: rgba(14, 22, 14, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 18px;
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  min-width: 140px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.5);
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.hero-stat-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.hero-stat-card.highlight {
+  border-color: rgba(184, 255, 59, 0.35);
+  background: rgba(184, 255, 59, 0.06);
+}
+
+.hero-stat-num {
+  font-family: var(--font-title);
+  font-size: 26px;
+  font-weight: 800;
+  color: #F4FBF1;
+  line-height: 1;
+}
+
+.hero-stat-card.highlight .hero-stat-num {
+  color: var(--lima);
+}
+
+.hero-stat-lbl {
+  font-size: 11px;
+  color: var(--mut);
+  margin-top: 4px;
+  font-weight: 600;
+}
+
+/* Columna Central: Retrato Profesional con Rim Light */
+.hero-portrait-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.hero-portrait-glow-halo {
+  position: absolute;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(224, 112, 24, 0.35) 0%, rgba(184, 255, 59, 0.08) 50%, transparent 75%);
+  filter: blur(55px);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-portrait-frame {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 380px;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 
+    0 24px 60px rgba(0, 0, 0, 0.9),
+    0 0 40px rgba(224, 112, 24, 0.25),
+    0 0 0 1px rgba(255, 255, 255, 0.12);
+  transition: transform 0.4s ease;
+}
+
+.hero-portrait-frame:hover {
+  transform: translateY(-4px) scale(1.02);
+}
+
+.hero-portrait-img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  display: block;
+}
+
+.hero-portrait-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 16px;
+  background: linear-gradient(to top, rgba(5, 8, 5, 0.95) 0%, rgba(5, 8, 5, 0.6) 60%, transparent 100%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hero-portrait-caption span {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #F4FBF1;
+}
+
+.hero-portrait-tag {
+  background: rgba(184, 255, 59, 0.15);
+  border: 1px solid var(--lima);
+  color: var(--lima);
+  font-size: 9.5px;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+
+/* Columna Derecha: Tarjeta Flotante Bóveda & Garantía */
+.hero-luxury-right {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+@media (min-width: 992px) {
+  .hero-luxury-right {
+    align-items: flex-end;
+  }
+}
+
+.hero-statement-text {
+  font-family: var(--font-title);
+  font-size: clamp(20px, 2.5vw, 32px);
+  font-weight: 800;
+  line-height: 1.15;
+  color: rgba(244, 251, 241, 0.88);
+  letter-spacing: -0.01em;
+  text-align: left;
+}
+@media (min-width: 992px) {
+  .hero-statement-text {
+    text-align: right;
+  }
+}
+
+.hero-feature-card {
+  background: rgba(14, 22, 14, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 22px;
+  padding: 22px 24px;
+  max-width: 360px;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(184, 255, 59, 0.12);
+  text-align: left;
+  border-top: 3px solid #FFA552;
+}
+
+.hero-feature-hd {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.hero-feature-pill {
+  font-size: 11px;
+  font-weight: 800;
+  color: #FFA552;
+  background: rgba(224, 112, 24, 0.12);
+  padding: 3px 9px;
+  border-radius: 6px;
+  border: 1px solid rgba(224, 112, 24, 0.28);
+}
+
+.hero-feature-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #B8FF3B;
+  box-shadow: 0 0 8px #B8FF3B;
+}
+
+.hero-feature-title {
+  font-family: var(--font-title);
+  font-size: 17px;
+  font-weight: 800;
+  color: #F4FBF1;
+  margin-bottom: 6px;
+}
+
+.hero-feature-text {
+  font-size: 13px;
+  color: var(--mut);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.hero-feature-badges {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.hero-feature-badges span {
+  font-size: 11.5px;
+  color: rgba(244, 251, 241, 0.85);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hero-feature-badges svg {
+  color: var(--lima);
+  flex-shrink: 0;
+}
+
+/* Transición suave hacia abajo (Sin saltos duros) */
+.hero-bottom-blend {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 90px;
+  background: linear-gradient(to bottom, transparent 0%, rgba(12, 18, 10, 0.6) 50%, var(--ebano) 100%);
+  pointer-events: none;
+  z-index: 4;
+}
+
+.hero-smooth-scroll {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: rgba(244, 251, 241, 0.6);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.hero-smooth-scroll:hover {
+  color: var(--lima);
+}
+
+.scroll-track {
+  width: 20px;
+  height: 32px;
+  border-radius: 12px;
+  border: 1.5px solid rgba(244, 251, 241, 0.3);
+  display: flex;
+  justify-content: center;
+  padding-top: 4px;
+}
+
+.scroll-pill {
+  width: 4px;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--lima);
+  box-shadow: 0 0 6px var(--lima);
+  animation: scrollBob 2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+@keyframes scrollBob {
+  0% { transform: translateY(0); opacity: 1; }
+  60% { transform: translateY(12px); opacity: 0; }
+  61% { transform: translateY(0); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
   </style>
 </head>
 <body>
@@ -2156,46 +2677,108 @@
   </header>
 
   <!-- ==========================================================================
-       2. HERO PRINCIPAL LIMPIO (CERO EMOJIS, PRECIOS NO REDONDEADOS)
+       2. HERO EDITORIAL DARK LUXURY · MUJER PROFESIONAL REBUSKE & ILUMINACIÓN CINEMÁTICA
+       (Inspirado directamente en la estética de estudio fotográfico de alta gama)
        ========================================================================== -->
-  <section class="section-wrap hero-section">
-    <!-- Banner de Acceso al Catálogo de 17 Categorías -->
-    <a href="#nuestros-servicios" class="hero-promo-badge float-d-1 elevate-hover reveal-cascade">
-      <span class="hero-promo-tag">OFICIAL 2026</span>
-      <span>17 Especialidades · Bóveda Wompi & Precios Transparentes</span>
-      <span style="color:var(--lima);display:inline-flex;align-items:center;gap:4px;">
-        <span>Ver Tarifas</span>
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </span>
+  <section class="hero-luxury-wrap" id="inicio">
+    <div class="hero-giant-watermark" aria-hidden="true">REBUSKE</div>
+
+    <div class="hero-luxury-container">
+      
+      <!-- Columna Izquierda: Copy, CTAs y Métricas Flotantes -->
+      <div class="hero-luxury-left reveal-cascade">
+        <a href="#nuestros-servicios" class="hero-pill-badge" style="text-decoration:none;">
+          <span style="width:6px;height:6px;border-radius:50%;background:#FFA552;display:inline-block;"></span>
+          17 Especialidades · Bóveda Wompi Escrow
+        </a>
+
+        <h1 class="hero-editorial-title">
+          Tu Hogar Protegido.<br>
+          <span class="hero-editorial-accent">Tu Mano de Obra Valorada.</span>
+        </h1>
+
+        <p class="hero-editorial-desc">
+          La plataforma ética de multiservicios en Medellín con custodia blindada en <strong>Bóveda Wompi (Bancolombia)</strong>, 
+          técnicos verificados con cédula biométrica y <strong>Acta Digital de Garantía de 48 horas</strong> (Ley 1480).
+        </p>
+
+        <div class="hero-editorial-actions">
+          <a href="/registro/tecnico" class="btn-hero-primary">
+            <span>Soy Profesional / Técnico (99% Neto Mes 1)</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="/registro/cliente" class="btn-hero-sec">
+            <span>Registro Clientes VIP</span>
+          </a>
+        </div>
+
+        <!-- Métricas estilo estudio comercial -->
+        <div class="hero-metrics-row">
+          <div class="hero-stat-card">
+            <span class="hero-stat-num">17+</span>
+            <span class="hero-stat-lbl">Especialidades Verificadas</span>
+          </div>
+          <div class="hero-stat-card highlight">
+            <span class="hero-stat-num">93%</span>
+            <span class="hero-stat-lbl">Ingreso Neto al Técnico</span>
+          </div>
+          <div class="hero-stat-card">
+            <span class="hero-stat-num">0%</span>
+            <span class="hero-stat-lbl">Riesgo con Bóveda Escrow</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Columna Central: Retrato Profesional con Iluminación Rim Light (Luz de Contorno Ámbar) -->
+      <div class="hero-portrait-stage reveal-cascade stagger-1">
+        <div class="hero-portrait-glow-halo"></div>
+        <div class="hero-portrait-frame">
+          <img src="/assets/images/hero_profesional_rebuske.jpg" alt="Especialista Profesional Rebuske Medellín" class="hero-portrait-img">
+          <div class="hero-portrait-caption">
+            <div>
+              <span>Especialista Verificada Rebuske</span>
+              <small style="display:block;font-size:10px;color:rgba(244,251,241,0.65);">Valle de Aburrá · Cédula Biométrica</small>
+            </div>
+            <span class="hero-portrait-tag">OFICIAL 2026</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Columna Derecha: Statement Editorial & Tarjeta Flotante Bóveda Wompi -->
+      <div class="hero-luxury-right reveal-cascade stagger-2">
+        <div class="hero-statement-text">
+          INGENIERÍA ÉTICA &amp; SERVICIOS DE CONFIANZA.
+        </div>
+
+        <div class="hero-feature-card">
+          <div class="hero-feature-hd">
+            <span class="hero-feature-pill">Bóveda Wompi Escrow</span>
+            <span class="hero-feature-dot"></span>
+          </div>
+          <h4 class="hero-feature-title">Custodia Bancolombia Total</h4>
+          <p class="hero-feature-text">
+            Tu dinero nunca se entrega por adelantado. Permanece en custodia bancaria blindada y solo se desembolsa cuando validas el trabajo y firmas la garantía digital.
+          </p>
+          <div class="hero-feature-badges">
+            <span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></svg> 48h de Garantía Escrita (Ley 1480)</span>
+            <span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Técnicos con Récord Judicial Verificado</span>
+            <span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M2 10h20"/><circle cx="16" cy="14" r="1.5"/></svg> Dispersión Directa a Cuenta cada 4 Días</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Máscara de Difuminado Inferior para transición suave hacia el resto de la página -->
+    <div class="hero-bottom-blend"></div>
+
+    <!-- Indicador de Scroll Suave -->
+    <a href="#experiencia-app" class="hero-smooth-scroll" aria-label="Desplazar hacia abajo suavemente">
+      <div class="scroll-track">
+        <div class="scroll-pill"></div>
+      </div>
+      <span>Explorar Ecosistema</span>
     </a>
-
-    <div class="mask-slide-wrap">
-      <h1 class="hero-tagline mask-slide-inner">Tu Hogar Protegido. Tu Mano de Obra Valorada.</h1>
-    </div>
-
-    <p class="sec-desc reveal-cascade stagger-1" style="margin: 0 auto 28px; font-size: 17px; max-width: 760px;">
-      La plataforma de multiservicios de Medellín con pago protegido en <strong>Bóveda Wompi (Escrow)</strong>, 
-      técnicos verificados con cédula biométrica y <strong>Acta Digital de Garantía de 48 horas</strong>.
-    </p>
-
-    <!-- Botonera Central Hero -->
-    <div class="hero-cta-group reveal-cascade stagger-2">
-      <a href="/registro/tecnico" class="btn-hero-primary">
-        <span>Soy Profesional / Técnico (99% Neto Mes 1)</span>
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      </a>
-      <a href="/registro/cliente" class="btn-hero-sec">
-        <span>Registro Clientes VIP (Bono $15.000)</span>
-      </a>
-    </div>
-
-    <!-- 4 Chips de Confianza (Cero Emojis) -->
-    <div class="hero-chips-wrap reveal-cascade stagger-5">
-      <span class="hero-chip elevate-hover"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></svg> Bóveda Wompi Escrow (Bancolombia)</span>
-      <span class="hero-chip elevate-hover"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg> 48h Garantía Ley 1480</span>
-      <span class="hero-chip elevate-hover"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg> Red de Servicios Profesionales</span>
-      <span class="hero-chip elevate-hover"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg> Primeros 100 Cupos al 1% Comisión</span>
-    </div>
   </section>
 
   <!-- ==========================================================================
@@ -2476,24 +3059,59 @@
 
         <input type="range" id="simBillingRange" class="sim-range-slider" min="1000000" max="8000000" step="100000" value="3500000" oninput="actualizarSimuladorWeb()">
 
-        <!-- Selector de Categorías -->
-        <div class="sim-cats-label">Selecciona tu categoría en Rebuske:</div>
+        <!-- Selector de Categorías / Placas Metálicas Oficiales -->
+        <div class="sim-cats-label">Selecciona tu placa y categoría en Rebuske:</div>
         <div class="sim-tier-selector">
-          <button type="button" class="sim-tier-btn active" data-rate="0.07" data-net="0.93" data-name="Placa Oro" onclick="seleccionarTierSim(this)">
-            <span class="sim-tier-badge" style="background:rgba(255,250,112,0.15);color:#FFFA70;">7% Com.</span>
-            <strong>Placa Oro (93% Neto)</strong>
+          <button type="button" class="sim-tier-btn active tier-oro" data-rate="0.07" data-net="0.93" data-name="Placa Oro" onclick="seleccionarTierSim(this)">
+            <div class="sim-placa-header">
+              <div class="sim-placa-icon-badge oro">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7zm3 16h14"/></svg>
+              </div>
+              <span class="sim-tier-badge oro">7% Com.</span>
+            </div>
+            <div class="sim-placa-body">
+              <strong class="sim-placa-name">Placa Oro</strong>
+              <small class="sim-placa-net">93% Neto al Técnico</small>
+            </div>
           </button>
-          <button type="button" class="sim-tier-btn" data-rate="0.08" data-net="0.92" data-name="Placa Plata" onclick="seleccionarTierSim(this)">
-            <span class="sim-tier-badge">8% Com.</span>
-            <strong>Placa Plata (92% Neto)</strong>
+          
+          <button type="button" class="sim-tier-btn tier-plata" data-rate="0.08" data-net="0.92" data-name="Placa Plata" onclick="seleccionarTierSim(this)">
+            <div class="sim-placa-header">
+              <div class="sim-placa-icon-badge plata">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="7"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+              </div>
+              <span class="sim-tier-badge plata">8% Com.</span>
+            </div>
+            <div class="sim-placa-body">
+              <strong class="sim-placa-name">Placa Plata</strong>
+              <small class="sim-placa-net">92% Neto al Técnico</small>
+            </div>
           </button>
-          <button type="button" class="sim-tier-btn" data-rate="0.09" data-net="0.91" data-name="Placa Bronce" onclick="seleccionarTierSim(this)">
-            <span class="sim-tier-badge">9% Com.</span>
-            <strong>Placa Bronce (91% Neto)</strong>
+
+          <button type="button" class="sim-tier-btn tier-bronce" data-rate="0.09" data-net="0.91" data-name="Placa Bronce" onclick="seleccionarTierSim(this)">
+            <div class="sim-placa-header">
+              <div class="sim-placa-icon-badge bronce">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </div>
+              <span class="sim-tier-badge bronce">9% Com.</span>
+            </div>
+            <div class="sim-placa-body">
+              <strong class="sim-placa-name">Placa Bronce</strong>
+              <small class="sim-placa-net">91% Neto al Técnico</small>
+            </div>
           </button>
-          <button type="button" class="sim-tier-btn promo" data-rate="0.01" data-net="0.99" data-name="Mes 1 Fundador" onclick="seleccionarTierSim(this)">
-            <span class="sim-tier-badge" style="background:#B8FF3B;color:#0C120A;">1% Com.</span>
-            <strong>Mes 1 Fundador (99% Neto)</strong>
+
+          <button type="button" class="sim-tier-btn promo tier-fundador" data-rate="0.01" data-net="0.99" data-name="Mes 1 Fundador" onclick="seleccionarTierSim(this)">
+            <div class="sim-placa-header">
+              <div class="sim-placa-icon-badge fundador">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              </div>
+              <span class="sim-tier-badge fundador">1% Com.</span>
+            </div>
+            <div class="sim-placa-body">
+              <strong class="sim-placa-name">Mes 1 Fundador</strong>
+              <small class="sim-placa-net">99% Neto (100 Cupos)</small>
+            </div>
           </button>
         </div>
 
@@ -2611,7 +3229,7 @@
       </h2>
       <p class="sec-desc" style="font-size: 16px; color: var(--mut); line-height: 1.6; text-align: center !important; margin: 0 auto 20px auto !important; max-width: 820px; display: block;">
         Consulta las 17 especialidades disponibles en el Valle de Aburrá con precios algorítmicos no redondeados (Plomería, Electricidad, Cerrajería, Limpieza y Aseo y más). 
-        <strong>Pasa el cursor sobre cualquier especialidad o flecha para desplegar las labores y precios de referencia.</strong>
+        <strong>Toca la flecha hacia abajo en cualquier especialidad para desplegar u ocultar sus labores y precios de referencia.</strong>
       </p>
     </div>
 
@@ -2634,10 +3252,10 @@
       <button class="srv-filter-btn" onclick="filtrarGrupoSrv('profesional', this)">Servicios Profesionales</button>
     </div>
 
-    <!-- Grid de tarjetas compactas de servicios con desplegable al hover -->
+    <!-- Grid de tarjetas compactas de servicios (Despliega SOLO al clic en la flecha) -->
     <div class="srv-compact-grid" id="srvCompactGrid">
       
-        <article class="srv-compact-card" data-group="hogar" data-id="limpieza" tabindex="0" onclick="toggleSrvCard(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSrvCard(this)">
+        <article class="srv-compact-card" data-group="hogar" data-id="limpieza">
           <div class="srv-card-main">
             <div class="srv-icon-badge">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l2.4 5 5.6.8-4 4 1 5.6-5-2.6-5 2.6 1-5.6-4-4 5.6-.8z"/><path d="M19 19l2 2M5 19l-2 2"/></svg>
@@ -2646,9 +3264,9 @@
               <div class="srv-num-tag">1. Limpieza y Aseo</div>
               <div class="srv-price-base">desde $82.540 COP</div>
             </div>
-            <div class="srv-chevron-wrap" title="Clic o pasar mouse para ver labores">
+            <button type="button" class="srv-chevron-wrap" title="Clic para desplegar u ocultar labores de Limpieza y Aseo" aria-label="Ver labores de Limpieza y Aseo" onclick="toggleSrvCard(this, event)">
               <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </div>
+            </button>
           </div>
 
           <!-- Panel desplegable al hover -->
@@ -2704,7 +3322,7 @@
           </div>
         </article>
       
-        <article class="srv-compact-card" data-group="hogar" data-id="plomeria" tabindex="0" onclick="toggleSrvCard(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSrvCard(this)">
+        <article class="srv-compact-card" data-group="hogar" data-id="plomeria">
           <div class="srv-card-main">
             <div class="srv-icon-badge">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 6.5a4 4 0 0 0 5 5L12 19l-3-3 7.5-7.5z"/><path d="M6 18l-3 3M9 15l-2 2"/></svg>
@@ -2713,9 +3331,9 @@
               <div class="srv-num-tag">2. Plomería y Redes Hidráulicas</div>
               <div class="srv-price-base">desde $62.840 COP</div>
             </div>
-            <div class="srv-chevron-wrap" title="Clic o pasar mouse para ver labores">
+            <button type="button" class="srv-chevron-wrap" title="Clic para desplegar u ocultar labores de Plomería y Redes Hidráulicas" aria-label="Ver labores de Plomería y Redes Hidráulicas" onclick="toggleSrvCard(this, event)">
               <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </div>
+            </button>
           </div>
 
           <!-- Panel desplegable al hover -->
@@ -2771,7 +3389,7 @@
           </div>
         </article>
       
-        <article class="srv-compact-card" data-group="hogar" data-id="electricidad" tabindex="0" onclick="toggleSrvCard(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSrvCard(this)">
+        <article class="srv-compact-card" data-group="hogar" data-id="electricidad">
           <div class="srv-card-main">
             <div class="srv-icon-badge">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg>
@@ -2780,9 +3398,9 @@
               <div class="srv-num-tag">3. Electricidad Residencial y Comercial</div>
               <div class="srv-price-base">desde $52.540 COP</div>
             </div>
-            <div class="srv-chevron-wrap" title="Clic o pasar mouse para ver labores">
+            <button type="button" class="srv-chevron-wrap" title="Clic para desplegar u ocultar labores de Electricidad Residencial y Comercial" aria-label="Ver labores de Electricidad Residencial y Comercial" onclick="toggleSrvCard(this, event)">
               <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </div>
+            </button>
           </div>
 
           <!-- Panel desplegable al hover -->
@@ -2838,7 +3456,7 @@
           </div>
         </article>
       
-        <article class="srv-compact-card" data-group="hogar" data-id="pintura" tabindex="0" onclick="toggleSrvCard(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSrvCard(this)">
+        <article class="srv-compact-card" data-group="hogar" data-id="pintura">
           <div class="srv-card-main">
             <div class="srv-icon-badge">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="6" rx="2"/><path d="M19 9v3a2 2 0 0 1-2 2h-5v7a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-7H4"/></svg>
@@ -2847,9 +3465,9 @@
               <div class="srv-num-tag">4. Pintura y Acabados de Muros</div>
               <div class="srv-price-base">desde $56.740 COP</div>
             </div>
-            <div class="srv-chevron-wrap" title="Clic o pasar mouse para ver labores">
+            <button type="button" class="srv-chevron-wrap" title="Clic para desplegar u ocultar labores de Pintura y Acabados de Muros" aria-label="Ver labores de Pintura y Acabados de Muros" onclick="toggleSrvCard(this, event)">
               <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </div>
+            </button>
           </div>
 
           <!-- Panel desplegable al hover -->
@@ -2905,7 +3523,7 @@
           </div>
         </article>
       
-        <article class="srv-compact-card" data-group="hogar" data-id="carpinteria" tabindex="0" onclick="toggleSrvCard(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSrvCard(this)">
+        <article class="srv-compact-card" data-group="hogar" data-id="carpinteria">
           <div class="srv-card-main">
             <div class="srv-icon-badge">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 3l3 3-10 10H8v-3L18 3z"/><path d="M14 7l3 3M4 21h16"/></svg>
@@ -2914,9 +3532,9 @@
               <div class="srv-num-tag">5. Carpintería y Ebanistería</div>
               <div class="srv-price-base">desde $64.820 COP</div>
             </div>
-            <div class="srv-chevron-wrap" title="Clic o pasar mouse para ver labores">
+            <button type="button" class="srv-chevron-wrap" title="Clic para desplegar u ocultar labores de Carpintería y Ebanistería" aria-label="Ver labores de Carpintería y Ebanistería" onclick="toggleSrvCard(this, event)">
               <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </div>
+            </button>
           </div>
 
           <!-- Panel desplegable al hover -->
@@ -2972,7 +3590,7 @@
           </div>
         </article>
       
-        <article class="srv-compact-card" data-group="hogar" data-id="cerrajeria" tabindex="0" onclick="toggleSrvCard(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSrvCard(this)">
+        <article class="srv-compact-card" data-group="hogar" data-id="cerrajeria">
           <div class="srv-card-main">
             <div class="srv-icon-badge">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1.5"/></svg>
@@ -2981,9 +3599,9 @@
               <div class="srv-num-tag">6. Cerrajería y Seguridad</div>
               <div class="srv-price-base">desde $63.480 COP</div>
             </div>
-            <div class="srv-chevron-wrap" title="Clic o pasar mouse para ver labores">
+            <button type="button" class="srv-chevron-wrap" title="Clic para desplegar u ocultar labores de Cerrajería y Seguridad" aria-label="Ver labores de Cerrajería y Seguridad" onclick="toggleSrvCard(this, event)">
               <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </div>
+            </button>
           </div>
 
           <!-- Panel desplegable al hover -->
@@ -3039,7 +3657,7 @@
           </div>
         </article>
       
-        <article class="srv-compact-card" data-group="hogar" data-id="jardineria" tabindex="0" onclick="toggleSrvCard(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSrvCard(this)">
+        <article class="srv-compact-card" data-group="hogar" data-id="jardineria">
           <div class="srv-card-main">
             <div class="srv-icon-badge">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 20A7 7 0 0 1 4 13C4 8 11 2 11 2s7 6 7 11a7 7 0 0 1-7 7z"/><path d="M11 2v18"/></svg>
@@ -3048,9 +3666,9 @@
               <div class="srv-num-tag">7. Jardinería y Exteriores</div>
               <div class="srv-price-base">desde $58.340 COP</div>
             </div>
-            <div class="srv-chevron-wrap" title="Clic o pasar mouse para ver labores">
+            <button type="button" class="srv-chevron-wrap" title="Clic para desplegar u ocultar labores de Jardinería y Exteriores" aria-label="Ver labores de Jardinería y Exteriores" onclick="toggleSrvCard(this, event)">
               <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </div>
+            </button>
           </div>
 
           <!-- Panel desplegable al hover -->
@@ -3106,7 +3724,7 @@
           </div>
         </article>
       
-        <article class="srv-compact-card" data-group="hogar" data-id="construccion" tabindex="0" onclick="toggleSrvCard(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSrvCard(this)">
+        <article class="srv-compact-card" data-group="hogar" data-id="construccion">
           <div class="srv-card-main">
             <div class="srv-icon-badge">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="12" y1="4" x2="12" y2="12"/><line x1="7" y1="12" x2="7" y2="20"/><line x1="17" y1="12" x2="17" y2="20"/></svg>
@@ -3115,9 +3733,9 @@
               <div class="srv-num-tag">8. Construcción y Remodelación</div>
               <div class="srv-price-base">desde $68.450 COP</div>
             </div>
-            <div class="srv-chevron-wrap" title="Clic o pasar mouse para ver labores">
+            <button type="button" class="srv-chevron-wrap" title="Clic para desplegar u ocultar labores de Construcción y Remodelación" aria-label="Ver labores de Construcción y Remodelación" onclick="toggleSrvCard(this, event)">
               <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </div>
+            </button>
           </div>
 
           <!-- Panel desplegable al hover -->
@@ -3173,7 +3791,7 @@
           </div>
         </article>
       
-        <article class="srv-compact-card" data-group="transporte" data-id="mudanzas" tabindex="0" onclick="toggleSrvCard(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSrvCard(this)">
+        <article class="srv-compact-card" data-group="transporte" data-id="mudanzas">
           <div class="srv-card-main">
             <div class="srv-icon-badge">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
@@ -3182,9 +3800,9 @@
               <div class="srv-num-tag">9. Mudanzas y Transporte</div>
               <div class="srv-price-base">desde $84.320 COP</div>
             </div>
-            <div class="srv-chevron-wrap" title="Clic o pasar mouse para ver labores">
+            <button type="button" class="srv-chevron-wrap" title="Clic para desplegar u ocultar labores de Mudanzas y Transporte" aria-label="Ver labores de Mudanzas y Transporte" onclick="toggleSrvCard(this, event)">
               <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </div>
+            </button>
           </div>
 
           <!-- Panel desplegable al hover -->
@@ -3240,7 +3858,7 @@
           </div>
         </article>
       
-        <article class="srv-compact-card" data-group="tecnologia" data-id="electrodomesticos" tabindex="0" onclick="toggleSrvCard(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSrvCard(this)">
+        <article class="srv-compact-card" data-group="tecnologia" data-id="electrodomesticos">
           <div class="srv-card-main">
             <div class="srv-icon-badge">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="4" y1="10" x2="20" y2="10"/><circle cx="8" cy="6" r="1"/><circle cx="8" cy="15" r="1"/></svg>
@@ -3249,9 +3867,9 @@
               <div class="srv-num-tag">10. Electrodomésticos y Refrigeración</div>
               <div class="srv-price-base">desde $72.640 COP</div>
             </div>
-            <div class="srv-chevron-wrap" title="Clic o pasar mouse para ver labores">
+            <button type="button" class="srv-chevron-wrap" title="Clic para desplegar u ocultar labores de Electrodomésticos y Refrigeración" aria-label="Ver labores de Electrodomésticos y Refrigeración" onclick="toggleSrvCard(this, event)">
               <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </div>
+            </button>
           </div>
 
           <!-- Panel desplegable al hover -->
@@ -3307,7 +3925,7 @@
           </div>
         </article>
       
-        <article class="srv-compact-card" data-group="tecnologia" data-id="tecnologia" tabindex="0" onclick="toggleSrvCard(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSrvCard(this)">
+        <article class="srv-compact-card" data-group="tecnologia" data-id="tecnologia">
           <div class="srv-card-main">
             <div class="srv-icon-badge">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
@@ -3316,9 +3934,9 @@
               <div class="srv-num-tag">11. Tecnología e Instalación</div>
               <div class="srv-price-base">desde $54.380 COP</div>
             </div>
-            <div class="srv-chevron-wrap" title="Clic o pasar mouse para ver labores">
+            <button type="button" class="srv-chevron-wrap" title="Clic para desplegar u ocultar labores de Tecnología e Instalación" aria-label="Ver labores de Tecnología e Instalación" onclick="toggleSrvCard(this, event)">
               <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </div>
+            </button>
           </div>
 
           <!-- Panel desplegable al hover -->
@@ -3374,7 +3992,7 @@
           </div>
         </article>
       
-        <article class="srv-compact-card" data-group="transporte" data-id="automoviles" tabindex="0" onclick="toggleSrvCard(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSrvCard(this)">
+        <article class="srv-compact-card" data-group="transporte" data-id="automoviles">
           <div class="srv-card-main">
             <div class="srv-icon-badge">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 11l2-5h10l2 5"/><rect x="3" y="11" width="18" height="7" rx="2"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>
@@ -3383,9 +4001,9 @@
               <div class="srv-num-tag">12. Automóviles y Motos</div>
               <div class="srv-price-base">desde $58.740 COP</div>
             </div>
-            <div class="srv-chevron-wrap" title="Clic o pasar mouse para ver labores">
+            <button type="button" class="srv-chevron-wrap" title="Clic para desplegar u ocultar labores de Automóviles y Motos" aria-label="Ver labores de Automóviles y Motos" onclick="toggleSrvCard(this, event)">
               <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </div>
+            </button>
           </div>
 
           <!-- Panel desplegable al hover -->
@@ -3441,7 +4059,7 @@
           </div>
         </article>
       
-        <article class="srv-compact-card" data-group="digital" data-id="digital" tabindex="0" onclick="toggleSrvCard(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSrvCard(this)">
+        <article class="srv-compact-card" data-group="digital" data-id="digital">
           <div class="srv-card-main">
             <div class="srv-icon-badge">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 17l6-6-6-6"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
@@ -3450,9 +4068,9 @@
               <div class="srv-num-tag">13. Diseño, Tecnología y Servicios Digitales</div>
               <div class="srv-price-base">desde $64.290 COP</div>
             </div>
-            <div class="srv-chevron-wrap" title="Clic o pasar mouse para ver labores">
+            <button type="button" class="srv-chevron-wrap" title="Clic para desplegar u ocultar labores de Diseño, Tecnología y Servicios Digitales" aria-label="Ver labores de Diseño, Tecnología y Servicios Digitales" onclick="toggleSrvCard(this, event)">
               <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </div>
+            </button>
           </div>
 
           <!-- Panel desplegable al hover -->
@@ -3508,7 +4126,7 @@
           </div>
         </article>
       
-        <article class="srv-compact-card" data-group="educacion" data-id="educacion" tabindex="0" onclick="toggleSrvCard(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSrvCard(this)">
+        <article class="srv-compact-card" data-group="educacion" data-id="educacion">
           <div class="srv-card-main">
             <div class="srv-icon-badge">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
@@ -3517,9 +4135,9 @@
               <div class="srv-num-tag">14. Clases y Educación</div>
               <div class="srv-price-base">desde $42.860 COP</div>
             </div>
-            <div class="srv-chevron-wrap" title="Clic o pasar mouse para ver labores">
+            <button type="button" class="srv-chevron-wrap" title="Clic para desplegar u ocultar labores de Clases y Educación" aria-label="Ver labores de Clases y Educación" onclick="toggleSrvCard(this, event)">
               <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </div>
+            </button>
           </div>
 
           <!-- Panel desplegable al hover -->
@@ -3575,7 +4193,7 @@
           </div>
         </article>
       
-        <article class="srv-compact-card" data-group="bienestar" data-id="belleza" tabindex="0" onclick="toggleSrvCard(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSrvCard(this)">
+        <article class="srv-compact-card" data-group="bienestar" data-id="belleza">
           <div class="srv-card-main">
             <div class="srv-icon-badge">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>
@@ -3584,9 +4202,9 @@
               <div class="srv-num-tag">15. Belleza y Cuidado Personal</div>
               <div class="srv-price-base">desde $38.450 COP</div>
             </div>
-            <div class="srv-chevron-wrap" title="Clic o pasar mouse para ver labores">
+            <button type="button" class="srv-chevron-wrap" title="Clic para desplegar u ocultar labores de Belleza y Cuidado Personal" aria-label="Ver labores de Belleza y Cuidado Personal" onclick="toggleSrvCard(this, event)">
               <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </div>
+            </button>
           </div>
 
           <!-- Panel desplegable al hover -->
@@ -3642,7 +4260,7 @@
           </div>
         </article>
       
-        <article class="srv-compact-card" data-group="eventos" data-id="eventos" tabindex="0" onclick="toggleSrvCard(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSrvCard(this)">
+        <article class="srv-compact-card" data-group="eventos" data-id="eventos">
           <div class="srv-card-main">
             <div class="srv-icon-badge">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
@@ -3651,9 +4269,9 @@
               <div class="srv-num-tag">16. Eventos y Protocolo</div>
               <div class="srv-price-base">desde $87.650 COP</div>
             </div>
-            <div class="srv-chevron-wrap" title="Clic o pasar mouse para ver labores">
+            <button type="button" class="srv-chevron-wrap" title="Clic para desplegar u ocultar labores de Eventos y Protocolo" aria-label="Ver labores de Eventos y Protocolo" onclick="toggleSrvCard(this, event)">
               <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </div>
+            </button>
           </div>
 
           <!-- Panel desplegable al hover -->
@@ -3709,7 +4327,7 @@
           </div>
         </article>
       
-        <article class="srv-compact-card" data-group="profesional" data-id="profesionales" tabindex="0" onclick="toggleSrvCard(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSrvCard(this)">
+        <article class="srv-compact-card" data-group="profesional" data-id="profesionales">
           <div class="srv-card-main">
             <div class="srv-icon-badge">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v20M5 7l7-3 7 3M2 13l3-6 3 6a3 3 0 0 1-6 0zM16 13l3-6 3 6a3 3 0 0 1-6 0z"/></svg>
@@ -3718,9 +4336,9 @@
               <div class="srv-num-tag">17. Servicios Profesionales y Legal</div>
               <div class="srv-price-base">desde $94.850 COP</div>
             </div>
-            <div class="srv-chevron-wrap" title="Clic o pasar mouse para ver labores">
+            <button type="button" class="srv-chevron-wrap" title="Clic para desplegar u ocultar labores de Servicios Profesionales y Legal" aria-label="Ver labores de Servicios Profesionales y Legal" onclick="toggleSrvCard(this, event)">
               <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </div>
+            </button>
           </div>
 
           <!-- Panel desplegable al hover -->
@@ -4163,9 +4781,14 @@
     });
 
     // ========================================================================
-    // TOGGLE ACORDEÓN COMPACTO DE SERVICIOS (EVITA DEFORMACIÓN DE GRILLA)
+    // TOGGLE ACORDEÓN COMPACTO DE SERVICIOS (SOLO AL CLIC EN LA FLECHA)
     // ========================================================================
-    function toggleSrvCard(card) {
+    function toggleSrvCard(trigger, ev) {
+      if (ev) {
+        ev.stopPropagation();
+      }
+      const card = trigger.classList.contains('srv-compact-card') ? trigger : trigger.closest('.srv-compact-card');
+      if (!card) return;
       const isAlreadyOpen = card.classList.contains('is-open');
       document.querySelectorAll('.srv-compact-card.is-open').forEach(c => {
         if (c !== card) c.classList.remove('is-open');
