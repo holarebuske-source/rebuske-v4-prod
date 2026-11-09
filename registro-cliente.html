@@ -622,8 +622,8 @@
         <span class="brand-tag">Medellín 2026</span>
       </a>
       <nav class="top-actions" aria-label="Navegación unificada">
-        <a href="/entrada" class="btn-nav-link" title="Página Web de Entrada">🌐 Página Web</a>
-        <a href="/app" class="btn-pill-primary sheen" title="Abrir la Aplicación rebuske">📱 Abrir App ➔</a>
+        <a href="/entrada" class="btn-nav-link" title="Página Web de Entrada">Página Web</a>
+        <a href="/app" class="btn-pill-primary sheen" title="Abrir la Aplicación rebuske">Abrir App</a>
       </nav>
     </header>
 
@@ -638,7 +638,7 @@
 
     <!-- Aclaración Destacada -->
     <div class="clarification-banner">
-      🔔 <strong>Este registro es para recibir el link de Google Play Store y tu bono.</strong><br>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> <strong>Este registro es para recibir el link de Google Play Store y tu bono.</strong><br>
       Para pedir un servicio hoy mismo sin esperar, usa nuestra <a href="/app">App Web Inmediata</a>.
     </div>
 
@@ -778,7 +778,7 @@
             <label>Foto de Perfil (Opcional)</label>
             <div class="avatar-upload-wrap">
               <div class="avatar-preview-circle" id="cli-avatar-preview" onclick="document.getElementById('cli_foto_input').click()">
-                <span style="font-size:24px;">👤</span>
+                <span style="display:inline-flex;color:var(--lima);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>
               </div>
               <div>
                 <span class="avatar-btn-label" onclick="document.getElementById('cli_foto_input').click()">Seleccionar foto</span>
@@ -792,7 +792,7 @@
         <!-- Acordeón de Términos del Bono (Desplegable cerrado por defecto) -->
         <div class="bono-accordion" id="bono-terms-accordion">
           <div class="bono-accordion-header" onclick="toggleBonoTerms()">
-            <span>📜 Términos del Bono de Bienvenida ($15.000 COP)</span>
+            <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg> Términos del Bono de Bienvenida ($15.000 COP)</span>
             <span class="bono-chevron" aria-hidden="true">▼</span>
           </div>
           <div class="bono-accordion-content">
@@ -803,7 +803,7 @@
         <!-- BLOQUE LEGAL DEL CLIENTE (Texto Exacto) -->
         <div class="legal-card">
           <div class="legal-card-title">
-            <span>⚖️</span>
+            <span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v20M5 7l7-3 7 3M2 13l3-6 3 6a3 3 0 0 1-6 0zM16 13l3-6 3 6a3 3 0 0 1-6 0z"/></svg></span>
             <span>Autorizaciones Legales y Consentimiento Informado</span>
           </div>
 
@@ -825,39 +825,100 @@
 
         <!-- Botón de Envío -->
         <button type="submit" id="btn-submit-cli" class="btn-submit-main">
-          Activar mi Bono de $15.000 COP y Acceso Prioritario ⚡<span class="btn-dot" aria-hidden="true"></span>
+          Activar mi Bono de $15.000 COP y Acceso Prioritario <span class="btn-dot" aria-hidden="true"></span>
         </button>
 
       </form>
 
       <!-- Panel de Éxito -->
       <div class="success-panel" id="cli-success-msg">
-        <div class="success-icon">🎉</div>
+        <div class="success-icon" style="color:var(--lima);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
         <h4 class="success-title">¡Bono de $15.000 COP Activado!</h4>
         <p class="success-desc">
           Tu registro en la lista prioritaria de Google Play Store ha sido confirmado con el código <strong>TUBONO15K-VIP</strong>. Te enviaremos el enlace de descarga tan pronto esté publicada la aplicación.<br><br>
           ¿Necesitas un técnico hoy mismo?
         </p>
         <a href="/app" class="btn-pill-sec" style="background:#FFFFFF;color:#050A05;font-weight:700;">
-          Abrir App Web Inmediata ➔
+          Abrir App Web Inmediata &rarr;
         </a>
       </div>
 
     </div>
 
     <!-- Pie de página -->
-    <footer class="site-footer" style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;padding:32px 0 44px;border-top:1px solid rgba(255,255,255,0.1);gap:16px;">
-      <span>© 2026 rebuske. Todos los derechos reservados · Medellín, Colombia</span>
-      <div class="footer-links-unified" style="display:flex;align-items:center;gap:16px;">
-        <a href="/entrada" style="color:var(--mut);text-decoration:none;font-weight:600;">🌐 Página Web de Entrada</a>
-        <span style="color:rgba(255,255,255,0.2);">·</span>
-        <a href="/app" style="color:var(--lima);text-decoration:none;font-weight:800;">📱 Abrir Aplicación rebuske ➔</a>
+    
+  <!-- ==========================================================================
+       FOOTER OFICIAL RESTAURADO CON MARCO LEGAL, CONTACTO Y ORGANIZACIÓN FORMAL
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <h4 style="font-family:var(--font-title);font-size:20px;font-weight:800;color:var(--tinta);margin-bottom:8px;">
+          rebuske Medellín 2026
+        </h4>
+        <p style="font-size:13.5px;color:var(--mut);line-height:1.6;max-width:380px;">
+          Plataforma tecnológica de servicios técnicos para el hogar con pago protegido en Bóveda Wompi (Bancolombia). Fundador: <strong>Camilo Escobar</strong>.
+        </p>
+        <p style="margin-top:12px;font-size:12.5px;color:var(--lima);">
+          Medellín, Antioquia, Colombia · Nit en trámite · 100% Hecho en Medellín
+        </p>
       </div>
-    </footer>
 
-  </main>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Plataforma</h5>
+          <ul>
+            <li><a href="/registro/tecnico">Registro de Técnicos</a></li>
+            <li><a href="/registro/cliente">Registro de Clientes VIP</a></li>
+            <li><a href="#nuestros-servicios">Especialidades & Tarifas</a></li>
+            <li><a href="#protocolo-seguridad">Protocolo de Garantía</a></li>
+          </ul>
+        </div>
 
-  <script>
+        <div class="footer-col">
+          <h5>Legal y Normativo</h5>
+          <ul>
+            <li><a href="/terminos">Términos y Condiciones</a></li>
+            <li><a href="/privacidad">Política de Privacidad</a></li>
+            <li><a href="/reembolsos">Política de Reembolsos</a></li>
+            <li><a href="/descuentos">Condiciones de Descuentos</a></li>
+            <li><a href="/eliminar-cuenta">Eliminar Cuenta</a></li>
+            <li><a href="/privacidad#cookies">Política de Cookies</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Contacto Directo</h5>
+          <ul>
+            <li>
+              <a href="https://wa.me/573043812882?text=Hola%20Laura%2C%20quiero%20conocer%20m%C3%A1s%20sobre%20rebuske" target="_blank" rel="noopener noreferrer">
+                Laura WhatsApp (+57 304 381 2882)
+              </a>
+            </li>
+            <li><a href="mailto:holarebuske@gmail.com">holarebuske@gmail.com</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 rebuske. Todos los derechos reservados. Cumplimiento estricto Ley 1480 y Ley 1581 de Colombia.</span>
+      <span>Medellín · El Poblado · Laureles · Belén · Envigado</span>
+    </div>
+  </footer>
+
+  <!-- BANNER DE COOKIES (Discreto abajo) -->
+  <aside class="cookie-banner" id="cookieBanner" aria-label="Consentimiento de cookies">
+    <div class="cookie-text">
+      Usamos cookies esenciales para operar la plataforma y pagos Wompi. Con tu permiso, usamos analítica para optimizar el servicio en Medellín sin rastrear datos sensibles.
+    </div>
+    <div class="cookie-actions">
+      <button class="btn-cookie-config" onclick="cerrarCookies()">Configurar</button>
+      <button class="btn-cookie-accept" onclick="aceptarCookies()">Aceptar todas</button>
+    </div>
+  </aside>
+  
+<script>
     function toggleBonoTerms() {
       const acc = document.getElementById('bono-terms-accordion');
       acc.classList.toggle('open');
@@ -869,7 +930,7 @@
         reader.onload = function(e) {
           const circle = document.getElementById('cli-avatar-preview');
           circle.innerHTML = '<img src="' + e.target.result + '" style="width:100%;height:100%;object-fit:cover">';
-          document.getElementById('cli-foto-status').textContent = 'Foto seleccionada ✓';
+          document.getElementById('cli-foto-status').textContent = 'Foto seleccionada con éxito';
           document.getElementById('cli-foto-status').style.color = 'var(--accent-neon)';
         };
         reader.readAsDataURL(input.files[0]);
