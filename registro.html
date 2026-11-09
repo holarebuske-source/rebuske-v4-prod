@@ -752,6 +752,33 @@
     
 
 /* ==========================================================================
+   AMBIENTE CINEMÁTICO: LUCIÉRNAGAS WEB & ACABADO DARK LUXURY CON RUIDO
+   ========================================================================== */
+.web-ambient-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.55;
+}
+
+.dark-luxury-grain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.032;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  mix-blend-mode: screen;
+}
+
+/* ==========================================================================
    LUCIÉRNAGA 3D FLOTANTE (SIN CÍRCULO, PURA BIOLUMINISCENCIA NATURAL)
    ========================================================================== */
 .logo-3d-bubble {
@@ -850,10 +877,11 @@
   flex-direction: column;
   align-items: center;
   gap: 20px;
+  perspective: 1100px;
 }
 
 /* ==========================================================================
-   CHASIS IPHONE AIR (TITANIO ULTRA DELGADO, MICRO-BISEL & DYNAMIC ISLAND MICRO)
+   CHASIS DE TITANIO SATINADO ULTRA DELGADO (MICRO-BISEL & TILT 3D)
    ========================================================================== */
 .phone-mockup {
   position: relative;
@@ -862,7 +890,7 @@
   aspect-ratio: 9 / 19.5;
   background: #050806;
   border-radius: 48px;
-  padding: 4px; /* Micro-bisel ultra delgado iPhone Air */
+  padding: 4px; /* Micro-bisel ultra delgado */
   box-shadow: 
     0 28px 70px -12px rgba(0, 0, 0, 0.95),
     0 0 0 1.5px rgba(244, 251, 241, 0.28),
@@ -870,12 +898,29 @@
     0 0 35px rgba(184, 255, 59, 0.18),
     inset 0 0 2px 1px rgba(255, 255, 255, 0.25);
   border: 2px solid rgba(244, 251, 241, 0.35); /* Chasis titanio satinado */
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  transition: transform 0.12s ease-out, box-shadow 0.3s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
   overflow: hidden;
 }
 
+.phone-glare-overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: 48px;
+  background: radial-gradient(circle at var(--glare-x, 50%) var(--glare-y, 50%), rgba(255, 255, 255, 0.14) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 15;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.phone-mockup:hover .phone-glare-overlay {
+  opacity: 1;
+}
+
 .phone-mockup::before {
-  /* Bisel perimétrico de titanio aeroespacial iPhone Air */
+  /* Bisel perimétrico de titanio aeroespacial */
   content: '';
   position: absolute;
   top: 0;
@@ -889,7 +934,6 @@
 }
 
 .phone-mockup:hover {
-  transform: translateY(-8px) scale(1.02);
   box-shadow: 
     0 36px 80px -10px rgba(0, 0, 0, 0.98),
     0 0 0 2px rgba(184, 255, 59, 0.6),
@@ -1581,6 +1625,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 20px;
+  align-items: start !important; /* CRITICAL: Evita que las tarjetas hermanas de la misma fila se estiren creando vacíos negros */
 }
 
 .srv-compact-card {
@@ -1590,17 +1635,26 @@
   border: 1px solid var(--glass-border);
   border-radius: 18px;
   padding: 16px 18px;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
   outline: none;
   position: relative;
+  height: auto !important;
+  align-self: start !important;
 }
 
-.srv-compact-card:hover, .srv-compact-card:focus-within {
+.srv-compact-card:hover {
   border-color: rgba(184, 255, 59, 0.45);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), 0 0 20px rgba(184, 255, 59, 0.14);
-  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.6), 0 0 16px rgba(184, 255, 59, 0.12);
+  transform: translateY(-2px);
   z-index: 10;
+}
+
+.srv-compact-card.is-open {
+  border-color: var(--lima) !important;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.75), 0 0 24px rgba(184, 255, 59, 0.22) !important;
+  background: rgba(15, 23, 14, 0.94) !important;
+  z-index: 15;
 }
 
 .srv-card-main {
@@ -1623,7 +1677,8 @@
   transition: all 0.25s ease;
 }
 
-.srv-compact-card:hover .srv-icon-badge {
+.srv-compact-card:hover .srv-icon-badge,
+.srv-compact-card.is-open .srv-icon-badge {
   background: var(--lima);
   color: #0C120A;
   transform: scale(1.05);
@@ -1665,40 +1720,60 @@
   flex-shrink: 0;
 }
 
-.srv-compact-card:hover .srv-chevron-wrap, .srv-compact-card:focus-within .srv-chevron-wrap {
+.srv-compact-card:hover .srv-chevron-wrap,
+.srv-compact-card:focus-within .srv-chevron-wrap,
+.srv-compact-card.is-open .srv-chevron-wrap {
   background: rgba(184, 255, 59, 0.2);
   color: var(--lima);
   transform: rotate(180deg);
 }
 
-/* DESPLEGABLE SUAVE AL HOVER */
+/* DESPLEGABLE COMPACTO Y CONTROLADO */
 .srv-dropdown-pane {
   max-height: 0;
   opacity: 0;
   overflow: hidden;
-  transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, margin-top 0.3s ease;
+  transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease, margin-top 0.25s ease;
   margin-top: 0;
 }
 
-.srv-compact-card:hover .srv-dropdown-pane, .srv-compact-card:focus-within .srv-dropdown-pane {
-  max-height: 480px;
+.srv-compact-card.is-open .srv-dropdown-pane,
+.srv-compact-card:hover .srv-dropdown-pane {
+  max-height: 320px;
   opacity: 1;
-  margin-top: 14px;
+  margin-top: 12px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
-  padding-top: 12px;
+  padding-top: 10px;
 }
 
 .srv-dropdown-desc {
-  font-size: 12.5px;
+  font-size: 12px;
   color: var(--mut);
-  line-height: 1.45;
-  margin-bottom: 12px;
+  line-height: 1.4;
+  margin-bottom: 10px;
 }
 
 .srv-dropdown-table {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
+  margin-bottom: 10px;
+  max-height: 180px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.srv-dropdown-table::-webkit-scrollbar {
+  width: 3.5px;
+}
+.srv-dropdown-table::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 4px;
+}
+.srv-dropdown-table::-webkit-scrollbar-thumb {
+  background: rgba(184, 255, 59, 0.45);
+  border-radius: 4px;
+}
   margin-bottom: 12px;
 }
 
@@ -1839,9 +1914,216 @@
   gap: 12px;
 }
 
+/* ==========================================================================
+   SIMULADOR INTERACTIVO DE AHORRO Y DIGNIFICACIÓN TÉCNICA
+   ========================================================================== */
+.sim-card-wrap {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.sim-box {
+  background: var(--glass-surface);
+  border: 1px solid var(--glass-border-lima);
+  border-radius: 28px;
+  padding: 34px 32px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(184, 255, 59, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.sim-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.sim-label {
+  font-size: 14px;
+  color: var(--mut);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.sim-amount-display {
+  font-family: var(--font-title);
+  font-size: clamp(26px, 3.5vw, 36px);
+  font-weight: 800;
+  color: var(--lima);
+  letter-spacing: -0.5px;
+}
+
+.sim-disp-tag {
+  background: rgba(184, 255, 59, 0.1);
+  border: 1px solid rgba(184, 255, 59, 0.3);
+  color: var(--lima);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 999px;
+}
+
+.sim-range-slider {
+  width: 100%;
+  height: 8px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.12);
+  outline: none;
+  accent-color: var(--lima);
+  margin-bottom: 24px;
+  cursor: pointer;
+}
+
+.sim-cats-label {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--tinta);
+  margin-bottom: 12px;
+}
+
+.sim-tier-selector {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.sim-tier-btn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--tinta);
+  font-family: var(--font-main);
+  font-size: 13px;
+}
+
+.sim-tier-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(184, 255, 59, 0.35);
+}
+
+.sim-tier-btn.active {
+  background: rgba(184, 255, 59, 0.12);
+  border-color: var(--lima);
+  color: var(--lima);
+  box-shadow: 0 0 16px rgba(184, 255, 59, 0.2);
+}
+
+.sim-tier-badge {
+  font-size: 11px;
+  font-weight: 800;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.sim-results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.sim-result-card {
+  background: rgba(10, 16, 9, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 16px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sim-result-card.highlight {
+  border-color: rgba(184, 255, 59, 0.5);
+  background: rgba(184, 255, 59, 0.06);
+}
+
+.sim-result-card.alert {
+  border-color: rgba(255, 99, 71, 0.3);
+  background: rgba(255, 99, 71, 0.05);
+}
+
+.sim-result-card.gold {
+  border-color: rgba(255, 250, 112, 0.4);
+  background: rgba(255, 250, 112, 0.06);
+}
+
+.sim-res-kicker {
+  font-size: 11.5px;
+  color: var(--mut);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.sim-res-value {
+  font-family: var(--font-title);
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--tinta);
+  margin-bottom: 4px;
+}
+
+.sim-result-card.highlight .sim-res-value {
+  color: var(--lima);
+}
+
+.sim-result-card.alert .sim-res-value {
+  color: #FF6B6B;
+}
+
+.sim-result-card.gold .sim-res-value {
+  color: #FFFA70;
+}
+
+.sim-res-sub {
+  font-size: 11px;
+  color: var(--mut);
+  line-height: 1.35;
+}
+
+.sim-footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sim-guarantee-note {
+  font-size: 12.5px;
+  color: var(--mut);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  max-width: 480px;
+}
+.sim-guarantee-note svg {
+  color: var(--lima);
+  flex-shrink: 0;
+}
+
   </style>
 </head>
 <body>
+
+  <!-- LIENZO AMBIENTAL CINEMÁTICO: LUCIÉRNAGAS SUAVES DE FONDO (COBERTURA ~10% NO INVASIVA) -->
+  <canvas id="web-ambient-canvas" class="web-ambient-canvas" aria-hidden="true"></canvas>
+
+  <!-- ACABADO DARK LUXURY CON GRADIENTE DE RUIDO ULTRA FINO -->
+  <div class="dark-luxury-grain" aria-hidden="true"></div>
 
   <!-- Capa de brillo bioluminiscente de fondo -->
   <div class="bg-glow-layer" aria-hidden="true">
@@ -1926,10 +2208,10 @@
   <section class="section-wrap phones-showcase-section" id="experiencia-app">
     <div class="sec-header reveal-cascade" style="text-align: center; max-width: 820px; margin: 0 auto 36px;">
       <span class="badge-pill" style="margin-bottom: 12px;">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 10 10"/><path d="M12 12l7-7"/></svg> iPhone Air Edition · Tecnología Móvil en Vivo
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 10 10"/><path d="M12 12l7-7"/></svg> Tecnología Móvil en Vivo
       </span>
       <h2 class="sec-title" style="font-size: clamp(26px, 4vw, 38px); line-height: 1.15; margin-bottom: 14px; text-align: center;">
-        Así Funciona la App en la Pantalla de tu Celular (iPhone Air)
+        Así Funciona la App en la Pantalla de tu Celular
       </h2>
       <p class="sec-desc" style="font-size: 16px; color: var(--mut); line-height: 1.6; text-align: center !important; margin: 0 auto 20px auto !important; max-width: 820px; display: block;">
         Transparencia algorítmica, despacho hiperlocal en el Valle de Aburrá, bóveda bancaria escrow y credenciales con código QR antes de abrir la puerta de tu hogar.
@@ -1938,9 +2220,10 @@
 
     <div class="phones-grid">
 
-      <!-- ================= TELÉFONO 1: PANTALLA PRINCIPAL & CATÁLOGO (IPHONE AIR) ================= -->
+      <!-- ================= TELÉFONO 1: PANTALLA PRINCIPAL & CATÁLOGO ================= -->
       <div class="phone-card-wrap reveal-cascade stagger-1">
         <div class="phone-mockup">
+          <div class="phone-glare-overlay"></div>
           <div class="phone-screen">
             <div class="phone-status-bar">
               <span>9:41</span>
@@ -1954,13 +2237,13 @@
               </div>
             </div>
 
-            <img src="/assets/screenshots/app_screen_1_home.png" alt="Captura Real de la App Rebuske en iPhone Air: Catálogo y Buscador" class="phone-real-screenshot" loading="lazy">
+            <img src="/assets/screenshots/app_screen_1_home.png" alt="Captura Real de la App Rebuske: Catálogo y Buscador" class="phone-real-screenshot" loading="lazy">
             <div class="phone-home-indicator"></div>
           </div>
         </div>
 
         <div class="phone-caption-card">
-          <span class="phone-step-badge"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> iPhone Air · Catálogo Oficial</span>
+          <span class="phone-step-badge"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Pantalla 1 · Catálogo Oficial</span>
           <h3 class="phone-caption-title">Exploración & Búsqueda Directa</h3>
           <p class="phone-caption-desc">
             Buscador predictivo y acceso a las 17 especialidades técnicas en el Valle de Aburrá con precios algorítmicos sin redondeos.
@@ -1973,9 +2256,10 @@
         </div>
       </div>
 
-      <!-- ================= TELÉFONO 2: RADAR TÁCTICO & MONITOREO (IPHONE AIR) ================= -->
+      <!-- ================= TELÉFONO 2: RADAR TÁCTICO & MONITOREO ================= -->
       <div class="phone-card-wrap reveal-cascade stagger-2">
         <div class="phone-mockup">
+          <div class="phone-glare-overlay"></div>
           <div class="phone-screen">
             <div class="phone-status-bar">
               <span>9:41</span>
@@ -1989,13 +2273,13 @@
               </div>
             </div>
 
-            <img src="/assets/screenshots/app_screen_2_radar.png" alt="Captura Real de la App Rebuske en iPhone Air: Radar Táctico en Vivo" class="phone-real-screenshot" loading="lazy">
+            <img src="/assets/screenshots/app_screen_2_radar.png" alt="Captura Real de la App Rebuske: Radar Táctico en Vivo" class="phone-real-screenshot" loading="lazy">
             <div class="phone-home-indicator"></div>
           </div>
         </div>
 
         <div class="phone-caption-card">
-          <span class="phone-step-badge"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 10 10"/><path d="M12 12l7-7"/></svg> iPhone Air · Radar Táctico</span>
+          <span class="phone-step-badge"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 10 10"/><path d="M12 12l7-7"/></svg> Pantalla 2 · Radar Táctico</span>
           <h3 class="phone-caption-title">Despacho en Comunas</h3>
           <p class="phone-caption-desc">
             Seguimiento en tiempo real con geolocalización, tiempo estimado de llegada (&lt;35-45 min) y trazabilidad del técnico asignado.
@@ -2008,9 +2292,10 @@
         </div>
       </div>
 
-      <!-- ================= TELÉFONO 3: BÓVEDA WOMPI ESCROW (IPHONE AIR) ================= -->
+      <!-- ================= TELÉFONO 3: BÓVEDA WOMPI ESCROW ================= -->
       <div class="phone-card-wrap reveal-cascade stagger-3">
         <div class="phone-mockup">
+          <div class="phone-glare-overlay"></div>
           <div class="phone-screen">
             <div class="phone-status-bar">
               <span>9:41</span>
@@ -2024,13 +2309,13 @@
               </div>
             </div>
 
-            <img src="/assets/screenshots/app_screen_3_wompi.png" alt="Captura Real de la App Rebuske en iPhone Air: Bóveda Wompi Bancolombia" class="phone-real-screenshot" loading="lazy">
+            <img src="/assets/screenshots/app_screen_3_wompi.png" alt="Captura Real de la App Rebuske: Bóveda Wompi Bancolombia" class="phone-real-screenshot" loading="lazy">
             <div class="phone-home-indicator"></div>
           </div>
         </div>
 
         <div class="phone-caption-card">
-          <span class="phone-step-badge" style="color:#FFFA70;border-color:rgba(255,250,112,0.3);background:rgba(255,250,112,0.1);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></svg> iPhone Air · Bóveda Wompi</span>
+          <span class="phone-step-badge" style="color:#FFFA70;border-color:rgba(255,250,112,0.3);background:rgba(255,250,112,0.1);"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></svg> Pantalla 3 · Bóveda Wompi</span>
           <h3 class="phone-caption-title">Custodia Bancolombia Escrow</h3>
           <p class="phone-caption-desc">
             Tu dinero reposa en custodia bancaria blindada. Solo se desembolsa cuando verificas el trabajo y firmas el acta de garantía.
@@ -2043,9 +2328,10 @@
         </div>
       </div>
 
-      <!-- ================= TELÉFONO 4: BILLETERA PRO & CREDENCIAL QR (IPHONE AIR) ================= -->
+      <!-- ================= TELÉFONO 4: BILLETERA PRO & CREDENCIAL QR ================= -->
       <div class="phone-card-wrap reveal-cascade stagger-4">
         <div class="phone-mockup">
+          <div class="phone-glare-overlay"></div>
           <div class="phone-screen">
             <div class="phone-status-bar">
               <span>9:41</span>
@@ -2059,13 +2345,13 @@
               </div>
             </div>
 
-            <img src="/assets/screenshots/app_screen_4_billetera.png" alt="Captura Real de la App Rebuske en iPhone Air: Billetera Pro y Credencial" class="phone-real-screenshot" loading="lazy">
+            <img src="/assets/screenshots/app_screen_4_billetera.png" alt="Captura Real de la App Rebuske: Billetera Pro y Credencial" class="phone-real-screenshot" loading="lazy">
             <div class="phone-home-indicator"></div>
           </div>
         </div>
 
         <div class="phone-caption-card">
-          <span class="phone-step-badge"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M2 10h20"/><circle cx="16" cy="14" r="1.5"/></svg> iPhone Air · Billetera Pro</span>
+          <span class="phone-step-badge"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M2 10h20"/><circle cx="16" cy="14" r="1.5"/></svg> Pantalla 4 · Billetera Pro</span>
           <h3 class="phone-caption-title">93% Neto Cada 4 Días</h3>
           <p class="phone-caption-desc">
             Plataforma ética para el trabajador técnico: retiene hasta el 93% neto de sus ingresos con dispersión directa a Nequi o cuenta bancaria.
@@ -2156,6 +2442,102 @@
       </div>
     </div>
   </section>
+
+  <!-- ==========================================================================
+       4.1 SIMULADOR INTERACTIVO DE AHORRO Y DIGNIFICACIÓN TÉCNICA
+       ========================================================================== -->
+  
+  <!-- ==========================================================================
+       SIMULADOR INTERACTIVO DE AHORRO Y DIGNIFICACIÓN TÉCNICA
+       ========================================================================== -->
+  <section class="section-wrap" id="simulador-tecnico" style="padding-top: 50px; padding-bottom: 50px;">
+    <div class="sec-header reveal-cascade" style="text-align: center; max-width: 820px; margin: 0 auto 32px;">
+      <span class="badge-pill" style="margin-bottom: 12px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="20" height="14" rx="2"/><path d="M2 10h20"/><circle cx="16" cy="14" r="1.5"/></svg> Simulador de Ahorro y Dignificación
+      </span>
+      <h2 class="sec-title" style="font-size: clamp(26px, 4vw, 38px); line-height: 1.15; margin-bottom: 14px; text-align: center;">
+        ¿Cuánto Ganas Netamente con Rebuske?
+      </h2>
+      <p class="sec-desc" style="font-size: 16px; color: var(--mut); line-height: 1.6; text-align: center !important; margin: 0 auto 20px auto !important; max-width: 780px; display: block;">
+        Compara la retención de intermediarios tradicionales (20%-30%) frente a las comisiones justas de Rebuske en Medellín. Tu mano de obra se respeta con dispersión bancaria directa cada 4 días:
+      </p>
+    </div>
+
+    <div class="sim-card-wrap reveal-cascade stagger-1">
+      <div class="sim-box">
+        <!-- Control de Facturación Mensual -->
+        <div class="sim-header-row">
+          <div>
+            <label for="simBillingRange" class="sim-label">Tus Ingresos Mensuales Estimados por Labores:</label>
+            <div class="sim-amount-display" id="simBillingValText">$3.500.000 COP</div>
+          </div>
+          <span class="sim-disp-tag">Dispersión Nequi / Bancolombia Cada 4 Días</span>
+        </div>
+
+        <input type="range" id="simBillingRange" class="sim-range-slider" min="1000000" max="8000000" step="100000" value="3500000" oninput="actualizarSimuladorWeb()">
+
+        <!-- Selector de Categorías -->
+        <div class="sim-cats-label">Selecciona tu categoría en Rebuske:</div>
+        <div class="sim-tier-selector">
+          <button type="button" class="sim-tier-btn active" data-rate="0.07" data-net="0.93" data-name="Placa Oro" onclick="seleccionarTierSim(this)">
+            <span class="sim-tier-badge" style="background:rgba(255,250,112,0.15);color:#FFFA70;">7% Com.</span>
+            <strong>Placa Oro (93% Neto)</strong>
+          </button>
+          <button type="button" class="sim-tier-btn" data-rate="0.08" data-net="0.92" data-name="Placa Plata" onclick="seleccionarTierSim(this)">
+            <span class="sim-tier-badge">8% Com.</span>
+            <strong>Placa Plata (92% Neto)</strong>
+          </button>
+          <button type="button" class="sim-tier-btn" data-rate="0.09" data-net="0.91" data-name="Placa Bronce" onclick="seleccionarTierSim(this)">
+            <span class="sim-tier-badge">9% Com.</span>
+            <strong>Placa Bronce (91% Neto)</strong>
+          </button>
+          <button type="button" class="sim-tier-btn promo" data-rate="0.01" data-net="0.99" data-name="Mes 1 Fundador" onclick="seleccionarTierSim(this)">
+            <span class="sim-tier-badge" style="background:#B8FF3B;color:#0C120A;">1% Com.</span>
+            <strong>Mes 1 Fundador (99% Neto)</strong>
+          </button>
+        </div>
+
+        <!-- Resultados en Grid -->
+        <div class="sim-results-grid">
+          <div class="sim-result-card highlight">
+            <span class="sim-res-kicker">Tu Ingreso Neto en Rebuske</span>
+            <div class="sim-res-value" id="simNetValText">$3.255.000 COP</div>
+            <span class="sim-res-sub" id="simNetDescText">Te quedas con el 93% neto de cada trabajo</span>
+          </div>
+
+          <div class="sim-result-card">
+            <span class="sim-res-kicker">Dispersión Cada 4 Días</span>
+            <div class="sim-res-value" id="simPayoutText">~$465.000 COP</div>
+            <span class="sim-res-sub">Aprox. 7 u 8 pagos al mes en tu cuenta</span>
+          </div>
+
+          <div class="sim-result-card alert">
+            <span class="sim-res-kicker">Otras Apps Tradicionales (25%)</span>
+            <div class="sim-res-value" id="simTradLossText">-$875.000 COP</div>
+            <span class="sim-res-sub">Comisiones abusivas retenidas por mes</span>
+          </div>
+
+          <div class="sim-result-card gold">
+            <span class="sim-res-kicker">Ahorro Anual con Rebuske</span>
+            <div class="sim-res-value" id="simYearSavingsText">+$7.560.000 COP</div>
+            <span class="sim-res-sub">Dinero que se queda en tu hogar al año</span>
+          </div>
+        </div>
+
+        <!-- CTA del Simulador -->
+        <div class="sim-footer-row">
+          <p class="sim-guarantee-note">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></svg> Fondos asegurados en Bóveda Wompi (Bancolombia) antes de iniciar labores. Cero deudas, cero moras.
+          </p>
+          <a href="/registro/tecnico" class="btn-hero-primary" style="text-decoration:none;">
+            <span>Asegurar Mi Cupo al 99% Neto (Mes 1)</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+  
 
   <!-- ==========================================================================
        5. QUIÉNES SOMOS (CAMILO ESCOBAR, DIGNIDAD TÉCNICA 93%, WOMPI ESCROW)
@@ -2255,7 +2637,7 @@
     <!-- Grid de tarjetas compactas de servicios con desplegable al hover -->
     <div class="srv-compact-grid" id="srvCompactGrid">
       
-        <article class="srv-compact-card" data-group="hogar" data-id="limpieza" tabindex="0">
+        <article class="srv-compact-card" data-group="hogar" data-id="limpieza" tabindex="0" onclick="toggleSrvCard(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSrvCard(this)">
           <div class="srv-card-main">
             <div class="srv-icon-badge">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l2.4 5 5.6.8-4 4 1 5.6-5-2.6-5 2.6 1-5.6-4-4 5.6-.8z"/><path d="M19 19l2 2M5 19l-2 2"/></svg>
@@ -2264,7 +2646,7 @@
               <div class="srv-num-tag">1. Limpieza y Aseo</div>
               <div class="srv-price-base">desde $82.540 COP</div>
             </div>
-            <div class="srv-chevron-wrap" title="Pasa el mouse para ver labores">
+            <div class="srv-chevron-wrap" title="Clic o pasar mouse para ver labores">
               <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
             </div>
           </div>
@@ -2322,7 +2704,7 @@
           </div>
         </article>
       
-        <article class="srv-compact-card" data-group="hogar" data-id="plomeria" tabindex="0">
+        <article class="srv-compact-card" data-group="hogar" data-id="plomeria" tabindex="0" onclick="toggleSrvCard(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSrvCard(this)">
           <div class="srv-card-main">
             <div class="srv-icon-badge">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 6.5a4 4 0 0 0 5 5L12 19l-3-3 7.5-7.5z"/><path d="M6 18l-3 3M9 15l-2 2"/></svg>
@@ -2331,7 +2713,7 @@
               <div class="srv-num-tag">2. Plomería y Redes Hidráulicas</div>
               <div class="srv-price-base">desde $62.840 COP</div>
             </div>
-            <div class="srv-chevron-wrap" title="Pasa el mouse para ver labores">
+            <div class="srv-chevron-wrap" title="Clic o pasar mouse para ver labores">
               <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
             </div>
           </div>
@@ -2389,7 +2771,7 @@
           </div>
         </article>
       
-        <article class="srv-compact-card" data-group="hogar" data-id="electricidad" tabindex="0">
+        <article class="srv-compact-card" data-group="hogar" data-id="electricidad" tabindex="0" onclick="toggleSrvCard(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSrvCard(this)">
           <div class="srv-card-main">
             <div class="srv-icon-badge">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg>
@@ -2398,7 +2780,7 @@
               <div class="srv-num-tag">3. Electricidad Residencial y Comercial</div>
               <div class="srv-price-base">desde $52.540 COP</div>
             </div>
-            <div class="srv-chevron-wrap" title="Pasa el mouse para ver labores">
+            <div class="srv-chevron-wrap" title="Clic o pasar mouse para ver labores">
               <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
             </div>
           </div>
@@ -2456,7 +2838,7 @@
           </div>
         </article>
       
-        <article class="srv-compact-card" data-group="hogar" data-id="pintura" tabindex="0">
+        <article class="srv-compact-card" data-group="hogar" data-id="pintura" tabindex="0" onclick="toggleSrvCard(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSrvCard(this)">
           <div class="srv-card-main">
             <div class="srv-icon-badge">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="6" rx="2"/><path d="M19 9v3a2 2 0 0 1-2 2h-5v7a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-7H4"/></svg>
@@ -2465,7 +2847,7 @@
               <div class="srv-num-tag">4. Pintura y Acabados de Muros</div>
               <div class="srv-price-base">desde $56.740 COP</div>
             </div>
-            <div class="srv-chevron-wrap" title="Pasa el mouse para ver labores">
+            <div class="srv-chevron-wrap" title="Clic o pasar mouse para ver labores">
               <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
             </div>
           </div>
@@ -2523,7 +2905,7 @@
           </div>
         </article>
       
-        <article class="srv-compact-card" data-group="hogar" data-id="carpinteria" tabindex="0">
+        <article class="srv-compact-card" data-group="hogar" data-id="carpinteria" tabindex="0" onclick="toggleSrvCard(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSrvCard(this)">
           <div class="srv-card-main">
             <div class="srv-icon-badge">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 3l3 3-10 10H8v-3L18 3z"/><path d="M14 7l3 3M4 21h16"/></svg>
@@ -2532,7 +2914,7 @@
               <div class="srv-num-tag">5. Carpintería y Ebanistería</div>
               <div class="srv-price-base">desde $64.820 COP</div>
             </div>
-            <div class="srv-chevron-wrap" title="Pasa el mouse para ver labores">
+            <div class="srv-chevron-wrap" title="Clic o pasar mouse para ver labores">
               <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
             </div>
           </div>
@@ -2590,7 +2972,7 @@
           </div>
         </article>
       
-        <article class="srv-compact-card" data-group="hogar" data-id="cerrajeria" tabindex="0">
+        <article class="srv-compact-card" data-group="hogar" data-id="cerrajeria" tabindex="0" onclick="toggleSrvCard(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSrvCard(this)">
           <div class="srv-card-main">
             <div class="srv-icon-badge">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1.5"/></svg>
@@ -2599,7 +2981,7 @@
               <div class="srv-num-tag">6. Cerrajería y Seguridad</div>
               <div class="srv-price-base">desde $63.480 COP</div>
             </div>
-            <div class="srv-chevron-wrap" title="Pasa el mouse para ver labores">
+            <div class="srv-chevron-wrap" title="Clic o pasar mouse para ver labores">
               <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
             </div>
           </div>
@@ -2657,7 +3039,7 @@
           </div>
         </article>
       
-        <article class="srv-compact-card" data-group="hogar" data-id="jardineria" tabindex="0">
+        <article class="srv-compact-card" data-group="hogar" data-id="jardineria" tabindex="0" onclick="toggleSrvCard(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSrvCard(this)">
           <div class="srv-card-main">
             <div class="srv-icon-badge">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 20A7 7 0 0 1 4 13C4 8 11 2 11 2s7 6 7 11a7 7 0 0 1-7 7z"/><path d="M11 2v18"/></svg>
@@ -2666,7 +3048,7 @@
               <div class="srv-num-tag">7. Jardinería y Exteriores</div>
               <div class="srv-price-base">desde $58.340 COP</div>
             </div>
-            <div class="srv-chevron-wrap" title="Pasa el mouse para ver labores">
+            <div class="srv-chevron-wrap" title="Clic o pasar mouse para ver labores">
               <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
             </div>
           </div>
@@ -2724,7 +3106,7 @@
           </div>
         </article>
       
-        <article class="srv-compact-card" data-group="hogar" data-id="construccion" tabindex="0">
+        <article class="srv-compact-card" data-group="hogar" data-id="construccion" tabindex="0" onclick="toggleSrvCard(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSrvCard(this)">
           <div class="srv-card-main">
             <div class="srv-icon-badge">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="12" y1="4" x2="12" y2="12"/><line x1="7" y1="12" x2="7" y2="20"/><line x1="17" y1="12" x2="17" y2="20"/></svg>
@@ -2733,7 +3115,7 @@
               <div class="srv-num-tag">8. Construcción y Remodelación</div>
               <div class="srv-price-base">desde $68.450 COP</div>
             </div>
-            <div class="srv-chevron-wrap" title="Pasa el mouse para ver labores">
+            <div class="srv-chevron-wrap" title="Clic o pasar mouse para ver labores">
               <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
             </div>
           </div>
@@ -2791,7 +3173,7 @@
           </div>
         </article>
       
-        <article class="srv-compact-card" data-group="transporte" data-id="mudanzas" tabindex="0">
+        <article class="srv-compact-card" data-group="transporte" data-id="mudanzas" tabindex="0" onclick="toggleSrvCard(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSrvCard(this)">
           <div class="srv-card-main">
             <div class="srv-icon-badge">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
@@ -2800,7 +3182,7 @@
               <div class="srv-num-tag">9. Mudanzas y Transporte</div>
               <div class="srv-price-base">desde $84.320 COP</div>
             </div>
-            <div class="srv-chevron-wrap" title="Pasa el mouse para ver labores">
+            <div class="srv-chevron-wrap" title="Clic o pasar mouse para ver labores">
               <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
             </div>
           </div>
@@ -2858,7 +3240,7 @@
           </div>
         </article>
       
-        <article class="srv-compact-card" data-group="tecnologia" data-id="electrodomesticos" tabindex="0">
+        <article class="srv-compact-card" data-group="tecnologia" data-id="electrodomesticos" tabindex="0" onclick="toggleSrvCard(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSrvCard(this)">
           <div class="srv-card-main">
             <div class="srv-icon-badge">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="4" y1="10" x2="20" y2="10"/><circle cx="8" cy="6" r="1"/><circle cx="8" cy="15" r="1"/></svg>
@@ -2867,7 +3249,7 @@
               <div class="srv-num-tag">10. Electrodomésticos y Refrigeración</div>
               <div class="srv-price-base">desde $72.640 COP</div>
             </div>
-            <div class="srv-chevron-wrap" title="Pasa el mouse para ver labores">
+            <div class="srv-chevron-wrap" title="Clic o pasar mouse para ver labores">
               <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
             </div>
           </div>
@@ -2925,7 +3307,7 @@
           </div>
         </article>
       
-        <article class="srv-compact-card" data-group="tecnologia" data-id="tecnologia" tabindex="0">
+        <article class="srv-compact-card" data-group="tecnologia" data-id="tecnologia" tabindex="0" onclick="toggleSrvCard(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSrvCard(this)">
           <div class="srv-card-main">
             <div class="srv-icon-badge">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
@@ -2934,7 +3316,7 @@
               <div class="srv-num-tag">11. Tecnología e Instalación</div>
               <div class="srv-price-base">desde $54.380 COP</div>
             </div>
-            <div class="srv-chevron-wrap" title="Pasa el mouse para ver labores">
+            <div class="srv-chevron-wrap" title="Clic o pasar mouse para ver labores">
               <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
             </div>
           </div>
@@ -2992,7 +3374,7 @@
           </div>
         </article>
       
-        <article class="srv-compact-card" data-group="transporte" data-id="automoviles" tabindex="0">
+        <article class="srv-compact-card" data-group="transporte" data-id="automoviles" tabindex="0" onclick="toggleSrvCard(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSrvCard(this)">
           <div class="srv-card-main">
             <div class="srv-icon-badge">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 11l2-5h10l2 5"/><rect x="3" y="11" width="18" height="7" rx="2"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>
@@ -3001,7 +3383,7 @@
               <div class="srv-num-tag">12. Automóviles y Motos</div>
               <div class="srv-price-base">desde $58.740 COP</div>
             </div>
-            <div class="srv-chevron-wrap" title="Pasa el mouse para ver labores">
+            <div class="srv-chevron-wrap" title="Clic o pasar mouse para ver labores">
               <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
             </div>
           </div>
@@ -3059,7 +3441,7 @@
           </div>
         </article>
       
-        <article class="srv-compact-card" data-group="digital" data-id="digital" tabindex="0">
+        <article class="srv-compact-card" data-group="digital" data-id="digital" tabindex="0" onclick="toggleSrvCard(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSrvCard(this)">
           <div class="srv-card-main">
             <div class="srv-icon-badge">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 17l6-6-6-6"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
@@ -3068,7 +3450,7 @@
               <div class="srv-num-tag">13. Diseño, Tecnología y Servicios Digitales</div>
               <div class="srv-price-base">desde $64.290 COP</div>
             </div>
-            <div class="srv-chevron-wrap" title="Pasa el mouse para ver labores">
+            <div class="srv-chevron-wrap" title="Clic o pasar mouse para ver labores">
               <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
             </div>
           </div>
@@ -3126,7 +3508,7 @@
           </div>
         </article>
       
-        <article class="srv-compact-card" data-group="educacion" data-id="educacion" tabindex="0">
+        <article class="srv-compact-card" data-group="educacion" data-id="educacion" tabindex="0" onclick="toggleSrvCard(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSrvCard(this)">
           <div class="srv-card-main">
             <div class="srv-icon-badge">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
@@ -3135,7 +3517,7 @@
               <div class="srv-num-tag">14. Clases y Educación</div>
               <div class="srv-price-base">desde $42.860 COP</div>
             </div>
-            <div class="srv-chevron-wrap" title="Pasa el mouse para ver labores">
+            <div class="srv-chevron-wrap" title="Clic o pasar mouse para ver labores">
               <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
             </div>
           </div>
@@ -3193,7 +3575,7 @@
           </div>
         </article>
       
-        <article class="srv-compact-card" data-group="bienestar" data-id="belleza" tabindex="0">
+        <article class="srv-compact-card" data-group="bienestar" data-id="belleza" tabindex="0" onclick="toggleSrvCard(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSrvCard(this)">
           <div class="srv-card-main">
             <div class="srv-icon-badge">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>
@@ -3202,7 +3584,7 @@
               <div class="srv-num-tag">15. Belleza y Cuidado Personal</div>
               <div class="srv-price-base">desde $38.450 COP</div>
             </div>
-            <div class="srv-chevron-wrap" title="Pasa el mouse para ver labores">
+            <div class="srv-chevron-wrap" title="Clic o pasar mouse para ver labores">
               <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
             </div>
           </div>
@@ -3260,7 +3642,7 @@
           </div>
         </article>
       
-        <article class="srv-compact-card" data-group="eventos" data-id="eventos" tabindex="0">
+        <article class="srv-compact-card" data-group="eventos" data-id="eventos" tabindex="0" onclick="toggleSrvCard(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSrvCard(this)">
           <div class="srv-card-main">
             <div class="srv-icon-badge">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
@@ -3269,7 +3651,7 @@
               <div class="srv-num-tag">16. Eventos y Protocolo</div>
               <div class="srv-price-base">desde $87.650 COP</div>
             </div>
-            <div class="srv-chevron-wrap" title="Pasa el mouse para ver labores">
+            <div class="srv-chevron-wrap" title="Clic o pasar mouse para ver labores">
               <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
             </div>
           </div>
@@ -3327,7 +3709,7 @@
           </div>
         </article>
       
-        <article class="srv-compact-card" data-group="profesional" data-id="profesionales" tabindex="0">
+        <article class="srv-compact-card" data-group="profesional" data-id="profesionales" tabindex="0" onclick="toggleSrvCard(this)" onkeydown="if(event.key==='Enter'||event.key===' ')toggleSrvCard(this)">
           <div class="srv-card-main">
             <div class="srv-icon-badge">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v20M5 7l7-3 7 3M2 13l3-6 3 6a3 3 0 0 1-6 0zM16 13l3-6 3 6a3 3 0 0 1-6 0z"/></svg>
@@ -3336,7 +3718,7 @@
               <div class="srv-num-tag">17. Servicios Profesionales y Legal</div>
               <div class="srv-price-base">desde $94.850 COP</div>
             </div>
-            <div class="srv-chevron-wrap" title="Pasa el mouse para ver labores">
+            <div class="srv-chevron-wrap" title="Clic o pasar mouse para ver labores">
               <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
             </div>
           </div>
@@ -3780,7 +4162,161 @@
       animObserver.observe(el);
     });
 
+    // ========================================================================
+    // TOGGLE ACORDEÓN COMPACTO DE SERVICIOS (EVITA DEFORMACIÓN DE GRILLA)
+    // ========================================================================
+    function toggleSrvCard(card) {
+      const isAlreadyOpen = card.classList.contains('is-open');
+      document.querySelectorAll('.srv-compact-card.is-open').forEach(c => {
+        if (c !== card) c.classList.remove('is-open');
+      });
+      card.classList.toggle('is-open', !isAlreadyOpen);
+    }
+
+    // ========================================================================
+    // SIMULADOR INTERACTIVO DE AHORRO Y DIGNIFICACIÓN TÉCNICA
+    // ========================================================================
+    let currentSimNetRate = 0.93; // 93% Oro VIP por defecto
+    let currentSimTierName = 'Placa Oro';
+
+    function seleccionarTierSim(btn) {
+      document.querySelectorAll('.sim-tier-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentSimNetRate = parseFloat(btn.getAttribute('data-net')) || 0.93;
+      currentSimTierName = btn.getAttribute('data-name') || 'Placa Oro';
+      actualizarSimuladorWeb();
+    }
+
+    function actualizarSimuladorWeb() {
+      const slider = document.getElementById('simBillingRange');
+      if (!slider) return;
+      const billing = parseInt(slider.value, 10) || 3500000;
+      
+      const fmt = (num) => '$' + Math.round(num).toLocaleString('es-CO');
+
+      const billingText = document.getElementById('simBillingValText');
+      if (billingText) billingText.textContent = fmt(billing) + ' COP';
+
+      const netRebuske = billing * currentSimNetRate;
+      const netText = document.getElementById('simNetValText');
+      if (netText) netText.textContent = fmt(netRebuske) + ' COP';
+
+      const netDesc = document.getElementById('simNetDescText');
+      if (netDesc) netDesc.textContent = 'Te quedas con el ' + Math.round(currentSimNetRate * 100) + '% neto en ' + currentSimTierName;
+
+      const payoutPerBatch = netRebuske / 7.5;
+      const payoutText = document.getElementById('simPayoutText');
+      if (payoutText) payoutText.textContent = '~' + fmt(payoutPerBatch) + ' COP';
+
+      const tradFee = billing * 0.25;
+      const tradText = document.getElementById('simTradLossText');
+      if (tradText) tradText.textContent = '-' + fmt(tradFee) + ' COP';
+
+      const monthlySavings = billing * (0.25 - (1 - currentSimNetRate));
+      const yearSavings = Math.max(0, monthlySavings * 12);
+      const yearSavingsText = document.getElementById('simYearSavingsText');
+      if (yearSavingsText) yearSavingsText.textContent = '+' + fmt(yearSavings) + ' COP';
+    }
+
+    // ========================================================================
+    // INTERACCIÓN TILT 3D EN LOS TELÉFONOS (MOCKUPS MÓVILES EN VIVO)
+    // ========================================================================
+    function init3DPhoneTilt() {
+      document.querySelectorAll('.phone-card-wrap').forEach(wrap => {
+        const mockup = wrap.querySelector('.phone-mockup');
+        if (!mockup) return;
+        wrap.addEventListener('mousemove', (e) => {
+          const rect = wrap.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          const rotX = ((y - centerY) / centerY) * -10;
+          const rotY = ((x - centerX) / centerX) * 10;
+          mockup.style.transform = 'perspective(1100px) rotateX(' + rotX.toFixed(2) + 'deg) rotateY(' + rotY.toFixed(2) + 'deg) scale3d(1.02, 1.02, 1.02)';
+          mockup.style.setProperty('--glare-x', ((x / rect.width) * 100) + '%');
+          mockup.style.setProperty('--glare-y', ((y / rect.height) * 100) + '%');
+        });
+        wrap.addEventListener('mouseleave', () => {
+          mockup.style.transform = 'perspective(1100px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+          mockup.style.transition = 'transform 0.45s cubic-bezier(0.16, 1, 0.3, 1)';
+        });
+        wrap.addEventListener('mouseenter', () => {
+          mockup.style.transition = 'transform 0.1s ease-out';
+        });
+      });
+    }
+
+    // ========================================================================
+    // LIENZO AMBIENTAL CINEMÁTICO: LUCIÉRNAGAS SUAVES (NO INVASIVAS ~10%)
+    // ========================================================================
+    function initWebCinematicCanvas() {
+      const canvas = document.getElementById('web-ambient-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let width = canvas.width = window.innerWidth;
+      let height = canvas.height = window.innerHeight;
+
+      window.addEventListener('resize', () => {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      }, { passive: true });
+
+      const fireflies = [];
+      const count = Math.min(Math.floor((width * height) / 36000), 20);
+
+      for (let i = 0; i < count; i++) {
+        fireflies.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          radius: Math.random() * 2.0 + 0.9,
+          baseAlpha: Math.random() * 0.35 + 0.25,
+          speedX: (Math.random() - 0.5) * 0.28,
+          speedY: (Math.random() - 0.5) * 0.28,
+          pulseSpeed: Math.random() * 0.02 + 0.012,
+          pulseOffset: Math.random() * Math.PI * 2,
+          color: Math.random() > 0.3 ? '#B8FF3B' : '#AFFF3E'
+        });
+      }
+
+      let time = 0;
+      function animate() {
+        ctx.clearRect(0, 0, width, height);
+        time += 0.02;
+
+        for (let i = 0; i < fireflies.length; i++) {
+          const f = fireflies[i];
+          f.x += f.speedX + Math.sin(time + f.pulseOffset) * 0.22;
+          f.y += f.speedY + Math.cos(time + f.pulseOffset) * 0.22;
+
+          if (f.x < -20) f.x = width + 20;
+          if (f.x > width + 20) f.x = -20;
+          if (f.y < -20) f.y = height + 20;
+          if (f.y > height + 20) f.y = -20;
+
+          const currentAlpha = f.baseAlpha + Math.sin(time * f.pulseSpeed * 60 + f.pulseOffset) * 0.22;
+          const clampedAlpha = Math.max(0.08, Math.min(0.85, currentAlpha));
+
+          const gradient = ctx.createRadialGradient(f.x, f.y, 0, f.x, f.y, f.radius * 6);
+          gradient.addColorStop(0, f.color);
+          gradient.addColorStop(0.35, 'rgba(184, 255, 59, 0.35)');
+          gradient.addColorStop(1, 'rgba(7, 11, 6, 0)');
+
+          ctx.beginPath();
+          ctx.arc(f.x, f.y, f.radius * 6, 0, Math.PI * 2);
+          ctx.fillStyle = gradient;
+          ctx.globalAlpha = clampedAlpha * 0.65;
+          ctx.fill();
+        }
+        requestAnimationFrame(animate);
+      }
+      animate();
+    }
+
     window.addEventListener('DOMContentLoaded', () => {
+      initWebCinematicCanvas();
+      init3DPhoneTilt();
+      actualizarSimuladorWeb();
       document.querySelectorAll('.mask-slide-inner').forEach(el => {
         const rect = el.getBoundingClientRect();
         if (rect.top < window.innerHeight) el.classList.add('is-visible');
