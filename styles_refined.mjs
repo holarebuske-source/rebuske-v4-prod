@@ -1,87 +1,38 @@
 export const REFINED_STYLES = `
 
 /* ==========================================================================
-   BURBUJA LOGO 3D ANIMADO Y REGLAS DE CENTRADO EXACTO
+   LUCIÉRNAGA 3D FLOTANTE (SIN CÍRCULO, PURA BIOLUMINISCENCIA NATURAL)
    ========================================================================== */
 .logo-3d-bubble {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 35%, rgba(184, 255, 59, 0.28), rgba(12, 18, 10, 0.95));
-  border: 1.5px solid rgba(184, 255, 59, 0.5);
-  box-shadow: 0 0 16px rgba(184, 255, 59, 0.35), inset 0 0 10px rgba(184, 255, 59, 0.2);
+  width: 42px;
+  height: 42px;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
+  overflow: visible !important;
   position: relative;
   flex-shrink: 0;
-  animation: logoBubbleFloat 3.6s ease-in-out infinite alternate;
+  animation: logoFireflyFloat 3.6s ease-in-out infinite alternate;
 }
 .logo-3d-img {
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   object-fit: contain;
-  filter: drop-shadow(0 0 8px rgba(184, 255, 59, 0.6));
+  filter: drop-shadow(0 0 10px rgba(184, 255, 59, 0.75));
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
 }
-@keyframes logoBubbleFloat {
-  0% { transform: translateY(0) scale(1); box-shadow: 0 0 14px rgba(184,255,59,0.3); }
-  50% { transform: translateY(-2px) scale(1.05); box-shadow: 0 0 22px rgba(184,255,59,0.6); }
-  100% { transform: translateY(0) scale(1); box-shadow: 0 0 14px rgba(184,255,59,0.3); }
+.logo-3d-bubble:hover .logo-3d-img {
+  transform: scale(1.12);
+  filter: drop-shadow(0 0 20px rgba(184, 255, 59, 0.95));
 }
-
-.sec-desc {
-  font-size: 16px !important;
-  color: var(--mut) !important;
-  max-width: 820px !important;
-  line-height: 1.6 !important;
-  text-align: center !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  margin-bottom: 20px !important;
-  display: block !important;
-}
-
-
-.phone-real-screenshot {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
-  display: block;
-  border-radius: 36px;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-}
-
-.phone-status-bar {
-  position: absolute !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  z-index: 5 !important;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, transparent 100%) !important;
-  padding: 8px 16px 4px !important;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 11px;
-  font-weight: 700;
-  color: #F4FBF1;
-}
-
-.phone-home-indicator {
-  position: absolute !important;
-  bottom: 8px !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
-  width: 100px !important;
-  height: 4px !important;
-  background: rgba(255, 255, 255, 0.5) !important;
-  border-radius: 4px !important;
-  z-index: 5 !important;
+@keyframes logoFireflyFloat {
+  0% { transform: translateY(0) scale(1); filter: drop-shadow(0 0 8px rgba(184,255,59,0.5)); }
+  50% { transform: translateY(-3px) scale(1.05); filter: drop-shadow(0 0 18px rgba(184,255,59,0.85)); }
+  100% { transform: translateY(0) scale(1); filter: drop-shadow(0 0 8px rgba(184,255,59,0.5)); }
 }
 
 
@@ -150,77 +101,114 @@ export const REFINED_STYLES = `
   gap: 20px;
 }
 
+/* ==========================================================================
+   CHASIS IPHONE AIR (TITANIO ULTRA DELGADO, MICRO-BISEL & DYNAMIC ISLAND MICRO)
+   ========================================================================== */
 .phone-mockup {
   position: relative;
   width: 100%;
-  max-width: 292px;
-  aspect-ratio: 9 / 18.8;
-  background: #060A07;
-  border-radius: 44px;
-  padding: 9px;
+  max-width: 288px;
+  aspect-ratio: 9 / 19.5;
+  background: #050806;
+  border-radius: 48px;
+  padding: 4px; /* Micro-bisel ultra delgado iPhone Air */
   box-shadow: 
-    0 24px 60px -12px rgba(0, 0, 0, 0.9),
-    0 0 0 1px rgba(255, 255, 255, 0.12),
-    0 0 35px rgba(184, 255, 59, 0.12),
+    0 28px 70px -12px rgba(0, 0, 0, 0.95),
+    0 0 0 1.5px rgba(244, 251, 241, 0.28),
+    0 0 0 3px rgba(184, 255, 59, 0.12),
+    0 0 35px rgba(184, 255, 59, 0.18),
     inset 0 0 2px 1px rgba(255, 255, 255, 0.25);
-  border: 4px solid #1C2B1A;
+  border: 2px solid rgba(244, 251, 241, 0.35); /* Chasis titanio satinado */
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  overflow: hidden;
+}
+
+.phone-mockup::before {
+  /* Bisel perimétrico de titanio aeroespacial iPhone Air */
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 48px;
+  pointer-events: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  z-index: 12;
 }
 
 .phone-mockup:hover {
   transform: translateY(-8px) scale(1.02);
   box-shadow: 
-    0 32px 70px -10px rgba(0, 0, 0, 0.95),
-    0 0 0 1px rgba(184, 255, 59, 0.4),
-    0 0 50px rgba(184, 255, 59, 0.25);
+    0 36px 80px -10px rgba(0, 0, 0, 0.98),
+    0 0 0 2px rgba(184, 255, 59, 0.6),
+    0 0 50px rgba(184, 255, 59, 0.3);
 }
 
 .phone-screen {
   position: relative;
   width: 100%;
   height: 100%;
-  background: #0B0F08;
-  border-radius: 36px;
+  background: #080C09;
+  border-radius: 44px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.phone-real-screenshot {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  border-radius: 44px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
 }
 
 .phone-status-bar {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 5 !important;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.2) 75%, transparent 100%) !important;
+  padding: 8px 18px 4px !important;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 8px 16px 2px;
   font-size: 11px;
   font-weight: 700;
   color: #F4FBF1;
-  z-index: 10;
+  pointer-events: none;
 }
 
 .phone-island {
-  width: 80px;
-  height: 18px;
+  width: 68px;
+  height: 13px;
   background: #000;
-  border-radius: 20px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 8px;
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
+  padding: 0 6px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12);
 }
 
 .phone-island-cam {
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
   background: #0F1713;
   border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .phone-island-sensor {
-  width: 4px;
-  height: 4px;
+  width: 3px;
+  height: 3px;
   background: #142217;
   border-radius: 50%;
 }
@@ -259,11 +247,16 @@ export const REFINED_STYLES = `
 }
 
 .phone-home-indicator {
-  width: 90px;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.35);
-  border-radius: 4px;
-  margin: 6px auto 3px;
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3.5px;
+  background: rgba(255, 255, 255, 0.55);
+  border-radius: 3px;
+  z-index: 6;
+  pointer-events: none;
 }
 
 /* COMPONENTES REALES DE LA APP EN LAS PANTALLAS */
