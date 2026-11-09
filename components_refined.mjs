@@ -50,10 +50,10 @@ export function generatePhoneScreensHTML() {
           <span class="phone-step-badge">${SVG_ICONS.search} Pantalla 1 · Catálogo Oficial</span>
           <h3 class="phone-caption-title">Exploración & Búsqueda Directa</h3>
           <p class="phone-caption-desc">
-            Buscador predictivo y acceso a las 17 especialidades técnicas en el Valle de Aburrá con precios algorítmicos sin redondeos.
+            Buscador predictivo y acceso a las 18 especialidades técnicas en el Valle de Aburrá con precios algorítmicos sin redondeos.
           </p>
           <div class="phone-caption-tags">
-            <span>17 Especialidades</span>
+            <span>18 Especialidades</span>
             <span>Precios Reales</span>
             <span>Ellas Construyen</span>
           </div>
@@ -188,7 +188,7 @@ export function generateUnifiedServicesAndTarifarioHTML() {
         Nuestros Servicios & Precios Transparentes de Referencia
       </h2>
       <p class="sec-desc" style="font-size: 16px; color: var(--mut); line-height: 1.6; text-align: center !important; margin: 0 auto 20px auto !important; max-width: 820px; display: block;">
-        Consulta las 17 especialidades disponibles en el Valle de Aburrá con precios algorítmicos no redondeados (Plomería, Electricidad, Cerrajería, Limpieza y Aseo y más). 
+        Consulta las 18 especialidades disponibles en el Valle de Aburrá con precios algorítmicos no redondeados (Plomería, Electricidad, Cerrajería, Limpieza, Mascotas y más). 
         <strong>Toca la flecha hacia abajo en cualquier especialidad para desplegar u ocultar sus labores y precios de referencia.</strong>
       </p>
     </div>
@@ -196,13 +196,14 @@ export function generateUnifiedServicesAndTarifarioHTML() {
     <!-- Buscador compacto en tiempo real -->
     <div class="srv-search-box">
       <span class="srv-search-icon">${SVG_ICONS.search}</span>
-      <input type="text" id="serviceSearch" class="srv-search-input" placeholder="Buscar especialidad o labor (ej: fuga, corto, nevera, chapa, pintura)..." oninput="filtrarServiciosCompactos()">
+      <input type="text" id="serviceSearch" class="srv-search-input" placeholder="Buscar especialidad o labor (ej: paseo perro, baño mascota, fuga, corto, nevera)..." oninput="filtrarServiciosCompactos()">
     </div>
 
     <!-- Filtros de categoría -->
     <div class="srv-filter-bar">
-      <button class="srv-filter-btn active" onclick="filtrarGrupoSrv('todos', this)">Todas las 17 Especialidades</button>
+      <button class="srv-filter-btn active" onclick="filtrarGrupoSrv('todos', this)">Todas las 18 Especialidades</button>
       <button class="srv-filter-btn" onclick="filtrarGrupoSrv('hogar', this)">Hogar & Reparaciones</button>
+      <button class="srv-filter-btn" onclick="filtrarGrupoSrv('mascotas', this)">Mascotas & Veterinaria</button>
       <button class="srv-filter-btn" onclick="filtrarGrupoSrv('educacion', this)">Educación & Clases</button>
       <button class="srv-filter-btn" onclick="filtrarGrupoSrv('tecnologia', this)">Tecnología & Electro</button>
       <button class="srv-filter-btn" onclick="filtrarGrupoSrv('transporte', this)">Transporte & Autos</button>
