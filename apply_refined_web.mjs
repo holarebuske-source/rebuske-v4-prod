@@ -5,7 +5,8 @@ import { CATEGORIES_DATA } from './categories_data_unrounded.mjs';
 import {
   generatePhoneScreensHTML,
   generateUnifiedServicesAndTarifarioHTML,
-  generateRestoredFooterHTML
+  generateRestoredFooterHTML,
+  generateQuienesSomosHTML
 } from './components_refined.mjs';
 import { REFINED_STYLES } from './styles_refined.mjs';
 
@@ -832,19 +833,24 @@ function buildEntradaHTML() {
   </div>
 
   <!-- ==========================================================================
-       1. BARRA SUPERIOR LIMPIA CON ACCESOS OFICIALES
+       1. BARRA SUPERIOR LIMPIA CON ACCESOS OFICIALES (LOGO 3D ANIMADO)
        ========================================================================== -->
   <header class="top-bar" id="topBar">
     <a href="/entrada" class="brand-logo" title="rebuske Medellín · Página Web Principal">
-      <span class="brand-logo-dot pulse-c" aria-hidden="true"></span>
-      <span class="brand-name">rebuske</span>
-      <span class="brand-tag">Medellín 2026</span>
+      <div class="logo-3d-bubble pulse-c" title="Luciérnaga Rebuske 3D">
+        <img src="/assets/icons/luciernaga_3d_animada.webp" alt="Luciérnaga 3D Rebuske" class="logo-3d-img">
+      </div>
+      <div style="display:flex;flex-direction:column;line-height:1.1;">
+        <span class="brand-name">rebuske</span>
+        <span class="brand-tag">Medellín 2026</span>
+      </div>
     </a>
     <nav class="top-actions" aria-label="Navegación unificada">
-      <a href="/entrada" class="btn-nav-link active" title="Página Web de Entrada">Página Web</a>
-      <a href="/app" class="btn-pill-primary sheen" title="Abrir la Aplicación rebuske">
-        <span>Abrir App</span>
-        ${SVG_ICONS.arrowRight}
+      <a href="#quienes-somos" class="btn-nav-link" title="Quiénes Somos · Conoce nuestra historia">Quiénes somos</a>
+      <a href="#nuestros-servicios" class="btn-nav-link" title="Qué Hacemos · 17 especialidades y tarifas">Qué hacemos</a>
+      <a href="#contacto" class="btn-pill-primary sheen" title="Contacto y Soporte Oficial">
+        <span>Contacto</span>
+        ${SVG_ICONS.phone}
       </a>
     </nav>
   </header>
@@ -900,9 +906,6 @@ function buildEntradaHTML() {
       </a>
       <a href="/registro/cliente" class="btn-hero-sec">
         <span>Registro Clientes VIP (Bono $15.000)</span>
-      </a>
-      <a href="/app" class="btn-hero-sec" style="border-color: rgba(184, 255, 59, 0.35);">
-        <span>Abrir App Web</span>
       </a>
     </div>
 
@@ -996,7 +999,12 @@ function buildEntradaHTML() {
   </section>
 
   <!-- ==========================================================================
-       5. NUESTROS SERVICIOS Y TARIFARIO OFICIAL UNIFICADOS (COMPACTO CON HOVER)
+       5. QUIÉNES SOMOS (CAMILO ESCOBAR, DIGNIDAD TÉCNICA 93%, WOMPI ESCROW)
+       ========================================================================== -->
+  ${generateQuienesSomosHTML()}
+
+  <!-- ==========================================================================
+       6. NUESTROS SERVICIOS Y TARIFARIO OFICIAL UNIFICADOS (COMPACTO CON HOVER)
        ========================================================================== -->
   <div id="tarifas" style="position:relative;top:-60px;"></div>
   ${generateUnifiedServicesAndTarifarioHTML()}
