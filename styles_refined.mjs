@@ -10,8 +10,8 @@ export const REFINED_STYLES = `
   width: 100vw;
   height: 100vh;
   pointer-events: none;
-  z-index: 0;
-  opacity: 0.55;
+  z-index: 50;
+  opacity: 0.92;
 }
 
 .dark-luxury-grain {
@@ -100,11 +100,12 @@ export const REFINED_STYLES = `
    SHOWCASE DE TELÉFONOS EN VIVO · PANTALLAS IDÉNTICAS A LA APP REAL
    ========================================================================== */
 .phones-showcase-section {
-  padding: 60px 20px 40px;
+  padding: 50px 20px 40px;
   position: relative;
-  z-index: 2;
+  z-index: 3;
   max-width: 1320px;
-  margin: 0 auto;
+  margin: -40px auto 0;
+  background: transparent;
 }
 
 .phones-grid {
@@ -1502,11 +1503,12 @@ html {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  overflow: hidden;
-  padding: 100px 24px 70px;
+  overflow-x: clip;
+  overflow-y: visible;
+  padding: 100px 24px 80px;
   background: 
-    radial-gradient(ellipse 65% 55% at 50% 45%, rgba(224, 112, 24, 0.22) 0%, rgba(184, 255, 59, 0.04) 45%, transparent 75%),
-    #050805;
+    radial-gradient(ellipse 70% 60% at 50% 30%, rgba(184, 255, 59, 0.12) 0%, rgba(78, 136, 57, 0.05) 50%, transparent 80%),
+    var(--ebano);
 }
 
 .hero-giant-watermark {
@@ -1557,9 +1559,9 @@ html {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(224, 112, 24, 0.12);
-  border: 1px solid rgba(224, 112, 24, 0.35);
-  color: #FFA552;
+  background: rgba(184, 255, 59, 0.10);
+  border: 1px solid rgba(184, 255, 59, 0.32);
+  color: var(--lima);
   font-size: 11.5px;
   font-weight: 800;
   letter-spacing: 0.04em;
@@ -1580,7 +1582,7 @@ html {
 }
 
 .hero-editorial-accent {
-  background: linear-gradient(135deg, #FFA552 0%, #FFD700 50%, #B8FF3B 100%);
+  background: linear-gradient(135deg, #B8FF3B 0%, #A3FF20 45%, #E2E8F0 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
@@ -1661,11 +1663,11 @@ html {
 
 .hero-portrait-glow-halo {
   position: absolute;
-  width: 380px;
-  height: 380px;
+  width: 400px;
+  height: 400px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(224, 112, 24, 0.35) 0%, rgba(184, 255, 59, 0.08) 50%, transparent 75%);
-  filter: blur(55px);
+  background: radial-gradient(circle, rgba(184, 255, 59, 0.32) 0%, rgba(78, 136, 57, 0.10) 50%, transparent 75%);
+  filter: blur(65px);
   z-index: 1;
   pointer-events: none;
 }
@@ -1678,9 +1680,9 @@ html {
   border-radius: 28px;
   overflow: hidden;
   box-shadow: 
-    0 24px 60px rgba(0, 0, 0, 0.9),
-    0 0 40px rgba(224, 112, 24, 0.25),
-    0 0 0 1px rgba(255, 255, 255, 0.12);
+    0 24px 60px rgba(0, 0, 0, 0.95),
+    0 0 50px rgba(184, 255, 59, 0.25),
+    0 0 0 1.5px rgba(184, 255, 59, 0.35);
   transition: transform 0.4s ease;
 }
 
@@ -1754,15 +1756,15 @@ html {
 }
 
 .hero-feature-card {
-  background: rgba(14, 22, 14, 0.8);
+  background: rgba(14, 22, 14, 0.82);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 22px;
   padding: 22px 24px;
   max-width: 360px;
   backdrop-filter: blur(14px);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(184, 255, 59, 0.12);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(184, 255, 59, 0.15);
   text-align: left;
-  border-top: 3px solid #FFA552;
+  border-top: 3px solid var(--lima);
 }
 
 .hero-feature-hd {
@@ -1775,11 +1777,11 @@ html {
 .hero-feature-pill {
   font-size: 11px;
   font-weight: 800;
-  color: #FFA552;
-  background: rgba(224, 112, 24, 0.12);
+  color: var(--lima);
+  background: rgba(184, 255, 59, 0.12);
   padding: 3px 9px;
   border-radius: 6px;
-  border: 1px solid rgba(224, 112, 24, 0.28);
+  border: 1px solid rgba(184, 255, 59, 0.30);
 }
 
 .hero-feature-dot {
@@ -1824,33 +1826,41 @@ html {
   flex-shrink: 0;
 }
 
-/* Transición suave hacia abajo (Sin saltos duros) */
+/* Transición suave hacia abajo: Difuminado e Imperceptible (Sin cortes ni líneas) */
 .hero-bottom-blend {
   position: absolute;
-  bottom: 0;
+  bottom: -2px;
   left: 0;
   right: 0;
-  height: 90px;
-  background: linear-gradient(to bottom, transparent 0%, rgba(12, 18, 10, 0.6) 50%, var(--ebano) 100%);
+  height: 280px;
+  background: linear-gradient(to bottom, 
+    rgba(12, 18, 10, 0) 0%, 
+    rgba(12, 18, 10, 0.04) 15%, 
+    rgba(12, 18, 10, 0.16) 35%, 
+    rgba(12, 18, 10, 0.45) 55%, 
+    rgba(12, 18, 10, 0.80) 75%, 
+    rgba(12, 18, 10, 0.96) 92%, 
+    var(--ebano) 100%
+  );
   pointer-events: none;
   z-index: 4;
 }
 
 .hero-smooth-scroll {
   position: absolute;
-  bottom: 20px;
+  bottom: 34px;
   left: 50%;
   transform: translateX(-50%);
   z-index: 5;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   text-decoration: none;
-  color: rgba(244, 251, 241, 0.6);
-  font-size: 10px;
+  color: rgba(244, 251, 241, 0.72);
+  font-size: 10.5px;
   font-weight: 700;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   transition: all 0.3s ease;
 }
@@ -1860,13 +1870,15 @@ html {
 }
 
 .scroll-track {
-  width: 20px;
-  height: 32px;
+  width: 22px;
+  height: 34px;
   border-radius: 12px;
-  border: 1.5px solid rgba(244, 251, 241, 0.3);
+  border: 1.5px solid rgba(184, 255, 59, 0.4);
+  background: rgba(12, 18, 10, 0.5);
+  backdrop-filter: blur(8px);
   display: flex;
   justify-content: center;
-  padding-top: 4px;
+  padding-top: 5px;
 }
 
 .scroll-pill {
@@ -1874,7 +1886,7 @@ html {
   height: 8px;
   border-radius: 2px;
   background: var(--lima);
-  box-shadow: 0 0 6px var(--lima);
+  box-shadow: 0 0 8px var(--lima), 0 0 16px rgba(184, 255, 59, 0.8);
   animation: scrollBob 2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
 }
 
