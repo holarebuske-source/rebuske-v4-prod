@@ -1,6 +1,33 @@
 export const REFINED_STYLES = `
 
 /* ==========================================================================
+   AMBIENTE CINEMÁTICO: LUCIÉRNAGAS WEB & ACABADO DARK LUXURY CON RUIDO
+   ========================================================================== */
+.web-ambient-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.55;
+}
+
+.dark-luxury-grain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.032;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  mix-blend-mode: screen;
+}
+
+/* ==========================================================================
    LUCIÉRNAGA 3D FLOTANTE (SIN CÍRCULO, PURA BIOLUMINISCENCIA NATURAL)
    ========================================================================== */
 .logo-3d-bubble {
@@ -99,10 +126,11 @@ export const REFINED_STYLES = `
   flex-direction: column;
   align-items: center;
   gap: 20px;
+  perspective: 1100px;
 }
 
 /* ==========================================================================
-   CHASIS IPHONE AIR (TITANIO ULTRA DELGADO, MICRO-BISEL & DYNAMIC ISLAND MICRO)
+   CHASIS DE TITANIO SATINADO ULTRA DELGADO (MICRO-BISEL & TILT 3D)
    ========================================================================== */
 .phone-mockup {
   position: relative;
@@ -111,7 +139,7 @@ export const REFINED_STYLES = `
   aspect-ratio: 9 / 19.5;
   background: #050806;
   border-radius: 48px;
-  padding: 4px; /* Micro-bisel ultra delgado iPhone Air */
+  padding: 4px; /* Micro-bisel ultra delgado */
   box-shadow: 
     0 28px 70px -12px rgba(0, 0, 0, 0.95),
     0 0 0 1.5px rgba(244, 251, 241, 0.28),
@@ -119,12 +147,29 @@ export const REFINED_STYLES = `
     0 0 35px rgba(184, 255, 59, 0.18),
     inset 0 0 2px 1px rgba(255, 255, 255, 0.25);
   border: 2px solid rgba(244, 251, 241, 0.35); /* Chasis titanio satinado */
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  transition: transform 0.12s ease-out, box-shadow 0.3s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
   overflow: hidden;
 }
 
+.phone-glare-overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: 48px;
+  background: radial-gradient(circle at var(--glare-x, 50%) var(--glare-y, 50%), rgba(255, 255, 255, 0.14) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 15;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.phone-mockup:hover .phone-glare-overlay {
+  opacity: 1;
+}
+
 .phone-mockup::before {
-  /* Bisel perimétrico de titanio aeroespacial iPhone Air */
+  /* Bisel perimétrico de titanio aeroespacial */
   content: '';
   position: absolute;
   top: 0;
@@ -138,7 +183,6 @@ export const REFINED_STYLES = `
 }
 
 .phone-mockup:hover {
-  transform: translateY(-8px) scale(1.02);
   box-shadow: 
     0 36px 80px -10px rgba(0, 0, 0, 0.98),
     0 0 0 2px rgba(184, 255, 59, 0.6),
@@ -830,6 +874,7 @@ export const REFINED_STYLES = `
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 20px;
+  align-items: start !important; /* CRITICAL: Evita que las tarjetas hermanas de la misma fila se estiren creando vacíos negros */
 }
 
 .srv-compact-card {
@@ -839,17 +884,26 @@ export const REFINED_STYLES = `
   border: 1px solid var(--glass-border);
   border-radius: 18px;
   padding: 16px 18px;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
   outline: none;
   position: relative;
+  height: auto !important;
+  align-self: start !important;
 }
 
-.srv-compact-card:hover, .srv-compact-card:focus-within {
+.srv-compact-card:hover {
   border-color: rgba(184, 255, 59, 0.45);
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5), 0 0 20px rgba(184, 255, 59, 0.14);
-  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.6), 0 0 16px rgba(184, 255, 59, 0.12);
+  transform: translateY(-2px);
   z-index: 10;
+}
+
+.srv-compact-card.is-open {
+  border-color: var(--lima) !important;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.75), 0 0 24px rgba(184, 255, 59, 0.22) !important;
+  background: rgba(15, 23, 14, 0.94) !important;
+  z-index: 15;
 }
 
 .srv-card-main {
@@ -872,7 +926,8 @@ export const REFINED_STYLES = `
   transition: all 0.25s ease;
 }
 
-.srv-compact-card:hover .srv-icon-badge {
+.srv-compact-card:hover .srv-icon-badge,
+.srv-compact-card.is-open .srv-icon-badge {
   background: var(--lima);
   color: #0C120A;
   transform: scale(1.05);
@@ -914,40 +969,60 @@ export const REFINED_STYLES = `
   flex-shrink: 0;
 }
 
-.srv-compact-card:hover .srv-chevron-wrap, .srv-compact-card:focus-within .srv-chevron-wrap {
+.srv-compact-card:hover .srv-chevron-wrap,
+.srv-compact-card:focus-within .srv-chevron-wrap,
+.srv-compact-card.is-open .srv-chevron-wrap {
   background: rgba(184, 255, 59, 0.2);
   color: var(--lima);
   transform: rotate(180deg);
 }
 
-/* DESPLEGABLE SUAVE AL HOVER */
+/* DESPLEGABLE COMPACTO Y CONTROLADO */
 .srv-dropdown-pane {
   max-height: 0;
   opacity: 0;
   overflow: hidden;
-  transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, margin-top 0.3s ease;
+  transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease, margin-top 0.25s ease;
   margin-top: 0;
 }
 
-.srv-compact-card:hover .srv-dropdown-pane, .srv-compact-card:focus-within .srv-dropdown-pane {
-  max-height: 480px;
+.srv-compact-card.is-open .srv-dropdown-pane,
+.srv-compact-card:hover .srv-dropdown-pane {
+  max-height: 320px;
   opacity: 1;
-  margin-top: 14px;
+  margin-top: 12px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
-  padding-top: 12px;
+  padding-top: 10px;
 }
 
 .srv-dropdown-desc {
-  font-size: 12.5px;
+  font-size: 12px;
   color: var(--mut);
-  line-height: 1.45;
-  margin-bottom: 12px;
+  line-height: 1.4;
+  margin-bottom: 10px;
 }
 
 .srv-dropdown-table {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
+  margin-bottom: 10px;
+  max-height: 180px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.srv-dropdown-table::-webkit-scrollbar {
+  width: 3.5px;
+}
+.srv-dropdown-table::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 4px;
+}
+.srv-dropdown-table::-webkit-scrollbar-thumb {
+  background: rgba(184, 255, 59, 0.45);
+  border-radius: 4px;
+}
   margin-bottom: 12px;
 }
 
@@ -1086,5 +1161,206 @@ export const REFINED_STYLES = `
   font-size: 12px;
   color: rgba(244, 251, 241, 0.5);
   gap: 12px;
+}
+
+/* ==========================================================================
+   SIMULADOR INTERACTIVO DE AHORRO Y DIGNIFICACIÓN TÉCNICA
+   ========================================================================== */
+.sim-card-wrap {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.sim-box {
+  background: var(--glass-surface);
+  border: 1px solid var(--glass-border-lima);
+  border-radius: 28px;
+  padding: 34px 32px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(184, 255, 59, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.sim-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.sim-label {
+  font-size: 14px;
+  color: var(--mut);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.sim-amount-display {
+  font-family: var(--font-title);
+  font-size: clamp(26px, 3.5vw, 36px);
+  font-weight: 800;
+  color: var(--lima);
+  letter-spacing: -0.5px;
+}
+
+.sim-disp-tag {
+  background: rgba(184, 255, 59, 0.1);
+  border: 1px solid rgba(184, 255, 59, 0.3);
+  color: var(--lima);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 999px;
+}
+
+.sim-range-slider {
+  width: 100%;
+  height: 8px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.12);
+  outline: none;
+  accent-color: var(--lima);
+  margin-bottom: 24px;
+  cursor: pointer;
+}
+
+.sim-cats-label {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--tinta);
+  margin-bottom: 12px;
+}
+
+.sim-tier-selector {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.sim-tier-btn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 14px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: var(--tinta);
+  font-family: var(--font-main);
+  font-size: 13px;
+}
+
+.sim-tier-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(184, 255, 59, 0.35);
+}
+
+.sim-tier-btn.active {
+  background: rgba(184, 255, 59, 0.12);
+  border-color: var(--lima);
+  color: var(--lima);
+  box-shadow: 0 0 16px rgba(184, 255, 59, 0.2);
+}
+
+.sim-tier-badge {
+  font-size: 11px;
+  font-weight: 800;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.sim-results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.sim-result-card {
+  background: rgba(10, 16, 9, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 16px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sim-result-card.highlight {
+  border-color: rgba(184, 255, 59, 0.5);
+  background: rgba(184, 255, 59, 0.06);
+}
+
+.sim-result-card.alert {
+  border-color: rgba(255, 99, 71, 0.3);
+  background: rgba(255, 99, 71, 0.05);
+}
+
+.sim-result-card.gold {
+  border-color: rgba(255, 250, 112, 0.4);
+  background: rgba(255, 250, 112, 0.06);
+}
+
+.sim-res-kicker {
+  font-size: 11.5px;
+  color: var(--mut);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.sim-res-value {
+  font-family: var(--font-title);
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--tinta);
+  margin-bottom: 4px;
+}
+
+.sim-result-card.highlight .sim-res-value {
+  color: var(--lima);
+}
+
+.sim-result-card.alert .sim-res-value {
+  color: #FF6B6B;
+}
+
+.sim-result-card.gold .sim-res-value {
+  color: #FFFA70;
+}
+
+.sim-res-sub {
+  font-size: 11px;
+  color: var(--mut);
+  line-height: 1.35;
+}
+
+.sim-footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sim-guarantee-note {
+  font-size: 12.5px;
+  color: var(--mut);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  max-width: 480px;
+}
+.sim-guarantee-note svg {
+  color: var(--lima);
+  flex-shrink: 0;
 }
 `;
