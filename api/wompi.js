@@ -65,7 +65,7 @@ async function syncTransactionToSupabase(record) {
         total_cop: record.totalCOP || (record.amountInCents ? record.amountInCents / 100 : 0),
         split_pro: record.splitPro || record.dianAccounting?.ingresoTerceroCOP || 0,
         split_rebuske: record.splitRebuske || record.dianAccounting?.comisionRebuskeCOP || 0,
-        protection_fee_cop: record.protectionFeeCOP || record.dianAccounting?.cuotaProteccionGarantia48h || 4900,
+        protection_fee_cop: record.protectionFeeCOP || record.dianAccounting?.cuotaProteccionGarantia48h || 0,
         pro_plan: record.proPlan || 'ORO',
         customer_email: record.customerEmail || null,
         customer_phone: record.customerPhone || null,
@@ -108,8 +108,8 @@ export default async function handler(req, res) {
     try {
       const { jobId, quoteAmount, couponCode, customerEmail, customerName, customerPhone } = body;
 
-      // Cuota de Pago Protegido y Garantía 48h (cubre 100% de la pasarela Wompi)
-      const protectionFeeCOP = 4900;
+      // Costos de pasarela Wompi y custodia asumidos 100% por Rebuske (cero recargos al cliente)
+      const protectionFeeCOP = 0;
 
       let subtotalCOP = Number(quoteAmount);
       if (!subtotalCOP || isNaN(subtotalCOP) || subtotalCOP <= 0) {
@@ -233,13 +233,13 @@ export default async function handler(req, res) {
       reference: reference || 'REB-MANDATO-' + Date.now().toString(36).toUpperCase(),
       jobId: 'SRV-001',
       totalCOP: 120000,
-      protectionFeeCOP: 4900,
+      protectionFeeCOP: 0,
       proPlan: 'ORO',
       status: 'APPROVED',
       createdAt: new Date().toISOString()
     };
 
-    const subtotal = tx.subtotalCOP || (tx.totalCOP ? tx.totalCOP - (tx.protectionFeeCOP || 4900) : 120000);
+    const subtotal = tx.subtotalCOP || (tx.totalCOP ? tx.totalCOP - (tx.protectionFeeCOP || 0) : 120000);
     const feeRate = tx.feeRate || TIER_FEES[tx.proPlan || 'ORO'] || 0.11;
     const ingresoTerceroCOP = tx.splitPro || tx.dianAccounting?.ingresoTerceroCOP || Math.round(subtotal * (1 - feeRate));
     const comisionRebuskeCOP = tx.splitRebuske || tx.dianAccounting?.comisionRebuskeCOP || (tx.totalCOP - ingresoTerceroCOP);
@@ -267,7 +267,7 @@ export default async function handler(req, res) {
         fecha: tx.approvedAt || tx.createdAt || new Date().toISOString(),
         estado: tx.status,
         moneda: 'COP',
-        totalPagadoCliente: tx.totalCOP || (subtotal + 4900)
+        totalPagadoCliente: tx.totalCOP || subtotal
       },
       desgloseMandato: {
         subtotalServicioTecnico: subtotal,
@@ -276,7 +276,7 @@ export default async function handler(req, res) {
         cuentaContableTercero: '2815_INGRESOS_RECIBIDOS_PARA_TERCEROS',
         comisionTecnologicaRebuske: comisionRebuskeCOP,
         porcentajeComisionRebuske: `${Math.round(feeRate * 100)}%`,
-        cuotaProteccionGarantia48h: tx.protectionFeeCOP || 4900,
+        cuotaProteccionGarantia48h: tx.protectionFeeCOP || 0,
         cuentaContableComision: '4160_INGRESOS_POR_CORRETAJE_Y_PLATAFORMA',
         baseGravableIVA: comisionRebuskeCOP,
         ivaGenerado: 0
@@ -459,7 +459,7 @@ export default async function handler(req, res) {
           porcentajeComision: `${Math.round(feeRate * 100)}%`,
           porcentajeTecnico: `${Math.round((1 - feeRate) * 100)}%`,
           subtotalCotizado: subtotal,
-          cuotaProteccionGarantia48h: existing?.protectionFeeCOP || 4900,
+          cuotaProteccionGarantia48h: existing?.protectionFeeCOP || 0,
           ingresoTerceroCOP: splitPro,
           cuentaIngresoTercero: '2815_INGRESOS_RECIBIDOS_PARA_TERCEROS',
           comisionRebuskeCOP: splitRebuske,
