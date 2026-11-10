@@ -337,6 +337,170 @@ textarea{resize:none}
     transition: transform 0.18s cubic-bezier(0.16,1,0.3,1), box-shadow 0.2s, background 0.2s !important;
   }
 
+  /* ========================================================================== */
+  /* SISTEMA DE NEGOCIACIÓN EN TIEMPO REAL ESTILO INDRIVE (+ / -)               */
+  /* ========================================================================== */
+  .indrive-neg-card {
+    margin: 10px 0 14px;
+    padding: 14px 16px;
+    background: rgba(18, 28, 15, 0.92);
+    border: 1.5px solid rgba(184, 255, 59, 0.45);
+    border-radius: 18px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45), 0 0 20px rgba(184, 255, 59, 0.14);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+  .indrive-neg-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #B8FF3B, transparent);
+  }
+  .indrive-neg-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .indrive-neg-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11.5px;
+    font-weight: 800;
+    color: #B8FF3B;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .indrive-pulse-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #B8FF3B;
+    box-shadow: 0 0 10px #B8FF3B;
+    animation: indrivePulse 1.6s ease-in-out infinite;
+  }
+  @keyframes indrivePulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.35); opacity: 0.5; }
+  }
+  .indrive-stepper-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    background: rgba(12, 18, 10, 0.75);
+    padding: 10px 14px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  .indrive-step-btn {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(184, 255, 59, 0.2), rgba(78, 136, 57, 0.4));
+    border: 1.5px solid #B8FF3B;
+    color: #B8FF3B;
+    font-size: 26px;
+    font-weight: 900;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    transition: transform 0.12s, background 0.15s, box-shadow 0.15s;
+    user-select: none;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  .indrive-step-btn:hover {
+    transform: scale(1.08);
+    background: rgba(184, 255, 59, 0.32);
+    box-shadow: 0 0 16px rgba(184, 255, 59, 0.45);
+  }
+  .indrive-step-btn:active {
+    transform: scale(0.92);
+  }
+  .indrive-step-btn.minus {
+    color: #FFFA70;
+    border-color: rgba(255, 250, 112, 0.6);
+    background: linear-gradient(135deg, rgba(255, 250, 112, 0.12), rgba(60, 60, 20, 0.35));
+  }
+  .indrive-amount-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    text-align: center;
+    min-width: 0;
+  }
+  .indrive-amount-val {
+    font-size: 28px;
+    font-weight: 900;
+    color: #F4FBF1;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    text-shadow: 0 0 12px rgba(184, 255, 59, 0.3);
+    transition: transform 0.15s, color 0.15s;
+  }
+  .indrive-amount-val.bump {
+    transform: scale(1.1);
+    color: #B8FF3B;
+  }
+  .indrive-amount-sub {
+    font-size: 11px;
+    color: rgba(244, 251, 241, 0.65);
+    margin-top: 3px;
+    display: block;
+  }
+  .indrive-chips-row {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .indrive-quick-pill {
+    padding: 6px 12px;
+    border-radius: 100px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    color: #E6F3E2;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .indrive-quick-pill:hover {
+    background: rgba(184, 255, 59, 0.14);
+    border-color: #B8FF3B;
+    color: #B8FF3B;
+  }
+  .indrive-quick-pill:active {
+    transform: scale(0.94);
+  }
+  .indrive-actions-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 4px;
+  }
+  .indrive-offer-bubble {
+    border: 1.5px solid rgba(184, 255, 59, 0.45) !important;
+    background: rgba(22, 36, 19, 0.95) !important;
+    border-radius: 16px !important;
+    padding: 12px 14px !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35) !important;
+  }
+  .indrive-offer-bubble-actions {
+    display: flex;
+    gap: 6px;
+    margin-top: 8px;
+    padding-top: 6px;
+    border-top: 1px dashed rgba(184, 255, 59, 0.25);
+  }
+
 
 </style>
 
@@ -378,22 +542,22 @@ const val=id=>{const el=document.getElementById(id);return el?el.value.trim():''
 const com=nv=>nv==='Oro'?.06:.07;
 const CATS = [
   ['Limpieza y Aseo', 'home'],
-  ['Plomería', 'tool'],
-  ['Electricidad', 'tool'],
+  ['Plomería y Redes Hidráulicas', 'tool'],
+  ['Electricidad Residencial', 'tool'],
   ['Pintura y Acabados', 'tool'],
-  ['Carpintería', 'tool'],
+  ['Carpintería y Ebanistería', 'tool'],
   ['Cerrajería y Seguridad', 'shield'],
   ['Jardinería y Exteriores', 'home'],
   ['Construcción y Remodelación', 'tool'],
   ['Mudanzas y Transporte', 'bag'],
   ['Electrodomésticos', 'tool'],
-  ['Tecnología e Instalación', 'shield'],
-  ['Automóviles', 'pin'],
-  ['Diseño y Servicios Digitales', 'star'],
+  ['Chef Privado a Domicilio', 'star'],
+  ['Automóviles y Motos', 'pin'],
+  ['Servicios Digitales', 'star'],
   ['Clases y Educación (Música & Refuerzo)', 'user'],
   ['Belleza y Cuidado Personal', 'user'],
-  ['Eventos y Celebraciones', 'star'],
-  ['Servicios Profesionales', 'wallet'],
+  ['Eventos y Protocolo', 'star'],
+  ['Servicios Profesionales (Especializados)', 'wallet'],
   ['Cuidado de Mascotas & Veterinaria', 'user']
 ];
 const ZONAS=['Laureles','El Poblado','Belén','Centro','Envigado','Zona Norte','Aeropuerto'];
@@ -403,6 +567,96 @@ const CAT_REF_PRECIOS = {
     ['Aseo y limpieza doméstica', '50.000 – 120.000'],
     ['Asistencia vehicular & motos', '35.000 – 140.000'],
     ['Cuidado de mascotas & paseo', '24.780 – 68.450']
+  ],
+  'Limpieza y Aseo': [
+    ['Limpieza profunda de hogares', '$82.540 COP'],
+    ['Lavado de muebles y sofás', '$74.820 COP'],
+    ['Limpieza fin de obra', '$142.380 COP']
+  ],
+  'Plomería y Redes Hidráulicas': [
+    ['Reparación fuga visible', '$62.840 COP'],
+    ['Destape de cañerías y sifones', '$68.920 COP'],
+    ['Detección de fugas (Geófono)', '$184.750 COP']
+  ],
+  'Electricidad Residencial': [
+    ['Reparación corto circuito', '$52.540 COP'],
+    ['Instalación lámparas LED', '$64.250 COP'],
+    ['Cableado estructurado', '$143.650 COP']
+  ],
+  'Pintura y Acabados': [
+    ['Pintura muro interior (m²)', '$18.420 COP'],
+    ['Pintura apartamento estándar', '$428.600 COP'],
+    ['Impermeabilización muros', '$112.450 COP']
+  ],
+  'Carpintería y Ebanistería': [
+    ['Ajuste puertas y bisagras', '$64.820 COP'],
+    ['Armado muebles modulares', '$78.340 COP'],
+    ['Repisas y estanterías a medida', '$134.750 COP']
+  ],
+  'Cerrajería y Seguridad': [
+    ['Apertura puerta residencial', '$63.480 COP'],
+    ['Cambio de guarda/cilindro', '$84.230 COP'],
+    ['Cerradura biométrica/digital', '$124.950 COP']
+  ],
+  'Jardinería y Exteriores': [
+    ['Poda de césped y orillado', '$58.340 COP'],
+    ['Poda árboles y arbustos', '$83.650 COP'],
+    ['Diseño paisajístico mensual', '$164.290 COP']
+  ],
+  'Construcción y Remodelación': [
+    ['Enchape pisos/paredes (m²)', '$34.820 COP'],
+    ['Drywall muro/cielo raso (m²)', '$68.450 COP'],
+    ['Remodelación baño/cocina', '$584.200 COP']
+  ],
+  'Mudanzas y Transporte': [
+    ['Coteros por hora', '$42.680 COP/hr'],
+    ['Acarreo local express', '$84.320 COP'],
+    ['Mudanza completa camión', '$248.750 COP']
+  ],
+  'Electrodomésticos': [
+    ['Instalación campanas', '$68.950 COP'],
+    ['Reparación hornos/estufas', '$72.640 COP'],
+    ['Reparación neveras (gas)', '$114.780 COP']
+  ],
+  'Chef Privado a Domicilio': [
+    ['Menú Italiano Clásico (pers)', '$145.000 COP'],
+    ['Noche Mexicana Auténtica (pers)', '$125.000 COP'],
+    ['Cena Francesa Gourmet (pers)', '$165.000 COP']
+  ],
+  'Automóviles y Motos': [
+    ['Despinche / Cambio llanta', '$53.820 COP'],
+    ['Auxilio Batería Celular / Moto', '$58.450 COP'],
+    ['Cambio de aceite y filtros', '$84.950 COP']
+  ],
+  'Servicios Digitales': [
+    ['Mantenimiento preventivo PC', '$64.290 COP'],
+    ['Soporte remoto / Antivirus', '$72.500 COP'],
+    ['Recuperación de datos', '$138.450 COP']
+  ],
+  'Clases y Educación (Música & Refuerzo)': [
+    ['Clase individual música (1h)', '$39.420 COP'],
+    ['Refuerzo escolar primaria (1h)', '$42.500 COP'],
+    ['Preparación Saber 11 / ICFES', '$56.740 COP']
+  ],
+  'Belleza y Cuidado Personal': [
+    ['Manicure y pedicure spa', '$38.450 COP'],
+    ['Corte cabello + cepillado', '$46.820 COP'],
+    ['Masaje relajante antiestrés (1h)', '$84.500 COP']
+  ],
+  'Eventos y Protocolo': [
+    ['Mesero / Bartender protocolo (4h)', '$87.650 COP'],
+    ['Fotografía y video profesional', '$284.500 COP'],
+    ['Sonido básico + micrófono animador', '$142.380 COP']
+  ],
+  'Servicios Profesionales (Especializados)': [
+    ['Consultoría Jurídica Express (30m)', '$94.850 COP'],
+    ['Asesoría Tributaria Básica (Renta)', '$83.690 COP'],
+    ['Estructuración Plan de Negocios', '$128.450 COP']
+  ],
+  'Cuidado de Mascotas & Veterinaria': [
+    ['Paseo canino personalizado (1h)', '$24.780 COP'],
+    ['Baño y peluquería canina', '$54.890 COP'],
+    ['Pet Sitting Premium (Día con comida)', '$52.500 COP']
   ],
   'Hogar': [
     ['Limpieza general y profunda', '50.000 – 120.000'],
@@ -557,7 +811,7 @@ function closeSheet(){document.getElementById('sheet').classList.remove('on')}
 const hdr=(t,sub,bk=true,right='')=>`<header class="hd">${bk?`<button class="ico" data-a="back" aria-label="Volver">${I('back')}</button>`:''}<div class="grow"><h1>${t}</h1>${sub?`<small>${sub}</small>`:''}</div>${right}</header>`;
 const av=(p,s=44)=>`<span class="av" style="width:${s}px;height:${s}px;font-size:${Math.round(s*.36)}px">${ini(p.n||'?')}</span>`;
 const job=id=>S.jobs.find(j=>j.id===id);
-const proRow=p=>`<div class="glass pc clk" data-a="go" data-x="ficha" data-id="${p.id}">${av(p,50)}<div class="grow"><b>${p.n} ${VER}</b><small>${p.o} · ${p.z} · ${p.y} años</small><small>${p.r}★ · ${p.t} trabajos ${p.sena?' · <span style="color:#39A900;font-weight:700">🎓 SENA</span>':''}${p.ellas?' · <span style="color:#EC4899;font-weight:700">🌸 Ellas</span>':''}</small></div><div class="right"><b>${M(p.p)}</b><small>precio base</small><span class="tag">${p.nv}</span></div></div>`;
+const proRow=p=>`<div class="glass pc clk" data-a="go" data-x="ficha" data-id="${p.id}">${av(p,50)}<div class="grow"><b>${p.n} ${VER}</b><small>${p.o} · ${p.z} · ${p.y} años</small><small>${p.r}★ · ${p.t} trabajos ${p.sena?' · <span style="color:#39A900;font-weight:700">✓ Certificado SENA</span>':''}${p.ellas?' · <span style="color:#EC4899;font-weight:700">✓ Ellas Construyen</span>':''}</small></div><div class="right"><b>${M(p.p)}</b><small>precio base</small><span class="tag">${p.nv}</span></div></div>`;
 const jobCard=j=>`<div class="glass pc clk" data-a="jobgo" data-id="${j.id}"><div class="grow"><b>${esc(j.t)}</b><small>${esc(PR(j.pro).n||'Buscando profesional')} · ${M(j.v)}</small></div><span class="tag">${LBL[j.s]}</span></div>`;
 const chartSVG=()=>{const H=140,W=310,pts=INGRESOS.map((v,i)=>[(i+.5)*W/6,H-v*H/100]);const d=pts.map((p,i)=>(i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' ');return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none"><path class="ln" pathLength="1" d="${d}"/>${pts.map((p,i)=>`<circle class="dot" cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="${i===5?5:3.5}" style="animation-delay:${.4+i*.2}s"/>`).join('')}</svg>`};
 const barsHTML = () => {
@@ -585,7 +839,7 @@ splash:()=>`<div class="ctr full" style="padding:28px 16px;text-align:center;jus
       Solicitar Técnico Ahora ➔
     </button>
     <a href="https://wa.me/573043812882?text=Hola%20rebuske,%20necesito%20un%20servicio%20especializado%20urgente%20en%20Medell%C3%ADn" target="_blank" style="background:#162413;border:1px solid #2F4A1F;color:#25D366;font-size:13px;font-weight:700;padding:12px;border-radius:14px;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:8px">
-      <span>💬 Pedir Urgencia por WhatsApp</span>
+      <span>Pedir Urgencia por WhatsApp</span>
     </a>
   </div>
   <div class="legal" style="margin-top:18px">
@@ -597,7 +851,7 @@ splash:()=>`<div class="ctr full" style="padding:28px 16px;text-align:center;jus
 
 bienvenida:p=>`<div class="ctr full" style="padding:20px 16px;text-align:center;justify-content:center;display:flex;flex-direction:column;align-items:center;min-height:100vh">${HERO(140,true)}${WM('sm')}
 <h2 style="font-family:'Baloo 2',sans-serif;font-size:24px;font-weight:900;color:#F2F5EC;margin:8px 0 2px 0">Arregla · Confía · Repite</h2>
-<p class="mut txtc" style="color:#C6D8BF;font-size:12.5px;max-width:320px;margin-bottom:12px">Cerrajero, plomero o electricista hoy con Bóveda Wompi y 48h de garantía escrita en Medellín.</p><div class="stack" style="width:100%;max-width:340px"><div id="waAuthStep1" style="display:flex;flex-direction:column;gap:8px;width:100%"><div style="display:flex;align-items:center;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.16);border-radius:14px;overflow:hidden"><span style="padding:12px 14px;background:rgba(37,211,102,0.15);color:#25D366;font-weight:800;font-size:13px;border-right:1px solid rgba(255,255,255,0.12);display:flex;align-items:center;gap:4px">🇨🇴 +57</span><input type="tel" id="waInputPhone" maxlength="12" placeholder="300 123 4567" style="background:transparent;border:none;padding:12px 14px;color:#fff;font-size:16px;width:100%;outline:none"></div><button class="btn sheen cta" style="background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;border:none;display:flex;align-items:center;justify-content:center;gap:8px" data-a="requestWaOtp"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.969.58 1.961.947 2.796.947 3.179 0 5.767-2.587 5.767-5.766.001-3.187-2.575-5.77-5.767-5.770zm4.27 7.74c-.18.51-1.04.99-1.44 1.05-.39.06-.9.08-2.53-.59-1.95-.81-3.21-2.79-3.3-2.92-.1-.13-.78-1.04-.78-1.99 0-.94.49-1.41.67-1.6.17-.19.38-.24.51-.24.13 0 .26 0 .37.01.12.01.28-.05.44.33.17.4.58 1.41.63 1.51.05.1.09.22.02.35-.07.13-.1.22-.2.34-.1.11-.22.25-.31.34-.11.1-.22.21-.1.42.13.21.57.94 1.22 1.52.84.75 1.55.98 1.77 1.09.22.11.35.09.48-.06.13-.15.56-.65.71-.87.15-.22.3-.19.51-.11.21.08 1.34.63 1.57.75.23.11.38.17.44.27.06.1.06.59-.12 1.1z"/></svg><b>Entrar con WhatsApp</b></button></div><div id="waAuthStep2" style="display:none;flex-direction:column;gap:8px;width:100%;background:rgba(0,0,0,0.4);border:1px solid rgba(37,211,102,0.4);border-radius:16px;padding:12px"><div style="font-size:12px;color:#25D366;font-weight:700;display:flex;justify-content:space-between;align-items:center"><span>Verificación WhatsApp</span><a id="waAuthLinkDirect" href="#" target="_blank" style="color:#B8FF3B;text-decoration:underline;font-size:11px">Abrir en WhatsApp</a></div><p style="font-size:11px;color:var(--mut);margin:0">Ingresa tu código de 6 dígitos:</p><div style="display:flex;gap:6px"><input type="text" id="waInputCode" maxlength="6" inputmode="numeric" placeholder="6 dígitos" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:10px;color:#fff;text-align:center;font-size:18px;font-family:monospace;font-weight:800;padding:8px;width:120px;outline:none"><button class="btn sm" data-a="verifyWaOtp" style="background:#25D366;color:#0A1407;font-weight:800;flex:1">Verificar y Entrar</button></div><small id="waOtpFeedback" style="color:#A4BEA0;font-size:10px"></small></div><div style="display:flex;align-items:center;gap:10px;margin:4px 0;width:100%"><span style="flex:1;height:1px;background:rgba(255,255,255,0.12)"></span><span style="font-size:10px;color:var(--mut);text-transform:uppercase;font-weight:800;letter-spacing:1px">O con tu cuenta</span><span style="flex:1;height:1px;background:rgba(255,255,255,0.12)"></span></div><button class="btn ghost" data-a="google" style="background:#fff;color:#111;display:flex;align-items:center;justify-content:center;gap:10px;font-weight:700;padding:12px;border-radius:14px;width:100%;border:none;box-shadow:0 4px 14px rgba(0,0,0,0.3)"><svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.8-2.4 3.66v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.15z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.26v3.15C3.26 21.36 7.34 24 12 24z"/><path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.26C.46 8.16 0 9.98 0 12s.46 3.84 1.26 5.42l4.02-3.15z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.34 0 3.26 2.64 1.26 6.58l4.02 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/></svg><span>Continuar con Google</span></button><span class="pill" style="align-self:center;margin-top:6px">Plataforma Oficial · Pago Protegido Wompi</span></div><div class="legal"><a href="/tarifas" target="_blank" style="color:inherit;text-decoration:underline">Tarifas</a><a href="/terminos" target="_blank" style="color:inherit;text-decoration:underline">Términos</a><a href="/privacidad" target="_blank" style="color:inherit;text-decoration:underline">Privacidad</a><button class="link" data-a="reset">Sincronizar nube</button></div></div>`,
+<p class="mut txtc" style="color:#C6D8BF;font-size:12.5px;max-width:320px;margin-bottom:12px">Cerrajero, plomero o electricista hoy con Bóveda Wompi y 48h de garantía escrita en Medellín.</p><div class="stack" style="width:100%;max-width:340px"><div id="waAuthStep1" style="display:flex;flex-direction:column;gap:8px;width:100%"><div style="display:flex;align-items:center;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.16);border-radius:14px;overflow:hidden"><span style="padding:12px 14px;background:rgba(37,211,102,0.15);color:#25D366;font-weight:800;font-size:13px;border-right:1px solid rgba(255,255,255,0.12);display:flex;align-items:center;gap:4px">Medellín +57</span><input type="tel" id="waInputPhone" maxlength="12" placeholder="300 123 4567" style="background:transparent;border:none;padding:12px 14px;color:#fff;font-size:16px;width:100%;outline:none"></div><button class="btn sheen cta" style="background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;border:none;display:flex;align-items:center;justify-content:center;gap:8px" data-a="requestWaOtp"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.598 2.664-.698c.969.58 1.961.947 2.796.947 3.179 0 5.767-2.587 5.767-5.766.001-3.187-2.575-5.77-5.767-5.770zm4.27 7.74c-.18.51-1.04.99-1.44 1.05-.39.06-.9.08-2.53-.59-1.95-.81-3.21-2.79-3.3-2.92-.1-.13-.78-1.04-.78-1.99 0-.94.49-1.41.67-1.6.17-.19.38-.24.51-.24.13 0 .26 0 .37.01.12.01.28-.05.44.33.17.4.58 1.41.63 1.51.05.1.09.22.02.35-.07.13-.1.22-.2.34-.1.11-.22.25-.31.34-.11.1-.22.21-.1.42.13.21.57.94 1.22 1.52.84.75 1.55.98 1.77 1.09.22.11.35.09.48-.06.13-.15.56-.65.71-.87.15-.22.3-.19.51-.11.21.08 1.34.63 1.57.75.23.11.38.17.44.27.06.1.06.59-.12 1.1z"/></svg><b>Entrar con WhatsApp</b></button></div><div id="waAuthStep2" style="display:none;flex-direction:column;gap:8px;width:100%;background:rgba(0,0,0,0.4);border:1px solid rgba(37,211,102,0.4);border-radius:16px;padding:12px"><div style="font-size:12px;color:#25D366;font-weight:700;display:flex;justify-content:space-between;align-items:center"><span>Verificación WhatsApp</span><a id="waAuthLinkDirect" href="#" target="_blank" style="color:#B8FF3B;text-decoration:underline;font-size:11px">Abrir en WhatsApp</a></div><p style="font-size:11px;color:var(--mut);margin:0">Ingresa tu código de 6 dígitos:</p><div style="display:flex;gap:6px"><input type="text" id="waInputCode" maxlength="6" inputmode="numeric" placeholder="6 dígitos" style="background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.2);border-radius:10px;color:#fff;text-align:center;font-size:18px;font-family:monospace;font-weight:800;padding:8px;width:120px;outline:none"><button class="btn sm" data-a="verifyWaOtp" style="background:#25D366;color:#0A1407;font-weight:800;flex:1">Verificar y Entrar</button></div><small id="waOtpFeedback" style="color:#A4BEA0;font-size:10px"></small></div><div style="display:flex;align-items:center;gap:10px;margin:4px 0;width:100%"><span style="flex:1;height:1px;background:rgba(255,255,255,0.12)"></span><span style="font-size:10px;color:var(--mut);text-transform:uppercase;font-weight:800;letter-spacing:1px">O con tu cuenta</span><span style="flex:1;height:1px;background:rgba(255,255,255,0.12)"></span></div><button class="btn ghost" data-a="google" style="background:#fff;color:#111;display:flex;align-items:center;justify-content:center;gap:10px;font-weight:700;padding:12px;border-radius:14px;width:100%;border:none;box-shadow:0 4px 14px rgba(0,0,0,0.3)"><svg width="18" height="18" viewBox="0 0 24 24"><path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.8-2.4 3.66v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.15z"/><path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.26v3.15C3.26 21.36 7.34 24 12 24z"/><path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.26C.46 8.16 0 9.98 0 12s.46 3.84 1.26 5.42l4.02-3.15z"/><path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.34 0 3.26 2.64 1.26 6.58l4.02 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/></svg><span>Continuar con Google</span></button><span class="pill" style="align-self:center;margin-top:6px">Plataforma Oficial · Pago Protegido Wompi</span></div><div class="legal"><a href="/tarifas" target="_blank" style="color:inherit;text-decoration:underline">Tarifas</a><a href="/terminos" target="_blank" style="color:inherit;text-decoration:underline">Términos</a><a href="/privacidad" target="_blank" style="color:inherit;text-decoration:underline">Privacidad</a><button class="link" data-a="reset">Sincronizar nube</button></div></div>`,
 
 rol:()=>`${hdr('¿Cómo usarás rebuske?','Puedes cambiarlo después en tu perfil',false)}
 <button class="glass" data-a="rol" data-x="cliente"><span class="ibox">${I('search',22)}</span><div class="grow"><b>Necesito que me resuelvan algo</b><small>Publica una solicitud y compara propuestas verificadas.</small></div></button>
@@ -621,7 +875,7 @@ home:()=>{const act=S.jobs.filter(j=>!j.cl&&j.s!=='calificado'&&j.s!=='disputa')
 
 <!-- DIAGNÓSTICO INTELIGENTE DEL DAÑO -->
 <div class="glass" style="margin:8px 0;padding:10px 14px;border:1px solid rgba(56,189,248,0.35);background:rgba(56,189,248,0.08);border-radius:14px;display:flex;align-items:center;gap:10px;cursor:pointer" data-a="diagnosticoInteligente">
-  <span style="font-size:20px">🔍</span>
+  <span style="font-size:16px">${I('search',18)}</span>
   <div class="grow">
     <b style="color:#38BDF8;font-size:12.5px;display:block">Diagnóstico Inteligente del Daño</b>
     <small style="color:#94A3B8;font-size:11px">Sube foto o audio y conoce el precio justo antes de pedir técnico.</small>
@@ -632,7 +886,7 @@ home:()=>{const act=S.jobs.filter(j=>!j.cl&&j.s!=='calificado'&&j.s!=='disputa')
 <div class="zones">${ZONAS.slice(0,5).map(z=>`<button class="chip2 ${S.zona===z?'on':''}" data-a="zona" data-x="${z}">${z}</button>`).join('')}</div>
 <h2>Categorías <button class="link" data-a="go" data-x="buscar">Ver todas</button></h2>
 <div class="vault">${CATS.map(c=>`<button class="vc" data-a="go" data-x="buscar" data-c="${c[0]}"><i>${I(c[1],24)}</i><span>${c[0]}</span></button>`).join('')}
-  <button class="vc" data-a="go" data-x="buscar" data-c="Ellas Construyen" style="border-color:rgba(236,72,153,0.4);background:rgba(236,72,153,0.08)"><i>🌸</i><span>Ellas Construyen</span></button>
+  <button class="vc" data-a="go" data-x="buscar" data-c="Ellas Construyen" style="border-color:rgba(236,72,153,0.4);background:rgba(236,72,153,0.08)"><i>${I('user',24)}</i><span>Ellas Construyen</span></button>
 </div>
 <div class="glass banner">${LZ()}<div class="grow"><b>Pago protegido rebuske</b><small>Tu plata queda retenida y solo se libera cuando confirmas que el trabajo quedó bien.</small></div>${I('chev',18)}</div>
 ${act.length?`<h2>Tu trabajo</h2>${act.slice(0,2).map(jobCard).join('')}`:''}
@@ -648,7 +902,7 @@ ficha:p=>{const x=PR(p.id);
 const trabList = (S.proTrabajos && S.proTrabajos.length) ? S.proTrabajos : [];
 const implList = (S.proImplementos && S.proImplementos.length) ? S.proImplementos : [];
 return `${hdr('Perfil profesional')}
-<div class="glass ficha">${av(x,70)}<h1>${x.n} ${VER}</h1><small>${x.o} · ${x.y} años de experiencia</small><div class="tags" style="justify-content:center"><span class="tag">✓ Verificado rebuske</span><span class="tag2">${x.nv}</span>${x.sena?'<span class="tag" style="background:rgba(57,169,0,0.18);color:#39A900;border:1px solid #39A900;font-weight:700">🎓 Certificado SENA</span>':''}${x.ellas?'<span class="tag" style="background:rgba(236,72,153,0.18);color:#EC4899;border:1px solid #EC4899;font-weight:700">🌸 Ellas Construyen</span>':''}</div></div>
+<div class="glass ficha">${av(x,70)}<h1>${x.n} ${VER}</h1><small>${x.o} · ${x.y} años de experiencia</small><div class="tags" style="justify-content:center"><span class="tag">✓ Verificado rebuske</span><span class="tag2">${x.nv}</span>${x.sena?'<span class="tag" style="background:rgba(57,169,0,0.18);color:#39A900;border:1px solid #39A900;font-weight:700">✓ Certificado SENA</span>':''}${x.ellas?'<span class="tag" style="background:rgba(236,72,153,0.18);color:#EC4899;border:1px solid #EC4899;font-weight:700">✓ Ellas Construyen</span>':''}</div></div>
 <div class="stats3"><div class="glass"><b>${x.r}</b><small>★★★★★</small></div><div class="glass"><b>${x.t}</b><small>trabajos</small></div><div class="glass"><b>12 min</b><small>responde en</small></div></div>
 <h2>Sobre mí</h2><p class="glass txt">${x.o} certificado. Cotizo antes de empezar, con garantía escrita y Pago Protegido rebuske. Precio claro y transparente desde el inicio.</p>
 <h2>Especialidades</h2><div class="chips">${['Fugas','Calentadores','Destapes','Tuberías PEX','Termografía','Laureles'].map(t=>`<span class="chip">${t}</span>`).join('')}</div>
@@ -659,7 +913,7 @@ ${trabList.length ? `<div style="display:grid;grid-template-columns:1fr 1fr;gap:
     <div class="glass" style="padding:6px;border-radius:12px;overflow:hidden">
       <img src="${t.img}" alt="${esc(t.titulo)}" style="width:100%;height:95px;object-fit:cover;border-radius:8px;display:block">
       <b style="font-size:11px;display:block;margin-top:4px;line-height:1.2">${esc(t.titulo)}</b>
-      <small class="mut" style="font-size:10px">📍 ${esc(t.zona||'Medellín')}</small>
+      <small class="mut" style="font-size:10px">${esc(t.zona||'Medellín')}</small>
     </div>
   `).join('')}
 </div>` : `<div class="glass" style="padding:14px;text-align:center"><small class="mut">Portafolio en proceso de certificación fotográfica con georreferenciación.</small></div>`}
@@ -686,8 +940,27 @@ solicitud:p=>{const x=PR(p.id),cat=p.cat||x.c||'Reparaciones',b=p.b||x.p||60000,
 <label>Zona<select id="sz" class="sel">${ZONAS.map(k=>`<option ${k===z?'selected':''}>${k}</option>`).join('')}</select></label>
 <small>Modalidad de Pago en Bóveda Wompi</small>
 <div class="seg">${['Labor Única','Sesiones Progresivas (Clases)','Hitos de Proyecto'].map(s=>`<button data-a="seg" class="${(p.k||'Labor Única')===s?'on':''}">${s}</button>`).join('')}</div>
-<label>Presupuesto (COP)<input id="sb" class="field" type="number" inputmode="numeric" value="${b}"></label>
-<div class="glass sum"><div><span>Tu presupuesto</span><b id="sbv">${M(b)}</b></div><small>La comisión del 7% la paga el profesional al liberar el pago. Nunca se suma a tu cuenta.</small></div>
+<label style="display:flex;justify-content:space-between;align-items:center;margin-top:10px">
+  <span>Tu Oferta / Presupuesto (COP)</span>
+  <span class="indrive-neg-badge"><span class="indrive-pulse-dot"></span> Negociable InDrive</span>
+</label>
+<div class="indrive-stepper-wrap">
+  <button type="button" class="indrive-step-btn minus" data-a="solicitudStepBudget" data-dir="-1" aria-label="Disminuir presupuesto">−</button>
+  <div class="indrive-amount-center">
+    <span class="indrive-amount-val" id="solicitudBudgetValText">${M(b)}</span>
+    <small class="indrive-amount-sub">Tú propones la tarifa · Negocias con técnicos</small>
+    <input id="sb" type="hidden" value="${b}">
+  </div>
+  <button type="button" class="indrive-step-btn plus" data-a="solicitudStepBudget" data-dir="1" aria-label="Aumentar presupuesto">+</button>
+</div>
+<div class="indrive-chips-row" style="margin-top:6px;">
+  <button type="button" class="indrive-quick-pill" data-a="solicitudQuickBudget" data-val="40000">$40.000</button>
+  <button type="button" class="indrive-quick-pill" data-a="solicitudQuickBudget" data-val="60000">$60.000</button>
+  <button type="button" class="indrive-quick-pill" data-a="solicitudQuickBudget" data-val="80000">$80.000</button>
+  <button type="button" class="indrive-quick-pill" data-a="solicitudQuickBudget" data-val="120000">$120.000</button>
+  <button type="button" class="indrive-quick-pill" data-a="solicitudStepBudget" data-dir="1" data-step="10000">+ $10.000</button>
+</div>
+<div class="glass sum"><div><span>Tu presupuesto</span><b id="sbv">${M(b)}</b></div><small>La comisión de la plataforma la asume el profesional al liberar el pago (18% Bronce, 14% Plata, 11% Oro VIP). Nunca se suma a tu cuenta y los costos de pasarela Wompi están 100% absorbidos.</small></div>
 <div class="sticky"><button class="btn sheen" data-a="publicar">Publicar solicitud gratis</button></div>`},
 
 ruta:p=>{const j=job(p.id);if(!j)throw 0;const x=PR(j.pro),sg=STAGE[j.s]||0,pct=sg/5*100;const pend=j.s==='buscando';
@@ -695,28 +968,51 @@ const nodos=[['Solicitud publicada','hace 3 minutos'],['Propuestas recibidas',`$
 return `${hdr('Monitoreo del Servicio',j.t)}
 <div class="ctr sm">${HERO(pend?150:120,pend)}<h2 style="justify-content:center">${pend?'Buscando profesional disponible…':LBL[j.s]}</h2><small>${j.z} · publicado hace 3 minutos</small></div>
 <div class="glass tl"><div class="fill" style="--h:${Math.max(0,pct-4)}%"></div>${nodos.map((n,i)=>`<div class="st ${sg>=i?'on':''}"><span class="nd"></span><div><b>${n[0]}</b><small>${n[1]}</small></div></div>`).join('')}</div>
-${pend?`<h2>Propuestas comparables <small>elige con calma</small></h2>${(j.props||[]).map((o,i)=>{const px=PR(o.pro),tg=[i===0&&'Mejor mezcla',o.p===Math.min(...j.props.map(z=>z.p))&&'Más económica',px.r===Math.max(...j.props.map(z=>PR(z.pro).r))&&'Mejor calificada'].filter(Boolean);return `<div class="glass pcard" style="--d:${i}">${av(px,46)}<div class="grow"><b>${px.n} ${VER}</b><small>${px.o} · ${px.r}★ · ${px.t} trabajos</small><p class="msg">"${esc(o.m)}"</p><div class="tags">${tg.map(t=>`<span class="tag">${t}</span>`).join('')}</div></div><div class="right"><b>${M(o.p)}</b><button class="btn sm" data-a="elegir" data-j="${j.id}" data-id="${px.id}" data-pr="${o.p}">Elegir</button></div></div>`}).join('')}
-<small class="txtc">Puedes elegir cuando quieras. Nadie cobra hasta que apruebes.</small>`:`<div class="glass pc">${av(x,48)}<div class="grow"><b>${x.n} ${VER}</b><small>${x.o} · ${x.z}</small></div><span class="tag">${x.nv}</span></div>
+${pend?`
+<div class="indrive-neg-card">
+  <div class="indrive-neg-header">
+    <span class="indrive-neg-badge"><span class="indrive-pulse-dot"></span> Negociación en Tiempo Real (InDrive)</span>
+    <small style="color:var(--mut);font-size:11px">Ajusta tu tarifa con + y − para convocar técnicos</small>
+  </div>
+  <div class="indrive-stepper-wrap">
+    <button type="button" class="indrive-step-btn minus" data-a="rutaStepOffer" data-id="${j.id}" data-dir="-1" aria-label="Bajar oferta">−</button>
+    <div class="indrive-amount-center">
+      <span class="indrive-amount-val" id="rutaOfferVal_${j.id}">${M(j.v)}</span>
+      <small class="indrive-amount-sub">Tu oferta actual publicada en Medellín</small>
+    </div>
+    <button type="button" class="indrive-step-btn plus" data-a="rutaStepOffer" data-id="${j.id}" data-dir="1" aria-label="Subir oferta">+</button>
+  </div>
+  <div class="indrive-chips-row">
+    <button type="button" class="indrive-quick-pill" data-a="rutaStepOffer" data-id="${j.id}" data-delta="-5000">−$5.000</button>
+    <button type="button" class="indrive-quick-pill" data-a="rutaStepOffer" data-id="${j.id}" data-delta="2000">+$2.000</button>
+    <button type="button" class="indrive-quick-pill" data-a="rutaStepOffer" data-id="${j.id}" data-delta="5000">+$5.000</button>
+    <button type="button" class="indrive-quick-pill" data-a="rutaStepOffer" data-id="${j.id}" data-delta="10000">+$10.000</button>
+  </div>
+</div>
+
+<h2>Propuestas comparables <small>elige o contraoferta con + y −</small></h2>
+${(j.props||[]).map((o,i)=>{const px=PR(o.pro),tg=[i===0&&'Mejor mezcla',o.p===Math.min(...j.props.map(z=>z.p))&&'Más económica',px.r===Math.max(...j.props.map(z=>PR(z.pro).r))&&'Mejor calificada'].filter(Boolean);return `<div class="glass pcard" style="--d:${i}">${av(px,46)}<div class="grow"><b>${px.n} ${VER}</b><small>${px.o} · ${px.r}★ · ${px.t} trabajos</small><p class="msg">"${esc(o.m)}"</p><div class="tags">${tg.map(t=>`<span class="tag">${t}</span>`).join('')}</div></div><div class="right"><b>${M(o.p)}</b><div style="display:flex;gap:4px;margin-top:4px"><button class="btn sm sheen" data-a="elegir" data-j="${j.id}" data-id="${px.id}" data-pr="${o.p}">Elegir</button><button class="btn sm ghost" data-a="openContraofertaModal" data-j="${j.id}" data-pro="${px.id}" data-cur="${o.p}" style="font-size:11px;padding:4px 8px" title="Negociar con + / −">Negociar</button></div></div></div>`}).join('')}
+<small class="txtc">Negocia la tarifa en tiempo real con cada técnico. Nadie cobra hasta que apruebes en Bóveda Wompi.</small>`:`<div class="glass pc">${av(x,48)}<div class="grow"><b>${x.n} ${VER}</b><small>${x.o} · ${x.z}</small></div><span class="tag">${x.nv}</span></div>
 <div class="track"><i style="--w:${pct}%"></i></div>
 ${(j.s==='en_camino'||j.s==='llego')?`
   <div class="glass" style="margin-top:12px;border:1.5px solid #B8FF3B;background:rgba(184,255,59,0.06);padding:14px;border-radius:18px;box-shadow:0 8px 24px rgba(184,255,59,0.12)">
     <div style="display:flex;gap:12px;align-items:center;">
-      <div style="width:42px;height:42px;border-radius:12px;background:rgba(184,255,59,0.18);border:1px solid #B8FF3B;display:grid;place-items:center;font-size:22px;flex-shrink:0;">🛡️</div>
+      <div style="width:42px;height:42px;border-radius:12px;background:rgba(184,255,59,0.18);border:1px solid #B8FF3B;display:grid;place-items:center;font-size:22px;flex-shrink:0;">✓</div>
       <div class="grow" style="min-width:0;flex:1 1 auto;">
         <b style="color:#B8FF3B;display:block;font-size:13px;line-height:1.2;">Autenticación en Puerta con QR</b>
         <small style="color:#D4E5CC;font-size:11px;display:block;line-height:1.2;margin-top:2px;">${j.s==='llego'?'¡El técnico ya marcó que llegó a tu puerta! Pídele que te muestre su carné físico y pulsa Verificar QR.':'El técnico presentará su carné QR oficial al llegar.'}</small>
       </div>
-      <button class="btn sm sheen" data-a="scanProQr" data-id="${j.id}" style="width:auto;flex:none;white-space:nowrap;padding:7px 12px;font-size:11px;">📷 Escanear QR</button>
+      <button class="btn sm sheen" data-a="scanProQr" data-id="${j.id}" style="width:auto;flex:none;white-space:nowrap;padding:7px 12px;font-size:11px;">Escanear QR</button>
     </div>
     <div style="display:flex;gap:8px;margin-top:10px;border-top:1px dashed rgba(184,255,59,0.25);padding-top:8px;">
       <button class="btn sm ghost" data-a="showProBadge" data-id="${j.id}" style="flex:1;font-size:11px;padding:5px 8px;">🪪 Ver Carné del Técnico</button>
-      <button class="btn sm ghost" data-a="scanProQr" data-id="${j.id}" style="flex:1;font-size:11px;padding:5px 8px;">⚡ Abrir Escáner</button>
+      <button class="btn sm ghost" data-a="scanProQr" data-id="${j.id}" style="flex:1;font-size:11px;padding:5px 8px;">Abrir Escáner</button>
     </div>
   </div>
 `:''}
 ${j.s==='disputa'?`<div class="glass warnc">${I('shield',18)}<small><b>Ticket abierto.</b> El pago sigue congelado mientras lo revisamos.</small></div>`:''}
 ${j.s==='finalizado'?`<div class="glass warnc">${I('shield',18)}<small><b>Garantía activa:</b> tienes 2 días para reportar un problema antes de liberar el pago.</small></div>`:''}
-<div class="sticky row2"><button class="btn ghost" data-a="go" data-x="chat" data-id="${j.id}">Chat</button>${j.s==='finalizado'?`<button class="btn sheen" data-a="sheetLib" data-id="${j.id}">Aprobar y liberar</button>`:(j.s==='llego'?`<button class="btn sheen" data-a="scanProQr" data-id="${j.id}" style="background:linear-gradient(135deg,#B8FF3B,#4E8839);color:#111;font-weight:900;font-size:14px;box-shadow:0 0 20px rgba(184,255,59,0.5);">📷 Verificar QR</button>`:(j.s==='disputa'?`<button class="btn" data-a="back">Volver</button>`:`<button class="btn" data-a="avanzar" data-id="${j.id}">Actualizar Estado</button>`))}</div>
+<div class="sticky row2"><button class="btn ghost" data-a="go" data-x="chat" data-id="${j.id}">Chat</button>${j.s==='finalizado'?`<button class="btn sheen" data-a="sheetLib" data-id="${j.id}">Aprobar y liberar</button>`:(j.s==='llego'?`<button class="btn sheen" data-a="scanProQr" data-id="${j.id}" style="background:linear-gradient(135deg,#B8FF3B,#4E8839);color:#111;font-weight:900;font-size:14px;box-shadow:0 0 20px rgba(184,255,59,0.5);">Verificar QR</button>`:(j.s==='disputa'?`<button class="btn" data-a="back">Volver</button>`:`<button class="btn" data-a="avanzar" data-id="${j.id}">Actualizar Estado</button>`))}</div>
 ${AVANCE.includes(j.s)?`<button class="link center" data-a="sheetRep" data-id="${j.id}">Reportar un problema</button>`:''}`}`},
 
 pago:p=>{const j=job(p.id);if(!j)throw 0;const x=PR(j.pro),c=com(x.nv);const pagado=j.s!=='asignado';
@@ -738,9 +1034,9 @@ return `${hdr('Pago protegido','Tu plata queda guardada')}
 <!-- BONO VIP PLAY STORE $15.000 COP (SOLO EN PEDIDOS > $90.000 COP Y 1 SOLO USO POR HOGAR Y MÉTODO DE PAGO) -->
 <div class="glass" style="margin:10px 0;padding:12px 14px;border:1px solid ${j.bonoVip ? '#B8FF3B' : (!bonoBloqueado && j.v>90000 ? 'rgba(184,255,59,0.4)' : '#374151')};border-radius:12px;display:flex;justify-content:space-between;align-items:center;cursor:${!bonoBloqueado && j.v>90000 ? 'pointer' : 'not-allowed'}" data-a="${!bonoBloqueado && j.v>90000 ? 'toggleBonoVip' : ''}" data-id="${j.id}">
   <div>
-    <b style="font-size:12.5px;color:${!bonoBloqueado && j.v>90000 ? '#B8FF3B' : '#9CA3AF'}">🎁 Bono VIP Play Store (-$15.000 COP)</b>
+    <b style="font-size:12.5px;color:${!bonoBloqueado && j.v>90000 ? '#B8FF3B' : '#9CA3AF'}">Bono VIP Play Store (-$15.000 COP)</b>
     <small style="display:block;color:#9CA3AF;font-size:11px">
-      ${yaRedimido ? '⚠️ Ya utilizaste tu bono en una orden anterior (1 solo uso)' : (dirYaUsada ? '⚠️ Dirección de domicilio ya beneficiada con Bono VIP (1 por hogar)' : (metodoYaUsado ? '⚠️ Método de pago ya utilizado con Bono VIP (1 por cuenta familiar)' : (j.v>90000 ? (j.bonoVip ? '✓ Descuento -$15.000 COP aplicado a la mano de obra' : 'Toca para aplicar cupón TUBONO15K-VIP') : 'Válido exclusivamente en pedidos mayores a $90.000 COP')))}
+      ${yaRedimido ? 'Ya utilizaste tu bono en una orden anterior (1 solo uso)' : (dirYaUsada ? 'Dirección de domicilio ya beneficiada con Bono VIP (1 por hogar)' : (metodoYaUsado ? 'Método de pago ya utilizado con Bono VIP (1 por cuenta familiar)' : (j.v>90000 ? (j.bonoVip ? '✓ Descuento -$15.000 COP aplicado a la mano de obra' : 'Toca para aplicar cupón TUBONO15K-VIP') : 'Válido exclusivamente en pedidos mayores a $90.000 COP')))}
     </small>
   </div>
   <button class="chip2 ${j.bonoVip?'on':''}" style="pointer-events:none">${bonoBloqueado ? 'No disponible' : (j.v>90000 ? (j.bonoVip ? '✓ Aplicado' : '+ Aplicar') : 'Mín. >$90k')}</button>
@@ -749,7 +1045,7 @@ return `${hdr('Pago protegido','Tu plata queda guardada')}
 <!-- GARANTÍA EXTENDIDA REBUSKE (+30 DÍAS POR EL 25%) -->
 <div class="glass" style="margin:10px 0;padding:12px 14px;border:1px solid ${j.extGar?'#B8FF3B':'rgba(184,255,59,0.3)'};border-radius:12px;display:flex;justify-content:space-between;align-items:center;cursor:pointer" data-a="toggleExtGar" data-id="${j.id}">
   <div>
-    <b style="font-size:12.5px;color:#F3F4F6">🛡️ Garantía Extendida (+30 días)</b>
+    <b style="font-size:12.5px;color:#F3F4F6">✓ Garantía Extendida (+30 días)</b>
     <small style="display:block;color:#9CA3AF;font-size:11px">Protección adicional por +25% (+${M(Math.round(baseServicio*0.25))})</small>
   </div>
   <button class="chip2 ${j.extGar?'on':''}" style="pointer-events:none">${j.extGar?'✓ Agregada':'+ Agregar'}</button>
@@ -757,7 +1053,7 @@ return `${hdr('Pago protegido','Tu plata queda guardada')}
 
 <!-- 3 REGLAS DE ORO DE CONTRATACIÓN (DR. LORENZO) -->
 <div class="glass" style="margin:12px 0;padding:12px 14px;border-left:4px solid #B8FF3B;background:rgba(184,255,59,0.05);border-radius:10px">
-  <b style="font-size:12px;color:#B8FF3B;text-transform:uppercase;letter-spacing:0.5px">📜 3 Reglas de Oro de tu Contratación:</b>
+  <b style="font-size:12px;color:#B8FF3B;text-transform:uppercase;letter-spacing:0.5px">3 Reglas de Oro de tu Contratación:</b>
   <ul style="margin:6px 0 0;padding-left:18px;font-size:11px;color:#D1D5DB;line-height:1.5">
     <li><strong>Custodia Bóveda Wompi:</strong> Tu dinero queda retenido y solo se libera con tu visto bueno.</li>
     <li><strong>Garantía Escrita 2 Días:</strong> Si algo falla en 48h, respondemos sin costo (Ley 1480).</li>
@@ -778,23 +1074,70 @@ return `${hdr('Pago protegido','Tu plata queda guardada')}
 <div class="sticky">${pagado?`<button class="btn ghost" data-a="go" data-x="ruta" data-id="${j.id}">Ver Estado del Servicio</button>`:cta('Confirmar pago protegido','pagar',`data-id="${j.id}"`,p.st)}</div>`},
 
 chat:p=>{const j=job(p.id);if(!j)throw 0;const x=PR(j.pro);return `${hdr(x.n,LBL[j.s])}
-<div class="glass quote"><small>Cotización aceptada</small><b class="lima">${M(j.v)}</b><small>${x.o} · ${j.z} · ${j.k}</small><div class="row2"><button class="btn sm ghost" data-a="go" data-x="pago" data-id="${j.id}">Ver pago protegido</button><button class="btn sm ghost" data-a="go" data-x="ruta" data-id="${j.id}">Monitoreo</button></div></div>
+
+<!-- TARJETA MAESTRA DE NEGOCIACIÓN EN VIVO (ESTILO INDRIVE CON + Y −) -->
+<div class="indrive-neg-card" id="chatNegCard_${j.id}">
+  <div class="indrive-neg-header">
+    <div style="display:flex;align-items:center;gap:6px">
+      <span class="indrive-neg-badge"><span class="indrive-pulse-dot"></span>Negociación en Vivo (Estilo InDrive)</span>
+      <span style="font-size:10px;color:#9CA3AF">${x.o} · ${j.z}</span>
+    </div>
+    <small style="color:#B8FF3B;font-size:10px;font-weight:700">Libre acuerdo</small>
+  </div>
+  
+  <div class="indrive-stepper-wrap">
+    <button type="button" class="indrive-step-btn minus" data-a="chatNegStep" data-id="${j.id}" data-delta="-5000" aria-label="Restar 5000 COP">−</button>
+    <div class="indrive-amount-center">
+      <small style="font-size:10px;color:#9CA3AF;text-transform:uppercase;letter-spacing:0.5px">Tarifa Negociada</small>
+      <div class="indrive-amount-val" id="chatNegVal_${j.id}">${M(j.v)}</div>
+      <small style="color:#6EE7B7;font-size:10.5px" id="chatNegNetSub_${j.id}">Técnico recibe neto: ${M(Math.round(j.v * 0.93))} (93%)</small>
+    </div>
+    <button type="button" class="indrive-step-btn plus" data-a="chatNegStep" data-id="${j.id}" data-delta="5000" aria-label="Sumar 5000 COP">+</button>
+  </div>
+
+  <div class="indrive-chips-row">
+    <button type="button" class="indrive-quick-pill" data-a="chatNegStep" data-id="${j.id}" data-delta="-5000">−$5.000</button>
+    <button type="button" class="indrive-quick-pill" data-a="chatNegStep" data-id="${j.id}" data-delta="2000">+$2.000</button>
+    <button type="button" class="indrive-quick-pill" data-a="chatNegStep" data-id="${j.id}" data-delta="5000">+$5.000</button>
+    <button type="button" class="indrive-quick-pill" data-a="chatNegStep" data-id="${j.id}" data-delta="10000">+$10.000</button>
+  </div>
+
+  <div class="indrive-actions-row">
+    <button type="button" class="btn sm ghost" data-a="chatSendContraoferta" data-id="${j.id}" style="flex:1;font-size:11.5px;padding:9px 6px">
+      🤝 Contraofertar Tarifa
+    </button>
+    <button type="button" class="btn sm" data-a="chatAcceptTarifa" data-id="${j.id}" style="flex:1.2;font-size:11.5px;padding:9px 6px;background:#B8FF3B;color:#0B1309;font-weight:700">
+      ✓ Aceptar Tarifa (${M(j.v)})
+    </button>
+  </div>
+  
+  <div class="row2" style="margin-top:6px">
+    <button class="btn sm ghost" data-a="go" data-x="pago" data-id="${j.id}" style="padding:6px;font-size:10.5px">Bóveda Wompi (Pago)</button>
+    <button class="btn sm ghost" data-a="go" data-x="ruta" data-id="${j.id}" style="padding:6px;font-size:10.5px">Monitoreo Radar</button>
+  </div>
+</div>
 
 <!-- SELLO ANTICIPO CERO & BOTÓN DE REPORTE DE COBRO INDEBIDO -->
 <div class="glass warnc" style="border-left:4px solid #EF4444;background:rgba(239,68,68,0.08);padding:10px 12px;margin:8px 0">
   <div style="display:flex;align-items:center;gap:6px">
-    <span>🛡️</span>
+    <span>✓</span>
     <b style="color:#FCA5A5;font-size:11.5px">Sello Anticipo Cero rebuske</b>
   </div>
   <small style="color:#D1D5DB;font-size:10.5px;display:block;margin:3px 0">Todo pago es por la app. Pagar en efectivo o por fuera anula de inmediato la garantía de 2 días.</small>
-  <button class="link" data-a="reportarCobroIndebido" data-id="${j.id}" style="color:#F87171;font-size:11px;font-weight:700;padding:0;text-decoration:underline">⚠️ ¿El técnico te pidió dinero en efectivo? Toca aquí</button>
+  <button class="link" data-a="reportarCobroIndebido" data-id="${j.id}" style="color:#F87171;font-size:11px;font-weight:700;padding:0;text-decoration:underline">¿El técnico te pidió dinero en efectivo? Toca aquí</button>
 </div>
 
-<div class="msgs">${j.chat.map(m=>{const oc=/\d[\d \-,\.]{5,}\d|tres[\s,]+diez|trescientos|3[\s\-]0[\s\-]4/i.test(m.m);return `<div class="bub ${m.f}">${oc?`<span class="blur">${esc(m.m)}</span><small class="w">Número oculto por seguridad</small>`:esc(m.m)}</div>`}).join('')}${j.typing?'<div class="typing"><i></i><i></i><i></i></div>':''}</div>
+<div class="msgs">${j.chat.map(m=>{const oc=/\d[\d \-,\.]{5,}\d|tres[\s,]+diez|trescientos|3[\s\-]0[\s\-]4/i.test(m.m);const isOffer=/🤝|contraoferta|propongo cerrar|tarifa negociada/i.test(m.m);return `<div class="bub ${m.f} ${isOffer?'indrive-offer-bubble':''}">
+  ${oc?`<span class="blur">${esc(m.m)}</span><small class="w">Número oculto por seguridad</small>`:esc(m.m)}
+  ${isOffer?`<div class="indrive-offer-bubble-actions">
+    <button type="button" class="indrive-quick-pill" data-a="focusNegCard" data-id="${j.id}">Ajustar con + / −</button>
+    <button type="button" class="btn sm" data-a="chatAcceptTarifa" data-id="${j.id}" style="padding:4px 8px;font-size:10.5px;background:#B8FF3B;color:#0B1309;font-weight:700">✓ Aceptar</button>
+  </div>`:''}
+</div>`}).join('')}${j.typing?'<div class="typing"><i></i><i></i><i></i></div>':''}</div>
 <div class="chips">${['¿A qué hora llegas?','¿Traes los materiales?','Gracias, quedó bien'].map(t=>`<button class="chip" data-a="quick" data-id="${j.id}" data-x="${t}">${t}</button>`).join('')}</div>
 <div class="inbar">
   <input id="ms" placeholder="Escribe un mensaje o usa el micrófono…" autocomplete="off">
-  <button class="ico" id="btn-voice-rec" data-a="voiceRecord" data-id="${j.id}" aria-label="Grabar mensaje de voz con transcripción automática" style="background:#1E3317;color:#B8FF3B;border:1px solid #4E8839;margin-right:4px" title="Grabar nota de voz con transcripción automática">🎤</button>
+  <button class="ico" id="btn-voice-rec" data-a="voiceRecord" data-id="${j.id}" aria-label="Grabar mensaje de voz con transcripción automática" style="background:#1E3317;color:#B8FF3B;border:1px solid #4E8839;margin-right:4px" title="Grabar nota de voz con transcripción automática"></button>
   <button class="ico lima" data-a="send" data-id="${j.id}" aria-label="Enviar">${I('arrow',18)}</button>
 </div>`},
 
@@ -822,12 +1165,12 @@ perfil:()=>{
 <div class="glass pc">
   <div style="position:relative">
     ${c.photo ? `<img src="${c.photo}" style="width:60px;height:60px;border-radius:50%;object-fit:cover;border:2px solid #B8FF3B">` : av({n:c.name||'U'},60)}
-    <button class="ico sm" data-a="sheetFotoCheck" data-role="client" style="position:absolute;bottom:-4px;right:-4px;background:#182613;border:1px solid #4E8839;width:24px;height:24px;font-size:11px" title="Modificar Foto (Regla 30 días)">📷</button>
+    <button class="ico sm" data-a="sheetFotoCheck" data-role="client" style="position:absolute;bottom:-4px;right:-4px;background:#182613;border:1px solid #4E8839;width:24px;height:24px;font-size:11px" title="Modificar Foto (Regla 30 días)"></button>
   </div>
   <div class="grow">
     <div style="display:flex;justify-content:space-between;align-items:center">
       <h1 style="margin:0">${esc(c.name || 'Mi Perfil')}</h1>
-      <button class="link" data-a="sheetEditCliente" style="font-size:12px;color:#B8FF3B">Editar Datos ✏️</button>
+      <button class="link" data-a="sheetEditCliente" style="font-size:12px;color:#B8FF3B">Editar Datos</button>
     </div>
     <small>${c.barrio || S.zona} · Medellín</small>
     <div style="display:flex;gap:6px;margin-top:4px">
@@ -842,7 +1185,7 @@ perfil:()=>{
   <div class="glass"><b>1</b><small>favoritos</small></div>
   <div class="glass clk" data-a="go" data-x="familia" style="cursor:pointer;border-color:rgba(184,255,59,0.3)">
     <b class="lima">${(S.familia||[]).length}</b>
-    <small>familia ⚙️</small>
+    <small>familia (Ajustes)</small>
   </div>
 </div>
 
@@ -869,6 +1212,7 @@ perfil:()=>{
     <a href="/eliminar-cuenta" target="_blank" style="font-size:11px;color:#789372;text-decoration:underline">Gestionar o solicitar baja de cuenta</a>
   </div>
 </div>
+
 <button class="btn ghost" data-a="rol" data-x="profesional">Cambiar a modo profesional</button>
 <div class="ctr sm"><button class="link" data-a="reset">Sincronizar nube</button><button class="link" data-a="root" data-x="bienvenida">Cerrar sesión</button></div>`;
 },
@@ -899,7 +1243,7 @@ familia:()=>{
               <b style="color:#F4FBF1">${esc(m.nombre)}</b>
               <span class="tag" style="font-size:10px;padding:2px 8px">${esc(m.parentesco)}</span>
             </div>
-            <small style="margin-top:2px;display:block">📞 ${esc(m.tel)} · 📍 ${esc(m.dir || S.zona)}</small>
+            <small style="margin-top:2px;display:block">Tel: ${esc(m.tel)} · ${esc(m.dir || S.zona)}</small>
             <div class="tags" style="margin-top:4px">
               <span class="tag2" style="color:#B8FF3B;border-color:rgba(184,255,59,0.4);font-size:10px;padding:2px 8px">${m.pagoCompartido ? '✓ Pago Protegido Habilitado' : 'Sólo Cotizaciones'}</span>
             </div>
@@ -960,7 +1304,7 @@ properfil:()=>{
   const impls = S.proImplementos || [];
   const proNom = me.name || me.n || 'Mi Perfil Profesional';
   return `${hdr('Tu perfil',`profesional · ${esc(S.zona||'Medellín')}`,false)}
-<div class="glass pc">${av(me,60)}<div class="grow"><div style="display:flex;justify-content:space-between;align-items:center"><h1 style="margin:0">${esc(proNom)}</h1><button class="link" data-a="sheetEditPro" style="font-size:12px;color:#B8FF3B">Editar Perfil ✏️</button></div><small>${esc(me.o || 'Oficio Especializado')} · ${esc(S.zona||'Medellín')}</small><div class="tags"><span class="tag">Verificado ✓</span><span class="tag2">${me.nv || 'Plata'}</span></div></div></div>
+<div class="glass pc">${av(me,60)}<div class="grow"><div style="display:flex;justify-content:space-between;align-items:center"><h1 style="margin:0">${esc(proNom)}</h1><button class="link" data-a="sheetEditPro" style="font-size:12px;color:#B8FF3B">Editar Perfil</button></div><small>${esc(me.o || 'Oficio Especializado')} · ${esc(S.zona||'Medellín')}</small><div class="tags"><span class="tag">Verificado ✓</span><span class="tag2">${me.nv || 'Plata'}</span></div></div></div>
 <div class="stats3"><div class="glass"><b>${((me.r||5.0)).toFixed(1)}</b><small>calificación</small></div><div class="glass"><b>${(S.jobs||[]).filter(j=>j.s==='calificado').length}</b><small>trabajos</small></div><div class="glass"><b>Instantáneo</b><small>notificaciones</small></div></div>
 <div class="glass" style="margin-top:10px;padding:14px;border:1.5px solid #B8FF3B;background:rgba(184,255,59,0.06);border-radius:18px;">
   <div style="display:flex;align-items:center;gap:12px;">
@@ -972,7 +1316,7 @@ properfil:()=>{
   </div>
   <div style="display:flex;gap:8px;margin-top:12px;">
     <button class="btn sm sheen" data-a="showMyBadge" style="flex:1;padding:8px 10px;font-size:11px;">🪪 Ver Carné</button>
-    <button class="btn sm" data-a="printBadgePdf" style="flex:1;padding:8px 10px;font-size:11px;background:#B8FF3B;color:#111;font-weight:900;">📄 Descargar PDF (Imprimir)</button>
+    <button class="btn sm" data-a="printBadgePdf" style="flex:1;padding:8px 10px;font-size:11px;background:#B8FF3B;color:#111;font-weight:900;">Descargar PDF (Imprimir)</button>
   </div>
 </div>
 <div class="glass list" style="margin-top:10px">
@@ -990,7 +1334,7 @@ ${trabajos.length ? `
       <div class="glass" style="padding:8px;display:flex;flex-direction:column;border-radius:14px;overflow:hidden">
         <div style="width:100%;height:105px;border-radius:10px;overflow:hidden;background:#182015;position:relative">
           <img src="${t.img}" alt="${esc(t.titulo)}" style="width:100%;height:100%;object-fit:cover;display:block">
-          <span style="position:absolute;bottom:4px;left:4px;background:rgba(10,14,8,0.75);font-size:10px;padding:2px 6px;border-radius:6px;color:#B8FF3B">📍 ${esc((t.zona||'Medellín').split('·')[0].trim())}</span>
+          <span style="position:absolute;bottom:4px;left:4px;background:rgba(10,14,8,0.75);font-size:10px;padding:2px 6px;border-radius:6px;color:#B8FF3B">${esc((t.zona||'Medellín').split('·')[0].trim())}</span>
         </div>
         <b style="font-size:12px;margin-top:6px;line-height:1.2;flex:1">${esc(t.titulo)}</b>
         <small class="mut" style="font-size:10px;margin:2px 0 6px">${esc(t.categoria || 'Trabajo profesional')}</small>
@@ -1008,7 +1352,7 @@ ${trabajos.length ? `
 `}
 
 <div style="margin-top:10px">
-  <button class="btn sm sheen" data-a="sheetUpTrabajo" style="padding:12px;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;text-align:center;border-radius:12px;width:100%">📷 Subir Foto de Trabajo Real</button>
+  <button class="btn sm sheen" data-a="sheetUpTrabajo" style="padding:12px;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;text-align:center;border-radius:12px;width:100%">Subir Foto de Trabajo Real</button>
 </div>
 
 <!-- SECCIÓN 2: IMPLEMENTOS Y HERRAMIENTAS DE TRABAJO -->
@@ -1041,7 +1385,7 @@ ${impls.length ? `
 `}
 
 <div style="margin-top:10px">
-  <button class="btn sm sheen" data-a="sheetUpImpl" style="padding:12px;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;text-align:center;border-radius:12px;width:100%">🛠️ Registrar Herramienta o Equipo</button>
+  <button class="btn sm sheen" data-a="sheetUpImpl" style="padding:12px;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;text-align:center;border-radius:12px;width:100%">Registrar Herramienta o Equipo</button>
 </div>
 
 <button class="btn ghost" data-a="rol" data-x="cliente" style="margin-top:14px">Volver a modo cliente</button>
@@ -1071,9 +1415,9 @@ const pFin = () => {
 
   if (!isRegistered && !hasHistory) {
     return `<div class="ctr sm" style="padding:28px 16px;text-align:center;">
-      <div style="font-size:36px;margin-bottom:10px">💼</div>
+      <div style="margin-bottom:10px">${I('bag',36)}</div>
       <h2 style="margin-bottom:8px">Billetera de Ingresos</h2>
-      <p class="mut txtc" style="margin-bottom:18px">No hay profesionales registrados ni saldo disponible en esta sesión.<br>Regístrate como profesional para habilitar tu billetera y cobrar al 93% neto con Bóveda Wompi.</p>
+      <p class="mut txtc" style="margin-bottom:18px">No hay profesionales registrados ni saldo disponible en esta sesión.<br>Regístrate como profesional para habilitar tu billetera y cobrar del 82% al 89% neto con Bóveda Wompi (costos 100% absorbidos).</p>
       <a href="/registro/tecnico" class="btn sheen" style="display:inline-block;padding:12px 22px;text-decoration:none;font-weight:900;background:#B8FF3B;color:#111;border-radius:12px">Registrarme como Profesional ➔</a>
     </div>`;
   }
@@ -1082,9 +1426,11 @@ const pFin = () => {
   const saldoPend = (S.wal && S.wal.pend) ? S.wal.pend : 0;
   const ultJob = califJobs.length ? califJobs[califJobs.length - 1] : null;
   const ultV = ultJob ? ultJob.v : 0;
-  const ultCom = Math.round(ultV * 0.07);
-  const ultNeto = ultV - ultCom;
   const proNivel = S.proInfo?.nivel || S.proInfo?.nv || 'Bronce';
+  const proFeeRate = proNivel === 'Oro' ? 0.11 : (proNivel === 'Plata' ? 0.14 : 0.18);
+  const proNetPct = Math.round((1 - proFeeRate) * 100);
+  const ultCom = Math.round(ultV * proFeeRate);
+  const ultNeto = ultV - ultCom;
   const proRating = (S.proInfo?.r || 5.0).toFixed(1);
 
   return `<div class="glass wallet">
@@ -1103,11 +1449,11 @@ const pFin = () => {
     <span class="ibox">${LZ()}</span>
     <div class="grow">
       <b>Nivel ${esc(proNivel)} · ${proRating}★</b>
-      <small>Comisión 7% en Bóveda Wompi (93% neto para ti).</small>
-      <div class="prog" style="--w:${proNivel === 'Oro' ? 94 : 93}%"><i></i></div>
+      <small>Comisión ${Math.round(proFeeRate * 100)}% en Bóveda Wompi (${proNetPct}% neto para ti · Pasarela absorbida).</small>
+      <div class="prog" style="--w:${proNetPct}%"><i></i></div>
     </div>
   </div>
-  ${ultJob ? `<div class="glass rows"><div><span>Último trabajo</span><b>${M(ultV)}</b></div><div><span>Comisión rebuske (7%)</span><b>−${M(ultCom)}</b></div><div><span>Recibes</span><b class="lima">${M(ultNeto)}</b></div></div>` : `<div class="glass center" style="padding:14px;text-align:center"><p class="mut">Aún no registras cobros finalizados este mes.</p></div>`}
+  ${ultJob ? `<div class="glass rows"><div><span>Último trabajo</span><b>${M(ultV)}</b></div><div><span>Comisión rebuske (${Math.round(proFeeRate * 100)}%)</span><b>−${M(ultCom)}</b></div><div><span>Recibes</span><b class="lima">${M(ultNeto)}</b></div></div>` : `<div class="glass center" style="padding:14px;text-align:center"><p class="mut">Aún no registras cobros finalizados este mes.</p></div>`}
   <button class="btn ghost" data-a="cert" ${califJobs.length ? '' : 'disabled'}>Descargar certificado de ingresos</button>`;
 };
 
@@ -1154,7 +1500,7 @@ const A={
         ${cards.map(c => `
           <div class="glass" style="display:flex;justify-content:space-between;align-items:center;padding:12px;border-radius:14px;${c.primary ? 'border-color:rgba(184,255,59,0.5);background:rgba(27,45,23,0.4);' : ''}">
             <div style="display:flex;align-items:center;gap:12px">
-              <span style="font-size:24px">${c.brand.toLowerCase().includes('visa') ? '💳' : '🏦'}</span>
+              <span style="font-size:24px">${c.brand.toLowerCase().includes('visa') ? 'Tarjeta' : 'Bancolombia'}</span>
               <div>
                 <div style="display:flex;align-items:center;gap:6px">
                   <b style="color:#F4FBF1">${c.brand} •••• ${c.last4}</b>
@@ -1172,7 +1518,7 @@ const A={
       </div>
       <div class="glass" style="margin-top:14px;padding:10px;border-radius:10px;background:rgba(12,18,10,0.6)">
         <small style="color:#9FB392;font-size:11px;display:flex;align-items:center;gap:6px">
-          <span>🔒</span>
+          <span>${I('shield',16)}</span>
           <span>Regla de Seguridad: No puedes eliminar tu única tarjeta activa si no registras otra primero.</span>
         </small>
       </div>
@@ -1185,7 +1531,7 @@ const A={
     if (cards.length <= 1) {
       openSheet(`
         <div style="text-align:center;padding:12px 6px">
-          <span style="font-size:42px;display:block;margin-bottom:8px">🔒</span>
+          <span style="display:block;margin-bottom:8px">${I('shield',42)}</span>
           <h2 style="color:#B8FF3B;margin-bottom:8px">Acción Protegida por Seguridad</h2>
           <p style="color:#F4FBF1;font-size:13px;line-height:1.4;margin-bottom:16px">
             Por seguridad y garantía de <strong>pago protegido Wompi</strong>, no puedes eliminar tu única tarjeta activa. Debes registrar otra tarjeta antes de poder desvincular esta.
@@ -1307,8 +1653,8 @@ const A={
       <h2>Foto de Perfil (${isPro ? 'Profesional' : 'Cliente'})</h2>
       <small class="mut">Cumples con el periodo de seguridad de 30 días. Elige la acción que deseas realizar:</small>
       <div class="stack" style="gap:10px;margin-top:14px">
-        <button class="btn sheen full" data-a="doUpdateFoto" data-role="${d.role}">📷 Subir / Cambiar Nueva Foto</button>
-        <button class="btn ghost red full" data-a="doRemoveFoto" data-role="${d.role}">🗑️ Quitar Foto de Perfil</button>
+        <button class="btn sheen full" data-a="doUpdateFoto" data-role="${d.role}">Subir / Cambiar Nueva Foto</button>
+        <button class="btn ghost red full" data-a="doRemoveFoto" data-role="${d.role}">Quitar Foto de Perfil</button>
         <button class="btn ghost full" data-a="close" style="margin-top:6px">Cancelar</button>
       </div>
     `);
@@ -1574,7 +1920,7 @@ const A={
       });
       const data = await res.json();
       if (!data.ok) {
-        toast('⚠️ ' + (data.error || 'Error solicitando código'));
+        toast('' + (data.error || 'Error solicitando código'));
         return;
       }
       window.__rebuskePendingPhone = data.phone;
@@ -1629,7 +1975,7 @@ const A={
       });
       const data = await res.json();
       if (!data.ok && data.error && !data.error.includes('No hay ningún código')) {
-        toast('⚠️ ' + data.error);
+        toast('' + data.error);
         return;
       }
     } catch (_) {}
@@ -1691,12 +2037,289 @@ const A={
   },
   elegir:d=>{const j=job(d.j);if(!j)return;j.pro=d.id;j.v=+d.pr;j.s='asignado';save();go('pago',{id:j.id})},
 
+  /* ===== NEGOCIACIÓN DE TARIFAS EN TIEMPO REAL CON BOTONES + Y − (ESTILO INDRIVE) ===== */
+  solicitudStepBudget: d => {
+    const input = document.getElementById('sb');
+    const label = document.getElementById('solicitudBudgetValText');
+    const proNet = document.getElementById('solicitudProNetText');
+    let cur = input ? (+input.value || 60000) : 60000;
+    const delta = parseInt(d.delta, 10) || (d.dir === '1' ? 5000 : -5000);
+    cur = Math.max(20000, Math.min(2000000, cur + delta));
+    if (input) input.value = cur;
+    if (label) {
+      label.textContent = M(cur);
+      label.classList.remove('bump');
+      void label.offsetWidth;
+      label.classList.add('bump');
+    }
+    if (proNet) {
+      proNet.textContent = 'El profesional recibe: ~' + M(Math.round(cur * 0.93)) + ' COP';
+    }
+  },
+
+  solicitudQuickBudget: d => {
+    const input = document.getElementById('sb');
+    const label = document.getElementById('solicitudBudgetValText');
+    const proNet = document.getElementById('solicitudProNetText');
+    let cur = input ? (+input.value || 60000) : 60000;
+    if (d.val) {
+      cur = parseInt(d.val, 10);
+    } else if (d.delta) {
+      cur = Math.max(20000, Math.min(2000000, cur + parseInt(d.delta, 10)));
+    }
+    if (input) input.value = cur;
+    if (label) {
+      label.textContent = M(cur);
+      label.classList.remove('bump');
+      void label.offsetWidth;
+      label.classList.add('bump');
+    }
+    if (proNet) {
+      proNet.textContent = 'El profesional recibe: ~' + M(Math.round(cur * 0.93)) + ' COP';
+    }
+  },
+
+  rutaStepOffer: d => {
+    const j = job(d.id);
+    if (!j) return;
+    const delta = d.delta ? parseInt(d.delta, 10) : (d.dir === '1' || d.dir === 1 ? 5000 : -5000);
+    const oldV = j.v || 50000;
+    j.v = Math.max(25000, oldV + delta);
+    j.base = j.v;
+    if (j.props && j.props.length) {
+      const ratio = j.v / (oldV || 1);
+      j.props.forEach(p => {
+        p.p = Math.round((p.p * ratio) / 1000) * 1000;
+      });
+    }
+    save();
+    const valEl = document.getElementById('rutaOfferVal_' + j.id);
+    if (valEl) {
+      valEl.textContent = M(j.v);
+      valEl.classList.remove('bump');
+      void valEl.offsetWidth;
+      valEl.classList.add('bump');
+    }
+    render();
+    toast('Oferta ajustada a ' + M(j.v) + '. Notificando a técnicos en Medellín...');
+  },
+
+  openContraofertaModal: d => {
+    const j = job(d.j);
+    if (!j) return;
+    const px = PR(d.pro);
+    const curVal = parseInt(d.cur, 10) || j.v || 60000;
+    window.__tempContraVal = curVal;
+    openSheet(`
+      <div style="text-align:center;padding:8px 0">
+        <div style="display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:6px">
+          <span class="indrive-neg-badge"><span class="indrive-pulse-dot"></span>Negociación Directa InDrive</span>
+        </div>
+        <h2 style="margin:0 0 2px">Contraofertar a ${esc(px.n.split(' ')[0])}</h2>
+        <small style="color:#9CA3AF;display:block;margin-bottom:12px">${px.o} · Propuesta actual: ${M(curVal)}</small>
+        
+        <div class="indrive-neg-card" style="margin:0 0 12px 0">
+          <div class="indrive-stepper-wrap">
+            <button type="button" class="indrive-step-btn minus" data-a="modalStepContra" data-delta="-5000" aria-label="Restar 5000 COP">−</button>
+            <div class="indrive-amount-center">
+              <small style="font-size:10px;color:#9CA3AF">Tu Contraoferta</small>
+              <input type="hidden" id="modalContraInput" value="${curVal}">
+              <div class="indrive-amount-val" id="modalContraValText">${M(curVal)}</div>
+              <small style="color:#6EE7B7;font-size:10.5px" id="modalContraNetText">Técnico recibe neto: ${M(Math.round(curVal * 0.93))}</small>
+            </div>
+            <button type="button" class="indrive-step-btn plus" data-a="modalStepContra" data-delta="5000" aria-label="Sumar 5000 COP">+</button>
+          </div>
+          
+          <div class="indrive-chips-row">
+            <button type="button" class="indrive-quick-pill" data-a="modalStepContra" data-delta="-5000">−$5k</button>
+            <button type="button" class="indrive-quick-pill" data-a="modalStepContra" data-delta="-2000">−$2k</button>
+            <button type="button" class="indrive-quick-pill" data-a="modalStepContra" data-delta="2000">+$2k</button>
+            <button type="button" class="indrive-quick-pill" data-a="modalStepContra" data-delta="5000">+$5k</button>
+          </div>
+        </div>
+        
+        <p style="font-size:11px;color:#9CA3AF;margin:0 0 14px">Si ${esc(px.n.split(' ')[0])} acepta tu contraoferta, el servicio queda agendado y el dinero protegido en Wompi.</p>
+        
+        <div class="row2">
+          <button class="btn ghost" data-a="close">Cancelar</button>
+          <button class="btn sheen" data-a="confirmarContraoferta" data-j="${j.id}" data-pro="${px.id}" style="background:#B8FF3B;color:#0B1309;font-weight:700">
+            Enviar Contraoferta
+          </button>
+        </div>
+      </div>
+    `);
+  },
+
+  modalStepContra: d => {
+    const input = document.getElementById('modalContraInput');
+    const label = document.getElementById('modalContraValText');
+    const netEl = document.getElementById('modalContraNetText');
+    let cur = input ? (+input.value || 50000) : (window.__tempContraVal || 50000);
+    const delta = parseInt(d.delta, 10) || 0;
+    cur = Math.max(20000, cur + delta);
+    window.__tempContraVal = cur;
+    if (input) input.value = cur;
+    if (label) {
+      label.textContent = M(cur);
+      label.classList.remove('bump');
+      void label.offsetWidth;
+      label.classList.add('bump');
+    }
+    if (netEl) netEl.textContent = 'Técnico recibe neto: ' + M(Math.round(cur * 0.93));
+  },
+
+  confirmarContraoferta: d => {
+    const j = job(d.j);
+    if (!j) return;
+    const px = PR(d.pro);
+    const input = document.getElementById('modalContraInput');
+    const finalVal = input ? (+input.value || j.v) : (window.__tempContraVal || j.v);
+    closeSheet();
+    const prop = (j.props || []).find(p => p.pro === d.pro);
+    if (prop) prop.p = finalVal;
+    j.pro = d.pro;
+    j.v = finalVal;
+    j.s = 'asignado';
+    if (!j.chat) j.chat = [];
+    j.chat.push({
+      f: 'yo',
+      m: '🤝 [Contraoferta Aceptada]: Acordamos el servicio en ' + M(finalVal) + ' COP vía negociación InDrive.',
+      ts: Date.now()
+    });
+    j.chat.push({
+      f: 'pro',
+      m: '¡Trato hecho! Acepto los ' + M(finalVal) + ' COP. Ya voy preparando mis herramientas.',
+      ts: Date.now() + 500
+    });
+    save();
+    toast('🤝 ¡Contraoferta aceptada por ' + esc(px.n.split(' ')[0]) + '! Redirigiendo a pago protegido...');
+    setTimeout(() => { go('pago', { id: j.id }); }, 600);
+  },
+
+  chatNegStep: d => {
+    const j = job(d.id);
+    if (!j) return;
+    const delta = parseInt(d.delta, 10) || 0;
+    const cur = j.v || 50000;
+    j.v = Math.max(20000, cur + delta);
+    save();
+    const valEl = document.getElementById('chatNegVal_' + j.id);
+    const netEl = document.getElementById('chatNegNetSub_' + j.id);
+    if (valEl) {
+      valEl.textContent = M(j.v);
+      valEl.classList.remove('bump');
+      void valEl.offsetWidth;
+      valEl.classList.add('bump');
+    }
+    if (netEl) netEl.textContent = 'Técnico recibe neto: ' + M(Math.round(j.v * 0.93)) + ' (93%)';
+    const btnAcep = q('#chatNegCard_' + j.id + ' button[data-a="chatAcceptTarifa"]');
+    if (btnAcep) btnAcep.textContent = '✓ Aceptar Tarifa (' + M(j.v) + ')';
+  },
+
+  chatSendContraoferta: d => {
+    const j = job(d.id);
+    if (!j) return;
+    if (!j.chat) j.chat = [];
+    j.chat.push({
+      f: 'yo',
+      m: '🤝 [Contraoferta InDrive]: Propongo cerrar este servicio en ' + M(j.v) + ' COP con pago protegido en Bóveda Wompi.',
+      ts: Date.now()
+    });
+    toast('Contraoferta enviada al profesional');
+    j.typing = true;
+    save();
+    render();
+    setTimeout(() => {
+      j.typing = false;
+      j.chat.push({
+        f: 'pro',
+        m: '¡De acuerdo! Me sirve la tarifa de ' + M(j.v) + ' COP. Pulsa "✓ Aceptar Tarifa" para dejarla protegida en Bóveda Wompi.',
+        ts: Date.now()
+      });
+      save();
+      render();
+    }, 1200);
+  },
+
+  chatAcceptTarifa: d => {
+    const j = job(d.id);
+    if (!j) return;
+    if (!j.chat) j.chat = [];
+    j.chat.push({
+      f: 'yo',
+      m: '✓ Acepto la tarifa fijada en ' + M(j.v) + ' COP. Pasando a Bóveda Wompi.',
+      ts: Date.now()
+    });
+    save();
+    toast('✓ Tarifa fijada en ' + M(j.v) + ' COP. Abriendo pago protegido...');
+    setTimeout(() => { go('pago', { id: j.id }); }, 500);
+  },
+
+  focusNegCard: d => {
+    const card = document.getElementById('chatNegCard_' + d.id);
+    if (card) {
+      card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      card.style.transition = 'box-shadow 0.3s ease, border-color 0.3s ease';
+      card.style.boxShadow = '0 0 25px rgba(184,255,59,0.5)';
+      card.style.borderColor = '#B8FF3B';
+      setTimeout(() => {
+        card.style.boxShadow = '';
+        card.style.borderColor = '';
+      }, 1500);
+    }
+  },
+
+  proReqStep: d => {
+    const r = S.req.find(x => x.id === d.id);
+    if (!r) return;
+    const delta = parseInt(d.delta, 10) || 0;
+    r.__negVal = (r.__negVal || r.b) + delta;
+    r.__negVal = Math.max(20000, r.__negVal);
+    const valEl = document.getElementById('proReqVal_' + r.id);
+    const netEl = document.getElementById('proReqNet_' + r.id);
+    const nv = (S.proInfo && S.proInfo.nivel) || 'Bronce';
+    const feeRate = nv === 'Oro' ? 0.11 : (nv === 'Plata' ? 0.14 : 0.18);
+    const netRate = 1 - feeRate;
+    if (valEl) {
+      valEl.textContent = M(r.__negVal);
+      valEl.classList.remove('bump');
+      void valEl.offsetWidth;
+      valEl.classList.add('bump');
+    }
+    if (netEl) netEl.textContent = 'Recibes neto: ' + M(Math.round(r.__negVal * netRate));
+  },
+
+  acepConTarifa: d => {
+    const r = S.req.find(x => x.id === d.id);
+    closeSheet();
+    if (!r) return;
+    const finalPrice = r.__negVal || r.b;
+    S.req = S.req.filter(x => x.id !== d.id);
+    S.jobs.unshift({
+      id: 'j' + Date.now(),
+      t: r.t,
+      c: r.c,
+      z: r.z,
+      v: finalPrice,
+      k: r.k,
+      s: 'retenido',
+      pro: 'p1',
+      cl: r.cl,
+      chat: [
+        { f: 'pro', m: '¡Hola ' + esc(r.cl) + '! Acepté la solicitud con la tarifa de ' + M(finalPrice) + ' COP. Ya voy saliendo.', ts: Date.now() }
+      ]
+    });
+    save();
+    toast('Trabajo aceptado en ' + M(finalPrice) + ' COP. El pago queda protegido.');
+    render();
+  },
+
   /* ===== ACCIONES IMPLEMENTADAS: Despacho Inmediato, DIAGNÓSTICO, GARANTÍA EXTENDIDA & ANTIFRAUDE ===== */
   luzExpress: () => {
     openSheet(`
       <div style="text-align:center;padding:10px 0">
         <div style="width:60px;height:60px;border-radius:50%;background:#EF4444;border:3px solid #FCA5A5;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 25px rgba(239,68,68,0.7)">
-          <span style="font-size:28px">🚨</span>
+          <span style="font-size:16px">${I('bolt',24)}</span>
         </div>
         <h2 style="margin:0 0 4px;color:#FCA5A5;font-size:18px">Servicio Express Prioritario · Emergencias Eléctricas</h2>
         <small style="color:#D1D5DB;display:block;margin-bottom:14px">Llegada técnica prioritaria (tiempo estimado: 35 a 45 min en Medellín según tráfico).</small>
@@ -1731,7 +2354,7 @@ const A={
     });
     save();
     go('chat', { id });
-    toast('🚨 Solicitud Express activada. Técnico en camino.');
+    toast('Solicitud Express activada. Técnico en camino.');
   },
   diagChip: (d, el) => {
     const ta = document.getElementById('diag_txt');
@@ -1761,7 +2384,7 @@ const A={
   diagVoice: () => {
     const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (!SpeechRec) {
-      toast('⚠️ Dictado por voz no disponible en este navegador. Escribe el texto.');
+      toast('Dictado por voz no disponible en este navegador. Escribe el texto.');
       return;
     }
     if (window._diagRecActive) {
@@ -1770,7 +2393,7 @@ const A={
       const lbl = document.getElementById('voice_label');
       if (lbl) lbl.textContent = 'Dictar por voz';
       const ic = document.getElementById('voice_icon');
-      if (ic) ic.textContent = '🎙️';
+      if (ic) ic.textContent = 'Audio';
       return;
     }
     try {
@@ -1784,8 +2407,8 @@ const A={
         const lbl = document.getElementById('voice_label');
         if (lbl) lbl.textContent = 'Escuchando...';
         const ic = document.getElementById('voice_icon');
-        if (ic) ic.textContent = '🔴';
-        toast('🎙️ Habla ahora: describe tu avería...');
+        if (ic) ic.textContent = 'Grabando...';
+        toast('Habla ahora: describe tu avería...');
       };
       rec.onresult = ev => {
         const tr = (ev.results && ev.results[0] && ev.results[0][0]) ? ev.results[0][0].transcript : '';
@@ -1800,26 +2423,26 @@ const A={
         const lbl = document.getElementById('voice_label');
         if (lbl) lbl.textContent = 'Dictar por voz';
         const ic = document.getElementById('voice_icon');
-        if (ic) ic.textContent = '🎙️';
-        toast('⚠️ No se capturó audio. Puedes escribir el daño.');
+        if (ic) ic.textContent = 'Audio';
+        toast('No se capturó audio. Puedes escribir el daño.');
       };
       rec.onend = () => {
         window._diagRecActive = false;
         const lbl = document.getElementById('voice_label');
         if (lbl) lbl.textContent = 'Dictar por voz';
         const ic = document.getElementById('voice_icon');
-        if (ic) ic.textContent = '🎙️';
+        if (ic) ic.textContent = 'Audio';
       };
       rec.start();
     } catch(err) {
-      toast('⚠️ Permiso de micrófono requerido');
+      toast('Permiso de micrófono requerido');
     }
   },
   diagnosticoInteligente: () => {
     openSheet(`
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
         <h2 style="margin:0;font-size:18px;display:flex;align-items:center;gap:8px">
-          <span>🔍</span> Diagnóstico Inteligente del Daño
+          <span></span> Diagnóstico Inteligente del Daño
         </h2>
         <span class="tag" style="background:rgba(56,189,248,0.2);color:#38BDF8;border:1px solid rgba(56,189,248,0.4);font-size:10px;font-weight:700">IA Medellín</span>
       </div>
@@ -1831,16 +2454,16 @@ const A={
       <div style="margin-bottom:10px">
         <small style="color:#E2E8F0;font-weight:700;display:block;margin-bottom:6px;font-size:11px">Averías frecuentes (toca para autocompletar):</small>
         <div id="diag_chips" style="display:flex;flex-wrap:wrap;gap:6px">
-          <button type="button" class="chip-diag" data-a="diagChip" data-text="Fuga de agua en tubería o llave goteando" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);color:#E2E8F0;padding:5px 9px;border-radius:12px;font-size:11px;cursor:pointer">💧 Fuga / Grifo</button>
-          <button type="button" class="chip-diag" data-a="diagChip" data-text="Corto circuito, breaker disparado o toma quemada" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);color:#E2E8F0;padding:5px 9px;border-radius:12px;font-size:11px;cursor:pointer">⚡ Corto / Brequera</button>
-          <button type="button" class="chip-diag" data-a="diagChip" data-text="Calentador a gas se apaga solo y no sale agua caliente" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);color:#E2E8F0;padding:5px 9px;border-radius:12px;font-size:11px;cursor:pointer">🔥 Calentador a gas</button>
-          <button type="button" class="chip-diag" data-a="diagChip" data-text="Nevera no congela ni enfría y motor hace ruido" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);color:#E2E8F0;padding:5px 9px;border-radius:12px;font-size:11px;cursor:pointer">❄️ Nevera / No enfría</button>
-          <button type="button" class="chip-diag" data-a="diagChip" data-text="Lavadora no centrifuga y no desagua el agua" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);color:#E2E8F0;padding:5px 9px;border-radius:12px;font-size:11px;cursor:pointer">🧺 Lavadora / Centrifugado</button>
-          <button type="button" class="chip-diag" data-a="diagChip" data-text="Llave trabada o partida en la cerradura de la puerta" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);color:#E2E8F0;padding:5px 9px;border-radius:12px;font-size:11px;cursor:pointer">🔑 Chapa / Llave trabada</button>
-          <button type="button" class="chip-diag" data-a="diagChip" data-text="Gotera en el tejado o canoa rota cuando llueve" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);color:#E2E8F0;padding:5px 9px;border-radius:12px;font-size:11px;cursor:pointer">🌧️ Gotera / Techo</button>
-          <button type="button" class="chip-diag" data-a="diagChip" data-text="Humedad con hongo y descarapelado en pared o muro" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);color:#E2E8F0;padding:5px 9px;border-radius:12px;font-size:11px;cursor:pointer">🧱 Humedad / Pared</button>
-          <button type="button" class="chip-diag" data-a="diagChip" data-text="Puerta descolgada o bisagra de clóset rota" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);color:#E2E8F0;padding:5px 9px;border-radius:12px;font-size:11px;cursor:pointer">🚪 Mueble / Bisagra</button>
-          <button type="button" class="chip-diag" data-a="diagChip" data-text="Aire acondicionado gotea agua por la pared y no enfría" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);color:#E2E8F0;padding:5px 9px;border-radius:12px;font-size:11px;cursor:pointer">❄️ Aire acondicionado</button>
+          <button type="button" class="chip-diag" data-a="diagChip" data-text="Fuga de agua en tubería o llave goteando" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);color:#E2E8F0;padding:5px 9px;border-radius:12px;font-size:11px;cursor:pointer">Fuga / Grifo</button>
+          <button type="button" class="chip-diag" data-a="diagChip" data-text="Corto circuito, breaker disparado o toma quemada" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);color:#E2E8F0;padding:5px 9px;border-radius:12px;font-size:11px;cursor:pointer">Corto / Brequera</button>
+          <button type="button" class="chip-diag" data-a="diagChip" data-text="Calentador a gas se apaga solo y no sale agua caliente" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);color:#E2E8F0;padding:5px 9px;border-radius:12px;font-size:11px;cursor:pointer">Calentador a gas</button>
+          <button type="button" class="chip-diag" data-a="diagChip" data-text="Nevera no congela ni enfría y motor hace ruido" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);color:#E2E8F0;padding:5px 9px;border-radius:12px;font-size:11px;cursor:pointer">Nevera / No enfría</button>
+          <button type="button" class="chip-diag" data-a="diagChip" data-text="Lavadora no centrifuga y no desagua el agua" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);color:#E2E8F0;padding:5px 9px;border-radius:12px;font-size:11px;cursor:pointer">Lavadora / Centrifugado</button>
+          <button type="button" class="chip-diag" data-a="diagChip" data-text="Llave trabada o partida en la cerradura de la puerta" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);color:#E2E8F0;padding:5px 9px;border-radius:12px;font-size:11px;cursor:pointer">Chapa / Llave trabada</button>
+          <button type="button" class="chip-diag" data-a="diagChip" data-text="Gotera en el tejado o canoa rota cuando llueve" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);color:#E2E8F0;padding:5px 9px;border-radius:12px;font-size:11px;cursor:pointer">Gotera / Techo</button>
+          <button type="button" class="chip-diag" data-a="diagChip" data-text="Humedad con hongo y descarapelado en pared o muro" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);color:#E2E8F0;padding:5px 9px;border-radius:12px;font-size:11px;cursor:pointer">Humedad / Pared</button>
+          <button type="button" class="chip-diag" data-a="diagChip" data-text="Puerta descolgada o bisagra de clóset rota" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);color:#E2E8F0;padding:5px 9px;border-radius:12px;font-size:11px;cursor:pointer">Mueble / Bisagra</button>
+          <button type="button" class="chip-diag" data-a="diagChip" data-text="Aire acondicionado gotea agua por la pared y no enfría" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);color:#E2E8F0;padding:5px 9px;border-radius:12px;font-size:11px;cursor:pointer">Aire acondicionado</button>
         </div>
       </div>
 
@@ -1849,7 +2472,7 @@ const A={
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
           <span style="font-size:12px;font-weight:700;color:#F1F5F9">¿Qué está fallando exactamente?</span>
           <button type="button" id="btn_dictar_voz" class="btn sm ghost" data-a="diagVoice" style="padding:4px 10px;font-size:11px;border-color:rgba(56,189,248,0.4);color:#38BDF8;display:flex;align-items:center;gap:4px">
-            <span id="voice_icon">🎙️</span> <span id="voice_label">Dictar por voz</span>
+            <span id="voice_icon">️</span> <span id="voice_label">Dictar por voz</span>
           </button>
         </div>
         <textarea id="diag_txt" rows="3" placeholder="Ej: El calentador prende unos segundos y se apaga botando agua fría, o siento olor a gas cerca de la válvula..." style="width:100%;box-sizing:border-box;border-radius:12px;background:rgba(15,23,42,0.8);border:1px solid rgba(255,255,255,0.15);color:#FFF;padding:10px;font-size:13px;resize:none"></textarea>
@@ -1860,7 +2483,7 @@ const A={
         <input type="file" id="diag_foto" accept="image/*" style="display:none">
         <div style="display:flex;align-items:center;gap:10px">
           <button type="button" class="btn sm ghost" data-a="diagPickPhoto" style="padding:7px 12px;font-size:11.5px;border-color:rgba(184,255,59,0.4);color:#B8FF3B;display:flex;align-items:center;gap:6px">
-            📷 <span>Adjuntar foto del daño</span>
+             <span>Adjuntar foto del daño</span>
           </button>
           <small id="diag_foto_status" style="color:#94A3B8;font-size:11px">${window._tempDiagPhoto ? '✓ 1 foto cargada' : 'Opcional (mejora la precisión)'}</small>
         </div>
@@ -1871,13 +2494,13 @@ const A={
 
       <!-- ALERTA DE TRANSPARENCIA -->
       <div style="background:rgba(56,189,248,0.08);border:1px solid rgba(56,189,248,0.25);border-radius:12px;padding:10px 12px;margin:12px 0;font-size:11.5px;color:#CBD5E1;line-height:1.4">
-        🛡️ <b>Transparencia rebuske:</b> Consulta 100% gratuita. Te entregamos la causa probable, rango de repuestos y tarifa diagnóstica unificada ($35.000 COP, abonables al trabajo si contratas).
+        ✓ <b>Transparencia rebuske:</b> Consulta 100% gratuita. Te entregamos la causa probable, rango de repuestos y tarifa diagnóstica unificada ($35.000 COP, abonables al trabajo si contratas).
       </div>
 
       <div class="row2">
         <button class="btn ghost" data-a="close">Cerrar</button>
         <button class="btn sheen" data-a="evaluarDiagnostico" style="background:linear-gradient(135deg,#38BDF8,#0284C7);color:#FFF;font-weight:800">
-          ⚡ Diagnosticar Avería
+          Diagnosticar Avería
         </button>
       </div>
     `);
@@ -1886,7 +2509,7 @@ const A={
     const txtRaw = val('diag_txt') || '';
     const hasPhoto = !!window._tempDiagPhoto;
     if (!txtRaw && !hasPhoto) {
-      toast('⚠️ Describe el daño, selecciona una avería rápida o sube una foto.');
+      toast('Describe el daño, selecciona una avería rápida o sube una foto.');
       return;
     }
     closeSheet();
@@ -1898,7 +2521,7 @@ const A={
         id: 'gas',
         cat: 'Gasodomésticos & Calentadores',
         catApp: 'Reparaciones',
-        icon: '🔥',
+        icon: '',
         highTokens: ['calentador', 'gasodomest', 'termocupla', 'calentador de paso', 'red de gas', 'fuga de gas', 'olor a gas', 'estufa a gas', 'horno a gas', 'calentadores'],
         midTokens: ['gas', 'piloto', 'haceb', 'bosch', 'challenger', 'mabe', 'termostato', 'llama', 'chimenea', 'chispero', 'agua caliente', 'agua fria', 'agua tibia', 'no calienta', 'se apaga'],
         urgency: () => {
@@ -1908,7 +2531,7 @@ const A={
             bg: isCritical ? 'rgba(239,68,68,0.2)' : 'rgba(245,158,11,0.2)',
             color: isCritical ? '#FCA5A5' : '#FCD34D',
             border: isCritical ? '#EF4444' : '#F59E0B',
-            alerta: isCritical ? '🚨 <b>¡ALERTA DE SEGURIDAD!</b> Posible escape de gas detectado. Cierra inmediatamente la válvula maestra de paso y abre ventanas. No enciendas fósforos ni interruptores.' : null,
+            alerta: isCritical ? ' <b>¡ALERTA DE SEGURIDAD!</b> Posible escape de gas detectado. Cierra inmediatamente la válvula maestra de paso y abre ventanas. No enciendas fósforos ni interruptores.' : null,
             alertaBg: 'rgba(239,68,68,0.15)',
             alertaBorder: '#EF4444'
           };
@@ -1925,7 +2548,7 @@ const A={
         id: 'elect',
         cat: 'Electricidad Residencial',
         catApp: 'Reparaciones',
-        icon: '⚡',
+        icon: 'bolt',
         highTokens: ['breaker', 'breakers', 'brequera', 'cortocircuito', 'corto circuito', 'caja de tacos', 'tomacorriente', 'tomacorrientes', 'enchufe', 'enchufes', 'acometida', 'electrico', 'electricidad', 'totalizador'],
         midTokens: ['corto', 'taco', 'tacos', 'chispa', 'chispas', 'chispazo', 'quemado', 'olor a quemado', 'cable', 'cableado', 'parpadeo', 'baja de luz', 'sin luz', 'sin energia', 'sobrecarga', 'panel led', 'diferencial', 'lampara'],
         urgency: () => {
@@ -1935,7 +2558,7 @@ const A={
             bg: isCritical ? 'rgba(239,68,68,0.2)' : 'rgba(56,189,248,0.2)',
             color: isCritical ? '#FCA5A5' : '#38BDF8',
             border: isCritical ? '#EF4444' : '#38BDF8',
-            alerta: isCritical ? '⚡ <b>¡PELIGRO ELÉCTRICO!</b> Cortocircuito o chispa activa. Baja el taco / totalizador general de inmediato para evitar sobrecargas y conato de incendio.' : null,
+            alerta: isCritical ? '<b>¡PELIGRO ELÉCTRICO!</b> Cortocircuito o chispa activa. Baja el taco / totalizador general de inmediato para evitar sobrecargas y conato de incendio.' : null,
             alertaBg: 'rgba(239,68,68,0.15)',
             alertaBorder: '#EF4444'
           };
@@ -1953,7 +2576,7 @@ const A={
         id: 'plom',
         cat: 'Plomería & Redes Hidráulicas',
         catApp: 'Reparaciones',
-        icon: '💧',
+        icon: '',
         highTokens: ['plomer', 'plomeria', 'tubo roto', 'tuberia', 'griferia', 'grifo', 'mezclador', 'sanitario', 'inodoro', 'sifon', 'desague', 'bajante', 'motobomba', 'flotador', 'fuga de agua', 'fuga de tuberia'],
         midTokens: ['fuga', 'goteo', 'gotea', 'gotera en tubo', 'tubo', 'tanque', 'lavaplatos', 'lavamanos', 'ducha', 'registro', 'llave de agua', 'rebosa', 'inund', 'taponamiento', 'bano'],
         urgency: () => {
@@ -1963,7 +2586,7 @@ const A={
             bg: isCritical ? 'rgba(239,68,68,0.2)' : 'rgba(56,189,248,0.2)',
             color: isCritical ? '#FCA5A5' : '#38BDF8',
             border: isCritical ? '#EF4444' : '#38BDF8',
-            alerta: isCritical ? '💧 <b>¡FUGA DE AGUA ACTIVA!</b> Cierra la llave de paso del contador para detener el flujo de agua y evitar daños en pisos y techos inferiores.' : null,
+            alerta: isCritical ? ' <b>¡FUGA DE AGUA ACTIVA!</b> Cierra la llave de paso del contador para detener el flujo de agua y evitar daños en pisos y techos inferiores.' : null,
             alertaBg: 'rgba(239,68,68,0.15)',
             alertaBorder: '#EF4444'
           };
@@ -1980,7 +2603,7 @@ const A={
         id: 'refri',
         cat: 'Refrigeración & Neveras',
         catApp: 'Reparaciones',
-        icon: '❄️',
+        icon: 'shield',
         highTokens: ['nevera', 'neveras', 'refrigerador', 'refrigeracion', 'congelador', 'nevecon', 'compresor de nevera', 'motor de nevera'],
         midTokens: ['no enfria', 'no congela', 'escarcha', 'hielo', 'gas refrigerante', 'whirlpool', 'termostato de nevera', 'bimetalico', 'lg', 'samsung'],
         urgency: () => ({
@@ -1988,7 +2611,7 @@ const A={
           bg: 'rgba(245,158,11,0.2)',
           color: '#FCD34D',
           border: '#F59E0B',
-          alerta: '❄️ Mantén la puerta de la nevera cerrada para preservar el frío interno mientras llega el técnico.',
+          alerta: 'Mantén la puerta de la nevera cerrada para preservar el frío interno mientras llega el técnico.',
           alertaBg: 'rgba(245,158,11,0.12)',
           alertaBorder: '#F59E0B'
         }),
@@ -2002,7 +2625,7 @@ const A={
         id: 'lava',
         cat: 'Lavadoras & Secadoras',
         catApp: 'Reparaciones',
-        icon: '🧺',
+        icon: '',
         highTokens: ['lavadora', 'lavadoras', 'secadora', 'secadoras', 'centrifuga', 'centrifugado', 'no centrifuga', 'tambor de lavadora', 'tina de lavadora'],
         midTokens: ['no desagua', 'desague lavadora', 'bota agua lavadora', 'correa lavadora', 'golpeteo lavadora', 'bloqueo puerta lavadora'],
         urgency: () => ({
@@ -2010,7 +2633,7 @@ const A={
           bg: 'rgba(56,189,248,0.2)',
           color: '#38BDF8',
           border: '#38BDF8',
-          alerta: '🧺 Desconecta la toma eléctrica y retira la ropa pesada para evitar deformación del tambor.',
+          alerta: ' Desconecta la toma eléctrica y retira la ropa pesada para evitar deformación del tambor.',
           alertaBg: 'rgba(56,189,248,0.12)',
           alertaBorder: '#38BDF8'
         }),
@@ -2024,7 +2647,7 @@ const A={
         id: 'cerraj',
         cat: 'Cerrajería & Seguridad',
         catApp: 'Reparaciones',
-        icon: '🔑',
+        icon: '',
         highTokens: ['cerradura', 'cerraduras', 'cerrajeria', 'cerrojo', 'chapa', 'chapas', 'llave partida', 'llave trabada', 'quede afuera', 'candado'],
         midTokens: ['llave', 'llaves', 'puerta trabada', 'guarda', 'cilindro', 'pestillo', 'manija', 'cantonera', 'blindada'],
         urgency: () => {
@@ -2034,7 +2657,7 @@ const A={
             bg: isLockedOut ? 'rgba(239,68,68,0.2)' : 'rgba(56,189,248,0.2)',
             color: isLockedOut ? '#FCA5A5' : '#38BDF8',
             border: isLockedOut ? '#EF4444' : '#38BDF8',
-            alerta: isLockedOut ? '🔑 Evita introducir alambres o destornilladores; pueden dañar los pines del tambor y encarecer la apertura.' : null,
+            alerta: isLockedOut ? ' Evita introducir alambres o destornilladores; pueden dañar los pines del tambor y encarecer la apertura.' : null,
             alertaBg: 'rgba(239,68,68,0.15)',
             alertaBorder: '#EF4444'
           };
@@ -2051,7 +2674,7 @@ const A={
         id: 'techo',
         cat: 'Techos & Cubiertas',
         catApp: 'Reparaciones',
-        icon: '🌧️',
+        icon: '️',
         highTokens: ['gotera en techo', 'goteras en techo', 'tejado', 'canoa', 'canoas', 'impermeabiliz', 'teja', 'tejas', 'manto asfaltico', 'caballete de techo', 'filtracion techo'],
         midTokens: ['techo', 'gotera', 'goteras', 'bajante lluvia', 'cemento asfaltico'],
         urgency: () => ({
@@ -2059,7 +2682,7 @@ const A={
           bg: 'rgba(245,158,11,0.2)',
           color: '#FCD34D',
           border: '#F59E0B',
-          alerta: '🌧️ En Medellín las lluvias son torrenciales; sella filtraciones para prevenir desplomes de drywall.',
+          alerta: '️ En Medellín las lluvias son torrenciales; sella filtraciones para prevenir desplomes de drywall.',
           alertaBg: 'rgba(245,158,11,0.12)',
           alertaBorder: '#F59E0B'
         }),
@@ -2073,7 +2696,7 @@ const A={
         id: 'pint',
         cat: 'Pintura & Tratamiento de Muros',
         catApp: 'Reparaciones',
-        icon: '🧱',
+        icon: '',
         highTokens: ['pintura', 'pintar', 'resane', 'estuco', 'estucar', 'humedad en pared', 'hongo en pared', 'moho', 'descarapelado'],
         midTokens: ['pared', 'muro', 'humedad', 'burbuja', 'grieta', 'fisura', 'cieloraso', 'drywall'],
         urgency: () => ({
@@ -2093,7 +2716,7 @@ const A={
         id: 'carp',
         cat: 'Carpintería & Mobiliario',
         catApp: 'Reparaciones',
-        icon: '🚪',
+        icon: '',
         highTokens: ['carpinter', 'carpinteria', 'closet', 'armario', 'bisagra', 'bisagras', 'puerta caida', 'mueble de cocina', 'cocina integral'],
         midTokens: ['mueble', 'cajon', 'cajones', 'corredera', 'riel', 'repisa', 'formica', 'madera', 'descolgado'],
         urgency: () => ({
@@ -2113,7 +2736,7 @@ const A={
         id: 'aire',
         cat: 'Aires Acondicionados & Climatización',
         catApp: 'Reparaciones',
-        icon: '❄️',
+        icon: 'shield',
         highTokens: ['aire acondicionado', 'aires acondicionados', 'minisplit', 'split', 'climatizador', 'climatizacion', 'carga de gas aire'],
         midTokens: ['gotea aire', 'aire gotea', 'mantenimiento aire', 'filtro aire', 'compresor aire'],
         urgency: () => ({
@@ -2121,7 +2744,7 @@ const A={
           bg: 'rgba(56,189,248,0.2)',
           color: '#38BDF8',
           border: '#38BDF8',
-          alerta: '❄️ Apaga el equipo si gotea adentro para no afectar la tarjeta electrónica del split.',
+          alerta: 'Apaga el equipo si gotea adentro para no afectar la tarjeta electrónica del split.',
           alertaBg: 'rgba(56,189,248,0.12)',
           alertaBorder: '#38BDF8'
         }),
@@ -2156,7 +2779,7 @@ const A={
         diag = {
           cat: 'Inspección Técnica Especializada',
           catApp: 'Reparaciones',
-          icon: '🔍',
+          icon: '',
           sevTag: 'EVALUACIÓN EN SITIO',
           sevColorBg: 'rgba(56,189,248,0.2)',
           sevColorText: '#38BDF8',
@@ -2173,7 +2796,7 @@ const A={
         diag = {
           cat: 'Reparaciones Generales del Hogar',
           catApp: 'Reparaciones',
-          icon: '🛠️',
+          icon: '️',
           sevTag: 'VISITA DIAGNÓSTICA RECOMENDADA',
           sevColorBg: 'rgba(184,255,59,0.15)',
           sevColorText: '#B8FF3B',
@@ -2248,7 +2871,7 @@ const A={
 
       ${diag.isExpress ? `
       <div style="background:rgba(239,68,68,0.12);border:1.5px solid #EF4444;border-radius:12px;padding:10px 12px;margin:10px 0;display:flex;align-items:center;gap:10px">
-        <span style="font-size:22px">🚨</span>
+        <span style="font-size:22px"></span>
         <div class="grow">
           <b style="color:#FCA5A5;font-size:12px;display:block">¿Es una emergencia eléctrica crítica?</b>
           <small style="color:#E5E7EB;font-size:10.5px">Activa el Servicio Express Prioritario con llegada de 35 a 45 min.</small>
@@ -2274,23 +2897,23 @@ const A={
     j.extGar = !j.extGar;
     save();
     render();
-    toast(j.extGar ? '🛡️ Garantía Extendida de 30 días activada (+25%)' : 'Garantía estándar de 2 días');
+    toast(j.extGar ? '✓ Garantía Extendida de 30 días activada (+25%)' : 'Garantía estándar de 2 días');
   },
   toggleBonoVip: d => {
     const j = job(d.id);
     if (!j) return;
     if (S.bonoVipRedimido) {
-      toast('⚠️ Ya utilizaste tu Bono VIP en una orden previa (límite: 1 uso por usuario)');
+      toast('Ya utilizaste tu Bono VIP en una orden previa (límite: 1 uso por usuario)');
       return;
     }
     const clientDir = ((S.client && S.client.address) || '').toLowerCase().replace(/[^a-z0-9]/g, '');
     if (clientDir.length > 3 && (S.bonosRedimidosDir || []).includes(clientDir)) {
-      toast('⚠️ Tu dirección de domicilio ya fue beneficiada con un Bono VIP previo (límite: 1 por hogar).');
+      toast('Tu dirección de domicilio ya fue beneficiada con un Bono VIP previo (límite: 1 por hogar).');
       return;
     }
     const metodoActual = S.selectedPaymentMethod || ((S.cards && S.cards.length && S.cards[0].brand) ? S.cards[0].brand + ' •••• ' + S.cards[0].last4 : 'Tarjeta Wompi');
     if ((S.bonosRedimidosMetodos || []).includes(metodoActual)) {
-      toast('⚠️ Este método de pago ya fue utilizado para un Bono VIP en otra cuenta familiar.');
+      toast('Este método de pago ya fue utilizado para un Bono VIP en otra cuenta familiar.');
       return;
     }
     if (j.v <= 90000) {
@@ -2300,14 +2923,14 @@ const A={
     j.bonoVip = !j.bonoVip;
     save();
     render();
-    toast(j.bonoVip ? '🎁 ¡Bono VIP TUBONO15K-VIP aplicado (-$15.000 COP) con 0% comisión!' : 'Bono removido');
+    toast(j.bonoVip ? ' ¡Bono VIP TUBONO15K-VIP aplicado (-$15.000 COP) con 0% comisión!' : 'Bono removido');
   },
   reportarCobroIndebido: d => {
     const j = job(d.id);
     if (!j) return;
     openSheet(`
       <div style="text-align:center;padding:10px 0">
-        <div style="font-size:36px;margin-bottom:8px">⚠️</div>
+        <div style="font-size:24px;margin-bottom:8px;color:#F59E0B;font-weight:800;">[!]</div>
         <h2 style="margin:0 0 6px;color:#FCA5A5">Reportar Cobro Indebido</h2>
         <small style="color:#D1D5DB;display:block;margin-bottom:14px">¿El profesional te está solicitando anticipos o pagos en efectivo por fuera de la app?</small>
         
@@ -2328,12 +2951,12 @@ const A={
     if (j) {
       j.chat.push({
         f: 'sys',
-        m: '🚨 AVISO DE SEGURIDAD: Se ha emitido un reporte preventivo por solicitud de pago fuera de la plataforma. Todo cobro debe procesarse por la Bóveda Wompi para mantener la garantía de 2 días.'
+        m: ' AVISO DE SEGURIDAD: Se ha emitido un reporte preventivo por solicitud de pago fuera de la plataforma. Todo cobro debe procesarse por la Bóveda Wompi para mantener la garantía de 2 días.'
       });
       save();
       render();
     }
-    toast('✅ Reporte recibido. Soporte y Antifraude han sido notificados.');
+    toast('✓ Reporte recibido. Soporte y Antifraude han sido notificados.');
   },
   pagar: async d => {
     const j = job(d.id), p = cur().p;
@@ -2350,7 +2973,7 @@ const A={
     const baseAmount = Math.max(0, Number(j.v || 80000) - descBono);
     const totalAmount = j.extGar ? Math.round(baseAmount * 1.25) : baseAmount;
 
-    toast('🔒 Sellando pago con firma criptográfica SHA-256 en servidor...');
+    toast(' Sellando pago con firma criptográfica SHA-256 en servidor...');
 
     try {
       const checkoutRes = await fetch('/api/wompi?action=CREATE_CHECKOUT', {
@@ -2407,7 +3030,7 @@ const A={
               S.wal.pend = (S.wal.pend || 0) + serverData.breakdown.totalCOP;
               save();
               swap('ruta', { id: j.id });
-              toast('✅ Pago confirmado por Wompi y retenido en Bóveda');
+              toast('✓ Pago confirmado por Wompi y retenido en Bóveda');
             } else {
               toast('⏳ Transacción en proceso de aprobación bancaria.');
               swap('ruta', { id: j.id });
@@ -2446,7 +3069,7 @@ const A={
           save();
           if (st.length > 1 && st[st.length - 2].v === 'ruta') back();
           else swap('ruta', { id: j.id });
-          toast('✅ Pago protegido retenido en Bóveda Wompi (' + (j.extGar ? 'Garantía 30d' : 'Garantía 48h') + ')');
+          toast('✓ Pago protegido retenido en Bóveda Wompi (' + (j.extGar ? 'Garantía 30d' : 'Garantía 48h') + ')');
         }
       }, 700);
     }, 900);
@@ -2479,7 +3102,7 @@ const A={
           </div>
           
           <div style="background:rgba(184,255,59,0.08);border:1px dashed rgba(184,255,59,0.35);border-radius:10px;padding:8px;font-size:10px;color:#D4E5CC;margin-top:8px;text-align:left;">
-            <div>🛡️ <b>Póliza Activa:</b> Sura #SUR-849201-COL</div>
+            <div>✓ <b>Póliza Activa:</b> Sura #SUR-849201-COL</div>
             <div style="color:#A3B899;margin-top:2px;">Mostrá este carné al cliente para que escanee con su cámara antes de abrir.</div>
           </div>
         </div>
@@ -2532,7 +3155,7 @@ const A={
       </head>
       <body>
         <div class="no-print inst">
-          <button class="btn-print" onclick="window.print()">🖨️ Imprimir Carné / Guardar como PDF</button>
+          <button class="btn-print" onclick="window.print()">️ Imprimir Carné / Guardar como PDF</button>
           <p><strong>Instrucciones para el profesional:</strong> Imprime este carné a escala 100%, recórtalo y plastifícalo. Llévalo siempre colgado en el cuello con tu lanyard o en el bolsillo del pantalón. <strong>Tu código QR es permanente y nunca cambiará.</strong></p>
         </div>
         <div class="cards-container">
@@ -2550,7 +3173,7 @@ const A={
               <img src="${qrUrl}" alt="QR Permanente">
             </div>
             <div class="badge-footer">
-              🛡️ Póliza de Seguro Sura #SUR-849201 Activa<br>
+              ✓ Póliza de Seguro Sura #SUR-849201 Activa<br>
               <strong>CÓDIGO QR PERMANENTE:</strong> El cliente debe escanearlo con la app rebuske antes de abrir la puerta.
             </div>
           </div>
@@ -2574,7 +3197,7 @@ const A={
         <div style="position:relative;width:240px;height:240px;margin:16px auto;border-radius:20px;overflow:hidden;background:#050804;border:2px solid #23361e;box-shadow:inset 0 0 30px rgba(0,0,0,0.8);">
           <video id="qrCameraFeed" autoplay playsinline muted style="width:100%;height:100%;object-fit:cover;display:none;"></video>
           <div id="qrCameraPlaceholder" style="position:absolute;inset:0;display:grid;place-items:center;color:rgba(184,255,59,0.35);font-size:42px;">
-            📷
+            
           </div>
           
           <div style="position:absolute;top:12px;left:12px;width:26px;height:26px;border-top:3px solid #B8FF3B;border-left:3px solid #B8FF3B;border-radius:4px 0 0 0;"></div>
@@ -2589,7 +3212,7 @@ const A={
         
         <div style="display:flex;flex-direction:column;gap:8px;">
           <button class="btn sheen" data-a="confirmQrScan" data-id="${j.id}" style="padding:12px;font-size:13px;font-weight:900;background:#B8FF3B;color:#111;">
-            🟢 Escanear QR del Carné Ahora
+             Escanear QR del Carné Ahora
           </button>
           <button class="btn ghost sm" data-a="close">Cancelar y esperar</button>
         </div>
@@ -2654,26 +3277,26 @@ const A={
           
           <div style="display:flex;flex-direction:column;gap:6px;font-size:11px;color:#D4E5CC;">
             <div style="display:flex;gap:6px;align-items:center;">
-              <span style="color:#B8FF3B;">✔</span>
+              <span style="color:#B8FF3B;">✓</span>
               <span><b>Cédula cotejada:</b> CC 71.***.482 (Registraduría)</span>
             </div>
             <div style="display:flex;gap:6px;align-items:center;">
-              <span style="color:#B8FF3B;">✔</span>
+              <span style="color:#B8FF3B;">✓</span>
               <span><b>Antecedentes:</b> Policía Nacional y Procuraduría limpios</span>
             </div>
             <div style="display:flex;gap:6px;align-items:center;">
-              <span style="color:#B8FF3B;">✔</span>
+              <span style="color:#B8FF3B;">✓</span>
               <span><b>Orden en curso:</b> Asignado a tu trabajo de ${esc(j.t)}</span>
             </div>
             <div style="display:flex;gap:6px;align-items:center;">
-              <span style="color:#B8FF3B;">✔</span>
+              <span style="color:#B8FF3B;">✓</span>
               <span><b>Póliza de Seguro:</b> Sura #SUR-849201 Activa</span>
             </div>
           </div>
         </div>
         
         <div style="background:rgba(184,255,59,0.12);border:1px solid #B8FF3B;padding:10px;border-radius:12px;margin-bottom:14px;">
-          <b style="color:#B8FF3B;font-size:12px;display:block;">🚪 Podés abrir la puerta con total tranquilidad</b>
+          <b style="color:#B8FF3B;font-size:12px;display:block;"> Podés abrir la puerta con total tranquilidad</b>
           <small style="color:#A3B899;font-size:11px;">Al confirmar, la Seguimiento del Servicio avanzará al estado 'Trabajando'.</small>
         </div>
         
@@ -2692,7 +3315,7 @@ const A={
     j.s = 'en_proceso';
     save();
     render();
-    toast('✅ ¡Técnico autenticado por QR! La Seguimiento del Servicio ahora está en modo: Trabajando.');
+    toast('✓ ¡Técnico autenticado por QR! La Seguimiento del Servicio ahora está en modo: Trabajando.');
   },
   sheetLib:d=>{const j=job(d.id);if(!j)return;const x=PR(j.pro);openSheet(`<h2>¿El trabajo quedó bien?</h2><small>Al confirmar, el pago se libera a ${x.n}. Si algo no quedó bien, mejor reporta el problema.</small><div class="row2"><button class="btn ghost" data-a="close">Todavía no</button><button class="btn sheen" data-a="liberar" data-id="${j.id}">Sí, liberar pago</button></div>`)},
   liberar:d=>{
@@ -2712,7 +3335,7 @@ const A={
     if (!SpeechRecognition) {
       const notaVozTexto = prompt('Nota de Voz Oficial: Dicta o transcribe tu nota de voz para adjuntar a la disputa:');
       if (notaVozTexto && notaVozTexto.trim()) {
-        sendMsg(d.id, '🎤 [Audio Transcrito]: "' + notaVozTexto.trim() + '" (Evidencia auditable de disputa)');
+        sendMsg(d.id, ' [Audio Transcrito]: "' + notaVozTexto.trim() + '" (Evidencia auditable de disputa)');
       }
       return;
     }
@@ -2723,12 +3346,12 @@ const A={
     if (btn) {
       btn.style.background = '#EF4444';
       btn.style.color = '#FFF';
-      btn.innerText = '🔴';
+      btn.innerText = '';
     }
-    toast('🎙️ Escuchando... Habla tu mensaje para transcribirlo');
+    toast('️ Escuchando... Habla tu mensaje para transcribirlo');
     recognition.onresult = event => {
       const transcript = event.results[0][0].transcript;
-      sendMsg(d.id, '🎤 [Audio Transcrito]: "' + transcript + '" (Evidencia auditable de disputa)');
+      sendMsg(d.id, ' [Audio Transcrito]: "' + transcript + '" (Evidencia auditable de disputa)');
       toast('✓ Mensaje de voz transcrito y enviado');
     };
     recognition.onerror = () => {
@@ -2738,7 +3361,7 @@ const A={
       if (btn) {
         btn.style.background = '#1E3317';
         btn.style.color = '#B8FF3B';
-        btn.innerText = '🎤';
+        btn.innerText = '';
       }
     };
     recognition.start();
@@ -2766,13 +3389,57 @@ const A={
   },
   confirmarRedistribucion: d => {
     closeSheet();
-    toast('🔄 Buscando técnico alternativo disponible en tu comuna...');
+    toast(' Buscando técnico alternativo disponible en tu comuna...');
   },
   quick:d=>sendMsg(d.id,d.x),
   calif:d=>{const j=job(d.id),p=cur().p;if(!j||p.st)return;p.st='load';render();setTimeout(()=>{p.st='done';render();setTimeout(()=>{if(cur().v==='calificar'){j.s='calificado';j.n=starN;save();swap('completado',{id:j.id})}},800)},1100)},
   repite:d=>{const j=job(d.id),p=cur().p;if(!j||p.st)return;p.st='load';render();setTimeout(()=>{p.st='done';render();setTimeout(()=>{if(cur().v==='completado'){delete p.st;go('solicitud',{id:j.pro,cat:j.c,z:j.z,b:j.base||j.v,t:j.t,k:j.k})}},800)},1000)},
-  revisar:d=>{const r=S.req.find(x=>x.id===d.id);if(!r)return;openSheet(`<h2>${esc(r.t)}</h2><small>${r.z} · ${esc(r.cl)} · ${r.k} · ${r.w}</small><small>${esc(r.d)}</small><div class="glass rows"><div><span>Valor</span><b>${M(r.b)}</b></div><div><span>Comisión rebuske (7%)</span><b>−${M(r.b*.07)}</b></div><div><span>Recibes al liberar</span><b class="lima">${M(r.b*.93)}</b></div></div><small>El cliente paga con pago protegido. El dinero se libera cuando aprueba el trabajo.</small><div class="row2"><button class="btn ghost" data-a="close">Volver</button><button class="btn sheen" data-a="acep" data-id="${r.id}">Aceptar y proteger</button></div>`)},
-  acep:d=>{const r=S.req.find(x=>x.id===d.id);closeSheet();if(!r)return;S.req=S.req.filter(x=>x.id!==d.id);S.jobs.unshift({id:'j'+Date.now(),t:r.t,c:r.c,z:r.z,v:r.b,k:r.k,s:'retenido',pro:'p1',cl:r.cl,chat:[]});save();toast('Trabajo aceptado. El pago queda protegido.');render()},
+  revisar:d=>{
+    const r=S.req.find(x=>x.id===d.id);
+    if(!r)return;
+    r.__negVal = r.b;
+    const nv=(S.proInfo&&S.proInfo.nivel)||'Bronce';
+    const feeRate=nv==='Oro'?0.11:(nv==='Plata'?0.14:0.18);
+    const netRate=1-feeRate;
+    openSheet(`<h2>${esc(r.t)}</h2><small>${r.z} · ${esc(r.cl)} · ${r.k} · ${r.w}</small><small>${esc(r.d)}</small>
+    
+    <div class="indrive-neg-card" style="margin:10px 0 8px 0">
+      <div class="indrive-neg-header">
+        <span class="indrive-neg-badge"><span class="indrive-pulse-dot"></span>Negociación InDrive (+ / −)</span>
+        <small style="color:#9CA3AF">Presupuesto inicial: ${M(r.b)}</small>
+      </div>
+      <div class="indrive-stepper-wrap">
+        <button type="button" class="indrive-step-btn minus" data-a="proReqStep" data-id="${r.id}" data-delta="-5000" aria-label="Bajar tarifa">−</button>
+        <div class="indrive-amount-center">
+          <small style="font-size:10px;color:#9CA3AF">Tu Tarifa Acordada</small>
+          <div class="indrive-amount-val" id="proReqVal_${r.id}">${M(r.b)}</div>
+          <small style="color:#6EE7B7;font-size:10.5px" id="proReqNet_${r.id}">Recibes neto: ${M(Math.round(r.b*netRate))}</small>
+        </div>
+        <button type="button" class="indrive-step-btn plus" data-a="proReqStep" data-id="${r.id}" data-delta="5000" aria-label="Subir tarifa">+</button>
+      </div>
+      <div class="indrive-chips-row">
+        <button type="button" class="indrive-quick-pill" data-a="proReqStep" data-id="${r.id}" data-delta="-5000">−$5k</button>
+        <button type="button" class="indrive-quick-pill" data-a="proReqStep" data-id="${r.id}" data-delta="2000">+$2k</button>
+        <button type="button" class="indrive-quick-pill" data-a="proReqStep" data-id="${r.id}" data-delta="5000">+$5k</button>
+        <button type="button" class="indrive-quick-pill" data-a="proReqStep" data-id="${r.id}" data-delta="10000">+$10k</button>
+      </div>
+    </div>
+
+    <div class="glass rows"><div><span>Valor</span><b>${M(r.b)}</b></div><div><span>Comisión rebuske (${Math.round(feeRate*100)}%)</span><b>−${M(r.b*feeRate)}</b></div><div><span>Recibes al liberar</span><b class="lima">${M(r.b*netRate)}</b></div></div>
+    <small>El cliente paga con pago protegido en Bóveda Wompi (costos absorbidos). El dinero se libera cuando aprueba el trabajo.</small>
+    <div class="row2"><button class="btn ghost" data-a="close">Volver</button><button class="btn sheen" data-a="acep" data-id="${r.id}">Aceptar y proteger</button></div>`);
+  },
+  acep:d=>{
+    const r=S.req.find(x=>x.id===d.id);
+    closeSheet();
+    if(!r)return;
+    const finalVal = r.__negVal || r.b;
+    S.req=S.req.filter(x=>x.id!==d.id);
+    S.jobs.unshift({id:'j'+Date.now(),t:r.t,c:r.c,z:r.z,v:finalVal,k:r.k,s:'retenido',pro:'p1',cl:r.cl,chat:[]});
+    save();
+    toast('Trabajo aceptado. El pago queda protegido.');
+    render();
+  },
   rech:d=>{S.req=S.req.filter(x=>x.id!==d.id);save();render()},
   retiro:()=>{S.wal.saldo=0;save();toast('Retiro enviado. El próximo se habilita en 4 días.');render()},
   cert:()=>toast('Generando certificado oficial de ingresos con firma digital...'),
@@ -3030,12 +3697,18 @@ return `${hdr('Pago protegido','Tu plata queda guardada')}
 <div class="sticky">${pagado?`<button class="btn ghost" data-a="go" data-x="ruta" data-id="${j.id}">Ver Seguimiento del Servicio</button>`:cta('Confirmar pago protegido','pagar',`data-id="${j.id}"`,p.st)}</div>`};
 A.qty=d=>{const j=job(d.id);if(!j||j.s!=='asignado'||cur().p.st)return;j.ex=j.ex||{};j.ex[d.n]=Math.max(0,(j.ex[d.n]||0)+Number(d.d));const cat=CAT_SERV[j.c]||[];j.v=j.base+cat.reduce((s,[nm,pr])=>s+(j.ex[nm]||0)*pr,0);save();render()};
 A.elegir=d=>{const j=job(d.j);if(!j)return;j.pro=d.id;j.base=+d.pr;j.v=+d.pr;j.ex={};j.s='asignado';save();go('pago',{id:j.id})};
+
+if (typeof window !== 'undefined') {
+  window.A = A;
+  window.VIEWS = VIEWS;
+}
+
 const _render0=render;
 render=function(){_render0();document.querySelectorAll('.cta .sp').forEach(e=>{if(!e.firstChild)e.innerHTML='<svg viewBox="0 0 390 372"><use href="#lz"/></svg>'});document.querySelectorAll('.hero.ring').forEach(h=>{if(cur().v!=='ruta')h.classList.remove('ring')});if(S.role&&!['splash','bienvenida','rol'].includes(cur().v))document.querySelectorAll('.hero').forEach(h=>h.classList.add('half'));};
 document.addEventListener('click',e=>{
   if(e.target.id==='sheet'){closeSheet();return}
   const el=e.target.closest('[data-a]');if(!el||el.disabled)return;
-  const f=A[el.dataset.a];if(f)f(el.dataset,el);
+  const f=A[el.dataset.a] || (window.A && window.A[el.dataset.a]);if(f)f(el.dataset,el);
 });
 document.addEventListener('change',e=>{
   if(e.target.id==='fc'){const v=e.target.value;cur().p.cat=CATS.some(c=>c[0]===v)?v:'';render()}
@@ -3119,7 +3792,7 @@ render();
  *  - public.professionals & public.profiles
  *  - public.jobs & public.job_quotes
  *  - public.chat_messages (con detección anti-fraude)
- *  - public.wallets & public.wallet_ledger (Comisión 7% / 6% Oro, retiros 4 días)
+ *  - public.wallets & public.wallet_ledger (Comisión 18% Bronce, 14% Plata, 11% Oro VIP, retiros 4 días)
  *  - public.disputes (Garantía de 2 días y mediación)
  * ============================================================================
  */
@@ -3128,7 +3801,7 @@ render();
   'use strict';
 
   // --------------------------------------------------------------------------
-  // 1. CONFIGURACIÓN DE SUPABASE REST API & WOMPI SANDBOX COLOMBIA
+  // 1. CONFIGURACIÓN DE SUPABASE REST API & WOMPI PRODUCCIÓN (BANCOLOMBIA)
   // --------------------------------------------------------------------------
   const SUPABASE_URL = 'https://vqvwcbirzezihfzaeziq.supabase.co';
   const SUPABASE_REST_URL = `${SUPABASE_URL}/rest/v1`;
@@ -3139,6 +3812,7 @@ render();
     apiUrl: 'https://production.wompi.co/v1',
     widgetUrl: 'https://checkout.wompi.co/widget.js',
     publicKey: 'pub_prod_rlfigFJClWV8X56CCbtRngsxy8vF7lzW',
+    integritySecret: 'prod_integrity_6TeHFI9CwfIMh4RzN7RFJAZY6MaCxws0',
     currency: 'COP'
   };
   const WOMPI_TX_LOG_KEY = 'rebuske_v4_wompi_transactions';
@@ -3653,7 +4327,7 @@ render();
   };
 
   /**
-   * 4.5 BILLETERA, LIBRO MAYOR CONTABLE Y PASARELA WOMPI SANDBOX (`public.wallets`, `public.wallet_ledger` & Wompi API v1)
+   * 4.5 BILLETERA, LIBRO MAYOR CONTABLE Y PASARELA WOMPI PRODUCCIÓN (`public.wallets`, `public.wallet_ledger` & Wompi API v1)
    */
   const WompiService = {
     config: WOMPI_CONFIG,
@@ -3694,7 +4368,7 @@ render();
           return this.merchantCache;
         }
       } catch (e) {
-        console.warn('[rebuskeWompi] Error consultando comercio Sandbox:', e.message);
+        console.warn('[rebuskeWompi] Error consultando comercio Producción:', e.message);
       }
       return null;
     },
@@ -3739,7 +4413,7 @@ render();
             wompiData = txJson.data;
           }
         } catch (err) {
-          console.warn('[rebuskeWompi] Aviso creando transacción Sandbox:', err.message);
+          console.warn('[rebuskeWompi] Aviso creando transacción Producción:', err.message);
         }
       }
 
@@ -3773,7 +4447,7 @@ render();
 
       const launchWidget = () => {
         if (typeof global.WidgetCheckout !== 'function') {
-          if (typeof global.toast === 'function') global.toast('Procesando en modo directo Wompi Sandbox...');
+          if (typeof global.toast === 'function') global.toast('Procesando pago seguro Wompi Producción...');
           this.createSandboxTransaction(uiJob, 'NEQUI').then(tx => {
             if (typeof onApproved === 'function') onApproved(tx);
           });
@@ -3890,7 +4564,7 @@ render();
         to: clientEmail,
         badge: 'SEGURIDAD DE PAGOS WOMPI',
         refCode: `CARD-${last4}`,
-        subject: `🔒 [rebuske] Medio de pago vinculado exitosamente (${brand} •••• ${last4})`,
+        subject: ` [rebuske] Medio de pago vinculado exitosamente (${brand} •••• ${last4})`,
         title: 'Tu tarjeta de pago quedó vinculada y protegida',
         subtitle: `Hola ${clientName}, confirmamos que tu medio de pago fue tokenizado de forma segura con Wompi Bancolombia.`,
         rows: [
@@ -3903,6 +4577,7 @@ render();
       });
     }
   };
+  global.WompiService = WompiService;
 
   const WalletsService = {
     async fetchWallet(proLocalId = 'p1') {
@@ -3937,7 +4612,7 @@ render();
         to: uiJob.client_email || 'holarebuske@gmail.com',
         badge: 'CONTRATACIÓN & PAGO PROTEGIDO',
         refCode: wompiTx.reference,
-        subject: `✅ [rebuske] Contratación confirmada y Pago Protegido activo · $${gross.toLocaleString('es-CO')} COP`,
+        subject: `✓ [rebuske] Contratación confirmada y Pago Protegido activo · $${gross.toLocaleString('es-CO')} COP`,
         title: `Contratación confirmada: ${uiJob.t || 'Servicio rebuske'}`,
         subtitle: `El dinero ($${gross.toLocaleString('es-CO')} COP) quedó asegurado en Wompi y solo se liberará cuando confirmes en la app que el trabajo quedó como debe.`,
         rows: [
@@ -4051,7 +4726,7 @@ render();
         to: 'holarebuske@gmail.com',
         badge: 'COMPROBANTE DE RETIRO BANCARIO',
         refCode: `WDR-${Date.now().toString(36).toUpperCase()}`,
-        subject: `🏦 [rebuske] Comprobante de Retiro Exitoso · ${amtFmt}`,
+        subject: ` [rebuske] Comprobante de Retiro Exitoso · ${amtFmt}`,
         title: `Retiro transferido a tu cuenta: ${amtFmt}`,
         subtitle: `Hola ${proObj.n || 'Profesional'}, tu retiro del ciclo de 4 días fue procesado sin costo de transferencia.`,
         rows: [
@@ -4104,7 +4779,7 @@ render();
         to: 'holarebuske@gmail.com',
         badge: 'GARANTÍA DE 2 DÍAS ACTIVA',
         refCode: `DSP-${disputePayload.id.slice(0, 6).toUpperCase()}`,
-        subject: `🛡️ [rebuske] Ticket de Garantía de 2 Días abierto · ${uiJob.t || 'Servicio'}`,
+        subject: `✓ [rebuske] Ticket de Garantía de 2 Días abierto · ${uiJob.t || 'Servicio'}`,
         title: 'Tu Pago Protegido fue congelado preventivamente',
         subtitle: 'Hemos recibido tu solicitud de Garantía de 2 Días. Los fondos permanecerán en custodia mientras se revisa el caso.',
         rows: [
@@ -4201,10 +4876,11 @@ render();
       const disputedJobs = jobs.filter(j => j.s === 'disputa');
       const activeJobs = jobs.filter(j => j.s !== 'calificado' && j.s !== 'disputa');
 
-      // Cálculo de revenue neto rebuske (7% estándar / 6% Oro)
+      // Cálculo de revenue neto rebuske (18% Bronce / 14% Plata / 11% Oro VIP)
       const platformRevenue = jobs.reduce((acc, j) => {
         const proObj = pros.find(p => p.id === j.pro);
-        const rate = proObj && proObj.nv === 'Oro' ? 0.06 : 0.07;
+        const nv = proObj ? proObj.nv : 'Bronce';
+        const rate = nv === 'Oro' ? 0.11 : (nv === 'Plata' ? 0.14 : 0.18);
         return acc + Math.round(Number(j.v || 0) * rate);
       }, 0);
 
@@ -4267,8 +4943,8 @@ render();
         `1. RESUMEN FINANCIERO (WOMPI PRODUCCION)`,
         `  - GMV Total Transado (100%):        $${Number(k.gmv_total_cop).toLocaleString('es-CO')} COP`,
         `  - GMV Completado y Liquidado:       $${Number(k.gmv_completed_cop).toLocaleString('es-CO')} COP`,
-        `  - Ingreso Neto rebuske (7% / 6%):   $${Number(k.estimated_platform_revenue_cop).toLocaleString('es-CO')} COP`,
-        `  - Dispersado a Profesionales (93%): $${Number(k.gmv_total_cop - k.estimated_platform_revenue_cop).toLocaleString('es-CO')} COP`,
+        `  - Ingreso Neto rebuske (18% / 14% / 11%): $${Number(k.estimated_platform_revenue_cop).toLocaleString('es-CO')} COP`,
+        `  - Dispersado a Profesionales (82% a 89%): $${Number(k.gmv_total_cop - k.estimated_platform_revenue_cop).toLocaleString('es-CO')} COP`,
         `  - Saldo Disponible en Billeteras:   $${Number(k.wallet_available_cop).toLocaleString('es-CO')} COP`,
         `  - Saldo Retenido en Custodia:       $${Number(k.wallet_pending_escrow_cop).toLocaleString('es-CO')} COP`,
         ``,
@@ -4339,7 +5015,7 @@ render();
             specialty: p.o,
             rating: p.r,
             jobs_done: p.t,
-            campaign_hook: `¡Estás muy cerca del Nivel Oro en rebuske! Baja tu comisión del 7% al 6%.`
+            campaign_hook: `¡Estás muy cerca del Nivel Oro VIP en rebuske! Baja tu comisión al 11% y quédate con el 89% neto.`
           }))
       };
     },
@@ -4350,10 +5026,14 @@ render();
     exportReportCSV() {
       const state = global.S || { jobs: [] };
       const jobs = Array.isArray(state.jobs) ? state.jobs : [];
+      const pros = Array.isArray(global.PROS) ? global.PROS : [];
       const headers = ['ID', 'Titulo', 'Categoria', 'Zona', 'Profesional', 'Estado', 'Valor_COP', 'Comision_Estimada_COP', 'Calificacion'];
       const rows = jobs.map(j => {
         const val = Number(j.v || 0);
-        const fee = Math.round(val * 0.07);
+        const proObj = pros.find(p => p.id === j.pro);
+        const nv = proObj ? proObj.nv : 'Bronce';
+        const rate = nv === 'Oro' ? 0.11 : (nv === 'Plata' ? 0.14 : 0.18);
+        const fee = Math.round(val * rate);
         return [
           j.id,
           `"${String(j.t || '').replace(/"/g, '""')}"`,
@@ -4549,7 +5229,7 @@ render();
       };
     }
 
-    // 14. Abrir Pasarela Oficial Wompi Widget (pub_test_m1oWAq8iWH5DTFkOO1xPtoUQuZsjwXga)
+    // 14. Abrir Pasarela Oficial Wompi Widget (pub_prod_rlfigFJClWV8X56CCbtRngsxy8vF7lzW)
     global.A.wompiWidget = function (d) {
       const targetJob = global.S && global.S.jobs && global.S.jobs.find(j => j.id === d.id);
       if (!targetJob) return;
@@ -4563,12 +5243,12 @@ render();
         await WalletsService.recordEscrowRetention(targetJob);
         if (typeof global.swap === 'function') global.swap('ruta', { id: targetJob.id });
         if (typeof global.toast === 'function') {
-          global.toast(`Wompi Aprobado (${tx.id || 'Sandbox'}) · Pago Protegido activo`);
+          global.toast(`Wompi Aprobado (${tx.id || 'Producción'}) · Pago Protegido activo`);
         }
       });
     };
 
-    // Enriquecer vista VIEWS.pago con distintivo Wompi Sandbox + Botón Widget Oficial
+    // Enriquecer vista VIEWS.pago con distintivo Wompi Producción + Botón Widget Oficial
     if (global.VIEWS && typeof global.VIEWS.pago === 'function' && !global.VIEWS.pago.__wompiEnhanced) {
       const origPagoView = global.VIEWS.pago;
       global.VIEWS.pago = function (p) {
@@ -4690,7 +5370,7 @@ render();
  *     Green Yellow (#AFFF3E), Limón (#D9DF36), Canario (#FFFA70 único cálido). Cero rosa/rojo.
  *  2. Cero emojis decorativos en interfaz: todos los íconos son trazos SVG lima + Luciérnaga v33.
  *  3. Diccionario Oficial: "Pago protegido" (nunca "escrow"), "rebusker", "Quedó como debe",
- *     "ARREGLA · CONFÍA · REPITE", "el 7% lo paga el profesional cuando libera el pago".
+ *     "ARREGLA · CONFÍA · REPITE", "la comisión la paga el profesional cuando libera el pago (18% Bronce, 14% Plata, 11% Oro VIP)".
  */
 
 (function (global) {
@@ -4799,7 +5479,7 @@ render();
         'Hacés bien las cosas y merecés que te paguen sin vueltas.',
         'Cada trabajo bien hecho te da más nombre. Todos lo ven acá.',
         'Lo que bien se hace, merece ser bien pagado. Trabajás tranquilo. Cobrás seguro.',
-        'Trabajos de tu zona, pagados de verdad, con solo el 7% cuando ya tienes la plata en la mano.'
+        'Trabajos de tu zona, pagados de verdad, desde solo el 11% de comisión cuando ya tienes la plata en la mano.'
       ]
     }
   };
@@ -4940,7 +5620,7 @@ render();
           { name: 'public.jobs (Seguimiento del Servicio)', rows: 3, status: 'LIVE · RLS' },
           { name: 'public.professionals (rebuskers)', rows: 6, status: 'LIVE · RLS' },
           { name: 'public.categories + subcategories', rows: 57, status: 'LIVE · SYNC' },
-          { name: 'public.wallets + wallet_ledger', rows: 6, status: '7% COMISIÓN' },
+          { name: 'public.wallets + wallet_ledger', rows: 6, status: '18%/14%/11% COMISIÓN' },
           { name: 'public.disputes (Garantía 2D)', rows: 1, status: 'CONGELADO' }
         ]
       },
@@ -5020,7 +5700,7 @@ render();
     garantia: {
       label: 'Garantía 2 Días',
       title: 'Tu casa, tu decisión en {ZONA}',
-      copy: 'En {ZONA} contratar no es jugar a la suerte. En rebuske tu pago queda congelado 48 horas después del servicio con Garantía escrita de 2 días. El 7% lo paga el profesional cuando libera el pago; tú no pagas comisión. ARREGLA · CONFÍA · REPITE.',
+      copy: 'En {ZONA} contratar no es jugar a la suerte. En rebuske tu pago queda congelado 48 horas después del servicio con Garantía escrita de 2 días. La comisión la paga el profesional cuando libera el pago (18% Bronce, 14% Plata, 11% Oro VIP); tú no pagas comisión y los costos de pasarela están absorbidos. ARREGLA · CONFÍA · REPITE.',
       ctaText: 'Probar Seguimiento del Servicio',
       estReach: '6.200 hogares',
       estConv: '7.1%',
@@ -5181,7 +5861,12 @@ render();
     const gmvJobs = jobs.reduce((acc, j) => acc + (Number(j.v) || 0), 0);
     const baseGMV = 0;
     const totalGMV = baseGMV + gmvJobs;
-    const netRevenue = Math.round(totalGMV * 0.068);
+    const netRevenue = jobs.length ? jobs.reduce((acc, j) => {
+      const pro = pros.find(p => p.id === j.pro);
+      const nv = pro ? pro.nv : 'Bronce';
+      const rate = nv === 'Oro' ? 0.11 : (nv === 'Plata' ? 0.14 : 0.18);
+      return acc + Math.round((Number(j.v) || 0) * rate);
+    }, 0) : Math.round(totalGMV * 0.14);
     const activeEscrows = jobs.filter(j => ['retenido', 'en_camino', 'llego', 'en_proceso', 'finalizado'].includes(j.s));
     const escrowAmount = activeEscrows.reduce((acc, j) => acc + (Number(j.v) || 0), 0);
     const disputes = jobs.filter(j => j.s === 'disputa');
@@ -5223,7 +5908,7 @@ render();
               <span class="ceo-pill-live">SUPABASE LIVE</span>
             </div>
             <b class="big lima" style="display:block;margin-top:4px">${typeof global.RL === 'function' ? global.RL(fmtMoney(m.totalGMV)) : fmtMoney(m.totalGMV)}</b>
-            <small>Take rate rebuske (7% Plata / 6% Oro): <b class="lima">${fmtMoney(m.netRevenue)}</b> · CAC &lt; $10.000 COP</small>
+            <small>Take rate rebuske (18% Bronce / 14% Plata / 11% Oro VIP): <b class="lima">${fmtMoney(m.netRevenue)}</b> · CAC &lt; $10.000 COP</small>
           </div>
         </div>
       </div>
@@ -5575,7 +6260,7 @@ render();
       <div class="glass">
         <div class="rows">
           <div><span>GMV Total Procesado</span><b>${fmtMoney(m.totalGMV)}</b></div>
-          <div><span>Comisión Neta rebuske (7% / 6% Oro)</span><b class="lima">${fmtMoney(m.netRevenue)}</b></div>
+          <div><span>Comisión Neta rebuske (18% Bronce / 14% Plata / 11% Oro VIP)</span><b class="lima">${fmtMoney(m.netRevenue)}</b></div>
           <div><span>Saldo en Pago Protegido Activo</span><b class="w">${fmtMoney(m.escrowAmount)}</b></div>
           <div><span>Disponible Wallet rebuskers</span><b>${fmtMoney((global.S && global.S.wal && Number(global.S.wal.saldo)) || 0)}</b></div>
           <div><span>Tickets Retenidos por Garantía 2D</span><b>${m.disputes.length} (${fmtMoney(m.disputes.reduce((a, b) => a + (b.v || 0), 0))})</b></div>
@@ -5703,7 +6388,7 @@ render();
             <div class="grow">
               <b>${safeEsc(pr.n)} ${global.VER || ''}</b>
               <small>${pr.o} · ${pr.z} · ${pr.r} (${pr.t} trab.)</small>
-              <small>Comisión al liberar: <b class="lima">${pr.nv === 'Oro' ? '6% (Nivel Oro)' : '7% (Nivel Plata)'}</b></small>
+              <small>Comisión al liberar: <b class="lima">${pr.nv === 'Oro' ? '11% (Nivel Oro VIP)' : (pr.nv === 'Plata' ? '14% (Nivel Plata)' : '18% (Nivel Bronce)')}</b></small>
             </div>
             <button class="btn sm ghost" style="width:auto;padding:8px 12px" data-a="adminToggleNivel" data-id="${pr.id}">
               Cambiar a ${pr.nv === 'Oro' ? 'Plata' : 'Oro'}
@@ -6128,7 +6813,7 @@ render();
           { name: 'public.jobs (Seguimiento del Servicio)', rows: m.jobs.length, status: 'LIVE · SYNCED' },
           { name: 'public.professionals (rebuskers)', rows: m.verifiedPros, status: 'LIVE · SYNCED' },
           { name: 'public.categories + subcategories', rows: 57, status: 'LIVE · SYNCED' },
-          { name: 'public.wallets + wallet_ledger', rows: 6, status: '7% COMISIÓN' },
+          { name: 'public.wallets + wallet_ledger', rows: 6, status: '18%/14%/11% COMISIÓN' },
           { name: 'public.disputes (Garantía 2D)', rows: m.disputes.length, status: m.disputes.length ? 'CONGELADO' : 'CLEAN' }
         ];
         logAdmin(`Supabase sincronizado (${ADM.supabase.latencyMs}ms): ${m.jobs.length} trabajos y ${m.verifiedPros} rebuskers.`);
@@ -6248,7 +6933,7 @@ render();
         const headers = ['ID', 'Servicio', 'Categoria', 'Zona', 'rebusker', 'Valor_COP', 'Comision_rebuske_COP', 'Neto_rebusker_COP', 'Estado_Pago_Protegido'];
         const rows = m.jobs.map(j => {
           const pro = typeof global.PR === 'function' ? global.PR(j.pro) : { n: 'Sin asignar', nv: 'Plata' };
-          const rate = pro.nv === 'Oro' ? 0.06 : 0.07;
+          const rate = pro.nv === 'Oro' ? 0.11 : (pro.nv === 'Plata' ? 0.14 : 0.18);
           const val = Number(j.v) || 0;
           const comVal = Math.round(val * rate);
           const netVal = val - comVal;
@@ -6306,7 +6991,7 @@ render();
         '# ACTA EJECUTIVA CEO · REBUSKE v4 (MEDELLÍN)',
         `Fecha: ${new Date().toLocaleString('es-CO')}`,
         `GMV Acumulado: ${fmtMoney(m.totalGMV)}`,
-        `Comisión Neta rebuske (7% / 6% Oro): ${fmtMoney(m.netRevenue)}`,
+        `Comisión Neta rebuske (18% Bronce / 14% Plata / 11% Oro VIP): ${fmtMoney(m.netRevenue)}`,
         `Pagos Protegidos Activos: ${m.activeEscrows.length} (${fmtMoney(m.escrowAmount)})`,
         `Tickets Garantía 2 Días: ${m.disputes.length}`,
         `Campañas Activas: ${ADM.campaigns.length}`,
@@ -6433,7 +7118,7 @@ render();
       const j = typeof global.job === 'function' ? global.job(d.id) : null;
       if (!j) return;
       const pro = typeof global.PR === 'function' ? global.PR(j.pro) : { n: 'rebusker', nv: 'Plata' };
-      const rate = pro.nv === 'Oro' ? 0.06 : 0.07;
+      const rate = pro.nv === 'Oro' ? 0.11 : (pro.nv === 'Plata' ? 0.14 : 0.18);
 
       if (d.mode === 'release') {
         j.s = 'calificado';
@@ -6507,7 +7192,7 @@ render();
       const p = global.PROS.find(x => x.id === d.id);
       if (!p) return;
       p.nv = p.nv === 'Oro' ? 'Plata' : 'Oro';
-      logAdmin(`Nivel de ${p.n} actualizado a ${p.nv} (comisión ${p.nv === 'Oro' ? '6%' : '7%'}).`);
+      logAdmin(`Nivel de ${p.n} actualizado a ${p.nv} (comisión ${p.nv === 'Oro' ? '11%' : '14%'}).`);
       if (typeof global.render === 'function') global.render();
       if (typeof global.toast === 'function') {
         global.toast(`${p.n} ahora es Nivel ${p.nv}`);
@@ -6961,14 +7646,14 @@ render();
         banner.style.background = '#3B1515';
         banner.style.color = '#FF9E9E';
         banner.style.borderBottom = '2px solid #E53E3E';
-        banner.innerHTML = '⚠️ <strong>Sin conexión a internet:</strong> Tu solicitud o cancelación se guardó localmente y se sincronizará automáticamente al recuperar señal.';
+        banner.innerHTML = '<strong>Sin conexión a internet:</strong> Tu solicitud o cancelación se guardó localmente y se sincronizará automáticamente al recuperar señal.';
         banner.style.transform = 'translateY(0)';
       } else {
         if (banner.style.transform === 'translateY(0px)' || banner.style.transform === 'translateY(0)') {
           banner.style.background = '#153B18';
           banner.style.color = '#B8FF3B';
           banner.style.borderBottom = '2px solid #4E8839';
-          banner.innerHTML = '✅ <strong>Conexión restablecida:</strong> Datos sincronizados correctamente con la Seguimiento del Servicio.';
+          banner.innerHTML = '✓ <strong>Conexión restablecida:</strong> Datos sincronizados correctamente con la Seguimiento del Servicio.';
           setTimeout(() => { banner.style.transform = 'translateY(-100%)'; }, 3500);
         }
       }
@@ -6984,7 +7669,7 @@ render();
         <div style="padding:16px 8px; font-family:sans-serif; color:#F4FBF1;">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; border-bottom:1px solid #233A1C; padding-bottom:8px;">
             <b style="font-size:16px; color:#F4FBF1;">Cancelar Servicio</b>
-            <span style="font-size:10px; background:#1C2F16; border:1px solid #4E8839; color:#B8FF3B; font-weight:bold; padding:3px 8px; border-radius:12px;">🛡️ Bóveda Wompi</span>
+            <span style="font-size:10px; background:#1C2F16; border:1px solid #4E8839; color:#B8FF3B; font-weight:bold; padding:3px 8px; border-radius:12px;">✓ Bóveda Wompi</span>
           </div>
 
           <p style="font-size:12px; color:#A4BEA0; margin-bottom:14px;">
@@ -6993,16 +7678,16 @@ render();
 
           <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:18px;" id="cancel-reason-group">
             <button class="cancel-opt-btn" onclick="selectCancelReason(this, 'resuelto')" style="text-align:left; background:#101B0E; border:1px solid #284420; color:#E2EFE0; padding:10px 14px; border-radius:10px; font-size:12px; font-weight:600; cursor:pointer;">
-              ⚡ Ya solucioné el inconveniente por mi cuenta
+              Ya solucioné el inconveniente por mi cuenta
             </button>
             <button class="cancel-opt-btn" onclick="selectCancelReason(this, 'demora')" style="text-align:left; background:#101B0E; border:1px solid #284420; color:#E2EFE0; padding:10px 14px; border-radius:10px; font-size:12px; font-weight:600; cursor:pointer;">
               ⏱️ El técnico está tardando demasiado en llegar
             </button>
             <button class="cancel-opt-btn" onclick="selectCancelReason(this, 'direccion')" style="text-align:left; background:#101B0E; border:1px solid #284420; color:#E2EFE0; padding:10px 14px; border-radius:10px; font-size:12px; font-weight:600; cursor:pointer;">
-              📍 Me equivoqué de dirección o comuna
+              Me equivoqué de dirección o comuna
             </button>
             <button class="cancel-opt-btn" onclick="selectCancelReason(this, 'reprogramar')" style="text-align:left; background:#101B0E; border:1px solid #284420; color:#E2EFE0; padding:10px 14px; border-radius:10px; font-size:12px; font-weight:600; cursor:pointer;">
-              🔄 Prefiero reprogramar para otro día u hora
+              Prefiero reprogramar para otro día u hora
             </button>
           </div>
 
@@ -7010,8 +7695,8 @@ render();
             <b style="font-size:11px; color:#B8FF3B; display:block; margin-bottom:4px;">POLÍTICA DE REEMBOLSO INSTANTÁNEO:</b>
             <span style="font-size:11px; color:#CDE2C8; line-height:1.4; display:block;">
               \${isTechnicianInRoute 
-                ? '⚠️ Como el técnico ya está en desplazamiento, se descontarán <strong>$15.000 COP</strong> para su transporte. El saldo restante se reembolsa al 100% a tu Nequi o Bancolombia.'
-                : '✅ Reembolso del <strong>100% inmediato</strong> a tu Nequi o tarjeta sin costo alguno ni penalidad.'}
+                ? 'Como el técnico ya está en desplazamiento, se descontarán <strong>$15.000 COP</strong> para su transporte. El saldo restante se reembolsa al 100% a tu Nequi o Bancolombia.'
+                : '✓ Reembolso del <strong>100% inmediato</strong> a tu Nequi o tarjeta sin costo alguno ni penalidad.'}
             </span>
           </div>
 
@@ -7068,7 +7753,7 @@ render();
           }
           if (typeof save === 'function') save();
           if (typeof render === 'function') render();
-          if (typeof toast === 'function') toast('🎁 ¡Tu Bono VIP de $15.000 COP fue reactivado automáticamente!');
+          if (typeof toast === 'function') toast('¡Tu Bono VIP de $15.000 COP fue reactivado automáticamente!');
         }
       } catch (err) {}
 
@@ -7088,7 +7773,7 @@ render();
         if (typeof go === 'function') {
           go('buscar', { cat: 'Ellas Construyen' });
           if (typeof toast === 'function') {
-            toast('👩 Apartado Servicios por Ellas · Solo Mujeres Profesionales');
+            toast('Apartado Servicios por Ellas · Solo Mujeres Profesionales');
           }
         }
       }, 350);
@@ -7099,7 +7784,7 @@ render();
     if (pagoRef) {
       setTimeout(async () => {
         try {
-          if (typeof toast === 'function') toast('🔍 Verificando pago con Wompi...');
+          if (typeof toast === 'function') toast('Verificando pago con Wompi...');
           const res = await fetch('/api/wompi?action=STATUS&ref=' + encodeURIComponent(pagoRef));
           const data = await res.json();
           if (data && data.verified && data.status === 'APPROVED') {
@@ -7108,7 +7793,7 @@ render();
               j.s = 'retenido';
               j.wompiTxId = data.wompiTxId || j.wompiTxId;
               save();
-              if (typeof toast === 'function') toast('✅ Pago APROBADO por Wompi y retenido en Bóveda');
+              if (typeof toast === 'function') toast('✓ Pago APROBADO por Wompi y retenido en Bóveda');
               if (typeof go === 'function') go('ruta', { id: j.id });
             }
           } else {
@@ -7130,8 +7815,8 @@ render();
  *    [ Pantalla Principal ] ➔ [ Tap en Oficio ] ➔ [ Técnico Primordial 5.0★ ] ➔ [ Confirmar Pago Wompi ]
  *    - Reducción del 42% en abandono.
  *    - Catálogo visual con precios de Medellín (Plomería, Cerrajería, Electricidad, Pintura).
- * 2. Flujo Profesional (1 Tap & Cobro 93%):
- *    [ Notificación Sonora con Tarifa ] ➔ [ Tap Verde "Aceptar y Ver Ruta" ] ➔ [ Subir Foto ] ➔ [ 93% en Nequi ]
+ * 2. Flujo Profesional (1 Tap & Cobro 89% Oro VIP):
+ *    [ Notificación Sonora con Tarifa ] ➔ [ Tap Verde "Aceptar y Ver Ruta" ] ➔ [ Subir Foto ] ➔ [ 89% en Nequi ]
  *    - Botón gigante para manos ocupadas.
  *    - Despacho sub-minuto y dispersión instantánea en <30 segundos a Nequi.
  * ============================================================================
@@ -7185,28 +7870,28 @@ render();
   const EXPRESS_TRADES = {
     plomeria: {
       name: 'Plomería',
-      icon: '🔧',
+      icon: '',
       range: 'Tarifa según labor · Visita $35k',
       baseFee: 85000,
       desc: 'Fugas, griferías, tuberías, destapes'
     },
     electricidad: {
       name: 'Electricidad',
-      icon: '⚡',
+      icon: 'bolt',
       range: 'Tarifa según labor · Visita $35k',
       baseFee: 90000,
       desc: 'Tacos de luz, cortos, cableado, lámparas'
     },
     cerrajeria: {
       name: 'Cerrajería',
-      icon: '🔑',
+      icon: '',
       range: 'Tarifa según labor · Visita $35k',
       baseFee: 75000,
       desc: 'Aperturas de urgencia, candados, cerraduras'
     },
     pintura: {
       name: 'Pintura',
-      icon: '🎨',
+      icon: '',
       range: 'Tarifa según labor · Visita $35k',
       baseFee: 110000,
       desc: 'Humedades, muros interiores, retoques finos'
@@ -7237,7 +7922,7 @@ render();
       <div class="express-catalog-card" style="margin:14px 0; background:linear-gradient(145deg, #121A0F, #0A1108); border:1.5px solid #2F4A1F; border-radius:18px; padding:16px; box-shadow:0 8px 30px rgba(0,0,0,0.5);">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
           <div style="display:flex; align-items:center; gap:8px;">
-            <span style="background:#B8FF3B; color:#0B0F08; font-size:10px; font-weight:900; padding:3px 7px; border-radius:5px; letter-spacing:0.5px;">⚡ FLUJO 3 TAPS</span>
+            <span style="background:#B8FF3B; color:#0B0F08; font-size:10px; font-weight:900; padding:3px 7px; border-radius:5px; letter-spacing:0.5px;">FLUJO 3 TAPS</span>
             <b style="font-size:14px; color:#F2F5EC; font-weight:700;">Reparación Express en Medellín</b>
           </div>
           <span style="font-size:11px; color:#B8FF3B; font-weight:600; display:flex; align-items:center; gap:3px;">
@@ -7265,7 +7950,7 @@ render();
         <!-- BANNER DE TARIFA MÍNIMA Y PRECIOS TRANSPARENTES -->
         <div style="margin-top:12px; background:linear-gradient(135deg, rgba(184,255,59,0.08), rgba(20,33,16,0.6)); border:1px solid #2F4A1F; border-radius:12px; padding:10px 12px; display:flex; justify-content:space-between; align-items:center; gap:8px;">
           <div style="display:flex; align-items:center; gap:8px;">
-            <span style="font-size:18px;">🛵</span>
+            <span style="font-size:16px">${I('pin',18)}</span>
             <div style="font-size:11px; color:#F2F5EC; line-height:1.3;">
               <b style="color:#B8FF3B;">Visita Diagnóstica: $35.000 COP</b>
               <div style="color:#A7BCA0; font-size:10px;">100% abonables a tu reparación si apruebas la labor.</div>
@@ -7330,20 +8015,20 @@ render();
         <!-- AVISO DE OFERTA Y SALIDA MANUAL POR WHATSAPP -->
         <div style="background:#131F10; border:1px solid #2F4A1F; border-radius:14px; padding:14px; margin-bottom:14px; text-align:left;">
           <div style="display:flex; align-items:center; gap:8px; margin-bottom:6px;">
-            <span style="font-size:18px;">⚡</span>
+            <span style="font-size:16px">${I('bolt',18)}</span>
             <b style="color:#B8FF3B; font-size:12.5px;">¿Es una urgencia inmediata?</b>
           </div>
           <p style="color:#C6D8BF; font-size:11px; margin:0 0 10px 0; line-height:1.35;">
             Si hay alta demanda en tu sector, te conectamos directamente con la <b>Central de Despacho Inmediato por WhatsApp</b> para coordinar tu servicio en menos de 5 minutos sin esperas.
           </p>
           <a href="${waUrl}" target="_blank" style="display:flex; align-items:center; justify-content:center; gap:8px; width:100%; padding:12px; background:linear-gradient(135deg,#25D366,#128C7E); color:#FFF; font-size:13px; font-weight:800; border-radius:10px; text-decoration:none; box-shadow:0 4px 14px rgba(37,211,102,0.35);">
-            <span>💬 Despacho Prioritario por WhatsApp</span>
+            <span>Despacho Prioritario por WhatsApp</span>
           </a>
         </div>
 
         <!-- OPCIÓN DE ASIGNAR Y CONTINUAR EN APP -->
         <button class="btn sheen" data-a="sofiaConfirmPro" data-trade="${tradeKey}" style="width:100%; padding:13px; background:#1C2E17; color:#B8FF3B; border:1.5px solid #3B5B28; font-size:13px; font-weight:800; border-radius:12px; cursor:pointer; display:flex; align-items:center; justify-content:center; gap:8px;">
-          <span>🟢 Ver Técnico de Turno (Técnico Certificado) ➔</span>
+          <span>Ver Técnico de Turno (Técnico Certificado) ➔</span>
         </button>
       </div>
     `;
@@ -7378,12 +8063,12 @@ render();
                 <span style="background:#1F3516; color:#B8FF3B; font-size:9px; padding:2px 6px; border-radius:4px; font-weight:bold;">Certificado</span>
               </div>
               <p style="margin:2px 0; font-size:11.5px; color:#A7BCA0;">Oficio: <b>${t.name}</b> · Cobertura Valle de Aburrá</p>
-              <p style="margin:2px 0; font-size:11px; color:#B8FF3B; font-weight:bold;">📍 Asignación por cercanía GPS</p>
+              <p style="margin:2px 0; font-size:11px; color:#B8FF3B; font-weight:bold;">Asignación por cercanía GPS</p>
             </div>
           </div>
 
           <div style="margin-top:12px; padding:8px 12px; background:#0B1309; border-radius:10px; display:flex; justify-content:space-between; align-items:center; font-size:11px;">
-            <span style="color:#A7BCA0;">🔒 Cédula, antecedentes y competencias verificadas</span>
+            <span style="color:#A7BCA0;"> Cédula, antecedentes y competencias verificadas</span>
             <span style="color:#B8FF3B; font-weight:bold;">Ley 1480</span>
           </div>
         </div>
@@ -7402,7 +8087,7 @@ render();
         </div>
 
         <button class="btn sheen" data-a="sofiaGoCheckout" data-trade="${tradeKey}" style="width:100%; padding:15px; background:#B8FF3B; color:#0B0F08; font-size:15px; font-weight:900; border-radius:12px; border:none; cursor:pointer; box-shadow:0 6px 20px rgba(184,255,59,0.35); display:flex; align-items:center; justify-content:center; gap:8px;">
-          <span>🟢 Continuar a Pago Protegido</span>
+          <span>Continuar a Pago Protegido</span>
           <span style="background:rgba(0,0,0,0.15); padding:2px 8px; border-radius:6px; font-size:12px;">Paso 3 ➔</span>
         </button>
       </div>
@@ -7440,7 +8125,7 @@ render();
         <div style="text-align:center; background:#121E10; border:1px solid #2C451D; border-radius:16px; padding:16px; margin-bottom:14px;">
           <small style="color:#A7BCA0; font-size:11px;">Monto total a retener en Escrow</small>
           <div style="font-size:32px; font-weight:900; color:#B8FF3B; margin:4px 0;">$${totalToPay.toLocaleString('es-CO')} <span style="font-size:13px; color:#7E9573;">COP</span></div>
-          <p style="margin:0; font-size:11px; color:#A7BCA0;">🛡️ <b>Tu plata está 100% segura.</b> Solo se libera a ${pro.name} cuando confirmes que el arreglo quedó perfecto.</p>
+          <p style="margin:0; font-size:11px; color:#A7BCA0;">✓ <b>Tu plata está 100% segura.</b> Solo se libera a ${pro.name} cuando confirmes que el arreglo quedó perfecto.</p>
         </div>
 
         <!-- Desglose Transparente 3 Planes + Cuota de Protección -->
@@ -7459,7 +8144,7 @@ render();
             <b>$${fee.toLocaleString('es-CO')}</b>
           </div>
           <div style="display:flex; justify-content:space-between; margin-top:6px; padding-top:6px; border-top:1px dashed #23351C; color:#B8FF3B;">
-            <span>🛡️ Cuota de Pago Protegido y Garantía 48h</span>
+            <span>✓ Cuota de Pago Protegido y Garantía 48h</span>
             <b>+$${protectionFee.toLocaleString('es-CO')}</b>
           </div>
           ${tip > 0 ? `
@@ -7493,7 +8178,7 @@ render();
         </div>
 
         <button class="btn sheen" data-a="sofiaExecuteCheckout" style="width:100%; padding:16px; background:#B8FF3B; color:#0B0F08; font-size:16px; font-weight:900; border-radius:12px; border:none; cursor:pointer; box-shadow:0 8px 25px rgba(184,255,59,0.4); display:flex; align-items:center; justify-content:center; gap:8px;">
-          <span>🛡️ Confirmar Pago Seguro Wompi</span>
+          <span>✓ Confirmar Pago Seguro Wompi</span>
           <span style="background:rgba(0,0,0,0.15); padding:2px 8px; border-radius:6px; font-size:12px;">Tap 3 Final ✓</span>
         </button>
       </div>
@@ -7507,12 +8192,12 @@ render();
     // Disparar sonido suave de Luciérnaga al abrir alerta
     playLuciernagaChime();
 
-    const neto = Math.round(85000 * 0.89); // $85.000 - 7%
+    const neto = Math.round(85000 * 0.89); // $85.000 - 11% (Oro VIP 89%)
     return `
       <div style="font-family:'Baloo 2',sans-serif; color:#F2F5EC; padding:6px 2px;">
         <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid #23351C; padding-bottom:12px; margin-bottom:14px;">
           <div style="display:flex; align-items:center; gap:8px;">
-            <span style="background:#B8FF3B; color:#111; font-weight:900; font-size:10px; padding:3px 7px; border-radius:4px; animation:pulse 1s infinite;">🔔 NUEVA SOLICITUD</span>
+            <span style="background:#B8FF3B; color:#111; font-weight:900; font-size:10px; padding:3px 7px; border-radius:4px; animation:pulse 1s infinite;"> NUEVA SOLICITUD</span>
             <b style="font-size:15px; color:#B8FF3B;">Despacho Hiperlocal Express</b>
           </div>
           <button class="ico" data-a="close" aria-label="Cerrar" style="color:#A7BCA0;">✕</button>
@@ -7520,7 +8205,7 @@ render();
 
         <div style="background:#131F10; border:2px solid #B8FF3B; border-radius:18px; padding:18px; margin-bottom:14px; box-shadow:0 8px 30px rgba(184,255,59,0.25);">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-            <span style="font-size:13px; color:#A7BCA0;">📍 <b>${esc(S.zona || 'Medellín')}</b> · Cobertura Verificada</span>
+            <span style="font-size:13px; color:#A7BCA0;"><b>${esc(S.zona || 'Medellín')}</b> · Cobertura Verificada</span>
             <span style="background:#1F3815; color:#B8FF3B; font-size:11px; font-weight:bold; padding:3px 8px; border-radius:6px;">⏱️ a 8 minutos</span>
           </div>
 
@@ -7530,17 +8215,17 @@ render();
           <div style="background:#090F06; border-radius:12px; padding:12px; text-align:center;">
             <small style="color:#7E9573; font-size:11px; text-transform:uppercase; letter-spacing:0.5px;">Tu ganancia neta en este trabajo</small>
             <div style="font-size:32px; font-weight:900; color:#B8FF3B; margin:4px 0;">$${neto.toLocaleString('es-CO')} <span style="font-size:14px; color:#A7BCA0;">COP NETO</span></div>
-            <span style="color:#FFF; font-size:11px; background:#1C3015; padding:3px 8px; border-radius:6px;">💰 89% neto pagado directo a tu Nequi sin esperar días hábiles</span>
+            <span style="color:#FFF; font-size:11px; background:#1C3015; padding:3px 8px; border-radius:6px;">89% neto pagado directo a tu Nequi sin esperar días hábiles</span>
           </div>
         </div>
 
         <div style="margin-bottom:14px; font-size:11.5px; color:#7E9573; text-align:center;">
-          🛡️ Pago 100% asegurado en Bóveda Escrow Wompi · Cero riesgo de que no te paguen
+          ✓ Pago 100% asegurado en Bóveda Escrow Wompi · Cero riesgo de que no te paguen
         </div>
 
         <!-- BOTÓN GIGANTE ACEPTAR (DISEÑADO PARA MANOS OCUPADAS) -->
         <button class="btn sheen" data-a="sofiaProAcceptJob" style="width:100%; height:68px; background:#B8FF3B; color:#0B0F08; font-size:18px; font-weight:900; border-radius:16px; border:none; cursor:pointer; box-shadow:0 8px 35px rgba(184,255,59,0.5); display:flex; align-items:center; justify-content:center; gap:10px;">
-          <span style="font-size:24px;">🟢</span>
+          <span>✓</span>
           <span>ACEPTAR Y VER RUTA (1 TAP)</span>
         </button>
       </div>
@@ -7578,31 +8263,31 @@ render();
             <div style="position:relative; max-width:240px; margin:0 auto;">
               <img src="${photo}" alt="Foto arreglo" style="width:100%; height:160px; object-fit:cover; border-radius:12px; border:2px solid #B8FF3B;" />
               <div style="margin-top:8px; font-size:10px; color:#B8FF3B; font-family:monospace; background:#0B1208; padding:4px 8px; border-radius:6px; border:1px solid #28441B;">
-                📍 Geotagging Verificado: ${stamp}
+                Geotagging Verificado: ${stamp}
               </div>
             </div>
             <p style="font-size:11px; color:#A7BCA0; margin-top:8px;">✓ Foto de reparación registrada con sello GPS criptográfico.</p>
           ` : `
             <div style="padding:14px 0;">
-              <span style="font-size:42px; display:block; margin-bottom:8px;">📸</span>
+              <span style="display:block;margin-bottom:8px">${I('user',42)}</span>
               <b style="font-size:14px; color:#FFF; display:block;">Paso 3: Sube 1 sola foto del trabajo terminado</b>
               <p style="font-size:11.5px; color:#7E9573; margin:4px 0 12px 0;">Sin papeleo ni reportes largos. Wompi valida y dispersa al instante.</p>
               <button class="btn" data-a="sofiaUploadGeotagPhoto" style="background:#1E3015; border:1px solid #B8FF3B; color:#B8FF3B; padding:10px 18px; border-radius:10px; font-weight:bold; cursor:pointer;">
-                📷 Tomar / Adjuntar Foto del Arreglo
+                Tomar / Adjuntar Foto del Arreglo
               </button>
             </div>
           `}
         </div>
 
         <button class="btn sheen" data-a="sofiaFinishAndPayout" ${photo ? '' : 'disabled'} style="width:100%; height:62px; background:${photo ? '#B8FF3B' : '#2A3A22'}; color:${photo ? '#0B0F08' : '#6F8466'}; font-size:16px; font-weight:900; border-radius:14px; border:none; cursor:${photo ? 'pointer' : 'not-allowed'}; box-shadow:${photo ? '0 8px 30px rgba(184,255,59,0.45)' : 'none'}; display:flex; align-items:center; justify-content:center; gap:8px;">
-          <span>🚀 FINALIZAR Y COBRAR $79.050 EN NEQUI</span>
+          <span>FINALIZAR Y COBRAR $79.050 EN NEQUI</span>
         </button>
       </div>
     `;
   }
 
   // ==========================================================================
-  // RENDER: PANTALLA CELEBRACIÓN DE COBRO 93% EN NEQUI (ÉXITO TOTAL)
+  // RENDER: PANTALLA CELEBRACIÓN DE COBRO 89% EN NEQUI (ÉXITO TOTAL)
   // ==========================================================================
   function renderPayoutSuccessSheet() {
     playLuciernagaChime();
@@ -7610,13 +8295,13 @@ render();
     return `
       <div style="font-family:'Baloo 2',sans-serif; color:#F2F5EC; padding:10px 4px; text-align:center;">
         <div style="width:72px; height:72px; background:rgba(184,255,59,0.15); border:2px solid #B8FF3B; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 14px auto; font-size:36px;">
-          🎉
+          
         </div>
 
         <span style="background:#1B3014; color:#B8FF3B; font-size:10px; font-weight:bold; padding:3px 8px; border-radius:6px; letter-spacing:0.5px;">DISPERSIÓN FLASH EXITOSA (<18 SEG)</span>
-        <h2 style="font-size:24px; color:#B8FF3B; margin:8px 0 4px 0;">¡$79.050 COP en tu Nequi!</h2>
+        <h2 style="font-size:24px; color:#B8FF3B; margin:8px 0 4px 0;">¡$75.650 COP en tu Nequi!</h2>
         <p style="font-size:12.5px; color:#A7BCA0; margin-bottom:16px;">
-          Wompi Escrow liberó el <b>89% neto</b> directo a tu cuenta vinculada (Plan Oro VIP). Cero papeleo, cero esperas de 24 horas.
+          Wompi Escrow liberó el <b>89% neto</b> directo a tu cuenta vinculada (Plan Oro VIP). Costos de pasarela absorbidos por Rebuske. Cero papeleo, cero esperas de 24 horas.
         </p>
 
         <div style="background:#0F170D; border:1px solid #28441B; border-radius:14px; padding:14px; margin-bottom:18px; text-align:left; font-size:12px;">
@@ -7629,8 +8314,8 @@ render();
             <b style="color:#FFF;">Nequi (304 *** 2882)</b>
           </div>
           <div style="display:flex; justify-content:space-between; margin-bottom:4px;">
-            <span style="color:#7E9573;">Comisión rebuske (7%):</span>
-            <span style="color:#FFF;">$5.950 COP</span>
+            <span style="color:#7E9573;">Comisión rebuske (11% Oro VIP):</span>
+            <span style="color:#FFF;">$9.350 COP</span>
           </div>
           <div style="display:flex; justify-content:space-between;">
             <span style="color:#7E9573;">Garantía cliente:</span>
@@ -7733,7 +8418,7 @@ render();
         global.go('ruta', { id: global.S.jobs[0].id });
       }
       if (global.toast) {
-        global.toast('🛡️ ¡Pago Asegurado en Wompi! Técnico en camino (8 min)');
+        global.toast('✓ ¡Pago Asegurado en Wompi! Técnico en camino (8 min)');
       }
     },
 
@@ -7742,7 +8427,7 @@ render();
       if (global.openSheet) {
         global.openSheet(renderProWorkExecutionSheet());
       }
-      if (global.toast) global.toast('✅ Trabajo aceptado con 1 Tap. ¡Seguimiento del Servicio encendida!');
+      if (global.toast) global.toast('✓ Trabajo aceptado con 1 Tap. ¡Seguimiento del Servicio encendida!');
     },
 
     // Pro: Subir foto con Geotagging
@@ -7752,12 +8437,12 @@ render();
       if (global.openSheet) {
         global.openSheet(renderProWorkExecutionSheet());
       }
-      if (global.toast) global.toast('📸 Foto subida con Geotagging Criptográfico');
+      if (global.toast) global.toast('Foto subida con Geotagging Criptográfico');
     },
 
-    // Pro: Finalizar trabajo y cobrar 93% en Nequi
+    // Pro: Finalizar trabajo y cobrar 89% en Nequi
     sofiaFinishAndPayout: () => {
-      const neto = 79050;
+      const neto = 75650; // 89% de $85.000 COP (Oro VIP)
       if (global.S && global.S.wal) {
         global.S.wal.saldo = (global.S.wal.saldo || 0) + neto;
         if (global.save) global.save();
@@ -7765,7 +8450,7 @@ render();
       if (global.openSheet) {
         global.openSheet(renderPayoutSuccessSheet());
       }
-      if (global.toast) global.toast(`💸 $${neto.toLocaleString('es-CO')} COP dispersados a Nequi`);
+      if (global.toast) global.toast(` $${neto.toLocaleString('es-CO')} COP dispersados a Nequi`);
     },
 
     // Cerrar modal de éxito y volver a home
@@ -7847,14 +8532,14 @@ render();
         banner.style.background = '#3B1515';
         banner.style.color = '#FF9E9E';
         banner.style.borderBottom = '2px solid #E53E3E';
-        banner.innerHTML = '⚠️ <strong>Sin conexión a internet:</strong> Tu solicitud o cancelación se guardó localmente y se sincronizará automáticamente al recuperar señal.';
+        banner.innerHTML = '<strong>Sin conexión a internet:</strong> Tu solicitud o cancelación se guardó localmente y se sincronizará automáticamente al recuperar señal.';
         banner.style.transform = 'translateY(0)';
       } else {
         if (banner.style.transform === 'translateY(0px)' || banner.style.transform === 'translateY(0)') {
           banner.style.background = '#153B18';
           banner.style.color = '#B8FF3B';
           banner.style.borderBottom = '2px solid #4E8839';
-          banner.innerHTML = '✅ <strong>Conexión restablecida:</strong> Datos sincronizados correctamente con la Seguimiento del Servicio.';
+          banner.innerHTML = '✓ <strong>Conexión restablecida:</strong> Datos sincronizados correctamente con la Seguimiento del Servicio.';
           setTimeout(() => { banner.style.transform = 'translateY(-100%)'; }, 3500);
         }
       }
@@ -7870,7 +8555,7 @@ render();
         <div style="padding:16px 8px; font-family:sans-serif; color:#F4FBF1;">
           <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; border-bottom:1px solid #233A1C; padding-bottom:8px;">
             <b style="font-size:16px; color:#F4FBF1;">Cancelar Servicio</b>
-            <span style="font-size:10px; background:#1C2F16; border:1px solid #4E8839; color:#B8FF3B; font-weight:bold; padding:3px 8px; border-radius:12px;">🛡️ Bóveda Wompi</span>
+            <span style="font-size:10px; background:#1C2F16; border:1px solid #4E8839; color:#B8FF3B; font-weight:bold; padding:3px 8px; border-radius:12px;">✓ Bóveda Wompi</span>
           </div>
 
           <p style="font-size:12px; color:#A4BEA0; margin-bottom:14px;">
@@ -7879,16 +8564,16 @@ render();
 
           <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:18px;" id="cancel-reason-group">
             <button class="cancel-opt-btn" onclick="selectCancelReason(this, 'resuelto')" style="text-align:left; background:#101B0E; border:1px solid #284420; color:#E2EFE0; padding:10px 14px; border-radius:10px; font-size:12px; font-weight:600; cursor:pointer;">
-              ⚡ Ya solucioné el inconveniente por mi cuenta
+              Ya solucioné el inconveniente por mi cuenta
             </button>
             <button class="cancel-opt-btn" onclick="selectCancelReason(this, 'demora')" style="text-align:left; background:#101B0E; border:1px solid #284420; color:#E2EFE0; padding:10px 14px; border-radius:10px; font-size:12px; font-weight:600; cursor:pointer;">
               ⏱️ El técnico está tardando demasiado en llegar
             </button>
             <button class="cancel-opt-btn" onclick="selectCancelReason(this, 'direccion')" style="text-align:left; background:#101B0E; border:1px solid #284420; color:#E2EFE0; padding:10px 14px; border-radius:10px; font-size:12px; font-weight:600; cursor:pointer;">
-              📍 Me equivoqué de dirección o comuna
+              Me equivoqué de dirección o comuna
             </button>
             <button class="cancel-opt-btn" onclick="selectCancelReason(this, 'reprogramar')" style="text-align:left; background:#101B0E; border:1px solid #284420; color:#E2EFE0; padding:10px 14px; border-radius:10px; font-size:12px; font-weight:600; cursor:pointer;">
-              🔄 Prefiero reprogramar para otro día u hora
+              Prefiero reprogramar para otro día u hora
             </button>
           </div>
 
@@ -7896,8 +8581,8 @@ render();
             <b style="font-size:11px; color:#B8FF3B; display:block; margin-bottom:4px;">POLÍTICA DE REEMBOLSO INSTANTÁNEO:</b>
             <span style="font-size:11px; color:#CDE2C8; line-height:1.4; display:block;">
               \${isTechnicianInRoute 
-                ? '⚠️ Como el técnico ya está en desplazamiento, se descontarán <strong>$15.000 COP</strong> para su transporte. El saldo restante se reembolsa al 100% a tu Nequi o Bancolombia.'
-                : '✅ Reembolso del <strong>100% inmediato</strong> a tu Nequi o tarjeta sin costo alguno ni penalidad.'}
+                ? 'Como el técnico ya está en desplazamiento, se descontarán <strong>$15.000 COP</strong> para su transporte. El saldo restante se reembolsa al 100% a tu Nequi o Bancolombia.'
+                : '✓ Reembolso del <strong>100% inmediato</strong> a tu Nequi o tarjeta sin costo alguno ni penalidad.'}
             </span>
           </div>
 
@@ -7954,7 +8639,7 @@ render();
           }
           if (typeof save === 'function') save();
           if (typeof render === 'function') render();
-          if (typeof toast === 'function') toast('🎁 ¡Tu Bono VIP de $15.000 COP fue reactivado automáticamente!');
+          if (typeof toast === 'function') toast('¡Tu Bono VIP de $15.000 COP fue reactivado automáticamente!');
         }
       } catch (err) {}
 
@@ -8088,7 +8773,7 @@ render();
 <!-- BANNER DE COOKIES Y ANALÍTICA (SINCRONIZADO CON REGISTRO) -->
 <div id="rebuske-cookie-banner" style="display:none;position:fixed;bottom:16px;left:16px;right:16px;max-width:440px;margin-left:auto;z-index:999999;background:rgba(12,18,10,0.96);border:1.5px solid rgba(184,255,59,0.35);border-radius:20px;padding:16px;box-shadow:0 12px 40px rgba(0,0,0,0.85);backdrop-filter:blur(16px);color:#F4FBF1;font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;line-height:1.45;transition:all .3s ease;">
   <div style="display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;">
-    <span style="font-size:22px;">🍪</span>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#B8FF3B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;margin-top:2px;"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/></svg>
     <div>
       <b style="color:#B8FF3B;font-size:13px;display:block;margin-bottom:2px;font-family:'Baloo 2',sans-serif;">Preferencias de Cookies y Analítica</b>
       <p style="margin:0;color:#C4DDC1;font-size:11px;">
