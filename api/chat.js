@@ -159,7 +159,7 @@ Estás hablando directamente con CANASHI, el creador y CEO de Rebuske.
 IMPORTANTE:
 - Siempre refiérete a él como "Canashi".
 - Tu tono es paisa/colombiano cercano, respetuoso, directo, como un amigo y socio de total confianza ("hágale", "de una", "firme", "parcero", "Canashi").
-- Estado de la oficina en vivo: Wompi Lote #2026-L4 de $2.845.000 COP pendiente para 14 técnicos, 84/100 cupos de fundadores (7% vitalicio), NPS 4.92★, tiempo match 12.8m, conciliación 100%, retención a 60 días 38.4%, caso de fraude en Belén controlado, 2 electricistas en Envigado listos para Placa Oro.
+- Estado de la oficina en vivo: Wompi Lote #2026-L4 de $2.845.000 COP pendiente para 14 técnicos, 84/100 cupos de fundadores (11% vitalicio Oro VIP, 89% neto), NPS 4.92★, tiempo match 12.8m, conciliación 100%, retención a 60 días 38.4%, caso de fraude en Belén controlado, 2 electricistas en Envigado listos para Placa Oro.
 - Si Canashi envía una foto de herramientas, carné, cédula o diseño, el agente correspondiente (Vanessa para KYC, Valeria para diseño, Lucas para bugs) debe analizarla detalladamente.
 - Indica claramente qué agente habla al inicio de tu respuesta en el formato:
 [NOMBRE_AGENTE]: Tu respuesta aquí.
@@ -268,7 +268,7 @@ Ejemplo: "VALERIA: ¡Canashi! Te tengo 4 ideas brutales para la campaña..." o "
           `• ☕ Rosa: Tinto recién servido y retención a 60 días.\n` +
           `• 🛡️ Alejandro: Anti-fraude activo en Belén.\n` +
           `• 🐱 Simón & 🐊 Dante: Escáner AR de tubos en evaluación.\n` +
-          `• 🦜⚖️ Dr. Lorenzo: Split 93%/7% blindado jurídicamente.\n\n` +
+          `• 🦜⚖️ Dr. Lorenzo: Split 89%/11% Oro VIP (y 82% Bronce, 86% Plata) blindado jurídicamente.\n\n` +
           `¿A quién le quieres dar la palabra, Canashi?`;
       } else if (lower.includes('no lo autorizo') || lower.includes('aun no') || lower.includes('aún no') || lower.includes('pausa') || lower.includes('espera')) {
         responseAgent = 'tomas';
@@ -289,7 +289,7 @@ Ejemplo: "VALERIA: ¡Canashi! Te tengo 4 ideas brutales para la campaña..." o "
         agentEmoji = '🎨';
         replyText = `¡Canashi, te tengo 4 ideas brutales para llenar los cupos que faltan de los 100 fundadores (vamos 84/100)! 🚀\n\n` +
           `1. 🛠️ Gira de Ferreterías en Medellín: Afiches con el código QR en ferreterías de La 33, Guayabal, Belén y el Centro.\n` +
-          `2. 📱 TikTok & Reels con gancho de dolor: "¿Sos plomero o electricista en Medellín y estás mamado de que las apps te quiten el 30%? En Rebuske tienes el 7% vitalicio".\n` +
+          `2. 📱 TikTok & Reels con gancho de dolor: "¿Sos plomero o electricista en Medellín y estás cansado de que las apps te quiten el 30%? En Rebuske te quedas del 82% al 89% neto y absorbemos Wompi por ti".\n` +
           `3. 🤝 Voz a voz con los primeros profesionales verificados: Que inviten a 2 colegas con prioridad de asignación.\n` +
           `4. 📲 Pauta local en Facebook/IG dirigida a técnicos del Valle de Aburrá.\n\n` +
           `¿Cuál de estas te gusta más para que Sofía y yo empecemos hoy?`;
@@ -309,7 +309,7 @@ Ejemplo: "VALERIA: ¡Canashi! Te tengo 4 ideas brutales para la campaña..." o "
           `2. 🛡️ Alejandro: Caso de cerrajería en Belén blindado con la póliza de $1.5M.\n` +
           `3. 🔍 Vanessa: 2 técnicos de Envigado listos con antecedentes limpios.\n` +
           `4. ☕ Rosa: Propuesta de bono de $10.000 COP para 28 clientes de 60 días.\n` +
-          `5. 🎨 Valeria: 84/100 cupos de fundadores y simulador de 7% activo.\n\n` +
+          `5. 🎨 Valeria: 84/100 cupos de fundadores y simulador de 11% / 89% activo.\n\n` +
           `Métricas vivas: NPS 4.92★, tiempo match 12.8m, conciliación 100% OK.`;
       } else if (lower.includes('valeria')) {
         responseAgent = 'valeria';
@@ -362,7 +362,7 @@ Ejemplo: "VALERIA: ¡Canashi! Te tengo 4 ideas brutales para la campaña..." o "
             <p style="margin:8px 0;color:#e2e8f0;font-size:13px;line-height:1.5;white-space:pre-wrap;">${replyText}</p>
           </div>
           <div style="margin-top:20px;padding:12px;background:#090e06;border-radius:8px;font-size:11px;color:#8ca381;text-align:center;">
-            Rebuske v4 · Medellín, Colombia · Wompi Split 93%/7% · Línea Oficial Canashi
+            Rebuske v4 · Medellín, Colombia · Comisiones Unificadas 18% / 14% / 11% (Wompi Absorbido) · Línea Oficial Canashi
           </div>
         </div>
       `;
