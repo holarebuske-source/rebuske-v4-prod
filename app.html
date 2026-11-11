@@ -549,7 +549,7 @@ const CATS = [
   ['Cerrajería y Seguridad', 'shield'],
   ['Jardinería y Exteriores', 'home'],
   ['Construcción y Remodelación', 'tool'],
-  ['Mudanzas y Transporte', 'bag'],
+  ['Mudanzas', 'bag'],
   ['Electrodomésticos', 'tool'],
   ['Chef Privado a Domicilio', 'star'],
   ['Automóviles y Motos', 'pin'],
@@ -608,10 +608,10 @@ const CAT_REF_PRECIOS = {
     ['Drywall muro/cielo raso (m²)', '$68.450 COP'],
     ['Remodelación baño/cocina', '$584.200 COP']
   ],
-  'Mudanzas y Transporte': [
-    ['Coteros por hora', '$42.680 COP/hr'],
+  'Mudanzas': [
+    ['Mudanza local por recorrido (2h)', '$63.850 COP'],
     ['Acarreo local express', '$84.320 COP'],
-    ['Mudanza completa camión', '$248.750 COP']
+    ['Mudanza completa camión grande', '$248.750 COP']
   ],
   'Electrodomésticos': [
     ['Instalación campanas', '$68.950 COP'],
@@ -634,14 +634,14 @@ const CAT_REF_PRECIOS = {
     ['Recuperación de datos', '$138.450 COP']
   ],
   'Clases y Educación (Música & Refuerzo)': [
-    ['Clase individual música (1h)', '$39.420 COP'],
-    ['Refuerzo escolar primaria (1h)', '$42.500 COP'],
-    ['Preparación Saber 11 / ICFES', '$56.740 COP']
+    ['Clase individual música (2h)', '$91.067 COP'],
+    ['Refuerzo escolar primaria (2h)', '$74.898 COP'],
+    ['Preparación Saber 11 / ICFES (2h)', '$101.992 COP']
   ],
   'Belleza y Cuidado Personal': [
     ['Manicure y pedicure spa', '$38.450 COP'],
     ['Corte cabello + cepillado', '$46.820 COP'],
-    ['Masaje relajante antiestrés (1h)', '$84.500 COP']
+    ['Masaje relajante antiestrés (1h)', '$61.038 COP']
   ],
   'Eventos y Protocolo': [
     ['Mesero / Bartender protocolo (4h)', '$87.650 COP'],
@@ -654,7 +654,7 @@ const CAT_REF_PRECIOS = {
     ['Estructuración Plan de Negocios', '$128.450 COP']
   ],
   'Cuidado de Mascotas & Veterinaria': [
-    ['Paseo canino personalizado (1h)', '$24.780 COP'],
+    ['Paseo canino personalizado (2h)', '$47.082 COP'],
     ['Baño y peluquería canina', '$54.890 COP'],
     ['Pet Sitting Premium (Día con comida)', '$52.500 COP']
   ],
@@ -3828,14 +3828,33 @@ render();
 
   // Mapeo entre nombres de categorías UI y IDs del esquema SQL (public.categories)
   const CATEGORY_NAME_TO_ID = {
-    'Hogar': 'hogar',
-    'Reparaciones': 'reparaciones',
-    'Vehículos': 'vehiculos',
-    'Tecnología': 'tecnologia',
-    'Personal': 'personal',
-    'Eventos': 'eventos',
-    'Transporte': 'transporte',
-    'Profesionales': 'profesionales'
+    'Limpieza y Aseo': 'limpieza_aseo',
+    'Plomería y Redes Hidráulicas': 'plomeria_redes',
+    'Electricidad Residencial': 'electricidad_residencial',
+    'Pintura y Acabados': 'pintura_acabados',
+    'Carpintería y Ebanistería': 'carpinteria_ebanisteria',
+    'Cerrajería y Seguridad': 'cerrajeria_seguridad',
+    'Jardinería y Exteriores': 'jardineria_exteriores',
+    'Construcción y Remodelación': 'construccion_remodelacion',
+    'Mudanzas': 'mudanzas_transporte',
+    'Mudanzas y Transporte': 'mudanzas_transporte',
+    'Electrodomésticos': 'electrodomesticos',
+    'Chef Privado a Domicilio': 'chef_privado',
+    'Automóviles y Motos': 'automoviles_motos',
+    'Servicios Digitales': 'servicios_digitales',
+    'Clases y Educación (Música & Refuerzo)': 'clases_educacion',
+    'Belleza y Cuidado Personal': 'belleza_cuidado',
+    'Eventos y Protocolo': 'eventos_protocolo',
+    'Servicios Profesionales (Especializados)': 'servicios_profesionales',
+    'Cuidado de Mascotas & Veterinaria': 'mascotas_veterinaria',
+    'Hogar': 'limpieza_aseo',
+    'Reparaciones': 'plomeria_redes',
+    'Vehículos': 'automoviles_motos',
+    'Tecnología': 'servicios_digitales',
+    'Personal': 'belleza_cuidado',
+    'Eventos': 'eventos_protocolo',
+    'Transporte': 'mudanzas_transporte',
+    'Profesionales': 'servicios_profesionales'
   };
 
   const CATEGORY_ID_TO_NAME = Object.fromEntries(
@@ -3843,6 +3862,24 @@ render();
   );
 
   const CATEGORY_ID_TO_ICON = {
+    'limpieza_aseo': 'home',
+    'plomeria_redes': 'tool',
+    'electricidad_residencial': 'tool',
+    'pintura_acabados': 'tool',
+    'carpinteria_ebanisteria': 'tool',
+    'cerrajeria_seguridad': 'shield',
+    'jardineria_exteriores': 'home',
+    'construccion_remodelacion': 'tool',
+    'mudanzas_transporte': 'bag',
+    'electrodomesticos': 'tool',
+    'chef_privado': 'star',
+    'automoviles_motos': 'pin',
+    'servicios_digitales': 'star',
+    'clases_educacion': 'user',
+    'belleza_cuidado': 'user',
+    'eventos_protocolo': 'star',
+    'servicios_profesionales': 'wallet',
+    'mascotas_veterinaria': 'user',
     'hogar': 'home',
     'reparaciones': 'tool',
     'vehiculos': 'pin',
@@ -4069,7 +4106,9 @@ render();
         SupabaseRestClient.select('subcategories', 'select=*&order=name.asc')
       ]);
 
-      if (Array.isArray(categories) && categories.length > 0 && Array.isArray(global.CATS)) {
+      // Blindaje oficial Rebuske Medellín 2026: CATS contiene el catálogo oficial de 18 categorías.
+      // Jamás se sobrescribe si Supabase devuelve un subset parcial o antiguo (< 18 categorías).
+      if (Array.isArray(categories) && categories.length >= 18 && Array.isArray(global.CATS)) {
         global.CATS.length = 0;
         categories.forEach(cat => {
           global.CATS.push([cat.name, CATEGORY_ID_TO_ICON[cat.id] || 'tool', cat.id]);
