@@ -1040,7 +1040,7 @@ export const REFINED_STYLES = `
   position: relative;
   width: 100%;
   margin-bottom: 22px;
-  padding-right: 12px;
+  padding-right: 0;
   cursor: pointer;
 }
 
@@ -1070,6 +1070,7 @@ export const REFINED_STYLES = `
 
 /* Efecto de mangas de vinilo apiladas a la derecha de la portada */
 .spotify-sleeve-stack {
+  display: none !important;
   position: absolute;
   top: 10px;
   bottom: 10px;
