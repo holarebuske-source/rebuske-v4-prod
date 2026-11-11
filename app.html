@@ -824,7 +824,7 @@ function ensureDefaults(){
 ensureDefaults();
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
 
-let st=[{v:'splash',p:{}}],splashT=0,starN=5,lastY=0;
+let st=[{v:'bienvenida',p:{}}],starN=5,lastY=0;
 const cur=()=>st[st.length-1];
 const go=(v,p={})=>{st.push({v,p});render()};
 const root=(v,p={})=>{st=[{v,p}];render()};
@@ -849,31 +849,7 @@ const barsHTML = () => {
 };
 
 const VIEWS={
-splash:()=>`<div class="ctr full" style="padding:28px 16px;text-align:center;justify-content:center;display:flex;flex-direction:column;align-items:center;min-height:100vh">
-  ${HERO(160,true)}
-  <div style="margin-top:10px">
-    <span style="background:rgba(184,255,59,0.12);border:1px solid #3B5B28;color:#B8FF3B;font-size:10px;font-weight:900;padding:3px 10px;border-radius:20px;letter-spacing:1px;text-transform:uppercase">Medellín · Valle de Aburrá</span>
-  </div>
-  <h1 style="font-family:'Baloo 2',sans-serif;font-size:30px;font-weight:900;color:#F2F5EC;margin:12px 0 4px 0;letter-spacing:-0.5px">
-    Arregla · Confía · Repite
-  </h1>
-  <p style="color:#C6D8BF;font-size:13.5px;max-width:320px;line-height:1.4;margin:0 auto 16px auto">
-    Cerrajero, plomero o electricista en Medellín hoy. Pagas protegido con <b>Bóveda Wompi</b> y <b>Garantía de 48h</b>.
-  </p>
-  <div style="width:100%;max-width:320px;display:flex;flex-direction:column;gap:10px">
-    <button class="btn sheen cta" style="background:#B8FF3B;color:#0B0F08;font-size:15px;font-weight:900;padding:14px;border-radius:14px;border:none;cursor:pointer;box-shadow:0 4px 20px rgba(184,255,59,0.35)" data-a="root" data-x="home">
-      Solicitar Técnico Ahora ➔
-    </button>
-    <a href="https://wa.me/573043812882?text=Hola%20rebuske,%20necesito%20un%20servicio%20especializado%20urgente%20en%20Medell%C3%ADn" target="_blank" style="background:#162413;border:1px solid #2F4A1F;color:#25D366;font-size:13px;font-weight:700;padding:12px;border-radius:14px;text-decoration:none;display:flex;align-items:center;justify-content:center;gap:8px">
-      <span>Pedir Urgencia por WhatsApp</span>
-    </a>
-  </div>
-  <div class="legal" style="margin-top:18px">
-    <a href="/tarifas" target="_blank" style="color:#A7BCA0;text-decoration:underline">Tarifas</a>
-    <a href="/terminos" target="_blank" style="color:#A7BCA0;text-decoration:underline">Términos</a>
-    <a href="/privacidad" target="_blank" style="color:#A7BCA0;text-decoration:underline">Privacidad</a>
-  </div>
-</div>`,
+splash:p=>VIEWS.bienvenida(p),
 
 bienvenida:p=>`<div class="ctr full" style="padding:20px 16px;text-align:center;justify-content:center;display:flex;flex-direction:column;align-items:center;min-height:100vh">${HERO(140,true)}${WM('sm')}
 <h2 style="font-family:'Baloo 2',sans-serif;font-size:24px;font-weight:900;color:#F2F5EC;margin:8px 0 2px 0">Arregla · Confía · Repite</h2>
@@ -1512,7 +1488,6 @@ function render(){
   nav.innerHTML=items?navHTML(c.v,items):'';
   if(nav)nav.classList.remove('min');
   rollInit();bindVault();
-  if(c.v==='splash'&&!splashT)splashT=setTimeout(()=>{splashT=0;if(cur().v==='splash')root('bienvenida')},3000);
 }
 
 function sendMsg(id, text) {
