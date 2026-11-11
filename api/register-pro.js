@@ -459,7 +459,8 @@ export default async function handler(req, res) {
       cookies_analitica_consentimiento: !!body.cookies_analitica_consentimiento,
       antecedentes_estado: 'APTO_SIN_REPORTES_PENDIENTE_COTEJO',
       antecedentes_fecha_consulta: timestampIso,
-      autorizo_promo: !!body.autorizo_promo
+      autorizo_promo: !!body.autorizo_promo,
+      ellas: !!(body.is_woman_pro || body.ellas)
     };
 
     // Almacenar en local store de respaldo
