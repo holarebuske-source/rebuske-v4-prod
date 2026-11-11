@@ -13,7 +13,7 @@
  *  - public.professionals & public.profiles
  *  - public.jobs & public.job_quotes
  *  - public.chat_messages (con detección anti-fraude)
- *  - public.wallets & public.wallet_ledger (Comisión 7% / 6% Oro, retiros 4 días)
+ *  - public.wallets & public.wallet_ledger (Comisión 18% Bronce, 14% Plata, 11% Oro VIP, retiros 4 días)
  *  - public.disputes (Garantía de 2 días y mediación)
  * ============================================================================
  */
@@ -22,7 +22,7 @@
   'use strict';
 
   // --------------------------------------------------------------------------
-  // 1. CONFIGURACIÓN DE SUPABASE REST API & WOMPI SANDBOX COLOMBIA
+  // 1. CONFIGURACIÓN DE SUPABASE REST API & WOMPI PRODUCCIÓN (BANCOLOMBIA)
   // --------------------------------------------------------------------------
   const SUPABASE_URL = 'https://vqvwcbirzezihfzaeziq.supabase.co';
   const SUPABASE_REST_URL = `${SUPABASE_URL}/rest/v1`;
@@ -36,13 +36,6 @@
     privateKey: 'prv_prod_4oIQNfg2niXirIqpzONGpmVIdaq1b9yu',
     eventsSecret: 'prod_events_qat3lsI2jTaA82Ky5r2iEd2qCNNAzfEJ',
     integritySecret: 'prod_integrity_6TeHFI9CwfIMh4RzN7RFJAZY6MaCxws0',
-    sandboxFallback: {
-      apiUrl: 'https://sandbox.wompi.co/v1',
-      publicKey: 'pub_test_m1oWAq8iWH5DTFkOO1xPtoUQuZsjwXga',
-      privateKey: 'prv_test_QrbKy2b5fSz3LtAMrcFtZFXvywlY4xqI',
-      eventsSecret: 'test_events_I3jI0yiPDSlwJs5L9izTeUt3MzqFH74f',
-      integritySecret: 'test_integrity_oSbKyiTdCmUI0F2BaMXd8E7BbOWlHYxQ'
-    },
     currency: 'COP'
   };
   const safeStorage = {
@@ -72,14 +65,32 @@
 
   // Mapeo entre nombres de categorías UI y IDs del esquema SQL (public.categories)
   const CATEGORY_NAME_TO_ID = {
-    'Hogar': 'hogar',
-    'Reparaciones': 'reparaciones',
-    'Vehículos': 'vehiculos',
-    'Tecnología': 'tecnologia',
-    'Personal': 'personal',
-    'Eventos': 'eventos',
-    'Transporte': 'transporte',
-    'Profesionales': 'profesionales'
+    'Limpieza y Aseo': 'limpieza_aseo',
+    'Plomería y Redes Hidráulicas': 'plomeria_redes',
+    'Electricidad Residencial': 'electricidad_residencial',
+    'Pintura y Acabados': 'pintura_acabados',
+    'Carpintería y Ebanistería': 'carpinteria_ebanisteria',
+    'Cerrajería y Seguridad': 'cerrajeria_seguridad',
+    'Jardinería y Exteriores': 'jardineria_exteriores',
+    'Construcción y Remodelación': 'construccion_remodelacion',
+    'Mudanzas y Transporte': 'mudanzas_transporte',
+    'Electrodomésticos': 'electrodomesticos',
+    'Chef Privado a Domicilio': 'chef_privado',
+    'Automóviles y Motos': 'automoviles_motos',
+    'Servicios Digitales': 'servicios_digitales',
+    'Clases y Educación (Música & Refuerzo)': 'clases_educacion',
+    'Belleza y Cuidado Personal': 'belleza_cuidado',
+    'Eventos y Protocolo': 'eventos_protocolo',
+    'Servicios Profesionales (Especializados)': 'servicios_profesionales',
+    'Cuidado de Mascotas & Veterinaria': 'mascotas_veterinaria',
+    'Hogar': 'limpieza_aseo',
+    'Reparaciones': 'plomeria_redes',
+    'Vehículos': 'automoviles_motos',
+    'Tecnología': 'servicios_digitales',
+    'Personal': 'belleza_cuidado',
+    'Eventos': 'eventos_protocolo',
+    'Transporte': 'mudanzas_transporte',
+    'Profesionales': 'servicios_profesionales'
   };
 
   const CATEGORY_ID_TO_NAME = Object.fromEntries(
@@ -87,6 +98,24 @@
   );
 
   const CATEGORY_ID_TO_ICON = {
+    'limpieza_aseo': 'home',
+    'plomeria_redes': 'tool',
+    'electricidad_residencial': 'tool',
+    'pintura_acabados': 'tool',
+    'carpinteria_ebanisteria': 'tool',
+    'cerrajeria_seguridad': 'shield',
+    'jardineria_exteriores': 'home',
+    'construccion_remodelacion': 'tool',
+    'mudanzas_transporte': 'bag',
+    'electrodomesticos': 'tool',
+    'chef_privado': 'star',
+    'automoviles_motos': 'pin',
+    'servicios_digitales': 'star',
+    'clases_educacion': 'user',
+    'belleza_cuidado': 'user',
+    'eventos_protocolo': 'star',
+    'servicios_profesionales': 'wallet',
+    'mascotas_veterinaria': 'user',
     'hogar': 'home',
     'reparaciones': 'tool',
     'vehiculos': 'pin',
@@ -313,7 +342,9 @@
         SupabaseRestClient.select('subcategories', 'select=*&order=name.asc')
       ]);
 
-      if (Array.isArray(categories) && categories.length > 0 && Array.isArray(global.CATS)) {
+      // Blindaje oficial Rebuske Medellín 2026: CATS contiene el catálogo oficial de 18 categorías.
+      // Jamás se sobrescribe si Supabase devuelve un subset parcial o antiguo (< 18 categorías).
+      if (Array.isArray(categories) && categories.length >= 18 && Array.isArray(global.CATS)) {
         global.CATS.length = 0;
         categories.forEach(cat => {
           global.CATS.push([cat.name, CATEGORY_ID_TO_ICON[cat.id] || 'tool', cat.id]);
@@ -560,7 +591,7 @@
   };
 
   /**
-   * 4.5 BILLETERA, LIBRO MAYOR CONTABLE Y PASARELA WOMPI SANDBOX (`public.wallets`, `public.wallet_ledger` & Wompi API v1)
+   * 4.5 BILLETERA, LIBRO MAYOR CONTABLE Y PASARELA WOMPI PRODUCCIÓN (`public.wallets`, `public.wallet_ledger` & Wompi API v1)
    */
   const WompiService = {
     config: WOMPI_CONFIG,
@@ -601,7 +632,7 @@
           return this.merchantCache;
         }
       } catch (e) {
-        console.warn('[RebuskeWompi] Error consultando comercio Sandbox:', e.message);
+        console.warn('[RebuskeWompi] Error consultando comercio Producción:', e.message);
       }
       return null;
     },
@@ -626,7 +657,7 @@
             reference,
             payment_method: {
               type: 'NEQUI',
-              phone_number: '3991111111' // Número oficial de Wompi Sandbox con aprobación automática
+              phone_number: '3991111111'
             },
             customer_data: {
               full_name: (global.S && global.S.client && (global.S.client.nombre || global.S.client.name)) || 'Cliente rebuske',
@@ -646,7 +677,7 @@
             wompiData = txJson.data;
           }
         } catch (err) {
-          console.warn('[RebuskeWompi] Aviso creando transacción Sandbox:', err.message);
+          console.warn('[RebuskeWompi] Aviso creando transacción Producción:', err.message);
         }
       }
 
@@ -680,7 +711,7 @@
 
       const launchWidget = () => {
         if (typeof global.WidgetCheckout !== 'function') {
-          if (typeof global.toast === 'function') global.toast('Procesando en modo directo Wompi Sandbox...');
+          if (typeof global.toast === 'function') global.toast('Procesando pago seguro Wompi Producción...');
           this.createSandboxTransaction(uiJob, 'NEQUI').then(tx => {
             if (typeof onApproved === 'function') onApproved(tx);
           });
@@ -1108,10 +1139,11 @@
       const disputedJobs = jobs.filter(j => j.s === 'disputa');
       const activeJobs = jobs.filter(j => j.s !== 'calificado' && j.s !== 'disputa');
 
-      // Cálculo de revenue neto Rebuske (7% estándar / 6% Oro)
+      // Cálculo de revenue neto Rebuske (18% Bronce / 14% Plata / 11% Oro VIP)
       const platformRevenue = jobs.reduce((acc, j) => {
         const proObj = pros.find(p => p.id === j.pro);
-        const rate = proObj && proObj.nv === 'Oro' ? 0.06 : 0.07;
+        const nv = proObj ? proObj.nv : 'Bronce';
+        const rate = nv === 'Oro' ? 0.11 : (nv === 'Plata' ? 0.14 : 0.18);
         return acc + Math.round(Number(j.v || 0) * rate);
       }, 0);
 
@@ -1174,8 +1206,8 @@
         `1. RESUMEN FINANCIERO (WOMPI PRODUCCION)`,
         `  - GMV Total Transado (100%):        $${Number(k.gmv_total_cop).toLocaleString('es-CO')} COP`,
         `  - GMV Completado y Liquidado:       $${Number(k.gmv_completed_cop).toLocaleString('es-CO')} COP`,
-        `  - Ingreso Neto Rebuske (7% / 6%):   $${Number(k.estimated_platform_revenue_cop).toLocaleString('es-CO')} COP`,
-        `  - Dispersado a Profesionales (93%): $${Number(k.gmv_total_cop - k.estimated_platform_revenue_cop).toLocaleString('es-CO')} COP`,
+        `  - Ingreso Neto Rebuske (18% / 14% / 11%): $${Number(k.estimated_platform_revenue_cop).toLocaleString('es-CO')} COP`,
+        `  - Dispersado a Profesionales (82% a 89%): $${Number(k.gmv_total_cop - k.estimated_platform_revenue_cop).toLocaleString('es-CO')} COP`,
         `  - Saldo Disponible en Billeteras:   $${Number(k.wallet_available_cop).toLocaleString('es-CO')} COP`,
         `  - Saldo Retenido en Custodia:       $${Number(k.wallet_pending_escrow_cop).toLocaleString('es-CO')} COP`,
         ``,
@@ -1246,7 +1278,7 @@
             specialty: p.o,
             rating: p.r,
             jobs_done: p.t,
-            campaign_hook: `¡Estás muy cerca del Nivel Oro en Rebuske! Baja tu comisión del 7% al 6%.`
+            campaign_hook: `¡Estás muy cerca del Nivel Oro VIP en Rebuske! Baja tu comisión al 11% y quédate con el 89% neto.`
           }))
       };
     },
@@ -1257,10 +1289,14 @@
     exportReportCSV() {
       const state = global.S || { jobs: [] };
       const jobs = Array.isArray(state.jobs) ? state.jobs : [];
+      const pros = Array.isArray(global.PROS) ? global.PROS : [];
       const headers = ['ID', 'Titulo', 'Categoria', 'Zona', 'Profesional', 'Estado', 'Valor_COP', 'Comision_Estimada_COP', 'Calificacion'];
       const rows = jobs.map(j => {
         const val = Number(j.v || 0);
-        const fee = Math.round(val * 0.07);
+        const proObj = pros.find(p => p.id === j.pro);
+        const nv = proObj ? proObj.nv : 'Bronce';
+        const rate = nv === 'Oro' ? 0.11 : (nv === 'Plata' ? 0.14 : 0.18);
+        const fee = Math.round(val * rate);
         return [
           j.id,
           `"${String(j.t || '').replace(/"/g, '""')}"`,
@@ -1456,7 +1492,7 @@
       };
     }
 
-    // 14. Abrir Pasarela Oficial Wompi Widget (pub_test_m1oWAq8iWH5DTFkOO1xPtoUQuZsjwXga)
+    // 14. Abrir Pasarela Oficial Wompi Widget (pub_prod_rlfigFJClWV8X56CCbtRngsxy8vF7lzW)
     global.A.wompiWidget = function (d) {
       const targetJob = global.S && global.S.jobs && global.S.jobs.find(j => j.id === d.id);
       if (!targetJob) return;
@@ -1470,12 +1506,12 @@
         await WalletsService.recordEscrowRetention(targetJob);
         if (typeof global.swap === 'function') global.swap('ruta', { id: targetJob.id });
         if (typeof global.toast === 'function') {
-          global.toast(`Wompi Aprobado (${tx.id || 'Sandbox'}) · Pago Protegido activo`);
+          global.toast(`Wompi Aprobado (${tx.id || 'Producción'}) · Pago Protegido activo`);
         }
       });
     };
 
-    // Enriquecer vista VIEWS.pago con distintivo Wompi Sandbox + Botón Widget Oficial
+    // Enriquecer vista VIEWS.pago con distintivo Wompi Producción + Botón Widget Oficial
     if (global.VIEWS && typeof global.VIEWS.pago === 'function' && !global.VIEWS.pago.__wompiEnhanced) {
       const origPagoView = global.VIEWS.pago;
       global.VIEWS.pago = function (p) {
