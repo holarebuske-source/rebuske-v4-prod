@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 843px;
+      height: 1024px;
+      overflow: hidden;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    .wrapper {
+      position: relative;
+      width: 843px;
+      height: 1024px;
+    }
+    .bg-mockup {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 843px;
+      height: 1024px;
+      z-index: 1;
+    }
+    /* El contenedor de la pantalla del iPhone */
+    .screen-overlay {
+      position: absolute;
+      top: 106px;
+      left: 275px;
+      width: 442px;
+      height: 770px;
+      border-radius: 40px;
+      overflow: hidden;
+      z-index: 2;
+      transform-origin: center center;
+      transform: rotate(-3.8deg) skewY(0.4deg);
+      background: #0C120A;
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+      display: flex;
+      flex-direction: column;
+      color: #F4FBF1;
+    }
+    
+    /* Dynamic Island Fake & Status Bar */
+    .screen-status-bar {
+      height: 38px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 20px 0;
+      font-size: 13px;
+      font-weight: 700;
+      color: #FFF;
+      position: relative;
+      z-index: 10;
+    }
+    .dynamic-island {
+      width: 108px;
+      height: 28px;
+      background: #000;
+      border-radius: 20px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 8px;
+    }
+    .dynamic-island-cam {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #111;
+      border: 1px solid #222;
+    }
+    
+    /* Contenido de Autenticación de la App Rebuske */
+    .app-header {
+      padding: 8px 16px 4px;
+      text-align: center;
+    }
+    .app-badge-title {
+      font-size: 11px;
+      font-weight: 800;
+      color: #B8FF3B;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+    .app-title {
+      font-size: 16px;
+      font-weight: 900;
+      color: #FFF;
+      margin-top: 2px;
+    }
+    .app-desc {
+      font-size: 11px;
+      color: rgba(244, 251, 241, 0.7);
+      margin-top: 2px;
+      line-height: 1.3;
+    }
+    
+    /* Visor de la cámara con marco de escaneo láser */
+    .scanner-viewport {
+      position: relative;
+      width: 250px;
+      height: 250px;
+      margin: 10px auto;
+      border-radius: 18px;
+      overflow: hidden;
+      background: #050805;
+      border: 2px solid rgba(184, 255, 59, 0.4);
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.9), inset 0 0 30px rgba(0,0,0,0.85);
+    }
+    .reticle-corner {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      border-color: #B8FF3B;
+      border-style: solid;
+      border-width: 0;
+      z-index: 5;
+    }
+    .reticle-tl { top: 8px; left: 8px; border-top-width: 3px; border-left-width: 3px; border-radius: 4px 0 0 0; }
+    .reticle-tr { top: 8px; right: 8px; border-top-width: 3px; border-right-width: 3px; border-radius: 0 4px 0 0; }
+    .reticle-bl { bottom: 8px; left: 8px; border-bottom-width: 3px; border-left-width: 3px; border-radius: 0 0 0 4px; }
+    .reticle-br { bottom: 8px; right: 8px; border-bottom-width: 3px; border-right-width: 3px; border-radius: 0 0 4px 0; }
+    
+    /* El Carné del Técnico dentro del visor */
+    .badge-card-inner {
+      width: 190px;
+      margin: 18px auto 0;
+      background: #0d150b;
+      border: 1.5px solid #4E8839;
+      border-radius: 14px;
+      padding: 10px 8px;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.8);
+    }
+    .badge-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 8px;
+      font-weight: 800;
+      color: #B8FF3B;
+      border-bottom: 1px solid rgba(184,255,59,0.25);
+      padding-bottom: 4px;
+      margin-bottom: 6px;
+    }
+    .badge-pro-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-align: left;
+    }
+    .badge-pro-img {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 2px solid #B8FF3B;
+      object-fit: cover;
+    }
+    .badge-pro-name {
+      font-size: 11px;
+      font-weight: 800;
+      color: #FFF;
+      line-height: 1.1;
+    }
+    .badge-pro-sub {
+      font-size: 9px;
+      color: #B8FF3B;
+      font-weight: 600;
+    }
+    .badge-pro-cc {
+      font-size: 8px;
+      color: rgba(244,251,241,0.65);
+    }
+    .badge-qr-box {
+      width: 85px;
+      height: 85px;
+      background: #FFF;
+      border-radius: 8px;
+      margin: 8px auto 4px;
+      display: grid;
+      place-items: center;
+      padding: 4px;
+    }
+    .badge-qr-img {
+      width: 77px;
+      height: 77px;
+    }
+    .badge-footer-note {
+      font-size: 7.5px;
+      color: #A3B899;
+      line-height: 1.2;
+    }
+    
+    /* Línea láser de escaneo en tiempo real */
+    .scan-laser-beam {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #B8FF3B, #FFF, #B8FF3B, transparent);
+      box-shadow: 0 0 12px #B8FF3B, 0 0 24px #AFFF3E;
+      z-index: 6;
+      animation: laserSweep 2.2s ease-in-out infinite alternate;
+    }
+    @keyframes laserSweep {
+      0% { top: 12px; opacity: 0.9; }
+      100% { top: 226px; opacity: 1; }
+    }
+    
+    /* Tarjeta inferior de Identidad Verificada */
+    .verification-card {
+      margin: 6px 14px 0;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(22, 36, 19, 0.92);
+      border: 1px solid rgba(184, 255, 59, 0.45);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.5);
+    }
+    .verification-status {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 800;
+      color: #B8FF3B;
+      margin-bottom: 6px;
+    }
+    .check-circle {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #B8FF3B;
+      color: #0C120A;
+      display: grid;
+      place-items: center;
+      font-size: 11px;
+      font-weight: 900;
+    }
+    .verification-perks {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 10px;
+      color: #D4E5CC;
+    }
+    .verification-perk {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .verification-perk span {
+      color: #B8FF3B;
+      font-weight: bold;
+    }
+    
+    /* Botón verde de acción */
+    .btn-door-open {
+      margin: 10px 14px 12px;
+      padding: 11px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, #B8FF3B, #9CEE20);
+      color: #0C120A;
+      font-size: 12.5px;
+      font-weight: 900;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      box-shadow: 0 6px 20px rgba(184, 255, 59, 0.45);
+    }
+    
+    /* Barra inferior de inicio iPhone */
+    .home-bar {
+      width: 130px;
+      height: 4px;
+      background: rgba(255,255,255,0.7);
+      border-radius: 4px;
+      margin: auto auto 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <img src="assets/images/mockup_mano_iphone.png" class="bg-mockup" alt="Mockup Mano iPhone">
+    
+    <div class="screen-overlay">
+      <!-- Status bar -->
+      <div class="screen-status-bar">
+        <span>10:54</span>
+        <div class="dynamic-island">
+          <div class="dynamic-island-cam"></div>
+        </div>
+        <span>5G 􀛨</span>
+      </div>
+      
+      <!-- App Header -->
+      <div class="app-header">
+        <span class="app-badge-title">Seguridad Domiciliaria</span>
+        <h2 class="app-title">Autenticación en Puerta con QR</h2>
+        <p class="app-desc">Apunta la cámara al carné físico que el técnico lleva en el cuello antes de abrir.</p>
+      </div>
+      
+      <!-- Visor de Escaneo con Láser -->
+      <div class="scanner-viewport">
+        <div class="reticle-corner reticle-tl"></div>
+        <div class="reticle-corner reticle-tr"></div>
+        <div class="reticle-corner reticle-bl"></div>
+        <div class="reticle-corner reticle-br"></div>
+        <div class="scan-laser-beam"></div>
+        
+        <!-- Carné del Técnico -->
+        <div class="badge-card-inner">
+          <div class="badge-top">
+            <span>REBUSKE · CARNÉ OFICIAL</span>
+            <span>ORO VIP #084</span>
+          </div>
+          <div class="badge-pro-row">
+            <img src="https://images.unsplash.com/photo-1540569014015-19a7be504e3a?w=160&h=160&fit=crop" class="badge-pro-img" alt="Técnico Pro">
+            <div>
+              <div class="badge-pro-name">Jairo A. Restrepo</div>
+              <div class="badge-pro-sub">Plomería & Redes · ⭐ 4.9</div>
+              <div class="badge-pro-cc">CC: 71.***.482 Medellín</div>
+            </div>
+          </div>
+          <div class="badge-qr-box">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https%3A%2F%2Frebuske.xyz%2Fverificar%3Fpro%3Dp1" class="badge-qr-img" alt="QR">
+          </div>
+          <div class="badge-footer-note">✓ Póliza Sura #SUR-849201 Activa</div>
+        </div>
+      </div>
+      
+      <!-- Tarjeta de Verificación Inmediata -->
+      <div class="verification-card">
+        <div class="verification-status">
+          <div class="check-circle">✓</div>
+          <span>¡Identidad 100% Verificada en Tiempo Real!</span>
+        </div>
+        <div class="verification-perks">
+          <div class="verification-perk">
+            <span>✓</span> <b>Cédula cotejada:</b> CC 71.***.482 (Registraduría)
+          </div>
+          <div class="verification-perk">
+            <span>✓</span> <b>Antecedentes:</b> Policía Nacional y Procuraduría limpios
+          </div>
+          <div class="verification-perk">
+            <span>✓</span> <b>Orden en curso:</b> Asignado a tu comuna (Valle de Aburrá)
+          </div>
+        </div>
+      </div>
+      
+      <!-- Botón de apertura -->
+      <div class="btn-door-open">
+        <span>✓ Podés abrir la puerta con total tranquilidad</span>
+      </div>
+      
+      <div class="home-bar"></div>
+    </div>
+  </div>
+</body>
+</html>
