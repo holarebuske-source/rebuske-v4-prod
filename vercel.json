@@ -211,11 +211,19 @@
       "destination": "/sitemap.xml"
     },
     {
+      "source": "/manifest.json",
+      "destination": "/manifest.json"
+    },
+    {
+      "source": "/site.webmanifest",
+      "destination": "/site.webmanifest"
+    },
+    {
       "source": "/.well-known/assetlinks.json",
       "destination": "/.well-known/assetlinks.json"
     },
     {
-      "source": "/((?!api/|chat|chat\\\\.html|sala|terminos|terminos\\\\.html|privacidad|privacidad\\\\.html|reembolsos|reembolsos\\\\.html|tarifas|tarifas\\\\.html|precios|precios\\\\.html|eliminar-cuenta|eliminar-cuenta\\\\.html|baja|registro|registro\\\\.html|unete|link|comunidad|clientes|clientes\\\\.html|cliente|hogares|espera|clientes-landing|clientes-landing\\\\.html|pro|pro/|pro\\\\.html|pro-landing|pro-landing\\\\.html|registro-pro|registro-pro\\\\.html|primordiales|supabase-sync\\\\.js|assets/|robots\\\\.txt|sitemap\\\\.xml|\\.well-known/|.*\\\\.(?:js|css|png|jpg|jpeg|gif|svg|webp|ico|json|woff2?|pdf|txt|xml)).*)",
+      "source": "/((?!api/|chat|chat\\\\.html|sala|terminos|terminos\\\\.html|privacidad|privacidad\\\\.html|reembolsos|reembolsos\\\\.html|tarifas|tarifas\\\\.html|precios|precios\\\\.html|eliminar-cuenta|eliminar-cuenta\\\\.html|baja|registro|registro\\\\.html|unete|link|comunidad|clientes|clientes\\\\.html|cliente|hogares|espera|clientes-landing|clientes-landing\\\\.html|pro|pro/|pro\\\\.html|pro-landing|pro-landing\\\\.html|registro-pro|registro-pro\\\\.html|primordiales|supabase-sync\\\\.js|assets/|robots\\\\.txt|sitemap\\\\.xml|site\\\\.webmanifest|manifest\\\\.json|\\.well-known/|.*\\\\.(?:js|css|png|jpg|jpeg|gif|svg|webp|ico|json|webmanifest|woff2?|pdf|txt|xml)).*)",
       "destination": "/index.html"
     }
   ],
@@ -251,6 +259,15 @@
     },
     {
       "source": "/supabase-sync.js",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, must-revalidate"
+        }
+      ]
+    },
+    {
+      "source": "/(manifest\\.json|site\\.webmanifest|favicon\\.svg|favicon\\.ico)",
       "headers": [
         {
           "key": "Cache-Control",
