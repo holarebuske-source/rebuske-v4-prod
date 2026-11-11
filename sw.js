@@ -1,14 +1,24 @@
 // Service Worker oficial de rebuske v4
-const CACHE_NAME = 'rebuske-v4-cache-v1';
+const CACHE_NAME = 'rebuske-v4-cache-v3';
 const ASSETS_TO_CACHE = [
   '/',
   '/index.html',
+  '/app',
+  '/app.html',
   '/registro',
   '/registro.html',
   '/favicon.svg',
   '/favicon.png',
+  '/apple-touch-icon.png',
+  '/favicon-32x32.png',
+  '/favicon-16x16.png',
+  '/favicon.ico',
+  '/android-chrome-192x192.png',
+  '/android-chrome-512x512.png',
+  '/android-chrome-maskable-512x512.png',
   '/rebuske-icon-1024.png',
-  '/manifest.json'
+  '/manifest.json',
+  '/site.webmanifest'
 ];
 
 self.addEventListener('install', (event) => {
