@@ -87,6 +87,190 @@
       letter-spacing: normal !important;
     }
 
+    
+    /* ======================================================== */
+    /* BOVEDA WOMPI: SHOWCASE NATIVO DE MEDIOS DE PAGO Y CUSTODIA */
+    /* ======================================================== */
+    .boveda-payment-showcase-wrap {
+      margin-top: 36px;
+      background: radial-gradient(circle at 50% 15%, rgba(18, 32, 16, 0.95) 0%, rgba(6, 11, 6, 0.98) 75%);
+      border: 1.5px solid rgba(184, 255, 59, 0.32);
+      border-radius: 26px;
+      padding: 36px 36px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 35px rgba(184, 255, 59, 0.12);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .boveda-payment-showcase-wrap::before {
+      content: "";
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 350px;
+      background: radial-gradient(ellipse, rgba(184, 255, 59, 0.16) 0%, rgba(30, 60, 20, 0.08) 50%, transparent 75%);
+      pointer-events: none;
+      filter: blur(50px);
+    }
+    .bps-header-block {
+      position: relative;
+      z-index: 2;
+      margin-bottom: 22px;
+      text-align: left;
+    }
+    .bps-main-title {
+      font-size: 32px;
+      font-weight: 900;
+      line-height: 1.18;
+      letter-spacing: -0.035em;
+      color: #FFFFFF;
+      margin-bottom: 10px;
+    }
+    .bps-title-highlight {
+      color: #B8FF3B;
+      display: block;
+    }
+    .bps-lead-desc {
+      font-size: 14.5px;
+      line-height: 1.52;
+      color: rgba(244, 251, 241, 0.86);
+      font-weight: 500;
+      max-width: 920px;
+      margin: 0;
+    }
+    .bps-features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 22px;
+      position: relative;
+      z-index: 2;
+    }
+    .bps-feat-card {
+      background: rgba(10, 16, 9, 0.90);
+      border: 1.5px solid rgba(184, 255, 59, 0.28);
+      border-radius: 16px;
+      padding: 16px 18px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
+      transition: transform 0.25s ease, border-color 0.25s ease;
+    }
+    .bps-feat-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(184, 255, 59, 0.55);
+    }
+    .bps-feat-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .bps-feat-icon {
+      width: 20px;
+      height: 20px;
+      color: #B8FF3B;
+      flex-shrink: 0;
+    }
+    .bps-feat-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: #FFFFFF;
+      letter-spacing: -0.02em;
+      margin: 0;
+    }
+    .bps-feat-text {
+      font-size: 12px;
+      line-height: 1.45;
+      color: rgba(244, 251, 241, 0.82);
+      margin: 0;
+    }
+    .bps-highlight-white {
+      color: #FFFFFF;
+      font-weight: 700;
+    }
+    .bps-highlight-green {
+      color: #B8FF3B;
+      font-weight: 700;
+    }
+    .bps-payment-methods-box {
+      background: rgba(5, 9, 5, 0.96);
+      border: 1.5px solid rgba(184, 255, 59, 0.35);
+      border-radius: 18px;
+      padding: 20px 22px;
+      box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.7);
+      position: relative;
+      z-index: 2;
+    }
+    .bps-top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .bps-title-label {
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #B8FF3B;
+    }
+    .bps-super-badge {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #B8FF3B;
+      background: rgba(184, 255, 59, 0.08);
+      border: 1px solid rgba(184, 255, 59, 0.45);
+      padding: 4px 12px;
+      border-radius: 999px;
+    }
+    .bps-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    .bps-pay-card {
+      height: 62px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px 10px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: default;
+      user-select: none;
+    }
+    .bps-pay-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.5);
+    }
+    .bps-pay-card svg {
+      max-width: 100%;
+      height: auto;
+      max-height: 40px;
+      display: block;
+    }
+    .bps-card-bancolombia { background: #EAEAEA; border: 1px solid rgba(255, 255, 255, 0.9); }
+    .bps-card-nequi { background: #1C0324; border: 1px solid rgba(255, 0, 122, 0.45); }
+    .bps-card-daviplata { background: #EAEAEA; border: 1px solid rgba(255, 255, 255, 0.9); }
+    .bps-card-pse { background: #EAEAEA; border: 1px solid rgba(255, 255, 255, 0.9); }
+    .bps-card-visa { background: #EAEAEA; border: 1px solid rgba(255, 255, 255, 0.9); }
+    .bps-card-mastercard { background: #EAEAEA; border: 1px solid rgba(255, 255, 255, 0.9); }
+    .bps-card-amex { background: #006FCF; border: 1px solid #4DA8FF; }
+    .bps-card-wompi { background: #99E6A8; border: 1px solid #B8FF3B; }
+
+    @media (max-width: 900px) {
+      .bps-features-grid { grid-template-columns: 1fr; }
+      .bps-cards-grid { grid-template-columns: repeat(2, 1fr); }
+      .bps-main-title { font-size: 25px; }
+      .boveda-payment-showcase-wrap { padding: 24px 18px; }
+    }
+
     /* Fondo bioluminiscente difuso */
     .bg-glow-layer {
       position: fixed;
@@ -5687,6 +5871,174 @@ html {
         </p>
       </div>
     </div>
+
+    
+    <!-- BOVEDA WOMPI: SHOWCASE NATIVO DE MEDIOS DE PAGO Y CUSTODIA (DESDE CERO) -->
+    <div class="boveda-payment-showcase-wrap reveal-cascade stagger-4">
+      <!-- Encabezado Principal del Bloque -->
+      <div class="bps-header-block">
+        <h2 class="bps-main-title">
+          El fin de los anticipos perdidos.
+          <span class="bps-title-highlight">Tu plata protegida hasta tu visto bueno.</span>
+        </h2>
+        <p class="bps-lead-desc">
+          Se acabaron las transferencias a desconocidos y los arreglos a medias. Con la Bóveda Rebuske tu dinero queda blindado en custodia bancaria y solo se libera cuando tú inspeccionas, pruebas y apruebas el trabajo final.
+        </p>
+      </div>
+
+      <!-- 3 Tarjetas de Garantias -->
+      <div class="bps-features-grid">
+        <!-- 1. Cero Anticipos -->
+        <div class="bps-feat-card">
+          <div class="bps-feat-header">
+            <svg class="bps-feat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+            <h3 class="bps-feat-title">Cero Anticipos en Mano</h3>
+          </div>
+          <p class="bps-feat-text">
+            Tu dinero <span class="bps-highlight-white">nunca se entrega por adelantado</span>. Queda congelado en custodia bancaria hasta tu aprobación final.
+          </p>
+        </div>
+
+        <!-- 2. Garantia 48h -->
+        <div class="bps-feat-card">
+          <div class="bps-feat-header">
+            <svg class="bps-feat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+            <h3 class="bps-feat-title">Garantía Escrita 48h</h3>
+          </div>
+          <p class="bps-feat-text">
+            Respaldada por la <span class="bps-highlight-green">Ley 1480 (Estatuto del Consumidor)</span>. Si surge una falla, el especialista responde de inmediato.
+          </p>
+        </div>
+
+        <!-- 3. Mandato DIAN -->
+        <div class="bps-feat-card">
+          <div class="bps-feat-header">
+            <svg class="bps-feat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+              <line x1="16" y1="17" x2="8" y2="17"></line>
+              <polyline points="10 9 9 9 8 9"></polyline>
+            </svg>
+            <h3 class="bps-feat-title">Mandato Legal DIAN</h3>
+          </div>
+          <p class="bps-feat-text">
+            Contrato formal <span class="bps-highlight-green">Art. 1262 Código de Comercio</span> con cuenta 2815 de Ingresos para Terceros y trazabilidad total.
+          </p>
+        </div>
+      </div>
+
+      <!-- Contenedor de Medios de Pago Habilitados (8 Botones Vectoriales Oficiales) -->
+      <div class="bps-payment-methods-box">
+        <div class="bps-top-bar">
+          <div class="bps-title-label">MEDIOS DE PAGO HABILITADOS EN COLOMBIA</div>
+          <div class="bps-super-badge">VIGILADO SUPERFINANCIERA</div>
+        </div>
+
+        <div class="bps-cards-grid">
+          <!-- 1. BANCOLOMBIA -->
+          <div class="bps-pay-card bps-card-bancolombia" title="Bancolombia">
+            <svg viewBox="0 0 160 48" width="135" height="38">
+              <g transform="translate(18, 5)">
+                <path d="M 6,3 C 14,1 25,0 34,2 C 37,2.6 38,5 37,7 C 36,9 33,10 30,9.5 C 22,8 13,9 8,11 C 5,12 3,11 3,8 C 3,6 4,4 6,3 Z" fill="#00448D"/>
+                <path d="M 2,12 C 11,9 30,6 45,9 C 48.5,9.6 50,12 48.5,14.5 C 47,17 44,18 40,17 C 26,14 11,16 4,20 C 1.5,21.5 -0.8,19 -0.5,16.5 C -0.2,14 1,12.5 2,12 Z" fill="#FDC82F"/>
+                <path d="M 16,21 C 22,19 33,17 44,19 C 47,19.5 48,22 47,24 C 46,26 43,27 40,26 C 30,24.5 18,26.5 12,29 C 9,30.5 7,29 7,26.5 C 7,24 13,22 16,21 Z" fill="#E31B23"/>
+              </g>
+              <text x="64" y="27" fill="#002D72" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="14.5" letter-spacing="-0.03em">Bancolombia</text>
+            </svg>
+          </div>
+
+          <!-- 2. NEQUI -->
+          <div class="bps-pay-card bps-card-nequi" title="Nequi">
+            <svg viewBox="0 0 150 48" width="125" height="38">
+              <rect x="18" y="13" width="7" height="7" rx="1.5" fill="#FF007A"/>
+              <path d="M 30,34 L 30,12 L 36.5,12 L 48,27.5 L 48,12 L 54.5,12 L 54.5,34 L 48,34 L 36.5,18.5 L 36.5,34 Z" fill="#FFFFFF"/>
+              <text x="58" y="33" fill="#FFFFFF" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="24" letter-spacing="-0.03em">equ</text>
+              <rect x="101" y="18" width="5.5" height="15" rx="1.2" fill="#FFFFFF"/>
+            </svg>
+          </div>
+
+          <!-- 3. DAVIPLATA -->
+          <div class="bps-pay-card bps-card-daviplata" title="DaviPlata">
+            <svg viewBox="0 0 150 48" width="125" height="38">
+              <g transform="translate(42, 6)">
+                <rect x="0" y="0" width="36" height="36" rx="8" fill="#ED1C24"/>
+                <path d="M 7,21 L 18,10 L 29,21 L 29,28 L 7,28 Z" fill="#FFFFFF"/>
+                <path d="M 15,22 L 21,22 L 21,28 L 15,28 Z" fill="#ED1C24"/>
+                <text x="18" y="20" fill="#ED1C24" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="6">DAVI</text>
+              </g>
+            </svg>
+          </div>
+
+          <!-- 4. PSE -->
+          <div class="bps-pay-card bps-card-pse" title="PSE - Pagos Seguros en Linea">
+            <svg viewBox="0 0 150 48" width="125" height="38">
+              <circle cx="75" cy="24" r="19" fill="#0C2E68"/>
+              <circle cx="66" cy="18" r="2.2" fill="#FFC72C"/>
+              <circle cx="64" cy="24" r="2.4" fill="#FFC72C"/>
+              <circle cx="66" cy="30" r="2.2" fill="#FFC72C"/>
+              <path d="M 66,18 L 71,24 L 66,30" fill="none" stroke="#FFC72C" stroke-width="1.3"/>
+              <circle cx="71" cy="24" r="1.8" fill="#FFC72C"/>
+              <text x="73" y="18" fill="#7FB8E5" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="7.5">ach</text>
+              <text x="72" y="29" fill="#FFFFFF" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="11" letter-spacing="-0.02em">pse</text>
+            </svg>
+          </div>
+
+          <!-- 5. VISA -->
+          <div class="bps-pay-card bps-card-visa" title="Visa">
+            <svg viewBox="0 0 140 48" width="115" height="36">
+              <g fill="#1A1F71" transform="translate(18, 5)">
+                <path d="M 0,8 C 5,8 10,8.5 13,11.5 L 22,33 L 31,8 L 39.5,8 L 26,37 L 17.5,37 L 5.5,14 C 4,10.5 2,9 0,8 Z"/>
+                <path d="M 39,8 L 47.5,8 L 42,37 L 33.5,37 Z"/>
+                <path d="M 63,12 C 62,9.5 59,8 55,8 C 49.5,8 45.5,10 44.5,14 C 43.5,17.5 46,20 51,21.5 C 56,23 57.5,24.5 56.5,27 C 55.5,29.5 52.5,31 48,31 C 43,31 40,29 38,26.5 L 36.5,33 C 39.5,35 44,36.5 49,36.5 C 57,36.5 62.5,33.5 64,28.5 C 65,23.5 61.5,21 56,19 C 51,17 49.5,16 50,14 C 50.5,12 53,11 56,11 C 59.5,11 61.5,12 62.5,13 Z"/>
+                <path d="M 82,8 L 89,37 L 81,37 L 79,29 L 68,29 L 65,37 L 57,37 L 72,8 Z M 77,22.5 L 74,13.5 L 70,22.5 Z"/>
+              </g>
+            </svg>
+          </div>
+
+          <!-- 6. MASTERCARD -->
+          <div class="bps-pay-card bps-card-mastercard" title="Mastercard">
+            <svg viewBox="0 0 140 48" width="115" height="38">
+              <g transform="translate(42, 6)">
+                <circle cx="14" cy="18" r="14" fill="#EB001B"/>
+                <circle cx="32" cy="18" r="14" fill="#F79E1B"/>
+                <path d="M 23,8 C 26.5,10.8 28.5,14.8 28.5,18 C 28.5,21.2 26.5,25.2 23,28 C 19.5,25.2 17.5,21.2 17.5,18 C 17.5,14.8 19.5,10.8 23,8 Z" fill="#FF5F00"/>
+              </g>
+            </svg>
+          </div>
+
+          <!-- 7. AMERICAN EXPRESS -->
+          <div class="bps-pay-card bps-card-amex" title="American Express">
+            <svg viewBox="0 0 140 48" width="115" height="38">
+              <g transform="translate(18, 6)">
+                <rect x="0" y="0" width="104" height="36" rx="5" fill="#006FCF" stroke="#FFFFFF" stroke-width="1.8"/>
+                <text x="14" y="23" fill="#FFFFFF" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="14" letter-spacing="0.12em">AMEX</text>
+              </g>
+            </svg>
+          </div>
+
+          <!-- 8. WOMPI -->
+          <div class="bps-pay-card bps-card-wompi" title="Wompi Bancolombia">
+            <svg viewBox="0 0 150 48" width="125" height="38">
+              <g fill="#1F281E" transform="translate(14, 9)">
+                <path d="M 0,3 L 6.5,26 L 11.5,26 L 5.5,3 Z"/>
+                <path d="M 7.5,10 L 12.5,26 L 17.5,26 L 12,7 L 9,7 Z"/>
+                <path d="M 13.5,3 L 20,17 L 24,3 Z"/>
+              </g>
+              <g transform="translate(42, 29)">
+                <text x="0" y="0" fill="#1F281E" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="22" letter-spacing="-0.04em">Wompi</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </section>
 
   <!-- ==========================================================================
