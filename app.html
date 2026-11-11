@@ -529,7 +529,7 @@ textarea{resize:none}
 
 <script>
 const KEY='rebuske_prod_v4';
-const P={home:'M3 11l9-7 9 7v9h-6v-6H9v6H3z',search:'M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zm9 16-4.5-4.5',user:'M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0',bag:'M4 7h16v13H4zM9 7V4h6v3',bolt:'M13 2L4 14h7l-1 8 9-12h-7z',check:'M5 12l4 4 9-9',pin:'M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11zm0-8.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z',star:'M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z',shield:'M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z',wallet:'M3 7h15a3 3 0 0 1 3 3v7H3zM3 7l12-3v3',back:'M15 6l-6 6 6 6',arrow:'M4 12h14M13 6l6 6-6 6',chev:'M9 6l6 6-6 6',plus:'M12 5v14M5 12h14',bell:'M6 16V11a6 6 0 0 1 12 0v5l2 2H4zM10 20a2 2 0 0 0 4 0',card:'M3 6h18v12H3zM3 10h18',idcard:'M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z M8 11a2 2 0 1 0 0-4 2 2 0 0 0 0 4z M5 16a3 3 0 0 1 6 0 M14 8h5 M14 12h5 M14 16h3',chat:'M4 5h16v11H9l-5 4z',cert:'M6 3h9l4 4v14H6zM9 12h6M9 16h6',out:'M14 4h5v16h-5M10 8l-4 4 4 4M6 12h10',list:'M4 6h16M4 12h16M4 18h16',tool:'M14.5 6.5a4 4 0 0 0 5 5L12 19l-3-3 7.5-7.5z'};
+const P={home:'M3 11l9-7 9 7v9h-6v-6H9v6H3z',search:'M11 4a7 7 0 1 0 0 14 7 7 0 0 0 0-14zm9 16-4.5-4.5',user:'M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0',bag:'M4 7h16v13H4zM9 7V4h6v3',bolt:'M13 2L4 14h7l-1 8 9-12h-7z',check:'M5 12l4 4 9-9',pin:'M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11zm0-8.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z',star:'M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z',shield:'M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z',wallet:'M3 7h15a3 3 0 0 1 3 3v7H3zM3 7l12-3v3',back:'M15 6l-6 6 6 6',arrow:'M4 12h14M13 6l6 6-6 6',chev:'M9 6l6 6-6 6',plus:'M12 5v14M5 12h14',bell:'M6 16V11a6 6 0 0 1 12 0v5l2 2H4zM10 20a2 2 0 0 0 4 0',card:'M3 6h18v12H3zM3 10h18',idcard:'M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z M8 11a2 2 0 1 0 0-4 2 2 0 0 0 0 4z M5 16a3 3 0 0 1 6 0 M14 8h5 M14 12h5 M14 16h3',lotus:'M12 3c-1.5 3.2-3 6.5-3 10 0 3 1.5 5 3 6 1.5-1 3-3 3-6 0-3.5-1.5-6.8-3-10z M12 19c-3-.8-6.5-3.5-6.5-7 0-3 2.2-5.2 4-6 M12 19c3-.8 6.5-3.5 6.5-7 0-3-2.2-5.2-4-6 M2 13c1.5 3.8 5 6 10 6.5 M22 13c-1.5 3.8-5 6-10 6.5 M8 21.5c2.5.5 5.5.5 8 0',chat:'M4 5h16v11H9l-5 4z',cert:'M6 3h9l4 4v14H6zM9 12h6M9 16h6',out:'M14 4h5v16h-5M10 8l-4 4 4 4M6 12h10',list:'M4 6h16M4 12h16M4 18h16',tool:'M14.5 6.5a4 4 0 0 0 5 5L12 19l-3-3 7.5-7.5z'};
 const I=(n,s=22)=>`<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="${P[n]}"/></svg>`;
 const LZ=(c='')=>`<svg class="lz ${c}" viewBox="0 0 390 372" aria-hidden="true"><use href="#lz"/></svg>`;
 const HERO=(s,ring)=>`<div class="hero ${ring?'ring':''}" style="--s:${s}px" role="img" aria-label="Luciérnaga rebuske"><div class="l3d"></div></div>`;
@@ -730,9 +730,11 @@ const CAT_REF_PRECIOS = {
     ['Consulta veterinaria a domicilio', '68.450 – 115.000']
   ],
   'Ellas Construyen': [
-    ['Pintura y acabados finos', '75.000 – 180.000'],
-    ['Electricidad y redes seguras', '60.000 – 150.000'],
-    ['Limpieza y restauración', '50.000 – 120.000']
+    ['Spa, Masajes y Bienestar a Domicilio', '$65.000 – $130.000 COP'],
+    ['Estética, Manicure y Cuidado Personal', '$45.000 – $95.000 COP'],
+    ['Pintura, Acabados y Decoración Fina', '$75.000 – $180.000 COP'],
+    ['Electricidad y Redes Residenciales', '$60.000 – $150.000 COP'],
+    ['Limpieza Profunda y Restauración Integral', '$50.000 – $120.000 COP']
   ]
 };
 const getRefPrices = cat => (cat && CAT_REF_PRECIOS[cat]) ? CAT_REF_PRECIOS[cat] : CAT_REF_PRECIOS['Todas las categorías'];
@@ -837,7 +839,7 @@ function closeSheet(){document.getElementById('sheet').classList.remove('on')}
 const hdr=(t,sub,bk=true,right='')=>`<header class="hd">${bk?`<button class="ico" data-a="back" aria-label="Volver">${I('back')}</button>`:''}<div class="grow"><h1>${t}</h1>${sub?`<small>${sub}</small>`:''}</div>${right}</header>`;
 const av=(p,s=44)=>`<span class="av" style="width:${s}px;height:${s}px;font-size:${Math.round(s*.36)}px">${ini(p.n||'?')}</span>`;
 const job=id=>S.jobs.find(j=>j.id===id);
-const proRow=p=>`<div class="glass pc clk" data-a="go" data-x="ficha" data-id="${p.id}">${av(p,50)}<div class="grow"><b>${p.n} ${VER}</b><small>${p.o} · ${p.z} · ${p.y} años</small><small>${p.r}★ · ${p.t} trabajos ${p.sena?' · <span style="color:#39A900;font-weight:700">✓ Certificado SENA</span>':''}${p.ellas?' · <span style="color:#EC4899;font-weight:700">✓ Ellas Construyen</span>':''}</small></div><div class="right"><b>${M(p.p)}</b><small>precio base</small><span class="tag">${p.nv}</span></div></div>`;
+const proRow=p=>`<div class="glass pc clk" data-a="go" data-x="ficha" data-id="${p.id}">${av(p,50)}<div class="grow"><b>${p.n} ${VER}</b><small>${p.o} · ${p.z} · ${p.y} años</small><small>${p.r}★ · ${p.t} trabajos ${p.sena?' · <span style="color:#39A900;font-weight:700">✓ Certificado SENA</span>':''}${p.ellas?` · <span style="display:inline-flex;align-items:center;gap:4px;color:#FF4D9D;font-weight:700">${I('lotus',13)}<span>Ellas Construyen</span></span>`:''}</small></div><div class="right"><b>${M(p.p)}</b><small>precio base</small><span class="tag">${p.nv}</span></div></div>`;
 const jobCard=j=>`<div class="glass pc clk" data-a="jobgo" data-id="${j.id}"><div class="grow"><b>${esc(j.t)}</b><small>${esc(PR(j.pro).n||'Buscando profesional')} · ${M(j.v)}</small></div><span class="tag">${LBL[j.s]}</span></div>`;
 const chartSVG=()=>{const H=140,W=310,pts=INGRESOS.map((v,i)=>[(i+.5)*W/6,H-v*H/100]);const d=pts.map((p,i)=>(i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' ');return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none"><path class="ln" pathLength="1" d="${d}"/>${pts.map((p,i)=>`<circle class="dot" cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="${i===5?5:3.5}" style="animation-delay:${.4+i*.2}s"/>`).join('')}</svg>`};
 const barsHTML = () => {
@@ -888,7 +890,7 @@ home:()=>{const act=S.jobs.filter(j=>!j.cl&&j.s!=='calificado'&&j.s!=='disputa')
 <div class="zones">${ZONAS.slice(0,5).map(z=>`<button class="chip2 ${S.zona===z?'on':''}" data-a="zona" data-x="${z}">${z}</button>`).join('')}</div>
 <h2>Categorías <button class="link" data-a="go" data-x="buscar">Ver todas</button></h2>
 <div class="vault">${CATS.map(c=>`<button class="vc" data-a="go" data-x="buscar" data-c="${c[0]}"><i>${I(c[1],24)}</i><span>${catLabel(c[0])}</span></button>`).join('')}
-  <button class="vc" data-a="go" data-x="buscar" data-c="Ellas Construyen" style="border-color:rgba(236,72,153,0.4);background:rgba(236,72,153,0.08)"><i>${I('user',24)}</i><span>Ellas Construyen</span></button>
+  <button class="vc vc-ellas" data-a="go" data-x="buscar" data-c="Ellas Construyen" style="border:1.5px solid rgba(255,59,142,0.7);background:linear-gradient(145deg,rgba(255,59,142,0.22) 0%,rgba(255,92,168,0.1) 100%);box-shadow:0 0 16px rgba(255,59,142,0.25);"><i style="background:linear-gradient(145deg,rgba(255,59,142,0.38),rgba(219,39,119,0.45));color:#FF80BE;border:1px solid rgba(255,128,190,0.5);box-shadow:0 0 12px rgba(255,59,142,0.35);">${I('lotus',26)}</i><span style="color:#FFE6F2;font-weight:700;">Ellas Construyen</span></button>
 </div>
 <div class="glass banner">${LZ()}<div class="grow"><b>Pago protegido rebuske</b><small>Tu plata queda retenida y solo se libera cuando confirmas que el trabajo quedó bien.</small></div>${I('chev',18)}</div>
 ${act.length?`<h2>Tu trabajo</h2>${act.slice(0,2).map(jobCard).join('')}`:''}
@@ -896,7 +898,7 @@ ${PROS.length ? `<h2>Destacados cerca de ti</h2>${PROS.slice(0,3).map(proRow).jo
 
 buscar:p=>{const cat=p.cat||'';return `${hdr('Búsqueda','profesionales cerca de ti',false)}
 <label class="sr">${I('search',18)}<input id="sq" placeholder="Busca por oficio o nombre" value="${esc(p.q||'')}" autocomplete="off"></label>
-<div class="frow"><select id="fc" class="sel">${['Todas las categorías',...CATS.map(c=>c[0])].map(o=>`<option ${(o===(cat||'Todas las categorías'))?'selected':''}>${o}</option>`).join('')}</select><select id="fo" class="sel">${[['valorados','Mejor valorados'],['precio','Precio menor'],['trabajos','Más trabajos']].map(o=>`<option value="${o[0]}" ${(p.o||'valorados')===o[0]?'selected':''}>${o[1]}</option>`).join('')}</select></div>
+<div class="frow"><select id="fc" class="sel">${['Todas las categorías','Ellas Construyen',...CATS.map(c=>c[0])].map(o=>`<option ${(o===(cat||'Todas las categorías'))?'selected':''}>${o==='Ellas Construyen'?'Ellas Construyen (Solo Mujeres)':o}</option>`).join('')}</select><select id="fo" class="sel">${[['valorados','Mejor valorados'],['precio','Precio menor'],['trabajos','Más trabajos']].map(o=>`<option value="${o[0]}" ${(p.o||'valorados')===o[0]?'selected':''}>${o[1]}</option>`).join('')}</select></div>
 <div class="glass refp"><b>Precios de referencia${cat?' · '+cat:''}</b><small>Tarifas oficiales de referencia · Medellín (Top 3 subcategorías)</small><div class="rows" style="margin-top:8px">${getRefPrices(cat).map(r=>`<div><span>${r[0]}</span><b>${r[1]}</b></div>`).join('')}</div></div>
 <div id="lista">${listaHTML(p)}</div>`},
 
@@ -904,7 +906,7 @@ ficha:p=>{const x=PR(p.id);
 const trabList = (S.proTrabajos && S.proTrabajos.length) ? S.proTrabajos : [];
 const implList = (S.proImplementos && S.proImplementos.length) ? S.proImplementos : [];
 return `${hdr('Perfil profesional')}
-<div class="glass ficha">${av(x,70)}<h1>${x.n} ${VER}</h1><small>${x.o} · ${x.y} años de experiencia</small><div class="tags" style="justify-content:center"><span class="tag">✓ Verificado rebuske</span><span class="tag2">${x.nv}</span>${x.sena?'<span class="tag" style="background:rgba(57,169,0,0.18);color:#39A900;border:1px solid #39A900;font-weight:700">✓ Certificado SENA</span>':''}${x.ellas?'<span class="tag" style="background:rgba(236,72,153,0.18);color:#EC4899;border:1px solid #EC4899;font-weight:700">✓ Ellas Construyen</span>':''}</div></div>
+<div class="glass ficha">${av(x,70)}<h1>${x.n} ${VER}</h1><small>${x.o} · ${x.y} años de experiencia</small><div class="tags" style="justify-content:center"><span class="tag">✓ Verificado rebuske</span><span class="tag2">${x.nv}</span>${x.sena?'<span class="tag" style="background:rgba(57,169,0,0.18);color:#39A900;border:1px solid #39A900;font-weight:700">✓ Certificado SENA</span>':''}${x.ellas?`<span class="tag" style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,59,142,0.22);color:#FF60A8;border:1.2px solid rgba(255,59,142,0.65);font-weight:700;padding:4px 10px;border-radius:12px;box-shadow:0 0 10px rgba(255,59,142,0.25);">${I('lotus',15)}<span>Ellas Construyen · Profesional Mujer</span></span>`:''}</div></div>
 <div class="stats3"><div class="glass"><b>${x.r}</b><small>★★★★★</small></div><div class="glass"><b>${x.t}</b><small>trabajos</small></div><div class="glass"><b>12 min</b><small>responde en</small></div></div>
 <h2>Sobre mí</h2><p class="glass txt">${x.o} certificado. Cotizo antes de empezar, con garantía escrita y Pago Protegido rebuske. Precio claro y transparente desde el inicio.</p>
 <h2>Especialidades</h2><div class="chips">${['Fugas','Calentadores','Destapes','Tuberías PEX','Termografía','Laureles'].map(t=>`<span class="chip">${t}</span>`).join('')}</div>
@@ -1306,7 +1308,7 @@ properfil:()=>{
   const impls = S.proImplementos || [];
   const proNom = me.name || me.n || 'Mi Perfil Profesional';
   return `${hdr('Tu perfil',`profesional · ${esc(S.zona||'Medellín')}`,false)}
-<div class="glass pc">${av(me,60)}<div class="grow"><div style="display:flex;justify-content:space-between;align-items:center"><h1 style="margin:0">${esc(proNom)}</h1><button class="link" data-a="sheetEditPro" style="font-size:12px;color:#B8FF3B">Editar Perfil</button></div><small>${esc(me.o || 'Oficio Especializado')} · ${esc(S.zona||'Medellín')}</small><div class="tags"><span class="tag">Verificado ✓</span><span class="tag2">${me.nv || 'Plata'}</span></div></div></div>
+<div class="glass pc">${av(me,60)}<div class="grow"><div style="display:flex;justify-content:space-between;align-items:center"><h1 style="margin:0">${esc(proNom)}</h1><button class="link" data-a="sheetEditPro" style="font-size:12px;color:#B8FF3B">Editar Perfil</button></div><small>${esc(me.o || 'Oficio Especializado')} · ${esc(S.zona||'Medellín')}</small><div class="tags"><span class="tag">Verificado ✓</span><span class="tag2">${me.nv || 'Plata'}</span>${me.ellas?`<span class="tag" style="display:inline-flex;align-items:center;gap:5px;background:rgba(255,59,142,0.22);color:#FF60A8;border:1px solid rgba(255,59,142,0.65);font-weight:700;">${I('lotus',14)}<span>Ellas Construyen</span></span>`:""}</div></div></div>
 <div class="stats3"><div class="glass"><b>${((me.r||5.0)).toFixed(1)}</b><small>calificación</small></div><div class="glass"><b>${(S.jobs||[]).filter(j=>j.s==='calificado').length}</b><small>trabajos</small></div><div class="glass"><b>Instantáneo</b><small>notificaciones</small></div></div>
 <div class="glass" style="margin-top:10px;padding:14px;border:1.5px solid #B8FF3B;background:rgba(184,255,59,0.06);border-radius:18px;">
   <div style="display:flex;align-items:center;gap:12px;">
@@ -1401,7 +1403,24 @@ ${impls.length ? `
 },
 };
 
-const listaHTML=p=>{let l=PROS.filter(x=>(!p.cat||x.c===p.cat)&&(!p.q||(x.n+x.o).toLowerCase().includes(p.q.toLowerCase())));const o=p.o||'valorados';l=l.slice().sort((a,b)=>o==='precio'?a.p-b.p:o==='trabajos'?b.t-a.t:b.r-a.r);return `<small>${l.length} profesionales disponibles en ${S.zona}</small><div class="req" style="margin-top:8px">${l.map(proRow).join('')||'<div class="glass" style="padding:14px;text-align:center"><p class="mut">No hay profesionales registrados en esta categoría aún.<br><span style="color:#B8FF3B">Publica tu solicitud gratis</span> para convocar técnicos certificados.</p></div>'}</div>`};
+const listaHTML=p=>{
+  const isEllas = p.cat === 'Ellas Construyen';
+  let l = PROS.filter(x => {
+    const matchesCat = isEllas ? (x.ellas || x.c === 'Ellas Construyen') : (!p.cat || x.c === p.cat);
+    const matchesQ = !p.q || (x.n + ' ' + x.o + ' ' + (x.c||'')).toLowerCase().includes(p.q.toLowerCase());
+    return matchesCat && matchesQ;
+  });
+  const o = p.o || 'valorados';
+  l = l.slice().sort((a,b) => o === 'precio' ? a.p - b.p : o === 'trabajos' ? b.t - a.t : b.r - a.r);
+  const emptyEllas = `<div class="glass" style="padding:20px 16px;text-align:center;border:1.5px solid rgba(255,59,142,0.45);background:linear-gradient(135deg,rgba(255,59,142,0.16) 0%,rgba(255,92,168,0.06) 100%);border-radius:18px;">
+    <div style="display:inline-grid;place-items:center;width:48px;height:48px;border-radius:14px;background:linear-gradient(145deg,rgba(255,59,142,0.35),rgba(219,39,119,0.45));color:#FF80BE;border:1px solid rgba(255,128,190,0.5);margin-bottom:10px;box-shadow:0 0 12px rgba(255,59,142,0.3);">${I('lotus',26)}</div>
+    <b style="display:block;color:#FFE6F2;font-size:14px;">Servicios Realizados por Mujeres · Ellas Construyen</b>
+    <p class="mut" style="font-size:12px;margin:6px auto 14px;color:#D4E5CC;max-width:300px;line-height:1.4;">Conectamos a usuarias y familias con técnicas y profesionales verificadas en Medellín para spa, estética, plomería, pintura, electricidad y cuidado del hogar con total confianza y tranquilidad.</p>
+    <button class="btn sm sheen" data-a="solicitarEllas" style="background:#FF3B8E;color:#FFF;font-weight:700;border:none;padding:10px 18px;display:inline-flex;align-items:center;gap:6px;">${I('lotus',15)}<span>Solicitar Profesional Mujer Ahora</span></button>
+  </div>`;
+  const emptyDefault = '<div class="glass" style="padding:14px;text-align:center"><p class="mut">No hay profesionales registrados en esta categoría aún.<br><span style="color:#B8FF3B">Publica tu solicitud gratis</span> para convocar técnicos certificados.</p></div>';
+  return `<small>${l.length} profesionales disponibles en ${S.zona}${isEllas ? ' · Programa Ellas' : ''}</small><div class="req" style="margin-top:8px">${l.map(proRow).join('') || (isEllas ? emptyEllas : emptyDefault)}</div>`;
+};
 
 const pDisp=()=>!S.on?`<div class="ctr sm"><h2>Estás fuera de servicio</h2><p class="mut txtc">Activa tu disponibilidad para ver solicitudes de tu zona.</p></div>`:(S.req.length?S.req.map(r=>`<div class="glass req"><div class="pc"><span class="ibox">${I('tool',20)}</span><div class="grow"><b>${esc(r.t)}</b><small>${r.z} · ${r.km} · ${r.w}</small><div class="tags" style="margin-top:6px">${r.m?'<span class="tag">Match perfecto</span>':''}<span class="tag2">${r.k}</span></div></div><div class="right"><b>${M(r.b)}</b><small>presupuesto</small></div></div><small>${esc(r.d)}</small><div class="row2"><button class="btn sm ghost" data-a="rech" data-id="${r.id}">Rechazar</button><button class="btn sm sheen" data-a="revisar" data-id="${r.id}">Aceptar trabajo</button></div></div>`).join(''):`<div class="ctr sm"><h2>Sin solicitudes por ahora</h2><p class="mut txtc">Te avisamos cuando llegue una en tu zona.</p></div>`);
 
@@ -1788,6 +1807,9 @@ const A={
   // =========================================================================
   // EDICIÓN Y ELIMINACIÓN DE DATOS DEL PROFESIONAL (NOMBRE, TEL, BIO, TARIFA)
   // =========================================================================
+  solicitarEllas: () => {
+    go('solicitar', { cat: 'Ellas Construyen' });
+  },
   sheetEditPro: () => {
     const p = S.proInfo || {};
     openSheet(`
@@ -1798,7 +1820,11 @@ const A={
       <div class="stack" style="gap:10px">
         <div>
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px">
-            <label style="font-size:11px;color:#A4BEA0;text-transform:uppercase;font-weight:bold">Nombre Profesional</label>
+            <label style="display:flex;align-items:center;gap:10px;padding:10px 12px;background:rgba(255,59,142,0.14);border:1px solid rgba(255,59,142,0.45);border-radius:12px;cursor:pointer;margin-bottom:10px;">
+          <input type="checkbox" id="ep-ellas" ${(p.ellas)?'checked':''} style="accent-color:#FF3B8E;width:18px;height:18px;">
+          <span style="font-size:12px;color:#FFE6F2;display:flex;align-items:center;gap:6px">${I('lotus',16)}<b>Programa Ellas Construyen (Mujer Profesional)</b></span>
+        </label>
+        <label style="font-size:11px;color:#A4BEA0;text-transform:uppercase;font-weight:bold">Nombre Profesional</label>
             <button class="link red" data-a="clearProField" data-f="name" style="font-size:11px">Quitar</button>
           </div>
           <input type="text" id="ep-name" value="${esc(p.name||'')}" placeholder="Nombre" class="inp" style="width:100%;background:#0C120A;border:1px solid #283F22;color:#FFF;padding:8px 10px;border-radius:10px">
@@ -1884,6 +1910,7 @@ const A={
   savePro: () => {
     if (!S.proInfo) S.proInfo = {};
     S.proInfo.name = (document.getElementById('ep-name')||{}).value || '';
+    S.proInfo.ellas = !!(document.getElementById('ep-ellas')&&document.getElementById('ep-ellas').checked);
     S.proInfo.phone = (document.getElementById('ep-phone')||{}).value || '';
     S.proInfo.rate = +(document.getElementById('ep-rate')||{}).value || 45000;
     S.proInfo.bio = (document.getElementById('ep-bio')||{}).value || '';
@@ -4201,7 +4228,8 @@ render();
         p: Number(dbPro.base_price || 60000),
         y: expYears,
         verified: Boolean(dbPro.verified),
-        is_available: Boolean(dbPro.is_available)
+        is_available: Boolean(dbPro.is_available),
+        ellas: Boolean(dbPro.ellas || dbPro.is_woman || (dbPro.tags && dbPro.tags.includes('ellas')) || /ellas|mujer/i.test(dbPro.profession || '') || /marcela|carolina|valeria|paola|camila|diana|laura|daniela|maria|ana|sofia|valentina|claudia|isabel|patricia|gloria|elena|lucia/i.test(profile.full_name || ''))
       };
     },
 
