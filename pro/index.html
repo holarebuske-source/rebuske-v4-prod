@@ -109,6 +109,9 @@
       background: linear-gradient(135deg, #27451F, #162612);
     }
   </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 </head>
 <body class="bg-mesh-dark min-h-screen selection:bg-[#B8FF3B] selection:text-[#0C120A] flex flex-col justify-between">
 
@@ -171,12 +174,12 @@
           <!-- Headline con contraste absoluto sobre fondo Ébano oscuro -->
           <h1 class="text-4xl sm:text-5xl md:text-6xl font-black font-brand tracking-tight text-[#F4FBF1] leading-[1.08]">
             ¿Hacés oficios en Medellín?<br />
-            <span class="shimmer-text">Ganá del 91% al 93% neto.</span><br />
+            <span class="shimmer-text">Ganá del 82% al 89% neto.</span><br />
             Sé uno de los 100 Primordiales.
           </h1>
 
           <p class="text-base sm:text-lg text-[#C8DEC4] leading-relaxed max-w-2xl font-normal">
-            Plomeros, electricistas, cerrajeros, técnicos de electrodomésticos y expertos en oficios: antes del lanzamiento masivo, estamos seleccionando a los <strong>primeros 100 profesionales fundadores</strong> de Medellín. Recibí la <strong>Insignia Primordial</strong> vitalicia, mes 1 con solo el 1% de comisión y pagos directos a tu Nequi o Bancolombia.
+            Plomeros, electricistas, cerrajeros, técnicos de electrodomésticos y expertos en oficios: antes del lanzamiento masivo, estamos seleccionando a los <strong>primeros 100 profesionales fundadores</strong> de Medellín. Recibí la <strong>Insignia Primordial</strong> vitalicia, mes 1 con solo el 1% de comisión y pagos directos a tu Nequi o Bancolombia (costos de pasarela Wompi 100% absorbidos por Rebuske).
           </p>
 
           <!-- Beneficios Clave -->
@@ -193,7 +196,7 @@
               <span class="text-xl">🥇</span>
               <div>
                 <b class="text-sm text-[#F4FBF1] block font-brand">Placa Oro VIP Vitalicia</b>
-                <span class="text-xs text-[#9FB392]">Luego del mes 1, quedás fijado en solo 7% de comisión vitalicia (¡93% neto siempre!).</span>
+                <span class="text-xs text-[#9FB392]">Luego del mes 1, quedás fijado en solo 11% de comisión vitalicia (¡89% neto siempre y pasarela absorbida!).</span>
               </div>
             </div>
 
@@ -307,7 +310,7 @@
                   <span class="w-1.5 h-1.5 rounded-full bg-[#22C55E]"></span>
                   <span class="text-[#A3BFA0]">Flujo Táctil en Medellín</span>
                 </span>
-                <span class="text-[#B8FF3B] font-bold font-mono">93% Neto al Pro</span>
+                <span class="text-[#B8FF3B] font-bold font-mono">89% Neto al Pro (Oro VIP)</span>
               </div>
 
             </div>
@@ -318,7 +321,7 @@
     </section>
 
     <!-- ========================================================================= -->
-    <!-- CALCULADORA DE GANANCIAS: 91% TASA BASE Y 93% ORO VIP VITALICIO           -->
+    <!-- CALCULADORA DE GANANCIAS: 82% BRONCE, 86% PLATA Y 89% ORO VIP VITALICIO    -->
     <!-- ========================================================================= -->
     <section class="max-w-5xl mx-auto px-4 sm:px-6 py-12 border-t border-[#1C2C18]">
       <div class="bg-[#121D10] border-2 border-[#2D4527] rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
@@ -326,7 +329,7 @@
 
         <div class="flex flex-col sm:flex-row sm:items-center justify-between border-b border-[#23381B] pb-4 mb-6 gap-2">
           <div>
-            <span class="text-xs font-bold text-[#B8FF3B] uppercase tracking-wider block">Simulador Oficial rebuske</span>
+            <span class="text-xs font-bold text-[#B8FF3B] uppercase tracking-wider block">Calculadora Oficial de Ganancias 89%</span>
             <h3 class="text-2xl font-black font-brand text-[#F4FBF1]">¿Cuánto dinero te queda en el bolsillo?</h3>
           </div>
           <span class="text-3xl">💰</span>
@@ -337,14 +340,14 @@
           <div class="md:col-span-5 space-y-4">
             <label class="block text-xs font-bold uppercase text-[#A4BEA0]">Selecciona o desliza el valor del trabajo:</label>
             <div class="grid grid-cols-3 gap-2">
-              <button type="button" onclick="setSim(100000)" data-sim-val="100000" id="btn-100" class="py-2 px-2.5 rounded-xl border-2 border-[#B8FF3B] bg-[#192B15] text-xs font-black text-[#B8FF3B] shadow-md transition text-center cursor-pointer">$100.000</button>
-              <button type="button" onclick="setSim(350000)" data-sim-val="350000" id="btn-350" class="py-2 px-2.5 rounded-xl border border-[#23381B] bg-[#0E170C] text-xs font-bold text-[#C8DEC4] hover:border-[#4E8839] transition text-center cursor-pointer">$350.000</button>
-              <button type="button" onclick="setSim(800000)" data-sim-val="800000" id="btn-800" class="py-2 px-2.5 rounded-xl border border-[#23381B] bg-[#0E170C] text-xs font-bold text-[#C8DEC4] hover:border-[#4E8839] transition text-center cursor-pointer">$800.000</button>
+              <button type="button" onclick="setSim(100000)" data-sim-val="100000" id="btn-100" class="py-2 px-2.5 rounded-full border-2 border-[#B8FF3B] bg-[#192B15] text-xs font-black text-[#B8FF3B] shadow-md transition text-center cursor-pointer">$100.000</button>
+              <button type="button" onclick="setSim(350000)" data-sim-val="350000" id="btn-350" class="py-2 px-2.5 rounded-full border border-[#23381B] bg-[#0E170C] text-xs font-bold text-[#C8DEC4] hover:border-[#4E8839] transition text-center cursor-pointer">$350.000</button>
+              <button type="button" onclick="setSim(800000)" data-sim-val="800000" id="btn-800" class="py-2 px-2.5 rounded-full border border-[#23381B] bg-[#0E170C] text-xs font-bold text-[#C8DEC4] hover:border-[#4E8839] transition text-center cursor-pointer">$800.000</button>
             </div>
             <div class="grid grid-cols-3 gap-2 mt-2">
-              <button type="button" onclick="setSim(250000)" data-sim-val="250000" id="btn-250" class="py-2 px-2.5 rounded-xl border border-[#23381B] bg-[#0E170C] text-xs font-bold text-[#C8DEC4] hover:border-[#4E8839] transition text-center cursor-pointer">$250.000</button>
-              <button type="button" onclick="setSim(500000)" data-sim-val="500000" id="btn-500" class="py-2 px-2.5 rounded-xl border border-[#23381B] bg-[#0E170C] text-xs font-bold text-[#C8DEC4] hover:border-[#4E8839] transition text-center cursor-pointer">$500.000</button>
-              <button type="button" onclick="setSim(1500000)" data-sim-val="1500000" id="btn-1500" class="py-2 px-2.5 rounded-xl border border-[#23381B] bg-[#0E170C] text-xs font-bold text-[#C8DEC4] hover:border-[#4E8839] transition text-center cursor-pointer">$1.500.000</button>
+              <button type="button" onclick="setSim(250000)" data-sim-val="250000" id="btn-250" class="py-2 px-2.5 rounded-full border border-[#23381B] bg-[#0E170C] text-xs font-bold text-[#C8DEC4] hover:border-[#4E8839] transition text-center cursor-pointer">$250.000</button>
+              <button type="button" onclick="setSim(500000)" data-sim-val="500000" id="btn-500" class="py-2 px-2.5 rounded-full border border-[#23381B] bg-[#0E170C] text-xs font-bold text-[#C8DEC4] hover:border-[#4E8839] transition text-center cursor-pointer">$500.000</button>
+              <button type="button" onclick="setSim(1500000)" data-sim-val="1500000" id="btn-1500" class="py-2 px-2.5 rounded-full border border-[#23381B] bg-[#0E170C] text-xs font-bold text-[#C8DEC4] hover:border-[#4E8839] transition text-center cursor-pointer">$1.500.000</button>
             </div>
             <div class="mt-3 p-3 rounded-xl bg-[#090E07] border border-[#23381B]">
               <div class="flex justify-between items-center text-xs mb-1.5 text-[#A4BEA0] font-bold">
@@ -371,18 +374,18 @@
               </div>
             </div>
 
-            <!-- rebuske Tasa Base (91% Pro / 9% rebuske) -->
+            <!-- rebuske Plan Bronce (18% comisión / 82% neto) -->
             <div class="p-3.5 rounded-xl bg-[#142312] border border-[#2D4B24] flex items-center justify-between">
               <div>
                 <div class="flex items-center gap-1.5">
                   <span class="text-xs">🥉</span>
-                  <b class="text-xs text-[#F4FBF1] font-brand">rebuske Tasa Base Oficial</b>
+                  <b class="text-xs text-[#F4FBF1] font-brand">Plan Bronce Rebuske</b>
                 </div>
-                <span class="text-[11px] text-[#9FB392]">9% rebuske (custodia Wompi)</span>
+                <span class="text-[11px] text-[#9FB392]">18% comisión (Wompi absorbido)</span>
               </div>
               <div class="text-right">
-                <b class="text-sm text-[#F4FBF1] font-mono font-bold" id="sim-base">$91.000</b>
-                <span class="text-[10px] text-[#B8FF3B] block font-bold">91% neto para ti</span>
+                <b class="text-sm text-[#F4FBF1] font-mono font-bold" id="sim-base">$82.000</b>
+                <span class="text-[10px] text-[#B8FF3B] block font-bold">82% neto para ti</span>
               </div>
             </div>
 
@@ -401,7 +404,7 @@
               </div>
             </div>
 
-            <!-- Exclusivo 100 Primordiales: ORO VIP (93% Pro / 7% rebuske) -->
+            <!-- Exclusivo 100 Primordiales: ORO VIP (89% Pro / 11% rebuske) -->
             <div class="p-4 rounded-xl bg-[#192C15] border-2 border-[#B8FF3B] flex items-center justify-between relative shadow-lg">
               <span class="absolute -top-2.5 right-3 text-[9px] font-black uppercase tracking-wider bg-[#B8FF3B] text-[#070B05] px-2 py-0.5 rounded-full font-brand">TU TARIFA VITALICIA POSTERIOR</span>
               <div>
@@ -409,12 +412,12 @@
                   <span class="text-base">🥇</span>
                   <b class="text-sm text-[#F4FBF1] font-brand">Placa Oro VIP Vitalicia</b>
                 </div>
-                <span class="text-[11px] text-[#C4DEC0]">Solo 7% de comisión de por vida (luego del mes 1)</span>
+                <span class="text-[11px] text-[#C4DEC0]">Solo 11% de comisión de por vida (luego del mes 1)</span>
               </div>
               <div class="text-right">
-                <b class="text-base text-[#B8FF3B] font-mono font-black" id="sim-primordial">$93.000</b>
-                <span class="text-[10px] text-[#B8FF3B] block font-bold">¡93% neto directo a tu cuenta!</span>
-                <span id="sim-diff" class="text-[10px] text-[#070B05] bg-[#B8FF3B] px-2 py-0.5 rounded-full font-black mt-1 inline-block">+$23.000 COP más en tu bolsillo que en otras apps</span>
+                <b class="text-base text-[#B8FF3B] font-mono font-black" id="sim-primordial">$89.000</b>
+                <span class="text-[10px] text-[#B8FF3B] block font-bold">¡89% neto directo a tu cuenta!</span>
+                <span id="sim-diff" class="text-[10px] text-[#070B05] bg-[#B8FF3B] px-2 py-0.5 rounded-full font-black mt-1 inline-block">+$19.000 COP más en tu bolsillo que en otras apps</span>
               </div>
             </div>
           </div>
@@ -438,15 +441,19 @@
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label class="block text-xs font-bold uppercase text-[#A4BEA0] mb-1.5">Nombre Completo *</label>
-              <input type="text" id="reg-nombre" required placeholder="Ej: Julián Restrepo" class="w-full bg-[#080E06] border border-[#243B1E] rounded-xl px-4 py-3 text-sm text-[#F4FBF1] focus:outline-none focus:border-[#B8FF3B]">
+              <input type="text" id="reg-nombre" required placeholder="Ej: Nombre y Apellido" class="w-full bg-[#080E06] border border-[#243B1E] rounded-xl px-4 py-3 text-sm text-[#F4FBF1] focus:outline-none focus:border-[#B8FF3B]">
             </div>
             <div>
-              <label class="block text-xs font-bold uppercase text-[#A4BEA0] mb-1.5">Celular / WhatsApp *</label>
-              <input type="tel" id="reg-tel" required placeholder="Ej: 300 123 4567" class="w-full bg-[#080E06] border border-[#243B1E] rounded-xl px-4 py-3 text-sm text-[#F4FBF1] focus:outline-none focus:border-[#B8FF3B]">
+              <label class="block text-xs font-bold uppercase text-[#A4BEA0] mb-1.5">Cédula de Ciudadanía *</label>
+              <input type="text" id="reg-cedula" required placeholder="Ej: 1020304050" class="w-full bg-[#080E06] border border-[#243B1E] rounded-xl px-4 py-3 text-sm text-[#F4FBF1] focus:outline-none focus:border-[#B8FF3B]">
             </div>
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label class="block text-xs font-bold uppercase text-[#A4BEA0] mb-1.5">Celular / WhatsApp *</label>
+              <input type="tel" id="reg-tel" required placeholder="Ej: 300 123 4567" class="w-full bg-[#080E06] border border-[#243B1E] rounded-xl px-4 py-3 text-sm text-[#F4FBF1] focus:outline-none focus:border-[#B8FF3B]">
+            </div>
             <div>
               <label class="block text-xs font-bold uppercase text-[#A4BEA0] mb-1.5">Oficio Principal *</label>
               <select id="reg-oficio" required class="w-full bg-[#080E06] border border-[#243B1E] rounded-xl px-4 py-3 text-sm text-[#F4FBF1] focus:outline-none focus:border-[#B8FF3B]">
@@ -460,19 +467,44 @@
                 <option value="Aires Acondicionados">Aires Acondicionados</option>
               </select>
             </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label class="block text-xs font-bold uppercase text-[#A4BEA0] mb-1.5">Barrio / Comuna en Medellín *</label>
               <input type="text" id="reg-zona" required placeholder="Ej: Laureles / El Poblado / Belén" class="w-full bg-[#080E06] border border-[#243B1E] rounded-xl px-4 py-3 text-sm text-[#F4FBF1] focus:outline-none focus:border-[#B8FF3B]">
             </div>
+            <div>
+              <label class="block text-xs font-bold uppercase text-[#A4BEA0] mb-1.5">Cuenta para pagos (Nequi / Bancolombia) *</label>
+              <input type="text" id="reg-banco" required placeholder="Ej: Nequi 300 123 4567" class="w-full bg-[#080E06] border border-[#243B1E] rounded-xl px-4 py-3 text-sm text-[#F4FBF1] focus:outline-none focus:border-[#B8FF3B]">
+            </div>
           </div>
 
-          <div>
-            <label class="block text-xs font-bold uppercase text-[#A4BEA0] mb-1.5">Cuenta para tus pagos (Nequi / Bancolombia) *</label>
-            <input type="text" id="reg-banco" required placeholder="Ej: Nequi 300 123 4567 o Bancolombia Ahorros" class="w-full bg-[#080E06] border border-[#243B1E] rounded-xl px-4 py-3 text-sm text-[#F4FBF1] focus:outline-none focus:border-[#B8FF3B]">
+          <!-- MÓDULO PRE-AUDITORÍA KYC (VALENTINA) -->
+          <div class="mt-4 p-4 rounded-2xl bg-[#091107] border border-[#2A4321]">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="text-base">🪪</span>
+              <span class="text-xs font-black uppercase tracking-wider text-[#B8FF3B]">Pre-Auditoría Fotográfica Obligatoria (KYC)</span>
+            </div>
+            <p class="text-xs text-[#9BB197] mb-3">Para habilitar tu tarifa Oro VIP (11% de por vida, 89% neto) y la Bóveda Wompi (costos absorbidos), nuestro equipo de verificación KYC requiere tus fotos de respaldo.</p>
+            
+            <div class="space-y-3">
+              <div>
+                <label class="block text-xs font-bold text-[#E5F5E0] mb-1">1. Foto de Perfil / Selfie (Rostro visible, sin gorras oscuras, sin logos de empresas) *</label>
+                <input type="file" id="reg-foto-perfil" accept="image/*" required class="block w-full text-xs text-[#9BB197] file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-[#1E3317] file:text-[#B8FF3B] hover:file:bg-[#284420] cursor-pointer">
+              </div>
+
+              <div>
+                <label class="block text-xs font-bold text-[#E5F5E0] mb-1">2. 5 Fotos de Trabajos Reales Realizados (Reparaciones, antes/después, instalaciones) *</label>
+                <input type="file" id="reg-fotos-trabajos" accept="image/*" multiple required onchange="handleTrabajosFotos(event)" class="block w-full text-xs text-[#9BB197] file:mr-3 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-[#1E3317] file:text-[#B8FF3B] hover:file:bg-[#284420] cursor-pointer">
+                <span id="fotos-counter" class="text-[11px] text-[#A4BEA0] mt-1 block">0 de 5 fotos seleccionadas</span>
+                <div id="fotos-preview-grid" class="grid grid-cols-5 gap-2 mt-2 hidden"></div>
+              </div>
+            </div>
           </div>
 
           <div class="pt-4">
-            <button type="submit" id="reg-submit-btn" class="w-full py-4 rounded-2xl bg-[#B8FF3B] text-[#070B05] font-black font-brand text-base tracking-wide hover:bg-[#cbfb60] active:scale-[0.98] transition shadow-xl">
+            <button type="submit" id="reg-submit-btn" class="w-full py-4 rounded-full bg-[#B8FF3B] text-[#070B05] font-black font-brand text-base tracking-wide hover:bg-[#cbfb60] active:scale-[0.98] transition shadow-xl">
       Completar Registro Primordial (1% Comisión Mes 1) ⚡
     </button>
           </div>
@@ -481,7 +513,7 @@
       <b class="text-base text-[#B8FF3B] block font-brand" id="reg-success-title">¡Registro Recibido con Éxito!</b>
       <p class="text-xs text-[#F4FBF1]" id="reg-success-msg">Te hemos asignado tu cupo provisional. Nuestro equipo te contactará por WhatsApp para la validación de identidad.</p>
       <div class="inline-block mt-2 px-3 py-1 rounded bg-[#0A1008] border border-[#B8FF3B]/40 text-[11px] font-bold text-[#B8FF3B]" id="reg-success-badge">
-        Comisión: 7% (¡93% neto para ti!) · Mes 1 al 1% de Activación (99% neto) · Placa Oro VIP Vitalicia
+        Comisión: 11% (¡89% neto para ti!) · Mes 1 al 1% de Activación (99% neto) · Placa Oro VIP Vitalicia (Wompi absorbido)
       </div>
     </div>
         </form>
@@ -496,7 +528,9 @@
         <span class="font-brand font-bold text-[#F4FBF1]">rebuske.pro</span>
         <span>· Medellín, Colombia · 2026</span>
       </div>
-      <div>
+      <div class="flex items-center gap-4">
+        <a href="/tarifas" class="text-[#A4BEA0] hover:text-[#B8FF3B] transition">Tarifario de Referencia</a>
+        <a href="/terminos" class="text-[#A4BEA0] hover:text-[#B8FF3B] transition">Términos</a>
         <span>Contacto: </span><a href="mailto:holarebuske@gmail.com" class="text-[#B8FF3B] hover:underline">holarebuske@gmail.com</a>
       </div>
     </div>
@@ -525,9 +559,9 @@
       }
 
       const otras = Math.round(amount * 0.70);
-      const base = Math.round(amount * 0.91);
-      const primordial = Math.round(amount * 0.93);
-      const mes1 = Math.round(amount * 0.99);
+      const base = Math.round(amount * 0.82); // Bronce 18% comisión (82% neto)
+      const primordial = Math.round(amount * 0.89); // Oro VIP 11% comisión (89% neto)
+      const mes1 = Math.round(amount * 0.99); // Mes 1 Fundador 1% comisión (99% neto)
       const diff = primordial - otras;
 
       const elOtras = document.getElementById('sim-otras');
@@ -593,12 +627,61 @@
       }
     }
 
+    let kycTrabajosFiles = [];
+
+    function handleTrabajosFotos(e) {
+      const files = Array.from(e.target.files || []);
+      kycTrabajosFiles = files;
+      const counter = document.getElementById('fotos-counter');
+      const previewGrid = document.getElementById('fotos-preview-grid');
+      
+      if (counter) {
+        counter.innerText = files.length + ' de 5 fotos seleccionadas' + (files.length >= 5 ? ' (✔ Mínimo completado)' : ' (⚠️ Faltan ' + (5 - files.length) + ')');
+        counter.className = files.length >= 5 ? 'text-[11px] text-[#B8FF3B] mt-1 block font-bold' : 'text-[11px] text-[#F59E0B] mt-1 block font-bold';
+      }
+
+      if (previewGrid) {
+        previewGrid.innerHTML = '';
+        if (files.length > 0) {
+          previewGrid.classList.remove('hidden');
+          files.slice(0, 5).forEach((file, idx) => {
+            const img = document.createElement('img');
+            img.src = URL.createObjectURL(file);
+            img.className = 'w-full h-14 object-cover rounded-lg border border-[#243B1E]';
+            img.title = 'Foto de trabajo ' + (idx + 1);
+            previewGrid.appendChild(img);
+          });
+        } else {
+          previewGrid.classList.add('hidden');
+        }
+      }
+    }
+
     async function handleRegister(e) {
       e.preventDefault();
+      const cedula = document.getElementById('reg-cedula').value.trim();
+      const fotoPerfilInput = document.getElementById('reg-foto-perfil');
+      const fotosTrabajosInput = document.getElementById('reg-fotos-trabajos');
+
+      if (!cedula) {
+        alert('Por favor ingresa tu cédula de ciudadanía para la verificación de antecedentes.');
+        return;
+      }
+
+      if (!fotoPerfilInput.files || fotoPerfilInput.files.length === 0) {
+        alert('Debes adjuntar tu foto de perfil (selfie sin logos) para la pre-auditoría KYC de Valentina.');
+        return;
+      }
+
+      if (!fotosTrabajosInput.files || fotosTrabajosInput.files.length < 5) {
+        alert('Valentina (KYC) requiere un mínimo de 5 fotos de trabajos reales realizados para activar tu Bóveda Wompi al 7% vitalicio.');
+        return;
+      }
+
       const submitBtn = document.getElementById('reg-submit-btn');
       if (submitBtn) {
         submitBtn.disabled = true;
-        submitBtn.innerText = 'Verificando y asignando cupo... ⏳';
+        submitBtn.innerText = 'Verificando con Valentina (KYC)... ⏳';
       }
 
       const nombre = document.getElementById('reg-nombre').value;
@@ -611,7 +694,19 @@
         const res = await fetch('/api/register-pro', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ nombre, tel, oficio, zona, banco })
+          body: JSON.stringify({ 
+            nombre, 
+            cedula, 
+            tel, 
+            oficio, 
+            zona, 
+            banco,
+            kycAudit: {
+              fotoPerfilAdjunta: true,
+              fotosTrabajosTotal: fotosTrabajosInput.files.length,
+              statusKYC: 'PENDIENTE_REVISION_VALENTINA'
+            }
+          })
         });
         const data = await res.json();
 
@@ -629,8 +724,8 @@
         if (successMsg) successMsg.innerText = data.message;
         if (successBadge) {
           successBadge.innerText = data.tipo === 'PRIMORDIAL'
-            ? 'Comisión: 7% (¡93% neto para ti!) · Mes 1 al 1% de Activación (99% neto) · Placa Oro VIP Vitalicia'
-            : 'Comisión Estándar: 9% (¡91% neto para ti!) · Pago Protegido Wompi';
+            ? 'Comisión: 11% (¡89% neto para ti!) · Mes 1 al 1% de Activación (99% neto) · Placa Oro VIP Vitalicia (Wompi absorbido)'
+            : 'Comisión Estándar: 18% (¡82% neto para ti!) · Pago Protegido Wompi';
         }
 
         if (data.currentCount) {
