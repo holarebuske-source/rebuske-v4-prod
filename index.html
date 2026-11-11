@@ -239,15 +239,24 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 4px 10px;
+      padding: 6px 14px;
       box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
       transition: transform 0.2s ease, box-shadow 0.2s ease;
       cursor: default;
       user-select: none;
+      background: #FFFFFF;
+      border: 1px solid rgba(255, 255, 255, 0.9);
     }
     .bps-pay-card:hover {
       transform: translateY(-2px);
       box-shadow: 0 8px 18px rgba(0, 0, 0, 0.5);
+    }
+    .bps-pay-card img {
+      max-width: 86%;
+      height: auto;
+      max-height: 38px;
+      object-fit: contain;
+      display: block;
     }
     .bps-pay-card svg {
       max-width: 100%;
@@ -255,14 +264,14 @@
       max-height: 40px;
       display: block;
     }
-    .bps-card-bancolombia { background: #EAEAEA; border: 1px solid rgba(255, 255, 255, 0.9); }
+    .bps-card-bancolombia { background: #FFFFFF; border: 1px solid rgba(255, 255, 255, 0.9); }
     .bps-card-nequi { background: #1C0324; border: 1px solid rgba(255, 0, 122, 0.45); }
-    .bps-card-daviplata { background: #EAEAEA; border: 1px solid rgba(255, 255, 255, 0.9); }
-    .bps-card-pse { background: #EAEAEA; border: 1px solid rgba(255, 255, 255, 0.9); }
-    .bps-card-visa { background: #EAEAEA; border: 1px solid rgba(255, 255, 255, 0.9); }
-    .bps-card-mastercard { background: #EAEAEA; border: 1px solid rgba(255, 255, 255, 0.9); }
-    .bps-card-amex { background: #006FCF; border: 1px solid #4DA8FF; }
-    .bps-card-wompi { background: #99E6A8; border: 1px solid #B8FF3B; }
+    .bps-card-daviplata { background: #FFFFFF; border: 1px solid rgba(255, 255, 255, 0.9); }
+    .bps-card-pse { background: #FFFFFF; border: 1px solid rgba(255, 255, 255, 0.9); }
+    .bps-card-visa { background: #FFFFFF; border: 1px solid rgba(255, 255, 255, 0.9); }
+    .bps-card-mastercard { background: #FFFFFF; border: 1px solid rgba(255, 255, 255, 0.9); }
+    .bps-card-amex { background: #FFFFFF; border: 1px solid rgba(255, 255, 255, 0.9); }
+    .bps-card-wompi { background: #B0F2AE; border: 1px solid #8CE288; }
 
     @media (max-width: 900px) {
       .bps-features-grid { grid-template-columns: 1fr; }
@@ -5943,99 +5952,44 @@ html {
         <div class="bps-cards-grid">
           <!-- 1. BANCOLOMBIA -->
           <div class="bps-pay-card bps-card-bancolombia" title="Bancolombia">
-            <svg viewBox="0 0 160 48" width="135" height="38">
-              <g transform="translate(18, 5)">
-                <path d="M 6,3 C 14,1 25,0 34,2 C 37,2.6 38,5 37,7 C 36,9 33,10 30,9.5 C 22,8 13,9 8,11 C 5,12 3,11 3,8 C 3,6 4,4 6,3 Z" fill="#00448D"/>
-                <path d="M 2,12 C 11,9 30,6 45,9 C 48.5,9.6 50,12 48.5,14.5 C 47,17 44,18 40,17 C 26,14 11,16 4,20 C 1.5,21.5 -0.8,19 -0.5,16.5 C -0.2,14 1,12.5 2,12 Z" fill="#FDC82F"/>
-                <path d="M 16,21 C 22,19 33,17 44,19 C 47,19.5 48,22 47,24 C 46,26 43,27 40,26 C 30,24.5 18,26.5 12,29 C 9,30.5 7,29 7,26.5 C 7,24 13,22 16,21 Z" fill="#E31B23"/>
-              </g>
-              <text x="64" y="27" fill="#002D72" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="14.5" letter-spacing="-0.03em">Bancolombia</text>
-            </svg>
+            <img src="assets/images/payments/svg_official/bancolombia.svg" alt="Bancolombia" loading="lazy">
           </div>
 
           <!-- 2. NEQUI -->
           <div class="bps-pay-card bps-card-nequi" title="Nequi">
-            <svg viewBox="0 0 150 48" width="125" height="38">
-              <rect x="18" y="13" width="7" height="7" rx="1.5" fill="#FF007A"/>
-              <path d="M 30,34 L 30,12 L 36.5,12 L 48,27.5 L 48,12 L 54.5,12 L 54.5,34 L 48,34 L 36.5,18.5 L 36.5,34 Z" fill="#FFFFFF"/>
-              <text x="58" y="33" fill="#FFFFFF" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="24" letter-spacing="-0.03em">equ</text>
-              <rect x="101" y="18" width="5.5" height="15" rx="1.2" fill="#FFFFFF"/>
-            </svg>
+            <img src="assets/images/payments/svg_official/nequi_white.svg" alt="Nequi" loading="lazy">
           </div>
 
           <!-- 3. DAVIPLATA -->
           <div class="bps-pay-card bps-card-daviplata" title="DaviPlata">
-            <svg viewBox="0 0 150 48" width="125" height="38">
-              <g transform="translate(42, 6)">
-                <rect x="0" y="0" width="36" height="36" rx="8" fill="#ED1C24"/>
-                <path d="M 7,21 L 18,10 L 29,21 L 29,28 L 7,28 Z" fill="#FFFFFF"/>
-                <path d="M 15,22 L 21,22 L 21,28 L 15,28 Z" fill="#ED1C24"/>
-                <text x="18" y="20" fill="#ED1C24" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="6">DAVI</text>
-              </g>
-            </svg>
+            <img src="assets/images/payments/svg_official/daviplata.svg" alt="DaviPlata" loading="lazy">
           </div>
 
           <!-- 4. PSE -->
-          <div class="bps-pay-card bps-card-pse" title="PSE - Pagos Seguros en Linea">
-            <svg viewBox="0 0 150 48" width="125" height="38">
-              <circle cx="75" cy="24" r="19" fill="#0C2E68"/>
-              <circle cx="66" cy="18" r="2.2" fill="#FFC72C"/>
-              <circle cx="64" cy="24" r="2.4" fill="#FFC72C"/>
-              <circle cx="66" cy="30" r="2.2" fill="#FFC72C"/>
-              <path d="M 66,18 L 71,24 L 66,30" fill="none" stroke="#FFC72C" stroke-width="1.3"/>
-              <circle cx="71" cy="24" r="1.8" fill="#FFC72C"/>
-              <text x="73" y="18" fill="#7FB8E5" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" font-size="7.5">ach</text>
-              <text x="72" y="29" fill="#FFFFFF" font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="11" letter-spacing="-0.02em">pse</text>
-            </svg>
+          <div class="bps-pay-card bps-card-pse" title="PSE - Pagos Seguros en Línea">
+            <img src="assets/images/payments/svg_official/pse.svg" alt="PSE Pagos Seguros en Línea" loading="lazy">
           </div>
 
           <!-- 5. VISA -->
           <div class="bps-pay-card bps-card-visa" title="Visa">
-            <svg viewBox="0 0 140 48" width="115" height="36">
-              <g fill="#1A1F71" transform="translate(18, 5)">
-                <path d="M 0,8 C 5,8 10,8.5 13,11.5 L 22,33 L 31,8 L 39.5,8 L 26,37 L 17.5,37 L 5.5,14 C 4,10.5 2,9 0,8 Z"/>
-                <path d="M 39,8 L 47.5,8 L 42,37 L 33.5,37 Z"/>
-                <path d="M 63,12 C 62,9.5 59,8 55,8 C 49.5,8 45.5,10 44.5,14 C 43.5,17.5 46,20 51,21.5 C 56,23 57.5,24.5 56.5,27 C 55.5,29.5 52.5,31 48,31 C 43,31 40,29 38,26.5 L 36.5,33 C 39.5,35 44,36.5 49,36.5 C 57,36.5 62.5,33.5 64,28.5 C 65,23.5 61.5,21 56,19 C 51,17 49.5,16 50,14 C 50.5,12 53,11 56,11 C 59.5,11 61.5,12 62.5,13 Z"/>
-                <path d="M 82,8 L 89,37 L 81,37 L 79,29 L 68,29 L 65,37 L 57,37 L 72,8 Z M 77,22.5 L 74,13.5 L 70,22.5 Z"/>
-              </g>
-            </svg>
+            <img src="assets/images/payments/svg_official/visa.svg" alt="Visa" loading="lazy">
           </div>
 
           <!-- 6. MASTERCARD -->
           <div class="bps-pay-card bps-card-mastercard" title="Mastercard">
-            <svg viewBox="0 0 140 48" width="115" height="38">
-              <g transform="translate(42, 6)">
-                <circle cx="14" cy="18" r="14" fill="#EB001B"/>
-                <circle cx="32" cy="18" r="14" fill="#F79E1B"/>
-                <path d="M 23,8 C 26.5,10.8 28.5,14.8 28.5,18 C 28.5,21.2 26.5,25.2 23,28 C 19.5,25.2 17.5,21.2 17.5,18 C 17.5,14.8 19.5,10.8 23,8 Z" fill="#FF5F00"/>
-              </g>
-            </svg>
+            <img src="assets/images/payments/svg_official/mastercard.svg" alt="Mastercard" loading="lazy">
           </div>
 
           <!-- 7. AMERICAN EXPRESS -->
           <div class="bps-pay-card bps-card-amex" title="American Express">
-            <svg viewBox="0 0 140 48" width="115" height="38">
-              <g transform="translate(18, 6)">
-                <rect x="0" y="0" width="104" height="36" rx="5" fill="#006FCF" stroke="#FFFFFF" stroke-width="1.8"/>
-                <text x="14" y="23" fill="#FFFFFF" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="14" letter-spacing="0.12em">AMEX</text>
-              </g>
-            </svg>
+            <img src="assets/images/payments/svg_official/amex.svg" alt="American Express" loading="lazy">
           </div>
 
           <!-- 8. WOMPI -->
           <div class="bps-pay-card bps-card-wompi" title="Wompi Bancolombia">
-            <svg viewBox="0 0 150 48" width="125" height="38">
-              <g fill="#1F281E" transform="translate(14, 9)">
-                <path d="M 0,3 L 6.5,26 L 11.5,26 L 5.5,3 Z"/>
-                <path d="M 7.5,10 L 12.5,26 L 17.5,26 L 12,7 L 9,7 Z"/>
-                <path d="M 13.5,3 L 20,17 L 24,3 Z"/>
-              </g>
-              <g transform="translate(42, 29)">
-                <text x="0" y="0" fill="#1F281E" font-family="'Plus Jakarta Sans', sans-serif" font-weight="900" font-size="22" letter-spacing="-0.04em">Wompi</text>
-              </g>
-            </svg>
+            <img src="assets/images/payments/svg_official/wompi.svg" alt="Wompi" loading="lazy">
           </div>
-        </div>
+        </div></div>
       </div>
     </div>
 
