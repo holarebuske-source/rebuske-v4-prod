@@ -797,18 +797,17 @@
   </div>
 
   <!-- Barra Superior -->
-  <header class="top-bar">
-    <a href="/entrada" class="brand-logo">
-      <span class="brand-logo-dot"></span>
-      <span>rebuske Medellín 2026</span>
-    </a>
-    <div class="top-actions">
-      <a href="/entrada" class="btn-pill-sec">Volver a Inicio</a>
-      <a href="https://wa.me/573043812882?text=Hola%20Laura%2C%20quiero%20conocer%20m%C3%A1s%20sobre%20rebuske" target="_blank" rel="noopener noreferrer" class="btn-pill-sec" title="Chat directo por WhatsApp con Laura">
-        Laura WhatsApp
+  <header class="top-bar" id="topBar">
+      <a href="/entrada" class="brand-logo" title="rebuske Medellín · Página Web Principal">
+        <span class="brand-logo-dot pulse-c" aria-hidden="true"></span>
+        <span class="brand-name">rebuske</span>
+        <span class="brand-tag">Medellín 2026</span>
       </a>
-    </div>
-  </header>
+      <nav class="top-actions" aria-label="Navegación unificada">
+        <a href="/entrada" class="btn-nav-link" title="Página Web de Entrada">Página Web</a>
+        <a href="https://wa.me/573043812882?text=Hola%20Laura%2C%20quiero%20conocer%20m%C3%A1s%20sobre%20el%20registro%20t%C3%A9cnico" target="_blank" rel="noopener noreferrer" class="btn-pill-primary sheen" title="Hablar con Laura en WhatsApp" style="background:#B8FF3B;color:#0B1309;font-weight:900;display:inline-flex;align-items:center;gap:7px;">Hablar con Laura</a>
+      </nav>
+    </header>
 
   <!-- Contenedor Principal -->
   <main class="main-container">
@@ -864,11 +863,11 @@
 
       <div class="sim-bar-item">
         <div class="sim-bar-label">
-          <span style="color:var(--accent-neon);font-weight:800;">En rebuske Oro (93%)</span>
-          <span id="reb-display" style="color:var(--accent-neon);font-weight:800;">$93.000 COP + $23.000 COP más para ti</span>
+          <span style="color:var(--accent-neon);font-weight:800;">En rebuske Oro (89%)</span>
+          <span id="reb-display" style="color:var(--accent-neon);font-weight:800;">$89.000 COP + $19.000 COP más para ti</span>
         </div>
         <div class="sim-bar-track">
-          <div class="sim-bar-fill-rebuske" id="reb-bar" style="width: 93%;"></div>
+          <div class="sim-bar-fill-rebuske" id="reb-bar" style="width: 89%;"></div>
         </div>
       </div>
 
@@ -876,29 +875,29 @@
       <div class="placas-grid">
         <div class="placa-card">
           <div class="placa-title">Placa Bronce</div>
-          <div class="placa-com">9% Com.</div>
-          <div class="placa-req">Técnico Verificado</div>
+          <div class="placa-com">18% Com.</div>
+          <div class="placa-req">Técnico Verificado (82% Neto)</div>
         </div>
         <div class="placa-card">
           <div class="placa-title">Placa Plata</div>
-          <div class="placa-com">8% Com.</div>
-          <div class="placa-req">5+ Trabajos con 4.8★</div>
+          <div class="placa-com">14% Com.</div>
+          <div class="placa-req">5+ Trabajos con 4.8★ (86% Neto)</div>
         </div>
         <div class="placa-card active-gold">
           <div class="placa-title">Placa Oro</div>
-          <div class="placa-com">7% Com.</div>
-          <div class="placa-req">Top 100 o Calidad 4.9★</div>
+          <div class="placa-com">11% Com.</div>
+          <div class="placa-req">Top 100 o Calidad 4.9★ (89% Neto)</div>
         </div>
       </div>
 
       <!-- Promoción Temporal Exclusiva -->
       <div class="promo-callout">
         <h4>Promoción Temporal Exclusiva · Primer Mes (Solo 100 Cupos)</h4>
-        <p>Los primeros 100 profesionales registrados operarán al 1% de comisión durante sus primeros 30 días (¡99% neto para ti!). Finalizado el mes, se activará tu placa ganada (9%, 8% o 7%).</p>
+        <p>Los primeros 100 profesionales registrados operarán al 1% de comisión durante sus primeros 30 días (¡99% neto para ti!). Finalizado el mes, se activará tu placa ganada (Bronce 18%, Plata 14% u Oro 11%). Costos de pasarela Wompi 100% absorbidos por Rebuske.</p>
       </div>
 
       <button type="button" class="btn-full btn-full-primary" onclick="irAlPaso1()">
-        Continuar al registro ➔
+        Continuar al registro &rarr;
       </button>
     </section>
 
@@ -951,9 +950,9 @@
                 <option value="cerrajeria">6. Cerrajería & Seguridad</option>
                 <option value="jardineria">7. Jardinería & Exteriores</option>
                 <option value="construccion">8. Construcción & Remodelación</option>
-                <option value="mudanzas">9. Mudanzas & Transporte</option>
+                <option value="mudanzas">9. Mudanzas</option>
                 <option value="electrodomesticos">10. Electrodomésticos & Gasodomésticos</option>
-                <option value="tecnologia">11. Tecnología & Cámaras CCTV</option>
+                <option value="chef">11. Chef Privado a Domicilio</option>
                 <option value="automoviles">12. Automóviles & Mecánica Ligera</option>
                 <option value="digital">13. Diseño, Web & Servicios Digitales</option>
                 <option value="educacion">14. Clases Particulares & Música</option>
@@ -1032,7 +1031,7 @@
           </div>
 
           <button type="submit" class="btn-full btn-full-primary" style="margin-top:16px;">
-            Continuar al Paso 2 (Verificación & Cobro) ➔
+            Continuar al Paso 2 (Verificación & Cobro) &rarr;
           </button>
         </form>
       </div>
@@ -1073,7 +1072,7 @@
 
               <!-- Cédula Reverso -->
               <div class="kyc-upload-box" id="box-ced-back" onclick="triggerFileInput('file_ced_back')">
-                <div class="kyc-icon">🔄</div>
+                <div class="kyc-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 10 10"/><path d="M12 12l7-7"/></svg></div>
                 <div class="kyc-label">Cédula Reverso *</div>
                 <div class="kyc-status" id="st-ced-back">Subir foto</div>
                 <input type="file" id="file_ced_back" accept="image/*" style="display:none" onchange="handleKycPreview(this, 'box-ced-back', 'st-ced-back')">
@@ -1081,7 +1080,7 @@
 
               <!-- Selfie con documento -->
               <div class="kyc-upload-box" id="box-selfie" onclick="triggerFileInput('file_selfie')">
-                <div class="kyc-icon">🤳</div>
+                <div class="kyc-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg></div>
                 <div class="kyc-label">Selfie con Documento *</div>
                 <div class="kyc-status" id="st-selfie">Foto en mano</div>
                 <input type="file" id="file_selfie" accept="image/*" style="display:none" onchange="handleKycPreview(this, 'box-selfie', 'st-selfie')">
@@ -1089,7 +1088,7 @@
 
               <!-- Foto de perfil sin logo -->
               <div class="kyc-upload-box" id="box-foto-perfil" onclick="triggerFileInput('file_foto_perfil')">
-                <div class="kyc-icon">👤</div>
+                <div class="kyc-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
                 <div class="kyc-label">Foto Perfil (Sin Logo) *</div>
                 <div class="kyc-status" id="st-foto-perfil">Foto formal</div>
                 <input type="file" id="file_foto_perfil" accept="image/*" style="display:none" onchange="handleKycPreview(this, 'box-foto-perfil', 'st-foto-perfil')">
@@ -1097,7 +1096,7 @@
 
               <!-- Certificado Antecedentes -->
               <div class="kyc-upload-box" id="box-antecedentes" onclick="triggerFileInput('file_antecedentes')">
-                <div class="kyc-icon">📜</div>
+                <div class="kyc-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
                 <div class="kyc-label">Antecedentes Policía *</div>
                 <div class="kyc-status" id="st-antecedentes">PDF o foto</div>
                 <input type="file" id="file_antecedentes" accept="image/*,.pdf" style="display:none" onchange="handleKycPreview(this, 'box-antecedentes', 'st-antecedentes')">
@@ -1108,7 +1107,7 @@
           <!-- BLOQUE LEGAL DEL TÉCNICO (Texto Exacto) -->
           <div class="legal-card">
             <div class="legal-card-title">
-              <span>⚖️</span>
+              <span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v20M5 7l7-3 7 3M2 13l3-6 3 6a3 3 0 0 1-6 0zM16 13l3-6 3 6a3 3 0 0 1-6 0z"/></svg></span>
               <span>Autorizaciones Legales y Consentimiento Informado</span>
             </div>
 
@@ -1139,14 +1138,14 @@
               ◀ Modificar datos básicos (Paso 1)
             </button>
             <button type="submit" id="btn-submit-pro" class="btn-full btn-full-primary" style="flex:2">
-              Asegurar mi Cupo Primordial (1% Mes 1) ⚡<span class="btn-dot" aria-hidden="true"></span>
+              Asegurar mi Cupo Primordial (1% Mes 1) <span class="btn-dot" aria-hidden="true"></span>
             </button>
           </div>
         </form>
 
         <!-- Panel de Éxito -->
         <div class="success-panel" id="pro-success-msg">
-          <div class="success-icon">🎉</div>
+          <div class="success-icon" style="color:var(--lima);"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></div>
           <h4 class="success-title">¡Cupo Primordial Registrado con Éxito!</h4>
           <p class="success-desc">
             Hemos recibido tus datos y documentación. Nuestro equipo de seguridad procesará el cotejo de antecedentes en 24 horas y te contactaremos a tu WhatsApp para activar tu Credencial QR y tu tarifa preferencial del 1% (99% neto para ti).
@@ -1159,19 +1158,79 @@
     </div>
 
     <!-- Pie de página -->
-    <footer class="portal-footer">
-      <p>rebuske Medellín 2026 · Plataforma Tecnológica de Servicios del Hogar · Fundador: Camilo Escobar</p>
-      <p style="margin-top:6px;">
-        <a href="/terminos">Términos y Condiciones</a> · 
-        <a href="/privacidad">Política de Privacidad</a> · 
-        <a href="/reembolsos">Política de Reembolsos</a> · 
-        <a href="/tarifas">Tarifas Oficiales</a>
-      </p>
-    </footer>
+    
+  <!-- ==========================================================================
+       FOOTER OFICIAL RESTAURADO CON MARCO LEGAL, CONTACTO Y ORGANIZACIÓN FORMAL
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <h4 style="font-family:var(--font-title);font-size:20px;font-weight:800;color:var(--tinta);margin-bottom:8px;">
+          rebuske Medellín 2026
+        </h4>
+        <p style="font-size:13.5px;color:var(--mut);line-height:1.6;max-width:380px;">
+          Plataforma tecnológica de servicios técnicos para el hogar con pago protegido en Bóveda Wompi (Bancolombia). Fundador: <strong>Camilo Escobar</strong>.
+        </p>
+        <p style="margin-top:12px;font-size:12.5px;color:var(--lima);">
+          Medellín, Antioquia, Colombia · 100% Hecho en Medellín
+        </p>
+      </div>
 
-  </main>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h5>Plataforma</h5>
+          <ul>
+            <li><a href="/registro/tecnico">Registro de Técnicos</a></li>
+            <li><a href="/registro/cliente">Registro de Clientes VIP</a></li>
+            <li><a href="#nuestros-servicios">Especialidades & Tarifas</a></li>
+            <li><a href="#protocolo-seguridad">Protocolo de Garantía</a></li>
+          </ul>
+        </div>
 
-  <script>
+        <div class="footer-col">
+          <h5>Legal y Normativo</h5>
+          <ul>
+            <li><a href="/terminos">Términos y Condiciones</a></li>
+            <li><a href="/privacidad">Política de Privacidad</a></li>
+            <li><a href="/reembolsos">Política de Reembolsos</a></li>
+            <li><a href="/descuentos">Condiciones de Descuentos</a></li>
+            <li><a href="/eliminar-cuenta">Eliminar Cuenta</a></li>
+            <li><a href="/privacidad#cookies">Política de Cookies</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5>Contacto Directo</h5>
+          <ul>
+            <li>
+              <a href="https://wa.me/573043812882?text=Hola%20Laura%2C%20quiero%20conocer%20m%C3%A1s%20sobre%20rebuske" target="_blank" rel="noopener noreferrer">
+                Laura WhatsApp (+57 304 381 2882)
+              </a>
+            </li>
+            <li><a href="mailto:holarebuske@gmail.com">holarebuske@gmail.com</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2026 rebuske. Todos los derechos reservados. Cumplimiento estricto Ley 1480 y Ley 1581 de Colombia.</span>
+      <span>Medellín · El Poblado · Laureles · Belén · Envigado</span>
+    </div>
+  </footer>
+
+  <!-- BANNER DE COOKIES (Discreto abajo) -->
+  <aside class="cookie-banner" id="cookieBanner" aria-label="Consentimiento de cookies">
+    <div class="cookie-text">
+      Usamos cookies esenciales para operar la plataforma y pagos Wompi. Con tu permiso, usamos analítica para optimizar el servicio en Medellín sin rastrear datos sensibles.
+    </div>
+    <div class="cookie-actions">
+      <button class="btn-cookie-config" onclick="cerrarCookies()">Configurar</button>
+      <button class="btn-cookie-accept" onclick="aceptarCookies()">Aceptar todas</button>
+    </div>
+  </aside>
+  
+<script>
     // Contador animado a 84/100
     (function initCounter() {
       let count = 0;
@@ -1196,7 +1255,7 @@
       
       const appsNeto = v * 0.70;
       const appsCom = v * 0.30;
-      const rebNeto = v * 0.93;
+      const rebNeto = v * 0.89;
       const rebDif = rebNeto - appsNeto;
 
       document.getElementById('trad-display').textContent = formatCOP(appsNeto) + ' COP (Te descuentan ' + formatCOP(appsCom) + ' COP)';
@@ -1283,7 +1342,7 @@
         const status = document.getElementById(statusId);
 
         box.classList.add('uploaded');
-        status.textContent = 'Archivo seleccionado ✓';
+        status.textContent = 'Archivo seleccionado con éxito';
 
         if (file.type.startsWith('image/')) {
           const reader = new FileReader();
