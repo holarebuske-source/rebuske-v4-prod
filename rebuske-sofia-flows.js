@@ -110,36 +110,8 @@
   
 
   function renderExpressTradeSection() {
-    return `
-      <div class="express-catalog-card" style="margin:14px 0; background:linear-gradient(145deg, #121A0F, #0A1108); border:1.5px solid #2F4A1F; border-radius:18px; padding:16px; box-shadow:0 8px 30px rgba(0,0,0,0.5);">
-        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-          <div style="display:flex; align-items:center; gap:8px;">
-            <span style="background:#B8FF3B; color:#0B0F08; font-size:10px; font-weight:900; padding:3px 7px; border-radius:5px; letter-spacing:0.5px;">⚡ FLUJO 3 TAPS</span>
-            <b style="font-size:14px; color:#F2F5EC; font-weight:700;">Reparación Express en Medellín</b>
-          </div>
-          <span style="font-size:11px; color:#B8FF3B; font-weight:600; display:flex; align-items:center; gap:3px;">
-            <span style="display:inline-block; width:6px; height:6px; border-radius:50%; background:#B8FF3B; animation:pulse 1.5s infinite;"></span> <800ms
-          </span>
-        </div>
-        <p style="font-size:12px; color:#A7BCA0; margin-bottom:14px; line-height:1.4;">
-          Elige el daño que necesitas resolver. Te asignamos al <b>Técnico Primordial 5.0★</b> más cercano en segundos:
-        </p>
-
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
-          ${Object.entries(EXPRESS_TRADES).map(([key, t]) => `
-            <button class="express-trade-btn" data-a="sofiaSelectTrade" data-trade="${key}" style="background:#162312; border:1px solid #2A3F20; border-radius:14px; padding:12px; text-align:left; cursor:pointer; transition:all 0.15s ease; display:flex; flex-direction:column; gap:4px;">
-              <div style="display:flex; justify-content:space-between; align-items:center;">
-                <span style="font-size:24px;">${t.icon}</span>
-                <span style="font-size:10px; background:rgba(184,255,59,0.12); color:#B8FF3B; padding:2px 5px; border-radius:4px; font-weight:bold;">Tap 1</span>
-              </div>
-              <b style="font-size:14px; color:#FFF; margin-top:2px;">${t.name}</b>
-              <span style="font-size:11px; font-weight:bold; color:#B8FF3B;">${t.range}</span>
-              <small style="font-size:9.5px; color:#7E9573; line-height:1.2;">${t.desc}</small>
-            </button>
-          `).join('')}
-        </div>
-      </div>
-    `;
+    // Opción Flujo 3 Taps removida de la app a solicitud de Camilo
+    return '';
   }
 
   // ==========================================================================
@@ -565,25 +537,8 @@
   // INYECCIÓN VISUAL EN VIEWS.home
   // ==========================================================================
   function hookIntoHomeView() {
-    if (!global.VIEWS || !global.VIEWS.home) return;
-
-    const originalHome = global.VIEWS.home;
-    if (originalHome._sofiaHooked) return;
-
-    global.VIEWS.home = function (p) {
-      const originalHtml = originalHome(p);
-      const searchEndIndex = originalHtml.indexOf('</div>', originalHtml.indexOf('class="zones"')) + 6;
-
-      if (searchEndIndex > 5) {
-        return (
-          originalHtml.slice(0, searchEndIndex) +
-          renderExpressTradeSection() +
-          originalHtml.slice(searchEndIndex)
-        );
-      }
-      return renderExpressTradeSection() + originalHtml;
-    };
-    global.VIEWS.home._sofiaHooked = true;
+    // Opción Flujo 3 Taps removida de la app a solicitud de Camilo
+    return;
   }
 
   // ==========================================================================
