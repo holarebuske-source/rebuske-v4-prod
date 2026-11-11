@@ -100,12 +100,27 @@ export const REFINED_STYLES = `
    SHOWCASE DE TELÉFONOS EN VIVO · PANTALLAS IDÉNTICAS A LA APP REAL
    ========================================================================== */
 .phones-showcase-section {
-  padding: 50px 20px 40px;
+  padding: 30px 20px 40px;
   position: relative;
   z-index: 3;
   max-width: 1320px;
-  margin: -40px auto 0;
+  margin: 0 auto;
   background: transparent;
+}
+
+.phones-showcase-section::before {
+  content: '';
+  position: absolute;
+  top: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 94%;
+  max-width: 1200px;
+  height: 400px;
+  background: radial-gradient(ellipse 70% 50% at 50% 30%, rgba(78, 136, 57, 0.16) 0%, rgba(184, 255, 59, 0.05) 45%, transparent 75%);
+  filter: blur(50px);
+  pointer-events: none;
+  z-index: -1;
 }
 
 .phones-grid {
@@ -113,12 +128,14 @@ export const REFINED_STYLES = `
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 32px;
   margin-top: 40px;
+  perspective: 1600px;
+  perspective-origin: 50% 40%;
 }
 
 @media (min-width: 1100px) {
   .phones-grid {
     grid-template-columns: repeat(4, 1fr);
-    gap: 26px;
+    gap: 24px;
   }
 }
 
@@ -127,38 +144,159 @@ export const REFINED_STYLES = `
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  perspective: 1100px;
+  transform-style: preserve-3d;
 }
 
-/* ==========================================================================
-   CHASIS DE TITANIO SATINADO ULTRA DELGADO (MICRO-BISEL & TILT 3D)
-   ========================================================================== */
+.phone-stage-3d {
+  position: relative;
+  width: 100%;
+  max-width: 288px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform-style: preserve-3d;
+}
+
 .phone-mockup {
   position: relative;
   width: 100%;
   max-width: 288px;
   aspect-ratio: 9 / 19.5;
-  background: #050806;
-  border-radius: 48px;
-  padding: 4px; /* Micro-bisel ultra delgado */
+  background: #0C120A;
+  border-radius: 46px;
+  padding: 3.5px;
   box-shadow: 
-    0 28px 70px -12px rgba(0, 0, 0, 0.95),
-    0 0 0 1.5px rgba(244, 251, 241, 0.28),
-    0 0 0 3px rgba(184, 255, 59, 0.12),
-    0 0 35px rgba(184, 255, 59, 0.18),
-    inset 0 0 2px 1px rgba(255, 255, 255, 0.25);
-  border: 2px solid rgba(244, 251, 241, 0.35); /* Chasis titanio satinado */
-  transition: transform 0.12s ease-out, box-shadow 0.3s ease;
+    0 0 0 1px rgba(255, 255, 255, 0.4),
+    0 0 0 3px #182216,
+    0 0 0 4.5px rgba(244, 251, 241, 0.25),
+    0 0 0 6px #090E08,
+    0 22px 50px -10px rgba(0, 0, 0, 0.95),
+    0 40px 85px -15px rgba(0, 0, 0, 0.98),
+    0 0 35px rgba(184, 255, 59, 0.15);
+  border: 1px solid rgba(184, 255, 59, 0.35);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
   transform-style: preserve-3d;
   will-change: transform;
-  overflow: hidden;
+}
+
+/* Posturas 3D en estudio para cada teléfono */
+@media (min-width: 900px) {
+  .phone-3d-pos-1 {
+    transform: perspective(1400px) rotateY(10deg) rotateX(2deg) translateZ(-6px);
+  }
+  .phone-3d-pos-2 {
+    transform: perspective(1400px) rotateY(3deg) rotateX(1deg) translateZ(14px);
+  }
+  .phone-3d-pos-3 {
+    transform: perspective(1400px) rotateY(-3deg) rotateX(1deg) translateZ(14px);
+  }
+  .phone-3d-pos-4 {
+    transform: perspective(1400px) rotateY(-10deg) rotateX(2deg) translateZ(-6px);
+  }
+}
+
+.phone-card-wrap:hover .phone-mockup {
+  transform: perspective(1400px) rotateY(0deg) rotateX(0deg) translateZ(46px) scale(1.04) !important;
+  box-shadow: 
+    0 0 0 1px rgba(255, 255, 255, 0.6),
+    0 0 0 3px #233420,
+    0 0 0 5px rgba(184, 255, 59, 0.4),
+    0 0 0 7px #090E08,
+    0 32px 75px -10px rgba(0, 0, 0, 0.98),
+    0 0 60px rgba(184, 255, 59, 0.35);
+}
+
+/* Botones Físicos de Hardware en 3D */
+.phone-btn-power {
+  position: absolute;
+  top: 135px;
+  right: -5.5px;
+  width: 3.5px;
+  height: 52px;
+  background: linear-gradient(180deg, #3A4A36, #162214, #3A4A36);
+  border-radius: 0 2px 2px 0;
+  box-shadow: 1px 0 2px rgba(0,0,0,0.6), inset 0 1px 1px rgba(255,255,255,0.4);
+  z-index: 20;
+}
+.phone-btn-action {
+  position: absolute;
+  top: 95px;
+  left: -5.5px;
+  width: 3.5px;
+  height: 26px;
+  background: linear-gradient(180deg, #3A4A36, #B8FF3B, #3A4A36);
+  border-radius: 2px 0 0 2px;
+  box-shadow: -1px 0 2px rgba(0,0,0,0.6), inset 0 1px 1px rgba(255,255,255,0.4);
+  z-index: 20;
+}
+.phone-btn-vol-up {
+  position: absolute;
+  top: 135px;
+  left: -5.5px;
+  width: 3.5px;
+  height: 44px;
+  background: linear-gradient(180deg, #3A4A36, #162214, #3A4A36);
+  border-radius: 2px 0 0 2px;
+  box-shadow: -1px 0 2px rgba(0,0,0,0.6), inset 0 1px 1px rgba(255,255,255,0.4);
+  z-index: 20;
+}
+.phone-btn-vol-down {
+  position: absolute;
+  top: 190px;
+  left: -5.5px;
+  width: 3.5px;
+  height: 44px;
+  background: linear-gradient(180deg, #3A4A36, #162214, #3A4A36);
+  border-radius: 2px 0 0 2px;
+  box-shadow: -1px 0 2px rgba(0,0,0,0.6), inset 0 1px 1px rgba(255,255,255,0.4);
+  z-index: 20;
+}
+
+/* Ranura del altavoz superior */
+.phone-speaker-slit {
+  position: absolute;
+  top: 3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48px;
+  height: 3px;
+  background: #050805;
+  border-radius: 3px;
+  border: 0.5px solid rgba(255, 255, 255, 0.15);
+  z-index: 10;
+}
+
+/* Reflejo diagonal de cristal permanente */
+.phone-glass-sheen {
+  position: absolute;
+  inset: 0;
+  border-radius: 44px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.02) 35%, transparent 60%);
+  pointer-events: none;
+  z-index: 8;
+}
+
+/* Sombra de suelo 3D flotante */
+.phone-3d-floor-shadow {
+  width: 82%;
+  height: 22px;
+  margin-top: 14px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.88) 0%, rgba(184, 255, 59, 0.15) 45%, transparent 75%);
+  filter: blur(6px);
+  transform: rotateX(65deg);
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+.phone-card-wrap:hover .phone-3d-floor-shadow {
+  transform: rotateX(65deg) scale(1.15);
+  opacity: 0.9;
 }
 
 .phone-glare-overlay {
   position: absolute;
   inset: 0;
-  border-radius: 48px;
-  background: radial-gradient(circle at var(--glare-x, 50%) var(--glare-y, 50%), rgba(255, 255, 255, 0.14) 0%, transparent 65%);
+  border-radius: 46px;
+  background: radial-gradient(circle at var(--glare-x, 50%) var(--glare-y, 50%), rgba(255, 255, 255, 0.16) 0%, transparent 65%);
   pointer-events: none;
   z-index: 15;
   opacity: 0;
@@ -169,33 +307,12 @@ export const REFINED_STYLES = `
   opacity: 1;
 }
 
-.phone-mockup::before {
-  /* Bisel perimétrico de titanio aeroespacial */
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 48px;
-  pointer-events: none;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  z-index: 12;
-}
-
-.phone-mockup:hover {
-  box-shadow: 
-    0 36px 80px -10px rgba(0, 0, 0, 0.98),
-    0 0 0 2px rgba(184, 255, 59, 0.6),
-    0 0 50px rgba(184, 255, 59, 0.3);
-}
-
 .phone-screen {
   position: relative;
   width: 100%;
   height: 100%;
   background: #080C09;
-  border-radius: 44px;
+  border-radius: 42px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -207,7 +324,7 @@ export const REFINED_STYLES = `
   object-fit: cover;
   object-position: top center;
   display: block;
-  border-radius: 44px;
+  border-radius: 42px;
   position: absolute;
   top: 0;
   left: 0;
@@ -873,9 +990,16 @@ export const REFINED_STYLES = `
 
 .srv-compact-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
   align-items: start !important; /* CRITICAL: Evita que las tarjetas hermanas de la misma fila se estiren creando vacíos negros */
+}
+
+@media (max-width: 640px) {
+  .srv-compact-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
 }
 
 .srv-compact-card {
@@ -883,28 +1007,221 @@ export const REFINED_STYLES = `
   backdrop-filter: blur(var(--glass-blur));
   -webkit-backdrop-filter: blur(var(--glass-blur));
   border: 1px solid var(--glass-border);
-  border-radius: 18px;
-  padding: 16px 18px;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 20px;
+  padding: 16px;
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
   outline: none;
   position: relative;
   height: auto !important;
   align-self: start !important;
+  display: flex;
+  flex-direction: column;
 }
 
 .srv-compact-card:hover {
   border-color: rgba(184, 255, 59, 0.45);
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.6), 0 0 16px rgba(184, 255, 59, 0.12);
-  transform: translateY(-2px);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.65), 0 0 20px rgba(184, 255, 59, 0.14);
+  transform: translateY(-3px);
   z-index: 10;
 }
 
 .srv-compact-card.is-open {
   border-color: var(--lima) !important;
-  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.75), 0 0 24px rgba(184, 255, 59, 0.22) !important;
-  background: rgba(15, 23, 14, 0.94) !important;
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.8), 0 0 28px rgba(184, 255, 59, 0.25) !important;
+  background: rgba(15, 23, 14, 0.96) !important;
   z-index: 15;
+}
+
+/* ==========================================================================
+   ESTRUCTURA DE TARJETA ESTILO ÁLBUM SPOTIFY (COVER + SLEEVES + BADGE + INFO)
+   ========================================================================== */
+.spotify-cover-wrap {
+  position: relative;
+  width: 100%;
+  margin-bottom: 22px;
+  padding-right: 12px;
+  cursor: pointer;
+}
+
+.spotify-cover-art {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 14px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.srv-compact-card:hover .spotify-cover-art {
+  transform: scale(1.02);
+}
+
+.spotify-cover-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(12, 18, 10, 0.04) 0%, rgba(12, 18, 10, 0.3) 55%, rgba(12, 18, 10, 0.88) 100%);
+  pointer-events: none;
+}
+
+/* Efecto de mangas de vinilo apiladas a la derecha de la portada */
+.spotify-sleeve-stack {
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  right: 0;
+  width: 12px;
+  display: flex;
+  gap: 2.5px;
+  pointer-events: none;
+}
+
+.spotify-sleeve-layer {
+  height: 86%;
+  margin: auto 0;
+  border-radius: 0 4px 4px 0;
+}
+
+.s-layer-1 {
+  width: 4px;
+  background: rgba(28, 44, 24, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-left: none;
+  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.45);
+}
+
+.s-layer-2 {
+  width: 4px;
+  height: 72%;
+  background: rgba(244, 251, 241, 0.85);
+  border-radius: 0 3px 3px 0;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.35);
+}
+
+/* Badge inferior izquierdo superpuesto sobre la carátula (como en Spotify) */
+.spotify-badge-box {
+  position: absolute;
+  bottom: -15px;
+  left: 12px;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(18, 28, 15, 0.96);
+  border: 1.5px solid rgba(184, 255, 59, 0.38);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--lima);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.75), 0 0 16px rgba(184, 255, 59, 0.2);
+  z-index: 5;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.spotify-badge-box svg {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.25s ease;
+}
+
+.srv-compact-card:hover .spotify-badge-box,
+.srv-compact-card.is-open .spotify-badge-box {
+  background: var(--lima);
+  color: #0C120A;
+  transform: scale(1.08) translateY(-2px);
+  box-shadow: 0 0 26px rgba(184, 255, 59, 0.65);
+  border-color: var(--lima);
+}
+
+.srv-compact-card:hover .spotify-badge-box svg,
+.srv-compact-card.is-open .spotify-badge-box svg {
+  stroke: #0C120A;
+}
+
+/* Bloque inferior de metadatos */
+.spotify-card-body {
+  padding: 2px 4px 0;
+  cursor: pointer;
+}
+
+.spotify-card-title {
+  font-family: var(--font-title);
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--tinta);
+  line-height: 1.25;
+  margin-bottom: 6px;
+  letter-spacing: -0.015em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.spotify-card-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.spotify-meta-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+
+.spotify-price-tag {
+  font-family: var(--font-main);
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--lima);
+  letter-spacing: -0.01em;
+}
+
+.spotify-short-desc {
+  font-size: 11.5px;
+  color: var(--mut);
+  line-height: 1.35;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.spotify-chevron-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(184, 255, 59, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--lima);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+}
+
+.spotify-chevron-btn:hover {
+  background: rgba(184, 255, 59, 0.22);
+  border-color: var(--lima);
+  transform: scale(1.1);
+}
+
+.srv-compact-card.is-open .spotify-chevron-btn {
+  background: var(--lima);
+  border-color: var(--lima);
+  color: #0C120A;
+  transform: rotate(180deg);
 }
 
 .srv-card-main {
@@ -993,16 +1310,16 @@ export const REFINED_STYLES = `
   max-height: 0;
   opacity: 0;
   overflow: hidden;
-  transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease, margin-top 0.25s ease;
+  transition: max-height 0.38s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.28s ease, margin-top 0.28s ease;
   margin-top: 0;
 }
 
 .srv-compact-card.is-open .srv-dropdown-pane {
-  max-height: 320px;
+  max-height: 360px;
   opacity: 1;
-  margin-top: 12px;
+  margin-top: 14px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
-  padding-top: 10px;
+  padding-top: 12px;
 }
 
 .srv-dropdown-desc {
@@ -1499,16 +1816,50 @@ html {
 
 .hero-luxury-wrap {
   position: relative;
-  min-height: 86vh;
+  min-height: 82vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  overflow-x: clip;
-  overflow-y: visible;
-  padding: 100px 24px 80px;
+  overflow: visible;
+  padding: 70px 24px 60px;
+  background: transparent !important;
+}
+
+.hero-luxury-wrap::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  bottom: -140px;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  z-index: 0;
   background: 
-    radial-gradient(ellipse 70% 60% at 50% 30%, rgba(184, 255, 59, 0.12) 0%, rgba(78, 136, 57, 0.05) 50%, transparent 80%),
-    var(--ebano);
+    radial-gradient(ellipse 75% 55% at 50% 45%, rgba(184, 255, 59, 0.10) 0%, rgba(78, 136, 57, 0.04) 50%, transparent 75%),
+    linear-gradient(180deg, 
+      rgba(12, 18, 10, 0) 0%, 
+      rgba(12, 18, 10, 0.35) 10%, 
+      rgba(12, 18, 10, 0.78) 22%, 
+      rgba(12, 18, 10, 0.96) 35%, 
+      #0C120A 46%, 
+      #0C120A 64%, 
+      rgba(12, 18, 10, 0.94) 75%, 
+      rgba(12, 18, 10, 0.68) 85%, 
+      rgba(12, 18, 10, 0.28) 94%, 
+      rgba(12, 18, 10, 0) 100%
+    );
+  mask-image: linear-gradient(180deg, 
+    transparent 0%, 
+    black 12%, 
+    black 88%, 
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(180deg, 
+    transparent 0%, 
+    black 12%, 
+    black 88%, 
+    transparent 100%
+  );
 }
 
 .hero-giant-watermark {
@@ -1826,74 +2177,10 @@ html {
   flex-shrink: 0;
 }
 
-/* Transición suave hacia abajo: Difuminado e Imperceptible (Sin cortes ni líneas) */
+
+/* Transición continua 100% fluida, orgánica y sin líneas ni cortes */
 .hero-bottom-blend {
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  right: 0;
-  height: 280px;
-  background: linear-gradient(to bottom, 
-    rgba(12, 18, 10, 0) 0%, 
-    rgba(12, 18, 10, 0.04) 15%, 
-    rgba(12, 18, 10, 0.16) 35%, 
-    rgba(12, 18, 10, 0.45) 55%, 
-    rgba(12, 18, 10, 0.80) 75%, 
-    rgba(12, 18, 10, 0.96) 92%, 
-    var(--ebano) 100%
-  );
-  pointer-events: none;
-  z-index: 4;
+  display: none !important;
 }
 
-.hero-smooth-scroll {
-  position: absolute;
-  bottom: 34px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 5;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  text-decoration: none;
-  color: rgba(244, 251, 241, 0.72);
-  font-size: 10.5px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  transition: all 0.3s ease;
-}
-
-.hero-smooth-scroll:hover {
-  color: var(--lima);
-}
-
-.scroll-track {
-  width: 22px;
-  height: 34px;
-  border-radius: 12px;
-  border: 1.5px solid rgba(184, 255, 59, 0.4);
-  background: rgba(12, 18, 10, 0.5);
-  backdrop-filter: blur(8px);
-  display: flex;
-  justify-content: center;
-  padding-top: 5px;
-}
-
-.scroll-pill {
-  width: 4px;
-  height: 8px;
-  border-radius: 2px;
-  background: var(--lima);
-  box-shadow: 0 0 8px var(--lima), 0 0 16px rgba(184, 255, 59, 0.8);
-  animation: scrollBob 2s cubic-bezier(0.16, 1, 0.3, 1) infinite;
-}
-
-@keyframes scrollBob {
-  0% { transform: translateY(0); opacity: 1; }
-  60% { transform: translateY(12px); opacity: 0; }
-  61% { transform: translateY(0); opacity: 0; }
-  100% { transform: translateY(0); opacity: 1; }
-}
 `;
