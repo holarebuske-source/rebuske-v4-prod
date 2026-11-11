@@ -271,10 +271,6 @@ export function generateUnifiedServicesAndTarifarioHTML() {
             <div class="spotify-cover-art" style="background-image: url('${cat.imageUrl}');">
               <div class="spotify-cover-overlay"></div>
             </div>
-            <div class="spotify-sleeve-stack" aria-hidden="true">
-              <div class="spotify-sleeve-layer s-layer-1"></div>
-              <div class="spotify-sleeve-layer s-layer-2"></div>
-            </div>
             <div class="spotify-badge-box" title="${cat.name}">
               ${SVG_ICONS[cat.iconKey] || SVG_ICONS.shield}
             </div>
