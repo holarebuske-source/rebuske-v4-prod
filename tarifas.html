@@ -248,15 +248,128 @@
 
     /* REFINED STYLES IMPORTED */
     
+
+/* ==========================================================================
+   AMBIENTE CINEMÁTICO: LUCIÉRNAGAS WEB & ACABADO DARK LUXURY CON RUIDO
+   ========================================================================== */
+.web-ambient-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0.92;
+}
+
+.dark-luxury-grain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.032;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  mix-blend-mode: screen;
+}
+
+/* ==========================================================================
+   LUCIÉRNAGA 3D FLOTANTE (SIN CÍRCULO, PURA BIOLUMINISCENCIA NATURAL)
+   ========================================================================== */
+.logo-3d-bubble {
+  width: 42px;
+  height: 42px;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible !important;
+  position: relative;
+  flex-shrink: 0;
+  animation: logoFireflyFloat 3.6s ease-in-out infinite alternate;
+}
+.logo-3d-img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 10px rgba(184, 255, 59, 0.75));
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
+}
+.logo-3d-bubble:hover .logo-3d-img {
+  transform: scale(1.12);
+  filter: drop-shadow(0 0 20px rgba(184, 255, 59, 0.95));
+}
+@keyframes logoFireflyFloat {
+  0% { transform: translateY(0) scale(1); filter: drop-shadow(0 0 8px rgba(184,255,59,0.5)); }
+  50% { transform: translateY(-3px) scale(1.05); filter: drop-shadow(0 0 18px rgba(184,255,59,0.85)); }
+  100% { transform: translateY(0) scale(1); filter: drop-shadow(0 0 8px rgba(184,255,59,0.5)); }
+}
+
+
+.quienes-somos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 22px;
+  margin-top: 32px;
+}
+.quienes-somos-card {
+  background: var(--glass-surface);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: all 0.3s ease;
+}
+.quienes-somos-card:hover {
+  border-color: rgba(184, 255, 59, 0.38);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(0,0,0,0.5), 0 0 20px rgba(184,255,59,0.15);
+}
+.quienes-somos-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: rgba(184, 255, 59, 0.12);
+  border: 1px solid rgba(184, 255, 59, 0.28);
+  color: var(--lima);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* ==========================================================================
    SHOWCASE DE TELÉFONOS EN VIVO · PANTALLAS IDÉNTICAS A LA APP REAL
    ========================================================================== */
 .phones-showcase-section {
-  padding: 60px 20px 40px;
+  padding: 30px 20px 40px;
   position: relative;
-  z-index: 2;
+  z-index: 3;
   max-width: 1320px;
   margin: 0 auto;
+  background: transparent;
+}
+
+.phones-showcase-section::before {
+  content: '';
+  position: absolute;
+  top: -80px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 94%;
+  max-width: 1200px;
+  height: 400px;
+  background: radial-gradient(ellipse 70% 50% at 50% 30%, rgba(78, 136, 57, 0.16) 0%, rgba(184, 255, 59, 0.05) 45%, transparent 75%);
+  filter: blur(50px);
+  pointer-events: none;
+  z-index: -1;
 }
 
 .phones-grid {
@@ -264,12 +377,14 @@
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 32px;
   margin-top: 40px;
+  perspective: 1600px;
+  perspective-origin: 50% 40%;
 }
 
 @media (min-width: 1100px) {
   .phones-grid {
     grid-template-columns: repeat(4, 1fr);
-    gap: 26px;
+    gap: 24px;
   }
 }
 
@@ -278,79 +393,233 @@
   flex-direction: column;
   align-items: center;
   gap: 20px;
+  transform-style: preserve-3d;
+}
+
+.phone-stage-3d {
+  position: relative;
+  width: 100%;
+  max-width: 288px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform-style: preserve-3d;
 }
 
 .phone-mockup {
   position: relative;
   width: 100%;
-  max-width: 292px;
-  aspect-ratio: 9 / 18.8;
-  background: #060A07;
-  border-radius: 44px;
-  padding: 9px;
+  max-width: 288px;
+  aspect-ratio: 9 / 19.5;
+  background: #0C120A;
+  border-radius: 46px;
+  padding: 3.5px;
   box-shadow: 
-    0 24px 60px -12px rgba(0, 0, 0, 0.9),
-    0 0 0 1px rgba(255, 255, 255, 0.12),
-    0 0 35px rgba(184, 255, 59, 0.12),
-    inset 0 0 2px 1px rgba(255, 255, 255, 0.25);
-  border: 4px solid #1C2B1A;
+    0 0 0 1px rgba(255, 255, 255, 0.4),
+    0 0 0 3px #182216,
+    0 0 0 4.5px rgba(244, 251, 241, 0.25),
+    0 0 0 6px #090E08,
+    0 22px 50px -10px rgba(0, 0, 0, 0.95),
+    0 40px 85px -15px rgba(0, 0, 0, 0.98),
+    0 0 35px rgba(184, 255, 59, 0.15);
+  border: 1px solid rgba(184, 255, 59, 0.35);
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
 }
 
-.phone-mockup:hover {
-  transform: translateY(-8px) scale(1.02);
+/* Posturas 3D en estudio para cada teléfono */
+@media (min-width: 900px) {
+  .phone-3d-pos-1 {
+    transform: perspective(1400px) rotateY(10deg) rotateX(2deg) translateZ(-6px);
+  }
+  .phone-3d-pos-2 {
+    transform: perspective(1400px) rotateY(3deg) rotateX(1deg) translateZ(14px);
+  }
+  .phone-3d-pos-3 {
+    transform: perspective(1400px) rotateY(-3deg) rotateX(1deg) translateZ(14px);
+  }
+  .phone-3d-pos-4 {
+    transform: perspective(1400px) rotateY(-10deg) rotateX(2deg) translateZ(-6px);
+  }
+}
+
+.phone-card-wrap:hover .phone-mockup {
+  transform: perspective(1400px) rotateY(0deg) rotateX(0deg) translateZ(46px) scale(1.04) !important;
   box-shadow: 
-    0 32px 70px -10px rgba(0, 0, 0, 0.95),
-    0 0 0 1px rgba(184, 255, 59, 0.4),
-    0 0 50px rgba(184, 255, 59, 0.25);
+    0 0 0 1px rgba(255, 255, 255, 0.6),
+    0 0 0 3px #233420,
+    0 0 0 5px rgba(184, 255, 59, 0.4),
+    0 0 0 7px #090E08,
+    0 32px 75px -10px rgba(0, 0, 0, 0.98),
+    0 0 60px rgba(184, 255, 59, 0.35);
+}
+
+/* Botones Físicos de Hardware en 3D */
+.phone-btn-power {
+  position: absolute;
+  top: 135px;
+  right: -5.5px;
+  width: 3.5px;
+  height: 52px;
+  background: linear-gradient(180deg, #3A4A36, #162214, #3A4A36);
+  border-radius: 0 2px 2px 0;
+  box-shadow: 1px 0 2px rgba(0,0,0,0.6), inset 0 1px 1px rgba(255,255,255,0.4);
+  z-index: 20;
+}
+.phone-btn-action {
+  position: absolute;
+  top: 95px;
+  left: -5.5px;
+  width: 3.5px;
+  height: 26px;
+  background: linear-gradient(180deg, #3A4A36, #B8FF3B, #3A4A36);
+  border-radius: 2px 0 0 2px;
+  box-shadow: -1px 0 2px rgba(0,0,0,0.6), inset 0 1px 1px rgba(255,255,255,0.4);
+  z-index: 20;
+}
+.phone-btn-vol-up {
+  position: absolute;
+  top: 135px;
+  left: -5.5px;
+  width: 3.5px;
+  height: 44px;
+  background: linear-gradient(180deg, #3A4A36, #162214, #3A4A36);
+  border-radius: 2px 0 0 2px;
+  box-shadow: -1px 0 2px rgba(0,0,0,0.6), inset 0 1px 1px rgba(255,255,255,0.4);
+  z-index: 20;
+}
+.phone-btn-vol-down {
+  position: absolute;
+  top: 190px;
+  left: -5.5px;
+  width: 3.5px;
+  height: 44px;
+  background: linear-gradient(180deg, #3A4A36, #162214, #3A4A36);
+  border-radius: 2px 0 0 2px;
+  box-shadow: -1px 0 2px rgba(0,0,0,0.6), inset 0 1px 1px rgba(255,255,255,0.4);
+  z-index: 20;
+}
+
+/* Ranura del altavoz superior */
+.phone-speaker-slit {
+  position: absolute;
+  top: 3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48px;
+  height: 3px;
+  background: #050805;
+  border-radius: 3px;
+  border: 0.5px solid rgba(255, 255, 255, 0.15);
+  z-index: 10;
+}
+
+/* Reflejo diagonal de cristal permanente */
+.phone-glass-sheen {
+  position: absolute;
+  inset: 0;
+  border-radius: 44px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.02) 35%, transparent 60%);
+  pointer-events: none;
+  z-index: 8;
+}
+
+/* Sombra de suelo 3D flotante */
+.phone-3d-floor-shadow {
+  width: 82%;
+  height: 22px;
+  margin-top: 14px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.88) 0%, rgba(184, 255, 59, 0.15) 45%, transparent 75%);
+  filter: blur(6px);
+  transform: rotateX(65deg);
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+.phone-card-wrap:hover .phone-3d-floor-shadow {
+  transform: rotateX(65deg) scale(1.15);
+  opacity: 0.9;
+}
+
+.phone-glare-overlay {
+  position: absolute;
+  inset: 0;
+  border-radius: 46px;
+  background: radial-gradient(circle at var(--glare-x, 50%) var(--glare-y, 50%), rgba(255, 255, 255, 0.16) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 15;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+
+.phone-mockup:hover .phone-glare-overlay {
+  opacity: 1;
 }
 
 .phone-screen {
   position: relative;
   width: 100%;
   height: 100%;
-  background: #0B0F08;
-  border-radius: 36px;
+  background: #080C09;
+  border-radius: 42px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.phone-real-screenshot {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  border-radius: 42px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
 }
 
 .phone-status-bar {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 5 !important;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.2) 75%, transparent 100%) !important;
+  padding: 8px 18px 4px !important;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 8px 16px 2px;
   font-size: 11px;
   font-weight: 700;
   color: #F4FBF1;
-  z-index: 10;
+  pointer-events: none;
 }
 
 .phone-island {
-  width: 80px;
-  height: 18px;
+  width: 68px;
+  height: 13px;
   background: #000;
-  border-radius: 20px;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 8px;
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
+  padding: 0 6px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12);
 }
 
 .phone-island-cam {
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
   background: #0F1713;
   border-radius: 50%;
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .phone-island-sensor {
-  width: 4px;
-  height: 4px;
+  width: 3px;
+  height: 3px;
   background: #142217;
   border-radius: 50%;
 }
@@ -389,11 +658,16 @@
 }
 
 .phone-home-indicator {
-  width: 90px;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.35);
-  border-radius: 4px;
-  margin: 6px auto 3px;
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 3.5px;
+  background: rgba(255, 255, 255, 0.55);
+  border-radius: 3px;
+  z-index: 6;
+  pointer-events: none;
 }
 
 /* COMPONENTES REALES DE LA APP EN LAS PANTALLAS */
@@ -965,9 +1239,16 @@
 
 .srv-compact-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
   align-items: start !important; /* CRITICAL: Evita que las tarjetas hermanas de la misma fila se estiren creando vacíos negros */
+}
+
+@media (max-width: 640px) {
+  .srv-compact-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
 }
 
 .srv-compact-card {
@@ -975,28 +1256,221 @@
   backdrop-filter: blur(var(--glass-blur));
   -webkit-backdrop-filter: blur(var(--glass-blur));
   border: 1px solid var(--glass-border);
-  border-radius: 18px;
-  padding: 16px 18px;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 20px;
+  padding: 16px;
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
   outline: none;
   position: relative;
   height: auto !important;
   align-self: start !important;
+  display: flex;
+  flex-direction: column;
 }
 
 .srv-compact-card:hover {
   border-color: rgba(184, 255, 59, 0.45);
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.6), 0 0 16px rgba(184, 255, 59, 0.12);
-  transform: translateY(-2px);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.65), 0 0 20px rgba(184, 255, 59, 0.14);
+  transform: translateY(-3px);
   z-index: 10;
 }
 
 .srv-compact-card.is-open {
   border-color: var(--lima) !important;
-  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.75), 0 0 24px rgba(184, 255, 59, 0.22) !important;
-  background: rgba(15, 23, 14, 0.94) !important;
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.8), 0 0 28px rgba(184, 255, 59, 0.25) !important;
+  background: rgba(15, 23, 14, 0.96) !important;
   z-index: 15;
+}
+
+/* ==========================================================================
+   ESTRUCTURA DE TARJETA ESTILO ÁLBUM SPOTIFY (COVER + SLEEVES + BADGE + INFO)
+   ========================================================================== */
+.spotify-cover-wrap {
+  position: relative;
+  width: 100%;
+  margin-bottom: 22px;
+  padding-right: 12px;
+  cursor: pointer;
+}
+
+.spotify-cover-art {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 14px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.srv-compact-card:hover .spotify-cover-art {
+  transform: scale(1.02);
+}
+
+.spotify-cover-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(12, 18, 10, 0.04) 0%, rgba(12, 18, 10, 0.3) 55%, rgba(12, 18, 10, 0.88) 100%);
+  pointer-events: none;
+}
+
+/* Efecto de mangas de vinilo apiladas a la derecha de la portada */
+.spotify-sleeve-stack {
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  right: 0;
+  width: 12px;
+  display: flex;
+  gap: 2.5px;
+  pointer-events: none;
+}
+
+.spotify-sleeve-layer {
+  height: 86%;
+  margin: auto 0;
+  border-radius: 0 4px 4px 0;
+}
+
+.s-layer-1 {
+  width: 4px;
+  background: rgba(28, 44, 24, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-left: none;
+  box-shadow: 2px 0 6px rgba(0, 0, 0, 0.45);
+}
+
+.s-layer-2 {
+  width: 4px;
+  height: 72%;
+  background: rgba(244, 251, 241, 0.85);
+  border-radius: 0 3px 3px 0;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.35);
+}
+
+/* Badge inferior izquierdo superpuesto sobre la carátula (como en Spotify) */
+.spotify-badge-box {
+  position: absolute;
+  bottom: -15px;
+  left: 12px;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: rgba(18, 28, 15, 0.96);
+  border: 1.5px solid rgba(184, 255, 59, 0.38);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--lima);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.75), 0 0 16px rgba(184, 255, 59, 0.2);
+  z-index: 5;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.spotify-badge-box svg {
+  width: 24px;
+  height: 24px;
+  transition: transform 0.25s ease;
+}
+
+.srv-compact-card:hover .spotify-badge-box,
+.srv-compact-card.is-open .spotify-badge-box {
+  background: var(--lima);
+  color: #0C120A;
+  transform: scale(1.08) translateY(-2px);
+  box-shadow: 0 0 26px rgba(184, 255, 59, 0.65);
+  border-color: var(--lima);
+}
+
+.srv-compact-card:hover .spotify-badge-box svg,
+.srv-compact-card.is-open .spotify-badge-box svg {
+  stroke: #0C120A;
+}
+
+/* Bloque inferior de metadatos */
+.spotify-card-body {
+  padding: 2px 4px 0;
+  cursor: pointer;
+}
+
+.spotify-card-title {
+  font-family: var(--font-title);
+  font-size: 17px;
+  font-weight: 800;
+  color: var(--tinta);
+  line-height: 1.25;
+  margin-bottom: 6px;
+  letter-spacing: -0.015em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.spotify-card-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.spotify-meta-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+
+.spotify-price-tag {
+  font-family: var(--font-main);
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--lima);
+  letter-spacing: -0.01em;
+}
+
+.spotify-short-desc {
+  font-size: 11.5px;
+  color: var(--mut);
+  line-height: 1.35;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.spotify-chevron-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(184, 255, 59, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--lima);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
+  cursor: pointer;
+  outline: none;
+  padding: 0;
+}
+
+.spotify-chevron-btn:hover {
+  background: rgba(184, 255, 59, 0.22);
+  border-color: var(--lima);
+  transform: scale(1.1);
+}
+
+.srv-compact-card.is-open .spotify-chevron-btn {
+  background: var(--lima);
+  border-color: var(--lima);
+  color: #0C120A;
+  transform: rotate(180deg);
 }
 
 .srv-card-main {
@@ -1080,21 +1554,21 @@
   transform: rotate(180deg);
 }
 
-/* DESPLEGABLE COMPACTO Y CONTROLADO (SOLO SE ABRE AL CLIC EN LA FLECHA, NO AL HOVER) */
+/* DESPLEGABLE COMPACTO Y CONTROLADO (SOLO SE ABRE AL CLIC EN LA FLECHA, NO AL PASAR EL MOUSE) */
 .srv-dropdown-pane {
   max-height: 0;
   opacity: 0;
   overflow: hidden;
-  transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease, margin-top 0.25s ease;
+  transition: max-height 0.38s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.28s ease, margin-top 0.28s ease;
   margin-top: 0;
 }
 
 .srv-compact-card.is-open .srv-dropdown-pane {
-  max-height: 320px;
+  max-height: 360px;
   opacity: 1;
-  margin-top: 12px;
+  margin-top: 14px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
-  padding-top: 10px;
+  padding-top: 12px;
 }
 
 .srv-dropdown-desc {
@@ -1265,40 +1739,701 @@
   gap: 12px;
 }
 
-  
-.logo-3d-bubble {
+/* ==========================================================================
+   SIMULADOR INTERACTIVO DE AHORRO Y DIGNIFICACIÓN TÉCNICA
+   ========================================================================== */
+.sim-card-wrap {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.sim-box {
+  background: var(--glass-surface);
+  border: 1px solid var(--glass-border-lima);
+  border-radius: 28px;
+  padding: 34px 32px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(184, 255, 59, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.sim-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.sim-label {
+  font-size: 14px;
+  color: var(--mut);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.sim-amount-display {
+  font-family: var(--font-title);
+  font-size: clamp(26px, 3.5vw, 36px);
+  font-weight: 800;
+  color: var(--lima);
+  letter-spacing: -0.5px;
+}
+
+.sim-disp-tag {
+  background: rgba(184, 255, 59, 0.1);
+  border: 1px solid rgba(184, 255, 59, 0.3);
+  color: var(--lima);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 999px;
+}
+
+.sim-range-slider {
+  width: 100%;
+  height: 8px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.12);
+  outline: none;
+  accent-color: var(--lima);
+  margin-bottom: 24px;
+  cursor: pointer;
+}
+
+.sim-cats-label {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--tinta);
+  margin-bottom: 12px;
+}
+
+.sim-tier-selector {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.sim-tier-btn {
+  background: rgba(18, 28, 18, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 18px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  color: var(--tinta);
+  font-family: var(--font-main);
+  text-align: left;
+  outline: none;
+  position: relative;
+  backdrop-filter: blur(10px);
+}
+
+.sim-tier-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.5);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.sim-placa-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.sim-placa-icon-badge {
   width: 42px;
   height: 42px;
-  background: transparent !important;
-  border: none !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: visible !important;
-  position: relative;
   flex-shrink: 0;
-  animation: logoFireflyFloat 3.6s ease-in-out infinite alternate;
-}
-.logo-3d-img {
-  width: 38px;
-  height: 38px;
-  object-fit: contain;
-  filter: drop-shadow(0 0 10px rgba(184, 255, 59, 0.75));
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), filter 0.3s ease;
-}
-.logo-3d-bubble:hover .logo-3d-img {
-  transform: scale(1.12);
-  filter: drop-shadow(0 0 20px rgba(184, 255, 59, 0.95));
-}
-@keyframes logoFireflyFloat {
-  0% { transform: translateY(0) scale(1); filter: drop-shadow(0 0 8px rgba(184,255,59,0.5)); }
-  50% { transform: translateY(-3px) scale(1.05); filter: drop-shadow(0 0 18px rgba(184,255,59,0.85)); }
-  100% { transform: translateY(0) scale(1); filter: drop-shadow(0 0 8px rgba(184,255,59,0.5)); }
+  transition: all 0.25s ease;
 }
 
-</style>
+/* Concordancia exacta de colores con los servicios y acabados metálicos */
+.sim-placa-icon-badge.oro {
+  background: rgba(255, 215, 0, 0.12);
+  border: 1px solid rgba(255, 215, 0, 0.4);
+  color: #FFD700;
+}
+.sim-placa-icon-badge.plata {
+  background: rgba(226, 232, 240, 0.12);
+  border: 1px solid rgba(226, 232, 240, 0.4);
+  color: #E2E8F0;
+}
+.sim-placa-icon-badge.bronce {
+  background: rgba(205, 127, 50, 0.14);
+  border: 1px solid rgba(205, 127, 50, 0.4);
+  color: #E09F67;
+}
+.sim-placa-icon-badge.fundador {
+  background: rgba(184, 255, 59, 0.15);
+  border: 1px solid rgba(184, 255, 59, 0.45);
+  color: #B8FF3B;
+}
+
+.sim-tier-badge {
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+}
+.sim-tier-badge.oro {
+  background: rgba(255, 215, 0, 0.15);
+  color: #FFD700;
+  border-color: rgba(255, 215, 0, 0.35);
+}
+.sim-tier-badge.plata {
+  background: rgba(226, 232, 240, 0.15);
+  color: #E2E8F0;
+  border-color: rgba(226, 232, 240, 0.35);
+}
+.sim-tier-badge.bronce {
+  background: rgba(205, 127, 50, 0.15);
+  color: #E09F67;
+  border-color: rgba(205, 127, 50, 0.35);
+}
+.sim-tier-badge.fundador {
+  background: #B8FF3B;
+  color: #0C120A;
+  border-color: #B8FF3B;
+}
+
+.sim-placa-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.sim-placa-name {
+  font-family: var(--font-title);
+  font-size: 15.5px;
+  font-weight: 800;
+  color: var(--tinta);
+}
+.sim-placa-net {
+  font-size: 12px;
+  color: var(--mut);
+  font-weight: 600;
+}
+
+/* Estados activos con brillo metálico específico */
+.sim-tier-btn.active.tier-oro {
+  background: rgba(255, 215, 0, 0.08);
+  border-color: #FFD700;
+  box-shadow: 0 0 24px rgba(255, 215, 0, 0.22);
+}
+.sim-tier-btn.active.tier-oro .sim-placa-icon-badge {
+  background: #FFD700;
+  color: #0C120A;
+}
+
+.sim-tier-btn.active.tier-plata {
+  background: rgba(226, 232, 240, 0.08);
+  border-color: #CBD5E1;
+  box-shadow: 0 0 24px rgba(203, 213, 225, 0.2);
+}
+.sim-tier-btn.active.tier-plata .sim-placa-icon-badge {
+  background: #E2E8F0;
+  color: #0C120A;
+}
+
+.sim-tier-btn.active.tier-bronce {
+  background: rgba(205, 127, 50, 0.08);
+  border-color: #E09F67;
+  box-shadow: 0 0 24px rgba(205, 127, 50, 0.2);
+}
+.sim-tier-btn.active.tier-bronce .sim-placa-icon-badge {
+  background: #E09F67;
+  color: #0C120A;
+}
+
+.sim-tier-btn.active.tier-fundador {
+  background: rgba(184, 255, 59, 0.08);
+  border-color: var(--lima);
+  box-shadow: 0 0 26px rgba(184, 255, 59, 0.28);
+}
+.sim-tier-btn.active.tier-fundador .sim-placa-icon-badge {
+  background: var(--lima);
+  color: #0C120A;
+}
+
+.sim-results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.sim-result-card {
+  background: rgba(10, 16, 9, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 16px;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+}
+
+.sim-result-card.highlight {
+  border-color: rgba(184, 255, 59, 0.5);
+  background: rgba(184, 255, 59, 0.06);
+}
+
+.sim-result-card.alert {
+  border-color: rgba(255, 99, 71, 0.3);
+  background: rgba(255, 99, 71, 0.05);
+}
+
+.sim-result-card.gold {
+  border-color: rgba(255, 250, 112, 0.4);
+  background: rgba(255, 250, 112, 0.06);
+}
+
+.sim-res-kicker {
+  font-size: 11.5px;
+  color: var(--mut);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.sim-res-value {
+  font-family: var(--font-title);
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--tinta);
+  margin-bottom: 4px;
+}
+
+.sim-result-card.highlight .sim-res-value {
+  color: var(--lima);
+}
+
+.sim-result-card.alert .sim-res-value {
+  color: #FF6B6B;
+}
+
+.sim-result-card.gold .sim-res-value {
+  color: #FFFA70;
+}
+
+.sim-res-sub {
+  font-size: 11px;
+  color: var(--mut);
+  line-height: 1.35;
+}
+
+.sim-footer-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sim-guarantee-note {
+  font-size: 12.5px;
+  color: var(--mut);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  max-width: 480px;
+}
+.sim-guarantee-note svg {
+  color: var(--lima);
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   HERO EDITORIAL DARK LUXURY · MUJER PROFESIONAL REBUSKE & ILUMINACIÓN CINEMÁTICA
+   (Inspirado directamente en la estética de estudio fotográfico de alta gama)
+   ========================================================================== */
+html {
+  scroll-behavior: smooth !important;
+}
+
+.hero-luxury-wrap {
+  position: relative;
+  min-height: 82vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: visible;
+  padding: 70px 24px 60px;
+  background: transparent !important;
+}
+
+.hero-luxury-wrap::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  bottom: -140px;
+  left: 0;
+  right: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: 
+    radial-gradient(ellipse 75% 55% at 50% 45%, rgba(184, 255, 59, 0.10) 0%, rgba(78, 136, 57, 0.04) 50%, transparent 75%),
+    linear-gradient(180deg, 
+      rgba(12, 18, 10, 0) 0%, 
+      rgba(12, 18, 10, 0.35) 10%, 
+      rgba(12, 18, 10, 0.78) 22%, 
+      rgba(12, 18, 10, 0.96) 35%, 
+      #0C120A 46%, 
+      #0C120A 64%, 
+      rgba(12, 18, 10, 0.94) 75%, 
+      rgba(12, 18, 10, 0.68) 85%, 
+      rgba(12, 18, 10, 0.28) 94%, 
+      rgba(12, 18, 10, 0) 100%
+    );
+  mask-image: linear-gradient(180deg, 
+    transparent 0%, 
+    black 12%, 
+    black 88%, 
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(180deg, 
+    transparent 0%, 
+    black 12%, 
+    black 88%, 
+    transparent 100%
+  );
+}
+
+.hero-giant-watermark {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-title);
+  font-size: clamp(80px, 16vw, 220px);
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(244, 251, 241, 0.05);
+  pointer-events: none;
+  z-index: 1;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.hero-luxury-container {
+  max-width: 1360px;
+  margin: 0 auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  position: relative;
+  z-index: 3;
+  gap: 36px;
+}
+
+@media (min-width: 992px) {
+  .hero-luxury-container {
+    grid-template-columns: 1.15fr 0.9fr 1.05fr;
+    gap: 20px;
+  }
+}
+
+/* Columna Izquierda: Copy, CTAs y Métricas */
+.hero-luxury-left {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  text-align: left;
+}
+
+.hero-pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(184, 255, 59, 0.10);
+  border: 1px solid rgba(184, 255, 59, 0.32);
+  color: var(--lima);
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 999px;
+  align-self: flex-start;
+}
+
+.hero-editorial-title {
+  font-family: var(--font-title);
+  font-size: clamp(32px, 4.2vw, 56px);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: #F4FBF1;
+  margin: 0;
+}
+
+.hero-editorial-accent {
+  background: linear-gradient(135deg, #B8FF3B 0%, #A3FF20 45%, #E2E8F0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.hero-editorial-desc {
+  font-size: clamp(15px, 1.4vw, 17px);
+  color: rgba(244, 251, 241, 0.72);
+  line-height: 1.6;
+  max-width: 480px;
+  margin: 0;
+}
+
+.hero-editorial-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.hero-metrics-row {
+  display: flex;
+  gap: 14px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+.hero-stat-card {
+  background: rgba(14, 22, 14, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 18px;
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  min-width: 140px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.5);
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.hero-stat-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.hero-stat-card.highlight {
+  border-color: rgba(184, 255, 59, 0.35);
+  background: rgba(184, 255, 59, 0.06);
+}
+
+.hero-stat-num {
+  font-family: var(--font-title);
+  font-size: 26px;
+  font-weight: 800;
+  color: #F4FBF1;
+  line-height: 1;
+}
+
+.hero-stat-card.highlight .hero-stat-num {
+  color: var(--lima);
+}
+
+.hero-stat-lbl {
+  font-size: 11px;
+  color: var(--mut);
+  margin-top: 4px;
+  font-weight: 600;
+}
+
+/* Columna Central: Retrato Profesional con Rim Light */
+.hero-portrait-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.hero-portrait-glow-halo {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(184, 255, 59, 0.32) 0%, rgba(78, 136, 57, 0.10) 50%, transparent 75%);
+  filter: blur(65px);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-portrait-frame {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 380px;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 
+    0 24px 60px rgba(0, 0, 0, 0.95),
+    0 0 50px rgba(184, 255, 59, 0.25),
+    0 0 0 1.5px rgba(184, 255, 59, 0.35);
+  transition: transform 0.4s ease;
+}
+
+.hero-portrait-frame:hover {
+  transform: translateY(-4px) scale(1.02);
+}
+
+.hero-portrait-img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  display: block;
+}
+
+.hero-portrait-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 16px;
+  background: linear-gradient(to top, rgba(5, 8, 5, 0.95) 0%, rgba(5, 8, 5, 0.6) 60%, transparent 100%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hero-portrait-caption span {
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #F4FBF1;
+}
+
+.hero-portrait-tag {
+  background: rgba(184, 255, 59, 0.15);
+  border: 1px solid var(--lima);
+  color: var(--lima);
+  font-size: 9.5px;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+
+/* Columna Derecha: Tarjeta Flotante Bóveda & Garantía */
+.hero-luxury-right {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+@media (min-width: 992px) {
+  .hero-luxury-right {
+    align-items: flex-end;
+  }
+}
+
+.hero-statement-text {
+  font-family: var(--font-title);
+  font-size: clamp(20px, 2.5vw, 32px);
+  font-weight: 800;
+  line-height: 1.15;
+  color: rgba(244, 251, 241, 0.88);
+  letter-spacing: -0.01em;
+  text-align: left;
+}
+@media (min-width: 992px) {
+  .hero-statement-text {
+    text-align: right;
+  }
+}
+
+.hero-feature-card {
+  background: rgba(14, 22, 14, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 22px;
+  padding: 22px 24px;
+  max-width: 360px;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(184, 255, 59, 0.15);
+  text-align: left;
+  border-top: 3px solid var(--lima);
+}
+
+.hero-feature-hd {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.hero-feature-pill {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--lima);
+  background: rgba(184, 255, 59, 0.12);
+  padding: 3px 9px;
+  border-radius: 6px;
+  border: 1px solid rgba(184, 255, 59, 0.30);
+}
+
+.hero-feature-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #B8FF3B;
+  box-shadow: 0 0 8px #B8FF3B;
+}
+
+.hero-feature-title {
+  font-family: var(--font-title);
+  font-size: 17px;
+  font-weight: 800;
+  color: #F4FBF1;
+  margin-bottom: 6px;
+}
+
+.hero-feature-text {
+  font-size: 13px;
+  color: var(--mut);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.hero-feature-badges {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.hero-feature-badges span {
+  font-size: 11.5px;
+  color: rgba(244, 251, 241, 0.85);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hero-feature-badges svg {
+  color: var(--lima);
+  flex-shrink: 0;
+}
+
+
+/* Transición continua 100% fluida, orgánica y sin líneas ni cortes */
+.hero-bottom-blend {
+  display: none !important;
+}
+
+
+  </style>
 </head>
 <body>
 
@@ -1309,22 +2444,17 @@
   </div>
 
   <!-- BARRA SUPERIOR -->
-  <header class="top-bar" id="topBar">
+  <header class="top-bar">
     <a href="/entrada" class="brand-logo" title="rebuske Medellín · Página Web Principal">
-      <div class="logo-3d-bubble pulse-c" title="Luciérnaga Rebuske 3D">
-        <img src="/assets/icons/luciernaga_3d_animada.webp" alt="Luciérnaga 3D Rebuske" class="logo-3d-img">
-      </div>
-      <div style="display:flex;flex-direction:column;line-height:1.1;">
-        <span class="brand-name">rebuske</span>
-        <span class="brand-tag">Medellín 2026</span>
-      </div>
+      <span class="brand-logo-dot" aria-hidden="true"></span>
+      <span class="brand-name">rebuske</span>
+      <span class="brand-tag">Medellín 2026</span>
     </a>
-    <nav class="top-actions" aria-label="Navegación unificada">
-      <a href="/entrada#quienes-somos" class="btn-nav-link" title="Quiénes Somos · Conoce nuestra historia">Quiénes somos</a>
-      <a href="/entrada#nuestros-servicios" class="btn-nav-link" title="Qué Hacemos · 17 especialidades y tarifas">Qué hacemos</a>
-      <a href="/entrada#contacto" class="btn-pill-primary sheen" title="Contacto y Soporte Oficial">
-        <span>Contacto</span>
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    <nav class="top-actions" aria-label="Navegación oficial">
+      <a href="/entrada" class="btn-nav-link" title="Página Web de Entrada">Página Web</a>
+      <a href="/app" class="btn-pill-primary sheen" title="Abrir la Aplicación rebuske">
+        <span>Abrir App</span>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       </a>
     </nav>
   </header>
@@ -1367,10 +2497,10 @@
       <div class="tri-modal-card" style="border-top-color: var(--canario);">
         <div class="tri-modal-header">
           <div class="tri-modal-icon" style="color: #FFFA70; border-color: rgba(255,250,112,0.3); background: rgba(255,250,112,0.1);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
-          <div class="tri-modal-title" style="color: var(--canario);">2. Bóveda de Sesiones Progresivas</div>
+          <div class="tri-modal-title" style="color: var(--canario);">2. Bóveda de Sesiones Progresivas & Paquetes Semanales</div>
         </div>
         <p class="tri-modal-desc">
-          Diseñado para clases particulares, tutorías académicas y Enseñanza de música: el cliente adquiere un paquete de 2 a 4 semanas y la bóveda libera el pago sesión a sesión tras confirmar asistencia. Saldo no visto 100% reembolsable.
+          Paquetes programados de 1, 2, 3 o 4 semanas aplicados exclusivamente a Plomería, Electricidad, Construcción y Remodelación, además de Bóveda de Sesiones Progresivas para Clases Particulares y Enseñanza de música (mínimo 2 horas por sesión). No aplica a Cerrajería ni Electrodomésticos (labor única). Saldo no ejecutado 100% reembolsable.
         </p>
       </div>
 
@@ -1394,9 +2524,8 @@
 
     <!-- Filtros de categoría -->
     <div class="srv-filter-bar">
-      <button class="srv-filter-btn active" onclick="filtrarGrupoSrv('todos', this)">Todas las 18 Especialidades</button>
+      <button class="srv-filter-btn active" onclick="filtrarGrupoSrv('todos', this)">Todas las 17 Especialidades</button>
       <button class="srv-filter-btn" onclick="filtrarGrupoSrv('hogar', this)">Hogar & Reparaciones</button>
-      <button class="srv-filter-btn" onclick="filtrarGrupoSrv('mascotas', this)">Mascotas & Veterinaria</button>
       <button class="srv-filter-btn" onclick="filtrarGrupoSrv('educacion', this)">Educación & Clases</button>
       <button class="srv-filter-btn" onclick="filtrarGrupoSrv('tecnologia', this)">Tecnología & Electro</button>
       <button class="srv-filter-btn" onclick="filtrarGrupoSrv('transporte', this)">Transporte & Autos</button>
@@ -1406,65 +2535,78 @@
       <button class="srv-filter-btn" onclick="filtrarGrupoSrv('profesional', this)">Servicios Profesionales</button>
     </div>
 
-    <!-- Cuadrícula compacta de 17 tarjetas con hover -->
+    <!-- Cuadrícula compacta de 18 tarjetas estilo álbum Spotify -->
     <div class="srv-compact-grid" id="srvCompactGrid">
       
-        <article class="srv-compact-card" data-group="hogar" data-id="limpieza" tabindex="0">
-          <div class="srv-card-main">
-            <div class="srv-icon-badge">
+        <article class="srv-compact-card spotify-card" data-group="hogar" data-id="limpieza">
+          <div class="spotify-cover-wrap" onclick="toggleSrvCard(this, event)">
+            <div class="spotify-cover-art" style="background-image: url('https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=600&auto=format&fit=crop&q=80');">
+              <div class="spotify-cover-overlay"></div>
+            </div>
+            <div class="spotify-sleeve-stack" aria-hidden="true">
+              <div class="spotify-sleeve-layer s-layer-1"></div>
+              <div class="spotify-sleeve-layer s-layer-2"></div>
+            </div>
+            <div class="spotify-badge-box" title="Limpieza y Aseo">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l2.4 5 5.6.8-4 4 1 5.6-5-2.6-5 2.6 1-5.6-4-4 5.6-.8z"/><path d="M19 19l2 2M5 19l-2 2"/></svg>
             </div>
-            <div class="srv-info">
-              <div class="srv-num-tag">1. Limpieza y Aseo</div>
-              <div class="srv-price-base">desde $82.540 COP</div>
-            </div>
-            <button type="button" class="srv-chevron-wrap" title="Clic para ver labores" onclick="toggleSrvCard(this, event)">
-              <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </button>
           </div>
 
-          <div class="srv-dropdown-pane">
+          <div class="spotify-card-body" onclick="toggleSrvCard(this, event)">
+            <h3 class="spotify-card-title">1. Limpieza y Aseo</h3>
+            <div class="spotify-card-row">
+              <div class="spotify-meta-text">
+                <span class="spotify-price-tag">desde $57.490 COP</span>
+                <span class="spotify-short-desc">Aseo integral de casas, oficinas, muebles y fin de obra</span>
+              </div>
+              <button type="button" class="spotify-chevron-btn srv-chevron-wrap" title="Ver labores de Limpieza y Aseo" aria-label="Ver labores de Limpieza y Aseo" onclick="toggleSrvCard(this, event)">
+                <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="srv-dropdown-pane" onclick="event.stopPropagation()">
             <p class="srv-dropdown-desc">
-              Aseo profesional de hogares, oficinas, tapicería y fin de obra con personal verificado. 
+              Aseo integral de cocina, baños, pisos, ventanas, alcobas, muebles y fin de obra con personal verificado. 
             </p>
             <div class="srv-dropdown-table">
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Limpieza profunda de hogares y apartamentos</strong>
-                    <small>Cocina, baños, pisos, ventanas y alcobas</small>
+                    <strong>Limpieza profunda de hogares</strong>
+                    <small>Aseo integral de cocina, baños, pisos, ventanas y alcobas</small>
                   </div>
                   <div class="srv-row-price">$82.540 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Lavado y desinfección de muebles y sofás</strong>
-                    <small>Inyección-extracción profunda con vapor</small>
+                    <strong>Lavado de muebles y sofás</strong>
+                    <small>Limpieza por inyección-extracción profunda con vapor para desinfectar tejidos</small>
                   </div>
                   <div class="srv-row-price">$74.820 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Aseo general de oficinas y locales comerciales</strong>
-                    <small>Jornada por labor o desinfección programada</small>
+                    <strong>Aseo de oficinas y locales</strong>
+                    <small>Jornada completa de limpieza o desinfección programada para espacios comerciales</small>
                   </div>
                   <div class="srv-row-price">$93.650 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Limpieza fin de obra y remodelaciones</strong>
-                    <small>Remoción de polvo fino, pintura y escombros leves</small>
+                    <strong>Limpieza fin de obra</strong>
+                    <small>Remoción especializada de polvo fino, residuos de pintura y escombros leves post-remodelación</small>
                   </div>
                   <div class="srv-row-price">$142.380 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Lavado y aspirado de alfombras y tapetes</strong>
-                    <small>Por metro cuadrado o pieza individual</small>
+                    <strong>Lavado de alfombras y tapetes</strong>
+                    <small>Servicio por metro cuadrado o pieza individual para renovar fibras y colores</small>
                   </div>
                   <div class="srv-row-price">$57.490 COP</div>
                 </div>
@@ -1477,198 +2619,237 @@
           </div>
         </article>
       
-        <article class="srv-compact-card" data-group="hogar" data-id="plomeria" tabindex="0">
-          <div class="srv-card-main">
-            <div class="srv-icon-badge">
+        <article class="srv-compact-card spotify-card" data-group="hogar" data-id="plomeria">
+          <div class="spotify-cover-wrap" onclick="toggleSrvCard(this, event)">
+            <div class="spotify-cover-art" style="background-image: url('/assets/images/categories/plomeria_pvc.jpg');">
+              <div class="spotify-cover-overlay"></div>
+            </div>
+            <div class="spotify-sleeve-stack" aria-hidden="true">
+              <div class="spotify-sleeve-layer s-layer-1"></div>
+              <div class="spotify-sleeve-layer s-layer-2"></div>
+            </div>
+            <div class="spotify-badge-box" title="Plomería y Redes Hidráulicas">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 6.5a4 4 0 0 0 5 5L12 19l-3-3 7.5-7.5z"/><path d="M6 18l-3 3M9 15l-2 2"/></svg>
             </div>
-            <div class="srv-info">
-              <div class="srv-num-tag">2. Plomería y Redes Hidráulicas</div>
-              <div class="srv-price-base">desde $62.840 COP</div>
-            </div>
-            <button type="button" class="srv-chevron-wrap" title="Clic para ver labores" onclick="toggleSrvCard(this, event)">
-              <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </button>
           </div>
 
-          <div class="srv-dropdown-pane">
+          <div class="spotify-card-body" onclick="toggleSrvCard(this, event)">
+            <h3 class="spotify-card-title">2. Plomería y Redes Hidráulicas</h3>
+            <div class="spotify-card-row">
+              <div class="spotify-meta-text">
+                <span class="spotify-price-tag">desde $62.840 COP</span>
+                <span class="spotify-short-desc">Fugas visibles y ocultas, destapes y geófono acústico</span>
+              </div>
+              <button type="button" class="spotify-chevron-btn srv-chevron-wrap" title="Ver labores de Plomería y Redes Hidráulicas" aria-label="Ver labores de Plomería y Redes Hidráulicas" onclick="toggleSrvCard(this, event)">
+                <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="srv-dropdown-pane" onclick="event.stopPropagation()">
             <p class="srv-dropdown-desc">
-              Reparación de fugas, destapes urgentes, griferías y redes de agua potable. 
+              Reparación de fugas, destapes de cañerías, griferías, tuberías ocultas y geófono acústico. 
             </p>
             <div class="srv-dropdown-table">
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Reparación de fuga visible en tubería de agua</strong>
-                    <small>PVC, cobre o galvanizado en cocina o baño</small>
+                    <strong>Reparación fuga visible</strong>
+                    <small>Reparación de tuberías de PVC, cobre o galvanizado en zonas visibles como cocina o baño</small>
                   </div>
                   <div class="srv-row-price">$62.840 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Destape de cañerías, bajantes y sifones</strong>
-                    <small>Sonda eléctrica o destape mecánico sin romper</small>
+                    <strong>Destape de cañerías y sifones</strong>
+                    <small>Uso de sonda eléctrica o métodos mecánicos para destapar sin romper estructuras</small>
                   </div>
                   <div class="srv-row-price">$68.920 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Instalación de grifería, lavamanos y sanitarios</strong>
-                    <small>Cambio de mezclador, llave de paso o cisterna</small>
+                    <strong>Instalación de grifería</strong>
+                    <small>Cambio e instalación de mezcladores, llaves de paso o cisternas de sanitario</small>
                   </div>
                   <div class="srv-row-price">$74.380 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Reparación de tubería oculta o empate PVC</strong>
-                    <small>Picada técnica puntual y sellado hermético</small>
+                    <strong>Reparación tubería oculta</strong>
+                    <small>Intervención técnica puntual (picada) para reparar fugas bajo piso y sellado hermético</small>
                   </div>
                   <div class="srv-row-price">$132.690 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Detección técnica de fugas con geófono</strong>
-                    <small>Localización acústica no destructiva bajo piso</small>
+                    <strong>Detección de fugas (Geófono)</strong>
+                    <small>Localización acústica no destructiva de fugas escondidas bajo pisos o muros</small>
                   </div>
                   <div class="srv-row-price">$184.750 COP</div>
                 </div>
               
             </div>
             <div class="srv-dropdown-footer">
-              <span class="srv-modality-pill">Labor Única / Bóveda Escrow</span>
+              <span class="srv-modality-pill">Labor Única / Paquetes Semanales (1, 2, 3 o 4 semanas)</span>
               <span class="srv-guarantee-pill">Garantía Escrita 48h (Ley 1480)</span>
             </div>
           </div>
         </article>
       
-        <article class="srv-compact-card" data-group="hogar" data-id="electricidad" tabindex="0">
-          <div class="srv-card-main">
-            <div class="srv-icon-badge">
+        <article class="srv-compact-card spotify-card" data-group="hogar" data-id="electricidad">
+          <div class="spotify-cover-wrap" onclick="toggleSrvCard(this, event)">
+            <div class="spotify-cover-art" style="background-image: url('https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&auto=format&fit=crop&q=80');">
+              <div class="spotify-cover-overlay"></div>
+            </div>
+            <div class="spotify-sleeve-stack" aria-hidden="true">
+              <div class="spotify-sleeve-layer s-layer-1"></div>
+              <div class="spotify-sleeve-layer s-layer-2"></div>
+            </div>
+            <div class="spotify-badge-box" title="Electricidad Residencial">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg>
             </div>
-            <div class="srv-info">
-              <div class="srv-num-tag">3. Electricidad Residencial y Comercial</div>
-              <div class="srv-price-base">desde $52.540 COP</div>
-            </div>
-            <button type="button" class="srv-chevron-wrap" title="Clic para ver labores" onclick="toggleSrvCard(this, event)">
-              <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </button>
           </div>
 
-          <div class="srv-dropdown-pane">
+          <div class="spotify-card-body" onclick="toggleSrvCard(this, event)">
+            <h3 class="spotify-card-title">3. Electricidad Residencial</h3>
+            <div class="spotify-card-row">
+              <div class="spotify-meta-text">
+                <span class="spotify-price-tag">desde $43.680 COP</span>
+                <span class="spotify-short-desc">Cortos circuitos, iluminación LED y cajas de breakers</span>
+              </div>
+              <button type="button" class="spotify-chevron-btn srv-chevron-wrap" title="Ver labores de Electricidad Residencial" aria-label="Ver labores de Electricidad Residencial" onclick="toggleSrvCard(this, event)">
+                <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="srv-dropdown-pane" onclick="event.stopPropagation()">
             <p class="srv-dropdown-desc">
-              Diagnóstico de cortos, breakers, iluminación LED, cableado y redes 110V/220V. 
+              Diagnóstico de cortos, puntos eléctricos, iluminación LED, cajas de breakers y acometidas seguras. 
             </p>
             <div class="srv-dropdown-table">
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Revisión diagnóstica y reparación de corto circuito</strong>
-                    <small>Aislamiento de falla y restablecimiento seguro</small>
+                    <strong>Reparación corto circuito</strong>
+                    <small>Diagnóstico, aislamiento de la falla eléctrica y restablecimiento seguro del servicio</small>
                   </div>
                   <div class="srv-row-price">$52.540 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Instalación o cambio de tomas, apagadores y rosetas</strong>
-                    <small>Hasta 3 puntos eléctricos o interruptores dobles</small>
+                    <strong>Instalación tomas/apagadores</strong>
+                    <small>Instalación o cambio de hasta 3 puntos eléctricos, rosetas o interruptores dobles</small>
                   </div>
                   <div class="srv-row-price">$43.680 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Instalación de lámparas, paneles LED y reflectores</strong>
-                    <small>Fijación en techo o muro y conexión segura</small>
+                    <strong>Instalación lámparas LED</strong>
+                    <small>Fijación segura en techo o muro y conexión eléctrica de paneles o reflectores</small>
                   </div>
                   <div class="srv-row-price">$64.250 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Mantenimiento e instalación de caja de breakers</strong>
-                    <small>Cambio de tacos térmicos y ajuste de barras</small>
+                    <strong>Mantenimiento caja breakers</strong>
+                    <small>Revisión, cambio de tacos térmicos dañados y ajuste general de barras conductoras</small>
                   </div>
                   <div class="srv-row-price">$96.840 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Cableado estructurado y balanceo de cargas</strong>
-                    <small>Por circuito independiente o acometida</small>
+                    <strong>Cableado estructurado</strong>
+                    <small>Instalación de circuitos independientes o balanceo de cargas para acometidas nuevas</small>
                   </div>
                   <div class="srv-row-price">$143.650 COP</div>
                 </div>
               
             </div>
             <div class="srv-dropdown-footer">
-              <span class="srv-modality-pill">Labor Única / Bóveda Escrow</span>
+              <span class="srv-modality-pill">Labor Única / Paquetes Semanales (1, 2, 3 o 4 semanas)</span>
               <span class="srv-guarantee-pill">Garantía Escrita 48h (Ley 1480)</span>
             </div>
           </div>
         </article>
       
-        <article class="srv-compact-card" data-group="hogar" data-id="pintura" tabindex="0">
-          <div class="srv-card-main">
-            <div class="srv-icon-badge">
+        <article class="srv-compact-card spotify-card" data-group="hogar" data-id="pintura">
+          <div class="spotify-cover-wrap" onclick="toggleSrvCard(this, event)">
+            <div class="spotify-cover-art" style="background-image: url('/assets/images/categories/pintura_latas.jpg');">
+              <div class="spotify-cover-overlay"></div>
+            </div>
+            <div class="spotify-sleeve-stack" aria-hidden="true">
+              <div class="spotify-sleeve-layer s-layer-1"></div>
+              <div class="spotify-sleeve-layer s-layer-2"></div>
+            </div>
+            <div class="spotify-badge-box" title="Pintura y Acabados">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="6" rx="2"/><path d="M19 9v3a2 2 0 0 1-2 2h-5v7a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-7H4"/></svg>
             </div>
-            <div class="srv-info">
-              <div class="srv-num-tag">4. Pintura y Acabados de Muros</div>
-              <div class="srv-price-base">desde $56.740 COP</div>
-            </div>
-            <button type="button" class="srv-chevron-wrap" title="Clic para ver labores" onclick="toggleSrvCard(this, event)">
-              <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </button>
           </div>
 
-          <div class="srv-dropdown-pane">
+          <div class="spotify-card-body" onclick="toggleSrvCard(this, event)">
+            <h3 class="spotify-card-title">4. Pintura y Acabados</h3>
+            <div class="spotify-card-row">
+              <div class="spotify-meta-text">
+                <span class="spotify-price-tag">desde $18.420 COP / m²</span>
+                <span class="spotify-short-desc">Resane de muros, vinilo tipo 1 y acabados integrales</span>
+              </div>
+              <button type="button" class="spotify-chevron-btn srv-chevron-wrap" title="Ver labores de Pintura y Acabados" aria-label="Ver labores de Pintura y Acabados" onclick="toggleSrvCard(this, event)">
+                <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="srv-dropdown-pane" onclick="event.stopPropagation()">
             <p class="srv-dropdown-desc">
-              Resane, estuco, pintura vinilo lavable interior, fachadas e impermeabilización. 
+              Resane de muros, vinilo lavable tipo 1, pintura de apartamentos, impermeabilización y esmaltado. 
             </p>
             <div class="srv-dropdown-table">
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Resane puntual y preparación de muros con estuco</strong>
-                    <small>Corrección de fisuras, humedades secas y lijado</small>
+                    <strong>Resane y preparación muros</strong>
+                    <small>Corrección de fisuras, tratamiento de humedades secas y lijado previo a la pintura</small>
                   </div>
                   <div class="srv-row-price">$56.740 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Pintura por metro cuadrado muro interior</strong>
-                    <small>Dos manos de vinilo lavable tipo 1</small>
+                    <strong>Pintura muro interior (m²)</strong>
+                    <small>Aplicación de dos manos de vinilo lavable tipo 1 por metro cuadrado</small>
                   </div>
                   <div class="srv-row-price">$18.420 COP / m²</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Pintura completa de apartamento estándar</strong>
-                    <small>Sala, comedor, 2 alcobas y pasillo (mano de obra)</small>
+                    <strong>Pintura apartamento estándar</strong>
+                    <small>Mano de obra completa para sala, comedor, dos alcobas y pasillo</small>
                   </div>
                   <div class="srv-row-price">$428.600 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Impermeabilización de muros contra humedad</strong>
-                    <small>Tratamiento hidrófugo y sellador antihongos</small>
+                    <strong>Impermeabilización muros</strong>
+                    <small>Aplicación de tratamiento hidrófugo y sellador antihongos para paredes afectadas</small>
                   </div>
                   <div class="srv-row-price">$112.450 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Esmaltado de puertas, rejas y cerrajería metálica</strong>
-                    <small>Lijado anticorrosivo y esmalte brillante o mate</small>
+                    <strong>Esmaltado puertas/rejas</strong>
+                    <small>Lijado anticorrosivo y aplicación de esmalte brillante o mate en cerrajería metálica</small>
                   </div>
                   <div class="srv-row-price">$73.890 COP</div>
                 </div>
@@ -1681,62 +2862,75 @@
           </div>
         </article>
       
-        <article class="srv-compact-card" data-group="hogar" data-id="carpinteria" tabindex="0">
-          <div class="srv-card-main">
-            <div class="srv-icon-badge">
+        <article class="srv-compact-card spotify-card" data-group="hogar" data-id="carpinteria">
+          <div class="spotify-cover-wrap" onclick="toggleSrvCard(this, event)">
+            <div class="spotify-cover-art" style="background-image: url('/assets/images/categories/carpinteria_madera.jpg');">
+              <div class="spotify-cover-overlay"></div>
+            </div>
+            <div class="spotify-sleeve-stack" aria-hidden="true">
+              <div class="spotify-sleeve-layer s-layer-1"></div>
+              <div class="spotify-sleeve-layer s-layer-2"></div>
+            </div>
+            <div class="spotify-badge-box" title="Carpintería y Ebanistería">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 3l3 3-10 10H8v-3L18 3z"/><path d="M14 7l3 3M4 21h16"/></svg>
             </div>
-            <div class="srv-info">
-              <div class="srv-num-tag">5. Carpintería y Ebanistería</div>
-              <div class="srv-price-base">desde $64.820 COP</div>
-            </div>
-            <button type="button" class="srv-chevron-wrap" title="Clic para ver labores" onclick="toggleSrvCard(this, event)">
-              <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </button>
           </div>
 
-          <div class="srv-dropdown-pane">
+          <div class="spotify-card-body" onclick="toggleSrvCard(this, event)">
+            <h3 class="spotify-card-title">5. Carpintería y Ebanistería</h3>
+            <div class="spotify-card-row">
+              <div class="spotify-meta-text">
+                <span class="spotify-price-tag">desde $53.690 COP</span>
+                <span class="spotify-short-desc">Ajuste de puertas, modulares, rieles y repisas a medida</span>
+              </div>
+              <button type="button" class="spotify-chevron-btn srv-chevron-wrap" title="Ver labores de Carpintería y Ebanistería" aria-label="Ver labores de Carpintería y Ebanistería" onclick="toggleSrvCard(this, event)">
+                <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="srv-dropdown-pane" onclick="event.stopPropagation()">
             <p class="srv-dropdown-desc">
-              Muebles a medida, ajuste de puertas, cocinas modulares, closets y barnizado. 
+              Ajuste de puertas, ensamble de modulares, rieles, barnizado y repisas a medida en madera o aglomerado RH. 
             </p>
             <div class="srv-dropdown-table">
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Ajuste y cepillado de puertas y bisagras</strong>
-                    <small>Corrección de arrastre, roce con piso o marco</small>
+                    <strong>Ajuste puertas y bisagras</strong>
+                    <small>Corrección de puertas que arrastran, rozan con el piso o tienen marcos desajustados</small>
                   </div>
                   <div class="srv-row-price">$64.820 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Armado y ensamble de muebles modulares</strong>
-                    <small>Escritorios, armarios, racks de TV o cajoneras</small>
+                    <strong>Armado muebles modulares</strong>
+                    <small>Ensamble profesional de escritorios, armarios, racks de TV o cajoneras compradas en kit</small>
                   </div>
                   <div class="srv-row-price">$78.340 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Reparación de cajones, rieles y manijas</strong>
-                    <small>Cambio de correderas telescópicas o bisagras cierre lento</small>
+                    <strong>Reparación cajones/rieles</strong>
+                    <small>Cambio de correderas telescópicas dañadas o ajuste de bisagras de cierre lento</small>
                   </div>
                   <div class="srv-row-price">$53.690 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Barnizado, tintillado y restauración de muebles</strong>
-                    <small>Mesas, sillas o puertas de madera maciza</small>
+                    <strong>Barnizado y restauración</strong>
+                    <small>Restauración estética y protectora de mesas, sillas o puertas de madera maciza</small>
                   </div>
                   <div class="srv-row-price">$118.420 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Fabricación de repisas y estanterías a medida</strong>
-                    <small>En aglomerado RH o madera pino / cedro</small>
+                    <strong>Repisas y estanterías a medida</strong>
+                    <small>Fabricación e instalación en aglomerado RH o madera natural (pino/cedro)</small>
                   </div>
                   <div class="srv-row-price">$134.750 COP</div>
                 </div>
@@ -1749,130 +2943,156 @@
           </div>
         </article>
       
-        <article class="srv-compact-card" data-group="hogar" data-id="cerrajeria" tabindex="0">
-          <div class="srv-card-main">
-            <div class="srv-icon-badge">
+        <article class="srv-compact-card spotify-card" data-group="hogar" data-id="cerrajeria">
+          <div class="spotify-cover-wrap" onclick="toggleSrvCard(this, event)">
+            <div class="spotify-cover-art" style="background-image: url('https://images.unsplash.com/photo-1558002038-1055907df827?w=600&auto=format&fit=crop&q=80');">
+              <div class="spotify-cover-overlay"></div>
+            </div>
+            <div class="spotify-sleeve-stack" aria-hidden="true">
+              <div class="spotify-sleeve-layer s-layer-1"></div>
+              <div class="spotify-sleeve-layer s-layer-2"></div>
+            </div>
+            <div class="spotify-badge-box" title="Cerrajería y Seguridad">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/><circle cx="12" cy="16" r="1.5"/></svg>
             </div>
-            <div class="srv-info">
-              <div class="srv-num-tag">6. Cerrajería y Seguridad</div>
-              <div class="srv-price-base">desde $63.480 COP</div>
-            </div>
-            <button type="button" class="srv-chevron-wrap" title="Clic para ver labores" onclick="toggleSrvCard(this, event)">
-              <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </button>
           </div>
 
-          <div class="srv-dropdown-pane">
+          <div class="spotify-card-body" onclick="toggleSrvCard(this, event)">
+            <h3 class="spotify-card-title">6. Cerrajería y Seguridad</h3>
+            <div class="spotify-card-row">
+              <div class="spotify-meta-text">
+                <span class="spotify-price-tag">desde $63.480 COP</span>
+                <span class="spotify-short-desc">Aperturas de emergencia, guardas y cerraduras digitales</span>
+              </div>
+              <button type="button" class="spotify-chevron-btn srv-chevron-wrap" title="Ver labores de Cerrajería y Seguridad" aria-label="Ver labores de Cerrajería y Seguridad" onclick="toggleSrvCard(this, event)">
+                <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="srv-dropdown-pane" onclick="event.stopPropagation()">
             <p class="srv-dropdown-desc">
-              Aperturas residenciales urgentes, cambio de guardas, cerraduras biométricas y digitales. 
+              Aperturas residenciales urgentes, cambio de guardas, cerrojos de sobreponer, cerraduras biométricas y vehículos. 
             </p>
             <div class="srv-dropdown-table">
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Apertura de puerta residencial estándar</strong>
-                    <small>Técnica no destructiva en cilindro o pomo</small>
+                    <strong>Apertura puerta residencial</strong>
+                    <small>Apertura técnica no destructiva de cilindros o pomos de puertas estándar</small>
                   </div>
                   <div class="srv-row-price">$63.480 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Cambio de guarda, cilindro y juego de llaves</strong>
-                    <small>Incluye suministro de cilindro nuevo y 3 llaves</small>
+                    <strong>Cambio de guarda/cilindro</strong>
+                    <small>Incluye el suministro del cilindro nuevo y la entrega de 3 llaves codificadas</small>
                   </div>
                   <div class="srv-row-price">$84.230 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Instalación de cerradura de sobreponer</strong>
-                    <small>Tipo cerrojo de seguridad Yale o Schlage</small>
+                    <strong>Instalación cerradura sobreponer</strong>
+                    <small>Instalación de cerrojos de seguridad adicionales tipo Yale o Schlage</small>
                   </div>
                   <div class="srv-row-price">$76.540 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Instalación de cerradura de alta seguridad o biométrica</strong>
-                    <small>Perforación exacta y calibración digital</small>
+                    <strong>Cerradura biométrica/digital</strong>
+                    <small>Perforación exacta en la puerta y calibración digital del sistema de acceso</small>
                   </div>
                   <div class="srv-row-price">$124.950 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Apertura de chapa vehicular o caja fuerte</strong>
-                    <small>Ganzuado especializado de precisión</small>
+                    <strong>Apertura chapa vehicular/caja</strong>
+                    <small>Servicio especializado de ganzuado de precisión para autos o cajas fuertes</small>
                   </div>
                   <div class="srv-row-price">$112.380 COP</div>
                 </div>
               
             </div>
             <div class="srv-dropdown-footer">
-              <span class="srv-modality-pill">Labor Única / Urgencia Inmediata</span>
+              <span class="srv-modality-pill">Labor Única / Urgencia Inmediata (Sin paquetes semanales)</span>
               <span class="srv-guarantee-pill">Garantía Escrita 48h (Ley 1480)</span>
             </div>
           </div>
         </article>
       
-        <article class="srv-compact-card" data-group="hogar" data-id="jardineria" tabindex="0">
-          <div class="srv-card-main">
-            <div class="srv-icon-badge">
+        <article class="srv-compact-card spotify-card" data-group="hogar" data-id="jardineria">
+          <div class="spotify-cover-wrap" onclick="toggleSrvCard(this, event)">
+            <div class="spotify-cover-art" style="background-image: url('https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?w=600&auto=format&fit=crop&q=80');">
+              <div class="spotify-cover-overlay"></div>
+            </div>
+            <div class="spotify-sleeve-stack" aria-hidden="true">
+              <div class="spotify-sleeve-layer s-layer-1"></div>
+              <div class="spotify-sleeve-layer s-layer-2"></div>
+            </div>
+            <div class="spotify-badge-box" title="Jardinería y Exteriores">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 20A7 7 0 0 1 4 13C4 8 11 2 11 2s7 6 7 11a7 7 0 0 1-7 7z"/><path d="M11 2v18"/></svg>
             </div>
-            <div class="srv-info">
-              <div class="srv-num-tag">7. Jardinería y Exteriores</div>
-              <div class="srv-price-base">desde $58.340 COP</div>
-            </div>
-            <button type="button" class="srv-chevron-wrap" title="Clic para ver labores" onclick="toggleSrvCard(this, event)">
-              <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </button>
           </div>
 
-          <div class="srv-dropdown-pane">
+          <div class="spotify-card-body" onclick="toggleSrvCard(this, event)">
+            <h3 class="spotify-card-title">7. Jardinería y Exteriores</h3>
+            <div class="spotify-card-row">
+              <div class="spotify-meta-text">
+                <span class="spotify-price-tag">desde $58.340 COP</span>
+                <span class="spotify-short-desc">Poda de césped, árboles, siembra y paisajismo mensual</span>
+              </div>
+              <button type="button" class="spotify-chevron-btn srv-chevron-wrap" title="Ver labores de Jardinería y Exteriores" aria-label="Ver labores de Jardinería y Exteriores" onclick="toggleSrvCard(this, event)">
+                <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="srv-dropdown-pane" onclick="event.stopPropagation()">
             <p class="srv-dropdown-desc">
-              Mantenimiento de zonas verdes, poda de árboles, césped y paisajismo. 
+              Poda de césped, descope de árboles, siembra, fertilización, paisajismo mensual y fumigación fitosanitaria. 
             </p>
             <div class="srv-dropdown-table">
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Poda de césped y orillado de jardines</strong>
-                    <small>Hasta 60 m² con guadaña y recolección verde</small>
+                    <strong>Poda de césped y orillado</strong>
+                    <small>Corte de hasta 60 m² con guadaña, orillado preciso y recolección del verde</small>
                   </div>
                   <div class="srv-row-price">$58.340 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Poda estética de árboles y arbustos</strong>
-                    <small>Descope seguro, formación y despeje de cables</small>
+                    <strong>Poda árboles y arbustos</strong>
+                    <small>Descope seguro, formación estética y despeje de ramas cerca de cables eléctricos</small>
                   </div>
                   <div class="srv-row-price">$83.650 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Siembra, fertilización y abono orgánico</strong>
-                    <small>Renovación de tierra negra y sustrato mineral</small>
+                    <strong>Siembra y fertilización</strong>
+                    <small>Renovación de tierra negra, aplicación de sustrato mineral y abono orgánico</small>
                   </div>
                   <div class="srv-row-price">$72.480 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Diseño paisajístico y mantenimiento mensual</strong>
-                    <small>Plan recurrente de riego y cuidado integral</small>
+                    <strong>Diseño paisajístico mensual</strong>
+                    <small>Plan recurrente de mantenimiento, riego y cuidado integral de zonas verdes</small>
                   </div>
                   <div class="srv-row-price">$164.290 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Fumigación fitosanitaria contra plagas de jardín</strong>
-                    <small>Tratamiento contra cochinilla, pulgón y hongos</small>
+                    <strong>Fumigación fitosanitaria</strong>
+                    <small>Tratamiento químico o ecológico contra plagas como cochinilla, pulgón y hongos</small>
                   </div>
                   <div class="srv-row-price">$91.750 COP</div>
                 </div>
@@ -1885,334 +3105,447 @@
           </div>
         </article>
       
-        <article class="srv-compact-card" data-group="hogar" data-id="construccion" tabindex="0">
-          <div class="srv-card-main">
-            <div class="srv-icon-badge">
+        <article class="srv-compact-card spotify-card" data-group="hogar" data-id="construccion">
+          <div class="spotify-cover-wrap" onclick="toggleSrvCard(this, event)">
+            <div class="spotify-cover-art" style="background-image: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&auto=format&fit=crop&q=80');">
+              <div class="spotify-cover-overlay"></div>
+            </div>
+            <div class="spotify-sleeve-stack" aria-hidden="true">
+              <div class="spotify-sleeve-layer s-layer-1"></div>
+              <div class="spotify-sleeve-layer s-layer-2"></div>
+            </div>
+            <div class="spotify-badge-box" title="Construcción y Remodelación">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="12" y1="4" x2="12" y2="12"/><line x1="7" y1="12" x2="7" y2="20"/><line x1="17" y1="12" x2="17" y2="20"/></svg>
             </div>
-            <div class="srv-info">
-              <div class="srv-num-tag">8. Construcción y Remodelación</div>
-              <div class="srv-price-base">desde $68.450 COP</div>
-            </div>
-            <button type="button" class="srv-chevron-wrap" title="Clic para ver labores" onclick="toggleSrvCard(this, event)">
-              <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </button>
           </div>
 
-          <div class="srv-dropdown-pane">
+          <div class="spotify-card-body" onclick="toggleSrvCard(this, event)">
+            <h3 class="spotify-card-title">8. Construcción y Remodelación</h3>
+            <div class="spotify-card-row">
+              <div class="spotify-meta-text">
+                <span class="spotify-price-tag">desde $34.820 COP / m²</span>
+                <span class="spotify-short-desc">Drywall, enchapes, demolición controlada y reformas</span>
+              </div>
+              <button type="button" class="spotify-chevron-btn srv-chevron-wrap" title="Ver labores de Construcción y Remodelación" aria-label="Ver labores de Construcción y Remodelación" onclick="toggleSrvCard(this, event)">
+                <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="srv-dropdown-pane" onclick="event.stopPropagation()">
             <p class="srv-dropdown-desc">
-              Drywall, mampostería, enchapes, cielo rasos y reformas de baños y cocinas. 
+              Drywall, enchape de pisos y paredes, demolición controlada, reparación de grietas y remodelaciones. 
             </p>
             <div class="srv-dropdown-table">
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Instalación de muros o cielo raso en drywall</strong>
-                    <small>Estructura metálica, placas yeso y masillado</small>
+                    <strong>Drywall (muro/cielo raso)</strong>
+                    <small>Instalación completa con estructura metálica, placas de yeso y masillado final</small>
                   </div>
-                  <div class="srv-row-price">$68.450 COP / m²</div>
+                  <div class="srv-row-price">$68.450 COP/m²</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Enchape de pisos y paredes en porcelanato / cerámica</strong>
-                    <small>Nivelación, pegacor y emboquillado técnico</small>
+                    <strong>Enchape pisos/pareces</strong>
+                    <small>Mano de obra de nivelación, aplicación de pegacor y emboquillado de juntas</small>
                   </div>
-                  <div class="srv-row-price">$34.820 COP / m²</div>
+                  <div class="srv-row-price">$34.820 COP/m²</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Demolición controlada y retiro de escombros</strong>
-                    <small>Muro no estructural con empaque en lonas</small>
+                    <strong>Demolición controlada</strong>
+                    <small>Derribo de muros no estructurales con empaque seguro de escombros en lonas</small>
                   </div>
                   <div class="srv-row-price">$97.640 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Reparación de grietas y pañete de muros</strong>
-                    <small>Malla de fibra de vidrio y mortero impermeabilizado</small>
+                    <strong>Reparación grietas/pañete</strong>
+                    <small>Aplicación de malla de fibra de vidrio y mortero impermeabilizado para fisuras</small>
                   </div>
                   <div class="srv-row-price">$73.520 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Remodelación integral de baño o cocina</strong>
-                    <small>Por hitos certificados en Bóveda Wompi</small>
+                    <strong>Remodelación baño/cocina</strong>
+                    <small>Gestión por hitos certificados (demostración de avance) para reformas integrales</small>
                   </div>
                   <div class="srv-row-price">$584.200 COP</div>
                 </div>
               
             </div>
             <div class="srv-dropdown-footer">
-              <span class="srv-modality-pill">Hitos Certificados / Bóveda Escrow</span>
+              <span class="srv-modality-pill">Paquetes Semanales (1, 2, 3 o 4 semanas) / Hitos de Obra</span>
               <span class="srv-guarantee-pill">Garantía Escrita 48h (Ley 1480)</span>
             </div>
           </div>
         </article>
       
-        <article class="srv-compact-card" data-group="transporte" data-id="mudanzas" tabindex="0">
-          <div class="srv-card-main">
-            <div class="srv-icon-badge">
+        <article class="srv-compact-card spotify-card" data-group="transporte" data-id="mudanzas">
+          <div class="spotify-cover-wrap" onclick="toggleSrvCard(this, event)">
+            <div class="spotify-cover-art" style="background-image: url('/assets/images/categories/mudanzas_cajas.jpg');">
+              <div class="spotify-cover-overlay"></div>
+            </div>
+            <div class="spotify-sleeve-stack" aria-hidden="true">
+              <div class="spotify-sleeve-layer s-layer-1"></div>
+              <div class="spotify-sleeve-layer s-layer-2"></div>
+            </div>
+            <div class="spotify-badge-box" title="Mudanzas">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
             </div>
-            <div class="srv-info">
-              <div class="srv-num-tag">9. Mudanzas y Transporte</div>
-              <div class="srv-price-base">desde $84.320 COP</div>
-            </div>
-            <button type="button" class="srv-chevron-wrap" title="Clic para ver labores" onclick="toggleSrvCard(this, event)">
-              <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </button>
           </div>
 
-          <div class="srv-dropdown-pane">
+          <div class="spotify-card-body" onclick="toggleSrvCard(this, event)">
+            <h3 class="spotify-card-title">9. Mudanzas</h3>
+            <div class="spotify-card-row">
+              <div class="spotify-meta-text">
+                <span class="spotify-price-tag">desde $63.850 COP / recorrido (2h)</span>
+                <span class="spotify-short-desc">Camión grande por recorrido fijo (2h incluidas)</span>
+              </div>
+              <button type="button" class="spotify-chevron-btn srv-chevron-wrap" title="Ver labores de Mudanzas" aria-label="Ver labores de Mudanzas" onclick="toggleSrvCard(this, event)">
+                <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="srv-dropdown-pane" onclick="event.stopPropagation()">
             <p class="srv-dropdown-desc">
-              Acarreos urbanos, mudanzas en camión cerrado, coteros y embalaje con plástico burbuja. 
+              Servicio en camión grande (no motocicleta ni carro particular) con amarre seguro, protección de enseres y rutas locales e intermunicipales. 
             </p>
             <div class="srv-dropdown-table">
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Acarreo local express en camioneta</strong>
-                    <small>Traslado de electrodomésticos o muebles medianos</small>
+                    <strong>Mudanza local por recorrido (2h)</strong>
+                    <small>Servicio en camión grande dentro de la ciudad (incluye hasta 2 horas de labor y traslado, no motocicleta ni carro particular)</small>
+                  </div>
+                  <div class="srv-row-price">$63.850 COP</div>
+                </div>
+              
+                <div class="srv-table-row">
+                  <div class="srv-row-name">
+                    <strong>Acarreo local express</strong>
+                    <small>Traslado rápido en camioneta de electrodomésticos o muebles medianos dentro de la ciudad</small>
                   </div>
                   <div class="srv-row-price">$84.320 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Mudanza completa de apartamento en camión estacas</strong>
-                    <small>Trayecto dentro del Valle de Aburrá con amarre seguro</small>
+                    <strong>Mudanza completa camión</strong>
+                    <small>Servicio en camión cerrado para trayectos dentro del Valle de Aburrá con amarre seguro</small>
                   </div>
                   <div class="srv-row-price">$248.750 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Servicio de cargue, descargue y coteros por hora</strong>
-                    <small>Personal capacitado para pisos por escalera</small>
-                  </div>
-                  <div class="srv-row-price">$42.680 COP / hr</div>
-                </div>
-              
-                <div class="srv-table-row">
-                  <div class="srv-row-name">
-                    <strong>Embalaje profesional con plástico burbuja y cartón</strong>
-                    <small>Protección de televisores, vidrios y vajilla</small>
+                    <strong>Embalaje profesional</strong>
+                    <small>Protección especializada con plástico burbuja y cartón para televisores, vidrios y vajilla</small>
                   </div>
                   <div class="srv-row-price">$67.430 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Transporte intermunicipal express (Valle de Aburrá)</strong>
-                    <small>Medellín hacia Rionegro, Girardota o Caldas</small>
+                    <strong>Transporte intermunicipal</strong>
+                    <small>Rutas express desde Medellín hacia municipios cercanos como Rionegro, Girardota o Caldas</small>
                   </div>
                   <div class="srv-row-price">$118.920 COP</div>
                 </div>
               
             </div>
             <div class="srv-dropdown-footer">
-              <span class="srv-modality-pill">Por Servicio / Trayecto</span>
+              <span class="srv-modality-pill">Por Recorrido (Camión de Mudanzas / 2h)</span>
               <span class="srv-guarantee-pill">Garantía Escrita 48h (Ley 1480)</span>
             </div>
           </div>
         </article>
       
-        <article class="srv-compact-card" data-group="tecnologia" data-id="electrodomesticos" tabindex="0">
-          <div class="srv-card-main">
-            <div class="srv-icon-badge">
+        <article class="srv-compact-card spotify-card" data-group="electro" data-id="electrodomesticos">
+          <div class="spotify-cover-wrap" onclick="toggleSrvCard(this, event)">
+            <div class="spotify-cover-art" style="background-image: url('/assets/images/categories/electrodomesticos_hogar.jpg');">
+              <div class="spotify-cover-overlay"></div>
+            </div>
+            <div class="spotify-sleeve-stack" aria-hidden="true">
+              <div class="spotify-sleeve-layer s-layer-1"></div>
+              <div class="spotify-sleeve-layer s-layer-2"></div>
+            </div>
+            <div class="spotify-badge-box" title="Electrodomésticos">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="4" y1="10" x2="20" y2="10"/><circle cx="8" cy="6" r="1"/><circle cx="8" cy="15" r="1"/></svg>
             </div>
-            <div class="srv-info">
-              <div class="srv-num-tag">10. Electrodomésticos y Refrigeración</div>
-              <div class="srv-price-base">desde $72.640 COP</div>
-            </div>
-            <button type="button" class="srv-chevron-wrap" title="Clic para ver labores" onclick="toggleSrvCard(this, event)">
-              <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </button>
           </div>
 
-          <div class="srv-dropdown-pane">
+          <div class="spotify-card-body" onclick="toggleSrvCard(this, event)">
+            <h3 class="spotify-card-title">10. Electrodomésticos</h3>
+            <div class="spotify-card-row">
+              <div class="spotify-meta-text">
+                <span class="spotify-price-tag">desde $68.950 COP</span>
+                <span class="spotify-short-desc">Reparación de lavadoras, neveras, secadoras y hornos</span>
+              </div>
+              <button type="button" class="spotify-chevron-btn srv-chevron-wrap" title="Ver labores de Electrodomésticos" aria-label="Ver labores de Electrodomésticos" onclick="toggleSrvCard(this, event)">
+                <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="srv-dropdown-pane" onclick="event.stopPropagation()">
             <p class="srv-dropdown-desc">
-              Reparación de neveras, lavadoras, secadoras, hornos y calentadores a gas. 
+              Reparación de lavadoras, neveras con recarga de gas, secadoras, hornos microondas y campanas extractoras. 
             </p>
             <div class="srv-dropdown-table">
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Mantenimiento y reparación de lavadoras</strong>
-                    <small>Cambio de bomba, sellos, correas o tarjeta lógica</small>
+                    <strong>Reparación lavadoras</strong>
+                    <small>Diagnóstico y cambio de componentes como bomba de drenaje, sellos, correas o tarjeta lógica</small>
                   </div>
                   <div class="srv-row-price">$83.450 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Reparación y recarga de gas de neveras</strong>
-                    <small>Diagnóstico de fuga, filtro secador y gas ecológico R600/134</small>
+                    <strong>Reparación neveras (gas)</strong>
+                    <small>Detección de fugas, cambio de filtro secador y recarga de gas refrigerante (R600/134)</small>
                   </div>
                   <div class="srv-row-price">$114.780 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Mantenimiento de secadoras de gas o eléctricas</strong>
-                    <small>Limpieza de ductos de pelusa, termostato y poleas</small>
+                    <strong>Mantenimiento secadoras</strong>
+                    <small>Limpieza profunda de ductos de pelusa, revisión de termostatos y poleas de transmisión</small>
                   </div>
                   <div class="srv-row-price">$87.320 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Reparación de hornos microondas y estufas</strong>
-                    <small>Cambio de magnetrón, chisperos o válvulas de gas</small>
+                    <strong>Reparación hornos/estufas</strong>
+                    <small>Cambio de magnetrón en microondas, reparación de chisperos o válvulas de gas en estufas</small>
                   </div>
                   <div class="srv-row-price">$72.640 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Instalación y anclaje de campanas extractoras</strong>
-                    <small>Ducto exterior o recirculante con filtro de carbón</small>
+                    <strong>Instalación campanas</strong>
+                    <small>Montaje de campanas extractoras con ducto hacia el exterior o sistema recirculante con filtro</small>
                   </div>
                   <div class="srv-row-price">$68.950 COP</div>
                 </div>
               
             </div>
             <div class="srv-dropdown-footer">
-              <span class="srv-modality-pill">Labor Única / Diagnóstico Abonable</span>
+              <span class="srv-modality-pill">Labor Única / Diagnóstico Abonable (Sin paquetes semanales)</span>
               <span class="srv-guarantee-pill">Garantía Escrita 48h (Ley 1480)</span>
             </div>
           </div>
         </article>
       
-        <article class="srv-compact-card" data-group="tecnologia" data-id="tecnologia" tabindex="0">
-          <div class="srv-card-main">
-            <div class="srv-icon-badge">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        <article class="srv-compact-card spotify-card" data-group="gastronomia" data-id="chef">
+          <div class="spotify-cover-wrap" onclick="toggleSrvCard(this, event)">
+            <div class="spotify-cover-art" style="background-image: url('https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=600&auto=format&fit=crop&q=80');">
+              <div class="spotify-cover-overlay"></div>
             </div>
-            <div class="srv-info">
-              <div class="srv-num-tag">11. Tecnología e Instalación</div>
-              <div class="srv-price-base">desde $54.380 COP</div>
+            <div class="spotify-sleeve-stack" aria-hidden="true">
+              <div class="spotify-sleeve-layer s-layer-1"></div>
+              <div class="spotify-sleeve-layer s-layer-2"></div>
             </div>
-            <button type="button" class="srv-chevron-wrap" title="Clic para ver labores" onclick="toggleSrvCard(this, event)">
-              <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </button>
+            <div class="spotify-badge-box" title="Chef Privado a Domicilio">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 13.87A4 4 0 0 1 7.41 6a5.11 5.11 0 0 1 1.05-1.54 5 5 0 0 1 7.08 0A5.11 5.11 0 0 1 16.59 6 4 4 0 0 1 18 13.87V21H6v-7.13z"/><line x1="6" y1="17" x2="18" y2="17"/></svg>
+            </div>
           </div>
 
-          <div class="srv-dropdown-pane">
+          <div class="spotify-card-body" onclick="toggleSrvCard(this, event)">
+            <h3 class="spotify-card-title">11. Chef Privado a Domicilio</h3>
+            <div class="spotify-card-row">
+              <div class="spotify-meta-text">
+                <span class="spotify-price-tag">desde $115.000 COP / persona</span>
+                <span class="spotify-short-desc">Experiencias gastronómicas internacionales a domicilio</span>
+              </div>
+              <button type="button" class="spotify-chevron-btn srv-chevron-wrap" title="Ver labores de Chef Privado a Domicilio" aria-label="Ver labores de Chef Privado a Domicilio" onclick="toggleSrvCard(this, event)">
+                <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="srv-dropdown-pane" onclick="event.stopPropagation()">
             <p class="srv-dropdown-desc">
-              Soporte de computadores, redes WiFi, cámaras de seguridad CCTV y domótica. 
+              El chef lleva todos los ingredientes frescos, utensilios de cocina profesionales y realiza la preparación en tu hogar. Incluye servicio de mesa y limpieza básica de cocina al finalizar. 
             </p>
             <div class="srv-dropdown-table">
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Mantenimiento preventivo y formateo de computador</strong>
-                    <small>Limpieza física, pasta térmica y reinstalación limpia</small>
+                    <strong>Menú Italiano Clásico (Europa Mediterránea)</strong>
+                    <small>Entradas de bruschettas, pasta fresca artesanal (carbonara o pesto) y tiramisú</small>
                   </div>
-                  <div class="srv-row-price">$68.420 COP</div>
+                  <div class="srv-row-price">$145.000 COP por persona</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Eliminación de virus y optimización de sistema operativo</strong>
-                    <small>Aceleración de arranque y respaldo de archivos</small>
+                    <strong>Tapas Españolas Premium (Europa Mediterránea)</strong>
+                    <small>Selección de jamón ibérico, gambas al ajillo, tortilla española y croquetas caseras</small>
                   </div>
-                  <div class="srv-row-price">$54.380 COP</div>
+                  <div class="srv-row-price">$138.000 COP por persona</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Instalación y configuración de cámaras de seguridad CCTV</strong>
-                    <small>Cableado UTP, configuración IP y acceso móvil remoto</small>
+                    <strong>Cena Francesa Gourmet (Europa Mediterránea)</strong>
+                    <small>Quiche lorraine, coq au vin o salmón en salsa de eneldo y mousse de chocolate</small>
                   </div>
-                  <div class="srv-row-price">$93.750 COP</div>
+                  <div class="srv-row-price">$165.000 COP por persona</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Configuración y optimización de red WiFi / repetidores</strong>
-                    <small>Eliminación de zonas muertas y routers mesh</small>
+                    <strong>Experiencia Colombiana Andina (América Latina)</strong>
+                    <small>Bandeja paisa gourmet, sancocho antioqueño o posta negra con acompañamientos tradicionales</small>
                   </div>
-                  <div class="srv-row-price">$62.840 COP</div>
+                  <div class="srv-row-price">$115.000 COP por persona</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Montaje y anclaje de soporte de TV en pared</strong>
-                    <small>Nivelación láser y chazos expansivos hasta 75"</small>
+                    <strong>Noche Mexicana Auténtica (América Latina)</strong>
+                    <small>Tacos al pastor, guacamole preparado en mesa, enchiladas suizas y churros</small>
                   </div>
-                  <div class="srv-row-price">$48.650 COP</div>
+                  <div class="srv-row-price">$125.000 COP por persona</div>
+                </div>
+              
+                <div class="srv-table-row">
+                  <div class="srv-row-name">
+                    <strong>Sabores Peruanos Fusión (América Latina)</strong>
+                    <small>Ceviche clásico, lomo saltado y causa limeña con toque moderno</small>
+                  </div>
+                  <div class="srv-row-price">$135.000 COP por persona</div>
+                </div>
+              
+                <div class="srv-table-row">
+                  <div class="srv-row-name">
+                    <strong>Sushi & Roll Experience (Asia Oriental)</strong>
+                    <small>Preparación de nigiris, sashimis y rolls especiales con pescado fresco importado</small>
+                  </div>
+                  <div class="srv-row-price">$155.000 COP por persona</div>
+                </div>
+              
+                <div class="srv-table-row">
+                  <div class="srv-row-name">
+                    <strong>Wok Thai & Vietnamita (Sudeste Asiático)</strong>
+                    <small>Pad Thai, curry verde tailandés o pho vietnamita con hierbas frescas aromáticas</small>
+                  </div>
+                  <div class="srv-row-price">$128.000 COP por persona</div>
+                </div>
+              
+                <div class="srv-table-row">
+                  <div class="srv-row-name">
+                    <strong>Dim Sum Chino Tradicional (Asia Oriental)</strong>
+                    <small>Variedad de dumplings al vapor, rollitos primavera y pollo kung pao</small>
+                  </div>
+                  <div class="srv-row-price">$140.000 COP por persona</div>
+                </div>
+              
+                <div class="srv-table-row">
+                  <div class="srv-row-name">
+                    <strong>Mezze Libanés (Oriente Medio)</strong>
+                    <small>Hummus, babaganoush, falafel crujiente, tabuleh y pan pita recién horneado</small>
+                  </div>
+                  <div class="srv-row-price">$132.000 COP por persona</div>
+                </div>
+              
+                <div class="srv-table-row">
+                  <div class="srv-row-name">
+                    <strong>Kebabs y Arroz Persa (Oriente Medio)</strong>
+                    <small>Brochetas de cordero o pollo marinado en especias, arroz con azafrán y yogurt</small>
+                  </div>
+                  <div class="srv-row-price">$142.000 COP por persona</div>
                 </div>
               
             </div>
             <div class="srv-dropdown-footer">
-              <span class="srv-modality-pill">Labor Única / Bóveda Escrow</span>
+              <span class="srv-modality-pill">Experiencia Gastronómica / Por Persona</span>
               <span class="srv-guarantee-pill">Garantía Escrita 48h (Ley 1480)</span>
             </div>
           </div>
         </article>
       
-        <article class="srv-compact-card" data-group="transporte" data-id="automoviles" tabindex="0">
-          <div class="srv-card-main">
-            <div class="srv-icon-badge">
+        <article class="srv-compact-card spotify-card" data-group="transporte" data-id="automoviles">
+          <div class="spotify-cover-wrap" onclick="toggleSrvCard(this, event)">
+            <div class="spotify-cover-art" style="background-image: url('https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=600&auto=format&fit=crop&q=80');">
+              <div class="spotify-cover-overlay"></div>
+            </div>
+            <div class="spotify-sleeve-stack" aria-hidden="true">
+              <div class="spotify-sleeve-layer s-layer-1"></div>
+              <div class="spotify-sleeve-layer s-layer-2"></div>
+            </div>
+            <div class="spotify-badge-box" title="Automóviles y Motos">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 11l2-5h10l2 5"/><rect x="3" y="11" width="18" height="7" rx="2"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>
             </div>
-            <div class="srv-info">
-              <div class="srv-num-tag">12. Automóviles y Motos</div>
-              <div class="srv-price-base">desde $58.740 COP</div>
-            </div>
-            <button type="button" class="srv-chevron-wrap" title="Clic para ver labores" onclick="toggleSrvCard(this, event)">
-              <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </button>
           </div>
 
-          <div class="srv-dropdown-pane">
+          <div class="spotify-card-body" onclick="toggleSrvCard(this, event)">
+            <h3 class="spotify-card-title">12. Automóviles y Motos</h3>
+            <div class="spotify-card-row">
+              <div class="spotify-meta-text">
+                <span class="spotify-price-tag">desde $53.820 COP</span>
+                <span class="spotify-short-desc">Cambio de aceite, escaneo OBD2, frenos y desvares</span>
+              </div>
+              <button type="button" class="spotify-chevron-btn srv-chevron-wrap" title="Ver labores de Automóviles y Motos" aria-label="Ver labores de Automóviles y Motos" onclick="toggleSrvCard(this, event)">
+                <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="srv-dropdown-pane" onclick="event.stopPropagation()">
             <p class="srv-dropdown-desc">
-              Mecánica preventiva a domicilio, cambio de aceite, frenos, escáner y desvares. 
+              Cambio de aceite, escaneo OBD2, pastillas de frenos, lavado ecológico y desvares express a domicilio. 
             </p>
             <div class="srv-dropdown-table">
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Cambio de aceite y filtros a domicilio</strong>
-                    <small>Reemplazo de lubricante sintético y filtro de motor</small>
+                    <strong>Cambio aceite/filtros domicilio</strong>
+                    <small>Reemplazo de lubricante sintético de alta gama y filtro de motor original</small>
                   </div>
                   <div class="srv-row-price">$58.740 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Sincronización y escaneo computarizado OBD2</strong>
-                    <small>Lectura de códigos de falla y borrado Check Engine</small>
+                    <strong>Escaneo computarizado OBD2</strong>
+                    <small>Lectura detallada de códigos de falla del computador del vehículo y borrado de alertas</small>
                   </div>
                   <div class="srv-row-price">$83.420 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Revisión y cambio de pastillas de frenos</strong>
-                    <small>Purga de líquido y graduación de mordazas</small>
+                    <strong>Cambio pastillas de frenos</strong>
+                    <small>Sustitución de pastillas, purga de líquido de frenos y graduación de mordazas</small>
                   </div>
                   <div class="srv-row-price">$72.650 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Lavado ecológico a domicilio interior y motor</strong>
-                    <small>Limpieza con polímeros sin gastar agua residencial</small>
+                    <strong>Lavado ecológico domicilio</strong>
+                    <small>Limpieza profunda de carrocería, interior y motor usando polímeros sin consumo de agua</small>
                   </div>
                   <div class="srv-row-price">$64.380 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Desvare express por batería, llanta o gasolina</strong>
-                    <small>Paso de corriente con booster profesional o despinche</small>
+                    <strong>Desvare express</strong>
+                    <small>Asistencia inmediata con booster profesional de corriente o reparación de pinchazos</small>
                   </div>
                   <div class="srv-row-price">$53.820 COP</div>
                 </div>
@@ -2225,62 +3558,75 @@
           </div>
         </article>
       
-        <article class="srv-compact-card" data-group="digital" data-id="digital" tabindex="0">
-          <div class="srv-card-main">
-            <div class="srv-icon-badge">
+        <article class="srv-compact-card spotify-card" data-group="digital" data-id="digital">
+          <div class="spotify-cover-wrap" onclick="toggleSrvCard(this, event)">
+            <div class="spotify-cover-art" style="background-image: url('https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=600&auto=format&fit=crop&q=80');">
+              <div class="spotify-cover-overlay"></div>
+            </div>
+            <div class="spotify-sleeve-stack" aria-hidden="true">
+              <div class="spotify-sleeve-layer s-layer-1"></div>
+              <div class="spotify-sleeve-layer s-layer-2"></div>
+            </div>
+            <div class="spotify-badge-box" title="Servicios Digitales">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 17l6-6-6-6"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
             </div>
-            <div class="srv-info">
-              <div class="srv-num-tag">13. Diseño, Tecnología y Servicios Digitales</div>
-              <div class="srv-price-base">desde $64.290 COP</div>
-            </div>
-            <button type="button" class="srv-chevron-wrap" title="Clic para ver labores" onclick="toggleSrvCard(this, event)">
-              <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </button>
           </div>
 
-          <div class="srv-dropdown-pane">
+          <div class="spotify-card-body" onclick="toggleSrvCard(this, event)">
+            <h3 class="spotify-card-title">13. Servicios Digitales</h3>
+            <div class="spotify-card-row">
+              <div class="spotify-meta-text">
+                <span class="spotify-price-tag">desde $64.290 COP</span>
+                <span class="spotify-short-desc">Diseño para redes, landing pages, video y pauta Meta</span>
+              </div>
+              <button type="button" class="spotify-chevron-btn srv-chevron-wrap" title="Ver labores de Servicios Digitales" aria-label="Ver labores de Servicios Digitales" onclick="toggleSrvCard(this, event)">
+                <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="srv-dropdown-pane" onclick="event.stopPropagation()">
             <p class="srv-dropdown-desc">
-              Diseño gráfico publicitario, páginas web, edición de video para redes y pauta digital. 
+              Diseño para redes, landing pages, edición Reels/TikTok, campañas Meta Ads y posicionamiento Google. 
             </p>
             <div class="srv-dropdown-table">
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Diseño de piezas publicitarias para redes sociales</strong>
-                    <small>Paquete de 3 banners optimizados para Instagram/Facebook</small>
+                    <strong>Diseño piezas redes sociales</strong>
+                    <small>Creación de paquete de 3 banners optimizados para Instagram y Facebook</small>
                   </div>
                   <div class="srv-row-price">$64.290 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Creación de páginas web de aterrizaje (Landing Page)</strong>
-                    <small>Diseño responsive de alta conversión con hosting</small>
+                    <strong>Landing Page (Web)</strong>
+                    <small>Diseño de página de aterrizaje responsive enfocada en alta conversión, incluye hosting básico</small>
                   </div>
                   <div class="srv-row-price">$284.650 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Edición de videos reels y tiktoks publicitarios</strong>
-                    <small>Subtitulado dinámico, efectos y formato vertical 9:16</small>
+                    <strong>Edición videos Reels/TikTok</strong>
+                    <small>Edición dinámica con subtitulado, efectos visuales y formato vertical 9:16</small>
                   </div>
                   <div class="srv-row-price">$78.430 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Configuración de campañas publicitarias en Meta Ads</strong>
-                    <small>Segmentación de público en Medellín y píxel de eventos</small>
+                    <strong>Campañas Meta Ads</strong>
+                    <small>Configuración estratégica de pauta publicitaria con segmentación local en Medellín</small>
                   </div>
                   <div class="srv-row-price">$142.890 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Optimización SEO y configuración de Google Mi Negocio</strong>
-                    <small>Posicionamiento en mapas locales de Medellín</small>
+                    <strong>Optimización SEO/Google</strong>
+                    <small>Mejora de posicionamiento en Google Maps y búsqueda local para negocios en Medellín</small>
                   </div>
                   <div class="srv-row-price">$96.540 COP</div>
                 </div>
@@ -2293,130 +3639,156 @@
           </div>
         </article>
       
-        <article class="srv-compact-card" data-group="educacion" data-id="educacion" tabindex="0">
-          <div class="srv-card-main">
-            <div class="srv-icon-badge">
+        <article class="srv-compact-card spotify-card" data-group="educacion" data-id="educacion">
+          <div class="spotify-cover-wrap" onclick="toggleSrvCard(this, event)">
+            <div class="spotify-cover-art" style="background-image: url('/assets/images/categories/clases_libros_lapices.jpg');">
+              <div class="spotify-cover-overlay"></div>
+            </div>
+            <div class="spotify-sleeve-stack" aria-hidden="true">
+              <div class="spotify-sleeve-layer s-layer-1"></div>
+              <div class="spotify-sleeve-layer s-layer-2"></div>
+            </div>
+            <div class="spotify-badge-box" title="Clases y Educación">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
             </div>
-            <div class="srv-info">
-              <div class="srv-num-tag">14. Clases y Educación</div>
-              <div class="srv-price-base">desde $42.860 COP</div>
-            </div>
-            <button type="button" class="srv-chevron-wrap" title="Clic para ver labores" onclick="toggleSrvCard(this, event)">
-              <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </button>
           </div>
 
-          <div class="srv-dropdown-pane">
+          <div class="spotify-card-body" onclick="toggleSrvCard(this, event)">
+            <h3 class="spotify-card-title">14. Clases y Educación</h3>
+            <div class="spotify-card-row">
+              <div class="spotify-meta-text">
+                <span class="spotify-price-tag">desde $74.898 COP / sesión (2h)</span>
+                <span class="spotify-short-desc">Matemáticas, inglés, música y refuerzo escolar (2h)</span>
+              </div>
+              <button type="button" class="spotify-chevron-btn srv-chevron-wrap" title="Ver labores de Clases y Educación" aria-label="Ver labores de Clases y Educación" onclick="toggleSrvCard(this, event)">
+                <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="srv-dropdown-pane" onclick="event.stopPropagation()">
             <p class="srv-dropdown-desc">
-              Tutorías escolares, matemáticas, física, inglés y clases de instrumentos musicales. Incluye preparación académica y enseñanza de música con instrumentos (guitarra, piano, técnica vocal).
+              Tutorías en matemáticas, física, inglés conversacional, refuerzo escolar, enseñanza de música y preparación ICFES. Mínimo de contratación: 1 sesión de 2 horas. Incluye preparación académica y enseñanza de música con instrumentos (guitarra, piano, técnica vocal).
             </p>
             <div class="srv-dropdown-table">
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Clase de matemáticas, física o química (1 hora)</strong>
-                    <small>Tutoría personalizada a domicilio o virtual</small>
+                    <strong>Clases matemáticas/física (2h)</strong>
+                    <small>Tutoría personalizada intensiva de 2 horas (mínimo de contratación) a domicilio o virtual</small>
                   </div>
-                  <div class="srv-row-price">$42.860 COP</div>
+                  <div class="srv-row-price">$81.434 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Tutoría personalizada de inglés conversacional</strong>
-                    <small>Práctica intensiva con docente bilingüe calificado</small>
+                    <strong>Inglés conversacional (2h)</strong>
+                    <small>Práctica intensiva de speaking y listening de 2 horas con docente bilingüe certificado</small>
                   </div>
-                  <div class="srv-row-price">$46.750 COP</div>
+                  <div class="srv-row-price">$88.825 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Refuerzo escolar integral primaria y bachillerato</strong>
-                    <small>Acompañamiento en tareas y preparación de exámenes</small>
+                    <strong>Refuerzo escolar integral (2h)</strong>
+                    <small>Acompañamiento escolar de 2 horas para realización de tareas y preparación de exámenes</small>
                   </div>
-                  <div class="srv-row-price">$39.420 COP</div>
+                  <div class="srv-row-price">$74.898 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Clases de guitarra, piano o técnica vocal (1 hora)</strong>
-                    <small>Metodología práctica para niños, jóvenes y adultos</small>
+                    <strong>Clases música (2h)</strong>
+                    <small>Instrucción práctica de 2 horas en guitarra, piano o técnica vocal para niños y adultos</small>
                   </div>
-                  <div class="srv-row-price">$47.930 COP</div>
+                  <div class="srv-row-price">$91.067 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Preparación intensiva para pruebas Saber 11 / ICFES</strong>
-                    <small>Simulacros y estrategias de razonamiento cuantitativo</small>
+                    <strong>Preparación ICFES/Saber 11 (2h)</strong>
+                    <small>Sesión intensiva de 2 horas enfocada en simulacros de prueba y razonamiento cuantitativo</small>
                   </div>
-                  <div class="srv-row-price">$53.680 COP</div>
+                  <div class="srv-row-price">$101.992 COP</div>
                 </div>
               
             </div>
             <div class="srv-dropdown-footer">
-              <span class="srv-modality-pill">Sesiones Progresivas / Bóveda por Clases</span>
+              <span class="srv-modality-pill">Sesiones de 2h (Mínimo de Contratación) / Bóveda Wompi</span>
               <span class="srv-guarantee-pill">Garantía Escrita 48h (Ley 1480)</span>
             </div>
           </div>
         </article>
       
-        <article class="srv-compact-card" data-group="bienestar" data-id="belleza" tabindex="0">
-          <div class="srv-card-main">
-            <div class="srv-icon-badge">
+        <article class="srv-compact-card spotify-card" data-group="bienestar" data-id="belleza">
+          <div class="spotify-cover-wrap" onclick="toggleSrvCard(this, event)">
+            <div class="spotify-cover-art" style="background-image: url('https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&auto=format&fit=crop&q=80');">
+              <div class="spotify-cover-overlay"></div>
+            </div>
+            <div class="spotify-sleeve-stack" aria-hidden="true">
+              <div class="spotify-sleeve-layer s-layer-1"></div>
+              <div class="spotify-sleeve-layer s-layer-2"></div>
+            </div>
+            <div class="spotify-badge-box" title="Belleza y Cuidado Personal">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg>
             </div>
-            <div class="srv-info">
-              <div class="srv-num-tag">15. Belleza y Cuidado Personal</div>
-              <div class="srv-price-base">desde $38.450 COP</div>
-            </div>
-            <button type="button" class="srv-chevron-wrap" title="Clic para ver labores" onclick="toggleSrvCard(this, event)">
-              <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </button>
           </div>
 
-          <div class="srv-dropdown-pane">
+          <div class="spotify-card-body" onclick="toggleSrvCard(this, event)">
+            <h3 class="spotify-card-title">15. Belleza y Cuidado Personal</h3>
+            <div class="spotify-card-row">
+              <div class="spotify-meta-text">
+                <span class="spotify-price-tag">desde $38.450 COP</span>
+                <span class="spotify-short-desc">Barbería, manicure, masajes relajantes y faciales</span>
+              </div>
+              <button type="button" class="spotify-chevron-btn srv-chevron-wrap" title="Ver labores de Belleza y Cuidado Personal" aria-label="Ver labores de Belleza y Cuidado Personal" onclick="toggleSrvCard(this, event)">
+                <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="srv-dropdown-pane" onclick="event.stopPropagation()">
             <p class="srv-dropdown-desc">
-              Barbería, corte de cabello, manicure, pedicure, masajes relajantes y estética facial. 
+              Corte de cabello, barbería, manicure, pedicure, peinados, masajes relajantes y limpieza facial profunda. 
             </p>
             <div class="srv-dropdown-table">
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Corte de cabello y perfilado de barba a domicilio</strong>
-                    <small>Barbero profesional con protocolo higiénico completo</small>
+                    <strong>Corte cabello/barba domicilio</strong>
+                    <small>Servicio de barbería profesional con kit esterilizado y protocolo de bioseguridad</small>
                   </div>
                   <div class="srv-row-price">$38.450 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Manicure y pedicure tradicional a domicilio</strong>
-                    <small>Limpieza de cutícula, exfoliación y esmaltado duradero</small>
+                    <strong>Manicure/pedicure domicilio</strong>
+                    <small>Limpieza profunda de cutículas, exfoliación de pies y esmaltado tradicional o semipermanente</small>
                   </div>
                   <div class="srv-row-price">$44.680 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Cepillado, planchado y peinado para eventos</strong>
-                    <small>Ondas al agua o liso espejo con termoprotector</small>
+                    <strong>Peinado para eventos</strong>
+                    <small>Estilismo capilar para ocasiones especiales, incluyendo ondas, liso espejo o recogidos</small>
                   </div>
                   <div class="srv-row-price">$52.340 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Masaje relajante descontracturante (1 hora)</strong>
-                    <small>Aceites esenciales, música relajante y camilla portátil</small>
+                    <strong>Masaje relajante (1 hora)</strong>
+                    <small>Terapia descontracturante con aceites esenciales utilizando camilla portátil profesional</small>
                   </div>
-                  <div class="srv-row-price">$78.920 COP</div>
+                  <div class="srv-row-price">$61.038 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Limpieza facial profunda con hidratación</strong>
-                    <small>Vapor de ozono, extracción de puntos negros y mascarilla</small>
+                    <strong>Limpieza facial profunda</strong>
+                    <small>Tratamiento con vapor de ozono, extracción de impurezas y mascarilla hidratante</small>
                   </div>
                   <div class="srv-row-price">$68.450 COP</div>
                 </div>
@@ -2429,62 +3801,75 @@
           </div>
         </article>
       
-        <article class="srv-compact-card" data-group="eventos" data-id="eventos" tabindex="0">
-          <div class="srv-card-main">
-            <div class="srv-icon-badge">
+        <article class="srv-compact-card spotify-card" data-group="eventos" data-id="eventos">
+          <div class="spotify-cover-wrap" onclick="toggleSrvCard(this, event)">
+            <div class="spotify-cover-art" style="background-image: url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=600&auto=format&fit=crop&q=80');">
+              <div class="spotify-cover-overlay"></div>
+            </div>
+            <div class="spotify-sleeve-stack" aria-hidden="true">
+              <div class="spotify-sleeve-layer s-layer-1"></div>
+              <div class="spotify-sleeve-layer s-layer-2"></div>
+            </div>
+            <div class="spotify-badge-box" title="Eventos y Protocolo">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
             </div>
-            <div class="srv-info">
-              <div class="srv-num-tag">16. Eventos y Protocolo</div>
-              <div class="srv-price-base">desde $87.650 COP</div>
-            </div>
-            <button type="button" class="srv-chevron-wrap" title="Clic para ver labores" onclick="toggleSrvCard(this, event)">
-              <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </button>
           </div>
 
-          <div class="srv-dropdown-pane">
+          <div class="spotify-card-body" onclick="toggleSrvCard(this, event)">
+            <h3 class="spotify-card-title">16. Eventos y Protocolo</h3>
+            <div class="spotify-card-row">
+              <div class="spotify-meta-text">
+                <span class="spotify-price-tag">desde $87.650 COP</span>
+                <span class="spotify-short-desc">Meseros por turno, sonido, animación y coctelería</span>
+              </div>
+              <button type="button" class="spotify-chevron-btn srv-chevron-wrap" title="Ver labores de Eventos y Protocolo" aria-label="Ver labores de Eventos y Protocolo" onclick="toggleSrvCard(this, event)">
+                <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="srv-dropdown-pane" onclick="event.stopPropagation()">
             <p class="srv-dropdown-desc">
-              Meseros, bartenders, sonido profesional, animación y fotografía para eventos en Medellín. 
+              Meseros por turno, sonido e iluminación, recreación y animación infantil, bartenders y fotografía profesional. 
             </p>
             <div class="srv-dropdown-table">
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Servicio de meseros profesionales por turno de 4 horas</strong>
-                    <small>Atención impecable de mesas, pasabocas y protocolo</small>
+                    <strong>Meseros por turno (4h)</strong>
+                    <small>Personal uniformado para atención de mesas, servicio de pasabocas y protocolo básico</small>
                   </div>
                   <div class="srv-row-price">$87.650 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Sonido profesional e iluminación para reuniones</strong>
-                    <small>Cabinas activas, micrófonos inalámbricos y luces LED</small>
+                    <strong>Sonido e iluminación</strong>
+                    <small>Alquiler y operación de cabinas de sonido activas, micrófonos inalámbricos y juego de luces</small>
                   </div>
                   <div class="srv-row-price">$194.380 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Animación, recreación infantil y shows temáticos</strong>
-                    <small>Pintucaritas, globoflexia y juegos dirigidos</small>
+                    <strong>Animación infantil</strong>
+                    <small>Shows temáticos con pintacaritas, globoflexia y juegos dirigidos para niños</small>
                   </div>
                   <div class="srv-row-price">$138.450 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Bartender profesional y coctelería personalizada</strong>
-                    <small>Preparación de cócteles clásicos y de autor</small>
+                    <strong>Bartender profesional</strong>
+                    <small>Preparación de cócteles clásicos y de autor, incluye montaje de barra móvil básica</small>
                   </div>
                   <div class="srv-row-price">$112.640 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Fotografía y cobertura digital de eventos por hora</strong>
-                    <small>Entrega de galería digital editada en alta resolución</small>
+                    <strong>Fotografía eventos (hora)</strong>
+                    <small>Cobertura fotográfica digital con entrega posterior de galería editada en alta resolución</small>
                   </div>
                   <div class="srv-row-price">$94.850 COP</div>
                 </div>
@@ -2497,64 +3882,61 @@
           </div>
         </article>
       
-        <article class="srv-compact-card" data-group="profesional" data-id="profesionales" tabindex="0">
-          <div class="srv-card-main">
-            <div class="srv-icon-badge">
+        <article class="srv-compact-card spotify-card" data-group="profesional" data-id="profesionales">
+          <div class="spotify-cover-wrap" onclick="toggleSrvCard(this, event)">
+            <div class="spotify-cover-art" style="background-image: url('/assets/images/categories/profesional_traje_elegante.jpg');">
+              <div class="spotify-cover-overlay"></div>
+            </div>
+            <div class="spotify-sleeve-stack" aria-hidden="true">
+              <div class="spotify-sleeve-layer s-layer-1"></div>
+              <div class="spotify-sleeve-layer s-layer-2"></div>
+            </div>
+            <div class="spotify-badge-box" title="Servicios Profesionales (Especializados)">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v20M5 7l7-3 7 3M2 13l3-6 3 6a3 3 0 0 1-6 0zM16 13l3-6 3 6a3 3 0 0 1-6 0z"/></svg>
             </div>
-            <div class="srv-info">
-              <div class="srv-num-tag">17. Servicios Profesionales y Legal</div>
-              <div class="srv-price-base">desde $94.850 COP</div>
-            </div>
-            <button type="button" class="srv-chevron-wrap" title="Clic para ver labores" onclick="toggleSrvCard(this, event)">
-              <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </button>
           </div>
 
-          <div class="srv-dropdown-pane">
+          <div class="spotify-card-body" onclick="toggleSrvCard(this, event)">
+            <h3 class="spotify-card-title">17. Servicios Profesionales (Especializados)</h3>
+            <div class="spotify-card-row">
+              <div class="spotify-meta-text">
+                <span class="spotify-price-tag">desde $83.690 COP</span>
+                <span class="spotify-short-desc">Consultoría jurídica express, tributaria y negocios</span>
+              </div>
+              <button type="button" class="spotify-chevron-btn srv-chevron-wrap" title="Ver labores de Servicios Profesionales (Especializados)" aria-label="Ver labores de Servicios Profesionales (Especializados)" onclick="toggleSrvCard(this, event)">
+                <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="srv-dropdown-pane" onclick="event.stopPropagation()">
             <p class="srv-dropdown-desc">
-              Asesoría jurídica civil/laboral, contabilidad, declaraciones de renta y constitución de SAS. 
+              Consultoría jurídica express, asesoría tributaria básica y estructuración de planes de negocio. 
             </p>
             <div class="srv-dropdown-table">
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Asesoría legal y concepto jurídico civil / laboral</strong>
-                    <small>Revisión de contratos, reclamaciones o derechos de petición</small>
+                    <strong>Consultoría Jurídica Express</strong>
+                    <small>Revisión rápida y concepto legal preliminar sobre contratos simples, derechos de petición o situaciones civiles básicas</small>
                   </div>
                   <div class="srv-row-price">$94.850 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Declaración de renta personal o contabilidad mensual pyme</strong>
-                    <small>Liquidación tributaria con contador público certificado</small>
+                    <strong>Asesoría Tributaria Básica</strong>
+                    <small>Orientación clara sobre obligaciones mensuales, calendarios tributarios y clasificación de responsables de IVA/Renta</small>
                   </div>
                   <div class="srv-row-price">$83.690 COP</div>
                 </div>
               
                 <div class="srv-table-row">
                   <div class="srv-row-name">
-                    <strong>Consultoría empresarial y estructuración de costos</strong>
-                    <small>Diagnóstico de rentabilidad y optimización operativa</small>
+                    <strong>Plan de Negocios</strong>
+                    <small>Estructuración financiera inicial, definición de modelo de ingresos y análisis de viabilidad para emprendimientos nuevos</small>
                   </div>
                   <div class="srv-row-price">$128.450 COP</div>
-                </div>
-              
-                <div class="srv-table-row">
-                  <div class="srv-row-name">
-                    <strong>Trámites en Cámara de Comercio y creación de SAS</strong>
-                    <small>Estatutos, RUT DIAN, matrícula mercantil y actas</small>
-                  </div>
-                  <div class="srv-row-price">$214.780 COP</div>
-                </div>
-              
-                <div class="srv-table-row">
-                  <div class="srv-row-name">
-                    <strong>Auditoría interna y gestión administrativa</strong>
-                    <small>Revisión de procesos de nómina y seguridad social</small>
-                  </div>
-                  <div class="srv-row-price">$156.320 COP</div>
                 </div>
               
             </div>
@@ -2564,71 +3946,75 @@
             </div>
           </div>
         </article>
-
-        <!-- 18. Cuidado de Mascotas & Veterinaria -->
-        <article class="srv-compact-card" data-group="mascotas" data-id="mascotas">
-          <div class="srv-card-main">
-            <div class="srv-icon-badge">
+      
+        <article class="srv-compact-card spotify-card" data-group="mascotas" data-id="mascotas">
+          <div class="spotify-cover-wrap" onclick="toggleSrvCard(this, event)">
+            <div class="spotify-cover-art" style="background-image: url('https://images.unsplash.com/photo-1601758228041-f3b2795255f1?w=600&auto=format&fit=crop&q=80');">
+              <div class="spotify-cover-overlay"></div>
+            </div>
+            <div class="spotify-sleeve-stack" aria-hidden="true">
+              <div class="spotify-sleeve-layer s-layer-1"></div>
+              <div class="spotify-sleeve-layer s-layer-2"></div>
+            </div>
+            <div class="spotify-badge-box" title="Cuidado de Mascotas & Veterinaria">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="4.5" cy="9.5" r="2.5"/><circle cx="9" cy="5.5" r="2.5"/><circle cx="15" cy="5.5" r="2.5"/><circle cx="19.5" cy="9.5" r="2.5"/><path d="M12 11c-3.5 0-6 2.5-6 6a4 4 0 0 0 7 2.5A4 4 0 0 0 20 17c0-3.5-2.5-6-6-6h-2z"/></svg>
             </div>
-            <div class="srv-info">
-              <div class="srv-num-tag">18. Cuidado de Mascotas & Veterinaria</div>
-              <div class="srv-price-base">desde $24.780 COP</div>
-            </div>
-            <button type="button" class="srv-chevron-wrap" title="Clic para ver labores" onclick="toggleSrvCard(this, event)">
-              <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
-            </button>
           </div>
 
-          <div class="srv-dropdown-pane">
+          <div class="spotify-card-body" onclick="toggleSrvCard(this, event)">
+            <h3 class="spotify-card-title">18. Cuidado de Mascotas & Veterinaria</h3>
+            <div class="spotify-card-row">
+              <div class="spotify-meta-text">
+                <span class="spotify-price-tag">desde $37.890 COP</span>
+                <span class="spotify-short-desc">Paseo canino con GPS (2h), baño y Pet Sitting Premium</span>
+              </div>
+              <button type="button" class="spotify-chevron-btn srv-chevron-wrap" title="Ver labores de Cuidado de Mascotas & Veterinaria" aria-label="Ver labores de Cuidado de Mascotas & Veterinaria" onclick="toggleSrvCard(this, event)">
+                <svg class="chevron-ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="srv-dropdown-pane" onclick="event.stopPropagation()">
             <p class="srv-dropdown-desc">
-              Paseadores caninos certificados, baño y peluquería a domicilio y consulta veterinaria en Medellín.
+              Paseo canino estructurado (mínimo 2 horas) con GPS, baño y peluquería a domicilio, Pet Sitting Premium y limpieza dental sin anestesia. 
             </p>
             <div class="srv-dropdown-table">
               
-              <div class="srv-table-row">
-                <div class="srv-row-name">
-                  <strong>Paseo canino estructurado y socialización (1 hora)</strong>
-                  <small>Reporte GPS, hidratación, recogida de excretas y refuerzo positivo</small>
+                <div class="srv-table-row">
+                  <div class="srv-row-name">
+                    <strong>Paseo canino (2 horas)</strong>
+                    <small>Paseo estructurado de 2 horas (mínimo de contratación) con reporte GPS, hidratación constante y recogida responsable de excretas</small>
+                  </div>
+                  <div class="srv-row-price">$47.082 COP</div>
                 </div>
-                <div class="srv-row-price">$24.780 COP</div>
-              </div>
-
-              <div class="srv-table-row">
-                <div class="srv-row-name">
-                  <strong>Baño, spa y peluquería canina/felina a domicilio</strong>
-                  <small>Champú medicado, corte higiénico, secado, limpieza de oídos y uñas</small>
+              
+                <div class="srv-table-row">
+                  <div class="srv-row-name">
+                    <strong>Baño y peluquería domicilio</strong>
+                    <small>Baño con champú medicado, corte higiénico, secado profesional y limado de uñas</small>
+                  </div>
+                  <div class="srv-row-price">$54.890 COP</div>
                 </div>
-                <div class="srv-row-price">$54.890 COP</div>
-              </div>
-
-              <div class="srv-table-row">
-                <div class="srv-row-name">
-                  <strong>Consulta veterinaria preventiva y vacunación a domicilio</strong>
-                  <small>Examen clínico general, desparasitación y certificación médica</small>
+              
+                <div class="srv-table-row">
+                  <div class="srv-row-name">
+                    <strong>Pet Sitting Premium (por día)</strong>
+                    <small>Cuidado completo en tu hogar incluyendo alimentación según dieta, sesiones de juego, compañía y envío de fotos/videos en tiempo real</small>
+                  </div>
+                  <div class="srv-row-price">$52.500 COP</div>
                 </div>
-                <div class="srv-row-price">$68.450 COP</div>
-              </div>
-
-              <div class="srv-table-row">
-                <div class="srv-row-name">
-                  <strong>Cuidado y guardería a domicilio por día (Pet Sitting)</strong>
-                  <small>Alimentación, juego, suministro de medicamentos y fotos en tiempo real</small>
+              
+                <div class="srv-table-row">
+                  <div class="srv-row-name">
+                    <strong>Limpieza dental sin anestesia</strong>
+                    <small>Higiene bucal preventiva realizada con gel enzimático y cepillos especializados para eliminar sarro superficial</small>
+                  </div>
+                  <div class="srv-row-price">$37.890 COP</div>
                 </div>
-                <div class="srv-row-price">$42.360 COP</div>
-              </div>
-
-              <div class="srv-table-row">
-                <div class="srv-row-name">
-                  <strong>Limpieza dental sin anestesia y desmote de nudos</strong>
-                  <small>Higiene bucal preventiva con gel enzimático y cepillado suave</small>
-                </div>
-                <div class="srv-row-price">$37.890 COP</div>
-              </div>
-
+              
             </div>
             <div class="srv-dropdown-footer">
-              <span class="srv-modality-pill">Labor Única / Rutina Semanal</span>
+              <span class="srv-modality-pill">Sesiones de 2h / Rutina Semanal</span>
               <span class="srv-guarantee-pill">Garantía Escrita 48h (Ley 1480)</span>
             </div>
           </div>
@@ -2658,14 +4044,14 @@
   <!-- ==========================================================================
        FOOTER OFICIAL RESTAURADO CON MARCO LEGAL, CONTACTO Y ORGANIZACIÓN FORMAL
        ========================================================================== -->
-  <footer class="site-footer">
+  <footer class="site-footer" id="contacto">
     <div class="footer-inner">
       <div class="footer-brand">
         <h4 style="font-family:var(--font-title);font-size:20px;font-weight:800;color:var(--tinta);margin-bottom:8px;">
           rebuske Medellín 2026
         </h4>
         <p style="font-size:13.5px;color:var(--mut);line-height:1.6;max-width:380px;">
-          Plataforma tecnológica de servicios técnicos para el hogar con pago protegido en Bóveda Wompi (Bancolombia). Fundador: <strong>Camilo Escobar</strong>.
+          Plataforma tecnológica de servicios técnicos para el hogar con pago protegido en Bóveda Wompi (Bancolombia). Fundador: <a href="https://www.instagram.com/camoescobarr/?hl=es" target="_blank" rel="noopener noreferrer" style="color:var(--lima);text-decoration:none;font-weight:700;">Camilo Escobar</a>.
         </p>
         <p style="margin-top:12px;font-size:12.5px;color:var(--lima);">
           Medellín, Antioquia, Colombia · 100% Hecho en Medellín
@@ -2696,14 +4082,56 @@
         </div>
 
         <div class="footer-col">
+          <h5>Redes Sociales</h5>
+          <ul>
+            <li>
+              <a href="https://instagram.com/holarebuske" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color:var(--lima);flex-shrink:0;"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                <span>Instagram (@holarebuske)</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/camoescobarr/?hl=es" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;color:var(--tinta);">
+                <img src="/favicon.svg" alt="rebuske" style="width:15px;height:15px;border-radius:4px;box-shadow:0 0 6px rgba(184,255,59,0.5);flex-shrink:0;">
+                <span>Camilo Escobar (@camoescobarr)</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://tiktok.com/@holarebuske" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="color:var(--lima);flex-shrink:0;"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.298-.002.595.042.88.13V9.4a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.66a6.34 6.34 0 0 0 10.82 4.48 6.3 6.3 0 0 0 1.96-4.48V8.75a8.28 8.28 0 0 0 5.25 1.87v-3.45a4.83 4.83 0 0 1-1.44-.48z"/></svg>
+                <span>TikTok (@holarebuske)</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://facebook.com/holarebuske" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="color:var(--lima);flex-shrink:0;"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                <span>Facebook Oficial</span>
+              </a>
+            </li>
+            <li>
+              <a href="https://youtube.com/@holarebuske" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="color:var(--lima);flex-shrink:0;"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="#0C120A"/></svg>
+                <span>YouTube (@holarebuske)</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
           <h5>Contacto Directo</h5>
           <ul>
             <li>
-              <a href="https://wa.me/573043812882?text=Hola%20Laura%2C%20quiero%20conocer%20m%C3%A1s%20sobre%20rebuske" target="_blank" rel="noopener noreferrer">
-                Laura WhatsApp (+57 304 381 2882)
+              <a href="https://wa.me/573043812882?text=Hola%20Laura%2C%20quiero%20conocer%20m%C3%A1s%20sobre%20rebuske" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:8px;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color:var(--lima);flex-shrink:0;"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                <span>Laura WhatsApp (+57 304 381 2882)</span>
               </a>
             </li>
-            <li><a href="mailto:holarebuske@gmail.com">holarebuske@gmail.com</a></li>
+            <li>
+              <a href="mailto:holarebuske@gmail.com" style="display:inline-flex;align-items:center;gap:8px;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="color:var(--lima);flex-shrink:0;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <span>holarebuske@gmail.com</span>
+              </a>
+            </li>
           </ul>
         </div>
       </div>
@@ -2729,7 +4157,9 @@
 
   <script>
     function toggleSrvCard(trigger, ev) {
-      if (ev) ev.stopPropagation();
+      if (ev) {
+        ev.stopPropagation();
+      }
       const card = trigger.classList.contains('srv-compact-card') ? trigger : trigger.closest('.srv-compact-card');
       if (!card) return;
       const isAlreadyOpen = card.classList.contains('is-open');
