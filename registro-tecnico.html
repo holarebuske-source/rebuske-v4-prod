@@ -805,7 +805,7 @@
       </a>
       <nav class="top-actions" aria-label="Navegación unificada">
         <a href="/entrada" class="btn-nav-link" title="Página Web de Entrada">Página Web</a>
-        <a href="/app" class="btn-pill-primary sheen" title="Abrir la Aplicación rebuske">Abrir App</a>
+        <a href="https://wa.me/573043812882?text=Hola%20Laura%2C%20quiero%20conocer%20m%C3%A1s%20sobre%20el%20registro%20t%C3%A9cnico" target="_blank" rel="noopener noreferrer" class="btn-pill-primary sheen" title="Hablar con Laura en WhatsApp" style="background:#B8FF3B;color:#0B1309;font-weight:900;display:inline-flex;align-items:center;gap:7px;">Hablar con Laura</a>
       </nav>
     </header>
 
@@ -863,11 +863,11 @@
 
       <div class="sim-bar-item">
         <div class="sim-bar-label">
-          <span style="color:var(--accent-neon);font-weight:800;">En rebuske Oro (93%)</span>
-          <span id="reb-display" style="color:var(--accent-neon);font-weight:800;">$93.000 COP + $23.000 COP más para ti</span>
+          <span style="color:var(--accent-neon);font-weight:800;">En rebuske Oro (89%)</span>
+          <span id="reb-display" style="color:var(--accent-neon);font-weight:800;">$89.000 COP + $19.000 COP más para ti</span>
         </div>
         <div class="sim-bar-track">
-          <div class="sim-bar-fill-rebuske" id="reb-bar" style="width: 93%;"></div>
+          <div class="sim-bar-fill-rebuske" id="reb-bar" style="width: 89%;"></div>
         </div>
       </div>
 
@@ -875,25 +875,25 @@
       <div class="placas-grid">
         <div class="placa-card">
           <div class="placa-title">Placa Bronce</div>
-          <div class="placa-com">9% Com.</div>
-          <div class="placa-req">Técnico Verificado</div>
+          <div class="placa-com">18% Com.</div>
+          <div class="placa-req">Técnico Verificado (82% Neto)</div>
         </div>
         <div class="placa-card">
           <div class="placa-title">Placa Plata</div>
-          <div class="placa-com">8% Com.</div>
-          <div class="placa-req">5+ Trabajos con 4.8 Estrellas</div>
+          <div class="placa-com">14% Com.</div>
+          <div class="placa-req">5+ Trabajos con 4.8★ (86% Neto)</div>
         </div>
         <div class="placa-card active-gold">
           <div class="placa-title">Placa Oro</div>
-          <div class="placa-com">7% Com.</div>
-          <div class="placa-req">Top 100 o Calidad 4.9 Estrellas</div>
+          <div class="placa-com">11% Com.</div>
+          <div class="placa-req">Top 100 o Calidad 4.9★ (89% Neto)</div>
         </div>
       </div>
 
       <!-- Promoción Temporal Exclusiva -->
       <div class="promo-callout">
         <h4>Promoción Temporal Exclusiva · Primer Mes (Solo 100 Cupos)</h4>
-        <p>Los primeros 100 profesionales registrados operarán al 1% de comisión durante sus primeros 30 días (¡99% neto para ti!). Finalizado el mes, se activará tu placa ganada (9%, 8% o 7%).</p>
+        <p>Los primeros 100 profesionales registrados operarán al 1% de comisión durante sus primeros 30 días (¡99% neto para ti!). Finalizado el mes, se activará tu placa ganada (Bronce 18%, Plata 14% u Oro 11%). Costos de pasarela Wompi 100% absorbidos por Rebuske.</p>
       </div>
 
       <button type="button" class="btn-full btn-full-primary" onclick="irAlPaso1()">
@@ -950,9 +950,9 @@
                 <option value="cerrajeria">6. Cerrajería & Seguridad</option>
                 <option value="jardineria">7. Jardinería & Exteriores</option>
                 <option value="construccion">8. Construcción & Remodelación</option>
-                <option value="mudanzas">9. Mudanzas & Transporte</option>
+                <option value="mudanzas">9. Mudanzas</option>
                 <option value="electrodomesticos">10. Electrodomésticos & Gasodomésticos</option>
-                <option value="tecnologia">11. Tecnología & Cámaras CCTV</option>
+                <option value="chef">11. Chef Privado a Domicilio</option>
                 <option value="automoviles">12. Automóviles & Mecánica Ligera</option>
                 <option value="digital">13. Diseño, Web & Servicios Digitales</option>
                 <option value="educacion">14. Clases Particulares & Música</option>
@@ -1255,7 +1255,7 @@
       
       const appsNeto = v * 0.70;
       const appsCom = v * 0.30;
-      const rebNeto = v * 0.93;
+      const rebNeto = v * 0.89;
       const rebDif = rebNeto - appsNeto;
 
       document.getElementById('trad-display').textContent = formatCOP(appsNeto) + ' COP (Te descuentan ' + formatCOP(appsCom) + ' COP)';
