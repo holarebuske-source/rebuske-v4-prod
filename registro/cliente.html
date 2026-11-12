@@ -492,14 +492,15 @@
       border-color: var(--accent-neon);
     }
     .checkbox-label input[type="checkbox"]:checked::after {
-      content: '✓';
+      content: '';
       position: absolute;
-      top: 50%;
+      top: 45%;
       left: 50%;
-      transform: translate(-50%, -50%);
-      font-size: 12px;
-      color: #050A05;
-      font-weight: 900;
+      width: 5px;
+      height: 10px;
+      border: solid #0C120A;
+      border-width: 0 2.5px 2.5px 0;
+      transform: translate(-50%, -50%) rotate(45deg);
     }
 
     /* Botón Submit */
