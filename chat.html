@@ -40,17 +40,17 @@
             <span class="text-[10px] bg-[#b8ff3b]/20 text-[#b8ff3b] font-black px-1.5 py-0.5 rounded border border-[#b8ff3b]/40">CEO</span>
           </div>
           <p class="text-[11px] text-[#8ca381] font-medium flex items-center gap-1">
-            <span>👑 Canashi</span> • <span class="text-[#38bdf8]">10 Agentes en Línea</span> • <span id="gemini-status" class="text-[#a78bfa]">✨ Gemini AI</span>
+            <span> Canashi</span> • <span class="text-[#38bdf8]">10 Agentes en Línea</span> • <span id="gemini-status" class="text-[#a78bfa]"> Gemini AI</span>
           </p>
         </div>
       </div>
 
       <div class="flex items-center gap-1.5">
         <button onclick="toggleKpisModal()" title="Ver KPIs Oficina" class="p-2 rounded-full bg-[#182415] border border-[#2d4228] text-[#9fb392] hover:text-[#b8ff3b] hover:border-[#b8ff3b] active:scale-95 transition">
-          📊
+          
         </button>
         <button onclick="sendFullReportEmail()" title="Enviar resumen a holarebuske@gmail.com" class="px-2.5 py-1.5 rounded-full bg-gradient-to-r from-[#24421b] to-[#1c3315] border border-[#b8ff3b]/50 text-[#b8ff3b] font-bold text-xs flex items-center gap-1 hover:brightness-110 active:scale-95 transition shadow-sm">
-          <span>📧</span> <span class="hidden sm:inline">Enviar Correo</span>
+          <span></span> <span class="hidden sm:inline">Enviar Correo</span>
         </button>
       </div>
     </div>
@@ -58,37 +58,37 @@
     <!-- BARRA HORIZONTAL DE AGENTES (FILTRO DIRECTO) -->
     <div class="max-w-4xl mx-auto mt-2 flex items-center gap-1.5 overflow-x-auto custom-scroll pb-1">
       <button onclick="selectTargetAgent('todos')" id="pill-todos" class="px-2.5 py-1 rounded-full bg-[#b8ff3b] text-[#0c120a] font-extrabold text-[11px] shrink-0 border border-[#b8ff3b] transition">
-        👥 Mesa Directiva
+         Mesa Directiva
       </button>
       <button onclick="selectTargetAgent('valeria')" id="pill-valeria" class="px-2.5 py-1 rounded-full bg-[#182415] text-[#9fb392] hover:text-white font-bold text-[11px] shrink-0 border border-[#2d4228] transition flex items-center gap-1">
-        <span>🎨</span> Valeria
+        <span></span> Valeria
       </button>
       <button onclick="selectTargetAgent('tomas')" id="pill-tomas" class="px-2.5 py-1 rounded-full bg-[#182415] text-[#9fb392] hover:text-white font-bold text-[11px] shrink-0 border border-[#2d4228] transition flex items-center gap-1">
-        <span>💼</span> Tomás
+        <span></span> Tomás
       </button>
       <button onclick="selectTargetAgent('mateo')" id="pill-mateo" class="px-2.5 py-1 rounded-full bg-[#182415] text-[#9fb392] hover:text-white font-bold text-[11px] shrink-0 border border-[#2d4228] transition flex items-center gap-1">
-        <span>🖥️</span> Mateo
+        <span>️</span> Mateo
       </button>
       <button onclick="selectTargetAgent('vanessa')" id="pill-vanessa" class="px-2.5 py-1 rounded-full bg-[#182415] text-[#9fb392] hover:text-white font-bold text-[11px] shrink-0 border border-[#2d4228] transition flex items-center gap-1">
-        <span>🔍</span> Vanessa
+        <span></span> Vanessa
       </button>
       <button onclick="selectTargetAgent('rosa')" id="pill-rosa" class="px-2.5 py-1 rounded-full bg-[#182415] text-[#9fb392] hover:text-white font-bold text-[11px] shrink-0 border border-[#2d4228] transition flex items-center gap-1">
-        <span>☕</span> Rosa
+        <span></span> Rosa
       </button>
       <button onclick="selectTargetAgent('lucas')" id="pill-lucas" class="px-2.5 py-1 rounded-full bg-[#182415] text-[#9fb392] hover:text-white font-bold text-[11px] shrink-0 border border-[#2d4228] transition flex items-center gap-1">
-        <span>🧪</span> Lucas
+        <span></span> Lucas
       </button>
       <button onclick="selectTargetAgent('alejandro')" id="pill-alejandro" class="px-2.5 py-1 rounded-full bg-[#182415] text-[#9fb392] hover:text-white font-bold text-[11px] shrink-0 border border-[#2d4228] transition flex items-center gap-1">
-        <span>🛡️</span> Alejandro
+        <span>️</span> Alejandro
       </button>
       <button onclick="selectTargetAgent('mati')" id="pill-mati" class="px-2.5 py-1 rounded-full bg-[#182415] text-[#9fb392] hover:text-white font-bold text-[11px] shrink-0 border border-[#2d4228] transition flex items-center gap-1">
-        <span>⚡</span> Matí
+        <span></span> Matí
       </button>
       <button onclick="selectTargetAgent('simon')" id="pill-simon" class="px-2.5 py-1 rounded-full bg-[#182415] text-[#9fb392] hover:text-white font-bold text-[11px] shrink-0 border border-[#2d4228] transition flex items-center gap-1">
-        <span>🐱</span> Simón
+        <span></span> Simón
       </button>
       <button onclick="selectTargetAgent('lorenzo')" id="pill-lorenzo" class="px-2.5 py-1 rounded-full bg-[#182415] text-[#9fb392] hover:text-white font-bold text-[11px] shrink-0 border border-[#2d4228] transition flex items-center gap-1">
-        <span>🦜</span> Dr. Lorenzo
+        <span></span> Dr. Lorenzo
       </button>
     </div>
   </header>
@@ -99,21 +99,21 @@
     <!-- BANNER DE BIENVENIDA -->
     <div class="p-3.5 rounded-2xl bg-[#141f11] border border-[#2d4228] text-xs text-[#a4bea0] space-y-1.5 shadow-lg">
       <div class="flex items-center justify-between text-[#b8ff3b] font-black text-xs uppercase tracking-wider">
-        <span>⚡ Conexión Directa en Vivo · Medellín</span>
+        <span> Conexión Directa en Vivo · Medellín</span>
         <span>rebuske v4 HQ</span>
       </div>
       <p class="text-[#e2e8f0]">
-        Bienvenido Canashi 👑. Esta sala te permite comunicarte directamente con todos tus agentes con IA Gemini. Puedes enviar mensajes de voz o texto, adjuntar fotos de tu celular (herramientas, carnés, cédulas) y pedir reportes automáticos a <b class="text-[#b8ff3b]">holarebuske@gmail.com</b>.
+        Bienvenido Canashi . Esta sala te permite comunicarte directamente con todos tus agentes con IA Gemini. Puedes enviar mensajes de voz o texto, adjuntar fotos de tu celular (herramientas, carnés, cédulas) y pedir reportes automáticos a <b class="text-[#b8ff3b]">holarebuske@gmail.com</b>.
       </p>
       <div class="flex items-center gap-2 pt-1 text-[11px] text-[#93c5fd]">
-        <span>📊 Cupos: <b>84 / 100</b></span> • <span>NPS: <b>4.92★</b></span> • <span>Wompi: <b>Lote #2026-L4 ($2.845M)</b></span>
+        <span> Cupos: <b>84 / 100</b></span> • <span>NPS: <b>4.92</b></span> • <span>Wompi: <b>Lote #2026-L4 ($2.845M)</b></span>
       </div>
     </div>
 
     <!-- MENSAJE INICIAL DE LA MESA DIRECTIVA -->
     <div class="flex items-start gap-2.5 agent-bubble">
       <div class="w-8 h-8 rounded-xl bg-gradient-to-br from-[#10b981] to-[#047857] flex items-center justify-center text-base shrink-0 shadow-md">
-        💼
+        
       </div>
       <div class="max-w-[85%] sm:max-w-xl bg-[#141f11] border border-[#2d4228] rounded-2xl rounded-tl-sm p-3.5 shadow-md">
         <div class="flex items-center justify-between mb-1 gap-2">
@@ -121,7 +121,7 @@
           <span class="text-[10px] text-[#6b8064]">Ahora</span>
         </div>
         <p class="text-xs text-[#f4fbf1] leading-relaxed">
-          ¡A la orden, Canashi! 👑 Aquí estamos todos tus agentes conectados en tiempo real con la oficina virtual. La conciliación bancaria está al 100% y tengo en espera el lote #2026-L4 de $2.845.000 COP para 14 técnicos. Decinos qué orden tienes o con quién quieres hablar hoy.
+          ¡A la orden, Canashi!  Aquí estamos todos tus agentes conectados en tiempo real con la oficina virtual. La conciliación bancaria está al 100% y tengo en espera el lote #2026-L4 de $2.845.000 COP para 14 técnicos. Decinos qué orden tienes o con quién quieres hablar hoy.
         </p>
       </div>
     </div>
@@ -148,26 +148,26 @@
       </div>
     </div>
     <button onclick="cancelPhoto()" class="text-xs px-2.5 py-1 rounded bg-[#ef4444]/20 text-[#ef4444] font-bold hover:bg-[#ef4444]/30">
-      ✕ Quitar
+       Quitar
     </button>
   </div>
 
   <!-- BARRA INFERIOR DE ACCIONES RÁPIDAS -->
   <div class="flex-none max-w-4xl w-full mx-auto px-3 pt-1.5 overflow-x-auto custom-scroll flex items-center gap-1.5 text-[11px]">
     <button onclick="sendQuickPrompt('Valeria, ¿qué ideas tienes para promocionar los 100?')" class="px-2.5 py-1 rounded-full bg-[#141f11] border border-[#23361e] text-[#9fb392] hover:border-[#b8ff3b] hover:text-[#b8ff3b] whitespace-nowrap transition">
-      🎨 Ideas promoción 100
+       Ideas promoción 100
     </button>
     <button onclick="sendQuickPrompt('Tomás, ¿cómo va el lote de Wompi?')" class="px-2.5 py-1 rounded-full bg-[#141f11] border border-[#23361e] text-[#9fb392] hover:border-[#10b981] hover:text-[#10b981] whitespace-nowrap transition">
-      💼 Estado Wompi
+       Estado Wompi
     </button>
     <button onclick="sendQuickPrompt('¿Qué está pasando en la oficina ahora mismo?')" class="px-2.5 py-1 rounded-full bg-[#141f11] border border-[#23361e] text-[#9fb392] hover:border-[#38bdf8] hover:text-[#38bdf8] whitespace-nowrap transition">
-      🏢 Resumen oficina
+       Resumen oficina
     </button>
     <button onclick="sendQuickPrompt('Vanessa, ¿qué técnicos hay pendientes de KYC?')" class="px-2.5 py-1 rounded-full bg-[#141f11] border border-[#23361e] text-[#9fb392] hover:border-[#eab308] hover:text-[#eab308] whitespace-nowrap transition">
-      🔍 Fichas KYC
+       Fichas KYC
     </button>
     <button onclick="sendQuickPrompt('Mándame un informe completo a holarebuske@gmail.com')" class="px-2.5 py-1 rounded-full bg-[#141f11] border border-[#23361e] text-[#9fb392] hover:border-[#b8ff3b] hover:text-[#b8ff3b] whitespace-nowrap transition">
-      📧 Enviar a holarebuske
+       Enviar a holarebuske
     </button>
   </div>
 
@@ -177,7 +177,7 @@
       
       <!-- BOTÓN ADJUNTAR FOTO DESDE CELULAR -->
       <label for="camera-input" class="w-10 h-10 rounded-xl bg-[#182415] border border-[#2d4228] flex items-center justify-center text-[#9fb392] hover:text-[#b8ff3b] hover:border-[#b8ff3b] active:scale-95 cursor-pointer shrink-0 transition" title="Tomar foto o subir de galería">
-        📷
+        
       </label>
       <input type="file" id="camera-input" accept="image/*" class="hidden" onchange="handlePhotoSelected(event)">
 
@@ -198,7 +198,7 @@
     <div class="bg-[#141f11] border-2 border-[#2d4228] rounded-2xl max-w-md w-full p-4 space-y-3.5 shadow-2xl">
       <div class="flex items-center justify-between pb-2 border-b border-[#23361e]">
         <div class="flex items-center gap-2">
-          <span class="text-xl">📊</span>
+          <span class="text-xl"></span>
           <h3 class="font-extrabold text-sm text-[#b8ff3b]">Métricas Oficiales en Tiempo Real</h3>
         </div>
         <button onclick="toggleKpisModal()" class="text-[#9fb392] hover:text-[#ef4444] text-xl font-bold">&times;</button>
@@ -211,7 +211,7 @@
         </div>
         <div class="p-2.5 rounded-xl bg-[#0e160c] border border-[#23361e]">
           <span class="text-[10px] text-[#8ca381] block">NPS MEDELLÍN</span>
-          <b class="text-base text-[#facc15]">4.92 ★</b>
+          <b class="text-base text-[#facc15]">4.92 </b>
         </div>
         <div class="p-2.5 rounded-xl bg-[#0e160c] border border-[#23361e]">
           <span class="text-[10px] text-[#8ca381] block">TIEMPO MATCH</span>
@@ -312,13 +312,13 @@
         <div class="max-w-[85%] sm:max-w-xl bg-gradient-to-br from-[#1b3a16] to-[#142611] border border-[#4ade80]/40 rounded-2xl rounded-tr-sm p-3.5 shadow-md">
           <div class="flex items-center justify-between mb-1 gap-2">
             <span class="text-[10px] text-[#93c5fd]">${time}</span>
-            <span class="font-extrabold text-xs text-[#b8ff3b] flex items-center gap-1">👑 Canashi (CEO)</span>
+            <span class="font-extrabold text-xs text-[#b8ff3b] flex items-center gap-1"> Canashi (CEO)</span>
           </div>
           ${photo ? `<div class="mb-2"><img src="${photo}" class="w-full max-h-56 object-cover rounded-xl border border-[#b8ff3b]/40 shadow"></div>` : ''}
           <p class="text-xs sm:text-sm text-[#f4fbf1] leading-relaxed whitespace-pre-wrap">${text}</p>
         </div>
         <div class="w-8 h-8 rounded-xl bg-gradient-to-br from-[#22c55e] to-[#15803d] flex items-center justify-center text-sm shrink-0 shadow-md">
-          👑
+          
         </div>
       `;
       feed.appendChild(msgDiv);
@@ -336,7 +336,7 @@
 
       msgDiv.innerHTML = `
         <div class="w-8 h-8 rounded-xl flex items-center justify-center text-base shrink-0 shadow-md" style="background:${agentData.color || '#10b981'}33; border: 1px solid ${agentData.color || '#10b981'}">
-          ${agentData.emoji || '💬'}
+          ${agentData.emoji || ''}
         </div>
         <div class="max-w-[85%] sm:max-w-xl bg-[#141f11] border border-[#2d4228] rounded-2xl rounded-tl-sm p-3.5 shadow-md">
           <div class="flex items-center justify-between mb-1 gap-2">
@@ -346,9 +346,9 @@
           <p class="text-xs sm:text-sm text-[#f4fbf1] leading-relaxed">${formattedText}</p>
           
           <div class="mt-2.5 pt-2 border-t border-[#23361e] flex items-center justify-between text-[10px] text-[#8ca381]">
-            <span class="flex items-center gap-1">✨ Sincronizado en tiempo real</span>
+            <span class="flex items-center gap-1"> Sincronizado en tiempo real</span>
             <button onclick="dispatchSpecificEmail('${agentData.name}', '${agentData.text.replace(/'/g, "\\'")}')" class="text-[#b8ff3b] hover:underline font-bold flex items-center gap-1 cursor-pointer">
-              <span>📧</span> Enviar a holarebuske
+              <span></span> Enviar a holarebuske
             </button>
           </div>
         </div>
@@ -397,7 +397,7 @@
           if (data.success && data.text) {
             appendAgentMessage(data);
             if (data.emailSent) {
-              alert('📧 Copia de esta conversación enviada a holarebuske@gmail.com');
+              alert(' Copia de esta conversación enviada a holarebuske@gmail.com');
             }
             return;
           }
@@ -415,7 +415,7 @@
         let agentData = {
           name: 'Tomás',
           role: 'FinTech & Payouts Wompi',
-          emoji: '💼',
+          emoji: '',
           color: '#10b981',
           text: '',
           timestamp: new Date().toLocaleTimeString('es-CO', { hour: '2-digit', minute: '2-digit' })
@@ -426,18 +426,18 @@
             agentData = {
               name: 'Vanessa',
               role: 'Verificación KYC',
-              emoji: '🔍',
+              emoji: '',
               color: '#eab308',
-              text: '¡Foto recibida Canashi! Ya revisé la imagen. Las herramientas y datos se ven nítidos, sin sellos de terceros. La archivo en la ficha técnica para validar la Placa Oro vitalicia al 7%.',
+              text: '¡Foto recibida Canashi! Ya revisé la imagen. Las herramientas y datos se ven nítidos, sin sellos de terceros. La archivo en la ficha técnica para validar la Placa Oro VIP vitalicia al 11% (89% neto).',
               timestamp: new Date().toLocaleTimeString('es-CO', { hour: '2-digit', minute: '2-digit' })
             };
           } else {
             agentData = {
               name: 'Valeria',
               role: 'Diseño UI/UX & Marketing',
-              emoji: '🎨',
+              emoji: '',
               color: '#f43f5e',
-              text: '¡Qué buen material visual Canashi! 🎨 Me sirve de una para el carné troquelado con código QR o para el gancho de dolor en el reel de TikTok de los 100 fundadores. Ya mismo con Sofía la maquetamos.',
+              text: '¡Qué buen material visual Canashi!  Me sirve de una para el carné troquelado con código QR o para el gancho de dolor en el reel de TikTok de los 100 fundadores. Ya mismo con Sofía la maquetamos.',
               timestamp: new Date().toLocaleTimeString('es-CO', { hour: '2-digit', minute: '2-digit' })
             };
           }
@@ -445,79 +445,79 @@
           agentData = {
             name: 'Mesa Directiva',
             role: 'Todos los Agentes Conectados',
-            emoji: '👥',
+            emoji: '',
             color: '#b8ff3b',
-            text: '¡Aquí estamos firmes todos, Canashi! 👑\n\n• 💼 Tomás: Conciliación Wompi 100% y libro contable en cero.\n• 🎨 Valeria: 4 ideas de guerrilla para los 100 fundadores.\n• 🖥️ Mateo: Supabase y webhooks en 180ms.\n• 🔍 Vanessa: 2 electricistas de Envigado listos para Placa Oro.\n• 🧪 Lucas: Flujo móvil probado sin errores.\n• ☕ Rosa: Tinto recién servido y retención a 60 días.\n• 🛡️ Alejandro: Anti-fraude activo en Belén.\n• 🐱 Simón & 🐊 Dante: Evaluando escáner AR de tubos.\n• 🦜 Dr. Lorenzo: Split 93%/7% blindado legalmente.\n\n¿A quién le quieres dar la palabra, Canashi?',
+            text: '¡Aquí estamos firmes todos, Canashi! \n\n•  Tomás: Conciliación Wompi 100% y libro contable en cero.\n•  Valeria: 4 ideas de guerrilla para los 100 fundadores.\n• ️ Mateo: Supabase y webhooks en 180ms.\n•  Vanessa: 2 electricistas de Envigado listos para Placa Oro.\n•  Lucas: Flujo móvil probado sin errores.\n•  Rosa: Tinto recién servido y retención a 60 días.\n• ️ Alejandro: Anti-fraude activo en Belén.\n•  Simón &  Dante: Evaluando escáner AR de tubos.\n•  Dr. Lorenzo: Split 93%/7% blindado legalmente.\n\n¿A quién le quieres dar la palabra, Canashi?',
             timestamp: new Date().toLocaleTimeString('es-CO', { hour: '2-digit', minute: '2-digit' })
           };
         } else if (lower.includes('no lo autorizo') || lower.includes('aun no') || lower.includes('aún no') || lower.includes('pausa') || lower.includes('espera') || lower.includes('congelar')) {
           agentData = {
             name: 'Tomás',
             role: 'FinTech & Payouts Wompi',
-            emoji: '💼',
+            emoji: '',
             color: '#10b981',
-            text: 'Entendido al 100%, Canashi 🛑. Queda congelado el lote #2026-L4 de $2.845.000 COP en Wompi. No se transferirá ni un solo peso a las cuentas de los 14 técnicos hasta que vos me des la orden expresa de luz verde. Los fondos siguen protegidos en custodia segura de Wompi.',
+            text: 'Entendido al 100%, Canashi . Queda congelado el lote #2026-L4 de $2.845.000 COP en Wompi. No se transferirá ni un solo peso a las cuentas de los 14 técnicos hasta que vos me des la orden expresa de luz verde. Los fondos siguen protegidos en custodia segura de Wompi.',
             timestamp: new Date().toLocaleTimeString('es-CO', { hour: '2-digit', minute: '2-digit' })
           };
         } else if (lower.includes('autorizo') || lower.includes('luz verde') || lower.includes('aprobado') || lower.includes('desembolsa') || lower.includes('dispersa')) {
           agentData = {
             name: 'Tomás',
             role: 'FinTech & Payouts Wompi',
-            emoji: '💼',
+            emoji: '',
             color: '#10b981',
-            text: '¡Luz verde recibida, Canashi! 🚀 Dispersando Lote #2026-L4 ($2.845.000 COP) a través de la API de Wompi Payouts para los 14 técnicos. Cuentas bancarias y Nequi acreditándose en segundos. Libro contable conciliado en cero descuadre.',
+            text: '¡Luz verde recibida, Canashi!  Dispersando Lote #2026-L4 ($2.845.000 COP) a través de la API de Wompi Payouts para los 14 técnicos. Cuentas bancarias y Nequi acreditándose en segundos. Libro contable conciliado en cero descuadre.',
             timestamp: new Date().toLocaleTimeString('es-CO', { hour: '2-digit', minute: '2-digit' })
           };
         } else if (lower.includes('ideas') || lower.includes('promocionar') || lower.includes('campaña') || lower.includes('marketing')) {
           agentData = {
             name: 'Valeria',
             role: 'Diseño UI/UX & Marketing',
-            emoji: '🎨',
+            emoji: '',
             color: '#f43f5e',
-            text: '¡Canashi, te tengo 4 ideas brutales para llenar los cupos que faltan de los 100 fundadores (vamos 84/100)! 🚀\n\n1. 🛠️ Gira de Ferreterías en Medellín: Pegar afiches con código QR en las ferreterías más concurridas de La 33, Guayabal, Belén y el Centro.\n2. 📱 TikTok & Reels con gancho de dolor: "¿Sos plomero o electricista en Medellín y estás mamado de que las apps te quiten el 30%? En rebuske tienes el 7% vitalicio". Mostramos el carné de Placa Oro.\n3. 🤝 Voz a voz con Don Jairo y los primeros pros: Que inviten a sus 2 colegas más confiables y reciban prioridad de asignación.\n4. 📲 Pauta hiperlocal en Facebook/IG dirigida a técnicos del Valle de Aburrá.\n\n¿Cuál de estas te gusta más para que Sofía y yo empecemos hoy?',
+            text: '¡Canashi, te tengo 4 ideas brutales para llenar los cupos que faltan de los 100 fundadores (vamos 84/100)! \n\n1. ️ Gira de Ferreterías en Medellín: Pegar afiches con código QR en las ferreterías más concurridas de La 33, Guayabal, Belén y el Centro.\n2.  TikTok & Reels con gancho de dolor: "¿Sos plomero o electricista en Medellín y estás mamado de que las apps te quiten el 30%? En rebuske tienes la tarifa Oro del 11% vitalicia (89% neto)". Mostramos el carné de Placa Oro.\n3.  Voz a voz con Don Jairo y los primeros pros: Que inviten a sus 2 colegas más confiables y reciban prioridad de asignación.\n4.  Pauta hiperlocal en Facebook/IG dirigida a técnicos del Valle de Aburrá.\n\n¿Cuál de estas te gusta más para que Sofía y yo empecemos hoy?',
             timestamp: new Date().toLocaleTimeString('es-CO', { hour: '2-digit', minute: '2-digit' })
           };
         } else if (lower.includes('la 1') || lower.includes('ferreteria') || lower.includes('tiktok') || lower.includes('la 2') || lower.includes('todas')) {
           agentData = {
             name: 'Valeria',
             role: 'Diseño UI/UX & Marketing',
-            emoji: '🎨',
+            emoji: '',
             color: '#f43f5e',
-            text: '¡De una Canashi! 🔥 Excelente elección. Me pongo de inmediato con Sofía a armar el afiche para ferreterías con el QR troquelado y el guión de TikTok. Y Mateo nos va a dejar listo el enlace UTM para medir cuántos técnicos se inscriben desde cada punto.',
+            text: '¡De una Canashi!  Excelente elección. Me pongo de inmediato con Sofía a armar el afiche para ferreterías con el QR troquelado y el guión de TikTok. Y Mateo nos va a dejar listo el enlace UTM para medir cuántos técnicos se inscriben desde cada punto.',
             timestamp: new Date().toLocaleTimeString('es-CO', { hour: '2-digit', minute: '2-digit' })
           };
         } else if (lower.includes('oficina') || lower.includes('que pasa') || lower.includes('novedades') || lower.includes('resumen')) {
           agentData = {
             name: 'Mesa Directiva',
             role: 'Reporte Simultáneo de Oficina',
-            emoji: '🏢',
+            emoji: '',
             color: '#38bdf8',
-            text: 'Canashi, reporte simultáneo desde los escritorios de la oficina virtual:\n\n1. 💼 Tomás: Lote Wompi #2026-L4 ($2.845.000 COP) en espera de luz verde.\n2. 🛡️ Alejandro: Caso de cerrajería en Belén blindado con la póliza de $1.5M.\n3. 🔍 Vanessa: 2 técnicos de Envigado listos con antecedentes limpios.\n4. ☕ Rosa: Propuesta de bono de $10.000 COP para 28 clientes de 60 días.\n5. 🎨 Valeria: 84/100 cupos de fundadores y simulador de 7% activo.\n\nMétricas vivas: NPS 4.92★, tiempo match 12.8m, conciliación 100% OK.',
+            text: 'Canashi, reporte simultáneo desde los escritorios de la oficina virtual:\n\n1.  Tomás: Lote Wompi #2026-L4 ($2.845.000 COP) en espera de luz verde.\n2. ️ Alejandro: Caso de cerrajería en Belén blindado con la póliza de $1.5M.\n3.  Vanessa: 2 técnicos de Envigado listos con antecedentes limpios.\n4.  Rosa: Propuesta de bono de $10.000 COP para 28 clientes de 60 días.\n5.  Valeria: 84/100 cupos de fundadores y simulador de 89% neto (Plan Oro) activo.\n\nMétricas vivas: NPS 4.92, tiempo match 12.8m, conciliación 100% OK.',
             timestamp: new Date().toLocaleTimeString('es-CO', { hour: '2-digit', minute: '2-digit' })
           };
         } else if (lower.includes('valeria')) {
           agentData = {
             name: 'Valeria',
             role: 'Diseño UI/UX & Marketing',
-            emoji: '🎨',
+            emoji: '',
             color: '#f43f5e',
-            text: '¡Hola Canashi! 🎨 El carné oficial para los 100 fundadores ya tiene ranura troquelada y código QR permanente. En rebuske.vercel.app/pro el slider táctil de ganancias de $50k a $2M está impecable. ¿Qué cambio visual o pieza te gustaría sumar?',
+            text: '¡Hola Canashi!  El carné oficial para los 100 fundadores ya tiene ranura troquelada y código QR permanente. En rebuske.vercel.app/pro el slider táctil de ganancias de $50k a $2M está impecable. ¿Qué cambio visual o pieza te gustaría sumar?',
             timestamp: new Date().toLocaleTimeString('es-CO', { hour: '2-digit', minute: '2-digit' })
           };
         } else if (lower.includes('mateo') || lower.includes('servidor') || lower.includes('backend') || lower.includes('supabase')) {
           agentData = {
             name: 'Mateo',
             role: 'Arquitectura & Supabase',
-            emoji: '🖥️',
+            emoji: '️',
             color: '#06b6d4',
-            text: 'Firme Canashi 🖥️⚡. Los webhooks de Wompi están respondiendo en 180ms y los índices PostGIS geolocalizan las solicitudes por comunas al instante. Todo el backend en Supabase está blindado y sin errores.',
+            text: 'Firme Canashi ️. Los webhooks de Wompi están respondiendo en 180ms y los índices PostGIS geolocalizan las solicitudes por comunas al instante. Todo el backend en Supabase está blindado y sin errores.',
             timestamp: new Date().toLocaleTimeString('es-CO', { hour: '2-digit', minute: '2-digit' })
           };
         } else if (lower.includes('vanessa') || lower.includes('kyc') || lower.includes('antecedentes')) {
           agentData = {
             name: 'Vanessa',
             role: 'Verificación KYC',
-            emoji: '🔍',
+            emoji: '',
             color: '#eab308',
             text: 'Canashi, atenta por acá . Tenemos 84 técnicos verificados. Los 2 últimos de Envigado ya pasaron Policía y Procuraduría y sus 5 fotos están impecables. Si me das luz verde, les activo su Placa Oro de por vida de una.',
             timestamp: new Date().toLocaleTimeString('es-CO', { hour: '2-digit', minute: '2-digit' })
@@ -526,18 +526,18 @@
           agentData = {
             name: 'Tomás',
             role: 'FinTech & Payouts Wompi',
-            emoji: '💼',
+            emoji: '',
             color: '#10b981',
-            text: '¡Listo Canashi! 📧 Copia ejecutiva del estado de operaciones y decisiones generada y despachada a holarebuske@gmail.com.',
+            text: '¡Listo Canashi!  Copia ejecutiva del estado de operaciones y decisiones generada y despachada a holarebuske@gmail.com.',
             timestamp: new Date().toLocaleTimeString('es-CO', { hour: '2-digit', minute: '2-digit' })
           };
         } else {
           agentData = {
             name: 'Mesa Directiva',
             role: 'Equipo rebuske',
-            emoji: '👑',
+            emoji: '',
             color: '#b8ff3b',
-            text: `Recibido Canashi 🤝. Sobre lo que nos dices ("${text}"): todo el equipo (Tomás, Valeria, Mateo, Vanessa, Lucas, Rosa, Alejandro, Matí, Simón y Dr. Lorenzo) estamos listos para ejecutar. Decinos qué paso damos a continuación.`,
+            text: `Recibido Canashi . Sobre lo que nos dices ("${text}"): todo el equipo (Tomás, Valeria, Mateo, Vanessa, Lucas, Rosa, Alejandro, Matí, Simón y Dr. Lorenzo) estamos listos para ejecutar. Decinos qué paso damos a continuación.`,
             timestamp: new Date().toLocaleTimeString('es-CO', { hour: '2-digit', minute: '2-digit' })
           };
         }
@@ -558,10 +558,10 @@
             sendEmail: true
           })
         });
-        btn.innerHTML = '✅ ¡Enviado!';
-        setTimeout(() => { btn.innerHTML = '<span>📧</span> <span class="hidden sm:inline">Enviar Correo</span>'; }, 3000);
+        btn.innerHTML = ' ¡Enviado!';
+        setTimeout(() => { btn.innerHTML = '<span></span> <span class="hidden sm:inline">Enviar Correo</span>'; }, 3000);
       } catch (e) {
-        btn.innerHTML = '<span>📧</span> <span class="hidden sm:inline">Enviar Correo</span>';
+        btn.innerHTML = '<span></span> <span class="hidden sm:inline">Enviar Correo</span>';
       }
     }
 
