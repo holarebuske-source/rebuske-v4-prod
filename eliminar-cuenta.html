@@ -66,14 +66,14 @@
       <div class="space-y-2.5 mb-6 text-xs">
         <div class="p-3.5 rounded-2xl bg-[#1C120C] border border-[#522912] text-[#FCA5A5] space-y-1">
           <b class="text-[#F87171] block font-brand text-sm flex items-center gap-1.5">
-            <span>🗑️</span> <span>Lo que se eliminará de forma irreversible:</span>
+            <span class="text-red-400 font-bold">[ELIMINAR]</span> <span>Lo que se eliminará de forma irreversible:</span>
           </b>
           <p>Tus datos de perfil público, foto de avatar, selfie biométrica facial encriptada, historial de conversaciones en chat temporal y beneficios/cupones activos.</p>
         </div>
 
         <div class="p-3.5 rounded-2xl bg-[#121E10] border border-[#243B1E] text-[#D7E5D3] space-y-1">
           <b class="text-[#FFFA70] block font-brand text-sm flex items-center gap-1.5">
-            <span>🔒</span> <span>Lo que se conserva por mandato legal obligatorio:</span>
+            <span class="text-emerald-400 font-bold">[LEGAL]</span> <span>Lo que se conserva por mandato legal obligatorio:</span>
           </b>
           <p>Comprobantes de transacciones de pago Wompi y soportes contables se conservan durante <strong>5 a 10 años</strong> por mandato expreso del Estatuto Tributario (DIAN) y el Código de Comercio (Art. 134). Estos registros permanecen bajo <em>archivo bloqueado</em> y sin ningún fin comercial ni publicitario.</p>
         </div>
@@ -147,7 +147,7 @@
         <div class="pt-2 space-y-3">
           <button type="submit" id="btn-verify-otp" class="w-full py-4 rounded-full bg-[#DC2626] text-white font-black font-brand text-sm tracking-wide hover:bg-[#EF4444] active:scale-[0.98] transition shadow-xl flex items-center justify-center gap-2">
             <span>Confirmar y Radicar Baja Definitiva</span>
-            <span>🗑️</span>
+            <span class="text-red-400 font-bold">[ELIMINAR]</span>
           </button>
 
           <div class="flex items-center justify-between text-xs text-[#9BB197] px-2">
@@ -164,7 +164,7 @@
     <div id="view-step-3" class="hidden">
       <div class="p-6 rounded-3xl bg-[#142312] border-2 border-[#B8FF3B] text-center space-y-4">
         <div class="w-16 h-16 rounded-full bg-[#1B3317] border border-[#B8FF3B] mx-auto flex items-center justify-center text-3xl">
-          ✓
+          
         </div>
 
         <div>
@@ -305,10 +305,10 @@
             motivo: cachedMotivo
           })
         });
-        btn.innerText = '✓ Código reenviado';
+        btn.innerText = 'Código reenviado correctamente';
         setTimeout(() => { btn.innerText = 'Reenviar código'; }, 3000);
       } catch (_) {
-        btn.innerText = '✓ Reenviado';
+        btn.innerText = 'Reenviado';
         setTimeout(() => { btn.innerText = 'Reenviar código'; }, 3000);
       }
     }
